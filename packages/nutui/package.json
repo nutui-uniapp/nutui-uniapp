@@ -1,0 +1,40 @@
+{
+  "name": "uniapp-nutui",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "",
+  "author": "yang1206 <y1149221897@outlook.com>",
+  "license": "MIT",
+  "keywords": [],
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "src/index.ts",
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "dist",
+    "style",
+    "components"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub",
+    "build:css": "vite build --config vite.config.build.css.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

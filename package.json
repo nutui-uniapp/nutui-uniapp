@@ -1,0 +1,55 @@
+{
+  "name": "nutui",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev:mp-weixin": "npm -C example run dev:mp-weixin",
+    "build:mp-weixin": "pnpm build && npm -C example run build:mp-weixin",
+    "dev:h5": "npm -C example run dev:h5",
+    "build:h5": "npm -C example run build:h5",
+    "dev:app": "npm -C example run dev:app",
+    "build:app": "npm -C example run build:app",
+    "lint": "eslint . --fix",
+    "postinstall": "npx simple-git-hooks",
+    "commit": "git pull && git add -A && git-cz && git push",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.5",
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@dcloudio/types": "^3.3.3",
+    "@types/node": "^20.2.5",
+    "@uni-helper/uni-app-types": "^0.5.8",
+    "@vue/tsconfig": "^0.4.0",
+    "cz-git": "^1.6.1",
+    "eslint": "^8.42.0",
+    "sass": "^1.62.1",
+    "simple-git-hooks": "^2.8.1",
+    "typescript": "5.0.4",
+    "unbuild": "^1.2.1",
+    "vite": "4.2.2",
+    "vue-tsc": "^1.6.5"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts}": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git",
+      "useEmoji": true
+    }
+  }
+}

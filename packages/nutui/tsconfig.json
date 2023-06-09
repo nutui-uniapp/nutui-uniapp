@@ -1,0 +1,39 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": [
+    "**/dist/**"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.vue",
+    "**/*.tsx"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "~/*": [
+        "./*"
+      ]
+    },
+    "declaration": false,
+    "composite": false,
+    "types": [
+      "@dcloudio/types"
+      // "@uni-helper/uni-app-types"
+    ]
+  },
+  "vueCompilerOptions": {
+    "experimentalRuntimeMode": "runtime-uni-app",
+    "nativeTags": [
+      "block",
+      "component",
+      "template",
+      "slot",
+      "button"
+    ]
+  }
+}
