@@ -69,4 +69,12 @@ export const countdownEmits = {
   onPaused: (val: number) => val,
 }
 
+export type CountdownEmits = typeof countdownEmits
+
+export interface CountdownInst {
+  start: () => void
+  pause: () => void
+  reset: () => void
+}
+
 export type CountDownPropsProps = ExtractPropTypes<typeof countdownProps>

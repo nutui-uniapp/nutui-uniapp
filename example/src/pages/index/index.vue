@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { CountdownInst } from 'uniapp-nutui'
+
 const theme = ref('dark')
 const themeVars = reactive({
   primaryColor: '#008000',
@@ -7,13 +9,13 @@ const themeVars = reactive({
 const state = reactive({
   end: Date.now() + 60 * 1000,
 })
-const countdown = ref(null)
+const countdown = ref<CountdownInst>()
 function reset() {
-  console.log(countdown.value.paused)
+  console.log(countdown.value?.pause)
 
-  countdown.value.start()
+  countdown.value?.start()
   setTimeout(() => {
-    countdown.value?.paused()
+    countdown.value?.pause()
   }, 3000)
 }
 </script>

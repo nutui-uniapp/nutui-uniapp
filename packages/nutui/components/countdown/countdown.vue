@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
-import { PREFIX, getTimeStamp, padZero } from '../_utils'
+import { PREFIX, getTimeStamp, isMp, padZero } from '../_utils'
 import { countdownEmits, countdownProps } from './countdown'
 
 const props = defineProps(countdownProps)
 const emits = defineEmits(countdownEmits)
+defineExpose({ start, pause, reset })
 
 const state = reactive({
   restTime: 0, // 倒计时剩余时间时间
@@ -95,28 +96,36 @@ function initTime() {
 }
 
 function tick() {
-  if (window !== undefined) {
+  function countdown() {
+    const currentTime = Date.now() - state.diffTime
+    const remainTime = Math.max(state.handleEndTime - currentTime, 0)
+
+    state.restTime = remainTime
+
+    if (!remainTime) {
+      state.counting = false
+      pause()
+      emits('onEnd')
+    }
+
+    if (isMp && remainTime > 0)
+      tick()
+  }
+
+  if (isMp) {
     (state.timer as any) = requestAnimationFrame(() => {
-      if (state.counting) {
-        const currentTime = Date.now() - state.diffTime
-        const remainTime = Math.max(state.handleEndTime - currentTime, 0)
-
-        state.restTime = remainTime
-
-        if (!remainTime) {
-          state.counting = false
-          pause()
-          emits('onEnd')
-        }
-
-        if (remainTime > 0)
-          tick()
-      }
+      if (state.counting)
+        countdown()
     })
+  }
+  else {
+    (state.timer as any) = setInterval(() => {
+      if (state.counting)
+        countdown()
+    }, 1)
   }
 }
 
-// 开始
 function start() {
   if (!state.counting && !props.autoStart) {
     state.counting = true
@@ -125,14 +134,16 @@ function start() {
     emits('onRestart', state.restTime)
   }
 }
-// 暂定
 function pause() {
-  cancelAnimationFrame(state.timer as any)
+  if (isMp)
+    cancelAnimationFrame(state.timer as any)
+  else
+    clearInterval(state.timer as any)
+
   state.counting = false
   emits('onPaused', state.restTime)
 }
 
-// 重置
 function reset() {
   if (!props.autoStart) {
     pause()
@@ -180,19 +191,17 @@ watch(
 
 watch(
   () => props.endTime,
-  (value) => {
+  () => {
     initTime()
   },
 )
 
 watch(
   () => props.startTime,
-  (value) => {
+  () => {
     initTime()
   },
 )
-
-defineExpose({ start, pause, reset })
 </script>
 
 <script lang="ts">
