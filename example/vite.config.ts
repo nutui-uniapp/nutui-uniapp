@@ -18,6 +18,7 @@ export default defineConfig({
     UniPages({
       routeBlockLang: 'yaml',
       minify: true,
+      subPackages: ['src/demo'],
     }),
     UniManifest({ minify: true }),
     AutoImport({
@@ -33,6 +34,11 @@ export default defineConfig({
       scss: {
         additionalData: '@import "uniapp-nutui/styles/variables.scss";',
       },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': 'src',
     },
   },
 })

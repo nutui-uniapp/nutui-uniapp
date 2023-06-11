@@ -1,0 +1,72 @@
+<script setup lang="ts">
+import { type ComputedRef, ref, watchEffect } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { PREFIX } from '../_utils'
+import NutTransition from '../transition/transition.vue'
+import { useLockScroll } from '../_hooks'
+import { overlayEmits, overlayProps } from './overlay'
+
+const props = defineProps(overlayProps)
+const emits = defineEmits(overlayEmits)
+const overlayRef = ref(null)
+const classes = computed(() => {
+  const prefixCls = componentName
+  return {
+    [prefixCls]: true,
+    [props.overlayClass]: true,
+  }
+})
+
+const style: ComputedRef = computed(() => {
+  return {
+    transitionDuration: `${props.duration}ms`,
+    zIndex: props.zIndex,
+    ...props.overlayStyle,
+  }
+})
+function onClick(e: MouseEvent) {
+  emits('click', e)
+  if (props.closeOnClickOverlay)
+    emits('update:visible', false)
+}
+// #ifdef H5
+const [lock, unlock] = useLockScroll(() => props.lockScroll)
+watchEffect(() => {
+  props.visible ? lock() : unlock()
+})
+// #endif
+</script>
+
+<script lang="ts">
+const componentName = `${PREFIX}-overlay`
+export default defineComponent({
+  name: componentName,
+  options: {
+    virtualHost: true,
+  },
+})
+</script>
+
+<template>
+  <NutTransition
+    :show="visible"
+    name="fade"
+    :custom-style="overlayStyle"
+    :custom-class="overlayClass"
+    :duration="Number(props.duration)"
+  >
+    <view
+      ref="overlayRef"
+      :class="classes"
+      :style="style"
+      @click="onClick"
+      @touchmove.stop="$event.stopPropagation()"
+    >
+      <slot />
+    </view>
+  </NutTransition>
+</template>
+
+<style lang="scss">
+@import './index.scss';
+</style>

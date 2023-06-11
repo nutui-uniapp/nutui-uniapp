@@ -1,8 +1,11 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import { commonProps } from '../_utils'
 
 export const iconProps = {
-  class: { type: String, default: '' },
+  ...commonProps,
   popClass: { type: String, default: '' },
+  width: { type: [String, Number], default: '' },
+  height: { type: [String, Number], default: '' },
   name: { type: String, default: '' },
   size: { type: [String, Number], default: '' },
   classPrefix: { type: String, default: 'nut-icon' },

@@ -1,70 +1,154 @@
-<script setup lang="ts">
-import type { CountdownInst } from 'uniapp-nutui'
+<script lang="ts">
+import { reactive, toRefs } from 'vue'
+import config from '../../../config.json'
 
-const theme = ref('dark')
-const themeVars = reactive({
-  primaryColor: '#008000',
-  primaryColorEnd: '#008000',
-})
-const state = reactive({
-  end: Date.now() + 60 * 1000,
-})
-const countdown = ref<CountdownInst>()
-function reset() {
-  console.log(countdown.value?.pause)
+export default {
+  name: 'NutUI',
+  setup() {
+    const state = reactive({
+      nav: config.nav,
+    })
 
-  countdown.value?.start()
-  setTimeout(() => {
-    countdown.value?.pause()
-  }, 3000)
+    const reorder = (packages: any) => {
+      return packages.sort((x: any, y: any) => {
+        return x.name.toLowerCase().localeCompare(y.name.toLowerCase())
+      })
+    }
+
+    const navigateTo = (name: string, enName: any) => {
+      console.log(`/${enName}/pages/${name.toLowerCase()}/index`)
+
+      uni.navigateTo({
+        url: `/demo/${enName}/pages/${name.toLowerCase()}/index`,
+      })
+    }
+
+    return {
+      ...toRefs(state),
+      reorder,
+      navigateTo,
+    }
+  },
 }
 </script>
 
 <template>
-  <nut-config-provider :theme-vars="themeVars" :theme="theme">
-    <view class="content">
-      <nut-button size="small" type="primary">
-        sjanj
-      </nut-button>
-      <nut-button disabled plain type="primary">
-        禁用状态
-      </nut-button>
-      <nut-button disabled type="primary">
-        禁用状态
-      </nut-button>
-      <nut-button loading>
-        牛逼
-      </nut-button>
-      <nut-button size="large" type="primary">
-        大号按钮
-      </nut-button>
-      <nut-button color="#7232dd">
-        单色按钮
-      </nut-button>
-      <nut-button color="#7232dd" plain>
-        单色按钮
-      </nut-button>
-      <nut-button style="width:100px" plain type="primary">
-        <template #icon>
-          <nut-icon name="star" />
-        </template>
-      </nut-button>
-      <nut-button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="reset">
-        渐变色按钮
-      </nut-button>
-      <nut-icon :size="40" color="skyblue" name="loading" />
-      <nut-icon :size="40" color="skyblue" name="date" />
-      <nut-countdown :end-time="state.end" />
-      <nut-countdown ref="countdown" time="20000" :auto-start="false" format="ss:SS" />
+  <view class="index">
+    <view class="index-header">
+      <image
+        src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
+        alt="" srcset=""
+      />
+      <view class="info">
+        <h1 class="title">
+          NutUI
+        </h1>
+        <text>京东风格的轻量级小程序组件库</text>
+      </view>
     </view>
-  </nut-config-provider>
+    <view class="index-components">
+      <div v-for="_nav in nav" :key="_nav.name" class="com-item">
+        <span class="title">
+          {{ _nav.name }}
+        </span>
+        <div class="info">
+          <template v-for="_package in reorder(_nav.packages)" :key="_package.name">
+            <span v-if="_package.show && _package.taro && _package.exportEmpty !== false" class="info">
+              <text class="link" @click="navigateTo(_package.name, _nav.enName)">
+                {{ _package.name }}
+                &nbsp;&nbsp;
+                {{ _package.cName }}
+              </text>
+              <nut-icon size="14px" color="#979797" name="right" />
+            </span>
+          </template>
+        </div>
+      </div>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
-.content {
-  display: flex;
-  flex-direction: column;
+.index {
+  height: 100%;
+  width: 100%;
+  // padding-top: 30px;
 
-  gap: 10px;
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 0 34px;
+    height: 117px;
+
+    >image {
+      width: 67px;
+      height: 67px;
+      margin-right: 18px;
+      flex-shrink: 0;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        height: 48px;
+        line-height: 48px;
+        font-size: 34px;
+        color: rgba(51, 51, 51, 1);
+        font-weight: 500;
+      }
+
+      text {
+        height: 18px;
+        line-height: 18px;
+        font-size: 12px;
+        color: rgba(154, 155, 157, 1);
+      }
+    }
+  }
+
+  &-components {
+    background: #f7f8fa;
+    border-radius: 30px 30px 0 0;
+    overflow: hidden;
+    padding: 30px 25px;
+
+    >.com-item {
+      margin-bottom: 17px;
+
+      >.title {
+        line-height: 20px;
+        font-size: 14px;
+        color: rgba(144, 156, 164, 1);
+        margin-bottom: 10px;
+      }
+
+      >.info {
+        .info {
+          display: flex;
+          align-items: center;
+          padding: 0 24px;
+          width: 100%;
+          height: 45px;
+          line-height: 45px;
+          background: rgba(255, 255, 255, 1);
+          border-radius: 22px;
+          box-shadow: 0px 1px 4px 0px rgba(102, 102, 102, 0.06);
+          margin-bottom: 13px;
+          box-sizing: border-box;
+
+          .link {
+            width: 100%;
+            height: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            display: block;
+            color: rgba(51, 51, 51, 1);
+          }
+        }
+      }
+    }
+  }
 }
 </style>

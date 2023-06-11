@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAppStore } from '@/store'
+import { useAppStore } from './store'
 
 const { darkMode, statusBarHeight, menuButtonBounding } = storeToRefs(useAppStore())
 onLaunch(() => {

@@ -10,22 +10,22 @@ function handleClick(event: Event) {
   emits('click', event)
 }
 
-function isImage() {
+const isImage = computed(() => {
   return props.name ? props.name.includes('/') : false
-}
+})
 
 const classes = computed(() => {
-  return isImage()
+  return isImage.value
     ? `${componentName}__img`
-    : `${props.fontClassName} ${componentName} ${props.classPrefix}-${props.name} ${props.popClass} ${props.class}`
+    : `${props.fontClassName} ${componentName} ${props.classPrefix}-${props.name}  ${props.customClass} ${props.popClass}`
 })
 
 const getStyle = computed(() => {
   const style = {
     color: props.color,
     fontSize: pxCheck(props.size),
-    width: pxCheck(props.size),
-    height: pxCheck(props.size),
+    width: pxCheck(props.width),
+    height: pxCheck(props.height),
   }
   return style
 })
@@ -44,8 +44,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <image v-if="isImage()" :class="classes" :style="getStyle" :src="name" @click="handleClick" />
-  <text v-if="!isImage()" :class="classes" :style="getStyle" @click="handleClick" />
+  <image v-if="isImage" :class="classes" :style="getStyle" :src="name" @click="handleClick" />
+  <text v-else :class="classes" :style="[getStyle, customStyle]" @click="handleClick" />
 </template>
 
 <style lang="scss">

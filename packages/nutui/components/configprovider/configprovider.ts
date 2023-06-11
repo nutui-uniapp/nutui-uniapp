@@ -1,7 +1,7 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const configProviderProps = {
-  theme: { type: String, default: '' },
+  theme: { type: String as PropType<'dark' | string>, default: '' },
   themeVars: { type: Object, default: {} },
 }
 

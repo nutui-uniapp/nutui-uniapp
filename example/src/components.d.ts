@@ -9,9 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    DemoHeader: typeof import('./components/DemoHeader.vue')['default']
     NutButton: typeof import('uniapp-nutui/components/button/button.vue')['default']
-    NutConfigProvider: typeof import('uniapp-nutui/components/configprovider/configprovider.vue')['default']
-    NutCountdown: typeof import('uniapp-nutui/components/countdown/countdown.vue')['default']
+    NutCell: typeof import('uniapp-nutui/components/cell/cell.vue')['default']
+    NutCellGroup: typeof import('uniapp-nutui/components/cellgroup/cellgroup.vue')['default']
     NutIcon: typeof import('uniapp-nutui/components/icon/icon.vue')['default']
   }
 }

@@ -4,7 +4,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/"]
     },
     "lib": ["esnext", "dom"],
     "types": ["@dcloudio/types", "@uni-helper/uni-app-types"]
