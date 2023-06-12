@@ -1,7 +1,9 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import { commonProps } from '../_utils'
 import type { ButtonFormType, ButtonShape, ButtonSize, ButtonType } from './type'
 
 export const buttonProps = {
+  ...commonProps,
   color: String,
   shape: {
     type: String as PropType<ButtonShape>,

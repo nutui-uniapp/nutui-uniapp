@@ -25,7 +25,7 @@ export default defineComponent({
 
 <template>
   <div
-    v-if="display" :class="[classes, animationClass]"
+    v-if="display" :class="[classes, animationClass, customClass]"
     :style="[{ 'animation-duration': `${duration}ms` }, { 'animation-timing-function': timingFunction }, customStyle]"
     @click="clickHandler"
   >

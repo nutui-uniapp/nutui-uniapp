@@ -17,5 +17,7 @@ export const iconProps = {
 export type IconProps = ExtractPropTypes<typeof iconProps>
 
 export const iconEmits = {
-  click: (evt: Event) => evt instanceof Event,
+  click: (evt: Event) => evt instanceof Object,
 }
+
+export type IconEmits = typeof iconEmits

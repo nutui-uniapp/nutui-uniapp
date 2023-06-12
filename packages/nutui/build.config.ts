@@ -1,11 +1,15 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  entries: [{
-    builder: 'rollup',
-    input: 'src/index',
-  },
+  entries: [
+    './src/index',
+    {
+      builder: 'rollup',
+      input: './components/_locale/locale.ts',
+      outDir: 'dist',
+    },
   ],
+  outDir: 'dist',
   declaration: true,
   clean: true,
   rollup: {

@@ -1,4 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
+import { isNumber } from '../_utils'
 
 export const countdownProps = {
   modelValue: {
@@ -56,17 +57,17 @@ export const countdownEmits = {
     m: number
     s: number
     ms: number
-  }) => val,
+  }) => val instanceof String || Object,
   updateModelValue: (val: string | {
     d: number
     h: number
     m: number
     s: number
     ms: number
-  }) => val,
-  onEnd: () => {},
-  onRestart: (val: number) => val,
-  onPaused: (val: number) => val,
+  }) => val instanceof String || Object,
+  onEnd: () => true,
+  onRestart: (val: number) => isNumber(val),
+  onPaused: (val: number) => isNumber(val),
 }
 
 export type CountdownEmits = typeof countdownEmits

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ComputedRef, ref, watchEffect } from 'vue'
+import { type ComputedRef, watchEffect } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_utils'
 import NutTransition from '../transition/transition.vue'
@@ -8,7 +8,6 @@ import { overlayEmits, overlayProps } from './overlay'
 
 const props = defineProps(overlayProps)
 const emits = defineEmits(overlayEmits)
-const overlayRef = ref(null)
 const classes = computed(() => {
   const prefixCls = componentName
   return {
@@ -41,9 +40,6 @@ watchEffect(() => {
 const componentName = `${PREFIX}-overlay`
 export default defineComponent({
   name: componentName,
-  options: {
-    virtualHost: true,
-  },
 })
 </script>
 
@@ -51,19 +47,14 @@ export default defineComponent({
   <NutTransition
     :show="visible"
     name="fade"
-    :custom-style="overlayStyle"
-    :custom-class="overlayClass"
+    :custom-style="[overlayStyle, style]"
+    :custom-class="[overlayClass, classes]"
     :duration="Number(props.duration)"
+    @click="onClick"
+    @touchmove.stop="$event.stopPropagation()"
   >
-    <view
-      ref="overlayRef"
-      :class="classes"
-      :style="style"
-      @click="onClick"
-      @touchmove.stop="$event.stopPropagation()"
-    >
-      <slot />
-    </view>
+    <slot />
+    <!-- </view> -->
   </NutTransition>
 </template>
 

@@ -1,0 +1,89 @@
+<script setup lang="ts">
+import { defineComponent } from 'vue'
+import NutPopup from '../popup/popup.vue'
+import NutButton from '../button/button.vue'
+import { PREFIX } from '../_utils'
+import { useTranslate } from '../_hooks'
+import { dialogEmits, dialogProps } from './dialog'
+import { useDialog } from './use-dialog'
+
+const props = defineProps(dialogProps)
+const emit = defineEmits(dialogEmits)
+const {
+  contentStyle,
+  showPopup,
+  onClickOverlay,
+  onCancel,
+  onOk,
+  classes,
+  closed,
+  dialogStatus,
+  showDialog,
+} = useDialog(props, emit)
+
+defineExpose({ showDialog, onOk, onCancel })
+</script>
+
+<script lang="ts">
+const componentName = `${PREFIX}-dialog`
+export default defineComponent({
+  name: componentName,
+  inheritAttrs: false,
+})
+const { translate } = useTranslate(componentName)
+console.log(translate('confirm'))
+</script>
+
+<template>
+  <NutPopup
+    v-model:visible="showPopup"
+    :close-on-click-overlay="false"
+    :lock-scroll="lockScroll"
+    :pop-class="popClass"
+    :overlay-class="overlayClass"
+    :overlay-style="overlayStyle"
+    :custom-style="popStyle"
+    round
+    :transition="transition"
+    @click-overlay="onClickOverlay"
+    @click-close-icon="closed"
+  >
+    <view :class="classes">
+      <view v-if="$slots.header || dialogStatus.title" class="nut-dialog__header">
+        <slot v-if="$slots.header" name="header" />
+        <template v-else>
+          {{ dialogStatus.title }}
+        </template>
+      </view>
+
+      <view class="nut-dialog__content" :style="contentStyle">
+        <slot v-if="$slots.default" name="default" />
+        <view v-else-if="typeof content === 'string'" v-html="dialogStatus.content" />
+        <!-- <component :is="content" v-else /> -->
+      </view>
+
+      <view v-if="!dialogStatus.noFooter" class="nut-dialog__footer" :class="{ [footerDirection]: dialogStatus.footerDirection }">
+        <slot v-if="$slots.footer" name="footer" />
+        <template v-else>
+          <NutButton
+            v-if="!noCancelBtn"
+            size="small"
+            plain
+            type="primary"
+            custom-class="nut-dialog__footer-cancel"
+            @click="onCancel"
+          >
+            {{ dialogStatus.cancelText || translate('cancel') }}
+          </NutButton>
+          <NutButton v-if="!dialogStatus.noOkBtn" size="small" type="primary" custom-class="nut-dialog__footer-ok" @click="onOk">
+            {{ dialogStatus.okText || translate('confirm') }}
+          </NutButton>
+        </template>
+      </view>
+    </view>
+  </NutPopup>
+</template>
+
+<style lang="scss">
+@import './index.scss';
+</style>

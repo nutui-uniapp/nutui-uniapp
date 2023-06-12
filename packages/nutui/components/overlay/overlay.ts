@@ -1,4 +1,5 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import { isBoolean } from '../_utils'
 
 export const overlayProps = {
   visible: {
@@ -7,7 +8,7 @@ export const overlayProps = {
   },
   zIndex: {
     type: [Number, String],
-    default: 100,
+    default: 300,
   },
   duration: {
     type: [Number, String],
@@ -19,7 +20,7 @@ export const overlayProps = {
   },
   lockScroll: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   overlayStyle: {
     type: Object as PropType<CSSProperties>,
@@ -33,8 +34,8 @@ export const overlayProps = {
 export type OverlayProps = ExtractPropTypes<typeof overlayProps>
 
 export const overlayEmits = {
-  'update:visible': (visible: boolean) => visible,
-  'click': (evt: MouseEvent) => evt,
+  'update:visible': (visible: boolean) => isBoolean(visible),
+  'click': (evt: MouseEvent) => evt instanceof Object,
 }
 
 export type OverlayEmits = typeof overlayEmits

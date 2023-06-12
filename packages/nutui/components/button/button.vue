@@ -2,7 +2,7 @@
 import { type CSSProperties, defineComponent } from 'vue'
 import { computed, toRefs } from 'vue'
 import Icon from '../icon/icon.vue'
-import { PREFIX, isH5 } from '../_utils'
+import { PREFIX } from '../_utils'
 import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)
@@ -58,9 +58,8 @@ export default defineComponent({
 
 <template>
   <button
-    :class="classes"
-    :style="getStyle"
-    :type="isH5 ? formType : undefined"
+    :class="[classes, customClass]"
+    :style="[getStyle, customStyle]"
     :formType="formType === 'button' ? undefined : formType"
     @click="handleClick"
   >

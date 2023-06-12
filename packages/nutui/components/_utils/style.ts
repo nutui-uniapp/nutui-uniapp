@@ -1,4 +1,5 @@
-import { hyphenate, isString } from './common'
+import { hyphenate } from './common'
+import { isString } from './is'
 
 export type NormalizedStyle = Record<string, string | number>
 

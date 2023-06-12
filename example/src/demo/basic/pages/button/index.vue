@@ -9,6 +9,10 @@ function changeLoading() {
     isLoading.value = false
   }, 3000)
 }
+
+function click(val) {
+  console.log(val)
+}
 </script>
 
 <route lang="json">
@@ -25,7 +29,7 @@ function changeLoading() {
       按钮类型
     </h2>
     <div class="demo-button-row">
-      <nut-button type="primary">
+      <nut-button type="primary" @click="click">
         主要按钮
       </nut-button>
       <nut-button type="info">
