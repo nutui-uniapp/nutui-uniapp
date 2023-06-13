@@ -17,13 +17,20 @@
   ],
   "sideEffects": [
     "*.scss",
-    "*.css"
+    "*.css",
+    "./_locale/**"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json",
+    "./locale": {
+      "types": "./locale/index.d.ts",
+      "require": "./locale/index.cjs",
+      "import": "./locale/index.mjs"
     },
     "./*": "./*"
   },
@@ -36,7 +43,8 @@
   "files": [
     "dist",
     "style",
-    "components"
+    "components",
+    "locale/**"
   ],
   "scripts": {
     "build": "unbuild",

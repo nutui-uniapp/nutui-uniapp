@@ -10,15 +10,6 @@
     "**/*.tsx"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "./*"
-      ]
-    },
     "declaration": false,
     "composite": false,
     "types": [
@@ -32,8 +23,7 @@
       "block",
       "component",
       "template",
-      "slot",
-      "button"
+      "slot"
     ]
   }
 }

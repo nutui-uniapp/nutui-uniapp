@@ -1,27 +1,24 @@
-export abstract class BaseLang {
-  abstract save: string
-  abstract confirm: string
-  abstract cancel: string
-  abstract done: string
-  abstract noData: string
-  abstract placeholder: string
-  abstract select: string
-  abstract video: {
+export interface BaseLang {
+  save: string
+  confirm: string
+  cancel: string
+  done: string
+  noData: string
+  placeholder: string
+  select: string
+  video: {
     errorTip: string
     clickRetry: string
   }
-
-  abstract fixednav: {
+  fixednav: {
     activeText: string
     unActiveText: string
   }
-
-  abstract pagination: {
+  pagination: {
     prev: string
     next: string
   }
-
-  abstract calendaritem: {
+  calendaritem: {
     weekdays: Array<string>
     end: string
     start: string
@@ -29,14 +26,12 @@ export abstract class BaseLang {
     monthTitle: Function
     today: string
   }
-
-  abstract shortpassword: {
+  shortpassword: {
     title: string
     desc: string
     tips: string
   }
-
-  abstract uploader: {
+  uploader: {
     ready: string
     readyUpload: string
     waitingUpload: string
@@ -44,66 +39,73 @@ export abstract class BaseLang {
     success: string
     error: string
   }
-
-  abstract countdown: {
+  countdown: {
     day: string
     hour: string
     minute: string
     second: string
   }
-
-  abstract address: {
+  address: {
     selectRegion: string
     deliveryTo: string
     chooseAnotherAddress: string
   }
-
-  abstract signature: {
+  signature: {
     reSign: string
     unSupportTpl: string
   }
-
-  abstract ecard: {
+  ecard: {
     chooseText: string
     otherValueText: string
     placeholder: string
   }
-
-  abstract timeselect: {
+  timeselect: {
     pickupTime: string
   }
-
-  abstract sku: {
+  sku: {
     buyNow: string
     buyNumber: string
     addToCart: string
   }
-
-  abstract skuheader: {
+  skuheader: {
     skuId: string
   }
-
-  abstract addresslist: {
+  addresslist: {
     addAddress: string
     default: string
   }
-
-  abstract comment: {
+  comment: {
     complaintsText: string
     additionalReview: Function
     additionalImages: Function
   }
-
-  abstract infiniteloading: {
+  infiniteloading: {
     loading: string
     pullTxt: string
     loadMoreTxt: string
   }
-
-  abstract pullrefresh: {
+  datepicker: {
+    year: string
+    month: string
+    day: string
+    hour: string
+    min: string
+    seconds: string
+  }
+  audiooperate: {
+    back: string
+    start: string
+    pause: string
+    forward: string
+    mute: string
+  }
+  pullrefresh: {
     pulling: string
     loosing: string
     loading: string
   }
 }
-export default BaseLang
+
+export function defineLocaleConfig(locale: BaseLang) {
+  return locale
+}

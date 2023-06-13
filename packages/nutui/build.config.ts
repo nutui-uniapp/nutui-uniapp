@@ -4,12 +4,11 @@ export default defineBuildConfig({
   entries: [
     './src/index',
     {
-      builder: 'rollup',
-      input: './components/_locale/locale.ts',
-      outDir: 'dist',
+      builder: 'mkdist',
+      input: './_locale',
+      outDir: './locale',
     },
   ],
-  outDir: 'dist',
   declaration: true,
   clean: true,
   rollup: {

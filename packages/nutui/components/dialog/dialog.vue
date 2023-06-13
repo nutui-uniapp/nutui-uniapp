@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import NutButton from '../button/button.vue'
 import { PREFIX } from '../_utils'
-import { useTranslate } from '../_hooks'
+import { useTranslate } from '../../locale'
 import { dialogEmits, dialogProps } from './dialog'
 import { useDialog } from './use-dialog'
 
@@ -31,7 +31,6 @@ export default defineComponent({
   inheritAttrs: false,
 })
 const { translate } = useTranslate(componentName)
-console.log(translate('confirm'))
 </script>
 
 <template>
