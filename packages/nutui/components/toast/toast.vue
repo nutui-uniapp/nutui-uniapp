@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { defineComponent } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
+import { PREFIX } from '../_utils'
 import { toastEmits, toastProps } from './toast'
 import { useToast } from './use-toast'
 
@@ -20,6 +22,13 @@ const {
   toastStatus,
 } = useToast(props, emit)
 defineExpose({ showToast, hideToast })
+</script>
+
+<script lang="ts">
+const componentName = `${PREFIX}-toast`
+export default defineComponent({
+  name: componentName,
+})
 </script>
 
 <template>

@@ -11,15 +11,19 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DemoHeader: typeof import('./components/DemoHeader.vue')['default']
     NutActionSheet: typeof import('uniapp-nutui/components/actionsheet/actionsheet.vue')['default']
+    NutBacktop: typeof import('uniapp-nutui/components/backtop/backtop.vue')['default']
     NutButton: typeof import('uniapp-nutui/components/button/button.vue')['default']
     NutCell: typeof import('uniapp-nutui/components/cell/cell.vue')['default']
     NutCellGroup: typeof import('uniapp-nutui/components/cellgroup/cellgroup.vue')['default']
     NutCountdown: typeof import('uniapp-nutui/components/countdown/countdown.vue')['default']
     NutDialog: typeof import('uniapp-nutui/components/dialog/dialog.vue')['default']
+    NutDrag: typeof import('uniapp-nutui/components/drag/drag.vue')['default']
     NutIcon: typeof import('uniapp-nutui/components/icon/icon.vue')['default']
     NutNotify: typeof import('uniapp-nutui/components/notify/notify.vue')['default']
     NutOverlay: typeof import('uniapp-nutui/components/overlay/overlay.vue')['default']
     NutPopup: typeof import('uniapp-nutui/components/popup/popup.vue')['default']
+    NutSwipe: typeof import('uniapp-nutui/components/swipe/swipe.vue')['default']
+    NutSwitch: typeof import('uniapp-nutui/components/switch/switch.vue')['default']
     NutToast: typeof import('uniapp-nutui/components/toast/toast.vue')['default']
   }
 }

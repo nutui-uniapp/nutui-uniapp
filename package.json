@@ -9,6 +9,9 @@
     "node": ">=18"
   },
   "scripts": {
+    "build": "pnpm run --dir packages/nutui build",
+    "build:css": "pnpm run --dir packages/nutui build:css",
+    "build:all": "pnpm build && pnpm build:css",
     "dev:mp-weixin": "npm -C example run dev:mp-weixin",
     "build:mp-weixin": "pnpm build && npm -C example run build:mp-weixin",
     "dev:h5": "npm -C example run dev:h5",
