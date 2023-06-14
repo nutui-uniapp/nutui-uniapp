@@ -29,7 +29,6 @@
     "./package.json": "./package.json",
     "./locale": {
       "types": "./locale/index.d.ts",
-      "require": "./locale/index.cjs",
       "import": "./locale/index.mjs"
     },
     "./*": "./*"

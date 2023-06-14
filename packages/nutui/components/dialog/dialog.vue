@@ -51,13 +51,13 @@ const { translate } = useTranslate(componentName)
       <view v-if="$slots.header || dialogStatus.title" class="nut-dialog__header">
         <slot v-if="$slots.header" name="header" />
         <template v-else>
-          {{ dialogStatus.title }}
+          {{ dialogStatus.title || props.title }}
         </template>
       </view>
 
       <view class="nut-dialog__content" :style="contentStyle">
         <slot v-if="$slots.default" name="default" />
-        <view v-else-if="typeof content === 'string'" v-html="dialogStatus.content" />
+        <view v-else-if="typeof content === 'string'" v-html="dialogStatus.content || props.content" />
         <!-- <component :is="content" v-else /> -->
       </view>
 
@@ -72,10 +72,10 @@ const { translate } = useTranslate(componentName)
             custom-class="nut-dialog__footer-cancel"
             @click="onCancel"
           >
-            {{ dialogStatus.cancelText || translate('cancel') }}
+            {{ dialogStatus.cancelText || props.cancelText || translate('cancel') }}
           </NutButton>
           <NutButton v-if="!dialogStatus.noOkBtn" size="small" type="primary" custom-class="nut-dialog__footer-ok" @click="onOk">
-            {{ dialogStatus.okText || translate('confirm') }}
+            {{ dialogStatus.okText || props.okText || translate('confirm') }}
           </NutButton>
         </template>
       </view>

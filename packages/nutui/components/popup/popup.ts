@@ -2,19 +2,12 @@ import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { overlayProps } from '../overlay/overlay'
 import { isBoolean } from '../_utils'
 import type { NutAnimationName } from '../transition'
-
-export const animationName = {
-  center: 'fade',
-  top: 'slide-down',
-  bottom: 'slide-up',
-  left: 'slide-left',
-  right: 'slide-right',
-}
+import type { Position } from '../_constants/types'
 
 export const popupProps = {
   ...overlayProps,
   position: {
-    type: String as PropType<keyof typeof animationName>,
+    type: String as PropType<Position>,
     default: 'center',
   },
   transition: {

@@ -2,7 +2,11 @@ import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
   entries: [
-    './src/index',
+    {
+      builder: 'rollup',
+      input: './src/index',
+      outDir: './dist',
+    },
     {
       builder: 'mkdist',
       input: './_locale',

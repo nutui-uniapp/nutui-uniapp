@@ -42,6 +42,7 @@ export default {
       <view class="info">
         <h1 class="title">
           NutUI
+          <text>For UniAPP</text>
         </h1>
         <text>京东风格的轻量级小程序组件库</text>
       </view>

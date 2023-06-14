@@ -1,6 +1,7 @@
 import { type ComputedRef, type SetupContext, computed, reactive, toRefs, watch, watchEffect } from 'vue'
 import { PREFIX } from '../_utils'
-import { type PopupEmits, type PopupProps, animationName } from './popup'
+import { animationName } from '../_constants/types'
+import { type PopupEmits, type PopupProps } from './popup'
 
 const initIndex = 500
 let _zIndex = initIndex
