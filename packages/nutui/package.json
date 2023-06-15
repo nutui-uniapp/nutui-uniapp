@@ -17,7 +17,6 @@
   ],
   "sideEffects": [
     "*.scss",
-    "*.css",
     "./_locale/**"
   ],
   "exports": {
@@ -47,8 +46,7 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "stub": "unbuild --stub",
-    "build:css": "vite build --config vite.config.build.css.ts"
+    "stub": "unbuild --stub"
   },
   "peerDependencies": {
     "vue": "^3.2.0"

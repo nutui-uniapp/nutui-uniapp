@@ -37,7 +37,7 @@ onHide(() => {
 </script>
 
 <style lang="scss">
-@import 'uniapp-nutui/styles/index.css';
+@import 'uniapp-nutui/styles/index.scss';
 /* #ifdef H5 */
 html.dark {
   --UI-BG-CLOLOR-ACTIVE: #373737;

@@ -57,7 +57,6 @@
         "path": "#/contributing",
         "show": true
       },
-      
       {
         "name": "https://github.com/jdf2e/nutui/releases",
         "cName": "更新日志",
@@ -719,10 +718,8 @@
           "desc": "列表滚动到底部自动加载更多数据",
           "sort": 15,
           "show": true,
-          "taro": false,
           "author": "yangxiaolu",
-          "exportEmpty": false,
-          "exportEmptyTaro": false
+          "taro": true
         },
         {
           "version": "3.0.0",

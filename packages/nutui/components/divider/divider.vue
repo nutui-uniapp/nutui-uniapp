@@ -1,0 +1,58 @@
+<script setup lang="ts">
+import { computed, defineComponent, useSlots } from 'vue'
+import { PREFIX } from '../_utils'
+import { dividerProps } from './divider'
+
+const props = defineProps(dividerProps)
+const slotDefault = !!useSlots().default
+const classes = computed(() => {
+  const prefixCls = componentName
+
+  const defaultClassesObj = {
+    [prefixCls]: true,
+  }
+
+  let classesObj = {}
+
+  if (props.direction === 'horizontal') {
+    classesObj = {
+      ...defaultClassesObj,
+      [`${prefixCls}-center`]: slotDefault,
+      [`${prefixCls}-left`]: props.contentPosition === 'left',
+      [`${prefixCls}-right`]: props.contentPosition === 'right',
+      [`${prefixCls}-dashed`]: props.dashed,
+      [`${prefixCls}-hairline`]: props.hairline,
+    }
+  }
+  else {
+    classesObj = {
+      ...defaultClassesObj,
+      [`${prefixCls}-vertical`]: props.direction === 'vertical',
+    }
+  }
+
+  return classesObj
+})
+</script>
+
+<script lang="ts">
+const componentName = `${PREFIX}-divider`
+
+export default defineComponent({
+  name: componentName,
+  options: {
+    virtualHost: true,
+  },
+})
+</script>
+
+<template>
+  <view v-if="direction === 'horizontal'" :class="classes">
+    <slot />
+  </view>
+  <view v-else :class="classes" />
+</template>
+
+<style lang="scss">
+@import './index.scss';
+</style>

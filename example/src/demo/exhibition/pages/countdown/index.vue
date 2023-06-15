@@ -26,10 +26,10 @@ export default {
     const onend = () => {
       console.log('countdown: ended.')
     }
-    const onpaused = (v) => {
+    const onpaused = (v: any) => {
       console.log('paused: ', v)
     }
-    const onrestart = (v) => {
+    const onrestart = (v: any) => {
       console.log('restart: ', v)
     }
     const start = () => {
@@ -145,7 +145,7 @@ export default {
       <nut-countdown ref="Countdown" time="20000" :auto-start="false" format="ss:SS" />
     </nut-cell>
 
-    <!-- <nut-grid :column-num="3">
+    <nut-grid :column-num="3">
       <nut-grid-item>
         <nut-button type="primary" @click="start">
           开始
@@ -161,7 +161,7 @@ export default {
           重置
         </nut-button>
       </nut-grid-item>
-    </nut-grid> -->
+    </nut-grid>
   </div>
 </template>
 

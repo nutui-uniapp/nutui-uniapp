@@ -1,5 +1,4 @@
 import { getPropByPath, isFunction } from '../components/_utils'
-import type { BaseLang } from './lang/baseLang'
 import { Locale, useCurrentLang } from './locale'
 
 // export function useTranslate(object: Record<keyof Lang, any>) {
@@ -14,7 +13,7 @@ export function useTranslate(compName: string) {
  * @param args
  * @returns
  */
-  function translate(keyPath: keyof BaseLang, ...args: unknown[]): string {
+  function translate(keyPath: string, ...args: unknown[]): string {
     // 依赖响应能力
     const { languages } = Locale
 
