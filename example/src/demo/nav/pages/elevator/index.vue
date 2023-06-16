@@ -276,11 +276,11 @@ export default defineComponent({
     })
 
     const clickItem = (key: string, item: any) => {
-      // console.log(key, JSON.stringify(item))
+      console.log(key, JSON.stringify(item))
     }
 
     const clickIndex = (key: string) => {
-      // console.log(key)
+      console.log(key)
     }
 
     return { ...toRefs(state), temp, clickItem, clickIndex, isH5 }
@@ -340,3 +340,11 @@ export default defineComponent({
   // overflow-y: hidden !important;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Elevator"
+  }
+}
+</route>
