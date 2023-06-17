@@ -17,6 +17,7 @@
     "dev:app": "npm -C example run dev:app",
     "build:app": "npm -C example run build:app",
     "lint": "eslint . --fix",
+    "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "postinstall": "npx simple-git-hooks",
     "commit": "git pull && git add -A && git-cz && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,8 +36,18 @@
     "cz-git": "^1.6.1",
     "eslint": "^8.42.0",
     "lint-staged": "^13.2.2",
+    "postcss": "^8.4.24",
+    "postcss-html": "^1.5.0",
     "sass": "^1.62.1",
     "simple-git-hooks": "^2.8.1",
+    "stylelint": "^15.7.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^4.2.0",
+    "stylelint-config-recommended": "^12.0.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-order": "^6.0.3",
     "typescript": "5.0.4",
     "unbuild": "^1.2.1",
     "uni-tsc": "^0.0.2",
@@ -47,7 +58,8 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*.{vue,js,ts}": "eslint --fix"
+    "*.{vue,js,ts}": "eslint --fix",
+    "*.{scss,css}": "stylelint --fix"
   },
   "config": {
     "commitizen": {

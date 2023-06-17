@@ -58,7 +58,7 @@ const switchChecked = ref(true)
       />
       <nut-cell title="路由跳转 ’/‘ " to="/" />
     </nut-cell-group>
-    <nut-cell-group title="自定义右侧箭头区域" desc="/Users/yangjunwei/Desktop/nutui/src/sites/mobile-taro/vue/src/basic/pages/overlay使用 nut-cell-group 支持 title desc slots">
+    <nut-cell-group title="自定义右侧箭头区域" desc="使用 nut-cell-group 支持 title desc slots">
       <nut-cell title="Switch">
         <template #link>
           <nut-switch v-model="switchChecked" />

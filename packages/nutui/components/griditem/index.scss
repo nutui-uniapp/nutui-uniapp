@@ -1,15 +1,17 @@
 .nut-theme-dark {
   .nut-grid-item {
     &__content {
-      background: $dark-background;
       color: $dark-color;
-
+      background: $dark-background;
+      border: 0 solid $dark-background2;
     }
+
     &__text {
       color: $dark-color;
     }
   }
 }
+
 .nut-grid-item {
   position: relative;
   box-sizing: border-box;
@@ -17,17 +19,17 @@
   $block: &;
 
   &__text {
-    color: $grid-item-text-color;
+    margin: $grid-item-text-margin 0 0 0;
     font-size: $grid-item-text-font-size;
     line-height: 1.5;
+    color: $grid-item-text-color;
     word-break: break-all;
-    margin: $grid-item-text-margin 0 0 0;
   }
 
   &__content {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     height: 100%;
     padding: $grid-item-content-padding;
     background: $grid-item-content-bg-color;
@@ -87,13 +89,13 @@
         left: 50%;
         width: 100%;
         height: 100%;
+        content: ' ';
         background-color: $black;
         border: inherit;
         border-color: $black;
         border-radius: inherit;
-        transform: translate(-50%, -50%);
         opacity: 0;
-        content: ' ';
+        transform: translate(-50%, -50%);
       }
 
       &:active::before {

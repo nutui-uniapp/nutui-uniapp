@@ -38,7 +38,8 @@ onHide(() => {
 </script>
 
 <style lang="scss">
-@import 'uniapp-nutui/styles/index.scss';
+@import 'uniapp-nutui/styles/index';
+
 /* #ifdef H5 */
 html.dark {
   --UI-BG-CLOLOR-ACTIVE: #373737;
@@ -51,11 +52,11 @@ html.dark {
   --UI-BG-4: #606060;
   --UI-BG-5: #2c2c2c;
   --UI-FG: #fff;
-  --UI-FG-0: hsla(0, 0%, 100%, 0.8);
-  --UI-FG-HALF: hsla(0, 0%, 100%, 0.6);
-  --UI-FG-1: hsla(0, 0%, 100%, 0.5);
-  --UI-FG-2: hsla(0, 0%, 100%, 0.3);
-  --UI-FG-3: hsla(0, 0%, 100%, 0.05);
+  --UI-FG-0: hsl(0deg 0% 100% / 80%);
+  --UI-FG-HALF: hsl(0deg 0% 100% / 60%);
+  --UI-FG-1: hsl(0deg 0% 100% / 50%);
+  --UI-FG-2: hsl(0deg 0% 100% / 30%);
+  --UI-FG-3: hsl(0deg 0% 100% / 5%);
 }
 
 /* #endif */

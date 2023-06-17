@@ -107,18 +107,18 @@ export default {
 <style lang="scss">
 .demo {
   .text-data  {
-    margin: 0 auto;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    padding-left: 16px;
     display: flex;
     align-items: center;
     width: 100%;
     height: 46px;
-    border-radius: 7px;
-    line-height: 19px;
+    padding-left: 16px;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
     font-size: 13px;
-    color: rgba(102, 102, 102, 1);
+    line-height: 19px;
+    color: rgb(102 102 102 / 100%);
+    border-radius: 7px;
   }
 }
 </style>

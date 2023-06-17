@@ -1,52 +1,56 @@
-@import '../popup/index.scss';
+@import '../popup/index';
 
 .nut-theme-dark {
   .nut-action-sheet {
     .nut-action-sheet__cancel {
       border-top: 1px solid $dark-background2;
     }
+
     .nut-action-sheet__title {
       border-bottom: 1px solid $dark-background2;
     }
+
     .nut-action-sheet__cancel,
     .nut-action-sheet__item,
     .nut-action-sheet__title {
-      background: $dark-background;
       color: $dark-color;
+      background: $dark-background;
     }
   }
 }
 
 .nut-action-sheet {
   display: block;
+
   .nut-action-sheet__title {
     display: block;
     padding: 10px;
     margin: 0;
+    font-size: $font-size-base;
+    color: $title-color;
     text-align: center;
     background-color: $white;
     border-bottom: 1px solid $actionsheet-light-color;
-    font-size: $font-size-base;
-    color: $title-color;
   }
+
   .nut-action-sheet__menu {
     display: block;
-    list-style: none;
     padding: 0;
     margin: 0;
+    list-style: none;
   }
 
   .nut-action-sheet__cancel,
   .nut-action-sheet__item {
     display: block;
     padding: 10px;
-    line-height: $actionsheet-item-line-height;
     font-size: $actionsheet-item-font-size;
+    line-height: $actionsheet-item-line-height;
     color: $actionsheet-item-font-color;
     text-align: center;
+    cursor: pointer;
     background-color: #fff;
     border-bottom: $actionsheet-item-border-bottom;
-    cursor: pointer;
   }
 
   .nut-action-sheet__desc {
@@ -65,6 +69,7 @@
     color: #e1e1e1 !important;
     cursor: not-allowed;
   }
+
   .nut-action-sheet__item--loading {
     cursor: default;
   }
@@ -74,3 +79,4 @@
     border-top: $actionsheet-item-cancel-border-top;
   }
 }
+

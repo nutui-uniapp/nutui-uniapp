@@ -1,7 +1,9 @@
-@import '../overlay/index.scss';
+@import '../overlay/index';
+
 .nut-theme-dark {
   .nut-popup {
     background: $dark-background2;
+
     &__close-icon {
       color: $dark-color;
     }
@@ -11,8 +13,8 @@
 .nut-popup-slide {
   &-center-enter-active,
   &-center-leave-active {
-    transition-property: opacity;
     transition-timing-function: ease;
+    transition-property: opacity;
   }
 
   &-center-enter-from,
@@ -45,6 +47,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   &.round {
     border-radius: $popup-border-radius;
   }
@@ -54,9 +57,11 @@
   bottom: 0;
   left: 0;
   width: 100%;
+
   &.round {
     border-radius: $popup-border-radius $popup-border-radius 0 0;
   }
+
   &--safebottom {
     padding-bottom: constant(safe-area-inset-bottom);
     padding-bottom: env(safe-area-inset-bottom);
@@ -97,16 +102,17 @@
   overflow-y: auto;
   background-color: $white;
   -webkit-overflow-scrolling: touch;
+
   &__close-icon {
     position: absolute !important;
     z-index: 1;
-    color: #969799;
-    font-size: 18px;
-    cursor: pointer;
     width: 30px;
     height: 30px;
+    font-size: 18px;
     line-height: 30px;
+    color: #969799;
     text-align: center;
+    cursor: pointer;
 
     &:active {
       opacity: 0.7;

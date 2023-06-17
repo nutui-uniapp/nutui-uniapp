@@ -45,38 +45,41 @@ export default defineComponent({
 <style lang="scss">
 .applets-demo-header {
   position: fixed;
-  z-index: 10;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
+  z-index: 10;
   height: 38px;
+  font-size: 20px;
+  font-weight: bold;
   line-height: 57px;
+  color: rgb(51 51 51 / 100%);
   text-align: center;
   background: $white;
-  font-weight: bold;
-  font-size: 20px;
-  color: rgba(51, 51, 51, 1);
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 10px 0 rgb(0 0 0 / 7%);
+
   .back {
     position: absolute;
     left: 0;
-    height: 100%;
-    width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50px;
+    height: 100%;
     cursor: pointer;
   }
+
   .applets-icon {
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
-    width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 120px;
+    height: 100%;
     cursor: pointer;
+
     > .image {
       width: 87px;
       height: 36px;

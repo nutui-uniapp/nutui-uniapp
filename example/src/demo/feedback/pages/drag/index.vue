@@ -82,10 +82,11 @@ export default {
 .dragDemo {
   margin-left: 20px;
 }
+
 .drag-boundary {
   position: absolute;
   top: 420px;
-  left: 0px;
+  left: 0;
   width: 300px;
   height: 200px;
   border: 1px solid red;

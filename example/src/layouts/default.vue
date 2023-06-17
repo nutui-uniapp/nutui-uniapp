@@ -14,7 +14,7 @@ const { darkMode } = storeToRefs(useAppStore())
 
 <style>
 .header {
-  background-color: black;
   color: #fff;
+  background-color: black;
 }
 </style>

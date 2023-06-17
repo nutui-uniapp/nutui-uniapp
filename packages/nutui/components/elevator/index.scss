@@ -1,16 +1,20 @@
 .nut-theme-dark {
   .nut-elevator {
     background-color: $dark-background2;
+
     &__list {
       &__item {
         color: $dark-color;
+
         &__code {
           color: $dark-color;
+
            &::after {
              background-color: $dark-background7;
            }
         }
       }
+
       &__fixed {
         background-color: $dark-background2;
       }
@@ -21,108 +25,123 @@
     }
   }
 }
+
 .nut-elevator {
-  width: 100%;
-  display: block;
   position: relative;
+  display: block;
+  width: 100%;
+
   &__list {
-    display: block;
     position: relative;
+    display: block;
     overflow: auto;
+
     &__item {
       display: block;
       font-size: $elevator-list-item-font-size;
       color: $elevator-list-item-font-color;
+
       &__code {
-        display: flex;
         position: relative;
-        height: $elevator-list-item-code-height;
-        line-height: $elevator-list-item-code-line-height;
-        font-size: $elevator-list-item-code-font-size;
-        color: $elevator-list-item-code-font-color;
-        padding: $elevator-list-item-code-padding;
-        font-weight: $elevator-list-item-code-font-weight;
         box-sizing: border-box;
+        display: flex;
+        height: $elevator-list-item-code-height;
+        padding: $elevator-list-item-code-padding;
+        font-size: $elevator-list-item-code-font-size;
+        font-weight: $elevator-list-item-code-font-weight;
+        line-height: $elevator-list-item-code-line-height;
+        color: $elevator-list-item-code-font-color;
+
         &::after {
-          content: ' ';
+          position: absolute;
+          bottom: 0;
+          left: 0;
           width: $elevator-list-item-code-after-width;
           height: $elevator-list-item-code-after-height;
-          position: absolute;
-          left: 0;
-          bottom: 0;
+          content: ' ';
           background-color: $elevator-list-item-code-after-bg-color;
         }
       }
+
       &__name {
         display: flex;
         align-items: center;
-        padding: $elevator-list-item-name-padding;
         height: $elevator-list-item-name-height;
+        padding: $elevator-list-item-name-padding;
         line-height: $elevator-list-item-name-line-height;
+
         &--highcolor {
           color: $elevator-list-item-highcolor;
         }
       }
     }
+
     .nut-elevator__list__fixed__wrapper {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
     }
+
     &__fixed {
-      width: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      padding: $elevator-list-item-code-padding;
-      height: $elevator-list-item-code-height;
-      line-height: $elevator-list-item-code-line-height;
-      font-size: $elevator-list-item-code-font-size;
-      color: $elevator-list-fixed-color;
-      font-weight: $elevator-list-item-code-font-weight;
-      background-color: $elevator-list-fixed-bg-color;
-      box-sizing: border-box;
-      box-shadow: $elevator-list-fixed-box-shadow;
       z-index: 1;
+      box-sizing: border-box;
+      width: 100%;
+      height: $elevator-list-item-code-height;
+      padding: $elevator-list-item-code-padding;
+      font-size: $elevator-list-item-code-font-size;
+      font-weight: $elevator-list-item-code-font-weight;
+      line-height: $elevator-list-item-code-line-height;
+      color: $elevator-list-fixed-color;
+      background-color: $elevator-list-fixed-bg-color;
+      box-shadow: $elevator-list-fixed-box-shadow;
+
       &--mini {
         position: sticky;
         top: -1px;
       }
     }
+
     &--mini {
       position: static;
     }
   }
+
   &__code--current {
-    color: $elevator-list-item-font-color;
     position: $elevator-list-item-code-current-position;
-    right: $elevator-list-item-code-current-right;
     top: $elevator-list-item-code-current-top;
-    transform: $elevator-list-item-code-current-transform;
+    right: $elevator-list-item-code-current-right;
     width: $elevator-list-item-code-current-width;
     height: $elevator-list-item-code-current-height;
     line-height: $elevator-list-item-code-current-line-height;
-    border-radius: $elevator-list-item-code-current-border-radius;
-    background: $elevator-list-item-code-current-bg-color;
-    box-shadow: $elevator-list-item-code-current-box-shadow;
+    color: $elevator-list-item-font-color;
     text-align: $elevator-list-item-code-current-text-align;
+    background: $elevator-list-item-code-current-bg-color;
+    border-radius: $elevator-list-item-code-current-border-radius;
+    box-shadow: $elevator-list-item-code-current-box-shadow;
+    transform: $elevator-list-item-code-current-transform;
   }
+
   &__bars {
     position: $elevator-list-item-bars-position;
-    right: $elevator-list-item-bars-right;
     top: $elevator-list-item-bars-top;
-    transform: $elevator-list-item-bars-transform;
+    right: $elevator-list-item-bars-right;
+    z-index: $elevator-list-item-bars-z-index;
     padding: $elevator-list-item-bars-padding;
+    text-align: $elevator-list-item-bars-text-align;
     background-color: $elevator-list-item-bars-background-color;
     border-radius: $elevator-list-item-bars-border-radius;
-    text-align: $elevator-list-item-bars-text-align;
-    z-index: $elevator-list-item-bars-z-index;
+    transform: $elevator-list-item-bars-transform;
+
     &__inner {
       &__item {
         display: block;
         padding: $elevator-list-item-bars-inner-item-padding;
         font-size: $elevator-list-item-bars-inner-item-font-size;
+
         &.active {
           color: $elevator-list-item-bars-inner-item-active-color;
         }

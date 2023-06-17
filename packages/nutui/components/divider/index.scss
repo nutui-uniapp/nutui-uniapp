@@ -1,17 +1,17 @@
 .nut-divider {
   display: flex;
   align-items: center;
+  margin: $divider-margin;
   font-size: $divider-text-font-size;
   color: $divider-text-color;
-  margin: $divider-margin;
 
   &::before,
   &::after {
+    flex: 1;
+    height: $divider-line-height;
     content: '';
     border: $divider-line-height solid currentColor;
     border-width: $divider-line-height 0 0;
-    height: $divider-line-height;
-    flex: 1;
   }
 
   &.nut-divider-center,
@@ -57,7 +57,7 @@
     top: $divider-vertical-top;
     display: inline-block;
     height: $divider-vertical-height;
-    border-left: 1px solid $divider-vertical-border-left;
     margin: $divider-vertical-margin;
+    border-left: 1px solid $divider-vertical-border-left;
   }
 }

@@ -177,5 +177,5 @@ const { translate } = useTranslate(componentName)
 </template>
 
 <style lang="scss">
-@import './index.scss';
+@import './index';
 </style>

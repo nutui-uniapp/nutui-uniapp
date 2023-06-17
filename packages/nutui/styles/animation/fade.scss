@@ -17,6 +17,7 @@
     opacity: 0;
   }
 }
+
 @include make-animation(nutFade);
 
 
@@ -43,6 +44,7 @@
     transform: translate3d(0, 100%, 0);
   }
 }
+
 @include make-animation(nutFadeUp);
 
 
@@ -68,6 +70,7 @@
     transform: translate3d(0, 100%, 0);
   }
 }
+
 @include make-animation(nutFadeDown);
 
 
@@ -94,6 +97,7 @@
     transform: translate3d(-100%, 0, 0);
   }
 }
+
 @include make-animation(nutFadeLeft);
 
 
@@ -119,4 +123,5 @@
     transform: translate3d(100%, 0, 0);
   }
 }
+
 @include make-animation(nutFadeRight);

@@ -1,86 +1,100 @@
 @keyframes rotation {
   0% {
-    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
+
   100% {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 .nut-toast {
   position: fixed;
-  left: 0;
   bottom: 150px;
+  left: 0;
+  z-index: 50;
   width: 100%;
+  font-family: $font-family;
   text-align: center;
   pointer-events: none;
-  z-index: 50;
-  font-family: $font-family;
+
   &-small {
     .nut-toast-inner {
       font-size: $font-size-small;
     }
   }
+
   &-large {
     .nut-toast-inner {
       font-size: $font-size-large;
     }
   }
+
   &-cover {
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: auto;
     height: 100%;
+    pointer-events: auto;
     background: $toast-cover-bg-color;
   }
+
   &-inner {
     display: inline-block;
-    font-size: $toast-text-font-size;
     min-width: 40%;
     max-width: 65%;
-    text-align: center;
     padding: $toast-inner-padding;
+    font-size: $toast-text-font-size;
+    color: $toast-font-color;
+    text-align: center;
     word-break: break-all;
     background: $toast-inner-bg-color;
     border-radius: $toast-inner-border-radius;
-    color: $toast-font-color;
   }
+
   &-text {
     font-size: $toast-text-font-size;
+
     &:empty {
       margin-bottom: -8px;
     }
   }
+
   &-title {
     font-size: $toast-title-font-size;
+
     &:empty {
       margin-bottom: -8px;
     }
   }
+
   &-has-icon {
     .nut-toast-icon-wrapper {
-      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
       margin-bottom: 8px;
     }
   }
+
   &-center {
     top: 50%;
     transform: translateY(-50%);
   }
+
   &-loading {
     .nut-toast-inner {
       display: inline-flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
+
     .nut-toast-icon-wrapper {
       animation: rotation 2s linear infinite;
     }
+
     .nut-toast-icon-no-animation {
       animation: none;
     }

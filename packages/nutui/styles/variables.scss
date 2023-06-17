@@ -6,18 +6,21 @@ $primary-color-end: var(--nut-primary-color-end, #fa6419) !default;
 
 // 辅助色
 $help-color: var(--nut-help-color, #f5f5f5) !default;
+
 // 标题常规文字
 $title-color: var(--nut-title-color, #1a1a1a) !default;
+
 // 副标题
-$title-color2: var(--nut-title-color2, #666666) !default;
+$title-color2: var(--nut-title-color2, #666) !default;
+
 // 次内容
 $text-color: var(--nut-text-color, #808080) !default;
+
 // 特殊禁用色
-$disable-color: var(--nut-disable-color, #cccccc) !default;
+$disable-color: var(--nut-disable-color, #ccc) !default;
 $white: var(--nut-white, #fff) !default;
 $black: var(--nut-black, #000) !default;
 $required-color: var(--nut-required-color, #fa2c19) !default;
-
 $dark-background: var(--nut-dark-background, #131313) !default;
 $dark-background2: var(--nut-dark-background2, #1b1b1b) !default;
 $dark-background3: var(--nut-dark-background3, #141414) !default;
@@ -27,12 +30,10 @@ $dark-background6: var(--nut-dark-background6, #380e08) !default;
 $dark-background7: var(--nut-dark-background7, #707070) !default;
 $dark-color: var(--nut-dark-color, $white) !default;
 $dark-color2: var(--nut-dark-color2, #f2270c) !default;
-$dark-color3: var(--nut-dark-color3, rgba(232, 230, 227, 0.8)) !default;
+$dark-color3: var(--nut-dark-color3, rgb(232 230 227 / 80%)) !default;
 $dark-color-gray: var(--nut-dark-color-gray, $text-color) !default;
-$dark-calendar-choose-color: var(--nut-dark-calendar-choose-color, rgba(227, 227, 227, 0.2)) !default;
+$dark-calendar-choose-color: var(--nut-dark-calendar-choose-color, rgb(227 227 227 / 20%)) !default;
 $dark-cell-after-border-bottom: var(--nut-cell-after-border-bottom, 1px solid #191919) !default;
-
-
 $font-family: var(
   --nut-font-family,
   PingFang SC,
@@ -54,7 +55,6 @@ $font-size-2: var(--nut-font-size-2, 14px) !default;
 $font-size-3: var(--nut-font-size-3, 16px) !default;
 $font-size-4: var(--nut-font-size-4, 18px) !default;
 $font-weight-bold: var(--nut-font-weight-bold, 400) !default;
-
 $font-size-small: var(--nut-font-size-small, $font-size-1) !default;
 $font-size-base: var(--nut-font-size-base, $font-size-2) !default;
 $font-size-large: var(--nut-font-size-large, $font-size-3) !default;
@@ -64,8 +64,8 @@ $line-height-base: var(--nut-line-height-base, 1.5) !default;
 $button-border-radius: var(--nut-button-border-radius, 25px) !default;
 $button-border-width: var(--nut-button-border-width, 1px) !default;
 $button-default-bg-color: var(--nut-button-default-bg-color, $white) !default;
-$button-default-border-color: var(--nut-button-default-border-color, rgba(204, 204, 204, 1)) !default;
-$button-default-color: var(--nut-button-default-color, rgba(102, 102, 102, 1)) !default;
+$button-default-border-color: var(--nut-button-default-border-color, rgb(204 204 204 / 100%)) !default;
+$button-default-color: var(--nut-button-default-color, rgb(102 102 102 / 100%)) !default;
 $button-default-padding: var(--nut-button-default-padding, 0 18px) !default;
 $button-mini-padding: var(--nut-button-mini-padding, 0 12px) !default;
 $button-small-padding: var(--nut-button-small-padding, 0 12px) !default;
@@ -91,37 +91,36 @@ $button-primary-background-color: var(
   linear-gradient(135deg, var(--nut-primary-color, $primary-color) 0%, var(--nut-primary-color, $primary-color) 100%)
 ) !default;
 $button-info-color: var(--nut-button-info-color, $white) !default;
-$button-info-border-color: var(--nut-button-info-border-color, rgba(73, 106, 242, 1)) !default;
+$button-info-border-color: var(--nut-button-info-border-color, rgb(73 106 242 / 100%)) !default;
 $button-info-background-color: var(
   --nut-button-info-background-color,
-  linear-gradient(315deg, rgba(73, 143, 242, 1) 0%, rgba(73, 101, 242, 1) 100%)
+  linear-gradient(315deg, rgb(73 143 242 / 100%) 0%, rgb(73 101 242 / 100%) 100%)
 ) !default;
 $button-success-color: var(--nut-button-success-color, $white) !default;
-$button-success-border-color: var(--nut-button-success-border-color, rgba(38, 191, 38, 1)) !default;
+$button-success-border-color: var(--nut-button-success-border-color, rgb(38 191 38 / 100%)) !default;
 $button-success-background-color: var(
   --nut-button-success-background-color,
   linear-gradient(
     135deg,
-    rgba(38, 191, 38, 1) 0%,
-    rgba(39, 197, 48, 1) 45%,
-    rgba(40, 207, 63, 1) 83%,
-    rgba(41, 212, 70, 1) 100%
+    rgb(38 191 38 / 100%) 0%,
+    rgb(39 197 48 / 100%) 45%,
+    rgb(40 207 63 / 100%) 83%,
+    rgb(41 212 70 / 100%) 100%
   )
 ) !default;
-
 $button-danger-color: var(--nut-button-danger-color, $white) !default;
-$button-danger-border-color: var(--nut-button-danger-border-color, rgba(250, 44, 25, 1)) !default;
-$button-danger-background-color: var(--nut-button-danger-background-color, rgba(250, 44, 25, 1)) !default;
+$button-danger-border-color: var(--nut-button-danger-border-color, rgb(250 44 25 / 100%)) !default;
+$button-danger-background-color: var(--nut-button-danger-background-color, rgb(250 44 25 / 100%)) !default;
 $button-warning-color: var(--nut-button-warning-color, $white) !default;
-$button-warning-border-color: var(--nut-button-warning-border-color, rgba(255, 158, 13, 1)) !default;
+$button-warning-border-color: var(--nut-button-warning-border-color, rgb(255 158 13 / 100%)) !default;
 $button-warning-background-color: var(
   --nut-button-warning-background-color,
   linear-gradient(
     135deg,
-    rgba(255, 158, 13, 1) 0%,
-    rgba(255, 167, 13, 1) 45%,
-    rgba(255, 182, 13, 1) 83%,
-    rgba(255, 190, 13, 1) 100%
+    rgb(255 158 13 / 100%) 0%,
+    rgb(255 167 13 / 100%) 45%,
+    rgb(255 182 13 / 100%) 83%,
+    rgb(255 190 13 / 100%) 100%
   )
 ) !default;
 $button-plain-background-color: var(--nut-button-plain-background-color, $white) !default;
@@ -139,7 +138,7 @@ $cell-padding: var(--nut-cell-padding, 13px 16px) !default;
 $cell-line-height: var(--nut-cell-line-height, 20px) !default;
 $cell-after-right: var(--nut-cell-after-right, 16px) !default;
 $cell-after-border-bottom: var(--nut-cell-after-border-bottom, 1px solid #f5f6f7) !default;
-$cell-default-icon-margin: var(--nut-cell-default-icon-margin, 0 4px 0 0px) !default;
+$cell-default-icon-margin: var(--nut-cell-default-icon-margin, 0 4px 0 0) !default;
 $cell-large-title-font: var(--nut-cell-large-title-font, $font-size-large) !default;
 $cell-large-title-desc-font: var(--nut-cell-large-title-desc-font, $font-size-base) !default;
 $cell-large-padding: var(--nut-cell-large-padding, 15px 16px) !default;
@@ -167,7 +166,7 @@ $divider-before-margin-right: var(--nut-divider-before-margin-right, 16px) !defa
 $divider-after-margin-left: var(--nut-divider-after-margin-left, 16px) !default;
 $divider-vertical-height: var(--nut-divider-vertical-height, 12px) !default;
 $divider-vertical-top: var(--nut-divider-vertical-top, 2px) !default;
-$divider-vertical-border-left: var(--nut-divider-vertical-border-left, rgba(0, 0, 0, 0.06)) !default;
+$divider-vertical-border-left: var(--nut-divider-vertical-border-left, rgb(0 0 0 / 6%)) !default;
 $divider-vertical-margin: var(--nut-divider-vertical-margin, 0 8px) !default;
 
 // icon
@@ -196,7 +195,7 @@ $picker-item-text-color: var(--nut-picker-item-text-color, $title-color) !defaul
 $picker-item-text-font-size: var(--nut-picker-item-text-font-size, 14px) !default;
 $picker-item-active-line-border: var(--nut-picker-item-active-line-border, 1px solid #eae7e7) !default;
 
-//input
+// input
 $input-border-bottom: var(--nut-input-border-bottom, #eaf0fb) !default;
 $input-disabled-color: var(--nut-input-disabled-color, #c8c9cc) !default;
 $input-required-color: var(--nut-input-required-color, $required-color) !default;
@@ -205,6 +204,7 @@ $input-font-size: var(--nut-input-font-size, $font-size-2) !default;
 // textarea
 
 $textarea-font: var(--nut-textarea-font, $font-size-2) !default;
+
 // $textarea-height: var(--nut-textarea-height, 100px) !default;
 $textarea-limit-color: var(--nut-textarea-limit-color, $text-color) !default;
 $textarea-text-color: var(--nut-textarea-text-color, $title-color) !default;
@@ -241,13 +241,13 @@ $actionsheet-item-cancel-border-top: var(
 $actionsheet-item-line-height: var(--nut-actionsheet-item-line-height, 24px) !default;
 $actionsheet-item-font-color: var(--nut-actionsheet-item-font-color, $title-color) !default;
 
-//shortpassword
-$shortpassword-background-color: var(--nut-shortpassword-background-color, rgba(245, 245, 245, 1)) !default;
+// shortpassword
+$shortpassword-background-color: var(--nut-shortpassword-background-color, rgb(245 245 245 / 100%)) !default;
 $shortpassword-border-color: var(--nut-shortpassword-border-color, #ddd) !default;
 $shortpassword-error: var(--nut-shortpassword-error, $primary-color) !default;
-$shortpassword-forget: var(--nut-shortpassword-forget, rgba(128, 128, 128, 1)) !default;
+$shortpassword-forget: var(--nut-shortpassword-forget, rgb(128 128 128 / 100%)) !default;
 
-//numberkeyboard
+// numberkeyboard
 $numberkeyboard-width: var(--nut-numberkeyboard-width, 100%) !default;
 $numberkeyboard-padding: var(--nut-numberkeyboard-padding, 0 0 22px 0) !default;
 $numberkeyboard-background-color: var(--nut-numberkeyboard-background-color, #f2f3f5) !default;
@@ -272,22 +272,19 @@ $numberkeyboard-key-font-size-color: var(--nut-numberkeyboard-key-font-size-colo
 $numberkeyboard-key-finish-font-size: var(--nut-numberkeyboard-key-finish-font-size, 16px) !default;
 $numberkeyboard-key-finish-font-size-color: var(--nut-numberkeyboard-key-finish-font-size-color, #fff) !default;
 $numberkeyboard-key-finish-background-color: var(--nut-numberkeyboard-key-finish-background-color, #1989fa) !default;
-$numberkeyboard-key-activeFinsh-background-color: var(
-  --nut-numberkeyboard-key-activeFinsh-background-color,
-  #0570db
-) !default;
+$numberkeyboard-key-activefinsh-background-color: var(--nut-numberkeyboard-key-activefinsh-background-color,#0570db) !default;
 
 // countdown
 $countdown-display: var(--nut-countdown-display, flex) !default;
 $countdown-color: var(--nut-countdown-color, inherit) !default;
 $countdown-font-size: var(--nut-countdown-font-size, initial) !default;
 
-//large price
+//  large price
 $price-symbol-big-size: var(--nut-price-symbol-big-size, 18px) !default;
 $price-big-size: var(--nut-price-big-size, 24px) !default;
 $price-decimal-big-size: var(--nut-price-decimal-big-size, 18px) !default;
 
-//normal price
+//  normal price
 $price-symbol-medium-size: var(--nut-price-symbol-medium-size, 14px) !default;
 $price-medium-size: var(--nut-price-medium-size, 16px) !default;
 $price-decimal-medium-size: var(--nut-price-decimal-medium-size, 14px) !default;
@@ -297,7 +294,7 @@ $price-symbol-small-size: var(--nut-price-symbol-small-size, 10px) !default;
 $price-small-size: var(--nut-price-small-size, 12px) !default;
 $price-decimal-small-size: var(--nut-price-decimal-small-size, 10px) !default;
 
-//avatar
+//  avatar
 $avatar-square: var(--nut-avatar-square, 5px) !default;
 $avatar-large-width: var(--nut-avatar-large-width, 60px) !default;
 $avatar-large-height: var(--nut-avatar-large-height, 60px) !default;
@@ -306,7 +303,7 @@ $avatar-small-height: var(--nut-avatar-small-height, 32px) !default;
 $avatar-normal-width: var(--nut-avatar-normal-width, 40px) !default;
 $avatar-normal-height: var(--nut-avatar-normal-height, 40px) !default;
 
-//switch
+//  switch
 $switch-close-bg-color: var(--nut-switch-close-bg-color, #ebebeb) !default;
 $switch-close-cline-bg-color: var(--nut-switch-close-cline-bg-color, #f0f0f0) !default;
 $switch-width: var(--nut-switch-width, 36px) !default;
@@ -323,18 +320,18 @@ $toast-title-font-size: var(--nut-toast-title-font-size, 16px) !default;
 $toast-text-font-size: var(--nut-toast-text-font-size, 14px) !default;
 $toast-font-color: var(--nut-toast-font-color, $white) !default;
 $toast-inner-padding: var(--nut-toast-inner-padding, 24px 30px) !default;
-$toast-inner-bg-color: var(--nut-toast-inner-bg-color, rgba(0, 0, 0, 0.8)) !default;
+$toast-inner-bg-color: var(--nut-toast-inner-bg-color, rgb(0 0 0 / 80%)) !default;
 $toast-inner-border-radius: var(--nut-toast-inner-border-radius, 12px) !default;
-$toast-cover-bg-color: var(--nut-toast-cover-bg-color, rgba(0, 0, 0, 0)) !default;
+$toast-cover-bg-color: var(--nut-toast-cover-bg-color, rgb(0 0 0 / 0%)) !default;
 
-//backtop
+//  backtop
 $backtop-border-color: var(--nut-backtop-border-color, #e0e0e0) !default;
 
 // calendar
 $calendar-primary-color: var(--nut-calendar-primary-color, $primary-color) !default;
 $calendar-choose-color: var(--nut-calendar-choose-color, $primary-color) !default;
 $calendar-choose-font-color: var(--nut-calendar-choose-font-color, $primary-color) !default;
-$calendar-base-color: var(--nut-calendar-base-color, #333333) !default;
+$calendar-base-color: var(--nut-calendar-base-color, #333) !default;
 $calendar-disable-color: var(--nut-calendar-disable-color, #d1d0d0) !default;
 $calendar-base-font: var(--nut-calendar-base-font, $font-size-3) !default;
 $calendar-title-font: var(--nut-calendar-title-font, $font-size-4) !default;
@@ -342,15 +339,15 @@ $calendar-title-font-weight: var(--nut-calendar-title-font-weight, 500) !default
 $calendar-sub-title-font: var(--nut-calendar-sub-title-font, $font-size-2) !default;
 $calendar-text-font: var(--nut-calendar-text-font, $font-size-1) !default;
 $calendar-day-font: var(--nut-calendar-day-font, 16px) !default;
-$calendar-day-active-border-radius: var(--nut-calendar-day-active-border-radius, 0px) !default;
+$calendar-day-active-border-radius: var(--nut-calendar-day-active-border-radius, 0) !default;
 $calendar-day-font-weight: var(--nut-calendar-day-font-weight, 500) !default;
 $calendar-day67-font-color: var(--nut-calendar-day67-font-color, $primary-color) !default;
 $calendar-month-title-font-size: var(--nut-calendar-month-title-font-size, inherit) !default;
 
-//overlay
-$overlay-bg-color: var(--nut-overlay-bg-color, rgba(0, 0, 0, 0.7)) !default;
+//  overlay
+$overlay-bg-color: var(--nut-overlay-bg-color, rgb(0 0 0 / 70%)) !default;
 
-//popup
+//  popup
 $popup-close-icon-margin: var(--nut-popup-close-icon-margin, 16px) !default;
 $popup-border-radius: var(--nut-popup-border-radius, 20px) !default;
 
@@ -366,22 +363,22 @@ $notify-base-background-color: var(
 ) !default;
 $notify-primary-background-color: var(
   --nut-notify-primary-background-color,
-  linear-gradient(315deg, rgba(73, 143, 242, 1) 0%, rgba(73, 101, 242, 1) 100%)
+  linear-gradient(315deg, rgb(73 143 242 / 100%) 0%, rgb(73 101 242 / 100%) 100%)
 ) !default;
 $notify-success-background-color: var(
   --nut-notify-success-background-color,
   linear-gradient(
     135deg,
-    rgba(38, 191, 38, 1) 0%,
-    rgba(39, 197, 48, 1) 45%,
-    rgba(40, 207, 63, 1) 83%,
-    rgba(41, 212, 70, 1) 100%
+    rgb(38 191 38 / 100%) 0%,
+    rgb(39 197 48 / 100%) 45%,
+    rgb(40 207 63 / 100%) 83%,
+    rgb(41 212 70 / 100%) 100%
   )
 ) !default;
-$notify-danger-background-color: var(--nut-notify-danger-background-color, rgba(250, 50, 25, 1)) !default;
+$notify-danger-background-color: var(--nut-notify-danger-background-color, rgb(250 50 25 / 100%)) !default;
 $notify-warning-background-color: var(
   --nut-notify-warning-background-color,
-  linear-gradient(135deg, rgba(255, 93, 13, 1) 0%, rgba(255, 154, 13, 1) 100%)
+  linear-gradient(135deg, rgb(255 93 13 / 100%) 0%, rgb(255 154 13 / 100%) 100%)
 ) !default;
 
 // rate
@@ -399,11 +396,11 @@ $tabbar-item-text-line-height: var(--nut-tabbar-item-text-line-height, initial) 
 $tabbar-height: var(--nut-tabbar-height, 50px) !default;
 $tabbar-word-margin-top: var(--nut-tabbar-word-margin-top, auto) !default;
 
-//infiniteloading
+//  infiniteloading
 $infiniteloading-bottom-color: var(--nut-infiniteloading-bottom-color, #c8c8c8) !default;
 
-//range
-$range-tip-font-color: var(--nut-range-tip-font-color, #333333) !default;
+//  range
+$range-tip-font-color: var(--nut-range-tip-font-color, #333) !default;
 $range-bg-color: var(--nut-range-bg-color, $primary-color) !default;
 $range-bg-color-tick: var(--nut-range-bg-color-tick, #fa958c) !default;
 $range-bar-bg-color: var(
@@ -415,13 +412,13 @@ $range-bar-btn-width: var(--nut-range-bar-btn-width, 24px) !default;
 $range-bar-btn-height: var(--nut-range-bar-btn-height, 24px) !default;
 $range-bar-btn-border: var(--nut-range-bar-btn-border, 1px solid $primary-color) !default;
 
-//swiper
+//  swiper
 $swiper-pagination-item-width: var(--nut-swiper-pagination-item-width, 8px) !default;
 $swiper-pagination-item-height: var(--nut-swiper-pagination-item-height, 3px) !default;
 $swiper-pagination-item-margin-right: var(--nut-swiper-pagination-item-margin-right, 7px) !default;
 $swiper-pagination-item-border-radius: var(--nut-swiper-pagination-item-border-radius, 2px) !default;
 
-//address
+//  address
 $address-region-tab-line: var(
   --nut-address-region-tab-line,
   linear-gradient(90deg, $primary-color 0%, rgba(#fa2c19, 0.15) 100%)
@@ -438,7 +435,7 @@ $address-region-item-color: var(--nut-address-region-item-color, #333) !default;
 $address-region-item-font-size: var(--nut-address-region-item-font-size, $font-size-1) !default;
 $address-item-margin-right: var(--nut-address-item-margin-right, 9px) !default;
 
-//steps
+//  steps
 $steps-base-icon-width: var(--nut-steps-base-icon-width, 25px) !default;
 $steps-base-icon-height: var(--nut-steps-base-icon-height, 25px) !default;
 $steps-base-icon-line-height: var(--nut-steps-base-icon-line-height, 25px) !default;
@@ -449,20 +446,17 @@ $steps-base-title-color: var(--nut-steps-base-title-color, #909ca4) !default;
 $steps-base-title-margin-bottom: var(--nut-steps-base-title-margin-bottom, 10px) !default;
 $steps-base-content-font-size: var(--nut-steps-base-content-font-size, 14px) !default;
 $steps-base-content-color: var(--nut-steps-base-content-color, #666) !default;
-
 $steps-wait-icon-bg-color: var(--nut-steps-wait-icon-bg-color, #959fb1) !default;
 $steps-wait-icon-color: var(--nut-steps-wait-icon-color, $white) !default;
 $steps-wait-head-color: var(--nut-steps-wait-head-color, #909ca4) !default;
 $steps-wait-head-border-color: var(--nut-steps-wait-head-border-color, #909ca4) !default;
 $steps-wait-content-color: var(--nut-steps-wait-content-color, #909ca4) !default;
-$steps-wait-icon-text-color: var(--nut-steps-wait-icon-text-color, #ffffff) !default;
-
+$steps-wait-icon-text-color: var(--nut-steps-wait-icon-text-color, #fff) !default;
 $steps-finish-head-color: var(--nut-steps-finish-head-color, $primary-color) !default;
 $steps-finish-head-border-color: var(--nut-steps-finish-head-border-color, $primary-color) !default;
 $steps-finish-title-color: var(--nut-steps-finish-title-color, $primary-color) !default;
 $steps-finish-line-background: var(--nut-steps-finish-line-background, $primary-color) !default;
 $steps-finish-icon-text-color: var(--nut-steps-finish-icon-text-color, $white) !default;
-
 $steps-process-head-color: var(--nut-steps-process-head-color, $white) !default;
 $steps-process-head-border-color: var(--nut-steps-process-head-border-color, $primary-color) !default;
 $steps-process-title-color: var(--nut-steps-process-title-color, $primary-color) !default;
@@ -471,7 +465,7 @@ $steps-process-icon-text-color: var(--nut-steps-process-icon-text-color, $primar
 // dialog
 $dialog-width: var(--nut-dialog-width, 296px) !default;
 $dialog-header-font-weight: var(--nut-dialog-header-font-weight, normal) !default;
-$dialog-header-color: var(--nut-dialog-header-color, rgba(38, 38, 38, 1)) !default;
+$dialog-header-color: var(--nut-dialog-header-color, rgb(38 38 38 / 100%)) !default;
 $dialog-footer-justify-content: var(--nut-dialog-footer-justify-content, space-around) !default;
 
 // checkbox
@@ -491,7 +485,7 @@ $checkbox-button-font-color-active: var(--nut-checkbox-button-font-color-active,
 $checkbox-button-border-color-active: var(--nut-checkbox-button-border-color-active, $primary-color) !default;
 $checkbox-button-background-active: var(--nut-checkbox-button-background-active, $primary-color) !default;
 
-//radio
+//  radio
 $radio-label-font-color: var(--nut-radio-label-font-color, #1d1e1e) !default;
 $radio-label-font-active-color: var(--nut-radio-label-font-active-color, $primary-color) !default;
 $radio-label-disable-color: var(--nut-radio-label-disable-color, #999) !default;
@@ -506,7 +500,7 @@ $radio-button-padding: var(--nut-radio-button-padding, 5px 18px) !default;
 $radio-icon-font-size: var(--nut-radio-icon-font-size, 18px) !default;
 $radio-icon-disable-color2: var(--nut-radio-icon-disable-color2, $help-color) !default;
 
-//fixednav
+//  fixednav
 $fixednav-bg-color: var(--nut-fixednav-bg-color, $white) !default;
 $fixednav-font-color: var(--nut-fixednav-font-color, $black) !default;
 $fixednav-index: var(--nut-fixednav-index, 201) !default;
@@ -517,15 +511,15 @@ $fixednav-btn-bg: var(
 $fixednav-item-active-color: var(--nut-fixednav-item-active-color, $primary-color) !default;
 
 // NoticeBar
-$noticebar-background: var(--nut-noticebar-background, rgba(251, 248, 220, 1)) !default;
+$noticebar-background: var(--nut-noticebar-background, rgb(251 248 220 / 100%)) !default;
 $noticebar-color: var(--nut-noticebar-color, #d9500b) !default;
 $noticebar-font-size: var(--nut-noticebar-font-size, 14px) !default;
 $noticebar-across-height: var(--nut-noticebar-across-height, 40px) !default;
 $noticebar-across-line-height: var(--nut-noticebar-across-line-height, 24px) !default;
 $noticebar-box-padding: var(--nut-noticebar-box-padding, 0 16px) !default;
 $noticebar-wrapable-padding: var(--nut-noticebar-wrapable-padding, 16px) !default;
-$noticebar-lefticon-margin: var(--nut-noticebar-lefticon-margin, 0px 10px) !default;
-$noticebar-righticon-margin: var(--nut-noticebar-righticon-margin, 0px 10px) !default;
+$noticebar-lefticon-margin: var(--nut-noticebar-lefticon-margin, 0 10px) !default;
+$noticebar-righticon-margin: var(--nut-noticebar-righticon-margin, 0 10px) !default;
 
 // TimeSelect
 $timeselect-title-font-size: var(--nut-timeselect-title-font-size, $font-size-2) !default;
@@ -539,7 +533,7 @@ $timeselect-pannel-bg-color: var(--nut-timeselect-pannel-bg-color, #f6f7f9) !def
 $timeselect-timepannel-text-color: var(--nut-timeselect-timepannel-text-color, $title-color2) !default;
 $timeselect-timepannel-font-size: var(--nut-timeselect-timepannel-font-size, $font-size-2) !default;
 $timeselect-timepannel-cur-bg-color: var(--nut-timeselect-timepannel-cur-bg-color, $white) !default;
-$timeselect-timepannel-cur-text-color: var(--nut-timeselect-timepannel-cur-text-color, #333333) !default;
+$timeselect-timepannel-cur-text-color: var(--nut-timeselect-timepannel-cur-text-color, #333) !default;
 $timeselect-timepannel-width: var(--nut-timeselect-timepannel-width, 140px) !default;
 $timeselect-timepannel-height: var(--nut-timeselect-timepannel-height, 40px) !default;
 $timeselect-timepannel-padding: var(--nut-timeselect-timepannel-padding, 15px) !default;
@@ -551,7 +545,7 @@ $timeselect-timedetail-item-height: var(--nut-timeselect-timedetail-item-height,
 $timeselect-timedetail-item-line-height: var(--nut-timeselect-timedetail-item-line-height, 50px) !default;
 $timeselect-timedetail-item-bg-color: var(--nut-timeselect-timedetail-item-bg-color, #f6f7f9) !default;
 $timeselect-timedetail-item-border-radius: var(--nut-timeselect-timedetail-item-border-radius, 5px) !default;
-$timeselect-timedetail-item-text-color: var(--nut-timeselect-timedetail-item-text-color, #333333) !default;
+$timeselect-timedetail-item-text-color: var(--nut-timeselect-timedetail-item-text-color, #333) !default;
 $timeselect-timedetail-item-text-font-size: var(--nut-timeselect-timedetail-item-text-font-size, $font-size-2) !default;
 $timeselect-timedetail-item-cur-bg-color: var(--nut-timeselect-timedetail-item-cur-bg-color, $primary-color) !default;
 $timeselect-timedetail-item-cur-border: var(--nut-timeselect-timedetail-item-cur-border, $primary-color) !default;
@@ -560,25 +554,25 @@ $timeselect-timedetail-item-cur-text-color: var(
   $primary-color
 ) !default;
 
-//tag
+//  tag
 $tag-font-size: var(--nut-tag-font-size, 12px) !default;
 $tag-default-border-radius: var(--nut-tag-default-border-radius, 4px) !default;
 $tag-round-border-radius: var(--nut-tag-round-border-radius, 8px) !default;
-$tag-default-background-color: var(--nut-tag-default-background-color, #000000) !default;
+$tag-default-background-color: var(--nut-tag-default-background-color, #000) !default;
 $tag-primary-background-color: var(--nut-tag-primary-background-color, #3460fa) !default;
 $tag-success-background-color: var(--nut-tag-success-background-color, #4fc08d) !default;
 $tag-danger-background-color: var(
   --nut-tag-danger-background-color,
-  linear-gradient(135deg, rgba(242, 20, 12, 1) 0%, rgba(232, 34, 14, 1) 70%, rgba(242, 77, 12, 1) 100%)
+  linear-gradient(135deg, rgb(242 20 12 / 100%) 0%, rgb(232 34 14 / 100%) 70%, rgb(242 77 12 / 100%) 100%)
 ) !default;
 $tag-danger-background-color-plain: var(--nut-tag-danger-background-color-plain, #df3526) !default;
 $tag-warning-background-color: var(--nut-tag-warning-background-color, #f3812e) !default;
-$tag-default-color: var(--nut-tag-default-color, #ffffff) !default;
+$tag-default-color: var(--nut-tag-default-color, #fff) !default;
 $tag-border-width: var(--nut-tag-border-width, 1px) !default;
 $tag-plain-background-color: var(--nut-tag-plain-background-color, #fff) !default;
 $tag-height: var(--nut-tag-height, auto) !default;
 
-//badge
+//  badge
 $badge-background-color: var(
   --nut-badge-background-color,
   linear-gradient(135deg, $primary-color 0%, $primary-color-end 100%)
@@ -593,9 +587,9 @@ $badge-z-index: var(--nut-badge-z-index, 1) !default;
 $badge-dot-width: var(--nut-badge-dot-width, 7px) !default;
 $badge-dot-height: var(--nut-badge-dot-height, 7px) !default;
 $badge-dot-border-radius: var(--nut-badge-dot-border-radius, 7px) !default;
-$badge-dot-padding: var(--nut-badge-dot-padding, 0px) !default;
+$badge-dot-padding: var(--nut-badge-dot-padding, 0) !default;
 
-//popover
+//  popover
 // $popover-white-background-color: var(--nut-/ $popover-white-background-color, rgba(255, 255, 255, 1) )!default;
 // $popover-dark-background-color: var(--nut-/ $popover-dark-background-color, rgba(75, 76, 77, 1) )!default;
 // $popover-border-bottom-color: var(--nut-/ $popover-border-bottom-color, rgba(229, 229, 229, 1) )!default;
@@ -605,16 +599,16 @@ $badge-dot-padding: var(--nut-badge-dot-padding, 0px) !default;
 // $popover-menu-item-margin: var(--nut-/ $popover-menu-item-margin, 0 8px )!default;
 // $popover-menu-name-line-height: var(--nut-/ $popover-menu-name-line-height, normal )!default;
 
-$popover-white-background-color: var(--nut-popover-white-background-color, rgba(255, 255, 255, 1)) !default;
-$popover-dark-background-color: var(--nut-popover-dark-background-color, rgba(75, 76, 77, 1)) !default;
-$popover-border-bottom-color: var(--nut-popover-border-bottom-color, rgba(229, 229, 229, 1)) !default;
-$popover-primary-text-color: var(--nut-popover-primary-text-color, rgba(51, 51, 51, 1)) !default;
-$popover-disable-color: var(--nut-popover-disable-color, rgba(154, 155, 157, 1)) !default;
+$popover-white-background-color: var(--nut-popover-white-background-color, rgb(255 255 255 / 100%)) !default;
+$popover-dark-background-color: var(--nut-popover-dark-background-color, rgb(75 76 77 / 100%)) !default;
+$popover-border-bottom-color: var(--nut-popover-border-bottom-color, rgb(229 229 229 / 100%)) !default;
+$popover-primary-text-color: var(--nut-popover-primary-text-color, rgb(51 51 51 / 100%)) !default;
+$popover-disable-color: var(--nut-popover-disable-color, rgb(154 155 157 / 100%)) !default;
 $popover-menu-item-padding: var(--nut-popover-menu-item-padding, 8px 0) !default;
 $popover-menu-item-margin: var(--nut-popover-menu-item-margin, 0 8px) !default;
 $popover-menu-name-line-height: var(--nut-popover-menu-name-line-height, normal) !default;
 
-//progress
+//  progress
 $progress-inner-background-color: var(
   --nut-progress-inner-background-color,
   linear-gradient(135deg, $primary-color 0%, $primary-color-end 100%)
@@ -641,7 +635,7 @@ $progress-large-text-line-height: var(--nut-progress-large-text-line-height, 18p
 $progress-large-text-padding: var(--nut-progress-large-text-padding, $progress-insidetext-padding) !default;
 $progress-large-text-top: var(--nut-progress-large-text-top, $progress-insidetext-top) !default;
 
-//pagination
+//  pagination
 $pagination-color: var(--nut-pagination-color, $primary-color) !default;
 $pagination-font-size: var(--nut-pagination-font-size, $font-size-2) !default;
 $pagination-item-border-color: var(--nut-pagination-item-border-color, #e4e7eb) !default;
@@ -649,7 +643,7 @@ $pagination-active-background-color: var(
   --nut-pagination-active-background-color,
   linear-gradient(135deg, $primary-color 0%, $primary-color-end 100%)
 ) !default;
-$pagination-disable-color: var(--nut-pagination-disable-color, rgba(116, 116, 116, 0.31)) !default;
+$pagination-disable-color: var(--nut-pagination-disable-color, rgb(116 116 116 / 31%)) !default;
 $pagination-disable-background-color: var(--nut-pagination-disable-background-color, #f7f8fa) !default;
 $pagination-item-border-width: var(--nut-pagination-item-border-width, 1px) !default;
 $pagination-item-border-radius: var(--nut-pagination-item-border-radius, 2px) !default;
@@ -705,22 +699,22 @@ $menu-item-content-max-height: var(--nut-menu-item-content-max-height, 214px) !d
 $menu-item-option-padding-top: var(--nut-menu-item-option-padding-top, 12px) !default;
 $menu-item-option-padding-bottom: var(--nut-menu-item-option-padding-bottom, 12px) !default;
 $menu-item-option-i-margin-right: var(--nut-menu-item-option-i-margin-right, 6px) !default;
-$menu-bar-box-shadow: var(--nut-menu-bar-box-shadow, 0 2px 12px rgba(89, 89, 89, 0.12)) !default;
+$menu-bar-box-shadow: var(--nut-menu-bar-box-shadow, 0 2px 12px rgb(89 89 89 / 12%)) !default;
 $menu-scroll-fixed-top: var(--nut-menu-scroll-fixed-top, 0) !default;
 $menu-scroll-fixed-z-index: var(--nut-menu-scroll-fixed-z-index, 1000) !default;
 $menu-active-item-font-weight: var(--nut-menu-active-item-font-weight, 500) !default;
 
 // collapse
 $collapse-item-padding: var(--nut-collapse-item-padding, 13px 36px 13px 26px) !default;
-$collapse-item-color: var(--nut-collapse-item-color, #666666) !default;
+$collapse-item-color: var(--nut-collapse-item-color, #666) !default;
 $collapse-item-disabled-color: var(--nut-collapse-item-disabled-color, #c8c9cc) !default;
-$collapse-item-icon-color: var(--nut-collapse-item-icon-color, #666666) !default;
+$collapse-item-icon-color: var(--nut-collapse-item-icon-color, #666) !default;
 $collapse-item-font-size: var(--nut-collapse-item-font-size, $font-size-2) !default;
 $collapse-item-line-height: var(--nut-collapse-item-line-height, 24px) !default;
-$collapse-item-sub-title-color: var(--nut-collapse-item-sub-title-color, #666666) !default;
+$collapse-item-sub-title-color: var(--nut-collapse-item-sub-title-color, #666) !default;
 $collapse-wrapper-content-padding: var(--nut-collapse-wrapper-content-padding, 12px 26px) !default;
 $collapse-wrapper-empty-content-padding: var(--nut-collapse-wrapper-empty-content-padding, 0 26px) !default;
-$collapse-wrapper-content-color: var(--nut-collapse-wrapper-content-color, #666666) !default;
+$collapse-wrapper-content-color: var(--nut-collapse-wrapper-content-color, #666) !default;
 $collapse-wrapper-content-font-size: var(--nut-collapse-wrapper-content-font-size, $font-size-2) !default;
 $collapse-wrapper-content-line-height: var(--nut-collapse-wrapper-content-line-height, 1.5) !default;
 $collapse-wrapper-content-background-color: var(--nut-collapse-wrapper-content-background-color, $white) !default;
@@ -735,7 +729,7 @@ $searchbar-input-padding: var(--nut-searchbar-input-padding, 0 0 0 13px) !defaul
 $searchbar-input-height: var(--nut-searchbar-input-height, 32px) !default;
 $searchbar-input-width: var(--nut-searchbar-input-width, 100%) !default;
 $searchbar-input-border-radius: var(--nut-searchbar-input-border-radius, 16px) !default;
-$searchbar-input-box-shadow: var(--nut-searchbar-input-box-shadow, 0 0 8px 0 rgba(0, 0, 0, 0.04)) !default;
+$searchbar-input-box-shadow: var(--nut-searchbar-input-box-shadow, 0 0 8px 0 rgb(0 0 0 / 4%)) !default;
 $searchbar-input-bar-color: var(--nut-searchbar-input-bar-color, inherit) !default;
 $searchbar-input-bar-placeholder-color: var(--nut-searchbar-input-bar-placeholder-color, inherit) !default;
 
@@ -743,7 +737,7 @@ $searchbar-input-bar-placeholder-color: var(--nut-searchbar-input-bar-placeholde
 $empty-padding: var(--nut-empty-padding, 32px 0) !default;
 $empty-image-size: var(--nut-empty-image-size, 170px) !default;
 $empty-description-margin-top: var(--nut-empty-description-margin-top, 4px) !default;
-$empty-description-color: var(--nut-empty-description-color, #666666) !default;
+$empty-description-color: var(--nut-empty-description-color, #666) !default;
 $empty-description-font-size: var(--nut-empty-description-font-size, 14px) !default;
 $empty-description-line-height: var(--nut-empty-description-line-height, 20px) !default;
 $empty-description-padding: var(--nut-empty-description-padding, 0 40px) !default;
@@ -781,7 +775,7 @@ $skeleton-content-avatar-background-color: var(--nut-skeleton-content-avatar-bac
 $skeleton-content-line-background-color: var(--nut-skeleton-content-line-background-color, #efefef) !default;
 $skeleton-animation-background-color: var(
   --nut-skeleton-animation-background-color,
-  linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.5) 50%, hsla(0, 0%, 100%, 0) 80%)
+  linear-gradient(90deg, hsl(0deg 0% 100% / 0%), hsl(0deg 0% 100% / 50%) 50%, hsl(0deg 0% 100% / 0%) 80%)
 ) !default;
 
 // sku
@@ -794,12 +788,12 @@ $sku-opetate-bg-default: var(
 $sku-item-active-bg: var(--nut-sku-item-active-bg, $primary-color) !default;
 $sku-opetate-bg-buy: var(
   --nut-sku-opetate-bg-buy,
-  linear-gradient(135deg, rgba(255, 186, 13, 1) 0%, rgba(255, 195, 13, 1) 69%, rgba(255, 207, 13, 1) 100%)
+  linear-gradient(135deg, rgb(255 186 13 / 100%) 0%, rgb(255 195 13 / 100%) 69%, rgb(255 207 13 / 100%) 100%)
 ) !default;
 $sku-spec-height: var(--nut-sku-spec-height, 30px) !default;
 $sku-spec-line-height: var(--nut-sku-spec-line-height, $sku-spec-height) !default;
 $sku-spec-font-size: var(--nut-sku-spec-font-size, 11px) !default;
-$sku-spec-background: var(--nut-sku-spec-background, rgba(242, 242, 242, 1)) !default;
+$sku-spec-background: var(--nut-sku-spec-background, rgb(242 242 242 / 100%)) !default;
 $sku-spec-color: var(--nut-sku-spec-color, $black) !default;
 $sku-spec-margin-right: var(--nut-sku-spec-margin-right, 12px) !default;
 $sku-spec-padding: var(--nut-sku-spec-padding, 0 18px) !default;
@@ -844,7 +838,7 @@ $navbar-height: var(--nut-navbar-height, 44px) !default;
 $navbar-margin-bottom: var(--nut-navbar-margin-bottom, 20px) !default;
 $navbar-padding: var(--nut-navbar-padding, 0 16px) !default;
 $navbar-background: var(--nut-navbar-background, $white) !default;
-$navbar-box-shadow: var(--nut-navbar-box-shadow, 0px 1px 7px 0px rgba(237, 238, 241, 1)) !default;
+$navbar-box-shadow: var(--nut-navbar-box-shadow, 0 1px 7px 0 rgb(237 238 241 / 100%)) !default;
 $navbar-color: var(--nut-navbar-color, $title-color2) !default;
 $navbar-title-base-font: var(--nut-navbar-title-base-font, $font-size-2) !default;
 $navbar-title-font: var(--nut-navbar-title-font, $font-size-2) !default;
@@ -877,7 +871,7 @@ $sidenavbar-item-font-size: var(--nut-sidenavbar-item-font-size, 16px) !default;
 // elevator
 $elevator-list-item-highcolor: var(--nut-elevator-list-item-highcolor, $primary-color) !default;
 $elevator-list-item-font-size: var(--nut-elevator-list-item-font-size, 12px) !default;
-$elevator-list-item-font-color: var(--nut-elevator-list-item-font-color, #333333) !default;
+$elevator-list-item-font-color: var(--nut-elevator-list-item-font-color, #333) !default;
 $elevator-list-item-name-padding: var(--nut-elevator-list-item-name-padding, 0 20px) !default;
 $elevator-list-item-name-height: var(--nut-elevator-list-item-name-height, 30px) !default;
 $elevator-list-item-name-line-height: var(--nut-elevator-list-item-name-line-height, 30px) !default;
@@ -892,7 +886,7 @@ $elevator-list-item-code-after-height: var(--nut-elevator-list-item-code-after-h
 $elevator-list-item-code-after-bg-color: var(--nut-elevator-list-item-code-after-bg-color, #f5f5f5) !default;
 $elevator-list-item-code-current-box-shadow: var(
   --nut-elevator-list-item-code-current-box-shadow,
-  0 3px 3px 1px rgba(240, 240, 240, 1)
+  0 3px 3px 1px rgb(240 240 240 / 100%)
 ) !default;
 $elevator-list-item-code-current-bg-color: var(--nut-elevator-list-item-code-current-bg-color, #fff) !default;
 $elevator-list-item-code-current-border-radius: var(--nut-elevator-list-item-code-current-border-radius, 50%) !default;
@@ -929,42 +923,42 @@ $elevator-list-item-bars-inner-item-active-color: var(
 // list
 $list-item-margin: var(--nut-list-item-margin, 0 0 10px 0) !default;
 
-//Ecard
+//  Ecard
 $ecard-bg-color: var(--nut-ecard-bg-color, #f0f2f5) !default;
 
-//addresslist
+//  addresslist
 $addresslist-bg: var(--nut-addresslist-bg, #fff) !default;
 $addresslist-border: var(--nut-addresslist-border, #f0f0f0) !default;
-$addresslist-font-color: var(--nut-addresslist-font-color, #333333) !default;
+$addresslist-font-color: var(--nut-addresslist-font-color, #333) !default;
 $addresslist-font-size: var(--nut-addresslist-font-size, 16px) !default;
-$addresslist-mask-bg: var(--nut-addresslist-mask-bg, rgba(0, 0, 0, 0.4)) !default;
-$addresslist-addr-font-color: var(--nut-addresslist-addr-font-color, #666666) !default;
+$addresslist-mask-bg: var(--nut-addresslist-mask-bg, rgb(0 0 0 / 40%)) !default;
+$addresslist-addr-font-color: var(--nut-addresslist-addr-font-color, #666) !default;
 $addresslist-addr-font-size: var(--nut-addresslist-addr-font-size, 12px) !default;
 $addresslist-set-bg: var(--nut-addresslist-set-bg, #f5a623) !default;
 $addresslist-del-bg: var(--nut-addresslist-del-bg, #e1251b) !default;
 $addresslist-contnts-contact-default: var(--nut-addresslist-contnts-contact-default, $primary-color) !default;
 $addresslist-contnts-contact-color: var(--nut-addresslist-contnts-contact-color, $white) !default;
 
-//category
-$category-bg-color: var(--nut-category-bg-color, rgba(255, 255, 255, 1)) !default;
-$category-list-left-bg-color: var(--nut-category-list-left-bg-color, rgba(246, 247, 249, 1)) !default;
+//  category
+$category-bg-color: var(--nut-category-bg-color, rgb(255 255 255 / 100%)) !default;
+$category-list-left-bg-color: var(--nut-category-list-left-bg-color, rgb(246 247 249 / 100%)) !default;
 $category-list-item-color: var(--nut-category-list-item-color, $title-color) !default;
-$category-list-item-checked-color: var(--nut-category-list-item-checked-color, rgba(255, 255, 255, 1)) !default;
+$category-list-item-checked-color: var(--nut-category-list-item-checked-color, rgb(255 255 255 / 100%)) !default;
 $category-list-item-checked-img-bg-color: var(--nut-category-list-item-checked-img-bg-color, $primary-color) !default;
 $category-pane-gray-color: var(--nut-category-pane-gray-color, #666) !default;
-$category-pane-border-color: var(--nut-category-pane-border-color, rgb(153, 153, 153)) !default;
-$category-pane-title-color: var(--nut-category-pane-title-color, rgba(51, 51, 51, 1)) !default;
+$category-pane-border-color: var(--nut-category-pane-border-color, rgb(153 153 153)) !default;
+$category-pane-title-color: var(--nut-category-pane-title-color, rgb(51 51 51 / 100%)) !default;
 
 // circleProgress
 $circleprogress-primary-color: var(--nut-circleprogress-primary-color, $primary-color) !default;
 $circleprogress-path-color: var(--nut-circleprogress-path-color, #e5e9f2) !default;
-$circleprogress-text-color: var(--nut-circleprogress-text-color, #000000) !default;
+$circleprogress-text-color: var(--nut-circleprogress-text-color, #000) !default;
 $circleprogress-text-size: var(--nut-circleprogress-text-size, $font-size-3) !default;
 
 // Comment
-$comment-header-user-name-color: var(--nut-comment-header-user-name-color, rgba(51, 51, 51, 1)) !default;
-$comment-header-time-color: var(--nut-comment-header-time-color, rgba(153, 153, 153, 1)) !default;
-$comment-bottom-label-color: var(--nut-comment-bottom-label-color, rgba(153, 153, 153, 1)) !default;
+$comment-header-user-name-color: var(--nut-comment-header-user-name-color, rgb(51 51 51 / 100%)) !default;
+$comment-header-time-color: var(--nut-comment-header-time-color, rgb(153 153 153 / 100%)) !default;
+$comment-bottom-label-color: var(--nut-comment-bottom-label-color, rgb(153 153 153 / 100%)) !default;
 $comment-shop-color: var(--nut-comment-shop-color, $primary-color) !default;
 
 // Ellipsis

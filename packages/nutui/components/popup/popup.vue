@@ -61,5 +61,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index.scss';
+@import './index';
 </style>

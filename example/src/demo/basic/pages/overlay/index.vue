@@ -95,17 +95,18 @@ const overlayStyle = ref({
 <style lang="scss">
 .wrapper {
   display: flex;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  height: 100%;
+
   .content {
     display: flex;
-    width: 150px;
-    height: 150px;
-    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    width: 150px;
+    height: 150px;
     color: red;
+    border-radius: 8px;
   }
 }
 </style>

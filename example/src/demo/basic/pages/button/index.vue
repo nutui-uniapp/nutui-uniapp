@@ -159,25 +159,25 @@ function click(val: any) {
 
 <style lang="scss">
 .demo-button-row {
-  margin-bottom: 20px;
   display: flex;
   gap: 5px;
+  margin-bottom: 20px;
 }
 
 .demo-button-row2 {
-  margin-bottom: 10px;
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   align-items: center;
-  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .nut-button {
   margin-right: 15px;
 
   &:last-child {
-    margin-bottom: 0;
     margin-right: 0;
+    margin-bottom: 0;
   }
 }
 </style>

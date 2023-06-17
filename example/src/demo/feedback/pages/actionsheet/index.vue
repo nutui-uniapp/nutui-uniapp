@@ -143,6 +143,7 @@ export default {
     <nut-action-sheet
       v-model:visible="state.isVisible2"
       cancel-txt="取消"
+      :safe-area-inset-bottom="true"
       :menu-items="menuItemsOne"
       @choose="chooseItemTwo"
     />
@@ -153,6 +154,7 @@ export default {
       :description="state.desc"
       :menu-items="menuItemsTwo"
       cancel-txt="取消"
+      :safe-area-inset-bottom="true"
       @choose="chooseItemThree"
     />
     <!-- demo 选项状态 -->
@@ -161,10 +163,14 @@ export default {
       cancel-txt="取消"
       :menu-items="menuItemsThree"
       :choose-tag-value="state.chooseTagValue"
+      :safe-area-inset-bottom="true"
       @choose="chooseItemFour"
     />
     <!-- 自定义面板 -->
-    <nut-action-sheet v-model:visible="state.isVisible5" title="标题">
+    <nut-action-sheet
+      v-model:visible="state.isVisible5"
+      :safe-area-inset-bottom="true" title="标题"
+    >
       <div class="custom-content">
         自定义内容
       </div>
@@ -177,14 +183,16 @@ export default {
   padding: 110px 0;
   text-align: center;
 }
+
 .actionsheet {
   .nut-cell {
     justify-content: space-between;
   }
 }
+
 .custom-content {
-  color: black;
   padding: 10px 10px 160px;
+  color: black;
 }
 </style>
 

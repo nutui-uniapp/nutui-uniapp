@@ -193,25 +193,30 @@ export default {
 
 <style lang="scss">
 .box-item n-bg-2 {
-  background: #fff;
-  margin-bottom: 20px;
   padding: 20px 0;
+  margin-bottom: 20px;
+  background: #fff;
 }
+
 .layout-demo .nut-row {
   overflow: hidden;
+
   &:not(:last-child) .nut-col {
     margin-bottom: 15px;
   }
 }
+
 .flex-content {
   line-height: 40px;
   color: #fff;
   text-align: center;
-  border-radius: 6px;
   background: #ff8881;
+  border-radius: 6px;
+
   &.flex-content-light {
     background: #ffc7c4;
   }
+
   &.flex-content-height {
     height: 50px;
   }

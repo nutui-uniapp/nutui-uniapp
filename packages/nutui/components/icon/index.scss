@@ -1,6 +1,6 @@
 .nut-icon {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   width: $icon-width;
   height: $icon-height;
   line-height: $icon-line-height;
@@ -18,6 +18,7 @@
     height: $icon-height;
     object-fit: contain;
   }
+
   &-loading,
   &-loading1 {
     display: inline-block;
@@ -28,99 +29,66 @@
   --animate-delay: 0s;
 
   &-am-infinite {
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate;
     animation-iteration-count: infinite;
     animation-direction: alternate;
   }
-  &-am-jump {
-    -webkit-animation-name: nutJumpOne;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: ease;
-    -webkit-animation-delay: var(--animate-delay);
 
+  &-am-jump {
     animation-name: nutJumpOne;
     animation-duration: var(--animate-duration);
     animation-timing-function: ease;
     animation-delay: var(--animate-delay);
 
     &.nut-icon-am-infinite {
-      -webkit-animation-name: nutJump;
       animation-name: nutJump;
     }
   }
 
   &-am-rotate {
-    -webkit-animation-name: rotation;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-delay: var(--animate-delay);
-
     animation-name: rotation;
     animation-duration: var(--animate-duration);
     animation-timing-function: linear;
     animation-delay: var(--animate-delay);
 
     &.nut-icon-am-infinite {
-      -webkit-animation-direction: normal;
       animation-direction: normal;
     }
   }
-  &-am-blink {
-    -webkit-animation-name: nutBlink;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-delay: var(--animate-delay);
 
+  &-am-blink {
     animation-name: nutBlink;
     animation-duration: var(--animate-duration);
+    animation-timing-function: ease-in-out;
     animation-timing-function: linear;
     animation-delay: var(--animate-delay);
   }
-  &-am-breathe {
-    -webkit-animation-name: nutBreathe;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-delay: var(--animate-delay);
 
+  &-am-breathe {
     animation-name: nutBreathe;
     animation-duration: var(--animate-duration);
     animation-timing-function: ease-in-out;
     animation-delay: var(--animate-delay);
   }
-  &-am-flash {
-    -webkit-animation-name: nutFlash;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-delay: var(--animate-delay);
 
+  &-am-flash {
     animation-name: nutFlash;
     animation-duration: var(--animate-duration);
     animation-timing-function: ease-in-out;
     animation-delay: var(--animate-delay);
   }
+
   &-am-bounce {
-    -webkit-animation-name: nutBounce;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-delay: var(--animate-delay);
     animation-name: nutBounce;
     animation-duration: var(--animate-duration);
     animation-timing-function: ease-in-out;
     animation-delay: var(--animate-delay);
 
     &.nut-icon-am-infinite {
-      -webkit-animation-direction: normal;
       animation-direction: normal;
     }
   }
 
   &-am-shake {
-    -webkit-animation-name: nutShake;
-    -webkit-animation-duration: var(--animate-duration);
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-delay: var(--animate-delay);
-
     animation-name: nutShake;
     animation-duration: var(--animate-duration);
     animation-timing-function: ease-in-out;

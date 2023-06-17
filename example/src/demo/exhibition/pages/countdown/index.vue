@@ -112,7 +112,7 @@ export default {
 
     <nut-cell>
       <nut-countdown :end-time="end" :paused="paused" @on-paused="onpaused" @on-restart="onrestart" />
-      <div style="position: absolute; right: 10px; top: 9px">
+      <div style="position: absolute; top: 9px; right: 10px">
         <nut-button type="primary" size="small" @click="toggle">
           {{ paused ? 'start' : 'stop' }}
         </nut-button>
@@ -179,15 +179,15 @@ export default {
   align-items: center;
 
   .part-item {
-    flex-shrink: 0;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     width: 20px;
     height: 25px;
-    background: #e8220e;
-    color: #fff;
     font-size: 14px;
+    color: #fff;
+    background: #e8220e;
     border-radius: 6px;
   }
 

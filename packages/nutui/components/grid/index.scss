@@ -1,3 +1,13 @@
+.nut-theme-dark {
+  .nut-grid {
+    display: flex;
+    flex-wrap: wrap;
+    border: 0 solid $dark-background;
+  }
+}
+
+
+
 .nut-grid {
   display: flex;
   flex-wrap: wrap;

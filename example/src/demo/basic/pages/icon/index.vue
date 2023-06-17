@@ -79,29 +79,32 @@ import icons from '../../../../../icon-config.json'
   > .nutui-iconfont {
     margin-right: 10px;
   }
+
   .icon-ul,
   .h5-ul,
   .ul {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
+    width: 100%;
+
     .icon-li,
     .h5-li,
     .li {
-      flex: 0 0 25%;
-      max-width: 25%;
       display: flex;
+      flex: 0 0 25%;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      max-width: 25%;
 
       .span {
         height: 40px;
         font-size: 12px;
         text-align: center;
       }
+
       .nutui-iconfont {
-        margin: 16px 0 16px;
+        margin: 16px 0;
       }
     }
   }

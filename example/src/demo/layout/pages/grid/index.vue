@@ -1,14 +1,8 @@
-<script lang="ts">
+<script setup lang="ts">
 import { isH5 } from '@uni-helper/uni-env'
+import { useAppStore } from '@/store'
 
-export default {
-
-  setup(props) {
-    return {
-      isH5,
-    }
-  },
-}
+const { darkMode } = storeToRefs(useAppStore())
 </script>
 
 <template>
@@ -18,28 +12,28 @@ export default {
     </h2>
     <nut-grid>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -48,13 +42,13 @@ export default {
     </h2>
     <nut-grid :column-num="3">
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -63,13 +57,13 @@ export default {
     </h2>
     <nut-grid :column-num="3" square>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -78,28 +72,28 @@ export default {
     </h2>
     <nut-grid :gutter="10">
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -108,16 +102,16 @@ export default {
     </h2>
     <nut-grid reverse>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -126,16 +120,16 @@ export default {
     </h2>
     <nut-grid direction="horizontal">
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -144,21 +138,23 @@ export default {
     </h2>
     <nut-grid :column-num="3">
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
         <nut-icon name="dongdong" size="40px" color="#478EF2" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" />
+        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
-    <!-- <h2>页面导航</h2>
+    <h2 class="title">
+      页面导航
+    </h2>
     <nut-grid :column-num="2">
-      <nut-grid-item icon="home" text="路由跳转 ’/‘ " to="/"></nut-grid-item>
-      <nut-grid-item icon="search" text="URL 跳转" url="https://jd.com"></nut-grid-item>
-    </nut-grid> -->
+      <nut-grid-item icon="home" text="路由跳转 ’/‘ " to="/" />
+      <nut-grid-item icon="search" text="URL 跳转" url="https://jd.com" />
+    </nut-grid>
 
     <h2 class="title">
       自定义内容

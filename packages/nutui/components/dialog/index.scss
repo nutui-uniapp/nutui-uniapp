@@ -1,5 +1,5 @@
-@import '../button/index.scss';
-@import '../popup/index.scss';
+@import '../button/index';
+@import '../popup/index';
 
 .nut-theme-dark {
   .nut-dialog {
@@ -10,41 +10,44 @@
 }
 
 .nut-dialog {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: $dialog-width;
   min-height: 156px;
-  padding: 28px 24px 16px 24px;
-  box-sizing: border-box;
+  padding: 28px 24px 16px;
 
   &__header {
     display: block;
-    text-align: center;
     height: 20px;
     font-size: 16px;
-    color: $dialog-header-color;
     font-weight: $dialog-header-font-weight;
-    @include oneline-ellipsis();
+    color: $dialog-header-color;
+    text-align: center;
+
+    @include oneline-ellipsis;
   }
+
   &__content {
-    width: 100%;
-    overflow: auto;
     flex: 1;
-    margin: 20px 0;
+    width: 100%;
     max-height: 268px;
-    line-height: 16px;
+    margin: 20px 0;
+    overflow: auto;
     font-size: 12px;
+    line-height: 16px;
     color: $text-color;
-    word-wrap: break-word;
     word-break: break-all;
+    word-wrap: break-word;
     white-space: pre-wrap;
   }
+
   &__footer {
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: $dialog-footer-justify-content;
+    width: 100%;
 
     &.vertical {
       flex-direction: column;
@@ -52,9 +55,11 @@
       .nut-button {
         min-width: 100%;
         margin: 0;
+
         &.nut-dialog__footer-cancel {
           border: 0;
         }
+
         &.nut-dialog__footer-ok {
           margin-top: 10px;
         }
@@ -69,6 +74,7 @@
     &-cancel {
       margin-right: 20px;
     }
+
     &-ok {
       max-width: 128px;
     }

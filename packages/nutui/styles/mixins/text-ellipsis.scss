@@ -1,8 +1,9 @@
 @mixin text-ellipsis() {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 // 单行超长省略号
 @mixin oneline-ellipsis($width: 100%) {
   width: $width;
@@ -10,6 +11,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 // 多行超长省略号
 @mixin moreline-ellipsis($line: 2, $width: 100%) {
   display: -webkit-box;

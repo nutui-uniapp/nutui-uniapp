@@ -7,6 +7,6 @@ const { darkMode } = storeToRefs(useAppStore())
 <template>
   <view @click="darkMode = !darkMode">
     <div v-if="darkMode" class="i-tabler-sun" />
-    <div v-else class="i-tabler-moon" />
+    <div v-else class="i-tabler-moon c-black" />
   </view>
 </template>

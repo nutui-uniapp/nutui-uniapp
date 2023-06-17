@@ -75,17 +75,18 @@ export default {
 
 <style>
 .infiniteUl {
-  height: 500px;
   width: 100%;
+  height: 500px;
   padding: 0;
   margin: 0;
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 }
+
 .infiniteLi {
   margin-top: 10px;
   font-size: 14px;
-  color: rgba(100, 100, 100, 1);
+  color: rgb(100 100 100 / 100%);
   text-align: center;
 }
 

@@ -1,4 +1,4 @@
-@import '../popup/index.scss';
+@import '../popup/index';
 
 .nut-fade-enter-active {
   transition: opacity 1s;
@@ -12,21 +12,24 @@
 .nut-fade-leave-to {
   opacity: 0;
 }
+
 .nut-notify {
+  box-sizing: border-box;
   display: block;
   width: 100%;
-  box-sizing: border-box;
+  height: $notify-height;
   padding: $notify-padding;
-  color: $notify-text-color;
   font-size: $notify-font-size;
-  white-space: pre-wrap;
+  line-height: $notify-line-height;
+  color: $notify-text-color;
   text-align: center;
   word-wrap: break-word;
-  height: $notify-height;
-  line-height: $notify-line-height;
+  white-space: pre-wrap;
+
   &--base {
     background: $notify-base-background-color;
   }
+
   &--primary {
     background: $notify-primary-background-color;
   }
@@ -42,6 +45,7 @@
   &--warning {
     background: $notify-warning-background-color;
   }
+
   view {
     width: 100%;
     text-align: center;
