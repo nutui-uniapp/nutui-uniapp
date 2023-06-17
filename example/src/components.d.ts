@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     NutCell: typeof import('uniapp-nutui/components/cell/cell.vue')['default']
     NutCellGroup: typeof import('uniapp-nutui/components/cellgroup/cellgroup.vue')['default']
     NutCol: typeof import('uniapp-nutui/components/col/col.vue')['default']
+    NutConfigProvider: typeof import('uniapp-nutui/components/configprovider/configprovider.vue')['default']
     NutCountdown: typeof import('uniapp-nutui/components/countdown/countdown.vue')['default']
     NutDialog: typeof import('uniapp-nutui/components/dialog/dialog.vue')['default']
     NutDivider: typeof import('uniapp-nutui/components/divider/divider.vue')['default']
@@ -35,5 +36,6 @@ declare module '@vue/runtime-core' {
     NutSwipe: typeof import('uniapp-nutui/components/swipe/swipe.vue')['default']
     NutSwitch: typeof import('uniapp-nutui/components/switch/switch.vue')['default']
     NutToast: typeof import('uniapp-nutui/components/toast/toast.vue')['default']
+    ThemeSwitch: typeof import('./components/ThemeSwitch.vue')['default']
   }
 }

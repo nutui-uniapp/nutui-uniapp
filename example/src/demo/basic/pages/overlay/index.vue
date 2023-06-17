@@ -60,7 +60,7 @@ const overlayStyle = ref({
       </nut-button>
       <nut-overlay v-model:visible="show2" :z-index="2000">
         <div class="wrapper">
-          <div class="content">
+          <div class="content n-bg-2">
             这里是正文
           </div>
         </div>
@@ -75,7 +75,7 @@ const overlayStyle = ref({
       </nut-button>
       <nut-overlay v-model:visible="show6" lock-scroll :close-on-click-overlay="false">
         <div class="wrapper">
-          <div class="content" @click.stop="show6 = false">
+          <div class="content n-bg-2" @click.stop="show6 = false">
             close
           </div>
         </div>
@@ -102,7 +102,6 @@ const overlayStyle = ref({
     display: flex;
     width: 150px;
     height: 150px;
-    background: #fff;
     border-radius: 8px;
     align-items: center;
     justify-content: center;

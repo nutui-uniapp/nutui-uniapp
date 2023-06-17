@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 
 function testClick(event: Event) {
   // console.log('点击事件');
@@ -17,7 +16,7 @@ const switchChecked = ref(true)
 </route>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <h2 class="title">
       基础用法
     </h2>
@@ -62,7 +61,7 @@ const switchChecked = ref(true)
     <nut-cell-group title="自定义右侧箭头区域" desc="/Users/yangjunwei/Desktop/nutui/src/sites/mobile-taro/vue/src/basic/pages/overlay使用 nut-cell-group 支持 title desc slots">
       <nut-cell title="Switch">
         <template #link>
-          <!-- <nut-switch v-model="switchChecked" /> -->
+          <nut-switch v-model="switchChecked" />
         </template>
       </nut-cell>
     </nut-cell-group>

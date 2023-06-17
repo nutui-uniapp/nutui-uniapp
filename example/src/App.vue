@@ -7,6 +7,7 @@ onLaunch(() => {
   const systemInfo = uni.getSystemInfoSync()
   // the systemInfo.theme is only support dark mode in WeChat and QQ
   darkMode.value = systemInfo?.theme === 'dark'
+
   statusBarHeight.value = systemInfo!.statusBarHeight || 44
   menuButtonBounding.value = uni.getMenuButtonBoundingClientRect()
   uni.onThemeChange((res: UniApp.OnThemeChangeCallbackResult) => darkMode.value = res.theme === 'dark')

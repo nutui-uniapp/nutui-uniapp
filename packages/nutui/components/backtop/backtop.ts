@@ -1,5 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 
+const { theme } = uni.getSystemInfoSync()
+
 export const backtopProps = {
   height: {
     type: String,
@@ -23,7 +25,7 @@ export const backtopProps = {
   },
   color: {
     type: String,
-    default: '#000',
+    default: theme === 'dark' ? '#fff' : '#000',
   },
 }
 

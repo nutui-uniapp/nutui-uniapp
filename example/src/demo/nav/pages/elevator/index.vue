@@ -335,10 +335,6 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-.elevator-demo {
-  background-color: #fff !important;
-  // overflow-y: hidden !important;
-}
 </style>
 
 <route lang="json">

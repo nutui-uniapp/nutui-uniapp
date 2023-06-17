@@ -1,3 +1,10 @@
+.nut-theme-dark {
+  .nut-switch {
+    &.nut-switch-close {
+      background-color: $dark-background4;
+    }
+  }
+}
 .nut-switch {
   cursor: pointer;
   display: inline-flex;

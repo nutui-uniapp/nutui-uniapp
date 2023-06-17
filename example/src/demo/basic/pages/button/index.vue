@@ -10,7 +10,7 @@ function changeLoading() {
   }, 3000)
 }
 
-function click(val) {
+function click(val: any) {
   console.log(val)
 }
 </script>

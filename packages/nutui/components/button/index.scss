@@ -1,3 +1,26 @@
+.nut-theme-dark {
+  .nut-button {
+
+    &--default {
+    color: $dark-color3;
+    background: $dark-background2;
+    border: $button-border-width solid $dark-background2;
+   }
+
+    &--plain {
+     background: $dark-background2;
+    }
+  }
+  .nut-button--plain:not([disabled]):active {
+     background: $dark-background2;
+   }
+
+  .nut-button--default:not([disabled]):active {
+    color: $dark-color3;
+    background: $dark-background2;
+    border: $button-border-width solid $dark-background2;
+}
+}
 .nut-button {
   position: relative;
   display: inline-block;

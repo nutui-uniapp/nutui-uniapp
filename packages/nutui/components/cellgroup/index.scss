@@ -5,7 +5,11 @@
       color: $dark-color;
       box-shadow: none;
     }
-    
+  //   .nut-cell {
+  //     &::after {
+  //      border-bottom: $dark-cell-after-border-bottom;
+  //    }
+  //  }
   }
 }
 

@@ -1,4 +1,11 @@
 @import '../overlay/index.scss';
+.nut-theme-dark {
+  .nut-fixed-nav {
+    &__list {
+      background: $dark-background7;
+    }
+  }
+}
 
 .nut-fixed-nav {
   position: fixed;

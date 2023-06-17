@@ -27,7 +27,7 @@ const componentName = `${PREFIX}-sticky`
 export default defineComponent({
   name: componentName,
   options: {
-    virtualHost: true,
+    styleIsolation: 'shared',
   },
 })
 </script>

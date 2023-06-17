@@ -61,6 +61,9 @@ const componentName = `${PREFIX}-config-provider`
 
 export default defineComponent ({
   name: componentName,
+  options: {
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

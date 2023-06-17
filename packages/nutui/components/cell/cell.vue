@@ -33,6 +33,9 @@ const componentName = `${PREFIX}-cell`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

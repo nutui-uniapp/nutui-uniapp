@@ -17,6 +17,9 @@ const componentName = `${PREFIX}-cell-group`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

@@ -1,4 +1,4 @@
-import { pinia } from '@/store'
+import { pinia } from '../../../store'
 
 interface MenuButtonBoundingClientRect {
   width: number
@@ -19,7 +19,6 @@ export const useAppStore = defineStore(
       () => !menuButtonBounding.value
         ? 0
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
-
     // #ifdef H5
     watch(darkMode, (isDark) => {
       isDark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
@@ -27,7 +26,6 @@ export const useAppStore = defineStore(
       immediate: true,
     })
     // #endif
-
     return {
       darkMode,
       statusBarHeight,

@@ -16,7 +16,7 @@ export default {
     <h2 class="title">
       基础布局
     </h2>
-    <div class="box-item">
+    <div class="box-item n-bg-2">
       <nut-row>
         <nut-col :span="24">
           <div class="flex-content">
@@ -79,7 +79,7 @@ export default {
     <h2 class="title">
       分栏间隔
     </h2>
-    <div class="box-item">
+    <div class="box-item n-bg-2">
       <nut-row :gutter="10">
         <nut-col :span="8">
           <div class="flex-content">
@@ -101,7 +101,7 @@ export default {
     <h2 class="title">
       Flex布局
     </h2>
-    <div class="box-item">
+    <div class="box-item n-bg-2">
       <nut-row type="flex" wrap="nowrap">
         <nut-col :span="6">
           <div class="flex-content">
@@ -192,7 +192,7 @@ export default {
 </template>
 
 <style lang="scss">
-.box-item {
+.box-item n-bg-2 {
   background: #fff;
   margin-bottom: 20px;
   padding: 20px 0;

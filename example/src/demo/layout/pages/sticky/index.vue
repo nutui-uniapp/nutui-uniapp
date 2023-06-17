@@ -15,12 +15,13 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- TODO sticky在vite-plugin-uni-layouts下失效 -->
   <div class="demo sticky-demo" :class="{ web: isH5 }">
     <h2 class="title">
       基础用法
     </h2>
     <nut-cell>
-      <nut-sticky top="30" :parent-height="1200">
+      <nut-sticky top="60" :parent-height="1200">
         <nut-button type="primary">
           吸顶按钮
         </nut-button>
@@ -36,7 +37,6 @@ export default defineComponent({
 .sticky-container {
   width: 100%;
   height: 300px;
-  background-color: #fff;
 }
 </style>
 

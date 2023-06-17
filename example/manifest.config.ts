@@ -17,12 +17,14 @@ export default defineManifestConfig({
     },
     usingComponents: true,
     darkmode: true,
+    themeLocation: 'theme.json',
   },
   'uniStatistics': {
     enable: false,
   },
   'h5': {
     darkmode: true,
+    themeLocation: 'theme.json',
   },
   'vueVersion': '3',
   'app-plus': {

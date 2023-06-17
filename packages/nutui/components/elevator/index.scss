@@ -6,11 +6,18 @@
         color: $dark-color;
         &__code {
           color: $dark-color;
+           &::after {
+             background-color: $dark-background7;
+           }
         }
       }
       &__fixed {
         background-color: $dark-background2;
       }
+    }
+
+    &__bars{
+    background-color: $dark-background;
     }
   }
 }

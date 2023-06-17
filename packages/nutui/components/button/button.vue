@@ -53,14 +53,19 @@ const componentName = `${PREFIX}-button`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 
 <template>
-  <button
+  <view
     :class="[classes, customClass]"
     :style="[getStyle, customStyle]"
-    :formType="formType === 'button' ? undefined : formType"
+    :form-type="formType === 'button' ? undefined : formType"
     @click="handleClick"
   >
     <view class="nut-button__wrap">
@@ -70,7 +75,7 @@ export default defineComponent({
         <slot />
       </view>
     </view>
-  </button>
+  </view>
 </template>
 
 <style lang="scss">

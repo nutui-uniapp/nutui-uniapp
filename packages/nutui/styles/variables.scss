@@ -30,6 +30,8 @@ $dark-color2: var(--nut-dark-color2, #f2270c) !default;
 $dark-color3: var(--nut-dark-color3, rgba(232, 230, 227, 0.8)) !default;
 $dark-color-gray: var(--nut-dark-color-gray, $text-color) !default;
 $dark-calendar-choose-color: var(--nut-dark-calendar-choose-color, rgba(227, 227, 227, 0.2)) !default;
+$dark-cell-after-border-bottom: var(--nut-cell-after-border-bottom, 1px solid #191919) !default;
+
 
 $font-family: var(
   --nut-font-family,

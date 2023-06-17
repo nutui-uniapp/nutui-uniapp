@@ -5,6 +5,7 @@ import NutIcon from '../icon/icon.vue'
 import { backtopEmits, backtopProps } from './backtop'
 
 const props = defineProps(backtopProps)
+
 const emit = defineEmits(backtopEmits)
 
 const backTop = ref(false)
