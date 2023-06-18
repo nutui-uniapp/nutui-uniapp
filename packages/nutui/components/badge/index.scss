@@ -1,0 +1,54 @@
+.nut-theme-dark {
+  .nut-badge {
+    &.show {
+      color: $dark-color;
+      background: $dark-background;
+    }
+  }
+}
+
+.nut-badge {
+  position: relative;
+  display: inline-block;
+
+  .nut-badge__icon {
+    position: absolute;
+    z-index: $badge-z-index;
+    display: flex;
+    align-items: center;
+    padding: $badge-icon-padding;
+    line-height: normal;
+    text-align: center;
+    background: $badge-background-color;
+    border-radius: $badge-border-radius;
+    transform: $badge-content-transform;
+  }
+
+  .nut-badge__content {
+    display: flex;
+    align-items: center;
+    transform: $badge-content-transform;
+
+    &--sup {
+      position: absolute;
+      padding: $badge-padding;
+      font-size: $badge-font-size;
+      font-weight: normal;
+      color: $badge-color;
+      text-align: center;
+      background: $badge-background-color;
+      border-radius: $badge-border-radius;
+    }
+
+    &--dot {
+      width: $badge-dot-width;
+      height: $badge-dot-height;
+      padding: $badge-dot-padding;
+      border-radius: $badge-dot-border-radius;
+    }
+
+    &--bubble {
+      border-bottom-left-radius: 0;
+    }
+  }
+}

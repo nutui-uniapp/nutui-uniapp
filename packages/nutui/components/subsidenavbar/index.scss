@@ -1,0 +1,62 @@
+.nut-theme-dark {
+  .nut-sub-side-navbar {
+    background-color: $dark-background2;
+
+    &__title {
+      color: $dark-color;
+      background-color: $dark-background3;
+
+      &__text {
+        color: $dark-color;
+      }
+    }
+  }
+}
+
+.nut-sub-side-navbar {
+  position: relative;
+  display: grid;
+  float: left;
+  width: 100%;
+
+  &__title {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    width: $sidenavbar-sub-title-width;
+    height: $sidenavbar-sub-title-height;
+    overflow: hidden;
+    font-size: $sidenavbar-sub-title-font-size;
+    color: $sidenavbar-sub-title-text-color;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: $sidenavbar-sub-title-bg-color;
+    border: $sidenavbar-sub-title-border;
+    border-bottom: 1px solid $sidenavbar-sub-title-border-color;
+    border-radius: $sidenavbar-sub-title-radius;
+
+    &__text {
+      line-height: $sidenavbar-sub-title-text-line-height;
+      color: $sidenavbar-sub-title-text-color;
+    }
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+
+      .icon {
+        transition: transform 0.5s ease-in-out;
+
+        &.up {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
+
+  &__list {
+    width: 100%;
+  }
+}

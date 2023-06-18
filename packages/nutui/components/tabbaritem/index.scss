@@ -1,0 +1,76 @@
+@import '../badge/index';
+
+.nut-theme-dark {
+  .nut-tabbar-item {
+    &__icon--unactive {
+      color: $dark-color-gray;
+    }
+  }
+}
+
+.nut-tabbar-item {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: $primary-color;
+  text-align: center;
+  text-decoration: none;
+
+  &__icon--unactive {
+    color: $black;
+  }
+
+  &_icon-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    line-height: 1;
+
+    .nut-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+    }
+
+    &_tips {
+      position: absolute;
+      top: -2px;
+      right: -7px;
+      z-index: 1;
+      font-size: $font-size-1;
+      color: $white;
+      text-align: center;
+      background: $tabbar-active-color;
+      border: 1px solid $white;
+      border-radius: 7px;
+      box-shadow: 0 0 0 1px $white;
+    }
+
+    &_icon {
+      display: block;
+      background-position: center center;
+      background-size: 100% 100%;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &_nav-word {
+      display: block;
+      margin-top: $tabbar-word-margin-top;
+      font-size: $tabbar-item-text-font-size;
+      line-height: $tabbar-item-text-line-height;
+    }
+
+    &_big-word {
+      font-size: $font-size-large;
+      line-height: 1;
+    }
+  }
+}

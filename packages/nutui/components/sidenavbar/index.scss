@@ -1,0 +1,16 @@
+.nut-side-navbar {
+  display: block;
+  height: 100%;
+  overflow: auto;
+
+  &__content {
+    position: relative;
+    display: block;
+    background-color: $sidenavbar-content-bg-color;
+
+    &__list {
+      display: block;
+      width: 100%;
+    }
+  }
+}

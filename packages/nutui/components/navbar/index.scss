@@ -1,0 +1,159 @@
+.nut-theme-dark {
+  .nut-navbar {
+    color: $dark-color;
+    background: $dark-background;
+
+    .title {
+      color: $dark-color;
+    }
+  }
+}
+
+.nut-navbar {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: $navbar-height;
+  padding: $navbar-padding;
+  margin-bottom: $navbar-margin-bottom;
+  overflow: hidden;
+  font-size: $navbar-title-base-font;
+  color: $navbar-color;
+  background: $navbar-background;
+  box-shadow: $navbar-box-shadow;
+
+  &:active::before {
+    opacity: 0.1;
+  }
+
+  &--border {
+    border-bottom: 1px solid #eee;
+  }
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    &.nut-navbar--safe-area-inset-top {
+      height: calc($navbar-height + constant(safe-area-inset-top));
+      height: calc($navbar-height + env(safe-area-inset-top));
+    }
+  }
+
+  &--placeholder {
+    width: 100%;
+  }
+
+  &--safe-area-inset-top {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+  }
+
+
+
+  &--clickable {
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      content: ' ';
+      background-color: $black;
+      border: inherit;
+      border-color: $black;
+      border-radius: inherit;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .nutui-iconfont {
+    .nut-icon-left {
+      text-align: left;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 53%;
+    margin: 0 auto;
+    text-align: center;
+
+    .title {
+      display: -webkit-box;
+      min-width: $navbar-title-width;
+      overflow: hidden;
+      font-size: $navbar-title-font;
+      font-weight: $navbar-title-font-weight;
+      color: $navbar-title-font-color;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
+
+    &.icon {
+      .icon {
+        margin: $navbar-title-icon-margin;
+      }
+    }
+
+    .icon {
+      font-size: 0;
+    }
+
+    .nut-icon {
+      display: inline;
+    }
+
+    &-desc {
+      font-size: $cell-title-desc-font;
+    }
+
+    .text__title {
+      display: inline-block;
+    }
+
+    .nut-tabs__titles {
+      background: $white;
+    }
+
+    .nut-tab-pane {
+      display: none;
+    }
+  }
+
+  &__title ::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: $cell-desc-font;
+    color: $cell-desc-color;
+    cursor: pointer;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: $cell-desc-font;
+    color: $cell-desc-color;
+    cursor: pointer;
+
+    .right-icon {
+      margin-left: 16px;
+    }
+
+    .left-icon {
+      margin-left: 16px;
+    }
+  }
+}

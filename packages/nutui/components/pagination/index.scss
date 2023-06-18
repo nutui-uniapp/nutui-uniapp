@@ -1,0 +1,81 @@
+.nut-theme-dark {
+  .nut-pagination {
+    &-prev,
+    &-item,
+    &-next {
+      background: $dark-background;
+      border-color: $dark-color-gray;
+    }
+
+    &-simple {
+      background: $dark-background;
+    }
+
+    .simple-border {
+      border-color: $dark-color-gray;
+    }
+
+    .disabled {
+      background: $dark-background;
+    }
+  }
+}
+
+.nut-pagination {
+  display: flex;
+  font-size: $pagination-font-size;
+  color: $pagination-color;
+
+  &-contain {
+    display: flex;
+  }
+
+  &-simple {
+    width: 124px;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+  }
+
+  &-prev,
+  &-item,
+  &-next {
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 39px;
+    height: 39px;
+    cursor: pointer;
+    background: $white;
+    border: $pagination-item-border-width solid $pagination-item-border-color;
+    border-radius: $pagination-item-border-radius;
+  }
+
+  &-prev,
+  &-item {
+    border-right: none;
+  }
+
+  &-prev,
+  &-next {
+    padding: $pagination-prev-next-padding;
+  }
+
+  .simple-border {
+    border-right: $pagination-item-border-width solid $pagination-item-border-color;
+  }
+
+  .active {
+    color: $white;
+    background: $pagination-active-background-color;
+    border: none;
+  }
+
+  .disabled {
+    color: $pagination-disable-color;
+    cursor: not-allowed;
+    background-color: $pagination-disable-background-color;
+  }
+}
