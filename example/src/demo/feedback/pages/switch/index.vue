@@ -2,6 +2,7 @@
 import { getCurrentInstance, reactive, ref, toRefs } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
 
+const activeColor = ref('red')
 export default {
   setup() {
     const { proxy } = getCurrentInstance() as any
@@ -36,6 +37,7 @@ export default {
       change,
       changeAsync,
       isH5,
+      activeColor,
     }
   },
 }
@@ -61,7 +63,7 @@ export default {
       加载状态
     </h2>
     <nut-cell>
-      <nut-switch v-model="checked3" loading active-color="red" />
+      <nut-switch v-model="checked3" :active-color="activeColor" loading />
     </nut-cell>
 
     <h2 class="title">
@@ -82,7 +84,7 @@ export default {
       自定义颜色
     </h2>
     <nut-cell>
-      <nut-switch v-model="checked6" active-color="blue" />
+      <nut-switch v-model="checked6" :active-color="activeColor" />
     </nut-cell>
 
     <h2 class="title">
@@ -97,7 +99,7 @@ export default {
     </h2>
     <nut-cell>
       <nut-switch v-model="checked8" loading>
-        <nut-icon name="loading" />
+        <nut-icon name="loading" size="29" color="blue" />
       </nut-switch>
     </nut-cell>
   </div>

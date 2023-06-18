@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive } from 'vue'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive } from 'vue'
 import { PREFIX } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
 import { infiniteloadingEmits, infiniteloadingProps } from './infiniteloading'
 
 const props = defineProps(infiniteloadingProps)
+
 const emit = defineEmits(infiniteloadingEmits)
+
+const instance = getCurrentInstance() as ComponentInternalInstance
 
 const state = reactive({
   scrollHeight: 0,
@@ -36,7 +39,7 @@ const getStyle = computed(() => {
   }
 })
 function getParentElement(el: string) {
-  return uni.createSelectorQuery().select(props.containerId ? `#${props.containerId} #${el}` : `#${el}`)
+  return uni.createSelectorQuery().in(instance).select(props.containerId ? `#${props.containerId} #${el}` : `#${el}`)
 }
 /** 获取需要滚动的距离 */
 function getScrollHeight() {

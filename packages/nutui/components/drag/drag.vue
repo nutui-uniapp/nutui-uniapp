@@ -151,7 +151,7 @@ function touchEnd(e: TouchEvent) {
     state.top = state.yPum
 }
 function touchStart(e: TouchEvent) {
-  const query = uni.createSelectorQuery()
+  const query = uni.createSelectorQuery().in(instance)
   const id = (e as any)?.mpEvent?.currentTarget.id
   const offsetTop = (e as any)?.currentTarget?.offsetTop
   const offsetLeft = (e as any)?.currentTarget?.offsetLeft
@@ -191,10 +191,10 @@ onActivated(() => {
     state.keepAlive = false
 })
 onDeactivated(() => {
-  state.keepAlive = true;
-  (myDrag as any).value.removeEventListener('touchstart', touchStart);
-  (myDrag as any).value.removeEventListener('touchmove', touchMove);
-  (myDrag as any).value.removeEventListener('touchend', touchEnd)
+  state.keepAlive = true
+  // (myDrag as any).value.removeEventListener('touchstart', touchStart);
+  // (myDrag as any).value.removeEventListener('touchmove', touchMove);
+  // (myDrag as any).value.removeEventListener('touchend', touchEnd)
 })
 
 const getStyle = computed(() => {

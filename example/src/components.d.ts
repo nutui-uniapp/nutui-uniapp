@@ -28,6 +28,8 @@ declare module '@vue/runtime-core' {
     NutIcon: typeof import('uniapp-nutui/components/icon/icon.vue')['default']
     NutIndicator: typeof import('uniapp-nutui/components/indicator/indicator.vue')['default']
     NutInfiniteloading: typeof import('uniapp-nutui/components/infiniteloading/infiniteloading.vue')['default']
+    NutMenu: typeof import('uniapp-nutui/components/menu/menu.vue')['default']
+    NutMenuItem: typeof import('uniapp-nutui/components/menuitem/menuitem.vue')['default']
     NutNotify: typeof import('uniapp-nutui/components/notify/notify.vue')['default']
     NutOverlay: typeof import('uniapp-nutui/components/overlay/overlay.vue')['default']
     NutPopup: typeof import('uniapp-nutui/components/popup/popup.vue')['default']

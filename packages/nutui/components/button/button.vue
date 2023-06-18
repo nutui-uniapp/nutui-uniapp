@@ -56,7 +56,9 @@ export default defineComponent({
   options: {
     virtualHost: true,
     addGlobalClass: true,
+    // #ifndef H5
     styleIsolation: 'shared',
+    // #endif
   },
 })
 </script>

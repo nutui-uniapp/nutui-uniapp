@@ -1,0 +1,62 @@
+@import '../popup/index';
+
+.nut-theme-dark {
+  .nut-menu-item__content {
+    .nut-menu-item__option {
+      color: $dark-color;
+    }
+  }
+}
+
+.nut-menu-item {
+  .active {
+    font-weight: $menu-active-item-font-weight;
+    color: $menu-item-active-text-color !important;
+  }
+}
+
+.nut-menu-item__content {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: $menu-item-content-max-height;
+  padding: $menu-item-content-padding;
+
+  &.nut-menu-item__overflow {
+    overflow-y: auto;
+  }
+
+  .nut-menu-item__option {
+    display: flex;
+    align-items: center;
+    padding-top: $menu-item-option-padding-top;
+    padding-bottom: $menu-item-option-padding-bottom;
+    font-size: $font-size-2;
+    color: $title-color;
+
+    .nut-menu-item__span {
+      display: flex;
+      align-items: center;
+      margin-right: $menu-item-option-i-margin-right;
+    }
+  }
+}
+
+.nut-menu__pop {
+  transition: height linear 3s;
+  transform: none;
+}
+
+.nut-menu-item-placeholder-element {
+  position: fixed;
+  top: $menu-bar-line-height;
+  right: 0;
+  left: 0;
+  z-index: $menu-bar-opened-z-index;
+  background-color: transparent;
+
+  // pointer-events: none;
+
+  &.placeholder-element-up {
+    bottom: $menu-bar-line-height;
+  }
+}
