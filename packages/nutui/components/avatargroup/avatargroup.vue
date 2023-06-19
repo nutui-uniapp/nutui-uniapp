@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, provide, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { PREFIX } from '../_utils'
-import { avatargroupProps } from './avatargroup'
+import { useProvide } from '../_hooks'
+import { AVATAR_KEY, avatargroupProps } from './avatargroup'
 
 const props = defineProps(avatargroupProps)
 
@@ -17,13 +18,7 @@ const classes = computed(() => {
   }
 })
 
-onMounted(() => {})
-
-provide('avatarGroup', {
-  props,
-  avatarGroupRef,
-  index,
-})
+useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props, avatarGroupRef, index })
 </script>
 
 <script lang="ts">

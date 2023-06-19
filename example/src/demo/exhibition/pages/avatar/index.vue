@@ -4,7 +4,7 @@ export default {
   props: {},
   setup() {
     const handleClick = () => {
-      console.log('触发点击头像')
+      uni.showToast({ title: '触发点击头像' })
     }
 
     return { handleClick }
@@ -20,20 +20,17 @@ export default {
     <nut-cell>
       <nut-avatar size="large">
         <image
-          class="w-60px h-60px"
           mode="scaleToFill"
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
         />
       </nut-avatar>
       <nut-avatar size="normal">
         <img
-          class="w-40px h-40px"
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
         >
       </nut-avatar>
       <nut-avatar size="small">
         <img
-          class="w-30px h-30px"
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
         >
       </nut-avatar>
@@ -55,7 +52,7 @@ export default {
     <nut-cell>
       <nut-avatar>
         <img
-          class="w-30px h-30px"
+
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
         >
       </nut-avatar>
@@ -95,7 +92,7 @@ export default {
       <nut-avatar-group span="-4">
         <nut-avatar>
           <img
-            class="w-30px h-30px"
+
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
           >
         </nut-avatar>
@@ -110,7 +107,7 @@ export default {
       <nut-avatar-group max-count="3" max-color="#fff" max-bg-color="#498ff2">
         <nut-avatar>
           <img
-            class="w-30px h-30px"
+
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
           >
         </nut-avatar>
@@ -128,7 +125,7 @@ export default {
       <nut-avatar-group max-count="3" z-index="right" max-content="...">
         <nut-avatar>
           <img
-            class="w-30px h-30px"
+
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
           >
         </nut-avatar>

@@ -1,24 +1,27 @@
 <script setup lang="ts">
-import { type Ref, computed, defineComponent, inject, onMounted, reactive, ref, toRefs } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { PREFIX } from '../_utils'
+import { AVATAR_KEY, type AvatarGroupProps } from '../avatargroup'
+import { useInject } from '../_hooks'
 import { avatarProps } from './avatar'
 
 const props = defineProps(avatarProps)
 
 const { size, shape, bgColor, color } = toRefs(props)
 const sizeValue = ['large', 'normal', 'small']
-const avatarGroup: any = inject('avatarGroup', null)
-const avatarRef = ref(null) as Ref
+const avatarRef = ref(null)
 
+const { parent, index } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_KEY)
 const state = reactive({
   index: 1,
   showMax: false, // 是否显示的最大头像个数
-  maxIndex: 0, // avatarGroup里的avatar的个数
+  maxIndex: 0, // parent里的avatar的个数
 })
-const { index, showMax, maxIndex } = toRefs(state)
+const { showMax, maxIndex } = toRefs(state)
 
 onMounted(() => {
-  const children = avatarGroup?.avatarGroupRef?.value?.children
+  const children = parent?.internalChildren
+
   if (children)
     avatarLength(children)
 })
@@ -27,38 +30,33 @@ const classes = computed(() => {
   const prefixCls = componentName
   return {
     [prefixCls]: true,
-    [`nut-avatar-${size.value || avatarGroup?.props?.size || 'normal'}`]: true,
-    [`nut-avatar-${shape.value || avatarGroup?.props?.shape || 'normal'}`]: true,
+    [`nut-avatar-${size.value || parent?.props?.size || 'normal'}`]: true,
+    [`nut-avatar-${shape.value || parent?.props?.shape || 'normal'}`]: true,
   }
 })
 
 const styles = computed(() => {
   return {
-    // width: sizeValue.includes(size.value) ? false : `${size.value}px`,
-    // height: sizeValue.includes(size.value) ? false : `${size.value}px`,
+    width: sizeValue.includes(size.value) ? '' : `${size.value}px`,
+    height: sizeValue.includes(size.value) ? '' : `${size.value}px`,
     backgroundColor: `${bgColor.value}`,
     color: `${color.value}`,
-    marginLeft: state.index !== 1 && (avatarGroup?.props?.span ? `${avatarGroup?.props?.span}px` : ''),
-    zIndex: avatarGroup?.props?.zIndex === 'right' ? `${Math.abs(state.maxIndex - state.index)}` : '',
+    marginLeft: state.index !== 1 && (parent?.props?.span ? `${parent?.props?.span}px` : ''),
+    zIndex: parent?.props?.zIndex === 'right' ? `${Math.abs(state.maxIndex - state.index)}` : '',
   }
 })
 
 const maxStyles = computed(() => {
   return {
-    backgroundColor: `${avatarGroup?.props?.maxBgColor}`,
-    color: `${avatarGroup?.props?.maxColor}`,
+    backgroundColor: `${parent?.props?.maxBgColor}`,
+    color: `${parent?.props?.maxColor}`,
   }
 })
 
-function avatarLength(children: any) {
+function avatarLength(children: any[]) {
   state.maxIndex = children.length
-  for (let i = 0; i < children.length; i++)
-    children[i].setAttribute('data-index', i + 1)
-
-  if (avatarRef?.value?.props)
-    state.index = avatarRef?.value?.props['data-index']
-
-  if (state.index === state.maxIndex && state.index !== avatarGroup?.props?.maxCount)
+  state.index = index.value
+  if (state.index === state.maxIndex && state.index !== parent?.props?.maxCount)
     state.showMax = true
 }
 </script>
@@ -70,25 +68,26 @@ export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
   },
 })
 </script>
 
 <template>
-  <!-- 头像样式有问题 -->
   <view
-    v-if="showMax || !avatarGroup?.props?.maxCount || index <= avatarGroup?.props?.maxCount"
+    v-if="showMax || !parent?.props?.maxCount || index <= Number(parent?.props?.maxCount)"
     ref="avatarRef"
     :style="!showMax ? styles : maxStyles"
     :class="classes"
   >
-    <template v-if="!avatarGroup?.props?.maxCount || index <= avatarGroup?.props?.maxCount">
+    <template v-if="!parent?.props?.maxCount || index <= Number(parent?.props?.maxCount)">
       <slot />
     </template>
     <!-- 折叠头像 -->
-    <template v-if="showMax && avatarGroup?.props?.maxCount">
+    <template v-if="showMax && parent?.props?.maxCount">
       {{
-        avatarGroup?.props?.maxContent ? avatarGroup?.props?.maxContent : `+ ${maxIndex - avatarGroup?.props?.maxCount}`
+        parent?.props?.maxContent ? parent?.props?.maxContent : `+ ${maxIndex - +parent?.props?.maxCount}`
       }}
     </template>
   </view>

@@ -4,7 +4,7 @@ export type AvatarSize = 'large' | 'normal' | 'small'
 export const avatarProps = {
   size: {
     type: String as PropType<AvatarSize> || Number,
-    default: '',
+    default: 'normal',
   },
   shape: {
     type: String,

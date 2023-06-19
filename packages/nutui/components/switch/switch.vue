@@ -57,7 +57,6 @@ export default defineComponent({
   <view :class="classes" :style="style" @click="onClick">
     <view class="nut-switch-button">
       <slot v-if="loading" name="icon">
-        <!-- TODO icon props没有应用上 -->
         <NutIcon name="loading1" :color="activeColor" />
       </slot>
       <template v-if="activeText">

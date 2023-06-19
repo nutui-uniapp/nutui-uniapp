@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { type CSSProperties, computed, defineComponent, onMounted, ref } from 'vue'
 import { PREFIX } from '../_utils'
 import NutIcon from '../icon/icon.vue'
+import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
+import { useInject } from '../_hooks'
 import { subsidenavbarEmits, subsidenavbarProps } from './subsidenavbar'
 
 const props = defineProps(subsidenavbarProps)
@@ -12,6 +14,13 @@ const classes = computed(() => {
   return {
     [prefixCls]: true,
   }
+})
+const Parent = useInject<{ props: Required<SidenavbarProps> }>(SIDEN_NAVBAR_KEY)
+
+const paddingStyle = computed(() => {
+  return {
+    paddingLeft: `${Number(Parent.parent?.props?.offset)}px`,
+  } as CSSProperties
 })
 const style = computed(() => {
   return {
@@ -37,7 +46,7 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :ikey="ikey">
-    <view class="nut-sub-side-navbar__title" @click.stop="handleClick">
+    <view class="nut-sub-side-navbar__title" :style="[paddingStyle]" @click.stop="handleClick">
       <span class="nut-sub-side-navbar__title__text">{{ title }}</span>
       <span class="nut-sub-side-navbar__title__icon">
         <NutIcon v-if="!direction" custom-class="icon" name="arrow-down2" size="12px" />
@@ -48,7 +57,7 @@ export default defineComponent({
       v-show="!direction"
       class="nut-sub-side-navbar__list"
       :class="!direction ? 'nutFadeIn' : 'nutFadeOut'"
-      :style="style"
+      :style="[style]"
     >
       <slot />
     </view>

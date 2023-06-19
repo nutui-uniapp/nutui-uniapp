@@ -1,5 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 
+export const AVATAR_KEY = Symbol('avatarGroup')
 export const avatargroupProps = {
   maxContent: {
     type: String,

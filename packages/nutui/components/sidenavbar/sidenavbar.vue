@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_utils'
-import { sidenavbarProps } from './sidenavbar'
+import { useProvide } from '../_hooks'
+import { SIDEN_NAVBAR_KEY, sidenavbarProps } from './sidenavbar'
 
 const props = defineProps(sidenavbarProps)
+
+const componentName = `${PREFIX}-grid`
+
+useProvide(SIDEN_NAVBAR_KEY, `${componentName}-item`)({ props })
 
 const classes = computed(() => {
   const prefixCls = componentName
@@ -14,10 +19,8 @@ const classes = computed(() => {
 </script>
 
 <script lang="ts">
-const componentName = `${PREFIX}-side-navbar`
-
 export default defineComponent({
-  name: componentName,
+  name: `${PREFIX}-side-navbar`,
 })
 </script>
 

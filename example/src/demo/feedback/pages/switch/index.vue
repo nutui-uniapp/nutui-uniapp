@@ -99,7 +99,9 @@ export default {
     </h2>
     <nut-cell>
       <nut-switch v-model="checked8" loading>
-        <nut-icon name="loading" size="29" color="blue" />
+        <template #icon>
+          <nut-icon name="loading" color="blue" />
+        </template>
       </nut-switch>
     </nut-cell>
   </div>

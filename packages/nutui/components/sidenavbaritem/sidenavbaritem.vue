@@ -1,15 +1,30 @@
 <script setup lang="ts">
-import { computed, defineComponent } from 'vue'
+import { type CSSProperties, computed, defineComponent, reactive } from 'vue'
 import { PREFIX } from '../_utils'
+import { useInject } from '../_hooks'
+import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
 import { sidenavbaritemEmits, sidenavbaritemProps } from './sidenavbaritem'
 
 const props = defineProps(sidenavbaritemProps)
+
 const emit = defineEmits(sidenavbaritemEmits)
+
+const state = reactive({
+  count: 1,
+})
+
 const classes = computed(() => {
   const prefixCls = componentName
   return {
     [prefixCls]: true,
   }
+})
+const Parent = useInject<{ props: Required<SidenavbarProps> }>(SIDEN_NAVBAR_KEY)
+
+const style = computed(() => {
+  return {
+    paddingLeft: `${Number(Parent.parent?.props?.offset) * 2}px`,
+  } as CSSProperties
 })
 
 function handleClick() {
@@ -26,7 +41,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :ikey="ikey" @click.stop="handleClick">
+  <view :class="classes" :style="[style]" :ikey="ikey" @click.stop="handleClick">
     <span class="nut-side-navbar-item__title">
       {{ title }}
     </span>

@@ -1,5 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 
+export const SIDEN_NAVBAR_KEY = Symbol('sidennavbar')
+
 export const sidenavbarProps = {
   offset: {
     type: [String, Number],
