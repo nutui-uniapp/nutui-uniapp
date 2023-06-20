@@ -143,7 +143,7 @@ export default {
     <nut-action-sheet
       v-model:visible="state.isVisible2"
       cancel-txt="取消"
-      :safe-area-inset-bottom="true"
+      safe-area-inset-bottom
       :menu-items="menuItemsOne"
       @choose="chooseItemTwo"
     />

@@ -88,10 +88,10 @@ export default defineComponent({
     </h2>
     <nut-navbar desc="编辑" @on-click-back="back" @on-click-title="title" @on-click-right="rightClick">
       <template #content>
-        <!-- <nut-tabs v-model="tab1value" @click="changeTab">
+        <nut-tabs v-model="tab1value" @click="changeTab">
           <nut-tab-pane title="商品" />
           <nut-tab-pane title="店铺" />
-        </nut-tabs> -->
+        </nut-tabs>
       </template>
 
       <template #right>
@@ -104,12 +104,12 @@ export default defineComponent({
     </h2>
     <nut-navbar @on-click-back="back">
       <template #content>
-        <!-- <nut-tabs v-model="tab2value" @click="changeTabList">
+        <nut-tabs v-model="tab2value" @click="changeTabList">
           <nut-tab-pane title="商品" />
           <nut-tab-pane title="评价" />
           <nut-tab-pane title="详情" />
           <nut-tab-pane title="推荐" />
-        </nut-tabs> -->
+        </nut-tabs>
       </template>
 
       <template #right>

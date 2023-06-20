@@ -47,7 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutPopup :visible="visible" position="bottom" round :close-on-click-overlay="closeAbled" @click-overlay="close">
+  <NutPopup v-bind="props" :visible="visible" position="bottom" round :close-on-click-overlay="closeAbled" @click-overlay="close">
     <view :class="classes">
       <view v-if="title" class="nut-action-sheet__title">
         {{ title }}

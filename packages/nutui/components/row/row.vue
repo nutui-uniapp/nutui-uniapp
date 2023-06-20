@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, provide } from 'vue'
+import { computed, defineComponent, provide } from 'vue'
 import { PREFIX } from '../_utils'
 import { rowProps } from './row'
 
@@ -11,15 +11,15 @@ provide('gutter', props.gutter)
 function getClass(prefix: string, type: string) {
   return prefix ? (type ? `nut-row-${prefix}-${type}` : '') : `nut-row-${type}`
 }
-function getClasses() {
-  return `
-          ${getClass('', props.type)}
-          ${getClass('justify', props.justify)}
-          ${getClass('align', props.align)}
-          ${getClass('flex', props.flexWrap)}
-          ${prefixCls}
-          `
-}
+const classes = computed(() => {
+  return [
+    prefixCls,
+    getClass('', props.type),
+    getClass('justify', props.justify),
+    getClass('align', props.align),
+    getClass('flex', props.flexWrap),
+  ]
+})
 </script>
 
 <script lang="ts">
@@ -32,7 +32,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="getClasses()">
+  <view :class="classes">
     <slot />
   </view>
 </template>
