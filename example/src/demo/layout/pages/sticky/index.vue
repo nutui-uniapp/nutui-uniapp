@@ -15,7 +15,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- TODO sticky在vite-plugin-uni-layouts下失效 -->
   <div class="demo sticky-demo" :class="{ web: isH5 }">
     <h2 class="title">
       基础用法

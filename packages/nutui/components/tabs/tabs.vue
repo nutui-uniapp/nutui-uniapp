@@ -49,14 +49,14 @@ function renderTitles(vnodes: VNode[]) {
 const currentIndex = ref((props.modelValue as number) || 0)
 function findTabsIndex(value: string | number) {
   const index = titles.value.findIndex(item => item.paneKey === String(value))
-  if (titles.value.length === 0)
-    console.warn('[NutUI] <Tabs> 当前未找到 TabPane 组件元素 , 请检查 .')
+  // if (titles.value.length === 0)
+  //   console.warn('[NutUI] <Tabs> 当前未找到 TabPane 组件元素 , 请检查 .')
 
-  else if (index === -1)
-    console.warn('[NutUI] <Tabs> 请检查 v-model 值是否为 paneKey ,如 paneKey 未设置，请采用下标控制 .')
+  // else if (index === -1)
+  //   console.warn('[NutUI] <Tabs> 请检查 v-model 值是否为 paneKey ,如 paneKey 未设置，请采用下标控制 .')
 
-  else
-    currentIndex.value = index
+  // else
+  currentIndex.value = index
 }
 const getScrollX = computed(() => {
   return props.titleScroll && props.direction === 'horizontal'

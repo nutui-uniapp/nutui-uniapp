@@ -5,6 +5,7 @@ import type { DialogInst } from 'uniapp-nutui'
 
 export default {
   setup() {
+    const transition = ref('zoom')
     const dialogRef = ref<DialogInst>()
     const visible1 = ref(false)
     const visible2 = ref(false)
@@ -78,6 +79,7 @@ export default {
       isH5,
       content,
       dialogRef,
+      transition,
     }
   },
 }
@@ -112,7 +114,7 @@ export default {
       content="这是提示弹框。"
     />
     <nut-cell title="ref调用" @click="refClick" />
-    <nut-dialog ref="dialogRef" transition="zoom" />
+    <nut-dialog ref="dialogRef" :transition="transition" />
   </div>
 </template>
 

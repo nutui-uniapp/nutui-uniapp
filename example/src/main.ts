@@ -8,7 +8,7 @@ import './styles/app.scss'
 
 // Locale.use('id-id', IdIDLang())
 Locale.merge({
-  confirm: '官博内心',
+  confirm: '确实',
 })
 
 export function createApp() {

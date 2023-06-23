@@ -10,5 +10,9 @@
   ],
   "unocss.root": [
     "example"
+  ],
+  "references.preferredLocation": "peek",
+  "cSpell.words": [
+    "Cascader"
   ]
 }

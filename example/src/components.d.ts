@@ -16,6 +16,8 @@ declare module '@vue/runtime-core' {
     NutBacktop: typeof import('uniapp-nutui/components/backtop/backtop.vue')['default']
     NutBadge: typeof import('uniapp-nutui/components/badge/badge.vue')['default']
     NutButton: typeof import('uniapp-nutui/components/button/button.vue')['default']
+    NutCalendar: typeof import('uniapp-nutui/components/calendar/calendar.vue')['default']
+    NutCascader: typeof import('uniapp-nutui/components/cascader/cascader.vue')['default']
     NutCell: typeof import('uniapp-nutui/components/cell/cell.vue')['default']
     NutCellGroup: typeof import('uniapp-nutui/components/cellgroup/cellgroup.vue')['default']
     NutCol: typeof import('uniapp-nutui/components/col/col.vue')['default']
