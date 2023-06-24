@@ -11,6 +11,7 @@ stats.html
 node_modules
 dist
 locale
+cache
 *.local
 
 # Editor directories and files

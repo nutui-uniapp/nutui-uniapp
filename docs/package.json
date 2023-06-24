@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vitepress dev --port 9999",
     "build": "vitepress build",
-    "serve": "vitepress serve"
+    "serve": "vitepress serve --port 6173"
   },
   "dependencies": {
     "uniapp-nutui": "workspace:^"
