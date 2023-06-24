@@ -13,7 +13,7 @@ const iframeUrl = computed(() => {
 
   return import.meta.env.DEV
     ? `http://localhost:5173/ui/#/demo${path}/index`
-    : `/ui/#/demo/${path}`
+    : `/ui/#/demo${path}/index`
 })
 
 watch(isDark, (val) => {
