@@ -26,7 +26,7 @@
     "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/uni.ts"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "3.2.47"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",
