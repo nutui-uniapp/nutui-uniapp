@@ -3,6 +3,6 @@
     "@antfu"
   ],
   "rules": {
-    "no-console":"warn"
+    // "no-console":"warn"
   }
 }

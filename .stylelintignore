@@ -8,6 +8,8 @@ cache
 node_modules
 .husky
 
+docs/.vitepress/theme
+
 *.js
 *.cjs
 *.mjs

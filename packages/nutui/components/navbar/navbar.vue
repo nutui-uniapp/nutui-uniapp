@@ -27,13 +27,11 @@ const styles: ComputedRef = computed(() => {
 
 onMounted(() => {
   if (fixed.value && placeholder.value) {
-    setTimeout(() => {
-      const query = uni.createSelectorQuery().in(instance)
-      query.select('.navBarHtml').boundingClientRect()
-      query.exec((res) => {
-        navHeight.value = res[0].height
-      })
-    }, 500)
+    const query = uni.createSelectorQuery().in(instance)
+    query.select('#navBarHtml').boundingClientRect()
+    query.exec((res) => {
+      navHeight.value = res[0].height
+    })
   }
 })
 
@@ -58,12 +56,19 @@ const componentName = `${PREFIX}-navbar`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
 })
 </script>
 
 <template>
   <view v-if="fixed && placeholder" class="nut-navbar--placeholder" :style="{ height: `${navHeight}px` }">
-    <view :class="classes" :style="styles" class="navBarHtml">
+    <view id="navBarHtml" :class="classes" :style="styles">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="left-show">
           <NutIcon custom-class="right-icon" name="left" height="12px" color="#979797" />

@@ -52,6 +52,7 @@ declare module '@vue/runtime-core' {
     NutTabPane: typeof import('uniapp-nutui/components/tabpane/tabpane.vue')['default']
     NutTabs: typeof import('uniapp-nutui/components/tabs/tabs.vue')['default']
     NutToast: typeof import('uniapp-nutui/components/toast/toast.vue')['default']
+    NutTransition: typeof import('uniapp-nutui/components/transition/transition.vue')['default']
     ThemeSwitch: typeof import('./components/ThemeSwitch.vue')['default']
   }
 }

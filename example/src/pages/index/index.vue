@@ -18,10 +18,8 @@ export default {
     }
 
     const navigateTo = (name: string, enName: any) => {
-      console.log(`/${enName}/pages/${name.toLowerCase()}/index`)
-
       uni.navigateTo({
-        url: `/demo/${enName}/pages/${name.toLowerCase()}/index`,
+        url: `/demo/${enName}/${name.toLowerCase()}/index`,
       })
     }
 

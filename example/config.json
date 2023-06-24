@@ -130,6 +130,17 @@
         },
         {
           "version": "3.0.0",
+          "name": "Transition",
+          "taro": true,
+          "type": "component",
+          "cName": "过渡动画",
+          "desc": "创建过渡动画",
+          "sort": 14,
+          "show": true,
+          "author": "szg2008"
+        },
+        {
+          "version": "3.0.0",
           "name": "Popup",
           "taro": true,
           "sort": 8,

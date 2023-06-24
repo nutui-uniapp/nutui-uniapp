@@ -100,7 +100,7 @@ export function deepMerge(target: any, newObj: any) {
 
 export function myFixed(num: any, digit = 2) {
   if (Object.is(Number.parseFloat(num), NaN))
-    return console.log(`传入的值：${num}不是一个数字`)
+    return console.warn(`传入的值：${num}不是一个数字`)
 
   num = Number.parseFloat(num)
   return (Math.round((num + Number.EPSILON) * 10 ** digit) / 10 ** digit).toFixed(digit)

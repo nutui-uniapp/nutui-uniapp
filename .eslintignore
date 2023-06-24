@@ -1,0 +1,7 @@
+dist
+public
+node_modules
+manifest.json
+pages.json
+cache
+styles
