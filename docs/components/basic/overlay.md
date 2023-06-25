@@ -4,13 +4,9 @@
 
 创建一个遮罩层，通常用于阻止用户进行其他操作
 
-
-
 ### 基础用法
 
 使用 `visible` 控制遮罩层的显示/隐藏
-
-:::demo
 
 ```html
 <template>
@@ -32,13 +28,9 @@
 </script>
 ```
 
-:::
-
 ### 遮罩样式
 
 通过 `overlay-style` 进行设置遮罩样式
-
-:::demo
 
 ```html
 <template>
@@ -63,13 +55,9 @@
 </script>
 ```
 
-:::
-
 ### 设置动画时间
 
 通过 `duration` 设置遮罩显示/隐藏的时间，时间 `s`
-
-:::demo
 
 ```html
 <template>
@@ -91,13 +79,9 @@
 </script>
 ```
 
-:::
-
 ### 锁定背景滚动
 
 通过 `lock-scroll` 设置遮罩在显示时是否锁定背景，禁止滚动
-
-:::demo
 
 ```html
 <template>
@@ -119,13 +103,9 @@
 </script>
 ```
 
-:::
-
 ### 嵌套内容
 
 支持默认 `slot`，可嵌套任意内容
-
-:::demo
 
 ```html
 <template>
@@ -169,13 +149,9 @@
 </style>
 ```
 
-:::
-
 ### 点击遮罩不关闭
 
 设置 `close-on-click-overlay` 可控制点击遮罩是否关闭，如果设置为 `true`，那么 `click` 事件也将同时失效
-
-:::demo
 
 ```html
 <template>
@@ -218,8 +194,6 @@
 }
 </style>
 ```
-
-:::
 
 ## API
 

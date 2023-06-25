@@ -1,0 +1,102 @@
+.nut-theme-dark {
+  .nut-checkbox {
+    &__label {
+      color: $dark-color;
+
+      &--disabled {
+        color: $checkbox-label-disable-color;
+      }
+    }
+
+    &__button {
+      color: $dark-color;
+      background: $dark-background;
+
+      &--disabled {
+        color: $checkbox-label-disable-color;
+        border: 1px solid $checkbox-label-disable-color;
+      }
+    }
+  }
+}
+
+.nut-checkbox {
+  display: flex;
+  align-items: center;
+
+  &--reverse {
+    flex-direction: row-reverse;
+
+    .nut-checkbox__label {
+      margin-right: $checkbox-label-margin-left;
+      margin-left: 0;
+    }
+  }
+
+  &__button {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    padding: $checkbox-button-padding;
+    font-size: $checkbox-button-font-size;
+    color: $checkbox-label-color;
+    background: $checkbox-button-background;
+    border: 1px solid $checkbox-button-border-color;
+    border-radius: $checkbox-button-border-radius;
+
+    &--active {
+      position: relative;
+      color: $checkbox-button-font-color-active;
+      background: transparent;
+      border: 1px solid $checkbox-button-border-color-active;
+
+      &::after {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background-color: $checkbox-button-background-active;
+        opacity: 0.05;
+      }
+    }
+
+    &--disabled {
+      color: $checkbox-label-disable-color;
+      border: none;
+    }
+  }
+
+  &__label {
+    flex: 1;
+    margin-left: $checkbox-label-margin-left;
+    font-size: $checkbox-label-font-size;
+    color: $checkbox-label-color;
+
+    &--disabled {
+      color: $checkbox-label-disable-color;
+    }
+  }
+
+  &__icon {
+    font-size: $checkbox-icon-font-size;
+    color: $primary-color;
+    transition-duration: 0.3s;
+    transition-property: color, border-color, background-color;
+  }
+
+  &__icon--unchecked {
+    font-size: $checkbox-icon-font-size;
+    color: $checkbox-icon-disable-color;
+  }
+
+  &__icon--indeterminate {
+    font-size: $checkbox-icon-font-size;
+    color: $primary-color;
+  }
+
+  &__icon--disable {
+    font-size: $checkbox-icon-font-size;
+    color: $checkbox-icon-disable-color2;
+  }
+}

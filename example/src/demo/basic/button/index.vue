@@ -11,11 +11,8 @@ function changeLoading() {
 }
 
 function click(val: any) {
-  uni.showToast({
-    title: JSON.stringify(val),
-    icon: 'success',
-    mask: true,
-  })
+  /* eslint-disable no-console */
+  console.log(val)
 }
 </script>
 

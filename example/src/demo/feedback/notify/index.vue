@@ -1,3 +1,5 @@
+<!-- eslint-disable no-console -->
+
 <script lang="ts">
 import { reactive, ref } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
@@ -5,8 +7,8 @@ import type { NotifyInst } from 'uniapp-nutui'
 
 export default {
   setup() {
-    const onClosed = () => uni.showToast({ title: 'closed' })
-    const onClick = () => uni.showToast({ title: 'click' })
+    const onClosed = () => console.log('closed')
+    const onClick = () => console.log('click')
 
     const notifyRef = ref<NotifyInst>()
     const typeRef = ref<NotifyInst>()

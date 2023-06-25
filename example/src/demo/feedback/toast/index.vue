@@ -47,7 +47,8 @@ export default {
           page.state.bottom = bottom!
           page.state.center = center
         },
-        onClosed: () => toastRef.value?.showToast.text('closed'),
+        /* eslint-disable no-console */
+        onClosed: () => console.log('closed'),
       },
     }
     return {

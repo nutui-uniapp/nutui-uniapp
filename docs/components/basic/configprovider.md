@@ -4,14 +4,11 @@
 
 用于全局配置 NutUI 组件，提供暗黑模式，动态主题。
 
-
 ### 深色模式
 
 将 ConfigProvider 组件的 `theme` 属性设置为 `dark`，可以开启深色模式。
 
 深色模式会全局生效，使页面上的所有 NutUI 组件变为深色风格。
-
-:::demo
 
 ```html
 <template>
@@ -39,8 +36,6 @@
   };
 </script>
 ```
-
-:::
 
 ### 主题定制
 
@@ -70,8 +65,8 @@
 ```
 
 #### 通过 ConfigProvider 覆盖
+
 `ConfigProvider` 组件提供了覆盖 `CSS` 变量的能力，你需要在根节点包裹一个 `ConfigProvider` 组件，并通过 `theme-vars` 属性来配置一些主题变量
-:::demo
 
 ```html
 <template>
@@ -105,10 +100,8 @@
 </script>
 ```
 
-:::
-
-
 ### 主题变量
+
 #### 基础变量
 
 `NutUI` 中的 `CSS` 变量分为 **基础变量** 和 **组件变量**。组件变量会继承基础变量，因此在修改基础变量后，会影响所有相关的组件。
@@ -119,7 +112,7 @@
 
 - 基础变量和组件变量都能通过 `:root，page 选择器`和 `ConfigProvider 组件`，推荐您使用 `ConfigProvider 组件` 来修改主色调，因为部分组件的变量激活色的渐变色使用的是 `rgba`，使用 `:root，page 选择器` 修改主色调会有部分组件变量不生效：
 
-```less
+```scss
 // 如果您仍旧选择使用:root 选择器来进行修改主色调，您还需要修改以下3个组件变量色  primaryColor为设置的主色调
 
 --nut-address-region-tab-line: linear-gradient(90deg, primaryColor 0%, rgba(primaryColor,0.15) 100%)  ; 
@@ -130,7 +123,8 @@
 #### 变量列表
 
 下面是所有的基础变量：
-```less
+
+```scss
   // 主色调
   --nut-primary-color: #fa2c19;
   --nut-primary-color-end: #fa6419;
@@ -176,7 +170,6 @@
   --nut-line-height-base: 1.5;
 
 ```
-
 
 ## API
 

@@ -4,13 +4,9 @@
 
 弹出层容器，用于展示弹窗、信息提示等内容，支持多个弹出层叠加展示
 
-
-
 ### 基础用法
 
 通过设置 `visible` 控制显示/隐藏
-
-:::demo
 
 ```html
 <template>
@@ -31,13 +27,9 @@
 </script>
 ```
 
-:::
-
 ### 弹出位置
 
 通过设置 `position` 的值来控制弹出位置
-
-:::demo
 
 ```html
 <template>
@@ -67,13 +59,9 @@
 </script>
 ```
 
-:::
-
 ### 图标
 
 通过 `closeable` 控制图标是否可关闭，`close-icon-position` 来设置图标的位置，`close-icon` 来自定义显示图标，详情可参照[图标](#/zh-CN/component/icon)
-
-:::demo
 
 ```html
 <template>
@@ -106,13 +94,9 @@
 </script>
 ```
 
-:::
-
 ### 圆角弹框
 
 通过设置 `round` 来控制是否显示圆角
-
-:::demo
 
 ```html
 <template>
@@ -133,11 +117,7 @@
 </script>
 ```
 
-:::
-
 ### 多层堆叠
-
-:::demo
 
 ```html
 <template>
@@ -162,11 +142,10 @@
 </script>
 ```
 
-:::
-
 ## API
 
 > 当前组件内部透传了 [Icon组件](#/zh-CN/component/icon) 和 [Overlay组件](#/zh-CN/component/overlay)
+>
 ### Props
 
 | 参数                   | 说明                                                        | 类型           | 默认值        |
@@ -188,7 +167,7 @@
 | round                  | 是否显示圆角                                                |boolean        | `false`       |
 | overlay-class       | 自定义遮罩层类名 | string  | ''  |
 | overlay-style       | 自定义遮罩层样式  | string  | ''  |
-| safe-area-inset-bottom	| 是否开启 iphone 系列全面屏底部安全区适配,仅当 `position` 为 `bottom` 时有效 |	boolean	|`false`     |
+| safe-area-inset-bottom | 是否开启 iphone 系列全面屏底部安全区适配,仅当 `position` 为 `bottom` 时有效 | boolean |`false`     |
 
 ### Events
 

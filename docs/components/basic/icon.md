@@ -4,14 +4,10 @@
 
 基于 IconFont 字体的图标集，可以通过 Icon 组件使用。
 
-
-
-
 ### 基础用法
 
 `Icon` 的 `name` 属性支持传入图标名称或图片链接。
 
-:::demo
 ```html
 <template>
   <nut-icon name="dongdong"></nut-icon>
@@ -19,13 +15,11 @@
   <nut-icon size="40"  name="https://img11.360buyimg.com/imagetools/jfs/t1/137646/13/7132/1648/5f4c748bE43da8ddd/a3f06d51dcae7b60.png"></nut-icon>
 </template>
 ```
-:::
 
 ### 图标颜色
 
 `Icon` 的 `color` 属性用来设置图标的颜色。
 
-:::demo
 ```html
 <template>
   <nut-icon name="dongdong" color="#fa2c19"></nut-icon>
@@ -33,13 +27,11 @@
   <nut-icon name="JD" color="#fa2c19"></nut-icon>
 </template>
 ```
-:::
 
 ### 图标大小
 
 `Icon` 的 `size` 属性用来设置图标的尺寸大小，默认单位为 `px`。
 
-:::demo
 ```html
 <template>
   <nut-icon name="dongdong"></nut-icon>
@@ -47,12 +39,11 @@
   <nut-icon name="dongdong" size="16"></nut-icon>
 </template>
 ```
-:::
+
 ### 通用动态图标
 
 添加指定的 class 类就可以实现图片动态效果，默认是播放1次，添加 `nut-icon-am-infinite` 类即可实现循环播放。通过设置 css 可实现动画启动前的延迟间隔、动画在多久时间内完成
 
-:::demo
 ```html
 <template>
   <nut-icon name="dou-arrow-up" class="nut-icon-am-jump nut-icon-am-infinite"></nut-icon>
@@ -71,10 +62,6 @@
   }
 </style>
 ```
-:::
-
-
-
 
 ### 自定义图标
 
@@ -97,7 +84,6 @@
 
 第二步：项目入口文件 main.js 引用 `iconfont.css`
 
-
 ``` javascript
 import './assets/font/iconfont.css';
 ```
@@ -112,8 +98,6 @@ import './assets/font/iconfont.css';
 -->
 <nut-icon font-class-name="iconfont" class-prefix="icon" name="close" />
 ```
-
-
 
 > 方案二 第三方自定义字体库
 
@@ -142,7 +126,7 @@ import './assets/font/iconfont.css';
 
 ```
 
-自定义 iconfont [Demo示例](https://github.com/jdf2e/nutui-demo/blob/master/vite/src/App.vue#L15) 
+自定义 iconfont [Demo示例](https://github.com/jdf2e/nutui-demo/blob/master/vite/src/App.vue#L15)
 
 ## API
 

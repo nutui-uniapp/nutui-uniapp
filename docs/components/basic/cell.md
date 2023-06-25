@@ -4,11 +4,7 @@
 
 列表项，可组成列表。
 
-
-
 ### 基础用法
-
-:::demo
 
 ```html
 <template>
@@ -31,11 +27,7 @@
 </script>
 ```
 
-:::
-
 ### 尺寸设置 large
-
-:::demo
 
 ```html
 <template>
@@ -44,11 +36,7 @@
 </template>
 ```
 
-:::
-
 ### 直接使用插槽（slot）
-
-:::demo
 
 ```html
 <template>
@@ -58,13 +46,7 @@
 </template>
 ```
 
-:::
-
-
-
 ### 直接使用插槽（slot title）
-
-:::demo
 
 ```html
 <template>
@@ -76,11 +58,7 @@
 </template>
 ```
 
-:::
-
 ### 链接 | 分组用法
-
-:::demo
 
 ```html
 <template>
@@ -92,11 +70,7 @@
 </template>
 ```
 
-:::
-
 ### 自定义右侧箭头区域
-
-:::demo
 
 ```html
 <template>
@@ -122,11 +96,7 @@
 </script>
 ```
 
-:::
-
 ### 自定义左侧 Icon 区域
-
-:::demo
 
 ```html
 <template>
@@ -143,11 +113,7 @@
 </template>
 ```
 
-:::
-
 ### 展示图标
-
-:::demo
 
 ```html
 <template>
@@ -155,11 +121,7 @@
 </template>
 ```
 
-:::
-
 ### 只展示 desc ，可通过 desc-text-align 调整内容位置
-
-:::demo
 
 ```html
 <template>
@@ -167,20 +129,15 @@
 </template>
 ```
 
-:::
 ### 垂直居中
 
 通过 `center` 属性可以让 Cell 的左右内容都垂直居中。
-
-:::demo
 
 ```html
 <template>
   <nut-cell center title="我是标题" sub-title="副标题描述" desc="描述文字"></nut-cell>
 </template>
 ```
-
-:::
 
 ## API
 
@@ -203,7 +160,6 @@
 | round-radius    | 圆角半径                                                                                     | number  | `6px`    |
 | center          | 是否使内容垂直居中                                                                           | boolean | `false`  |
 | size            | 单元格大小，可选值为 `large`                                                                 | string  | -      |
-
 
 ### Cell Events
 

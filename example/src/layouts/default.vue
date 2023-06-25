@@ -34,11 +34,11 @@ function onClickLeft() {
   <view class="h-100vh">
     <nut-config-provider :theme="darkMode ? 'dark' : ''">
       <nut-navbar :placeholder="true" :fixed="true" :left-show="title !== 'index'" safe-area-inset-top :title="title === 'index' ? 'NutUi' : title" @on-click-back="onClickLeft">
-        <template #left>
+        <!-- <template #left>
           <div v-if="title !== 'index'">
             返回
           </div>
-        </template>
+        </template> -->
       </nut-navbar>
       <slot />
     </nut-config-provider>
