@@ -1,0 +1,77 @@
+.nut-theme-dark {
+  .nut-textarea {
+    background: $dark-background;
+
+    &__textarea {
+      color: $dark-color;
+    }
+  }
+}
+
+.nut-textarea {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 10px 25px;
+  font-size: $textarea-font;
+  background: $white;
+
+  &--disabled {
+    .nut-textarea__textarea,
+
+    // TODO PR原版类名错误
+    .nut-textarea__limit {
+      color: $textarea-disabled-color !important;
+      cursor: not-allowed;
+    }
+  }
+
+  &__limit {
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    font-size: $textarea-font;
+    color: $textarea-limit-color;
+  }
+
+  &__textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    font-size: $textarea-font;
+    line-height: 20px;
+    color: $textarea-text-color;
+    text-align: left;
+    resize: none;
+    background-color: transparent;
+    border: none;
+
+    //  min-height: $textarea-height;
+    outline: none;
+
+    .taro-textarea {
+      font-size: 14px;
+    }
+  }
+
+  &__textarea__readonly {
+    padding: 5px 10px;
+  }
+
+  &__ali {
+    line-height: 17px;
+  }
+
+  .nut-textarea__cpoytext {
+    position: absolute;
+    top: -999999px;
+    left: -999999px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

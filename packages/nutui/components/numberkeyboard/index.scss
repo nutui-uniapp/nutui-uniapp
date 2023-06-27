@@ -1,0 +1,126 @@
+@import '../popup/index';
+
+.nut-theme-dark {
+  .nut-number-keyboard {
+    background-color: $dark-background4;
+
+    // TODO PR nutui这里暗黑模式样式错了
+    .nut-key__wrapper{
+      .nut-key {
+        color: $dark-color;
+        background-color: $dark-background5;
+      }
+    }
+    
+    
+  }
+}
+
+.nut-number-keyboard {
+  width: $numberkeyboard-width;
+  padding: $numberkeyboard-padding;
+  user-select: none;
+  background-color: $numberkeyboard-background-color;
+
+  .nut-number-keyboard__header {
+    position: relative;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $numberkeyboard-header-height;
+    padding: $numberkeyboard-header-padding;
+    font-size: $numberkeyboard-header-font-size;
+    color: $numberkeyboard-header-color;
+
+    .nut-number-keyboard__title {
+      display: inline-block;
+    }
+
+    .nut-number-keyboard__close {
+      position: absolute;
+      right: 0;
+      display: block;
+      padding: $numberkeyboard-header-close-padding;
+      font-size: $numberkeyboard-header-close-font-size;
+      color: $numberkeyboard-header-close-color;
+      cursor: pointer;
+      background-color: $numberkeyboard-header-close-background-color;
+      border: none;
+    }
+  }
+
+  .nut-number-keyboard__body {
+    display: flex;
+    padding: 6px 0 0 6px;
+
+    .nut-number-keyboard__keys {
+      display: flex;
+      flex: 3;
+      flex-wrap: wrap;
+    }
+
+    .nut-number-keyboard__sidebar {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      .nut-key__wrapper {
+        .nut-key {
+          position: absolute;
+          inset: 0 6px 6px 0;
+          height: auto;
+        }
+
+        .nut-key--finish {
+          font-size: $numberkeyboard-key-finish-font-size;
+          color: $numberkeyboard-key-finish-font-size-color;
+          background-color: $numberkeyboard-key-finish-background-color;
+        }
+
+        .activefinsh {
+          background-color: $numberkeyboard-key-activefinsh-background-color;
+        }
+      }
+    }
+  }
+}
+
+.nut-key__wrapper {
+  position: relative;
+  box-sizing: border-box;
+  flex: 1;
+  flex-basis: 33%;
+  padding: 0 6px 6px 0;
+
+  &.nut-key__wrapper--wider {
+    flex-basis: 66%;
+  }
+
+  .nut-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $numberkeyboard-key-height;
+    font-size: $numberkeyboard-key-font-size;
+    line-height: $numberkeyboard-key-line-height;
+    color: $numberkeyboard-key-font-size-color;
+    cursor: pointer;
+    background-color: $numberkeyboard-key-background-color;
+    border-radius: $numberkeyboard-key-border-radius;
+  }
+
+  .nut-key--active {
+    background-color: $numberkeyboard-key-active-background-color;
+  }
+
+  image,
+  img {
+    width: 30px;
+    height: 24px;
+  }
+}
+
+.nut-number-keyboard-overlay {
+  background-color: rgb(0 0 0 / 0%) !important;
+}

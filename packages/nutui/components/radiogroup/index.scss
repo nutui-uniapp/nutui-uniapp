@@ -1,0 +1,21 @@
+.nut-radio-group {
+  display: inline-block;
+
+  .nut-radio {
+    margin-bottom: 5px;
+  }
+
+  &--horizontal {
+    .nut-radio {
+      display: inline-flex !important;
+      margin-right: 10px !important;
+
+      &--round {
+        .nut-radio__label {
+          margin: 0 6px !important;
+        }
+      }
+
+    }
+  }
+}

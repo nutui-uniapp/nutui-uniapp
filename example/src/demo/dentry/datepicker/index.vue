@@ -125,7 +125,7 @@ export default {
       配合 Popup 使用
     </h2>
     <nut-cell title="选择日期" :desc="popupDesc" @click="show = true" />
-    <nut-popup v-model:visible="show" position="bottom">
+    <nut-popup v-model:visible="show" safe-area-inset-bottom position="bottom">
       <nut-date-picker
         v-model="currentDate"
         :min-date="minDate"
