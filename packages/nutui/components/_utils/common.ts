@@ -167,3 +167,15 @@ export function deepAssign(to: ObjectIndex, from: ObjectIndex): ObjectIndex {
 
   return to
 }
+
+export function omit(obj: Record<string, unknown>, keys: string[]) {
+  if (Object.prototype.toString.call(obj) === '[object Object]')
+    return obj
+
+  return Object.keys(obj).reduce((prev, key) => {
+    if (!keys.includes(key))
+      prev[key] = obj[key]
+
+    return prev
+  }, {} as Record<string, unknown>)
+}

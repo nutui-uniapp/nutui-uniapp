@@ -1,0 +1,174 @@
+.nut-theme-dark {
+  // TODO PR 暗黑模式适配不彻底
+  .nut-searchbar {
+    &__search-input {
+        // color: $dark-color;
+        background: $dark-background4;
+    }
+
+    background: $dark-background;
+
+    &__search-label {
+      color: $dark-color;
+    }
+
+    .nut-searchbar__input-clear {
+      & .nut-searchbar__nut-icon-mask-close {
+        color: $dark-color;
+
+        &:hover {
+          color: $dark-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__right-search-icon,
+    &__left-search-icon {
+      color: $dark-color;
+    }
+  }
+}
+
+.nut-searchbar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: $searchbar-width;
+  padding: $searchbar-padding;
+  color: $searchbar-input-bar-color;
+  background: $searchbar-background;
+
+  &::placeholder {
+    color: $searchbar-input-bar-placeholder-color;
+  }
+
+  &__search-label {
+    padding: 0 5px;
+    color: #323233;
+  }
+
+  &__search-input {
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: $searchbar-input-width;
+    height: $searchbar-input-height;
+    padding: $searchbar-input-padding;
+    background: $searchbar-input-background;
+    border-radius: $searchbar-input-border-radius;
+    box-shadow: $searchbar-input-box-shadow;
+
+    &.square {
+      border-radius: 0;
+    }
+
+    .nut-searchbar__input-inner {
+      position: relative;
+      display: flex;
+
+      // width: 100%;
+      flex: 1;
+      align-items: center;
+      overflow: hidden;
+
+      > taro-form-core {
+        width: 100%;
+      }
+
+      .nut-searchbar__input-form {
+        // display: flex;
+        // align-items: center;
+        // width: 100%;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      input {
+        width: 100%;
+        min-width: 214px;
+        height: 100%;
+        padding-left: 4px;
+      }
+    }
+
+    .nut-searchbar__input-inner-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      // overflow: hidden;
+      padding: 0 7px;
+    }
+
+    .nut-searchbar__input-clear {
+      position: relative;
+      z-index: 10;
+      padding: 0 5px;
+
+      & .nut-searchbar__nut-icon-mask-close {
+        color: rgb(204 204 204);
+
+        &:hover {
+          color: rgb(104 104 104);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .nut-searchbar__input-inner-icon-absolute {
+      .nut-searchbar__input-clear {
+        position: absolute;
+        left: -20px;
+        z-index: 10;
+      }
+    }
+
+    .nut-searchbar__iptleft-search-icon {
+      width: 14px;
+      height: 14px;
+      margin-right: 6px;
+    }
+
+    .nut-searchbar__iptright-search-icon {
+      margin-left: 5px;
+    }
+
+    .nut-searchbar__input-bar {
+      flex: 1;
+      width: 100%;
+      height: 36px;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      background-color: transparent;
+      border-color: transparent;
+      border-radius: 16px;
+      outline: none;
+    }
+
+    .nut-searchbar__input-inner-absolute {
+      .nut-searchbar__input-bar {
+        box-sizing: border-box;
+        padding-right: 20px;
+      }
+    }
+  }
+
+  &__left-search-icon {
+    margin-right: 8px;
+  }
+
+  &__search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__right-search-icon {
+    margin-left: 16px;
+    font-size: 14px;
+    color: $searchbar-right-out-color;
+  }
+}

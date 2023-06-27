@@ -1,6 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
+import { commonProps } from '../_utils'
 
 export const cellProps = {
+  ...commonProps,
   title: { type: String, default: '' },
   subTitle: { type: String, default: '' },
   desc: { type: String, default: '' },

@@ -1,0 +1,120 @@
+.nut-progress {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  .nut-progress-outer {
+    flex: 1;
+    height: 10px;
+    background-color: $progress-outer-background-color;
+    border-radius: $progress-outer-border-radius;
+
+    .nut-progress-inner {
+      width: 30%;
+      height: 100%;
+      background: $progress-inner-background-color;
+      border-radius: $progress-outer-border-radius;
+      transition: all 0.4s;
+
+      // position: relative;
+    }
+
+    .nut-progress-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .nut-active {
+      &::before {
+        position: absolute;
+        inset: 0;
+        content: '';
+        border-radius: $progress-outer-border-radius;
+        animation: progressActive 2s ease-in-out infinite;
+      }
+    }
+
+    @keyframes progressActive {
+      0% {
+        width: 0;
+        background: rgb(255 255 255 / 10%);
+      }
+
+      20% {
+        width: 0;
+        background: rgb(255 255 255 / 50%);
+      }
+
+      100% {
+        width: 100%;
+        background: rgb(255 255 255 / 0%);
+      }
+    }
+
+    &.nut-progress-small {
+      height: $progress-small-height;
+
+      .nut-progress-text {
+        // top: $progress-small-text-top;
+        top: 50%;
+        padding: $progress-small-text-padding;
+        font-size: $progress-small-text-font-size;
+        line-height: $progress-small-text-line-height;
+      }
+    }
+
+    &.nut-progress-base {
+      height: $progress-base-height;
+
+      .nut-progress-text {
+        top: 50%;
+        padding: $progress-base-text-padding;
+        font-size: $progress-base-text-font-size;
+        line-height: $progress-base-text-line-height;
+      }
+    }
+
+    &.nut-progress-large {
+      height: $progress-large-height;
+
+      .nut-progress-text {
+        top: 50%;
+        padding: $progress-large-text-padding;
+        font-size: $progress-large-text-font-size;
+        line-height: $progress-large-text-line-height;
+      }
+    }
+  }
+
+  .nut-progress-outer-part {
+    width: 90%;
+  }
+
+  .nut-progress-text {
+    display: flex;
+    align-items: center;
+    min-width: 35px;
+    padding: 0 5px;
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .nut-progress-insidetext {
+    position: absolute;
+    top: 50%;
+    min-width: 0;
+    padding: $progress-insidetext-padding;
+    background: $progress-insidetext-background;
+    border-radius: $progress-insidetext-border-radius;
+    transition: all 0.4s;
+  }
+
+  .nut-icon-success,
+  .nut-icon-fail {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+  }
+}

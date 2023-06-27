@@ -1,0 +1,98 @@
+@import '../popup/index';
+
+.nut-theme-dark {
+  .nut-short-password-title {
+    color: $dark-color;
+  }
+
+  .nut-short-password-wrapper {
+    .nut-short-password__list {
+      background: $dark-background3;
+      border: none;
+
+      .nut-short-password__item {
+        position: relative;
+
+        .nut-short-password__item-icon {
+          background: $dark-color;
+        }
+
+        &::after {
+          position: absolute;
+          inset: -50%;
+          box-sizing: border-box;
+          pointer-events: none;
+          content: ' ';
+          outline: 1px solid #3a3a3c;
+          transform: scale(0.5);
+        }
+      }
+    }
+  }
+}
+
+.nut-short-password-title {
+  font-size: $font-size-3;
+  line-height: 1;
+  color: $title-color;
+}
+
+.nut-short-password-subtitle {
+  display: block;
+  margin-top: 12px;
+  font-size: $font-size-1;
+  line-height: 1;
+  color: $text-color;
+}
+
+.nut-short-password-wrapper {
+  position: relative;
+  padding: 12px 0 10px;
+  text-align: center;
+}
+
+.nut-short-password__list {
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  height: 41px;
+  margin: 0 auto;
+  background: $shortpassword-background-color;
+  border: 1px solid $shortpassword-border-color;
+  border-radius: 4px;
+}
+
+.nut-short-password__item {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.nut-short-password__item-icon {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.nut-short-password__message {
+  display: flex;
+  justify-content: space-between;
+  width: 247px;
+  margin-top: 9px;
+
+  .nut-short-password--error {
+    font-size: $font-size-0;
+    line-height: 1;
+    color: $shortpassword-error;
+  }
+
+  .nut-short-password--forget {
+    display: flex;
+    font-size: $font-size-1;
+    line-height: 1;
+    color: $shortpassword-forget;
+  }
+}

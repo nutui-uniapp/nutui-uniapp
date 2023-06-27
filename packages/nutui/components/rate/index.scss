@@ -1,0 +1,37 @@
+.nut-rate {
+  display: inline-flex;
+
+  &-item {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    margin-right: 14px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &__icon {
+      flex-shrink: 0;
+      color: $rate-icon-color;
+      cursor: pointer;
+
+      &--disabled {
+        color: $rate-icon-void-color;
+      }
+
+      &--full {
+        display: flex;
+      }
+
+      &--half {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        width: 50%;
+        overflow: hidden;
+      }
+    }
+  }
+}

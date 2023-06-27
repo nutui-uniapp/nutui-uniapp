@@ -119,6 +119,12 @@ const { translate } = useTranslate(componentName)
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
 })
 </script>
 
@@ -158,8 +164,8 @@ export default defineComponent({
                 { 'nut-key--lock': item.type === 'lock' },
                 { 'nut-key--delete': item.type === 'delete' },
               ]"
-              @touchstart="(event) => onTouchstart(item, event)"
-              @touchmove="(event) => onTouchMove(event)"
+              @touchstart="(event: TouchEvent) => onTouchstart(item, event)"
+              @touchmove="(event: TouchEvent) => onTouchMove(event)"
               @touchend="onTouchEnd"
             >
               <template v-if="item.type === 'number' || item.type === 'custom'">
@@ -180,8 +186,8 @@ export default defineComponent({
           <div class="nut-key__wrapper">
             <div
               class="nut-key" :class="[{ active: clickKeyIndex === 'delete' }]"
-              @touchstart="(event) => onTouchstart({ id: 'delete', type: 'delete' }, event)"
-              @touchmove="(event) => onTouchMove(event)"
+              @touchstart="(event: TouchEvent) => onTouchstart({ id: 'delete', type: 'delete' }, event)"
+              @touchmove="(event: TouchEvent) => onTouchMove(event)"
               @touchend="onTouchEnd"
             >
               <img

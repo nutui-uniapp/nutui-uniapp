@@ -40,7 +40,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="baseStyle" @click="handleClick">
+  <view :class="[classes, customClass]" :style="[baseStyle, customStyle]" @click="handleClick">
     <slot>
       <view v-if="$slots.icon" class="nut-cell__icon">
         <slot name="icon" />
