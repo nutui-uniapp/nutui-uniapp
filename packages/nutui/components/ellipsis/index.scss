@@ -1,0 +1,18 @@
+.nut-ellipsis {
+  display: flex;
+
+  .nut-ellipsis__text {
+    display: inline;
+    color: $ellipsis-expand-collapse-color;
+    cursor: hand;
+  }
+
+  .nut-ellipsis__wordbreak {
+    word-break: break-all;
+  }
+}
+
+.nut-ellipsis__copy {
+  position: absolute;
+  top: -999999px;
+}

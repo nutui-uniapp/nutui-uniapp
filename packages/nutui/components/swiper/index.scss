@@ -1,0 +1,54 @@
+.nut-swiper {
+  position: relative;
+  z-index: 1;
+  box-sizing: content-box;
+  display: flex;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  transition-property: transform;
+
+  &-inner {
+    display: flex;
+    height: 100%;
+  }
+
+  &-vertical {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+
+  &-pagination {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+
+    .pagination {
+      width: $swiper-pagination-item-width;
+      height: $swiper-pagination-item-height;
+      margin-right: $swiper-pagination-item-margin-right;
+      border-radius: $swiper-pagination-item-border-radius;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-pagination-vertical {
+    top: 50%;
+    bottom: auto;
+    left: 12px;
+    flex-direction: column;
+    transform: translateY(-50%);
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+
+    .pagination {
+      margin-bottom: 5px;
+    }
+  }
+}

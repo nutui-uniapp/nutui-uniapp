@@ -270,6 +270,11 @@ const componentName = `${PREFIX}-tab`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
 })
 </script>
 

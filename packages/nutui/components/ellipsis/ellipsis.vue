@@ -1,0 +1,264 @@
+<script setup lang="ts">
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import { PREFIX } from '../_utils'
+import { useRect } from '../_hooks'
+import type { EllipsisedValue } from './ellipsis'
+import { ellipsisEmits, ellipsisProps } from './ellipsis'
+
+const props = defineProps(ellipsisProps)
+
+const emit = defineEmits(ellipsisEmits)
+const instance = getCurrentInstance() as ComponentInternalInstance
+const refRandomId = Math.random().toString(36).slice(-8)
+
+const rootId = `root${refRandomId}`
+const symbolContainId = `symbolContain${refRandomId}`
+const rootContainId = `rootContain${refRandomId}`
+const contantCopy = ref(props.content)
+let maxHeight = 0 // 超出的最大高度
+let lineHeight = 0 // 当行的最大高度
+let originHeight = 0 // 原始高度
+const ellipsis = reactive<EllipsisedValue>({})
+const widthRef = ref('auto')
+const state = reactive({
+  exceeded: false, // 是否超出
+  expanded: false, // 是否折叠
+})
+
+let widthBase = [14, 10, 7, 8.4, 10] // 中、英(大)、英(小)、数字、其他字符的基础宽度
+let symbolTextWidth = widthBase[0] * 0.7921
+const chineseReg = /^[\u4E00-\u9FA5]+$/ // 汉字
+const digitReg = /^[0-9]+$/ // 数字
+const letterUpperReg = /^[A-Z]+$/ // 字母
+const letterLowerReg = /^[a-z]+$/ // 字母
+
+const classes = computed(() => {
+  const prefixCls = componentName
+  return {
+    ell: true,
+    [prefixCls]: true,
+  }
+})
+
+const symbolText = computed(() => {
+  if (props.direction === 'end' || props.direction === 'middle')
+    return `${props.symbol}${props.expandText}`
+
+  return `${props.symbol}${props.expandText}${props.symbol}`
+})
+
+onMounted(() => {
+  setTimeout(() => {
+    getSymbolInfo()
+    getReference()
+  }, 100)
+})
+// 获取省略号宽度
+async function getSymbolInfo() {
+  const refe = await useRect(symbolContainId, instance)
+  symbolTextWidth = refe.width ? Math.ceil(refe.width) : Math.ceil(widthBase[0] * 0.7921)
+}
+
+async function getReference() {
+  const query = uni.createSelectorQuery().in(instance)
+  query.select(rootId)
+        && query
+          .select(`#${rootId}`)
+          .fields(
+            {
+              computedStyle: ['width', 'height', 'lineHeight', 'paddingTop', 'paddingBottom', 'fontSize'],
+            },
+            (res: any) => {
+              lineHeight = pxToNumber(res.lineHeight === 'normal' ? props.lineHeight : res.lineHeight)
+              maxHeight = Math.floor(
+                lineHeight * (Number(props.rows) + 0.5) + pxToNumber(res.paddingTop) + pxToNumber(res.paddingBottom),
+              )
+
+              originHeight = pxToNumber(res.height)
+
+              widthRef.value = res.width
+
+              // 设置基础字符
+              const bsize = pxToNumber(res.fontSize)
+              widthBase = [bsize, bsize * 0.72, bsize * 0.53, bsize * 0.4, bsize * 0.75]
+
+              calcEllipse()
+            },
+          )
+          .exec()
+}
+
+// 计算省略号的位置
+async function calcEllipse() {
+  const refe = await useRect(rootContainId, instance)
+
+  if (refe.height <= maxHeight) {
+    state.exceeded = false
+  }
+  else {
+    const rowNum = Math.floor(props.content.length / (originHeight / lineHeight - 1)) // 每行的字数
+
+    if (props.direction === 'middle') {
+      const end = props.content.length
+      ellipsis.leading = tailorContent(0, rowNum * (Number(props.rows) + 0.5), 'end')
+      ellipsis.tailing = tailorContent(props.content.length - rowNum * (Number(props.rows) + 0.5), end, 'start')
+    }
+    else if (props.direction === 'end') {
+      const end = rowNum * (Number(props.rows) + 0.5)
+      ellipsis.leading = tailorContent(0, end)
+    }
+    else {
+      const start = props.content.length - rowNum * (Number(props.rows) + 0.5) - 5
+
+      ellipsis.tailing = tailorContent(start, props.content.length)
+    }
+
+    // 进行兜底判断，是否符合要求
+    assignContent()
+    setTimeout(() => {
+      verifyEllipsis()
+    }, 100)
+  }
+}
+
+// 验证省略号
+async function verifyEllipsis() {
+  const refe = await useRect(rootContainId, instance)
+  if (refe && refe.height && refe.height > maxHeight) {
+    if (props.direction === 'end')
+      ellipsis.leading = ellipsis.leading?.slice(0, ellipsis.leading.length - 1)
+    else
+      ellipsis.tailing = ellipsis.tailing?.slice(1, ellipsis.tailing.length)
+
+    assignContent()
+    setTimeout(() => {
+      verifyEllipsis()
+    }, 100)
+  }
+}
+
+function assignContent() {
+  contantCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${
+        ellipsis.tailing ? props.symbol : ''
+      }${ellipsis.tailing || ''}`
+}
+// 计算省略号
+function tailorContent(left: number, right: number, type = '') {
+  const threeDotWidth = symbolTextWidth
+
+  const direc = props.direction === 'middle' && type ? type : props.direction
+
+  state.exceeded = true
+
+  let widthPart = -1
+  const start = left
+  const end = right
+  let cutoff = 0
+  let marking = 0
+
+  if (direc === 'end') {
+    marking = start
+    cutoff = end
+  }
+  else {
+    marking = end
+    cutoff = start
+  }
+
+  const contentWidth = pxToNumber(widthRef.value) * Number(props.rows) - threeDotWidth
+  const contentPartWidth = props.direction === 'middle' ? contentWidth / 2 : contentWidth
+
+  while (widthPart < contentPartWidth) {
+    const zi = props.content[marking]
+    if (chineseReg.test(zi))
+      widthPart = Number(widthPart + widthBase[0])
+    else if (letterUpperReg.test(zi))
+      widthPart = Number(widthPart + widthBase[1])
+    else if (letterLowerReg.test(zi))
+      widthPart = Number(widthPart + widthBase[2])
+    else if (digitReg.test(zi))
+      widthPart = Number(widthPart + widthBase[3])
+    else
+      widthPart = Number(widthPart + widthBase[4])
+
+    cutoff = marking
+
+    direc === 'end' ? marking++ : marking--
+  }
+
+  if (direc === 'end')
+    return props.content.slice(0, cutoff)
+  else
+    return props.content.slice(cutoff, end)
+}
+
+function pxToNumber(value: string | null) {
+  if (!value)
+    return 0
+  const match = value.match(/^\d*(\.\d*)?/)
+  return match ? Number(match[0]) : 0
+}
+
+// 展开收起
+function clickHandle(type: number) {
+  if (type === 1) {
+    state.expanded = true
+    emit('change', 'expand')
+  }
+  else {
+    state.expanded = false
+    emit('change', 'collapse')
+  }
+}
+
+// 文本点击
+function handleClick() {
+  emit('click')
+}
+</script>
+
+<script lang="ts">
+const componentName = `${PREFIX}-ellipsis`
+
+export default defineComponent({
+  name: componentName,
+})
+</script>
+
+<template>
+  <view>
+    <view :id="rootId" :class="classes" @click="handleClick">
+      <view v-if="!state.exceeded" class="nut-ellipsis__wordbreak">
+        {{ content }}
+      </view>
+
+      <view v-if="state.exceeded && !state.expanded" class="nut-ellipsis__wordbreak">
+        {{ ellipsis.leading }}{{ ellipsis.leading && symbol
+        }}<view v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(1)">
+          {{ expandText }}
+        </view>{{ ellipsis.tailing && symbol }}{{ ellipsis.tailing }}
+      </view>
+      <view v-if="state.exceeded && state.expanded">
+        {{ content }}
+        <span v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(2)">{{ collapseText }}</span>
+      </view>
+    </view>
+
+    <view :id="rootContainId" class="nut-ellipsis__copy" :style="{ width: widthRef }">
+      <view>{{ contantCopy }}</view>
+    </view>
+
+    <!-- 省略号 symbol  -->
+    <view :id="symbolContainId" class="nut-ellipsis__copy" style="display: inline">
+      {{
+        symbolText
+      }}
+    </view>
+
+    <!-- 数字 9 英文 W  -->
+  </view>
+</template>
+
+<style lang="scss">
+@import './index';
+</style>

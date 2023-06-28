@@ -3,6 +3,7 @@ import { createSSRApp } from 'vue'
 import { Locale } from 'uniapp-nutui/locale'
 import App from './App.vue'
 import 'uno.css'
+import './main.scss'
 import { setupStore } from './store'
 import './styles/app.scss'
 
