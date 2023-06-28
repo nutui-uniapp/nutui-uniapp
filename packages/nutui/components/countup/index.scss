@@ -1,0 +1,69 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+.nut-theme-dark {
+  .nut-countup {
+    color: $dark-color;
+    background: $dark-background;
+    box-shadow: none;
+  }
+}
+
+.nut-countup {
+  display: block;
+  padding: 5px 20px;
+  font-family: PingFangSC-Regular;
+  font-weight: bold;
+  color: #000;
+
+  .nut-countup__number {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    font-weight: bold;
+    text-align: center;
+
+    .nut-countup__number-item {
+      position: absolute;
+      list-style: none;
+      transition: none;
+
+      .nut-countup__number-item__span {
+        display: block;
+        font-family: PingFangSC-Regular;
+      }
+    }
+  }
+
+  .nut-countup-pointstyl {
+    position: absolute;
+    display: block;
+  }
+
+  .nut-countup__machine {
+    display: block;
+    overflow: hidden;
+
+    .nut-countup__machine-item {
+      float: left;
+      background-repeat: repeat-y;
+      background-attachment: scroll;
+      background-position: center 0;
+    }
+  }
+
+  .nut-countup__numberimg {
+    position: relative;
+    display: inline-block;
+
+    .nut-countup__numberimg__item {
+      position: absolute;
+      display: block;
+      display: inline-block;
+      font-family: PingFangSC-Regular;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      transition: none;
+    }
+  }
+}
