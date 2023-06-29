@@ -19,7 +19,7 @@ UniAPP-NutUI 组件库，基于Taro版`NutUi` 4.x版本修改而来，适配了U
 
 ## 贡献
 
-有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/ano-ui/ano-ui/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/ano-ui/ano-ui/blob/main/CONTRIBUTING.md)。
+有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/yang1206/uniapp-nutui/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md)。
 
 感谢所有已经为 UniAPP-NutUI 做出贡献的人！
 

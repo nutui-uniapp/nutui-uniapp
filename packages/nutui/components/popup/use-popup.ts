@@ -28,7 +28,6 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     return {
       zIndex: state.zIndex,
       transitionDuration: `${props.duration}ms`,
-      ...props.customStyle,
     }
   })
 

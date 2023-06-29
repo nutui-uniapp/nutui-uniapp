@@ -6,4 +6,4 @@ export const animationName = {
   right: 'slide-right',
 }
 
-export type Position = keyof typeof animationName
+export type Position = (keyof typeof animationName)

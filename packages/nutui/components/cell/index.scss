@@ -18,7 +18,7 @@
   color: $cell-color;
   background: $cell-background;
   border-radius: $cell-border-radius;
-  box-shadow: 0 1px 7px 0 rgb(237 238 241 / 100%);
+  box-shadow: $cell-box-shadow;
 
   &--center {
     align-items: center;

@@ -43,6 +43,8 @@
     overflow: hidden;
     background-color: $cell-group-background-color;
     border-radius: $cell-border-radius;
+    box-shadow: $cell-box-shadow;
+
 
     .nut-cell {
       margin: 0;

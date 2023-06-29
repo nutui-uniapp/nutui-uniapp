@@ -8,7 +8,7 @@ hero:
   tagline: 一个基于 Vue.js 的UI 库，允许你制作漂亮的小程序
   image:
     src: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png'
-    alt: Ano-UI
+    alt: NutUi
 
   actions:
     - theme: brand

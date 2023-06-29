@@ -39,9 +39,9 @@ export default defineComponent({
   />
   <NutTransition
     :name="transitionName"
-    :custom-class="classes"
+    :custom-class="[classes, customClass]"
     :show="visible"
-    :custom-style="popStyle"
+    :custom-style="[popStyle, customStyle]"
     :duration="Number(duration)"
     @after-enter="onOpened"
     @after-leave="onClosed"

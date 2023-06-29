@@ -9,6 +9,5 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AButton: typeof import('ano-ui/components/AButton/AButton.vue')['default']
   }
 }

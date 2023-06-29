@@ -7,7 +7,7 @@ import { clientHeight, listEmits, listProps } from './list'
 import type { CachedPosition } from './type'
 import { CompareResult, binarySearch } from './type'
 
-// TODO 小程序会有问题，不知道为什么插槽被 uniapp 渲染成具名插槽了
+// TODO 小程序插槽会有问题，
 const props = defineProps(listProps)
 
 const emit = defineEmits(listEmits)

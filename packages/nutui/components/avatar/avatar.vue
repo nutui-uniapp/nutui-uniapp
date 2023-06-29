@@ -78,8 +78,8 @@ export default defineComponent({
   <view
     v-if="showMax || !parent?.props?.maxCount || index <= Number(parent?.props?.maxCount)"
     ref="avatarRef"
-    :style="!showMax ? styles : maxStyles"
-    :class="classes"
+    :style="[!showMax ? styles : maxStyles, customStyle]"
+    :class="[classes, customClass]"
   >
     <template v-if="!parent?.props?.maxCount || index <= Number(parent?.props?.maxCount)">
       <slot />
