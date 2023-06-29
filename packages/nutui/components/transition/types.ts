@@ -1,6 +1,6 @@
-import type { animations } from './use-transition'
+import type { defaultAnimations } from './use-transition'
 
-export type TransitionName = keyof typeof animations
+export type TransitionName = keyof typeof defaultAnimations
 
 export interface NutAnimation {
   enter: string

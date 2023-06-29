@@ -2,7 +2,7 @@
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_utils'
 import { transitionEmits, transitionProps } from './transition'
-import { useTransition } from './use-transition'
+import { isKeyOfAnimations, useTransition } from './use-transition'
 
 const props = defineProps(transitionProps)
 const emits = defineEmits(transitionEmits)
@@ -26,7 +26,7 @@ export default defineComponent({
 <template>
   <div
     v-if="display" :class="[classes, animationClass, customClass]"
-    :style="[{ 'animation-duration': `${duration}ms` }, { 'animation-timing-function': timingFunction }, customStyle]"
+    :style="[{ 'animation-duration': isKeyOfAnimations(name) ? `${duration}ms` : '' }, { 'animation-timing-function': isKeyOfAnimations(name) ? timingFunction : '' }, customStyle]"
     @click="clickHandler"
   >
     <slot />
