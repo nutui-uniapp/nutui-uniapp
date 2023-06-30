@@ -6,16 +6,15 @@ import { stepEmits, stepProps } from './step'
 
 const props = defineProps(stepProps)
 const emit = defineEmits(stepEmits)
-const { proxy } = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance() as ComponentInternalInstance
 const parent: any = inject('parent')
-parent.relation(proxy)
+parent.relation(instance)
 
 const state = reactive({
   dot: parent.props.progressDot,
 })
 
-const index = computed(() => parent.state.children.indexOf(proxy) + 1)
-
+const index = computed(() => parent.state.children.indexOf(instance) + 1)
 function getCurrentStatus() {
   const activeIndex = index.value
   if (activeIndex < +parent.props.current)
@@ -47,16 +46,14 @@ export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
+    // addGlobalClass: true,
+    // styleIsolation: 'shared',
   },
 })
 </script>
 
 <template>
-  <view :class="classes" @click="handleClickStep">
+  <view :class="[classes]" @click="handleClickStep">
     <view class="nut-step-head">
       <view class="nut-step-line" />
       <view class="nut-step-icon" :class="[!state.dot ? 'is-icon' : '']">

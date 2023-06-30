@@ -17,7 +17,8 @@
   ],
   "sideEffects": [
     "*.scss",
-    "./_locale/**"
+    "./_locale/**",
+    "*/components/**/*.vue"
   ],
   "exports": {
     ".": {
@@ -40,7 +41,7 @@
   },
   "files": [
     "dist",
-    "style",
+    "styles",
     "components",
     "locale/**"
   ],

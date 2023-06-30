@@ -1,2 +1,2 @@
 export * from './use-popup'
-export type * from './popup'
+export * from './popup'

@@ -131,11 +131,26 @@ const customStyle = computed(() => {
 // 获取宽度
 async function getContentWidth() {
   let rect
-  if (props.targetId)
-    rect = await useRect(props.targetId, instance)
+  if (props.targetId) {
+    // #ifdef MP-WEIXIN
+    // TODO 联动 tour  uniapp微信小程序无法实现，获取不到组件外节点的信息
+    // 父节点可以拿到，根节点拿不动
+    rect = await useRect(props.targetId, instance.parent!)
+    if (rect.left < 0)
+      rect.left = 200
 
-  else
+    if (rect.top < 0)
+      rect.top = 200
+
+    // #endif
+    // #ifndef MP-WEIXIN
+    rect = await useRect(props.targetId)
+    // #endif
+  }
+
+  else {
     rect = await useRect(popoverID, instance)
+  }
 
   if (!(rootRect.value && rect.top === rootRect.value.top && rect.width === rootRect.value.width)) {
     setTimeout(() => {
@@ -214,6 +229,11 @@ const componentName = `${PREFIX}-popover`
 export default defineComponent({
   name: componentName,
   inheritAttrs: false,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 
@@ -221,12 +241,13 @@ export default defineComponent({
   <view
     v-if="!targetId"
     :id="popoverID"
+    :class="customClass"
     class="nut-popover-wrapper"
     @click="openPopover"
   >
     <slot name="reference" />
   </view>
-  <view ref="popoverbox" class="nut-popover" :class="[`nut-popover--${theme}`, `${customClass}`]" :style="popoverstyles">
+  <view ref="popoverbox" class="nut-popover" :class="[`nut-popover--${theme}`, `${customClass}`]" :style="[popoverstyles, customStyle]">
     <NutPopup
       v-model:visible="showPopup"
       :pop-class="`nut-popover-content nut-popover-content--${location}`"
@@ -238,6 +259,8 @@ export default defineComponent({
       :overlay-style="overlayStyle"
       :overlay-class="overlayClass"
       :close-on-click-overlay="closeOnClickOverlay"
+      lock-scroll
+      z-index="5000"
     >
       <view :id="popoverContentID" class="nut-popover-content-group">
         <view v-if="showArrow" :class="popoverArrow" :style="popoverArrowStyle" />

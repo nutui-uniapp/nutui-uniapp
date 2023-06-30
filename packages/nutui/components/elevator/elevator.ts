@@ -34,7 +34,7 @@ export const elevatorProps = {
 export type ElevatorProps = ExtractPropTypes<typeof elevatorProps>
 
 export const elevatorEmits = {
-  clickItem: (key: string, item: ElevatorData) => { return { key, item } },
+  clickItem: (key: string, item: any) => { return { key, item } },
   clickIndex: (key: string) => isString(key),
   change: (val: number) => isNumber(val),
 }

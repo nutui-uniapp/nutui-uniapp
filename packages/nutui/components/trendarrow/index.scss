@@ -1,0 +1,21 @@
+.nut-trend-arrow {
+  display: inline-block;
+  font-size: $trendarrow-font-size;
+
+  &-icon-before {
+    margin-right: $trendarrow-before-icon-margin;
+  }
+
+  &-icon-after {
+    margin-left: $trendarrow-before-icon-margin;
+  }
+
+  &-rate {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  .nut-icon {
+    vertical-align: middle;
+  }
+}

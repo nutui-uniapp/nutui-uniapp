@@ -43,16 +43,14 @@ export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
+    // addGlobalClass: true,
+    // styleIsolation: 'shared',
   },
 })
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="[classes]">
     <slot />
   </view>
 </template>

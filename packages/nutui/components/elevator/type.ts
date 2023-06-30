@@ -1,6 +1,6 @@
 export interface ElevatorData {
-  name: string
-  id: number | string
+  name?: string
+  id?: number | string
   [key: string]: any
 }
 

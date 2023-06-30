@@ -48,8 +48,8 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   }
 
   const close = () => {
-    if (!props.visible)
-      return // 避免重复调用
+    // if (props.visible)
+    //   return // 避免重复调用
     emit('update:visible', false)
     emit('close')
     if (props.destroyOnClose) {
