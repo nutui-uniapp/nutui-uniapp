@@ -1,0 +1,67 @@
+.nut-theme-dark {
+  .nut-time-detail {
+    background-color: $dark-background2;
+
+    &__detail {
+      &__list {
+        &__item {
+          color: $dark-color;
+          background-color: $dark-background;
+
+          &--curr {
+            color: $timeselect-timedetail-item-cur-text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nut-time-detail {
+  display: flex;
+  width: 100%;
+  padding: $timeselect-timedetail-padding;
+
+  &__detail {
+    width: 100%;
+
+    &__list {
+      &__item {
+        display: inline-block;
+        width: $timeselect-timedetail-item-width;
+        height: $timeselect-timedetail-item-height;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: $timeselect-timedetail-item-text-font-size;
+        font-weight: bold;
+        line-height: $timeselect-timedetail-item-line-height;
+        color: $timeselect-timedetail-item-text-color;
+        text-align: center;
+        background-color: $timeselect-timedetail-item-bg-color;
+        border: 1px solid transparent;
+        border-radius: $timeselect-timedetail-item-border-radius;
+
+        &--curr {
+          position: relative;
+          color: $timeselect-timedetail-item-cur-text-color;
+          background-color: transparent;
+          border: 1px solid $timeselect-timedetail-item-cur-border;
+
+          &::after {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            content: '';
+            background-color: $timeselect-timedetail-item-cur-bg-color;
+            opacity: 0.15;
+          }
+        }
+      }
+    }
+  }
+
+  &__detail--afternoon {
+    margin-top: 30px;
+  }
+}

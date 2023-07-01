@@ -109,10 +109,10 @@ export default defineComponent({
       :style="{ width: pxCheck(inputWidth), height: pxCheck(buttonSize) }"
       :disabled="disabled"
       :readonly="readonly"
-      :value="modelValue"
-      @input="change"
-      @blur="blur"
-      @focus="focus"
+      :value="String(modelValue)"
+      @input="(change as any)"
+      @blur="(blur as any)"
+      @focus="(focus as any)"
     >
     <view
       class="nut-input-number__icon nut-input-number__right"

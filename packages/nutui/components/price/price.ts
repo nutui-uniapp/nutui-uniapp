@@ -1,6 +1,8 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import { commonProps } from '../_utils'
 
 export const priceProps = {
+  ...commonProps,
   price: {
     type: [Number, String],
     default: 0,

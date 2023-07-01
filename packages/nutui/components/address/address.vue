@@ -290,6 +290,13 @@ const { translate } = useTranslate(componentName)
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
 })
 </script>
 
@@ -383,11 +390,11 @@ export default defineComponent({
               @click="selectedExist(item)"
             >
               <slot v-if="!item.selectedAddress" name="unselected-icon">
-                <NutIcon name="location2" class="nut-address-select-icon" width="13px" />
+                <NutIcon name="location2" custom-class="nut-address-select-icon" width="13px" />
               </slot>
 
               <slot v-if="item.selectedAddress" name="icon">
-                <NutIcon name="Check" class="nut-address-select-icon" width="13px" />
+                <NutIcon name="Check" custom-class="nut-address-select-icon" width="13px" />
               </slot>
 
               <div class="nut-address__exist-item-info">

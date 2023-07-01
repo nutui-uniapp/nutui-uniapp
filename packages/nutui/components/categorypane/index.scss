@@ -1,0 +1,84 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+
+.nut-theme-dark {
+  .nut-category-pane {
+    &__childTitle {
+      color: $white;
+    }
+
+    &__cateListRight {
+      background: $dark-background2;
+    }
+  }
+}
+
+.nut-category-pane {
+  &__cateListRight {
+    padding-left: 15px;
+    background: $category-bg-color;
+  }
+
+  &__childTitle {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: PingFangSC;
+    font-size: 13px;
+    font-weight: 500;
+    color: $category-pane-title-color;
+  }
+
+  &__childItemList {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__childItem {
+    margin-right: 10px;
+  }
+
+  &__childImg {
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+  }
+
+  &__skuName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 40px;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 15px;
+    font-family: PingFangSC;
+    font-size: 12px;
+    font-weight: normal;
+    color: $category-pane-gray-color;
+    border: 1px solid $category-pane-border-color;
+    border-radius: 5px;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+
+    &:nth-child(n + 4) {
+      margin-top: 15px;
+    }
+  }
+
+  &__skuImg {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: PingFangSC;
+    font-size: 12px;
+    font-weight: normal;
+    color: $category-pane-gray-color;
+    text-align: center;
+  }
+
+  &__selfItemList {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

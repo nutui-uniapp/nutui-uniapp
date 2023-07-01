@@ -1,0 +1,410 @@
+@import '../rate/index';
+
+.nut-theme-dark {
+  .nut-comment {
+    &-header {
+      &__user {
+        &-name {
+          color: $dark-color;
+        }
+
+        &-default {
+          &-name {
+            color: $dark-color;
+          }
+        }
+      }
+    }
+
+    &__follow {
+      &-title {
+        color: $dark-color;
+      }
+    }
+
+    &-bottom {
+      &__cpx {
+        color: $dark-color;
+
+        &-item {
+          span,text {
+            color: $dark-color;
+          }
+        }
+      }
+    }
+
+    .nut-comment-shop {
+      border-top: 1px solid $dark-color;
+    }
+  }
+}
+
+.nut-comment {
+  width: 100%;
+  font-size: 12px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &__user {
+      display: flex;
+      flex: 1;
+      align-items: center;
+
+      &-avter {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        img,image {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &-name {
+        @include oneline-ellipsis;
+
+        width: auto;
+        max-width: 80px;
+        margin-right: 5px;
+        font-size: 12px;
+        color: $comment-header-user-name-color;
+      }
+
+      &-default {
+        flex: 1;
+
+        &-name {
+          display: flex;
+          align-items: center;
+          margin-bottom: 3px;
+
+          @include oneline-ellipsis;
+
+          font-size: 12px;
+          color: $comment-header-user-name-color;
+
+          > span,text {
+            margin-right: 8px;
+          }
+        }
+      }
+
+      &-complex {
+        display: flex;
+        align-items: center;
+        color: $comment-header-user-name-color;
+
+        &-name {
+          max-width: 80px;
+          margin-right: 10px;
+
+          @include text-ellipsis;
+        }
+
+        image {
+          max-width: 50px;
+          height: 16px;
+        }
+      }
+
+      &-score {
+        .nut-rate-item {
+          display: block !important;
+          line-height: 10px;
+
+          .nut-icon {
+            line-height: 10px;
+          }
+        }
+      }
+    }
+
+    &__time {
+      width: 100px;
+      font-size: 12px;
+      color: $comment-header-time-color;
+      text-align: right;
+    }
+
+    &__complex-score {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .nut-rate-item {
+        display: block !important;
+        line-height: 12px;
+
+        .nut-icon {
+          line-height: 12px;
+        }
+      }
+
+      &-i {
+        display: inline-block;
+        width: 1px;
+        height: 6px;
+        margin: 0 8px 0 6px;
+        font-style: inherit;
+        background: $text-color;
+        opacity: 0.4;
+      }
+
+      &-size {
+        @include oneline-ellipsis;
+      }
+    }
+
+    &__labels--item {
+      display: inline-block;
+      height: 16px;
+      margin-right: 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__main {
+    display: -webkit-box;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: pre-wrap;
+    -webkit-box-orient: vertical;
+  }
+
+  &-images {
+    display: flex;
+    margin: 10px 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &__item {
+      position: relative;
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      margin-right: 5px;
+      overflow: hidden;
+      border-radius: 6px;
+
+      img,image {
+        width: 80px;
+        height: 80px;
+      }
+
+      // &--imgbox {
+      //   //   background: #f00;
+      // }
+
+      &--video {
+        img,image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          // height: auto;
+        }
+      }
+    }
+
+    &__mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 90px;
+      font-size: 12px;
+      line-height: 90px;
+      color: rgb(255 255 255 / 100%);
+      background: rgb(0 0 0 / 50%);
+    }
+  }
+
+  &-images--multi {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px auto 15px;
+    overflow: hidden;
+
+    .nut-comment-images__item {
+      width: calc(34% - 8px);
+      height: 90px;
+      margin: 8px 8px 0 0;
+
+      img,image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .svg-demo {
+        width: 40px;
+        height: 40px;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    &::after {
+      display: block;
+      width: 105px;
+      content: '';
+    }
+  }
+
+  &__follow {
+    &-title {
+      position: relative;
+      padding-left: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: $black;
+
+      svg {
+        position: absolute;
+        top: 13%;
+        left: 0;
+        color: $primary-color;
+        opacity: 0.4;
+        transform: rotate(90deg);
+      }
+    }
+
+    &-com {
+      margin: 8px 0 8px 8px;
+
+      @include moreline-ellipsis(6);
+    }
+
+    &-img {
+      display: flex;
+      align-items: center;
+      margin: 0 0 8px 8px;
+    }
+  }
+
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5px;
+    color: $comment-bottom-label-color;
+
+    &__lable {
+      flex: 1;
+      margin-right: 10px;
+
+      @include oneline-ellipsis;
+    }
+
+    &__cpx {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: $black;
+
+      &-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-right: 18px;
+
+        span,text {
+          margin-right: 5px;
+          color: $black;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &-popover {
+          position: absolute;
+          top: 35px;
+          right: 18px;
+          width: max-content;
+          padding: 10px;
+          background: $white;
+          border-radius: 5px 0 5px 5px;
+          box-shadow: 0 0 6px $disable-color;
+
+          &::after {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            width: 0;
+            height: 0;
+            content: '';
+            border-top: 10px solid transparent;
+            border-right: 0 solid transparent;
+            border-bottom: 10px solid $white;
+            border-left: 14px solid transparent;
+          }
+
+          &::before {
+            position: absolute;
+            top: -22px;
+            right: -1px;
+            width: 0;
+            height: 0;
+            content: '';
+            border-top: 10px solid transparent;
+            border-right: 0 solid transparent;
+            border-bottom: 10px solid rgb(114 113 113 / 10%);
+            border-left: 14px solid transparent;
+          }
+        }
+      }
+    }
+  }
+
+  &-images__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgb(0 0 0 / 50%);
+    border-radius: 50%;
+    transform: translate(-50%);
+    transform: translate(-50%, -50%);
+
+    &::after {
+      position: absolute;
+      top: 11px;
+      left: 15px;
+      display: block;
+      content: '';
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid #fff;
+    }
+  }
+
+  .nut-comment-shop {
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 20px;
+    border-top: 1px solid rgb(0 0 0 / 10%);
+
+    @include moreline-ellipsis(6);
+
+    span {
+      color: $comment-shop-color;
+    }
+  }
+}

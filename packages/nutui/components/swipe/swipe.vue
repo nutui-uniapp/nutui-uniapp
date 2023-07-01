@@ -152,6 +152,13 @@ defineExpose({
 const componentName = `${PREFIX}-swipe`
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
 })
 </script>
 

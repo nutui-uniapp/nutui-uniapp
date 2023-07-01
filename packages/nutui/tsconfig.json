@@ -1,7 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "exclude": [
-    "**/dist/**"
+    "**/dist/**",
+    "**/locale/**"
   ],
   "include": [
     "**/*.ts",
@@ -10,8 +11,6 @@
     "**/*.tsx"
   ],
   "compilerOptions": {
-    "declaration": false,
-    "composite": false,
     "types": [
       "@dcloudio/types",
       "@uni-helper/uni-app-types"

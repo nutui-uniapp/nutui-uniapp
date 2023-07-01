@@ -1,0 +1,229 @@
+@import '../price/index';
+@import '../inputnumber/index';
+@import '../popup/index';
+
+.nut-theme-dark {
+  .nut-sku {
+    background: $dark-background;
+
+    &-select {
+      &-item {
+        &-title {
+          color: $dark-color;
+        }
+
+        &-skus {
+          &-sku {
+            color: $dark-color;
+            background: $dark-background2;
+          }
+        }
+      }
+    }
+
+    &-stepper {
+      &-title {
+        color: $dark-color;
+      }
+
+      &-limit {
+        color: $dark-color;
+      }
+
+      &-count {
+        &-lowestBuy {
+          color: $primary-color;
+        }
+      }
+    }
+
+    &-operate {
+      &-btn {
+        background: $dark-background2;
+      }
+    }
+  }
+}
+
+.nut-sku {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  background: $white;
+
+  &-header {
+    display: flex;
+    flex-shrink: 0;
+    height: 100px;
+    padding: 0 18px;
+    margin-top: 18px;
+
+    .nut-sku-header-img {
+      flex-shrink: 0;
+      width: $sku-product-img-width;
+      height: $sku-product-img-height;
+      margin-right: 12px;
+      border-radius: $sku-product-img-border-radius;
+    }
+
+    &-right {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      &-extra {
+        font-size: 12px;
+        color: $text-color;
+      }
+    }
+  }
+
+  &-content {
+    flex: 1;
+    padding: 0 18px;
+    margin-top: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-select {
+    &-item {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        height: 13px;
+        margin-bottom: $sku-spec-title-margin-bottom;
+        font-size: $sku-spec-title-font-size;
+        font-weight: $sku-spec-title-font-weight;
+        color: $sku-spec-title-color;
+      }
+
+      &-skus {
+        display: flex;
+        flex-wrap: wrap;
+
+        &-sku {
+          flex-shrink: 0;
+          height: $sku-spec-height;
+          padding: $sku-spec-padding;
+          margin-right: $sku-spec-margin-right;
+          margin-bottom: 12px;
+          font-size: $sku-spec-font-size;
+          line-height: $sku-spec-line-height;
+          color: $sku-spec-color;
+          background: $sku-spec-background;
+          border: 1px solid rgb(242 242 242 / 100%);
+          border-radius: 15px;
+
+          &.active {
+            position: relative;
+            color: $primary-color;
+            background: transparent;
+            border: $sku-item-border;
+
+            &::after {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              content: '';
+              background-color: $sku-item-active-bg;
+              border-radius: 15px;
+              opacity: 0.15;
+            }
+          }
+
+          &.disable {
+            color: $text-color;
+            text-decoration: $sku-item-disable-line;
+          }
+        }
+      }
+    }
+  }
+
+  &-stepper {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 30px;
+
+    &-title {
+      margin-right: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      color: $black;
+    }
+
+    &-limit,rich-text {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      font-size: 12px;
+      color: $text-color;
+    }
+
+    &-count {
+      display: flex;
+      align-items: center;
+
+      &-lowestBuy {
+        font-size: 12px;
+        color: $primary-color;
+      }
+    }
+  }
+
+  &-operate {
+    width: 100%;
+
+    &-desc {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 12px;
+      color: #de6a1c;
+      text-align: center;
+      background: #fbf9da;
+    }
+
+    &-btn {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: $sku-operate-btn-height;
+      padding: 0 18px;
+      text-align: center;
+      background: $white;
+      border-top: $sku-operate-btn-border-top;
+
+      &-item {
+        width: 100%;
+        height: $sku-operate-btn-item-height;
+        margin-right: 18px;
+        font-size: $sku-operate-btn-item-font-size;
+        font-weight: $sku-operate-btn-item-font-weight;
+        line-height: $sku-operate-btn-item-line-height;
+        color: $white;
+        background: $sku-opetate-bg-default;
+        border-radius: 21px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      &-buy {
+        background: $sku-opetate-bg-buy;
+      }
+    }
+  }
+}

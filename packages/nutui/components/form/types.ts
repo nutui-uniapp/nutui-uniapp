@@ -17,5 +17,5 @@ export interface ErrorMessage {
 export interface FormInst {
   reset: () => void
   submit: () => void
-  validate: (customProp: any) => any
+  validate: (customProp?: any) => Promise<any>
 }

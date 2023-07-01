@@ -1,0 +1,60 @@
+.nut-barrage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  --move-distance: '300%';
+
+  &__item {
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 100px;
+    padding: 3px 25px;
+    font-size: 12px;
+    text-align: center;
+    white-space: pre;
+    background: linear-gradient(to right, rgb(0 0 0 / 15%), rgb(0 0 0 / 0%));
+    border-radius: 50px;
+    transform: translateX(100%);
+
+    &.move {
+      animation-name: moving;
+      animation-play-state: running;
+      animation-timing-function: linear;
+      will-change: transform;
+    }
+
+    @keyframes moving {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(var(--move-distance));
+      }
+    }
+
+    @keyframes moving {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(var(--move-distance));
+      }
+    }
+  }
+}
+
+.nut-theme-dark {
+  .nut-barrage {
+    .nut-barrage__item {
+      color: $dark-color-gray;
+    }
+  }
+}

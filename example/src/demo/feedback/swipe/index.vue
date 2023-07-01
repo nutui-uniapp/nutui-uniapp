@@ -60,12 +60,14 @@ export default {
       </template>
       <nut-cell round-radius="0" title="左滑右滑都可以哦" />
       <template #right>
-        <nut-button shape="square" custom-style="height: 100%" type="danger">
-          删除
-        </nut-button>
-        <nut-button shape="square" custom-style="height: 100%" type="info">
-          收藏
-        </nut-button>
+        <view style="height: 100%">
+          <nut-button shape="square" custom-style="height: 100%" type="danger">
+            删除
+          </nut-button>
+          <nut-button shape="square" custom-style="height: 100%" type="info">
+            收藏
+          </nut-button>
+        </view>
       </template>
     </nut-swipe>
     <h2 class="title">
@@ -94,16 +96,18 @@ export default {
       </template>
       <nut-cell title="商品描述">
         <template #link>
-          <!-- <nut-input-number v-model="number" /> -->
+          <nut-input-number v-model="number" />
         </template>
       </nut-cell>
       <template #right>
-        <nut-button shape="square" custom-style="height: 100%" type="danger">
-          删除
-        </nut-button>
-        <nut-button shape="square" custom-style="height: 100%" type="info">
-          收藏
-        </nut-button>
+        <view style="height: 100%">
+          <nut-button shape="square" custom-style="height: 100%" type="danger">
+            删除
+          </nut-button>
+          <nut-button shape="square" custom-style="height: 100%" type="info">
+            收藏
+          </nut-button>
+        </view>
       </template>
     </nut-swipe>
   </div>

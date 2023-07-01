@@ -3,7 +3,9 @@
   "compilerOptions": {
     "types": [
       "node",
-      "vite/client"
+      "vite/client",
+      "@dcloudio/types",
+      "@uni-helper/uni-app-types"
     ]
   }
 }

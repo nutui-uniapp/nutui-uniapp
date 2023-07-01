@@ -71,7 +71,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="[classes, customClass]" :style="customStyle">
     <view
       v-if="needSymbol && position === 'before'"
       class="nut-price--symbol"

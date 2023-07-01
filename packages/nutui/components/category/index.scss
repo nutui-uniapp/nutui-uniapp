@@ -1,0 +1,66 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+.nut-theme-dark {
+  .nut-category {
+    &__cateList {
+      background: $dark-background2;
+    }
+
+    &__cateListLeft {
+      background: $dark-background4;
+    }
+
+    &__cateListItem {
+      color: $dark-color-gray;
+    }
+
+    &__cateListItemChecked {
+      color: $dark-color;
+      background: $dark-background2;
+
+      &::before {
+        background: $category-list-item-checked-img-bg-color;
+      }
+    }
+  }
+}
+
+.nut-category {
+  &__cateList {
+    display: flex;
+    background: $category-bg-color;
+  }
+
+  &__cateListLeft {
+    background: $category-list-left-bg-color;
+  }
+
+  &__cateListItemChecked,
+  &__cateListItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    font-family: PingFangSC;
+    font-size: 13px;
+    font-weight: normal;
+    color: $category-list-item-color;
+    transition: all 0.3s;
+  }
+
+  &__cateListItemChecked {
+    position: relative;
+    font-weight: 500;
+    background: $category-list-item-checked-color;
+    transition: all 0.3s;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      width: 5px;
+      height: 18px;
+      content: '';
+      background: $category-list-item-checked-img-bg-color;
+    }
+  }
+}

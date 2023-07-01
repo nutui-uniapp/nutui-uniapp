@@ -1,0 +1,134 @@
+@import '../inputnumber/index';
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+
+.nut-theme-dark {
+  .nut-ecard {
+    color: $dark-color3;
+
+    ::placeholder {
+      color: rgb(29 31 32);
+    }
+
+    .nut-ecard__list__item {
+      background: $dark-background5;
+
+      &.active {
+        color: $dark-color2;
+        background: $dark-background6;
+        outline: 1px solid $dark-color2;
+      }
+    }
+
+    .nut-ecard__list__input {
+      color: $dark-color3;
+      background: $dark-background7;
+
+      &.active {
+        background: $dark-background7;
+
+        > view > input {
+          background: $dark-background7;
+        }
+      }
+
+      .nut-ecard__list__input--con > input {
+        color: $dark-color3;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.nut-ecard {
+  width: 100%;
+
+  &__title {
+    font-family: PingFangSC;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48%;
+      height: 46px;
+      margin-bottom: 12px;
+      background: $ecard-bg-color;
+      border-radius: 4px;
+
+      &.active {
+        background: $white;
+        border-radius: 4px;
+        outline: 1px solid $primary-color;
+      }
+    }
+
+    &__input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 46px;
+      padding: 0 15px 0 20px;
+      font-size: 14px;
+      color: rgb(0 0 0 / 80%);
+      background: $ecard-bg-color;
+      border-radius: 4px;
+
+      &--con {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+
+        input {
+          margin-right: 10px;
+          text-align: right;
+          text-decoration: none;
+          caret-color: $primary-color; // 光标颜色
+          background: transparent;
+          border: 0;
+          outline: 0 none;
+        }
+
+        .nut-ecard-input {
+          margin-right: 10px;
+          text-align: right;
+          text-decoration: none;
+          caret-color: $primary-color; // 光标颜色
+          background: transparent;
+          border: 0;
+          outline: 0 none;
+        }
+      }
+
+      &.active {
+        background: $white;
+        outline: 1px solid $primary-color;
+
+        > view > input {
+          background: $white;
+        }
+      }
+    }
+
+    &__step {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 17px;
+      font-family: PingFangSC;
+      font-size: 20px;
+      font-weight: normal;
+      color: $primary-color;
+    }
+  }
+}
