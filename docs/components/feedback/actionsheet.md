@@ -4,10 +4,7 @@
 
 从底部弹出的动作菜单面板。
 
-
 ### 基础用法
-
-
 
 ``` html
 <template>
@@ -64,11 +61,7 @@ export default {
  </script>
 ```
 
-
-
 ### 展示取消按钮
-
-
 
 ``` html
 <template>
@@ -125,11 +118,7 @@ export default {
  </script>
 ```
 
-
-
 ### 展示描述信息
-
-
 
 ``` html
 <template>
@@ -188,11 +177,7 @@ export default {
  </script>
 ```
 
-
-
 ### 选项状态
-
-
 
 ``` html
 <template>
@@ -248,11 +233,7 @@ export default {
  </script>
 ```
 
-
-
 ### 自定义内容
-
-
 
 ``` html
 <template>
@@ -293,8 +274,6 @@ export default {
 
 ```
 
-
-
 ## API
 
 ### Props
@@ -334,7 +313,7 @@ export default {
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件]()。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                    | 默认值                     |
 | --------------------------------------- | -------------------------- |

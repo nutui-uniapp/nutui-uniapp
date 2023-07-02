@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png" style="width:100px;" />
+<img src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png" style="width:100px;height:100px;" />
 <h1 align="center">UniAPP-NutUi</h1>
 <p align="center">京东风格的轻量级 Uniapp 组件库，支持移动端 H5 和 小程序开发</p>
 <p align="center">
@@ -10,7 +10,7 @@
 
 UniAPP-NutUI 组件库，基于Taro版`NutUi` 4.x版本修改而来，适配了UniApp, 使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。
 
-使用请参考[安装](./install.md)。
+使用请参考[安装](https://uniapp-nutui.netlify.app/guide/install.html)。
 
 ## 特性
 
