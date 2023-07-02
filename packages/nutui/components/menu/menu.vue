@@ -81,15 +81,10 @@ export default defineComponent({
     function updateOffset(children: any) {
       setTimeout(() => {
         useRect(barId, instance).then((rect: any) => {
-          if (props.direction === 'down') {
-            // #ifdef H5
-            offset.value = rect.bottom + rect.height - 3
-            // #endif
-            // #ifndef H5
+          if (props.direction === 'down')
             offset.value = rect.bottom - 3
-            // #endif
-          }
-          else { offset.value = uni.getSystemInfoSync().windowHeight - rect.top }
+
+          else offset.value = uni.getSystemInfoSync().windowHeight - rect.top
 
           children.toggle()
         })

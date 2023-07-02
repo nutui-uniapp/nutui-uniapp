@@ -40,3 +40,7 @@ export default defineConfig({
   },
 })
 ```
+
+### 自定义组件的 style 或 class
+
+在微信小程序环境组件的 class 和 style 不会被成功编译，如果你想自定义某些组件的 class 或 style，请传递props `customClass`和`customStyle`，目前不是每个组件都支持，后续会考虑支持到每个组件

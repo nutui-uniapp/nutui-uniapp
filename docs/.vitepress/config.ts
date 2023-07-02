@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { version } from '../../package.json'
 import { components, guides, navComponents } from './items'
+import '@nutui/touch-emulator'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -78,6 +79,8 @@ export default defineConfig({
       copyright: '版权所有 © 2023 年-至今 yang1206 贡献者',
     },
     aside: false,
+    returnToTopLabel: 'top',
+
   },
 
   markdown: {

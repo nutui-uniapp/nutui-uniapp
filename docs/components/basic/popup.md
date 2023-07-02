@@ -61,7 +61,7 @@
 
 ### 图标
 
-通过 `closeable` 控制图标是否可关闭，`close-icon-position` 来设置图标的位置，`close-icon` 来自定义显示图标，详情可参照[图标](#/zh-CN/component/icon)
+通过 `closeable` 控制图标是否可关闭，`close-icon-position` 来设置图标的位置，`close-icon` 来自定义显示图标，详情可参照[图标](/components/basic/icon)
 
 ```html
 <template>
@@ -72,15 +72,13 @@
   <nut-cell title="自定义图标" is-link @click="showCloseIcon = true" ></nut-cell>
   <nut-popup position="bottom" closeable close-icon-position="top-left" :custom-style="{ height: '20%' }" v-model:visible="showCloseIcon">
     <template #close-icon>
-      <Heart></Heart>
+      <nut-icon name="heart" />
     </template>
   </nut-popup>
 </template>
 <script lang="ts">
   import { reactive, toRefs } from 'vue';
-  import { Heart } from '@nutui/icons-vue-taro';
   export default {
-    components: { Heart },
     props: {},
     setup() {
       const state = reactive({
@@ -144,7 +142,7 @@
 
 ## API
 
-> 当前组件内部透传了 [Icon组件](#/zh-CN/component/icon) 和 [Overlay组件](#/zh-CN/component/overlay)
+> 当前组件内部透传了 [Icon组件](/components/basic/icon) 和 [Overlay组件](/components/basic/overlay)
 >
 ### Props
 
@@ -162,7 +160,7 @@
 | pop-class              | 自定义弹框类名                                              | string         | -             |
 | closeable              | 是否显示关闭按钮                                            | boolean        | `false`        |
 | close-icon-position    | 关闭按钮位置（top-left,top-right,bottom-left,bottom-right） | string         | `"top-right"` |
-| close-icon             | [图标名称](#/zh-CN/component/icon) 或图片链接                                                  | string         | `"close"`     |
+| close-icon             | [图标名称](/components/basic/icon) 或图片链接                                                  | string         | `"close"`     |
 | destroy-on-close       | 弹层关闭后 `slot`内容会不会清空                                          | boolean        | `true`        |
 | round                  | 是否显示圆角                                                |boolean        | `false`       |
 | overlay-class       | 自定义遮罩层类名 | string  | ''  |
@@ -192,7 +190,7 @@
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/component/configprovider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                    | 默认值                     |
 | --------------------------------------- | -------------------------- |

@@ -39,6 +39,7 @@ const classes = computed(() => {
   const prefixCls = 'nut-uni-drag'
   return {
     [prefixCls]: true,
+    [`${props.customClass}`]: props.customClass,
   }
 })
 const domElem = uni.getSystemInfoSync()
@@ -218,7 +219,7 @@ export default defineComponent({
     :id="myDragID"
     ref="myDrag"
     :class="[classes, myDragID]"
-    :style="getStyle"
+    :style="[getStyle, customStyle]"
     :catchtouchmove="true"
     @touchstart="touchStart"
     @touchmove="touchMove"

@@ -1,6 +1,18 @@
 <script lang="ts" setup>
 import { isH5 } from '@uni-helper/uni-env'
 import icons from '../../../../icon-config.json'
+
+function copy(text: string) {
+  uni.setClipboardData({
+    data: text,
+    success: () => {
+      uni.showToast({
+        title: '复制成功',
+        icon: 'none',
+      })
+    },
+  })
+}
 </script>
 
 <template>
@@ -42,7 +54,7 @@ import icons from '../../../../icon-config.json'
     <nut-cell-group v-for="item in icons.data" :key="item.name" :title="item.name">
       <nut-cell>
         <ul class="ul">
-          <li v-for="icon in item.icons" :key="icon" class="li">
+          <li v-for="icon in item.icons" :key="icon" class="li cursor-pointer" @click="copy(icon)">
             <nut-icon :name="icon" />
             <span class="span">{{ icon }}</span>
           </li>

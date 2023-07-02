@@ -1,6 +1,8 @@
 <script lang="ts">
 import { reactive, ref } from 'vue'
+import { useAppStore } from '@/store'
 
+const { darkMode } = useAppStore()
 /* eslint-disable no-console */
 
 export default {
@@ -45,7 +47,7 @@ export default {
     const end = () => {
       console.log('签名结束')
     }
-    return { ...state, confirm, clear, start, signing, end, demoSignUrl, demoSignUrl2, confirm2, clear2 }
+    return { ...state, confirm, darkMode, clear, start, signing, end, demoSignUrl, demoSignUrl2, confirm2, clear2 }
   },
 }
 </script>
@@ -55,7 +57,7 @@ export default {
     <h2 class="title">
       基础用法
     </h2>
-    <nut-signature custom-class="test" @confirm="confirm" @clear="clear" @start="start" />
+    <nut-signature :stroke-style="darkMode ? 'white' : '#111'" custom-class="test" @confirm="confirm" @clear="clear" @start="start" />
     <image v-if="demoSignUrl" :src="demoSignUrl" class="demoSignUrl" />
 
     <h2 class="title">

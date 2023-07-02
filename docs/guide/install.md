@@ -4,7 +4,7 @@
 
 ## 安装依赖
 
-::: code-group
+ code-group
 
   ```bash [pnpm]
   pnpm add uniapp-nutui
@@ -18,7 +18,7 @@
   npm install uniapp-nutui
   ```
 
-:::
+
 
 ## 配置 UniAPP-NutUi
 

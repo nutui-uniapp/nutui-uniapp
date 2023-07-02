@@ -1,6 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
+import { commonProps } from '../_utils'
 
 export const dragProps = {
+  ...commonProps,
   attract: {
     type: Boolean,
     default: false,

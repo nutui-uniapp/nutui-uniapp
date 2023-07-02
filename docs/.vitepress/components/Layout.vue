@@ -36,15 +36,25 @@ window.addEventListener('message', (e) => {
     if (path !== 'index')
       go(`/components/${path}.html`)
   }
+
+  if (e.data.type === 'theme') {
+    const html = document.querySelector('html')
+    if (e.data.data)
+      html?.classList.add('dark')
+    else
+      html?.classList.remove('dark')
+  }
+
+  // isDark.value = e.data.data
 })
 </script>
 
 <template>
-  <Layout :class="[{ 'xl:[&>.VPContent]:!pr-100': isComponentPage }]" />
+  <Layout id="docs" :class="[{ 'xl:[&>.VPContent]:!pr-100': isComponentPage }]" />
   <div
     v-if="isComponentPage"
-    class="fixed bottom-0  top-80px flex right-0 flex transition-all scrollbar-width-none rounded-l-xl xl:w-375px w-0 xl:right-10"
+    class="fixed bottom-0  top-80px flex right-0 flex transition-all scrollbar-width-0 rounded-l-xl xl:w-375px w-0 xl:right-10"
   >
-    <iframe class="border-none rounded-xl block w-375px h-675px" :src="iframeUrl" />
+    <iframe class="border-none rounded-xl transition-all scrollbar-width-0 block w-375px h-675px" :src="iframeUrl" />
   </div>
 </template>

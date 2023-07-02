@@ -146,7 +146,7 @@ export default {
             @click="addressModule.methods.show"
           >
           <!-- nut-address -->
-          <!-- <nut-address
+          <nut-address
             v-model:visible="addressModule.state.show"
             :province="addressModule.state.province"
             :city="addressModule.state.city"
@@ -154,7 +154,7 @@ export default {
             :town="addressModule.state.town"
             custom-address-title="请选择所在地区"
             @change="addressModule.methods.onChange"
-          /> -->
+          />
         </nut-form-item>
       </nut-form>
     </nut-config-provider>

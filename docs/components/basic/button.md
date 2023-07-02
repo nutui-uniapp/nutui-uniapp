@@ -88,22 +88,16 @@
 <template>
   <nut-button shape="square" plain type="primary">
     <template #icon>
-      <StarFill />
+      <nut-icon name="star-fill" />
     </template>
   </nut-button>
   <nut-button shape="square" type="primary">
     <template #icon>
-      <Star />
+      <nut-icon name="star" />
     </template>
     收藏
   </nut-button>
 </template>
-<script lang="ts">
-  import { StarFill, Star } from '@nutui/icons-vue-taro';
-  export default {
-    components: { StarFill, Star }
-  }
-</script>
 ```
 
 ### 按钮尺寸
@@ -174,7 +168,7 @@
 
 ### 样式变量
 
-组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/component/configprovider)。
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                   | 默认值                                                                                                                            |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |

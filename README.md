@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://github.com/ano-ui/ano-ui/raw/main/public/logo.svg" style="width:100px;" />
+<img src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png" style="width:100px;" />
 <h1 align="center">UniAPP-NutUi</h1>
 <p align="center">京东风格的轻量级 Uniapp 组件库，支持移动端 H5 和 小程序开发</p>
 <p align="center">

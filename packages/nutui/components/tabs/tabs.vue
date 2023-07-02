@@ -271,9 +271,9 @@ const componentName = `${PREFIX}-tab`
 export default defineComponent({
   name: componentName,
   options: {
-    // #ifndef H5
+    virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
-    // #endif
   },
 })
 </script>

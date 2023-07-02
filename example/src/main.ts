@@ -6,6 +6,7 @@ import 'uno.css'
 import './main.scss'
 import { setupStore } from './store'
 import './styles/app.scss'
+import '@nutui/touch-emulator'
 
 // Locale.use('id-id', IdIDLang())
 Locale.merge({
