@@ -1,6 +1,6 @@
 {
   "name": "nutui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "docs:build": "npm -C docs run build",
     "docs:preview": "npm -C docs run serve",
     "lint": "eslint . --fix",
+    "release": "bumpp package.json packages/*/package.json example/package.json",
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "postinstall": "npx simple-git-hooks",
     "commit": "git pull && git add -A && git-cz && git push",
