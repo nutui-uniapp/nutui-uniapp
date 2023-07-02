@@ -60,7 +60,7 @@ export default defineConfig({
 
 ### 样式引入
 
-<!-- 组件库与uniapp都依赖sass，请先按照sass -->
+<!-- 组件库与uniapp都依赖sass，请先安装sass -->
 
 在项目文件 `app.vue` 文件中添加如下代码：
 

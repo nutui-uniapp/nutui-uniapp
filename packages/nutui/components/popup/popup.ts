@@ -2,6 +2,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import { overlayProps } from '../overlay/overlay'
 import { commonProps, isBoolean } from '../_utils'
 import type { Position } from '../_constants/types'
+import type { NutAnimationName } from '../transition/types'
 
 export const popupProps = {
   ...overlayProps,
@@ -11,7 +12,7 @@ export const popupProps = {
     default: 'center',
   },
   transition: {
-    type: String,
+    type: String as PropType<NutAnimationName>,
     default: '',
   },
   popClass: {
