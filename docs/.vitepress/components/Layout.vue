@@ -12,8 +12,8 @@ const iframeUrl = computed(() => {
   const path = route.path.replace('/uniapp-nutui/components', '').split('.')[0]
 
   return import.meta.env.DEV
-    ? `http://localhost:5173/ui/#/demo${path}/index`
-    : `/ui/#/demo${path}/index`
+    ? `http://localhost:5173/uniapp-nutui/ui/#/demo${path}/index`
+    : `/uniapp-nutui/ui/#/demo${path}/index`
 })
 
 onMounted(() => {
