@@ -6,6 +6,9 @@ on:
       - main
 jobs:
   deploy:
+    strategy:
+      matrix:
+        node-version: [16]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -16,20 +19,22 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 8.6.1
-      - uses: actions/setup-node@v3
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}    
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: pnpm
-      - run: pnpm ci
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - run: npm ci
       - name: Build
-        run: pnpm run build:all
-      - uses: actions/configure-pages@v2
-      - uses: actions/upload-pages-artifact@v1
-        with:
-          path: docs/.vitepress/dist
+        run: pnpm  docs:build
+
       - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./docs/.vitepress/dist
