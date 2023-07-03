@@ -73,3 +73,7 @@ export default defineComponent({
     </div>
   </div>
 </template>
+
+<style lang="scss">
+@import '../index';
+</style>

@@ -158,3 +158,7 @@ export default defineComponent({
     </template>
   </NutSwipe>
 </template>
+
+<style lang="scss">
+@import '../index';
+</style>
