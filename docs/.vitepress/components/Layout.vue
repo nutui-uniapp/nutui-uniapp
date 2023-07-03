@@ -6,10 +6,10 @@ import { useData, useRouter } from 'vitepress'
 const { Layout } = DefaultTheme
 const { route, go } = useRouter()
 const { isDark } = useData()
-const isComponentPage = computed(() => route.path.startsWith('/components'))
+const isComponentPage = computed(() => route.path.startsWith('/uniapp-nutui/components'))
 
 const iframeUrl = computed(() => {
-  const path = route.path.replace('/components', '').split('.')[0]
+  const path = route.path.replace('/uniapp-nutui/components', '').split('.')[0]
 
   return import.meta.env.DEV
     ? `http://localhost:5173/ui/#/demo${path}/index`
@@ -35,7 +35,7 @@ onMounted(() => {
         const path = e.data.data.split('/').slice(1).join('/')
 
         if (path !== 'index')
-          go(`/components/${path}.html`)
+          go(`/uniapp-nutui/components/${path}.html`)
       }
 
       if (e.data.type === 'theme') {
