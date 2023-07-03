@@ -12,7 +12,7 @@ export function NutResolver(): ComponentResolver {
         return {
           name,
           from: component,
-          sideEffects: style,
+          // sideEffects: style,
         }
       }
     },
