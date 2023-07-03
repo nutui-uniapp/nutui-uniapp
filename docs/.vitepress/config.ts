@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { version } from '../../package.json'
 import { components, guides, navComponents } from './items'
-import '@nutui/touch-emulator'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -22,6 +21,11 @@ export default defineConfig({
     ['link', { rel: 'icon', href: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png', type: 'image/png' }],
   ],
 
+  vite: {
+    ssr: {
+
+    },
+  },
   themeConfig: {
     logo: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png',
 

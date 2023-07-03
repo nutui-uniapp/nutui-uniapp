@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DefaultTheme from 'vitepress/theme'
-import { computed, watch } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { useData, useRouter } from 'vitepress'
 
 const { Layout } = DefaultTheme
@@ -16,36 +16,39 @@ const iframeUrl = computed(() => {
     : `/ui/#/demo${path}/index`
 })
 
-watch(isDark, (val) => {
-  const iframe = document.querySelector('iframe')
-  if (iframe) {
-    iframe.contentWindow?.postMessage(
-      {
-        type: 'theme',
-        data: val ? 'dark' : 'light',
-      },
-      '*',
-    )
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    watch(isDark, (val) => {
+      const iframe = document.querySelector('iframe')
+      if (iframe) {
+        iframe.contentWindow?.postMessage(
+          {
+            type: 'theme',
+            data: val ? 'dark' : 'light',
+          },
+          '*',
+        )
+      }
+    })
+    window.addEventListener('message', (e) => {
+      if (e.data.type === 'route') {
+        const path = e.data.data.split('/').slice(1).join('/')
+
+        if (path !== 'index')
+          go(`/components/${path}.html`)
+      }
+
+      if (e.data.type === 'theme') {
+        const html = document.querySelector('html')
+        if (e.data.data)
+          html?.classList.add('dark')
+        else
+          html?.classList.remove('dark')
+      }
+
+      // isDark.value = e.data.data
+    })
   }
-})
-
-window.addEventListener('message', (e) => {
-  if (e.data.type === 'route') {
-    const path = e.data.data.split('/').slice(1).join('/')
-
-    if (path !== 'index')
-      go(`/components/${path}.html`)
-  }
-
-  if (e.data.type === 'theme') {
-    const html = document.querySelector('html')
-    if (e.data.data)
-      html?.classList.add('dark')
-    else
-      html?.classList.remove('dark')
-  }
-
-  // isDark.value = e.data.data
 })
 </script>
 

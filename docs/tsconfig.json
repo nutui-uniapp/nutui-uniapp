@@ -9,7 +9,7 @@
   "include": [
     "**/*.ts",
     "**/*.d.ts",
-    "**/*.vue"
+    "../docs/.vitepress/components"
   ],
   "exclude": [
     "**/dist/**",
