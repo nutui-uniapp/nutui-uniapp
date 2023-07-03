@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from '@uni-helper/vite-plugin-uni-components'
 import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
@@ -10,9 +9,13 @@ export default defineConfig({
       imports: ['vue'],
       vueTemplate: true,
     }),
-    Components({
-      resolvers: [
-      ],
-    }),
+    {
+      name: 'vitepress-layout-slots-fix',
+      enforce: 'pre',
+      transform(code, id) {
+        if (id.includes('Layout.vue') && !id.endsWith('.css'))
+          return code.replace('<VPFooter />', '<VPFooter />\n<slot name="layout-bottom" />')
+      },
+    },
   ],
 })
