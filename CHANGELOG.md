@@ -1,3 +1,12 @@
+## [0.0.6](https://github.com/yang1206/uniapp-nutui/compare/v0.0.5...v0.0.6) (2023-07-03)
+
+
+### Bug Fixes
+
+* sku 样式错乱 ([ebdd0df](https://github.com/yang1206/uniapp-nutui/commit/ebdd0dfeba50ba53a6126e8e3dc12b0f69c39f6c))
+
+
+
 ## [0.0.5](https://github.com/yang1206/uniapp-nutui/compare/v0.0.4...v0.0.5) (2023-07-03)
 
 
