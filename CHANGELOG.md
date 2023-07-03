@@ -1,3 +1,13 @@
+## [0.0.4](https://github.com/yang1206/uniapp-nutui/compare/v0.0.3...v0.0.4) (2023-07-03)
+
+
+### Bug Fixes
+
+* 微信小程序打包生成无意义的index.js文件 ([9c9804d](https://github.com/yang1206/uniapp-nutui/commit/9c9804dea5646a74da163feb176058129d0e2e34))
+* 修复steps 在小程序样式混乱 ([72bbb19](https://github.com/yang1206/uniapp-nutui/commit/72bbb19f34d93598fb40f50e3d54c3b5257825ff))
+
+
+
 ## [0.0.1](https://github.com/yang1206/uniapp-nutui/compare/89499ddbcc62fc62228a0f18ce076511287b5dd5...v0.0.1) (2023-07-02)
 
 
