@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/yang1206/uniapp-nutui/compare/v0.0.4...v0.0.5) (2023-07-03)
+
+
+### Bug Fixes
+
+* 修复addresslist 样式丢失 ([a36e7e2](https://github.com/yang1206/uniapp-nutui/commit/a36e7e248bc5071978574a016b1e6a967053f690))
+
+
+
 ## [0.0.4](https://github.com/yang1206/uniapp-nutui/compare/v0.0.3...v0.0.4) (2023-07-03)
 
 
