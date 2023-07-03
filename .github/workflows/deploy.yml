@@ -16,15 +16,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: npm
-      - run: npm ci
+          cache: pnpm
+      - run: pnpm ci
       - name: Build
-        run: npm run build:all
+        run: pnpm run build:all
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
