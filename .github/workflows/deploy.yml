@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build
-        run: pnpm  docs:build
+        run: pnpm  build:all
 
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
