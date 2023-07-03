@@ -30,8 +30,8 @@ export const tagProps = {
 export type TagProps = ExtractPropTypes<typeof tagProps>
 
 export const tagEmits = {
-  click: (evt: Event) => evt,
-  close: (evt: Event) => evt,
+  click: (evt: any) => true,
+  close: (evt: any) => true,
 
 }
 

@@ -85,7 +85,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo full dragDe" :class="{ web: isH5 }">
+  <div class="demo">
     <nut-cell-group :title="baseState.state.desc">
       <nut-cell is-link @click="baseState.methods.cellClick">
         {{ baseState.state.desc }}

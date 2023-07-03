@@ -4,7 +4,7 @@
 
 ## 安装依赖
 
- code-group
+ ::: code-group
 
   ```bash [pnpm]
   pnpm add uniapp-nutui
@@ -17,7 +17,7 @@
   ```bash [npm]
   npm install uniapp-nutui
   ```
-
+  :::
 
 
 ## 配置 UniAPP-NutUi
@@ -38,7 +38,7 @@
 }
 ```
 
-或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件。
+<Badge type="tip">推荐</Badge> 或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件。
 
 ```ts
 // vite.config.ts

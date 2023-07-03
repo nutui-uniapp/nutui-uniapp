@@ -1,6 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
+import { commonProps } from '../_utils'
 
 export const tabpaneProps = {
+  ...commonProps,
   title: {
     type: [String, Number],
     default: '',

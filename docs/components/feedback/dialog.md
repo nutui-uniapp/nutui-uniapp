@@ -22,12 +22,17 @@
 
 <nut-cell title="异步关闭" @click="componentClick"></nut-cell>
 <nut-dialog title="异步关闭" :content="closeContent" :visible="visible4" @cancel="onCancel" @ok="onOkAsync" />
+
+<nut-cell title="ref调用" @click="refClick" />
+<nut-dialog ref="dialogRef" :transition="transition" />
 ```
 
 ``` javascript
 import { ref } from 'vue';
+import type { DialogInst } from 'uniapp-nutui'
 export default {
   setup() {
+    const dialogRef = ref<DialogInst>()
     const visible1 = ref(false);
     const visible2 = ref(false);
     const visible3 = ref(false);
@@ -80,6 +85,18 @@ export default {
       visible5.value = true;
     };
 
+    const refClick = () => {
+      dialogRef.value?.showDialog({
+        title: '通过ref调用',
+        content: '使用ref调用可以只写一个dialog组件',
+        noFooter: true,
+      })
+
+      setTimeout(() => {
+        dialogRef.value?.onOk()
+      }, 2000)
+    }
+
 
     return {
       visible1,
@@ -95,7 +112,9 @@ export default {
       noTitleClick,
       componentClick,
       tipsClick,
-      verticalClick
+      verticalClick,
+      refClick,
+      dialogRef
     };
   }
 };
@@ -144,6 +163,32 @@ export default {
 | header  | 自定义标题区域     |
 | default | 自定义内容         |
 | footer  | 自定义底部按钮区域 |
+
+### Methods
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Form 实例并调用实例方法
+
+| 方法名   | 说明                                                               | 参数                                      | 返回值 |
+|----------|--------------------------------------------------------------------|-------------------------------------------|--------|
+| showDialog   | 弹出Dialog                                             | `DialogOptions`                                        | -      |
+| onOk    | 确认                                                       | -                                         | -      |
+| onCancel | 取消 | -      |
+
+``` ts
+interface DialogOptions {
+  title?: string
+  content?: string
+  noFooter?: boolean
+  noOkBtn?: boolean
+  noCancelBtn?: boolean
+  cancelText?: string
+  okText?: string
+  textAlign?: TextAlign
+  footerDirection?: FooterDirection
+  transition?: NutAnimationName
+  closeOnClickOverlay?: boolean
+}
+```
 
 ## 主题定制
 

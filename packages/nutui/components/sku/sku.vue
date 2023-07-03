@@ -6,8 +6,8 @@ import { useTranslate } from '../../locale'
 import { skuEmits, skuProps } from './sku'
 import SkuStepper from './components/SkuStepper.vue'
 import SkuSelect from './components/SkuSelect.vue'
-import SkuHeader from './components/SkuHeader.vue'
 import SkuOperate from './components/SkuOperate.vue'
+import SkuHeader from './components/SkuHeader.vue'
 
 const props = defineProps(skuProps)
 const emit = defineEmits(skuEmits)
@@ -106,6 +106,11 @@ export default defineComponent({
     @click-close-icon="closePopup('icon')" @click-overlay="closePopup('overlay')" @close="closePopup('close')"
   >
     <view class="nut-sku">
+      <!-- #ifdef MP-WEIXIN -->
+      <slot name="sku-header" />
+
+      <!-- #endif -->
+      <!-- #ifndef MP-WEIXIN -->
       <slot name="sku-header" />
       <SkuHeader v-if="!getSlots('sku-header')" :goods="goods">
         <template v-if="getSlots('sku-header-price')" #sku-header-price>
@@ -116,6 +121,7 @@ export default defineComponent({
           <slot name="sku-header-extra" />
         </template>
       </SkuHeader>
+      <!-- #endif -->
 
       <view class="nut-sku-content">
         <slot name="sku-select-top" />
@@ -123,25 +129,32 @@ export default defineComponent({
         <slot name="sku-select" />
         <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @selectSku="selectSku" />
 
-        <slot name="sku-stepper" />
-        <SkuStepper
-          v-if="!getSlots('sku-stepper')" :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
-          :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
-          @reduce="reduce" @changeStepper="changeStepper" @overLimit="stepperOverLimit"
-        />
+        <slot name="sku-stepper">
+          <SkuStepper
+            :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
+            :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
+            @reduce="reduce" @changeStepper="changeStepper" @overLimit="stepperOverLimit"
+          />
+        </slot>
 
         <slot name="sku-stepper-bottom" />
       </view>
 
+      // #ifdef MP-WEIXIN
+      <slot name="sku-operate" />
+      // #endif
+
+      // #ifndef MP-WEIXIN
       <SkuOperate
         :btn-extra-text="btnExtraText" :btn-options="btnOptions" :buy-text="buyText || translate('buyNow')"
         :add-cart-text="addCartText || translate('addToCart')" :confirm-text="confirmText || translate('confirm')"
         @clickBtnOperate="clickBtnOperate"
       >
-        <template v-if="getSlots('sku-operate')" #operate-btn>
+        <template #operate-btn>
           <slot name="sku-operate" />
         </template>
       </SkuOperate>
+      // #endif
     </view>
   </NutPopup>
 </template>

@@ -195,22 +195,33 @@ export default defineComponent({
     <nut-sku
       v-model:visible="base"
       :sku="skuData"
-      :goods="goodsInfo"
       @selectSku="selectSku"
-      @clickBtnOperate="clickBtnOperate"
       @close="close"
-    />
+    >
+      <!-- #ifdef MP-WEIXIN -->
+      <template #sku-header>
+        <nut-sku-header :goods="goodsInfo" />
+      </template>
+      <template #sku-operate>
+        <nut-sku-operate
+          @clickBtnOperate="clickBtnOperate"
+        />
+      </template>
+      <!-- #endif -->
+    </nut-sku>
 
     <nut-sku
       v-model:visible="notSell"
       :sku="skuData"
-      :goods="goodsInfo"
       :btn-extra-text="btnExtraText"
       :btn-options="['buy', 'cart']"
       @changeStepper="changeStepper"
       @selectSku="selectSku"
       @close="close"
     >
+      <template #sku-header>
+        <nut-sku-header :goods="goodsInfo" />
+      </template>
       <template #sku-operate>
         <div class="sku-operate-box">
           <nut-button custom-class="sku-operate-box-dis" type="warning">
@@ -236,7 +247,19 @@ export default defineComponent({
       @selectSku="selectSku"
       @clickBtnOperate="clickBtnOperate"
       @close="close"
-    />
+    >
+      <!-- #ifdef MP-WEIXIN -->
+      <template #sku-header>
+        <nut-sku-header :goods="goodsInfo" />
+      </template>
+      <template #sku-operate>
+        <nut-sku-operate
+          :btn-options="['buy', 'cart']"
+          @clickBtnOperate="clickBtnOperate"
+        />
+      </template>
+      <!-- #endif -->
+    </nut-sku>
 
     <nut-sku
       v-model:visible="customBySlot"
@@ -247,15 +270,18 @@ export default defineComponent({
       @clickBtnOperate="clickBtnOperate"
       @close="close()"
     >
-      <template #sku-header-price>
-        <div>
-          <nut-price :price="goodsInfo.price" :need-symbol="true" :thousands="false" />
-          <span class="tag" />
-        </div>
-      </template>
-
-      <template #sku-header-extra>
-        <span class="nut-sku-header-right-extra">重量：0.1kg 编号：{{ goodsInfo.skuId }} </span>
+      <template #sku-header>
+        <nut-sku-header :goods="goodsInfo">
+          <template #sku-header-price>
+            <div>
+              <nut-price :price="goodsInfo.price" :need-symbol="true" :thousands="false" />
+              <span class="tag" />
+            </div>
+          </template>
+          <template #sku-header-extra>
+            <span class="nut-sku-header-right-extra">重量：0.1kg 编号：{{ goodsInfo.skuId }} </span>
+          </template>
+        </nut-sku-header>
       </template>
 
       <template #sku-operate>

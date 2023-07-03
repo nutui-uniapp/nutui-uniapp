@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent, useSlots } from 'vue'
-import { PREFIX } from '../../_utils'
+import { PREFIX } from '../_utils'
 
 const props = defineProps({
   // 底部按钮配置  confirm cart  buy
@@ -68,15 +68,16 @@ export default defineComponent ({
     <view v-if="btnExtraText" class="nut-sku-operate-desc">
       {{ btnExtraText }}
     </view>
-    <slot name="operate-btn">
-      <view class="nut-sku-operate-btn">
-        <view
-          v-for="(btn, i) in btnOptions" :key="i" class="nut-sku-operate-btn-item" :class="[`nut-sku-operate-btn-${btn}`]"
-          @click="clickBtnOperate(btn)"
-        >
-          {{ getBtnDesc(btn) }}
-        </view>
+
+    <slot name="operate-btn" />
+
+    <view v-if="!getSlots('operate-btn')" class="nut-sku-operate-btn">
+      <view
+        v-for="(btn, i) in btnOptions" :key="i" class="nut-sku-operate-btn-item" :class="[`nut-sku-operate-btn-${btn}`]"
+        @click="clickBtnOperate(btn)"
+      >
+        {{ getBtnDesc(btn) }}
       </view>
-    </slot>
+    </view>
   </view>
 </template>

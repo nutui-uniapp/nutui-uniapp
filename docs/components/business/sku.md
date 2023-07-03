@@ -6,8 +6,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
   <nut-cell :title="`基础用法`" desc="" @click="base = true"></nut-cell>
@@ -68,11 +66,31 @@ export default {
 </script>
 ```
 
+### 微信小程序的特殊处理
 
+由于 uniapp 混乱的 slot 机制，微信小程序环境需要手动传递 header与operate组件
+
+```html
+<nut-sku
+      v-model:visible="base"
+      :sku="skuData"
+      @selectSku="selectSku"
+      @close="close"
+    >
+      <!-- #ifdef MP-WEIXIN -->
+      <template #sku-header>
+        <nut-sku-header :goods="goodsInfo" />
+      </template>
+      <template #sku-operate>
+        <nut-sku-operate
+          @clickBtnOperate="clickBtnOperate"
+        />
+      </template>
+      <!-- #endif -->
+    </nut-sku>
+```
 
 ### 不可售
-
-
 
 ```html
 <template>
@@ -162,13 +180,9 @@ setup() {
 </style>
 ```
 
-
-
 ### 自定义步进器
 
 可以按照需求配置数字输入框的最大值、最小值、文案等
-
-
 
 ```html
 <template>
@@ -250,13 +264,9 @@ setup() {
 </script>
 ```
 
-
-
 ### 自定义插槽
 
 Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可以按照需求进行替换。
-
-
 
 ```html
 <template>
@@ -416,8 +426,6 @@ setup() {
     }
 </style>
 ```
-
-
 
 ## API
 

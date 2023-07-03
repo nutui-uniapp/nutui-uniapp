@@ -4,11 +4,7 @@
 
 用于数据录入、校验，支持输入框、单选框、复选框、文件上传等类型。
 
-
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -46,11 +42,7 @@ export default {
 </script>  
 ```
 
-
-
 ### 动态表单
-
-
 
 ```html
 <template>
@@ -120,11 +112,7 @@ export default {
 </>
 ```
 
-
-
 ### 表单校验
-
-
 
 ```html
 <template>
@@ -218,11 +206,7 @@ setup(){
 </script>
 ```
 
-
-
 ### 表单类型
-
-
 
 ```html
 <template>
@@ -336,8 +320,6 @@ setup(){
 }
 </script>
 ```
-
-
 
 ## API
 

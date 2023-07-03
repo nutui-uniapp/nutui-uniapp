@@ -4,11 +4,7 @@
 
 在页面顶部展示消息提示
 
-
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -45,11 +41,46 @@ export default {
 </script>
 ```
 
+### ref调用
+  
+  ```html
+  <template>
+  <nut-cell-group title="ref调用">
+      <nut-cell is-link @click="showRefNotify">
+        ref调用
+      </nut-cell>
+      <nut-notify ref="notifyRef" />
+  </nut-cell-group>
+</template>
+<script lang="ts">
+import { ref } from 'vue';
+import type { NotifyInst } from 'uniapp-nutui'
+export default {
+  setup() {
+    const notifyRef = ref<NotifyInst>()
+    const showRefNotify = () => {
+      notifyRef.value?.showNotify({
+        type: 'danger',
+        msg: '使用ref调用,2秒后消失',
+        position: 'bottom',
+        background: 'skyblue',
+      })
 
+      setTimeout(() => {
+        notifyRef.value?.hideNotify()
+      }, 2000)
+    }
+    return {
+      notifyRef,
+      showRefNotify
+    };
+  }
+};
+</script>
+
+  ```
 
 ### 通知类型
-
-
 
 ```html
 <template>
@@ -115,8 +146,6 @@ export default {
 </script>
 ```
 
-
-
 ### Props
 
 | 参数       | 说明                                                  | 类型    | 默认值   |
@@ -136,6 +165,26 @@ export default {
 |--------|--------------|----------|
 | click  | 点击事件回调 | `-`       |
 | closed | 关闭事件回调 | `-`       |
+
+### Methods
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Form 实例并调用实例方法
+
+| 方法名   | 说明                                                               | 参数                                      | 返回值 |
+|----------|--------------------------------------------------------------------|-------------------------------------------|--------|
+| showNotify   | 显示                                             | `NotifyOptions`                                         | -      |
+| hideNotify    | 隐藏                                                       | -                                         | -      |
+
+```ts
+interface NotifyOptions {
+  type?: NotifyType
+  msg: string
+  color?: string
+  background?: string
+  duration?: number
+  position?: Position
+}
+```
 
 ## 主题定制
 

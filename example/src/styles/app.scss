@@ -59,7 +59,9 @@ page,
 }
 
 
+/* #ifdef H5 */
 *::-webkit-scrollbar {
   --at-apply: w0;
 }
+/* #endif */
 

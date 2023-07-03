@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-tab-pane" :style="paneStyle" :class="{ inactive: String(paneKey) !== parent?.activeKey.value && parent?.autoHeight.value }">
+  <view class="nut-tab-pane" :style="[paneStyle, customStyle]" :class="[{ inactive: String(paneKey) !== parent?.activeKey.value && parent?.autoHeight.value }, customClass]">
     <slot />
   </view>
 </template>

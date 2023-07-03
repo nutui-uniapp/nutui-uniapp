@@ -4,6 +4,40 @@
 
 用于轻提示。
 
+### ref调用
+
+```html
+
+<template>
+  <nut-toast
+      ref="toastRef"
+      @closed="page.methods.onClosed"
+    />
+    <nut-cell title="Success 成功提示" is-link @click="refClick('success', '成功提示')" />
+    <nut-cell title="Error 失败提示" is-link @click="refClick('fail', '失败提示')" />
+    <nut-cell title="Warning 警告提示" is-link @click="refClick('warn', '警告提示')" />
+    <nut-cell title="Loading 加载提示" is-link @click="refClick('loading', '加载中')" />
+</template>
+
+<script lang="ts" setup>
+import type { ToastInst } from 'uniapp-nutui'
+const toastRef = ref<ToastInst>()
+const refClick = (type: string, msg: string) => {
+      toastRef.value?.showToast[type as 'fail' | 'success' | 'warn' | 'loading'](msg,
+        {
+          title: '使用ref调用更加方便与灵活',
+          duration: 0,
+        },
+      )
+
+      setTimeout(() => {
+        toastRef.value?.hideToast()
+      }, 1000)
+}
+</script>
+
+```
+
 ### 基础用法
 
 ``` html
@@ -76,6 +110,37 @@ export default {
 | toast-style            | 提示框style                                                             | object          | `{}`                            |
 | toast-class            | 提示框class                                                             | string          | ""                            |
 | type                   | 弹框类型 可选值（text、success、fail、warn、loading）                   | string          | ""                            |
+
+### Methods
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Form 实例并调用实例方法
+
+| 方法名   | 说明                                                               | 参数                                      | 返回值 |
+|----------|--------------------------------------------------------------------|-------------------------------------------|--------|
+| showToast   | 展示 toast                                             | `ShowToast`                                         | -      |
+| hideToast    | 隐藏 toast                                                        | -                                         | -      |
+
+```ts
+interface showToast {
+  text(msg: string, options?: ToastOptions): void
+  success(msg: string, options?: ToastOptions): void
+  fail(msg: string, options?: ToastOptions): void
+  warn(msg: string, options?: ToastOptions): void
+  loading(msg: string, options?: ToastOptions): void
+}
+
+interface ToastOptions {
+  msg?: string
+  duration?: number
+  type?: ToastType
+  title?: string
+  iconSize?: string | number
+  icon?: string
+  bgColor?: string
+  size?: string | number
+  bottom?: string
+}
+```
 
 ## 主题定制
 
