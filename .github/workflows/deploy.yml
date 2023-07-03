@@ -29,7 +29,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - run: npm ci
       - name: Build
         run: pnpm  docs:build
 
