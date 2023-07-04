@@ -4,7 +4,6 @@ import { components, guides, navComponents } from './items'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/uniapp-nutui/',
   title: 'NutUi for UniAPP',
   description: '京东风格的移动端组件库，完全适配Uniapp',
   lastUpdated: true,

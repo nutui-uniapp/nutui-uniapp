@@ -12,7 +12,6 @@ import { NutResolver } from '../packages/nutui/src'
 // https://vitejs.dev/config/
 export default defineConfig({
   root: process.cwd(),
-  base: '/uniapp-nutui/ui/',
   resolve: {
     alias: {
       '@/': `${resolve(__dirname, 'src')}/`,
