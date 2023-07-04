@@ -17,7 +17,7 @@ const classes = computed(() => {
 })
 
 function isHighlight(item: { [x: string]: string | boolean }) {
-  return props.chooseTagValue && props.chooseTagValue === item[props.optionTag] ? props.color : ''
+  return props.chooseTagValue && props.chooseTagValue === item[props.optionTag] ? props.customColor : ''
 }
 
 function cancelActionSheet() {

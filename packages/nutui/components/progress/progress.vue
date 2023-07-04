@@ -79,7 +79,7 @@ export default defineComponent({
       </template>
       <template v-else-if="status === 'icon'">
         <slot name="icon-name">
-          <NutIcon name="checked" width="15px" height="15px" color="#439422" />
+          <NutIcon name="checked" width="15px" height="15px" custom-color="#439422" />
         </slot>
       </template>
     </div>

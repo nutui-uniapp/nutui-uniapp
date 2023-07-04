@@ -22,9 +22,9 @@
 
 ```html
 <template>
-  <nut-icon name="dongdong" color="#fa2c19"></nut-icon>
-  <nut-icon name="dongdong" color="#64b578"></nut-icon>
-  <nut-icon name="JD" color="#fa2c19"></nut-icon>
+  <nut-icon name="dongdong" custom-color="#fa2c19"></nut-icon>
+  <nut-icon name="dongdong" custom-color="#64b578"></nut-icon>
+  <nut-icon name="JD" custom-color="#fa2c19"></nut-icon>
 </template>
 ```
 
@@ -135,7 +135,7 @@ import './assets/font/iconfont.css';
 | 参数            | 说明                                    | 类型             | 默认值           |
 |-----------------|-----------------------------------------|------------------|------------------|
 | name            | 图标名称或图片链接                      | String           | -                |
-| color           | 图标颜色                                | String           | -                |
+| custom-color           | 图标颜色                                | String           | -                |
 | size            | 图标大小，如 `20px` `2em` `2rem`        | String or Number | -                |
 | font-class-name | 自定义 icon 字体基础类名                | String           | `nutui-iconfont` |
 | class-prefix    | 自定义 icon 类名前缀，用于使用自定义图标 | String           | `nut-icon`       |

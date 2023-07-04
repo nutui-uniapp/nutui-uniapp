@@ -155,7 +155,7 @@ const { translate } = useTranslate(componentName)
   >
     <view class="nut-infinite-top" :style="getStyle">
       <view id="refreshTop" class="top-box">
-        <NutIcon class="top-img" :name="pullIcon" />
+        <NutIcon custom-class="top-img" :name="pullIcon" />
         <view class="top-text">
           {{ pullTxt || translate('pullTxt') }}
         </view>
@@ -169,7 +169,7 @@ const { translate } = useTranslate(componentName)
     <view class="nut-infinite-bottom">
       <template v-if="state.isInfiniting">
         <view class="bottom-box">
-          <NutIcon class="bottom-img" :name="loadIcon" />
+          <NutIcon custom-class="bottom-img" :name="loadIcon" />
           <view class="bottom-text">
             {{ loadTxt || translate('loading') }}
           </view>

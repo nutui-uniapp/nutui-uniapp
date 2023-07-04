@@ -285,7 +285,7 @@ export default {
 | option-tag       | 设置列表项标题展示使用参数                 | string  | `'name'`    |
 | option-sub-tag   | 设置列表项二级标题展示使用参数             | string  | `'subname'` |
 | choose-tag-value | 设置选中项的值，和 `'option-tag'` 的值对应 | string  | ''        |
-| color            | 选中项颜色，当 `choose-tag-value == option-tag` 的值 生效  | string  | `'#ee0a24'` |
+| custom-color            | 选中项颜色，当 `choose-tag-value == option-tag` 的值 生效  | string  | `'#ee0a24'` |
 | title            | 设置列表项标题                         | string  | `''`        |
 | description      | 设置列表项副标题/描述                  | string  | `''`        |
 | cancel-txt       | 取消文案                               | string  | `'取消'`   |

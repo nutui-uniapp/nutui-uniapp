@@ -6,8 +6,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
 <nut-tabs v-model="state.tab1value">
@@ -35,11 +33,7 @@ export default {
 </script>
 ```
 
-
-
 ### 手势滑动切换
-
-
 
 ```html
 <template>
@@ -68,11 +62,7 @@ export default {
 </script>
 ```
 
-
-
 ### 基础用法-微笑曲线
-
-
 
 ```html
 <template>
@@ -101,11 +91,7 @@ export default {
 </script>
 ```
 
-
-
 ### 通过 pane-key 匹配
-
-
 
 ```html
 <template>
@@ -134,13 +120,9 @@ export default {
 </script>
 ```
 
-
-
 ### TabPane 自动高度
 
 自动高度。设置为 true 时，nut-tabs 和 nut-tabs__content 会随着当前 nut-tab-pane 的高度而发生变化。
-
-
 
 ```html
 <template>
@@ -168,11 +150,7 @@ export default {
 </script>
 ```
 
-
-
 ### 数据异步渲染 3s
-
-
 
 ```html
 <template>
@@ -199,15 +177,11 @@ export default {
 </script>
 ```
 
-
-
 ### 数量多，滚动操作
 
 可通过`direction`属性修改标题栏自动滚动方向。
 
 在`taro`环境下，必须设置`name`以开启标题栏自动滚动功能。
-
-
 
 ```html
 <template>
@@ -231,11 +205,7 @@ export default {
 </script>
 ```
 
-
-
 ### 左右布局
-
-
 
 ```html
 <template>
@@ -259,11 +229,7 @@ export default {
 </script>
 ```
 
-
-
 ### 左右布局-微笑曲线
-
-
 
 ```html
 <template>
@@ -287,11 +253,7 @@ export default {
 </script>
 ```
 
-
-
 ### 标签栏字体尺寸 large normal small
-
-
 
 ```html
 <template>
@@ -324,11 +286,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义标签栏
-
-
 
 ```html
 <template>
@@ -373,8 +331,6 @@ export default {
 </script>
 ```
 
-
-
 ## API
 
 ### Tabs Props
@@ -382,7 +338,7 @@ export default {
 | 参数             | 说明                                                                                               | 类型             | 默认值       |
 |------------------|----------------------------------------------------------------------------------------------------|------------------|--------------|
 | v-model          | 绑定当前选中标签的标识符                                                                           | number \| string | `0`          |
-| color            | 标签选中色                                                                                         | string           | `#1a1a1a`   |
+| custom-color            | 标签选中色                                                                                         | string           | `#1a1a1a`   |
 | background       | 标签栏背景颜色                                                                                     | string           | `#f5f5f5`    |
 | direction        | 使用横纵方向 可选值 horizontal、vertical                                                           | string           | `horizontal` |
 | type             | 选中底部展示样式 可选值 line、smile                                                                | string           | `line`       |

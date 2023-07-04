@@ -28,7 +28,7 @@ export default defineComponent({
   <NutPopUp v-model:visible="isShowPopup" z-index="5000" :position="notifyStatus.position || props.position" :overlay="false">
     <div
       class="nut-notify" :class="[`nut-notify--${notifyStatus.type || props.type}`, className]"
-      :style="{ color: notifyStatus.color || props.color, background: notifyStatus.background || props.background }"
+      :style="{ color: notifyStatus.customColor || props.customColor, background: notifyStatus.background || props.background }"
       @click="clickCover"
     >
       <template v-if="$slots.default">

@@ -4,7 +4,7 @@ import type { Position } from '../_constants/types'
 import type { NotifyType } from './type'
 
 export const notifyProps = {
-  color: { type: String, default: '' },
+  customColor: { type: String, default: '' },
   msg: { type: String, default: '' },
   duration: { type: Number, default: 3000 },
   className: {

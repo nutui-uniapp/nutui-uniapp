@@ -4,7 +4,7 @@ import type { ButtonFormType, ButtonShape, ButtonSize, ButtonType } from './type
 
 export const buttonProps = {
   ...commonProps,
-  color: String,
+  customColor: String,
   shape: {
     type: String as PropType<ButtonShape>,
     default: 'round',

@@ -60,7 +60,7 @@ const barStyle = computed(() => {
     [props: string]: any
   } = {}
 
-  props.color && (style.color = props.color)
+  props.customColor && (style.color = props.customColor)
   props.background && (style.background = props.background)
 
   if (props.direction === 'vertical')
@@ -366,7 +366,7 @@ export default defineComponent({
 
       <view class="go" @click="handleClickIcon()">
         <slot name="right-icon">
-          <NutIcon v-if="closeMode" name="circle-close" :color="color" size="11px" />
+          <NutIcon v-if="closeMode" name="circle-close" :custom-color="customColor" size="11px" />
         </slot>
       </view>
     </view>

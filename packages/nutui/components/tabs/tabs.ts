@@ -22,7 +22,7 @@ export const tabsProps = {
     type: [String, Number],
     default: 0,
   },
-  color: {
+  customColor: {
     type: String,
     default: '',
   },

@@ -10,7 +10,7 @@ export const iconProps = {
   size: { type: [String, Number], default: '' },
   classPrefix: { type: String, default: 'nut-icon' },
   fontClassName: { type: String, default: 'nutui-iconfont' },
-  color: { type: String, default: '' },
+  customColor: { type: String, default: '' },
   tag: { type: String as PropType<keyof HTMLElementTagNameMap>, default: 'i' },
 }
 

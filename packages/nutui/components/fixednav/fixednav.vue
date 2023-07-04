@@ -67,7 +67,7 @@ export default defineComponent({
     </slot>
     <div class="nut-fixed-nav__btn" @click="updateValue()">
       <slot name="btn">
-        <NutIcon name="left" color="#fff" />
+        <NutIcon name="left" custom-color="#fff" />
         <view class="text">
           {{ visible ? activeText || translate('activeText') : unActiveText
             || translate('unActiveText') }}

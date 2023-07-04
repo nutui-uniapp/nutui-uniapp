@@ -229,8 +229,8 @@ export default defineComponent({
       <view v-if="listType === 'picture' && !$slots.default" class="nut-uploader__preview-img">
         <view v-if="item.status !== 'success'" class="nut-uploader__preview__progress">
           <template v-if="item.status !== 'ready'">
-            <NutIcon v-if="item.status === 'error'" name="failure" color="#fff" />
-            <NutIcon v-else name="loading" color="#fff" />
+            <NutIcon v-if="item.status === 'error'" name="failure" custom-color="#fff" />
+            <NutIcon v-else name="loading" custom-color="#fff" />
           </template>
           <view class="nut-uploader__preview__progress__msg">
             {{ item.message }}
@@ -270,7 +270,7 @@ export default defineComponent({
           <NutIcon
             v-if="isDeletable"
             name="del"
-            color="#808080"
+            custom-color="#808080"
             custom-class="nut-uploader__preview-img__file__del"
             @click="onDelete(item, index)"
           />
@@ -291,7 +291,7 @@ export default defineComponent({
       :class="[listType]"
     >
       <slot name="upload-icon">
-        <NutIcon name="photograph" color="#808080" />
+        <NutIcon name="photograph" custom-color="#808080" />
       </slot>
       <NutButton custom-class="nut-uploader__input" :class="{ disabled }" @click="(onChange as any)" />
     </view>

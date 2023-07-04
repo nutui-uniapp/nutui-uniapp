@@ -37,9 +37,9 @@ function copy(text: string) {
       图标颜色
     </h2>
     <nut-cell>
-      <nut-icon name="dongdong" color="#fa2c19" />
-      <nut-icon name="dongdong" color="#64b578" />
-      <nut-icon name="JD" color="#fa2c19" />
+      <nut-icon name="dongdong" custom-color="#fa2c19" />
+      <nut-icon name="dongdong" custom-color="#64b578" />
+      <nut-icon name="JD" custom-color="#fa2c19" />
     </nut-cell>
 
     <h2 class="title">

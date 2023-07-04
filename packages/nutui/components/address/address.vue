@@ -327,7 +327,7 @@ export default defineComponent({
 
         <view class="nut-address__header-close" @click="handClose('cross')">
           <slot name="close-icon">
-            <NutIcon name="close" color="#cccccc" size="14px" />
+            <NutIcon name="close" custom-color="#cccccc" size="14px" />
           </slot>
         </view>
       </view>

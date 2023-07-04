@@ -9,7 +9,7 @@ const props = defineProps(buttonProps)
 
 const emits = defineEmits(buttonEmits)
 
-const { type, size, shape, disabled, loading, color, plain, block } = toRefs(props)
+const { type, size, shape, disabled, loading, customColor, plain, block } = toRefs(props)
 
 function handleClick(event: MouseEvent) {
   if (!loading.value && !disabled.value)
@@ -31,16 +31,16 @@ const classes = computed(() => {
 
 const getStyle = computed(() => {
   const style: CSSProperties = {}
-  if (color?.value) {
+  if (customColor?.value) {
     if (plain.value) {
-      style.color = color.value
+      style.color = customColor.value
       style.background = '#fff'
-      if (!color.value?.includes('gradient'))
-        style.borderColor = color.value
+      if (!customColor.value?.includes('gradient'))
+        style.borderColor = customColor.value
     }
     else {
       style.color = '#fff'
-      style.background = color.value
+      style.background = customColor.value
     }
   }
 

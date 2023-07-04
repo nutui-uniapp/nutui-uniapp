@@ -18,7 +18,7 @@ export const avatarProps = {
     type: String,
     default: '#eee',
   },
-  color: {
+  customColor: {
     type: String,
     default: '#666',
   },

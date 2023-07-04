@@ -145,13 +145,13 @@ function click(val: any) {
       自定义颜色
     </h2>
     <div class="demo-button-row2">
-      <nut-button color="#7232dd">
+      <nut-button custom-color="#7232dd">
         单色按钮
       </nut-button>
-      <nut-button color="#7232dd" plain>
+      <nut-button custom-color="#7232dd" plain>
         单色按钮
       </nut-button>
-      <nut-button color="linear-gradient(to right, #ff6034, #ee0a24)">
+      <nut-button custom-color="linear-gradient(to right, #ff6034, #ee0a24)">
         渐变按钮
       </nut-button>
     </div>

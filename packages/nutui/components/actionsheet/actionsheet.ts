@@ -32,7 +32,7 @@ export const actionsheetProps = {
     type: String,
     default: '',
   },
-  color: {
+  customColor: {
     type: String,
     default: '#ee0a24',
   },

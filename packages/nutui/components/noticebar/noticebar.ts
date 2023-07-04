@@ -57,7 +57,7 @@ export const noticebarProps = {
     type: Boolean,
     default: true,
   },
-  color: {
+  customColor: {
     type: String,
     default: '',
   },

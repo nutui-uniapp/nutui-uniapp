@@ -23,7 +23,7 @@ export const backtopProps = {
     type: Number,
     default: 200,
   },
-  color: {
+  customColor: {
     type: String,
     default: theme === 'dark' ? '#fff' : '#000',
   },

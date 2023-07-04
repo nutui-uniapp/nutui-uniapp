@@ -16,7 +16,7 @@
     @del-icon="delClick"
     @edit-icon="editClick"
     :show-bottom-button="false"
-    :data-options="dataOptions"
+    :options="dataOptions"
   >
   </nut-address-list>
 </template>
@@ -84,7 +84,7 @@ export default {
     @long-copy="copyClick"
     @long-set="setClick"
     @long-del="delClickLong"
-    :data-options="dataOptions"
+    :options="dataOptions"
   >
   </nut-address-list>
 </template>
@@ -163,7 +163,7 @@ export default {
     @click-item="clickItem"
     @swipe-del="delClickSwipe"
     @add="addAddress"
-    :data-options="dataOptions"
+    :options="dataOptions"
   >
   </nut-address-list>
 </template>
@@ -234,7 +234,7 @@ export default {
 | long-press | 长按功能         | boolean | `false`  |
 | swipe-edition      | 右滑功能         | boolean | `false`  |
 | show-bottom-button | 是否展示底部按钮 | boolean | `true`   |
-| data-options | 自定义 `key` 值时，设置映射关系 | Object | -   |
+| options | 自定义 `key` 值时，设置映射关系 | Object | -   |
 
 ### Events
 
@@ -261,7 +261,7 @@ export default {
 | swipe-right    | 地址列表项右滑区域               | `{ item }` |
 | longpress-btns | 地址列表项长按遮罩内容           | `{ item }` |
 
-### data 数组中每一项 与 dataOptions 对象的参数磨平
+### data 数组中每一项 与 options 对象的参数磨平
 
 下面是 `data` 数组中每一项 基础数据结构
 
@@ -275,7 +275,7 @@ const dataInfo = {
 };
 ```
 
-组件内优先获取基础数据结构中定义的字段，若想自定义 `key` 值，可以通过 `dataOptions` 设置映射关系
+组件内优先获取基础数据结构中定义的字段，若想自定义 `key` 值，可以通过 `options` 设置映射关系
 
 ```javascript
 const dataOptions = {

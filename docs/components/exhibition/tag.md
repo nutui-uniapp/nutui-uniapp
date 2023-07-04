@@ -4,10 +4,7 @@
 
 用于标记和分类的标签。
 
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -36,11 +33,7 @@
 </template>
 ```
 
-
-
 ### 样式风格
-
-
 
 ```html
 <template>
@@ -87,35 +80,29 @@ export default {
 </script>
 ```
 
-
-
 ### 颜色自定义
-
-
 
 ```html
 <template>
   <nut-cell-group title="颜色自定义">
     <nut-cell title="背景颜色">
       <template v-slot:link>
-        <nut-tag color="#FA685D">标签</nut-tag>
+        <nut-tag custom-color="#FA685D">标签</nut-tag>
       </template>
     </nut-cell>
     <nut-cell title="文字颜色">
       <template v-slot:link>
-        <nut-tag color="#E9E9E9" textColor="#999999">标签</nut-tag>
+        <nut-tag custom-color="#E9E9E9" textColor="#999999">标签</nut-tag>
       </template>
     </nut-cell>
     <nut-cell title="空心颜色">
       <template v-slot:link>
-        <nut-tag color="#FA2400" plain>标签</nut-tag>
+        <nut-tag custom-color="#FA2400" plain>标签</nut-tag>
       </template>
     </nut-cell>
   </nut-cell-group>
 </template>
 ```
-
-
 
 ## API
 
@@ -124,7 +111,7 @@ export default {
 | 参数       | 说明                                                         | 类型    | 默认值    |
 |------------|--------------------------------------------------------------|---------|-----------|
 | type       | 标签类型，可选值为 `primary`、`success`、`danger`、`warning` | string  | `default` |
-| color      | 标签颜色                                                     | string  | `-`      |
+| custom-color      | 标签颜色                                                     | string  | `-`      |
 | text-color | 文本颜色，优先级高于 `color` 属性                            | string  | `white`   |
 | plain      | 是否为空心样式                                               | boolean | `false`   |
 | round      | 是否为圆角样式                                               | boolean | `false`   |

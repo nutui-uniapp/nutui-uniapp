@@ -32,7 +32,7 @@ export const badgeProps = {
     type: Number,
     default: 9,
   },
-  color: {
+  customColor: {
     type: String,
     default: '',
   },

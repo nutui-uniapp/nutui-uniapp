@@ -4,7 +4,12 @@
   "description": "",
   "author": "",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "nutui",
+    "vue3",
+    "uniapp",
+    "typescript"
+  ],
   "engines": {
     "node": ">=18"
   },
