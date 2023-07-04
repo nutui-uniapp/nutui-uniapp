@@ -1,3 +1,12 @@
+## [0.0.7](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.0.7) (2023-07-04)
+
+
+### Bug Fixes
+
+* 修复小程序暗黑模式失效 ([753f87a](https://github.com/yang1206/uniapp-nutui/commit/753f87ae5c7a9f69e789e18b346ac1b4393f581d))
+
+
+
 ## [0.0.6](https://github.com/yang1206/uniapp-nutui/compare/v0.0.5...v0.0.6) (2023-07-03)
 
 
