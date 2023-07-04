@@ -121,9 +121,8 @@ export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
-    // #ifndef H5
+    addGlobalClass: true,
     styleIsolation: 'shared',
-    // #endif
   },
 })
 </script>

@@ -33,6 +33,8 @@ export default defineComponent({
   name: 'NutGrid',
   options: {
     virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
   },
 })
 </script>

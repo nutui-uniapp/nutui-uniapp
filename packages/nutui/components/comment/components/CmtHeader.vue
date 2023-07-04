@@ -27,6 +27,8 @@ const componentName = `${PREFIX}-comment-header`
 export default defineComponent ({
   name: componentName,
   options: {
+    virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })

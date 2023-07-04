@@ -29,6 +29,8 @@ export default defineComponent({
   name: 'NutCol',
   options: {
     virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
   },
 })
 </script>

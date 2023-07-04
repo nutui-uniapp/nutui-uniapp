@@ -132,6 +132,11 @@ onMounted(() => {
 const componentName = `${PREFIX}-infiniteloading`
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 const { translate } = useTranslate(componentName)
 </script>

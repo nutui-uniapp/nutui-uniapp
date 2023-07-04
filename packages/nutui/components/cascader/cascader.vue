@@ -43,6 +43,11 @@ watch(
 const componentName = `${PREFIX}-cascader`
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

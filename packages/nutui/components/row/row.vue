@@ -27,6 +27,8 @@ export default defineComponent({
   name: 'NutRow',
   options: {
     virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
   },
 })
 </script>

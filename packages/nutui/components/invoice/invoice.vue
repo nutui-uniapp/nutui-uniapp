@@ -53,6 +53,11 @@ const componentName = `${PREFIX}-invoice`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

@@ -62,6 +62,7 @@ export default defineComponent({
   options: {
     virtualHost: true,
     addGlobalClass: true,
+    styleIsolation: 'shared',
   },
 })
 </script>

@@ -82,6 +82,7 @@ export default defineComponent({
   name: 'NutGridItem',
   options: {
     virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })

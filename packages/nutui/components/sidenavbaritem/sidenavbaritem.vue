@@ -37,6 +37,11 @@ const componentName = `${PREFIX}-side-navbar-item`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

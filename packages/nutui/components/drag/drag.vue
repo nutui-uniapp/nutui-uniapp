@@ -211,6 +211,11 @@ const getStyle = computed(() => {
 const componentName = `${PREFIX}-drag`
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

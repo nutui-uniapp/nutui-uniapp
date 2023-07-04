@@ -224,7 +224,7 @@ const tabMethods = {
     titleRef.value[index] = el
   },
 }
-const { isBegin, isEnd, next, prev, updateValue, tabChange, setTabItemRef } = tabMethods
+const { tabChange } = tabMethods
 const { touchState, touchMethods, tabsContentID, tabsContentRef } = useTabContentTouch(props, tabMethods, instance, useRect)
 const contentStyle = computed(() => {
   let offsetPercent = currentIndex.value * 100

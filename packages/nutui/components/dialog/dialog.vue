@@ -29,6 +29,11 @@ const componentName = `${PREFIX}-dialog`
 export default defineComponent({
   name: componentName,
   inheritAttrs: false,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 const { translate } = useTranslate(componentName)
 </script>

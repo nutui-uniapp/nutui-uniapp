@@ -20,6 +20,11 @@ const classes = computed(() => {
 const componentName = `${PREFIX}-transition`
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 
