@@ -97,6 +97,11 @@ const componentName = `${PREFIX}-searchbar`
 const { translate } = useTranslate(componentName)
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

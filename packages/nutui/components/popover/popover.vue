@@ -253,7 +253,7 @@ export default defineComponent({
       :pop-class="`nut-popover-content nut-popover-content--${location}`"
       :custom-style="customStyle"
       :position="`` as any"
-      transition="nut-popover"
+      :transition="`nut-popover` as any"
       :overlay="overlay"
       :duration="+duration"
       :overlay-style="overlayStyle"

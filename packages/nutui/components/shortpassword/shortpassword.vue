@@ -54,8 +54,10 @@ export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
-  },
+  }
+  ,
 })
 </script>
 

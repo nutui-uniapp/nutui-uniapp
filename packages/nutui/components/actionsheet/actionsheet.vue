@@ -43,6 +43,11 @@ const componentName = `${PREFIX}-action-sheet`
 
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

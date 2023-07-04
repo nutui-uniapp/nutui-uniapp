@@ -21,6 +21,11 @@ const classes = computed(() => {
 <script lang="ts">
 export default defineComponent({
   name: `${PREFIX}-side-navbar`,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 

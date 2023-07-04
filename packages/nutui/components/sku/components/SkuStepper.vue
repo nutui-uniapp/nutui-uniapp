@@ -76,6 +76,8 @@ const componentName = `${PREFIX}-sku-stepper`
 export default defineComponent ({
   name: componentName,
   options: {
+    virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })

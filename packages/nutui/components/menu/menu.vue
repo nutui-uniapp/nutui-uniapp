@@ -12,8 +12,9 @@ export default defineComponent({
   components: { Icon },
   props: menuProps,
   options: {
+    virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
-    multipleSlots: true,
   },
   setup(props, { slots }) {
     const refRandomId = Math.random().toString(36).slice(-8)

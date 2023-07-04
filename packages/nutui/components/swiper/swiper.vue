@@ -15,7 +15,7 @@ const containerId = `container-${refRandomId}`
 const state = reactive({
   active: 0,
   num: 0,
-  rect: null as DOMRect | null,
+  rect: null as any,
   width: 0,
   height: 0,
   moving: false,
@@ -336,6 +336,7 @@ export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })

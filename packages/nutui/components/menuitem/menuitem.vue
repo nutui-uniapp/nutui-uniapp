@@ -17,8 +17,9 @@ export default defineComponent({
   props: menuitemProps,
   emits: menuitemEmits,
   options: {
+    virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
-    multipleSlots: true,
   },
   setup(props, { emit, slots }) {
     const state = reactive({

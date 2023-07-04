@@ -42,6 +42,8 @@ export default defineComponent({
   name: componentName,
   inheritAttrs: false,
   options: {
+    virtualHost: true,
+    addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })

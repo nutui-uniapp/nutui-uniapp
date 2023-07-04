@@ -679,6 +679,11 @@ watch(
 <script lang="ts">
 export default defineComponent({
   name: `${PREFIX}-calendar-item`,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 </script>
 
