@@ -65,7 +65,7 @@ Icon 和字符型可以自定义颜色及背景色
 ```html
 <template>
   <nut-avatar class="demo-avatar" bg-color="#FA2C19"><My color="#fff"/></nut-avatar>
-  <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
+  <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
 </template>
 <script lang="ts">
   
@@ -103,7 +103,7 @@ Icon 和字符型可以自定义颜色及背景色
       <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
     </nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
-    <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
+    <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
   </nut-avatar-group>
   <nut-avatar-group
     max-count="3"
@@ -114,7 +114,7 @@ Icon 和字符型可以自定义颜色及背景色
       <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
     </nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
-    <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
+    <nut-avatar custom-ccolor="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
   </nut-avatar-group>
 </template>
@@ -139,7 +139,7 @@ Icon 和字符型可以自定义颜色及背景色
       <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
     </nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
-    <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">U</nut-avatar>
+    <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">U</nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
   </nut-avatar-group>
 </template>
@@ -184,7 +184,7 @@ Icon 和字符型可以自定义颜色及背景色
 | -------- | --------------------------------------------------------- | ------ | ------ |
 | size     | 头像的大小，可选值为：`large`、`normal`、`small`，支持输入数字   | string \| number | `normal` |
 | shape    | 头像的形状，可选值为：`square`、`round`                      | string | `round`  |
-| color    | 字体颜色                                     | string | `#666`   |
+| custom-color    | 字体颜色                                     | string | `#666`   |
 | bg-color | 背景色                                    | string | `#eee`   |
 
 ### AvatarGroup Props

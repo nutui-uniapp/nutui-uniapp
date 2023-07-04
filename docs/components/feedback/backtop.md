@@ -83,6 +83,8 @@ export default {
 | right        | 距离页面右侧距离      | number |  `10`  |
 | distance     | 页面垂直滚动多高后出现   | number  | `200`      |
 | z-index         | 设置组件页面层级   | number  | `10`       |
+| custom-color         | 自定义图标颜色   | number  | `10`       |
+
 
 ### Events
 

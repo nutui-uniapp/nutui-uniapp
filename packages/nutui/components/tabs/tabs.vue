@@ -250,8 +250,8 @@ const tabsNavStyle = computed(() => {
 })
 const tabsActiveStyle = computed(() => {
   return {
-    color: props.type === 'smile' ? props.color : '',
-    background: props.type === 'line' ? props.color : '',
+    color: props.type === 'smile' ? props.customColor : '',
+    background: props.type === 'line' ? props.customColor : '',
   }
 })
 const titleStyle = computed(() => {
@@ -304,7 +304,7 @@ export default defineComponent({
           >
             <view v-if="type === 'line'" class="nut-tabs__titles-item__line" :style="tabsActiveStyle" />
             <view v-if="type === 'smile'" class="nut-tabs__titles-item__smile" :style="tabsActiveStyle">
-              <NutIcon name="joy-smile" :color="color" />
+              <NutIcon name="joy-smile" :custom-color="customColor" />
             </view>
             <view class="nut-tabs__titles-item__text" :class="{ ellipsis }">
               {{ item.title }}

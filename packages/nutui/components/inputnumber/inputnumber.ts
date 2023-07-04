@@ -42,13 +42,13 @@ export const inputnumberProps = {
 export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
 
 export const inputnumberEmits = {
-  'blur': (evt: Event) => evt,
-  'focus': (evt: Event) => evt,
-  'reduce': (evt: Event | number) => true,
-  'add': (evt: Event | number) => true,
-  'overlimit': (evt: Event, type: 'reduce' | 'add') => true,
-  'change': (val1?: string | number, val2?: string | Event | number) => true,
-  'update:modelValue': (val1?: string, val2?: string | Event) => true,
+  'blur': (evt: any) => evt,
+  'focus': (evt: any) => evt,
+  'reduce': (evt: any | number) => true,
+  'add': (evt: any | number) => true,
+  'overlimit': (evt: any, type: 'reduce' | 'add') => true,
+  'change': (val1?: string | number, val2?: string | any | number) => true,
+  'update:modelValue': (val1?: string, val2?: string | any) => true,
 }
 
 export type InputNumberEmits = typeof inputnumberEmits

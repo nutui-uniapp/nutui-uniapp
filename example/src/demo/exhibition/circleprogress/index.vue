@@ -50,8 +50,8 @@ export default {
       环形进度条自定义颜色(支持渐变色)
     </h2>
     <div class="demo__piece">
-      <nut-circle-progress :progress="50" color="red" />
-      <nut-circle-progress :progress="100" :color="gradientColor" />
+      <nut-circle-progress :progress="50" custom-color="red" />
+      <nut-circle-progress :progress="100" :custom-color="gradientColor" />
     </div>
     <h2 class="title">
       环形进度条自定义大小

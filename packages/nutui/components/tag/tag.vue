@@ -9,7 +9,7 @@ const props = defineProps(tagProps)
 
 const emit = defineEmits(tagEmits)
 
-const { type, color, plain, round, mark, textColor } = toRefs(props)
+const { type, customColor, plain, round, mark, textColor } = toRefs(props)
 
 const classes = computed(() => {
   const prefixCls = componentName
@@ -27,15 +27,15 @@ function getStyle(): CSSProperties {
   if (textColor.value)
     style.color = textColor.value
 
-  else if (color.value && plain.value)
-    style.color = color.value
+  else if (customColor.value && plain.value)
+    style.color = customColor.value
 
   if (plain.value) {
     style.background = '#fff'
-    style['border-color'] = color.value
+    style['border-color'] = customColor.value
   }
-  else if (color.value) {
-    style.background = color.value
+  else if (customColor.value) {
+    style.background = customColor.value
   }
   return style
 }

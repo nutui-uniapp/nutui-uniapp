@@ -11,7 +11,7 @@
   <nut-noticebar
       text="NutUI 是京东风格的移动端组件库，使用 Vue 语言来编写可以在 H5，小程序平台上的应用，帮助研发人员提升开发效率，改善开发体验。"
       :background="`rgba(251, 248, 220, 1)`"
-      :color="`#D9500B`"
+      :custom-color="`#D9500B`"
     ></nut-noticebar>
 </template>
 
@@ -23,7 +23,7 @@
 
 ```html
 <template>
-  <nut-noticebar text="华为畅享9新品即将上市" :scrollable="true" :background="`rgba(251, 248, 220, 1)`" :color="`#D9500B`"></nut-noticebar>
+  <nut-noticebar text="华为畅享9新品即将上市" :scrollable="true" :background="`rgba(251, 248, 220, 1)`" :custom-color="`#D9500B`"></nut-noticebar>
 
   <nut-noticebar
       text="NutUI 是京东风格的移动端组件库，使用 Vue 语言来编写可以在 H5，小程序平台上的应用，帮助研发人员提升开发效率，改善开发体验。"
@@ -37,7 +37,7 @@
 
 ```html
 <template>
-  <nut-noticebar :closeMode="true" :background="`rgba(251, 248, 220, 1)`" :color="`#D9500B`">
+  <nut-noticebar :closeMode="true" :background="`rgba(251, 248, 220, 1)`" :custom-color="`#D9500B`">
     NutUI 是京东风格的移动端组件库，使用 Vue 语言来编写可以在 H5，小程序平台上的应用，帮助研发人员提升开发效率，改善开发体验。
   </nut-noticebar>
  
@@ -180,7 +180,7 @@
 | text       | 提示的信息                                                 | string        | -     |
 | close-mode  | 是否启用关闭模式                                           | boolean       | `false`  |
 | left-icon   | 是否展示左侧图标, 滚动方向为 `across` 生效 | boolean        | `true`    |
-| color      | 导航栏的文字颜色                                           | string        | -     |
+| custom-color      | 导航栏的文字颜色                                           | string        | -     |
 | background | 导航栏的背景颜色                                           | string        | -     |
 | delay      | 延时多少秒                                                 | string \| number | `1`      |
 | scrollable | 是否可以滚动                                               | boolean       | `true`   |

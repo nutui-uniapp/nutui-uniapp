@@ -154,7 +154,7 @@ export default {
 | visible    | 显示与否                                           | boolean | `false` |
 | msg    | 展示文案，支持通过`\n`换行                              | string       | `''`    |
 | duration   | 展示时长(ms)，值为 0 时，notify 不会消失              | number        | `3000`     |
-| color      | 字体颜色                                              | string        | `''`      |
+| custom-color      | 字体颜色                                              | string        | `''`      |
 | background | 背景颜色                                              | string        |`''`       |
 | class-name | 自定义类名                                            | string \| number | `1`        |
 | position | 自定义位置，可选值为 `top` `bottom` `left` `right` `center`              | string | `top`        |
@@ -179,7 +179,7 @@ export default {
 interface NotifyOptions {
   type?: NotifyType
   msg: string
-  color?: string
+  customColor?: string
   background?: string
   duration?: number
   position?: Position

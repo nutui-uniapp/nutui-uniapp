@@ -91,14 +91,14 @@ export const inputProps = {
 }
 
 export const inputEmits = {
-  'click': (evt: MouseEvent) => evt,
-  'clickInput': (evt: MouseEvent) => evt,
-  'blur': (evt: Event) => evt,
-  'focus': (evt: Event) => evt,
-  'clear': (val: string, evt: Event) => evt,
+  'click': (evt: any) => evt,
+  'clickInput': (evt: any) => evt,
+  'blur': (evt: any) => evt,
+  'focus': (evt: any) => evt,
+  'clear': (val: string, evt: any) => evt,
   'keypress': () => true,
-  'confirm': (val: string, val2: Event) => true,
-  'update:modelValue': (val1?: string, val2?: string | Event) => true,
+  'confirm': (val: string, val2: any) => true,
+  'update:modelValue': (val1?: string, val2?: any) => true,
 }
 
 export type InputEmits = typeof inputEmits

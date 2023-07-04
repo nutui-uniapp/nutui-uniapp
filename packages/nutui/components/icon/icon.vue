@@ -22,7 +22,7 @@ const classes = computed(() => {
 
 const getStyle = computed(() => {
   const style = {
-    color: props.color,
+    color: props.customColor,
     fontSize: pxCheck(props.size),
     width: pxCheck(props.width),
     height: pxCheck(props.height),

@@ -7,7 +7,7 @@ import { avatarProps } from './avatar'
 
 const props = defineProps(avatarProps)
 
-const { size, shape, bgColor, color } = toRefs(props)
+const { size, shape, bgColor, customColor } = toRefs(props)
 const sizeValue = ['large', 'normal', 'small']
 const avatarRef = ref(null)
 
@@ -40,7 +40,7 @@ const styles = computed(() => {
     width: sizeValue.includes(size.value) ? '' : `${size.value}px`,
     height: sizeValue.includes(size.value) ? '' : `${size.value}px`,
     backgroundColor: `${bgColor.value}`,
-    color: `${color.value}`,
+    color: `${customColor.value}`,
     marginLeft: state.index !== 1 && (parent?.props?.span ? `${parent?.props?.span}px` : ''),
     zIndex: parent?.props?.zIndex === 'right' ? `${Math.abs(state.maxIndex - state.index)}` : '',
   }

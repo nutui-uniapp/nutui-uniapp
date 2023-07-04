@@ -5,7 +5,7 @@ export type NotifyType = 'primary' | 'success' | 'danger' | 'warning'
 export interface NotifyOptions {
   type?: NotifyType
   msg: string
-  color?: string
+  customColor?: string
   background?: string
   duration?: number
   position?: Position

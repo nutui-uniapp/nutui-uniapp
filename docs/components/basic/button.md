@@ -125,13 +125,13 @@
 
 ### 自定义颜色
 
-通过 color 属性可以自定义按钮的颜色。
+通过 customColor 属性可以自定义按钮的颜色。
 
 ```html
 <template>
-  <nut-button color="#7232dd">单色按钮</nut-button>
-  <nut-button color="#7232dd" plain>单色按钮</nut-button>
-  <nut-button color="linear-gradient(to right, #ff6034, #ee0a24)"> 渐变色按钮 </nut-button>
+  <nut-button custom-color="#7232dd">单色按钮</nut-button>
+  <nut-button custom-color="#7232dd" plain>单色按钮</nut-button>
+  <nut-button custom-color="linear-gradient(to right, #ff6034, #ee0a24)"> 渐变色按钮 </nut-button>
 </template>
 ```
 
@@ -145,7 +145,7 @@
 | form-type | 表单类型，可选值 `button` `submit` `reset`                             | string  | `button`  |
 | size      | 尺寸，可选值为 `large` `small` `mini` `normal`                         | string  | `normal`  |
 | shape     | 形状，可选值为 `square` `round`                                        | string  | `round`   |
-| color     | 按钮颜色，支持传入 `linear-gradient` 渐变色                            | string  | -         |
+| custom-color     | 按钮颜色，支持传入 `linear-gradient` 渐变色                            | string  | -         |
 | plain     | 是否为朴素按钮                                                         | boolean | `false`   |
 | disabled  | 是否禁用按钮                                                           | boolean | `false`   |
 | block     | 是否为块级元素                                                         | boolean | `false`   |

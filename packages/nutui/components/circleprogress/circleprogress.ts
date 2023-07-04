@@ -18,7 +18,7 @@ export const circleprogressProps = {
     type: String,
     default: 'round',
   },
-  color: {
+  customColor: {
     type: [String, Object],
     default: '#FF673E',
   },

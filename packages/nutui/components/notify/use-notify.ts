@@ -18,7 +18,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
   const notifyStatus = ref<NotifyOptions>({
     type: props.type,
     msg: props.msg,
-    color: props.color,
+    customColor: props.customColor,
     background: props.background,
     duration: props.duration,
     position: props.position,
@@ -48,7 +48,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
       type: option.type || props.type,
       position: option.position || props.position,
       msg: option.msg || props.msg,
-      color: option.color || props.color,
+      customColor: option.customColor || props.customColor,
       background: option.background || props.background,
       duration: option.duration || props.duration,
 

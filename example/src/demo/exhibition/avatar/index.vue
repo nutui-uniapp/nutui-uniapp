@@ -66,7 +66,7 @@ export default {
       <nut-avatar class="demo-avatar" bg-color="#FA2C19">
         <nut-icon name="my" color="#fff" />
       </nut-avatar>
-      <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
+      <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
         小明
       </nut-avatar>
     </nut-cell>
@@ -97,7 +97,7 @@ export default {
           >
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
-        <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
+        <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
           小明
         </nut-avatar>
       </nut-avatar-group>
@@ -112,7 +112,7 @@ export default {
           >
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
-        <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
+        <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
           小明
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
@@ -124,13 +124,12 @@ export default {
     <nut-cell>
       <nut-avatar-group max-count="3" z-index="right" max-content="...">
         <nut-avatar>
-          <img
-
+          <image
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-          >
+          />
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
-        <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
+        <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
           小明
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
@@ -160,6 +159,10 @@ export default {
   .demo-avatar {
     color: #fff;
   }
+}
+img,image{
+  width: 100%;
+  height: 100%;
 }
 </style>
 

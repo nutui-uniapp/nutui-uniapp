@@ -28,7 +28,7 @@ export type SignatureProps = ExtractPropTypes<typeof signatureProps>
 export const signatureEmits = {
   start: () => true,
   end: () => true,
-  signing: (event: TouchEvent) => true,
+  signing: (event: any) => true,
   confirm: (_canvas: any, _filePath?: string) => true,
   clear: () => true,
 }

@@ -68,16 +68,16 @@
 ```html
 <template>
   <div class="demo">
-    <nut-badge :value="8" color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
+    <nut-badge :value="8" custom-color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
-    <nut-badge :value="76" color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
+    <nut-badge :value="76" custom-color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
-    <nut-badge value="NEW" color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
+    <nut-badge value="NEW" custom-color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
-    <nut-badge dot color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
+    <nut-badge dot custom-color="linear-gradient(315deg, rgba(73,143,242,1) 0%,rgba(73,101,242,1) 100%)">
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
   </div>
@@ -101,19 +101,19 @@
   <div class="demo">
     <nut-badge>
       <template #icon>
-        <nut-icon  name="check" color="#ffffff" size="12px" />
+        <nut-icon  name="check" custom-color="#ffffff" size="12px" />
       </template>
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
     <nut-badge>
       <template #icon>
-        <nut-icon  name="link" color="#ffffff" size="12px" />
+        <nut-icon  name="link" custom-color="#ffffff" size="12px" />
       </template>
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
     <nut-badge>
       <template #icon>
-       <nut-icon  name="download" color="#ffffff" size="12px" />
+       <nut-icon  name="download" custom-color="#ffffff" size="12px" />
       </template>
       <nut-avatar shape="square"></nut-avatar>
     </nut-badge>
@@ -198,7 +198,7 @@
 | hidden  | 是否隐藏                                   | boolean | `false`   |
 | top     | 上下偏移量，支持单位设置，可设置为：`5px` 等 | number  | `0`       |
 | right   | 左右偏移量，支持单位设置，可设置为：`5px` 等 | number  | `0`       |
-| color   | 徽标背景颜色                               | string  | `#fa2c19` |
+| custom-color   | 徽标背景颜色                               | string  | `#fa2c19` |
 
 ### Slots
 

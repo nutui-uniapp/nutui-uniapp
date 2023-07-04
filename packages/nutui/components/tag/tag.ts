@@ -3,7 +3,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 export type TagType = 'primary' | 'success' | 'danger' | 'warning'
 
 export const tagProps = {
-  color: { type: String, default: '' },
+  customColor: { type: String, default: '' },
   textColor: { type: String, default: '' },
   type: {
     type: String as PropType<TagType>,

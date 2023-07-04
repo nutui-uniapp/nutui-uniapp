@@ -69,7 +69,7 @@ export default defineComponent({
     <view id="navBarHtml" :class="classes" :style="styles">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="left-show">
-          <NutIcon custom-class="right-icon" name="left" height="12px" color="#979797" />
+          <NutIcon custom-class="right-icon" name="left" height="12px" custom-color="#979797" />
         </slot>
         <view v-if="leftText" class="nut-navbar__text">
           {{ leftText }}

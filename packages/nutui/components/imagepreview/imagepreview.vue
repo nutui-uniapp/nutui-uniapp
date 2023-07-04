@@ -234,7 +234,7 @@ export default defineComponent({
       {{ state.active + 1 }} / {{ images.length }}
     </view>
     <view v-if="closeable" class="nut-image-preview-close-icon" :style="styles" @click="onClose">
-      <NutIcon name="circle-close" color="#ffffff" />
+      <NutIcon name="circle-close" custom-color="#ffffff" />
     </view>
   </NutPopup>
 </template>

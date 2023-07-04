@@ -62,7 +62,7 @@ export default defineComponent({
   <view :class="classes" :style="style" @click="onClick">
     <view class="nut-switch-button">
       <slot v-if="loading" name="icon">
-        <NutIcon name="loading1" :color="activeColor" />
+        <NutIcon name="loading1" :custom-color="activeColor" />
       </slot>
       <template v-if="activeText">
         <view v-show="isActive" class="nut-switch-label open">

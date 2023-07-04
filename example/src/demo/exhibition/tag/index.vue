@@ -83,21 +83,21 @@ export default {
     <nut-cell-group title="颜色自定义">
       <nut-cell title="背景颜色">
         <template #link>
-          <nut-tag color="#FA685D">
+          <nut-tag custom-color="#FA685D">
             标签
           </nut-tag>
         </template>
       </nut-cell>
       <nut-cell title="文字颜色">
         <template #link>
-          <nut-tag color="#E9E9E9" text-color="#999999">
+          <nut-tag custom-color="#E9E9E9" text-color="#999999">
             标签
           </nut-tag>
         </template>
       </nut-cell>
       <nut-cell title="空心颜色">
         <template #link>
-          <nut-tag color="#FA2400" plain>
+          <nut-tag custom-color="#FA2400" plain>
             标签
           </nut-tag>
         </template>

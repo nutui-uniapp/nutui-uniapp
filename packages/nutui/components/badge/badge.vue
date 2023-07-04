@@ -10,7 +10,7 @@ const stl = computed(() => {
     top: `${props.top}px`,
     right: `${props.right}px`,
     zIndex: props.zIndex,
-    background: props.color,
+    background: props.customColor,
   }
 })
 
