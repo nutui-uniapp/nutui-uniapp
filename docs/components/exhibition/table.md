@@ -333,7 +333,7 @@
 </script>
 ```
 
-### 自定义单元格 <Badge type="danger" text="不支持微信小程序" />
+### 自定义单元格 <Badge type="danger" text="不支持小程序" />
 
 ```html
 <template>

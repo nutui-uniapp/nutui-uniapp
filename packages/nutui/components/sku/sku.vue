@@ -106,11 +106,11 @@ export default defineComponent({
     @click-close-icon="closePopup('icon')" @click-overlay="closePopup('overlay')" @close="closePopup('close')"
   >
     <view class="nut-sku">
-      <!-- #ifdef MP-WEIXIN -->
+      <!-- #ifdef MP -->
       <slot name="sku-header" />
 
       <!-- #endif -->
-      <!-- #ifndef MP-WEIXIN -->
+      <!-- #ifndef MP -->
       <slot name="sku-header" />
       <SkuHeader v-if="!getSlots('sku-header')" :goods="goods">
         <template v-if="getSlots('sku-header-price')" #sku-header-price>

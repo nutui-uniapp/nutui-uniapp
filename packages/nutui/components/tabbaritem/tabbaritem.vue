@@ -23,20 +23,20 @@ function relation(child: ComponentInternalInstance): void {
   if (child.proxy) {
     parent?.children.push(child.proxy)
     const index = parent?.children.indexOf(child.proxy)
-    state.index = (props.name ?? index) as number
+    state.index = (props.name ? props.name : index) as number
   }
 }
 relation(getCurrentInstance() as ComponentInternalInstance)
 const active = computed(() => state.index === parent?.modelValue)
 function change() {
-  const key = props.name ?? state.index
+  const key = props.name ? props.name : state.index
   let indexValue = null
   if (props.name) {
     indexValue = parent?.children.findIndex((item: { name: string | number }) => {
       return item.name === key
     })
   }
-  parent?.changeIndex(Number(indexValue) ?? key, state.index)
+  parent?.changeIndex((Number(indexValue) ? Number(indexValue) : +key), state.index)
 }
 </script>
 

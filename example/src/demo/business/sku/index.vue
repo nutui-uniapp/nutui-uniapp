@@ -198,7 +198,7 @@ export default defineComponent({
       @selectSku="selectSku"
       @close="close"
     >
-      <!-- #ifdef MP-WEIXIN -->
+      <!-- #ifdef MP -->
       <template #sku-header>
         <nut-sku-header :goods="goodsInfo" />
       </template>
@@ -248,7 +248,7 @@ export default defineComponent({
       @clickBtnOperate="clickBtnOperate"
       @close="close"
     >
-      <!-- #ifdef MP-WEIXIN -->
+      <!-- #ifdef MP -->
       <template #sku-header>
         <nut-sku-header :goods="goodsInfo" />
       </template>

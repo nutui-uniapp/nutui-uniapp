@@ -120,7 +120,7 @@ function readFile(files: ChooseFile[]) {
     }
     fileItem.uid = new Date().getTime().toString()
     fileItem.path = filepath
-    fileItem.name = filepath ?? file.name
+    fileItem.name = filepath || file.name
     fileItem.status = 'ready'
     fileItem.message = translate('waitingUpload')
     fileItem.type = fileType!
