@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { isH5 } from '@uni-helper/uni-env'
-import icons from '../../../../icon-config.json'
+import icons from '../../../../../icon-config.json'
 
 function copy(text: string) {
   uni.setClipboardData({

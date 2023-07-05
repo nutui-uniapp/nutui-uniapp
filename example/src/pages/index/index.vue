@@ -19,7 +19,7 @@ export default {
 
     const navigateTo = (name: string, enName: any) => {
       uni.navigateTo({
-        url: `/demo/${enName}/${name.toLowerCase()}/index`,
+        url: `/pages/demo/${enName}/${name.toLowerCase()}/index`,
       })
     }
 
@@ -75,6 +75,12 @@ export default {
     </view>
   </nut-config-provider>
 </template>
+
+<route lang="json">
+{
+  "type":"home"
+}
+</route>
 
 <style lang="scss">
 .index {

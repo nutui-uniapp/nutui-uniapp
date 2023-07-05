@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store'
 
-const { darkMode } = storeToRefs(useAppStore())
+const { darkMode, customBarHeight } = storeToRefs(useAppStore())
 
 const curPage = getCurrentPages().at(-1) as any
 const title = computed(() => {
@@ -31,18 +31,18 @@ function onClickLeft() {
 </script>
 
 <template>
-  <view class="h-100vh">
-    <nut-config-provider :theme="darkMode ? 'dark' : ''">
-      <nut-navbar :placeholder="true" :fixed="true" :left-show="title !== 'index'" safe-area-inset-top :title="title === 'index' ? 'NutUi' : title" @on-click-back="onClickLeft">
-        <!-- <template #left>
+  <nut-config-provider :theme="darkMode ? 'dark' : ''">
+    <nut-navbar :placeholder="true" :fixed="true" :left-show="title !== 'index'" safe-area-inset-top :title="title === 'index' ? 'NutUi' : title" @on-click-back="onClickLeft">
+      <!-- <template #left>
           <div v-if="title !== 'index'">
             返回
           </div>
         </template> -->
-      </nut-navbar>
+    </nut-navbar>
+    <scroll-view :style="`height:calc(100vh - ${customBarHeight}px)`" class=" n-bg pb-safe" scroll-y>
       <slot />
-    </nut-config-provider>
-  </view>
+    </scroll-view>
+  </nut-config-provider>
 </template>
 
 <style>

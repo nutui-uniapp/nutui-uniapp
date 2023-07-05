@@ -12,8 +12,8 @@ const iframeUrl = computed(() => {
   const path = route.path.replace('/components', '').split('.')[0]
 
   return import.meta.env.DEV
-    ? `http://localhost:5173/ui/#/demo${path}/index`
-    : `/ui/#/demo${path}/index`
+    ? `http://localhost:5173/ui/#/pages/demo${path}/index`
+    : `/ui/#/pages/demo${path}/index`
 })
 
 onMounted(() => {
@@ -32,7 +32,7 @@ onMounted(() => {
     })
     window.addEventListener('message', (e) => {
       if (e.data.type === 'route') {
-        const path = e.data.data.split('/').slice(1).join('/')
+        const path = e.data.data.split('/demo/').slice(1).join('/')
 
         if (path !== 'index')
           go(`/components/${path}.html`)
