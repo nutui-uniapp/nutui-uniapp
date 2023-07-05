@@ -125,7 +125,7 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
       return
     emit('beforeEnter')
     display.value = true
-    animationClass.value = defaultAnimations[name.value]?.enter ?? `${classNames.value.enter} ${classNames.value.enterActive}`
+    animationClass.value = defaultAnimations[name.value]?.enter ? defaultAnimations[name.value]?.enter : `${classNames.value.enter} ${classNames.value.enterActive}`
     await nextTick()
     emit('enter')
 
@@ -140,7 +140,7 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
     if (!display.value)
       return
     emit('beforeLeave')
-    animationClass.value = defaultAnimations[name.value]?.leave ?? `${classNames.value.leave} ${classNames.value.leaveActive}`
+    animationClass.value = defaultAnimations[name.value]?.leave ? defaultAnimations[name.value]?.leave : `${classNames.value.leave} ${classNames.value.leaveActive}`
     await nextTick()
     emit('leave')
 

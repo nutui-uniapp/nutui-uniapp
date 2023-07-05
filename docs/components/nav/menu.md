@@ -358,7 +358,7 @@ export default {
 
 | 名称 | 说明 |
 |-|-|
-| icon | 自定义标题图标 (不支持微信小程序) |
+| icon | 自定义标题图标 (不支持小程序) |
 
 ### MenuItem Props
 
@@ -376,7 +376,7 @@ export default {
 
 | 名称 | 说明 |
 |-|-|
-| icon | 自定义选项图标 (不支持微信小程序) |
+| icon | 自定义选项图标 (不支持小程序) |
 
 ### MenuItem Events
 

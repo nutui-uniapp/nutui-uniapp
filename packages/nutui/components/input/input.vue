@@ -14,7 +14,7 @@ const emit = defineEmits(inputEmits)
 const active = ref(false)
 
 const inputRef = ref()
-const getModelValue = () => String(props.modelValue ?? '')
+const getModelValue = () => String(props.modelValue ? props.modelValue : '')
 
 const state = reactive({
   focused: false,
