@@ -110,7 +110,7 @@
   <nut-grid :column-num="3">
     <nut-grid-item text="文字"><nut-icon  name="dongdong" /></nut-grid-item>
     <nut-grid-item text="文字">
-      <Dongdong size="40px" color="#478EF2" />
+      <nut-icon name="dongdong" size="40px" custom-color="#478EF2" />
     </nut-grid-item>
     <nut-grid-item text="文字"><nut-icon  name="dongdong" /></nut-grid-item>
   </nut-grid>

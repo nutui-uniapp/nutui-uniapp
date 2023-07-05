@@ -10,9 +10,12 @@ const classes = computed(() => {
 
   const defaultClassesObj = {
     [prefixCls]: true,
+    [`${props.customClass}`]: props.customClass,
   }
 
-  let classesObj = {}
+  let classesObj = {
+
+  }
 
   if (props.direction === 'horizontal') {
     classesObj = {
@@ -49,7 +52,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-if="direction === 'horizontal'" :class="classes">
+  <view v-if="direction === 'horizontal'" :class="classes" :style="customStyle">
     <slot />
   </view>
   <view v-else :class="classes" />

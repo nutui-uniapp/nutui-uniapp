@@ -1,6 +1,8 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import { commonProps } from '../_utils'
 
 export const dividerProps = {
+  ...commonProps,
   contentPosition: {
     type: String as PropType<'left' | 'right' | 'center'>,
     default: 'center',

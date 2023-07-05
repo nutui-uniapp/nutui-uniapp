@@ -67,7 +67,7 @@ export default {
       close-icon-position="top-left"
       :custom-style="{ height: '20%' }"
     >
-      <template #close-icon>
+      <template #closeIcon>
         <nut-icon name="heart" />
       </template>
     </nut-popup>

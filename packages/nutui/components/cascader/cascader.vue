@@ -102,4 +102,5 @@ export default defineComponent({
 
 <style lang="scss">
 @import './index';
+@import '../popup/index';
 </style>

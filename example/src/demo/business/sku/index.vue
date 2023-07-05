@@ -194,6 +194,7 @@ export default defineComponent({
 
     <nut-sku
       v-model:visible="base"
+      :goods="goodsInfo"
       :sku="skuData"
       @selectSku="selectSku"
       @close="close"
@@ -279,7 +280,7 @@ export default defineComponent({
             </div>
           </template>
           <template #sku-header-extra>
-            <span class="nut-sku-header-right-extra">重量：0.1kg 编号：{{ goodsInfo.skuId }} </span>
+            <span class="text-12px c-skyblue">重量：0.1kg 编号：{{ goodsInfo.skuId }} </span>
           </template>
         </nut-sku-header>
       </template>

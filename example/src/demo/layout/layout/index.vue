@@ -119,7 +119,7 @@ export default {
           </div>
         </nut-col>
       </nut-row>
-      <nut-row type="flex" justify="center">
+      <nut-row type="flex" :justify="`center` as any">
         <nut-col :span="6">
           <div class="flex-content">
             span:6
@@ -136,7 +136,7 @@ export default {
           </div>
         </nut-col>
       </nut-row>
-      <nut-row type="flex" justify="end">
+      <nut-row type="flex" :justify="`end` as any">
         <nut-col :span="6">
           <div class="flex-content">
             span:6

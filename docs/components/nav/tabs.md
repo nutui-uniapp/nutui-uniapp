@@ -290,19 +290,25 @@ export default {
 
 ```html
 <template>
-<nut-tabs v-model="state.tab7value">
-  <template v-slot:titles>
-    <div class="nut-tabs__titles-item" @click="state.tab7value=item.paneKey"
-      :class="{active:state.tab7value==item.paneKey}" :key="item.paneKey" v-for="item in state.list6">
-          <nut-icon name="dongdong" />
-      <span class="nut-tabs__titles-item__text">{{item.title}}</span>
-      <span class="nut-tabs__titles-item__line"></span>
-    </div>
-  </template>
-  <nut-tab-pane v-for="item in state.list6" :pane-key="item.paneKey">
-    {{item.title}}
-  </nut-tab-pane>
-</nut-tabs>
+  <nut-tabs v-model="state.tab7value" swipeable>
+      <template #titles>
+        <div class="title-list">
+          <view
+            v-for="item in state.list6" :key="item.paneKey" class="title-item"
+            :class="{ 'tabs-active': state.tab7value === item.paneKey }" @click="state.tab7value = item.paneKey"
+          >
+            <nut-icon name="dongdong" />
+            <view class="nut-tabs__titles-item__text">
+              {{ item.title }}
+            </view>
+            <view class="item__line" />
+          </view>
+        </div>
+      </template>
+      <nut-tab-pane v-for="item in state.list6" :key="item" :pane-key="item.paneKey">
+        {{ item.title }}
+      </nut-tab-pane>
+  </nut-tabs>
 </template>
 <script lang="ts">
 import { reactive } from 'vue';
@@ -329,6 +335,44 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.title-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  .title-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+  }
+
+  .tabs-active {
+    font-weight: bold;
+    color: $tabs-titles-item-active-color;
+    opacity: $tabs-titles-item-line-opacity;
+    transition: width 0.3s ease;
+
+    .item__line {
+      position: absolute;
+      bottom: -10%;
+      left: 50%;
+      overflow: hidden;
+      content: ' ';
+      border-radius: $tabs-titles-item-line-border-radius;
+      opacity: $tabs-titles-item-line-opacity;
+      transition: width 0.3s ease;
+      transform: translate(-50%, 0);
+      width: $tabs-horizontal-titles-item-active-line-width;
+      height: 3px;
+      content: ' ';
+      background: $tabs-horizontal-tab-line-color;
+    }
+  }
+}
+</style>
 ```
 
 ## API

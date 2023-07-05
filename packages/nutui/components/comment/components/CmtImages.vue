@@ -72,7 +72,7 @@ function showImages(type: string, index: string | number) {
 <script  lang="ts">
 const componentName = `${PREFIX}-comment-images`
 
-export default defineComponent ({
+export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
@@ -86,9 +86,7 @@ export default defineComponent ({
   <view :class="`nut-comment-images nut-comment-images--${type}`">
     <!-- videos -->
     <view
-      v-for="(itV, index) in videos"
-      :key="itV.id"
-      class="nut-comment-images__item nut-comment-images__item--video"
+      v-for="(itV, index) in videos" :key="itV.id" class="nut-comment-images__item nut-comment-images__item--video"
       @click="showImages('video', index)"
     >
       <img :src="itV.mainUrl">
@@ -114,3 +112,121 @@ export default defineComponent ({
     </template>
   </view>
 </template>
+
+<style lang="scss">
+.nut-comment {
+  &-images {
+    display: flex;
+    margin: 10px 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &__item {
+      position: relative;
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      margin-right: 5px;
+      overflow: hidden;
+      border-radius: 6px;
+
+      img,
+      image {
+        width: 80px;
+        height: 80px;
+      }
+
+      // &--imgbox {
+      //   //   background: #f00;
+      // }
+
+      &--video {
+
+        /* stylelint-disable-next-line rule-empty-line-before */
+        img,
+        image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          // height: auto;
+        }
+      }
+    }
+
+    &__mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 90px;
+      font-size: 12px;
+      line-height: 90px;
+      color: rgb(255 255 255 / 100%);
+      background: rgb(0 0 0 / 50%);
+    }
+  }
+
+  &-images--multi {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px auto 15px;
+    overflow: hidden;
+
+    .nut-comment-images__item {
+      width: calc(34% - 8px);
+      height: 90px;
+      margin: 8px 8px 0 0;
+
+      img,
+      image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .svg-demo {
+        width: 40px;
+        height: 40px;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    &::after {
+      display: block;
+      width: 105px;
+      content: '';
+    }
+  }
+
+  &-images__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgb(0 0 0 / 50%);
+    border-radius: 50%;
+    transform: translate(-50%);
+    transform: translate(-50%, -50%);
+
+    &::after {
+      position: absolute;
+      top: 11px;
+      left: 15px;
+      display: block;
+      content: '';
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid #fff;
+    }
+  }
+}
+</style>

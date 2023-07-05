@@ -1,4 +1,5 @@
 @import '../sticky/index';
+@import '../cascader/index';
 
 .nut-theme-dark {
   .nut-tabs {
@@ -8,7 +9,7 @@
       &-item {
         color: $dark-color-gray;
 
-        &.active {
+        &.nut-tabs-active {
           color: $dark-color;
         }
       }
@@ -17,7 +18,7 @@
     &.vertical {
       .nut-tabs__titles {
         &-item {
-          &.active {
+          &.nut-tabs-active {
             background-color: $dark-background2;
           }
         }
@@ -86,7 +87,7 @@
           transform: translate(0, -50%);
         }
 
-        &.active {
+        &.nut-tabs-active {
           background-color: #fff;
 
           .nut-tabs__titles-item__line {
@@ -159,7 +160,7 @@
 
     &.smile {
       .nut-tabs__titles-item {
-        &.active {
+        &.nut-tabs-active {
           .nut-tabs__titles-item__smile {
             width: 36px;
             height: 10px;
@@ -235,7 +236,7 @@
         color: $disable-color;
       }
 
-      &.active {
+      &.nut-tabs-active {
         font-weight: bold;
         color: $tabs-titles-item-active-color;
 
@@ -259,4 +260,12 @@
   white-space: nowrap;
 }
 
+
+
+scroll-view ::-webkit-scrollbar{
+    display: none;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent;
+}
 

@@ -50,7 +50,7 @@ function changeSaleChild(attrItem: any, index: any, parentItem: any, parentIndex
 <script  lang="ts">
 const componentName = `${PREFIX}-sku-select`
 
-export default defineComponent ({
+export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
@@ -68,8 +68,8 @@ export default defineComponent ({
       </view>
       <view class="nut-sku-select-item-skus">
         <view
-          v-for="(itemAttr, itemAttrIndex) in item.list" :key="itemAttr.name"
-          class="nut-sku-select-item-skus-sku" :class="[{ active: !itemAttr.disable && itemAttr.active }, { disable: itemAttr.disable }]"
+          v-for="(itemAttr, itemAttrIndex) in item.list" :key="itemAttr.name" class="nut-sku-select-item-skus-sku"
+          :class="[{ active: !itemAttr.disable && itemAttr.active }, { disable: itemAttr.disable }]"
           @click="changeSaleChild(itemAttr, itemAttrIndex, item, index)"
         >
           {{ itemAttr.name }}
@@ -80,5 +80,82 @@ export default defineComponent ({
 </template>
 
 <style lang="scss">
-@import '../index';
+.nut-theme-dark {
+  .nut-sku {
+    &-select {
+      &-item {
+        &-title {
+          color: $dark-color;
+        }
+
+        &-skus {
+          &-sku {
+            color: $dark-color;
+            background: $dark-background2;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nut-sku {
+  &-select {
+    &-item {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        height: 13px;
+        margin-bottom: $sku-spec-title-margin-bottom;
+        font-size: $sku-spec-title-font-size;
+        font-weight: $sku-spec-title-font-weight;
+        color: $sku-spec-title-color;
+      }
+
+      &-skus {
+        display: flex;
+        flex-wrap: wrap;
+
+        &-sku {
+          flex-shrink: 0;
+          height: $sku-spec-height;
+          padding: $sku-spec-padding;
+          margin-right: $sku-spec-margin-right;
+          margin-bottom: 12px;
+          font-size: $sku-spec-font-size;
+          line-height: $sku-spec-line-height;
+          color: $sku-spec-color;
+          background: $sku-spec-background;
+          border: 1px solid rgb(242 242 242 / 100%);
+          border-radius: 15px;
+
+          &.active {
+            position: relative;
+            color: $primary-color;
+            background: transparent;
+            border: $sku-item-border;
+
+            &::after {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              content: '';
+              background-color: $sku-item-active-bg;
+              border-radius: 15px;
+              opacity: 0.15;
+            }
+          }
+
+          &.disable {
+            color: $text-color;
+            text-decoration: $sku-item-disable-line;
+          }
+        }
+      }
+    }
+  }
+
+}
 </style>

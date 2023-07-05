@@ -99,5 +99,56 @@ export default defineComponent ({
 </template>
 
 <style lang="scss">
-@import '../index';
+.nut-theme-dark {
+  .nut-sku {
+    &-stepper {
+      &-title {
+        color: $dark-color;
+      }
+
+      &-limit {
+        color: $dark-color;
+      }
+
+      &-count {
+        &-lowestBuy {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.nut-sku{
+  &-stepper {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 30px;
+
+    &-title {
+      margin-right: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      color: $black;
+    }
+
+    &-limit,rich-text {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      font-size: 12px;
+      color: $text-color;
+    }
+
+    &-count {
+      display: flex;
+      align-items: center;
+
+      &-lowestBuy {
+        font-size: 12px;
+        color: $primary-color;
+      }
+    }
+  }
+}
 </style>
