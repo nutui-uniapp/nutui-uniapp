@@ -138,10 +138,7 @@ export default {
       数量多，滚动操作（纵向）
     </h2>
     <nut-tabs
-      v-model="state.tab4value"
-      title-scroll
-      name="tab4valueVertical"
-      direction="vertical"
+      v-model="state.tab4value" title-scroll name="tab4valueVertical" direction="vertical"
       custom-style="height: 220px;"
     >
       <nut-tab-pane v-for="item in state.list4" :key="item" :title="`Tab ${item}`">
@@ -203,23 +200,20 @@ export default {
     <h2 class="title">
       自定义标签栏
     </h2>
-    <nut-tabs v-model="state.tab7value">
+    <nut-tabs v-model="state.tab7value" swipeable>
       <template #titles>
-        <view class="nut-tabs__list">
+        <div class="title-list">
           <view
-            v-for="item in state.list6"
-            :key="item.paneKey"
-            class="nut-tabs__titles-item"
-            :class="{ active: state.tab7value === item.paneKey }"
-            @click="state.tab7value = item.paneKey"
+            v-for="item in state.list6" :key="item.paneKey" class="title-item"
+            :class="{ 'tabs-active': state.tab7value === item.paneKey }" @click="state.tab7value = item.paneKey"
           >
             <nut-icon name="dongdong" />
             <view class="nut-tabs__titles-item__text">
               {{ item.title }}
             </view>
-            <view class="nut-tabs__titles-item__line" />
+            <view class="item__line" />
           </view>
-        </view>
+        </div>
       </template>
       <nut-tab-pane v-for="item in state.list6" :key="item" :pane-key="item.paneKey">
         {{ item.title }}
@@ -228,11 +222,48 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.title-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  .title-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+  }
+
+  .tabs-active {
+    font-weight: bold;
+    color: $tabs-titles-item-active-color;
+    opacity: $tabs-titles-item-line-opacity;
+    transition: width 0.3s ease;
+
+    .item__line {
+      position: absolute;
+      bottom: -10%;
+      left: 50%;
+      overflow: hidden;
+      content: ' ';
+      border-radius: $tabs-titles-item-line-border-radius;
+      opacity: $tabs-titles-item-line-opacity;
+      transition: width 0.3s ease;
+      transform: translate(-50%, 0);
+      width: $tabs-horizontal-titles-item-active-line-width;
+      height: 3px;
+      content: ' ';
+      background: $tabs-horizontal-tab-line-color;
+    }
+  }
+}
+</style>
 
 <route lang="json">
 {
-"style": {
+  "style": {
     "navigationBarTitleText": "Tabs"
   }
 }

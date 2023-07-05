@@ -75,5 +75,66 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import '../index';
+.nut-theme-dark {
+  .nut-address-list {
+    &-item {
+      &__addr {
+        color: $dark-color-gray;
+      }
+    }
+
+  }
+}
+
+.nut-address-list {
+  &-item {
+    width: 100%;
+
+    &__info {
+      display: flex;
+      justify-content: space-between;
+
+      &-contact {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-weight: bold;
+
+        &-name {
+          max-width: 145px;
+          word-wrap: break-word;
+        }
+
+        &-tel {
+          max-width: 110px;
+          margin-left: 8px;
+          word-wrap: break-word;
+        }
+
+        &-default {
+          height: 16px;
+          padding: 0 6px;
+          margin-left: 5px;
+          font-size: 12px;
+          line-height: 16px;
+          color: $addresslist-contnts-contact-color;
+          background: $addresslist-contnts-contact-default;
+          border-radius: 2px;
+        }
+      }
+
+      &-handle {
+        &-edit {
+          margin-left: 15px;
+        }
+      }
+    }
+
+    &__addr {
+      margin-top: 5px;
+      font-size: $addresslist-addr-font-size;
+      color: $addresslist-addr-font-color;
+    }
+  }
+}
 </style>

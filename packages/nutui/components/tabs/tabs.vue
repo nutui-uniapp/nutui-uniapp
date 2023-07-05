@@ -266,7 +266,7 @@ const titleStyle = computed(() => {
 </script>
 
 <script lang="ts">
-const componentName = `${PREFIX}-tab`
+const componentName = `${PREFIX}-tabs`
 
 export default defineComponent({
   name: componentName,
@@ -279,7 +279,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="container" class="nut-tabs" :style="[customStyle]" :class="[direction, customClass]">
+  <view ref="container" class="nut-tabs" :style="[customStyle]" :class="[customClass, direction]">
     <scroll-view
       :id="`nut-tabs__titles_${name}`"
       :scroll-x="getScrollX"
@@ -293,13 +293,14 @@ export default defineComponent({
       :style="tabsNavStyle"
     >
       <view class="nut-tabs__list">
-        <slot name="titles">
+        <slot v-if="$slots.titles" name="titles" />
+        <template v-else>
           <view
             v-for="(item, index) in titles"
             :key="item.paneKey"
             class="nut-tabs__titles-item uni"
             :style="titleStyle"
-            :class="{ active: item.paneKey === String(modelValue), disabled: item.disabled }"
+            :class="{ 'nut-tabs-active': item.paneKey === String(modelValue), 'disabled': item.disabled }"
             @click="tabChange(item, index)"
           >
             <view v-if="type === 'line'" class="nut-tabs__titles-item__line" :style="tabsActiveStyle" />
@@ -311,7 +312,7 @@ export default defineComponent({
             </view>
           </view>
           <view v-if="canShowLabel" class="nut-tabs__titles-item nut-tabs__titles-placeholder" />
-        </slot>
+        </template>
       </view>
     </scroll-view>
     <view

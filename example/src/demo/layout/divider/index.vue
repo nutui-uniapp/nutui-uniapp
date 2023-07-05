@@ -37,7 +37,7 @@ export default {
     <h2 class="title">
       自定义样式
     </h2>
-    <nut-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
+    <nut-divider :custom-style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
       文本
     </nut-divider>
     <h2 class="title">

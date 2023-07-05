@@ -72,3 +72,158 @@ export default defineComponent ({
     </view>
   </view>
 </template>
+
+<style lang="scss">
+.nut-theme-dark {
+  .nut-comment {
+    &-header {
+      &__user {
+        &-name {
+          color: $dark-color;
+        }
+
+        &-default {
+          &-name {
+            color: $dark-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nut-comment {
+    &-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &__user {
+      display: flex;
+      flex: 1;
+      align-items: center;
+
+      &-avter {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        img,image {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &-name {
+        /* stylelint-disable-next-line at-rule-no-unknown */
+        @include oneline-ellipsis;
+
+        width: auto;
+        max-width: 80px;
+        margin-right: 5px;
+        font-size: 12px;
+        color: $comment-header-user-name-color;
+      }
+
+      &-default {
+        flex: 1;
+
+        &-name {
+          display: flex;
+          align-items: center;
+          margin-bottom: 3px;
+
+          /* stylelint-disable-next-line at-rule-no-unknown */
+          @include oneline-ellipsis;
+
+          font-size: 12px;
+          color: $comment-header-user-name-color;
+
+          > span,text {
+            margin-right: 8px;
+          }
+        }
+      }
+
+      &-complex {
+        display: flex;
+        align-items: center;
+        color: $comment-header-user-name-color;
+
+        &-name {
+          max-width: 80px;
+          margin-right: 10px;
+
+          /* stylelint-disable-next-line at-rule-no-unknown */
+          @include text-ellipsis;
+        }
+
+        image {
+          max-width: 50px;
+          height: 16px;
+        }
+      }
+
+      &-score {
+        .nut-rate-item {
+          display: block !important;
+          line-height: 10px;
+
+          .nut-icon {
+            line-height: 10px;
+          }
+        }
+      }
+    }
+
+    &__time {
+      width: 100px;
+      font-size: 12px;
+      color: $comment-header-time-color;
+      text-align: right;
+    }
+
+    &__complex-score {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .nut-rate-item {
+        display: block !important;
+        line-height: 12px;
+
+        .nut-icon {
+          line-height: 12px;
+        }
+      }
+
+      &-i {
+        display: inline-block;
+        width: 1px;
+        height: 6px;
+        margin: 0 8px 0 6px;
+        font-style: inherit;
+        background: $text-color;
+        opacity: 0.4;
+      }
+
+      &-size {
+        /* stylelint-disable-next-line at-rule-no-unknown */
+        @include oneline-ellipsis;
+      }
+    }
+
+    &__labels--item {
+      display: inline-block;
+      height: 16px;
+      margin-right: 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+</style>

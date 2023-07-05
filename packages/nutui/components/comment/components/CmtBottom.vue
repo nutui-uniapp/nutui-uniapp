@@ -89,3 +89,98 @@ export default defineComponent ({
     </view>
   </view>
 </template>
+
+<style lang="scss">
+.nut-theme-dark {
+  .nut-comment {
+    &-bottom {
+      &__cpx {
+        color: $dark-color;
+
+        &-item {
+          span,text {
+            color: $dark-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nut-comment{
+    &-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5px;
+    color: $comment-bottom-label-color;
+
+    &__lable {
+      flex: 1;
+      margin-right: 10px;
+
+      /* stylelint-disable-next-line at-rule-no-unknown */
+      @include oneline-ellipsis;
+    }
+
+    &__cpx {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: $black;
+
+      &-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-right: 18px;
+
+        span,text {
+          margin-right: 5px;
+          color: $black;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &-popover {
+          position: absolute;
+          top: 35px;
+          right: 18px;
+          width: max-content;
+          padding: 10px;
+          background: $white;
+          border-radius: 5px 0 5px 5px;
+          box-shadow: 0 0 6px $disable-color;
+
+          &::after {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            width: 0;
+            height: 0;
+            content: '';
+            border-top: 10px solid transparent;
+            border-right: 0 solid transparent;
+            border-bottom: 10px solid $white;
+            border-left: 14px solid transparent;
+          }
+
+          &::before {
+            position: absolute;
+            top: -22px;
+            right: -1px;
+            width: 0;
+            height: 0;
+            content: '';
+            border-top: 10px solid transparent;
+            border-right: 0 solid transparent;
+            border-bottom: 10px solid rgb(114 113 113 / 10%);
+            border-left: 14px solid transparent;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

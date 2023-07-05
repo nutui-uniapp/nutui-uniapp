@@ -57,7 +57,7 @@ export default defineComponent({
       :class="`nut-popup__close-icon--${closeIconPosition}`"
       @click="onClickCloseIcon"
     >
-      <slot name="close-icon">
+      <slot name="closeIcon">
         <NutIcon name="close" height="12px" />
       </slot>
     </view>

@@ -160,5 +160,96 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import '../index';
+.nut-theme-dark {
+  .nut-address-list {
+    &-swipe,
+    &-general {
+      color: $dark-color;
+      background-color: $dark-background2;
+      border-bottom: 1px solid $dark-color-gray;
+
+      &__mask {
+        background-color: $dark-color3;
+
+        &-copy {
+          color: $dark-color-gray;
+          background-color: $dark-color;
+        }
+      }
+    }
+  }
+}
+
+.nut-address-list {
+  &-swipe,
+  &-general {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 76px;
+    padding: 5px 10px;
+    font-size: $addresslist-font-size;
+    color: $addresslist-font-color;
+    background-color: $addresslist-bg;
+    border-bottom: 1px solid $addresslist-border;
+
+    &__mask {
+      position: absolute;
+      inset: 0;
+      z-index: 2001;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 40px;
+      background-color: $addresslist-mask-bg;
+
+      &-copy,
+      &-set,
+      &-del {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        padding: 0 10px;
+        font-size: 14px;
+        text-align: center;
+        background-color: $white;
+        border-radius: 50%;
+      }
+
+      &-set {
+        color: $white;
+        background-color: $addresslist-set-bg;
+      }
+
+      &-del {
+        color: $white;
+        background-color: $addresslist-del-bg;
+      }
+    }
+  }
+
+  &-general {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .nut-swipe {
+    &:last-of-type {
+      .nut-address-list-swipe {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .nut-address-list__mask-bottom {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background-color: transparent;
+  }
+}
 </style>

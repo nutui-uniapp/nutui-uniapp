@@ -12,28 +12,28 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -42,13 +42,13 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid :column-num="3">
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -57,13 +57,13 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid :column-num="3" square>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -72,28 +72,28 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid :gutter="10">
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -102,16 +102,16 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid reverse>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -120,16 +120,16 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid direction="horizontal">
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -138,13 +138,13 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid :column-num="3">
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon name="dongdong" size="40px" color="#478EF2" />
+        <nut-icon name="dongdong" size="40px" custom-color="#478EF2" />
       </nut-grid-item>
       <nut-grid-item text="文字">
-        <nut-icon :color="darkMode ? '#fff' : '#000'" name="dongdong" />
+        <nut-icon :custom-color="darkMode ? '#fff' : '#000'" name="dongdong" />
       </nut-grid-item>
     </nut-grid>
 
@@ -161,11 +161,11 @@ const { darkMode } = storeToRefs(useAppStore())
     </h2>
     <nut-grid :border="false">
       <nut-grid-item v-for="i in 4" :key="i">
-        <!-- <nut-avatar size="large">
+        <nut-avatar size="large">
           <img
             src="https://img12.360buyimg.com/imagetools/jfs/t1/143702/31/16654/116794/5fc6f541Edebf8a57/4138097748889987.png"
           >
-        </nut-avatar> -->
+        </nut-avatar>
       </nut-grid-item>
     </nut-grid>
   </div>

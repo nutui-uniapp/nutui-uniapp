@@ -108,19 +108,20 @@ export default defineComponent({
     <view class="nut-sku">
       <!-- #ifdef MP -->
       <slot name="sku-header" />
-
       <!-- #endif -->
       <!-- #ifndef MP -->
-      <slot name="sku-header" />
-      <SkuHeader v-if="!getSlots('sku-header')" :goods="goods">
-        <template v-if="getSlots('sku-header-price')" #sku-header-price>
-          <slot name="sku-header-price" />
-        </template>
+      <slot name="sku-header">
+        <SkuHeader :goods="goods">
+          <template #sku-header-price>
+            <slot name="sku-header-price" />
+          </template>
 
-        <template v-if="getSlots('sku-header-extra')" #sku-header-extra>
-          <slot name="sku-header-extra" />
-        </template>
-      </SkuHeader>
+          <template #sku-header-extra>
+            <slot name="sku-header-extra" />
+          </template>
+        </SkuHeader>
+      </slot>
+
       <!-- #endif -->
 
       <view class="nut-sku-content">

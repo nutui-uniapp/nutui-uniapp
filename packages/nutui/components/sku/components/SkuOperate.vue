@@ -84,5 +84,62 @@ export default defineComponent ({
 </template>
 
 <style lang="scss">
-@import '../index';
+.nut-theme-dark {
+  .nut-sku {
+    &-operate {
+      &-btn {
+        background: $dark-background2;
+      }
+    }
+  }
+}
+
+.nut-sku{
+    &-operate {
+    width: 100%;
+
+    &-desc {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 12px;
+      color: #de6a1c;
+      text-align: center;
+      background: #fbf9da;
+    }
+
+    &-btn {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: $sku-operate-btn-height;
+      padding: 0 18px;
+      text-align: center;
+      background: $white;
+      border-top: $sku-operate-btn-border-top;
+
+      &-item {
+        width: 100%;
+        height: $sku-operate-btn-item-height;
+        margin-right: 18px;
+        font-size: $sku-operate-btn-item-font-size;
+        font-weight: $sku-operate-btn-item-font-weight;
+        line-height: $sku-operate-btn-item-line-height;
+        color: $white;
+        background: $sku-opetate-bg-default;
+        border-radius: 21px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      &-buy {
+        background: $sku-opetate-bg-buy;
+      }
+    }
+  }
+}
 </style>
