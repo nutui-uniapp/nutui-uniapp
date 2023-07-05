@@ -16,7 +16,7 @@
   "scripts": {
     "build": "pnpm run --dir packages/nutui build",
     "dev:mp-weixin": "npm -C example run dev:mp-weixin",
-    "build:mp-weixin": "pnpm build && npm -C example run build:mp-weixin",
+    "build:mp-weixin": "npm -C example run build:mp-weixin",
     "dev:mp-alipay": "npm -C example run dev:mp-alipay",
     "dev:h5": "npm -C example run dev:h5",
     "build:h5": "npm -C example run build:h5",

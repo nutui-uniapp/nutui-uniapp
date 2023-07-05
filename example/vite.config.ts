@@ -27,9 +27,7 @@ export default defineConfig({
 
     }),
     UniPages({
-      routeBlockLang: 'yaml',
       minify: true,
-      subPackages: ['src/demo'],
     }),
     UniManifest({ minify: true }),
     AutoImport({

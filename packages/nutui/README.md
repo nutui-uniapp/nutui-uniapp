@@ -6,6 +6,12 @@
 <p align="center">
 <a href="https://www.npmjs.com/package/uniapp-nutui"><img src="https://img.shields.io/npm/v/uniapp-nutui?color=c95f8b&amp;label=" alt="NPM version"></a></p>
 
+<p align="center">
+   <img src="https://s2.loli.net/2023/07/05/eJwPvqCY8EcZ7Vi.png" width="164" alt="NutUI" />
+  &nbsp;
+  <img src="https://s2.loli.net/2023/07/05/QyW2RHcmnuvIFwp.jpg" width="166" title="请用微信扫码">
+  &nbsp;
+</p>
 ## 介绍
 
 UniAPP-NutUI 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了UniApp, 使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。

@@ -9,6 +9,12 @@ export default defineUniPages({
       // '^nut-(.*)': 'uniapp-nutui/components/$1/$1.vue',
     },
   },
+  pages: [
+    {
+      path: 'pages/index/index',
+      type: 'home',
+    },
+  ],
   globalStyle: {
     navigationBarBackgroundColor: '@navBgColor',
     navigationBarTextStyle: '@navTxtStyle',

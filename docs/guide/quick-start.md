@@ -17,6 +17,15 @@ UniAPP-NutUI 组件库，基于Taro版`NutUi` 4.x版本修改而来，适配了U
 - 🍭 支持暗黑模式
 - 🌍 支持国际化
 
+## 预览
+
+<p align="center">
+   <img src="https://s2.loli.net/2023/07/05/eJwPvqCY8EcZ7Vi.png" width="164" alt="NutUI" />
+  &nbsp;
+  <img src="https://s2.loli.net/2023/07/05/QyW2RHcmnuvIFwp.jpg" width="166" title="请用微信扫码">
+  &nbsp;
+</p>
+
 ## 贡献
 
 有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/yang1206/uniapp-nutui/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md)。
