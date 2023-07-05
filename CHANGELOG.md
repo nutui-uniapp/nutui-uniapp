@@ -1,3 +1,13 @@
+## [0.0.8](https://github.com/yang1206/uniapp-nutui/compare/v0.0.7...v0.0.8) (2023-07-05)
+
+
+### Bug Fixes
+
+* 修复支付宝小程序编译错误 ([bdd6540](https://github.com/yang1206/uniapp-nutui/commit/bdd65408d77aff73509da7d18a2d04d11b105904))
+* 修复h5组件之间引用样式丢失 ([b784635](https://github.com/yang1206/uniapp-nutui/commit/b7846354ffb7355a1328f804aa689b1e85487807))
+
+
+
 ## [0.0.7](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.0.7) (2023-07-04)
 
 

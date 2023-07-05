@@ -1,40 +1,24 @@
 name: Release
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
-      - 'v*'
-
+      - v[0-9]+.*
 jobs:
-  release:
+  create-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: taiki-e/create-gh-release-action@v1
         with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Set node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: pnpm
-          registry-url: 'https://registry.npmjs.org'
-
-      - run: npx changelogithub
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Install Dependencies
-        run: pnpm i
-
-      - name: PNPM build
-        run: pnpm run build
-
-      - name: Publish to NPM
-        run: pnpm -r publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          # (Optional)
+          changelog: CHANGELOG.md
+          # (Optional) Format of title.
+          # [default value: $tag]
+          # [possible values: variables $tag, $version, and any string]
+          title: $version
+          # (Required) GitHub token for creating GitHub Releases.
+          token: ${{ secrets.GITHUB_TOKEN }}
