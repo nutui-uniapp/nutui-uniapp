@@ -157,7 +157,7 @@ export default defineComponent({
             <view class="nut-menu__title-text">
               {{ item.renderTitle() }}
             </view>
-            <span class="nut-menu__title-icon">
+            <view class="nut-menu__title-icon">
               <!-- #ifdef MP-WEIXIN -->
               <Icon v-if="direction === 'up'" :name="upIcon" />
               <Icon v-else :name="downIcon" />
@@ -168,8 +168,7 @@ export default defineComponent({
                 <Icon v-else name="rect-down" />
               </slot>
               <!-- #endif -->
-
-            </span>
+            </view>
           </view>
         </view>
       </template>

@@ -47,9 +47,9 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :style="[style]" :ikey="ikey" @click.stop="handleClick">
-    <span class="nut-side-navbar-item__title">
+    <text class="nut-side-navbar-item__title">
       {{ title }}
-    </span>
+    </text>
   </view>
 </template>
 

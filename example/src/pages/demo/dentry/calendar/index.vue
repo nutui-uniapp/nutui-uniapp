@@ -285,18 +285,24 @@ export default {
         <template #btn>
           <view class="wrapper">
             <view class="d_div">
-              <span class="d_btn" @click="goDate">去某个时间</span>
+              <view class="d_btn" @click="goDate">
+                去某个时间
+              </view>
             </view>
             <view class="d_div">
-              <span class="d_btn" @click="clickBtn">最近七天</span>
+              <view class="d_btn" @click="clickBtn">
+                最近七天
+              </view>
             </view>
             <view class="d_div">
-              <span class="d_btn" @click="clickBtn1">当月</span>
+              <view class="d_btn" @click="clickBtn1">
+                当月
+              </view>
             </view>
           </view>
         </template>
         <template #day="date">
-          <span>{{ date.date.day }}</span>
+          <view>{{ date.date.day }}</view>
         </template>
       </nut-calendar>
     </div>
@@ -381,7 +387,8 @@ export default {
 }
 .wrapper {
   display: flex;
-  padding: 0 40px;
+  padding: 10px 40px;
+  margin-top: 30px;
   justify-content: center;
 }
 .d_div {

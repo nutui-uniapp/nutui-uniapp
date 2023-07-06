@@ -71,11 +71,13 @@ export default defineComponent({
     </view>
     <view class="nut-step-main">
       <view class="nut-step-title">
-        <span v-if="!$slots.title">{{ title }}</span>
+        <view v-if="!$slots.title">
+          {{ title }}
+        </view>
         <slot name="title" />
       </view>
       <view v-if="content || $slots.content" class="nut-step-content">
-        <span v-if="!$slots.content" v-html="content" />
+        <view v-if="!$slots.content" v-html="content" />
         <slot name="content" />
       </view>
     </view>

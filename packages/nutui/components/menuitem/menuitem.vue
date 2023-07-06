@@ -193,7 +193,7 @@ export default defineComponent({
             :style="{ 'flex-basis': `${100 / cols}%` }"
             @click="onClick(option)"
           >
-            <span
+            <view
               v-if="option.value === modelValue"
               class="nut-menu-item__span"
               :class="[option.value === modelValue ? activeTitleClass : inactiveTitleClass]"
@@ -206,7 +206,7 @@ export default defineComponent({
               <!-- #ifdef MP-WEIXIN -->
               <Icon :name="optionIcon" :color="parent.props.activeColor" />
               <!-- #endif -->
-            </span>
+            </view>
             <view
               :class="[option.value === modelValue ? activeTitleClass : inactiveTitleClass]"
               :style="{ color: option.value === modelValue ? parent.props.activeColor : '' }"

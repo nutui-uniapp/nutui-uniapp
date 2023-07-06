@@ -141,9 +141,11 @@ export default defineComponent({
         <h3 class="nut-number-keyboard__title">
           {{ title }}
         </h3>
-        <span v-if="type === 'default'" class="van-number-keyboard__close" @click="closeBoard()">{{
-          translate('done')
-        }}</span>
+        <text v-if="type === 'default'" class="van-number-keyboard__close" @click="closeBoard()">
+          {{
+            translate('done')
+          }}
+        </text>
       </div>
       <div class="nut-number-keyboard__body">
         <div class="nut-number-keyboard__keys">

@@ -245,7 +245,9 @@ export default defineComponent({
       </view>
       <view v-if="state.exceeded && state.expanded">
         {{ content }}
-        <span v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(2)">{{ collapseText }}</span>
+        <view v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(2)">
+          {{ collapseText }}
+        </view>
       </view>
     </view>
 

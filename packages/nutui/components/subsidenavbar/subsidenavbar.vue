@@ -52,11 +52,13 @@ export default defineComponent({
 <template>
   <view :class="classes" :ikey="ikey">
     <view class="nut-sub-side-navbar__title" :style="[paddingStyle]" @click.stop="handleClick">
-      <span class="nut-sub-side-navbar__title__text">{{ title }}</span>
-      <span class="nut-sub-side-navbar__title__icon">
+      <text class="nut-sub-side-navbar__title__text">
+        {{ title }}
+      </text>
+      <view class="nut-sub-side-navbar__title__icon">
         <NutIcon v-if="!direction" custom-class="icon" name="arrow-down2" size="12px" />
         <NutIcon v-else name="arrow-up2" size="12px" />
-      </span>
+      </view>
     </view>
     <view
       v-show="!direction"

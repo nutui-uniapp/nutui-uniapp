@@ -57,7 +57,9 @@ export default defineComponent({
             background: textBackground || strokeColor,
           }"
         >
-          <span :style="textStyle">{{ percentage }}{{ isShowPercentage ? '%' : '' }}</span>
+          <view :style="textStyle">
+            {{ percentage }}{{ isShowPercentage ? '%' : '' }}
+          </view>
         </div>
         <div
           v-if="showText && textInside && slotDefault"
@@ -75,7 +77,9 @@ export default defineComponent({
     </div>
     <div v-if="showText && !textInside" class="nut-progress-text" :style="{ lineHeight: height }">
       <template v-if="status === 'text' || status === 'active'">
-        <span :style="textStyle">{{ percentage }}{{ isShowPercentage ? '%' : '' }} </span>
+        <view :style="textStyle">
+          {{ percentage }}{{ isShowPercentage ? '%' : '' }}
+        </view>
       </template>
       <template v-else-if="status === 'icon'">
         <slot name="icon-name">

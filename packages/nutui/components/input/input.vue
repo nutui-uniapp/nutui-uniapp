@@ -221,7 +221,9 @@ export default defineComponent({
           >
           <view v-if="readonly" class="nut-input-disabled-mask" @click="onClickInput" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
-            <span class="nut-input-word-num">{{ modelValue ? modelValue.length : 0 }}</span>/{{ maxLength }}
+            <text class="nut-input-word-num">
+              {{ modelValue ? modelValue.length : 0 }}
+            </text>/{{ maxLength }}
           </view>
         </view>
         <view

@@ -18,6 +18,7 @@
     "dev:mp-weixin": "npm -C example run dev:mp-weixin",
     "build:mp-weixin": "npm -C example run build:mp-weixin",
     "dev:mp-alipay": "npm -C example run dev:mp-alipay",
+    "build:mp-alipay": "npm -C example run build:mp-alipay",
     "dev:h5": "npm -C example run dev:h5",
     "build:h5": "npm -C example run build:h5",
     "dev:app": "npm -C example run dev:app",

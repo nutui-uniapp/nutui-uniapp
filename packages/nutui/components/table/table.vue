@@ -87,7 +87,7 @@ export default defineComponent({
     <view class="nut-table__main" :class="{ 'nut-table__main--striped': striped }">
       <view class="nut-table__main__head">
         <view class="nut-table__main__head__tr">
-          <span
+          <view
             v-for="item in columns"
             :key="item.key"
             class="nut-table__main__head__tr__th"
@@ -99,12 +99,12 @@ export default defineComponent({
             <!-- <slot name="icon" > -->
             <NutIcon v-if="item.sorter" name="down-arrow" size="12px" />
             <!-- </slot> -->
-          </span>
+          </view>
         </view>
       </view>
       <view class="nut-table__main__body">
         <view v-for="item in state.curData" :key="item" class="nut-table__main__body__tr">
-          <span
+          <view
             v-for="[value, render] in sortDataItem()"
             :key="value as string"
             class="nut-table__main__body__tr__td"
@@ -126,12 +126,12 @@ export default defineComponent({
               {{ item[value as string] }}
             </view>
             <!-- #endif -->
-          </span>
+          </view>
         </view>
       </view>
     </view>
     <view v-if="summary" class="nut-table__summary">
-      <span class="nut-table__summary__text" v-html="summary().value" />
+      <view class="nut-table__summary__text" v-html="summary().value" />
     </view>
     <view v-if="!state.curData.length" class="nut-table__nodata">
       <div class="nut-table__nodata" :class="{ 'nut-table__nodata--border': bordered }">

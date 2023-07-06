@@ -734,10 +734,10 @@ export default defineComponent({
                   <view class="nut-calendar__day" :class="getClass(day, month)" @click="chooseDay(day, month)">
                     <!-- 日期显示slot -->
                     <view class="nut-calendar__day-value">
-                      <!-- #ifdef MP-WEIXIN -->
+                      <!-- #ifdef MP -->
                       {{ day.type === 'curr' ? day.day : '' }}
                       <!-- #endif -->
-                      <!-- #ifndef MP-WEIXIN -->
+                      <!-- #ifndef MP -->
                       <slot name="day" :date="day.type === 'curr' ? day : ''">
                         {{ day.type === 'curr' ? day.day : '' }}
                       </slot>

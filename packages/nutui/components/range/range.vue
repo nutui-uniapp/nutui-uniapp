@@ -293,10 +293,10 @@ export default defineComponent({
     <view :id="RangeID" :style="wrapperStyle" :class="classes" @click.stop="onClick">
       <view class="nut-range-mark">
         <template v-if="marksList.length > 0">
-          <span v-for="marks in marksList" :key="marks" :class="markClassName(marks)" :style="marksStyle(marks)">
+          <view v-for="marks in marksList" :key="marks" :class="markClassName(marks)" :style="marksStyle(marks)">
             {{ marks }}
-            <span class="nut-range-tick" :style="tickStyle(marks)" />
-          </span>
+            <view class="nut-range-tick" :style="tickStyle(marks)" />
+          </view>
         </template>
       </view>
       <view class="nut-range-bar" :style="barStyle">

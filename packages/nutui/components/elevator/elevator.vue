@@ -136,7 +136,9 @@ function listViewScroll(e: any) {
 
 onMounted(() => {
   props.indexList.forEach((item, index) => {
-    const query = uni.createSelectorQuery().in(instance).select(`#elevator__item__${index}`)
+    const query = uni.createSelectorQuery()
+      .in(instance)
+      .select(`#elevator__item__${index}`)
     query.fields({
       size: true,
       scrollOffset: true,
@@ -192,7 +194,9 @@ export default defineComponent({
     >
       <view v-show="scrollY > 0 && isSticky" :style="fixedStyle" class="nut-elevator__list__fixed__wrapper">
         <view v-if="isSticky" class="nut-elevator__list__fixed nut-elevator__list__fixed--mini">
-          <span class="nut-elevator__fixed-title">{{ indexList[currentIndex]?.[acceptKey] }}</span>
+          <text class="nut-elevator__fixed-title">
+            {{ indexList[currentIndex]?.[acceptKey] }}
+          </text>
         </view>
       </view>
       <view id="elevator__item-wrap">
@@ -214,7 +218,7 @@ export default defineComponent({
             }"
             @click="handleClickItem(item[acceptKey], subitem)"
           >
-            <span v-if="!$slots.default" v-html="subitem.name" />
+            <text v-if="!$slots.default" v-html="subitem.name" />
             <slot v-else :item="subitem" />
           </view>
         </view>
