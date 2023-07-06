@@ -1,5 +1,6 @@
 // pages.config.ts
 import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
+import { isH5 } from '@uni-helper/uni-env'
 
 export default defineUniPages({
   // You can also define pages fields, which have the highest priority.
@@ -23,6 +24,6 @@ export default defineUniPages({
     backgroundTextStyle: '@bgTxtStyle',
     backgroundColorTop: '@bgColorTop',
     backgroundColorBottom: '@bgColorBottom',
-    navigationStyle: 'custom',
+    navigationStyle: isH5 ? 'custom' : 'default',
   },
 })

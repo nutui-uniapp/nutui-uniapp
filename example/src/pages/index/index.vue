@@ -34,46 +34,44 @@ export default {
 </script>
 
 <template>
-  <nut-config-provider :theme="darkMode ? 'dark' : ''">
-    <view class="index n-bg-2">
-      <view class="index-header n-bg-2">
-        <image
-          src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
-          alt="" srcset=""
-        />
-        <view class="info">
-          <h1 class="title">
-            NutUI
-            <text>For UniAPP</text>
-          </h1>
-          <text>京东风格的轻量级小程序组件库</text>
-        </view>
+  <view class="index n-bg-2">
+    <view class="index-header n-bg-2">
+      <image
+        src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
+        alt="" srcset=""
+      />
+      <view class="info">
+        <h1 class="title">
+          NutUI
+          <text>For UniAPP</text>
+        </h1>
+        <text>京东风格的轻量级小程序组件库</text>
+      </view>
 
-        <!-- #ifdef H5 -->
-        <ThemeSwitch class="ml-5" />
-        <!-- #endif -->
-      </view>
-      <view class="index-components n-bg">
-        <div v-for="_nav in nav" :key="_nav.name" class="com-item">
-          <span class="title">
-            {{ _nav.name }}
-          </span>
-          <div class="info">
-            <template v-for="_package in reorder(_nav.packages)" :key="_package.name">
-              <span v-if="_package.show && _package.taro && _package.exportEmpty !== false" class="info n-bg-2 n-text-color">
-                <text class="link" @click="navigateTo(_package.name, _nav.enName)">
-                  {{ _package.name }}
-                &nbsp;&nbsp;
-                  {{ _package.cName }}
-                </text>
-                <nut-icon size="14px" color="#979797" name="right" />
-              </span>
-            </template>
-          </div>
-        </div>
-      </view>
+      <!-- #ifdef H5 -->
+      <ThemeSwitch class="ml-5" />
+      <!-- #endif -->
     </view>
-  </nut-config-provider>
+    <view class="index-components n-bg">
+      <div v-for="_nav in nav" :key="_nav.name" class="com-item">
+        <span class="title">
+          {{ _nav.name }}
+        </span>
+        <div class="info">
+          <template v-for="_package in reorder(_nav.packages)" :key="_package.name">
+            <span v-if="_package.show && _package.taro && _package.exportEmpty !== false" class="info n-bg-2 n-text-color">
+              <text class="link" @click="navigateTo(_package.name, _nav.enName)">
+                {{ _package.name }}
+                &nbsp;&nbsp;
+                {{ _package.cName }}
+              </text>
+              <nut-icon size="14px" color="#979797" name="right" />
+            </span>
+          </template>
+        </div>
+      </div>
+    </view>
+  </view>
 </template>
 
 <route lang="json">

@@ -1,6 +1,15 @@
 import type { ExtractPropTypes } from 'vue'
+import { commonProps } from '../_utils'
 
 export const navbarProps = {
+  ...commonProps,
+  customColor: {
+    type: String,
+    default: '#979797',
+  },
+  size: {
+    type: [Number, String],
+  },
   leftShow: { type: Boolean, default: false }, // 左侧  是否显示返回icon
   title: { type: String, default: '' }, // 中间  文字标题
   titleIcon: { type: Boolean, default: false }, // 中间  标题icon

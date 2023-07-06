@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo full layout-demo" :class="{ web: isH5 }">
+  <div class="demo full layout-demo">
     <h2 class="title">
       基础布局
     </h2>

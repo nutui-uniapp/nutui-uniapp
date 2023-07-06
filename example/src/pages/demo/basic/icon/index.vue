@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { isH5 } from '@uni-helper/uni-env'
 import icons from '../../../../../icon-config.json'
 
 function copy(text: string) {
@@ -16,7 +15,7 @@ function copy(text: string) {
 </script>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <h2 class="title">
       基础用法
     </h2>

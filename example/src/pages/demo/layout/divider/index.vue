@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo full bg-w" :class="{ web: isH5 }">
+  <div class="demo full bg-w">
     <h2 class="title">
       基础用法
     </h2>

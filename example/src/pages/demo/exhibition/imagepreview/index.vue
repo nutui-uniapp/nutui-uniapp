@@ -102,14 +102,15 @@ export default {
       @close="hideFn(3)"
     />
     <nut-cell is-link title="设置轮播指示器及颜色" :show-icon="true" @click="showFn(3)" />
-
-    <!-- <h2 class="title">视频、图片预览</h2>
-    <nut-image-preview :show="showPreview4" :videos="videoData" :images="imgData" @close="hideFn(4)" />
-    <nut-cell isLink title="视频、图片预览" :showIcon="true" @click="showFn(4)"></nut-cell> -->
-
-    <!-- <h2 class="title">函数式调用</h2>
-    <nut-cell isLink title="函数式调用的图片预览" :showIcon="true" @click="fnShow"></nut-cell> -->
   </div>
 </template>
 
 <style lang="scss"></style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "ImagePreview"
+  }
+}
+</route>

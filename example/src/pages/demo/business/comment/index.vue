@@ -106,3 +106,11 @@ export default defineComponent({
     </nut-cell>
   </div>
 </template>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Comment"
+  }
+}
+</route>

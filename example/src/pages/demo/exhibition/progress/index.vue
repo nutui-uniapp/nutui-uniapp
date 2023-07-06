@@ -141,3 +141,11 @@ export default {
   margin-right: 10px;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Progress"
+  }
+}
+</route>

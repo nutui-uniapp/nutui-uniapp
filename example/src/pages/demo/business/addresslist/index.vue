@@ -110,3 +110,11 @@ export default {
     />
   </div>
 </template>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "AddressList"
+  }
+}
+</route>

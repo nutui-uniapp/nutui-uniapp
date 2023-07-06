@@ -52,7 +52,9 @@ export default {
 
 <template>
   <view class="demo">
-    <h2>基础演示</h2>
+    <h2 class="title">
+      基础演示
+    </h2>
     <nut-cell>
       <view id="scrollDemo" class="infiniteUl">
         <nut-infiniteloading

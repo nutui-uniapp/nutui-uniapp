@@ -230,3 +230,11 @@ export default {
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Swiper"
+  }
+}
+</route>

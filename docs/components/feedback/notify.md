@@ -146,6 +146,18 @@ export default {
 </script>
 ```
 
+### 留出顶部安全距离
+```html
+<template>
+  <nut-cell is-link @click="showNotify1">
+        留出顶部安全距离
+  </nut-cell>
+  <nut-notify v-model:visible="show1" :duration="0" safe-area-inset-top>
+    <span>Content</span>
+  </nut-notify>
+</template>
+```
+
 ### Props
 
 | 参数       | 说明                                                  | 类型    | 默认值   |
@@ -158,6 +170,8 @@ export default {
 | background | 背景颜色                                              | string        |`''`       |
 | class-name | 自定义类名                                            | string \| number | `1`        |
 | position | 自定义位置，可选值为 `top` `bottom` `left` `right` `center`              | string | `top`        |
+| safe-area-inset-top | 是否留出顶部安全距离（默认为状态栏高度）              | boolean | `false`        |
+| safe-height | 顶部安全高度（默认为状态栏高度）              |  number | `设备状态栏高度`        |
 
 ### Events
 

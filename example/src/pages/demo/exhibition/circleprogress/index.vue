@@ -100,3 +100,11 @@ export default {
   justify-content: center;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "CircleProgress"
+  }
+}
+</route>

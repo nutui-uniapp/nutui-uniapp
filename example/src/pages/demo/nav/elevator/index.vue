@@ -289,7 +289,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="demo elevator-demo" :class="{ web: isH5 }">
+  <div class="demo elevator-demo">
     <h2 class="title">
       基础用法
     </h2>

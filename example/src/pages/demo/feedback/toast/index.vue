@@ -62,7 +62,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <h2 class="title">
       基础用法
     </h2>
@@ -112,3 +112,11 @@ export default {
 </template>
 
 <style lang="scss" scoped></style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Toast"
+  }
+}
+</route>

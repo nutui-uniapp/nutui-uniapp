@@ -19,7 +19,7 @@ export default {
       currentDate7: new Date(2022, 4, 10, 0, 0),
     })
 
-    const formatter = (type: string, option) => {
+    const formatter = (type: string, option: { text: string }) => {
       switch (type) {
         case 'year':
           option.text += ''
@@ -42,7 +42,7 @@ export default {
       return option
     }
 
-    const formatter1 = (type: string, option) => {
+    const formatter1 = (type: string, option: { text: string }) => {
       switch (type) {
         case 'year':
           option.text += '年'
@@ -62,9 +62,9 @@ export default {
       return option
     }
 
-    const filter = (type: string, options) => {
+    const filter = (type: string, options: any[]) => {
       if (type === 'hour')
-        return options.filter(option => Number(option.value) % 6 === 0)
+        return options.filter((option: { value: any }) => Number(option.value) % 6 === 0)
 
       return options
     }

@@ -24,6 +24,13 @@ export const notifyProps = {
     type: String as PropType<Position>,
     default: 'top',
   },
+  safeAreaInsetTop: {
+    type: Boolean,
+    default: false,
+  },
+  safeHeight: {
+    type: Number,
+  },
   onClose: Function,
   onClick: Function,
 }

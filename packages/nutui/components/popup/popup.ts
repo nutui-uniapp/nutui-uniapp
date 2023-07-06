@@ -47,6 +47,10 @@ export const popupProps = {
     type: Boolean,
     default: false,
   },
+  safeAreaInsetTop: {
+    type: Boolean,
+    default: true,
+  },
 }
 
 export type PopupProps = ExtractPropTypes<typeof popupProps>

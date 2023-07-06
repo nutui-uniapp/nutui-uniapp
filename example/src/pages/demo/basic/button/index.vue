@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 
 const isLoading = ref(false)
 function changeLoading() {
@@ -25,7 +24,7 @@ function click(val: any) {
 </route>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <h2 class="title">
       按钮类型
     </h2>

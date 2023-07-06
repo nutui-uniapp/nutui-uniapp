@@ -103,3 +103,11 @@ export default {
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Skeleton"
+  }
+}
+</route>

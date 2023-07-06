@@ -9,6 +9,7 @@ export interface NotifyOptions {
   background?: string
   duration?: number
   position?: Position
+  safeAreaInsetTop?: boolean
 }
 
 export interface NotifyInst {

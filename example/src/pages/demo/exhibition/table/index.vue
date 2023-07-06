@@ -252,10 +252,12 @@ export default defineComponent({
         </div>
       </template>
     </nut-table>
+    <!-- #ifndef MP -->
     <h2 class="title">
       自定义单元格
     </h2>
     <nut-table :columns="columns4" :data="data4" />
+    <!-- #endif -->
     <h2 class="title">
       支持异步渲染(5s之后看效果)
     </h2>
@@ -275,3 +277,11 @@ export default defineComponent({
   background-color: #fff;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Table"
+  }
+}
+</route>

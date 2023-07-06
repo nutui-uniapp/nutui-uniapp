@@ -20,6 +20,7 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
       round: props.round,
       [`nut-popup--${props.position}`]: true,
       [`nut-popup--${props.position}--safebottom`]: props.position === 'bottom' && props.safeAreaInsetBottom,
+      [`nut-popup--${props.position}--safetop`]: props.position === 'top' && props.safeAreaInsetTop,
       [props.popClass]: true,
     }
   })

@@ -98,7 +98,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo actionsheet" :class="{ web: isH5 }">
+  <div class="demo actionsheet">
     <h2 class="title">
       基础用法
     </h2>

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { isH5 } from '@uni-helper/uni-env'
 </script>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <h2 class="title">
       基础用法
     </h2>

@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-  <view class="demo" :class="{ web: isH5 }">
+  <view class="demo">
     <nut-backtop @click="click">
       <template #content>
         <div class="text-data n-bg-2">

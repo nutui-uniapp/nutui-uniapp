@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 
 const visible = ref(false)
 const visible1 = ref(false)
@@ -43,7 +42,7 @@ function selected(res: any) {
 </script>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <nut-fixed-nav
       v-model:visible="visible"
       active-text="基础用法"

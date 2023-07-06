@@ -48,9 +48,15 @@ export default {
     >
       <template #prolist>
         <div class="search_prolist_attr">
-          <span class="word">活鲜</span>
-          <span class="word">礼盒</span>
-          <span class="word">国产</span>
+          <text class="word">
+            活鲜
+          </text>
+          <text class="word">
+            礼盒
+          </text>
+          <text class="word">
+            国产
+          </text>
         </div>
       </template>
     </nut-card>
@@ -68,9 +74,15 @@ export default {
     >
       <template #prolist>
         <div class="search_prolist_attr">
-          <span class="word">活鲜</span>
-          <span class="word">礼盒</span>
-          <span class="word">国产</span>
+          <text class="word">
+            活鲜
+          </text>
+          <text class="word">
+            礼盒
+          </text>
+          <text class="word">
+            国产
+          </text>
         </div>
       </template>
       <template #tag>
@@ -123,7 +135,7 @@ export default {
   margin: 3px 0 1px;
   height: 15px;
   overflow: hidden;
-  > span {
+  > span,text {
     float: left;
     padding: 0 5px;
     border-radius: 1px;
@@ -147,3 +159,11 @@ export default {
   font-size: 12px;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Card"
+  }
+}
+</route>

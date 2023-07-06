@@ -11,7 +11,7 @@ export default {
       current5: 1,
     })
 
-    const handleStep = (params) => {
+    const handleStep = (params: string | number) => {
       if (state[params] >= 3)
         state[params] = 1
       else
@@ -156,3 +156,11 @@ export default {
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Steps"
+  }
+}
+</route>

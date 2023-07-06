@@ -400,3 +400,11 @@ export default defineComponent({
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Address"
+  }
+}
+</route>

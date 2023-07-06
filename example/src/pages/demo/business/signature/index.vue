@@ -96,3 +96,11 @@ export default {
   margin-top: 10px;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Signature"
+  }
+}
+</route>

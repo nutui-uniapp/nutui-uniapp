@@ -271,3 +271,11 @@ export default {
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Tour"
+  }
+}
+</route>

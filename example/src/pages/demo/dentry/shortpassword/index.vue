@@ -109,3 +109,11 @@ export default {
     <nut-number-keyboard v-model="state.value4" v-model:visible="state.showKeyboard4" />
   </div>
 </template>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "ShortPassword"
+  }
+}
+</route>

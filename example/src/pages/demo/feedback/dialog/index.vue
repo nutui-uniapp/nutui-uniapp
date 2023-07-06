@@ -86,7 +86,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <nut-cell title="基础弹框" @click="baseClick" />
     <nut-dialog v-model:visible="visible1" title="基础弹框" content="这是基础弹框。" @cancel="onCancel" @ok="onOk" />
 

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store'
 
-const { darkMode, customBarHeight } = storeToRefs(useAppStore())
+const { darkMode } = storeToRefs(useAppStore())
 
 const curPage = getCurrentPages().at(-1) as any
+
 const title = computed(() => {
-  return curPage.route.split('/')[2]
+  return curPage.route.split('/')[3]
 })
 
 // #ifdef H5
@@ -32,14 +33,14 @@ function onClickLeft() {
 
 <template>
   <nut-config-provider :theme="darkMode ? 'dark' : ''">
-    <nut-navbar :placeholder="true" :fixed="true" :left-show="title !== 'index'" safe-area-inset-top :title="title === 'index' ? 'NutUi' : title" @on-click-back="onClickLeft">
-      <!-- <template #left>
-          <div v-if="title !== 'index'">
-            返回
-          </div>
-        </template> -->
-    </nut-navbar>
-    <scroll-view :style="`height:calc(100vh - ${customBarHeight}px)`" class=" n-bg pb-safe" scroll-y>
+    <!-- #ifdef H5 -->
+    <nut-navbar
+      :placeholder="true" :fixed="true" :left-show="!!title" safe-area-inset-top
+      :title="title ? title : 'NutUi'" :size="16" custom-style="font-weight: bold;"
+      @on-click-back="onClickLeft"
+    />
+    <!-- #endif -->
+    <scroll-view style="height:100vh" class=" n-bg pb-safe pt-safe" scroll-y>
       <slot />
     </scroll-view>
   </nut-config-provider>

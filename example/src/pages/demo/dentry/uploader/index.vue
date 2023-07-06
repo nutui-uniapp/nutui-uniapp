@@ -218,3 +218,11 @@ export default {
 </template>
 
 <style lang="scss" scoped></style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Uploader"
+  }
+}
+</route>

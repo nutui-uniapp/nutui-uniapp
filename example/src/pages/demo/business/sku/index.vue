@@ -360,3 +360,11 @@ export default defineComponent({
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Sku"
+  }
+}
+</route>

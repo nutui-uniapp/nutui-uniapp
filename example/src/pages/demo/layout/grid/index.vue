@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { isH5 } from '@uni-helper/uni-env'
 import { useAppStore } from '@/store'
 
 const { darkMode } = storeToRefs(useAppStore())
 </script>
 
 <template>
-  <div class="demo full" :class="{ web: isH5 }">
+  <div class="demo full">
     <h2 class="title">
       基础用法
     </h2>

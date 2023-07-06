@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo full" catchtouchmove="true" :class="{ web: isH5 }">
+  <div class="demo" catchtouchmove="true">
     <h2 class="title">
       基础用法
     </h2>

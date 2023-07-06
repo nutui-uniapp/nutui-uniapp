@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, type ComputedRef, computed, defineComponent, getCurrentInstance, onMounted, ref, toRefs } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX, pxCheck } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import { navbarEmits, navbarProps } from './navbar'
 
 const props = defineProps(navbarProps)
 const emit = defineEmits(navbarEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-
 const { border, fixed, safeAreaInsetTop, placeholder, zIndex } = toRefs(props)
+
 const navHeight = ref(0)
 const classes = computed(() => {
   return {
@@ -25,13 +25,31 @@ const styles: ComputedRef = computed(() => {
   }
 })
 
+const colorStyle = computed(() => {
+  return {
+    fontSize: pxCheck(props.size!),
+    color: props.customColor,
+  }
+})
+
 onMounted(() => {
   if (fixed.value && placeholder.value) {
+    // #ifndef H5
+    const menuButtonBounding = uni.getMenuButtonBoundingClientRect()
+    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 44
+
+    navHeight.value = !menuButtonBounding
+      ? 0
+      : menuButtonBounding.bottom + menuButtonBounding.top - statusBarHeight
+    // #endif
+
+    // #ifdef H5
     const query = uni.createSelectorQuery().in(instance)
     query.select('#navBarHtml').boundingClientRect()
     query.exec((res) => {
       navHeight.value = res[0].height
     })
+    // #endif
   }
 })
 
@@ -65,19 +83,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-if="fixed && placeholder" class="nut-navbar--placeholder" :style="{ height: `${navHeight}px` }">
-    <view id="navBarHtml" :class="classes" :style="styles">
+  <view v-if="fixed && placeholder" class="nut-navbar--placeholder" :style="{ height: `${navHeight}px`, zIndex }">
+    <view id="navBarHtml" :class="[classes, customClass]" :style="[styles, customStyle]">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="left-show">
-          <NutIcon custom-class="right-icon" name="left" height="12px" custom-color="#979797" />
+          <NutIcon custom-class="right-icon" name="left" height="12px" :size="size" :custom-color="customColor" />
         </slot>
-        <view v-if="leftText" class="nut-navbar__text">
+        <view v-if="leftText" :style="colorStyle" class="nut-navbar__text">
           {{ leftText }}
         </view>
         <slot name="left" />
       </view>
       <view class="nut-navbar__title">
-        <view v-if="title" class="title" @click="handleCenter">
+        <view v-if="title" class="title" :style="colorStyle" @click="handleCenter">
           {{ title }}
         </view>
         <view v-if="titleIcon" class="icon" @click="handleCenterIcon">
@@ -86,25 +104,25 @@ export default defineComponent({
         <slot name="content" />
       </view>
       <view class="nut-navbar__right" @click="handleRight">
-        <view v-if="desc" class="nut-navbar__text">
+        <view v-if="desc" :style="customStyle" class="nut-navbar__text">
           {{ desc }}
         </view>
         <slot name="right" />
       </view>
     </view>
   </view>
-  <view v-else :class="classes" :style="styles">
+  <view v-else :class="[classes, customClass]" :style="[styles, customStyle]">
     <view class="nut-navbar__left" @click="handleLeft">
       <slot v-if="leftShow" name="left-show">
-        <NutIcon custom-class="left-icon" name="left" height="12px" color="#979797" />
+        <NutIcon custom-class="left-icon" name="left" height="12px" :size="size" :custom-color="customColor" />
       </slot>
-      <view v-if="leftText" class="nut-navbar__text">
+      <view v-if="leftText" :style="colorStyle" class="nut-navbar__text">
         {{ leftText }}
       </view>
       <slot name="left" />
     </view>
     <view class="nut-navbar__title">
-      <view v-if="title" class="title" @click="handleCenter">
+      <view v-if="title" class="title" :style="colorStyle" @click="handleCenter">
         {{ title }}
       </view>
       <view v-if="titleIcon" class="icon" @click="handleCenterIcon">
@@ -113,7 +131,7 @@ export default defineComponent({
       <slot name="content" />
     </view>
     <view class="nut-navbar__right" @click="handleRight">
-      <view v-if="desc" class="nut-navbar__text">
+      <view v-if="desc" :style="customStyle" class="nut-navbar__text">
         {{ desc }}
       </view>
       <slot name="right" />

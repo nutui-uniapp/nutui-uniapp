@@ -80,3 +80,11 @@ export default {
   padding-right: 0px !important;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Category"
+  }
+}
+</route>

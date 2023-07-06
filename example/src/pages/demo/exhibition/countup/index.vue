@@ -129,3 +129,11 @@ export default {
   opacity: 0.6 !important;
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "CountUp"
+  }
+}
+</route>

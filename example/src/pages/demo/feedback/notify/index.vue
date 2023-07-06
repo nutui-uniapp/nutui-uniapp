@@ -1,13 +1,16 @@
-<!-- eslint-disable no-console -->
-
 <script lang="ts">
 import { reactive, ref } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
 import type { NotifyInst } from 'uniapp-nutui'
+import { useAppStore } from '@/store'
+
+const { customBarHeight } = storeToRefs(useAppStore())
 
 export default {
   setup() {
+    // eslint-disable-next-line no-console
     const onClosed = () => console.log('closed')
+    // eslint-disable-next-line no-console
     const onClick = () => console.log('click')
 
     const notifyRef = ref<NotifyInst>()
@@ -49,11 +52,16 @@ export default {
       },
     }
     const show = ref(false)
+    const show1 = ref(false)
+
     const showNotify = () => {
       show.value = true
       setTimeout(() => {
         show.value = false
       }, 2000)
+    }
+    const showNotify1 = () => {
+      show1.value = true
     }
     const showRefNotify = () => {
       notifyRef.value?.showNotify({
@@ -74,11 +82,14 @@ export default {
       onClosed,
       onClick,
       show,
+      show1,
       showNotify,
+      showNotify1,
       isH5,
       notifyRef,
       showRefNotify,
       notifyStateClick,
+      customBarHeight,
     }
   },
 }
@@ -127,7 +138,7 @@ export default {
     <nut-cell-group title="自定义样式">
       <nut-notify
         v-model:visible="customState.state.show"
-        color="#ad0000"
+        custom-color="#ad0000"
         background="#ffe1e1"
         :type="customState.state.type"
         :msg="customState.state.desc"
@@ -147,6 +158,14 @@ export default {
         组件调用
       </nut-cell>
       <nut-notify v-model:visible="show">
+        <span>Content</span>
+      </nut-notify>
+    </nut-cell-group>
+    <nut-cell-group title="留出顶部安全距离">
+      <nut-cell is-link @click="showNotify1">
+        留出顶部安全距离
+      </nut-cell>
+      <nut-notify v-model:visible="show1" :duration="500000" safe-area-inset-top>
         <span>Content</span>
       </nut-notify>
     </nut-cell-group>

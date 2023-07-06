@@ -66,3 +66,11 @@ export default {
 <style lang="scss">
 
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Empty"
+  }
+}
+</route>

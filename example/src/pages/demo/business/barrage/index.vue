@@ -48,3 +48,11 @@ export default {
   }
 }
 </style>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Barrage"
+  }
+}
+</route>

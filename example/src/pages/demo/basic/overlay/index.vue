@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 
 const show = ref(false)
 const show2 = ref(false)
@@ -14,7 +13,7 @@ const overlayStyle = ref({
 </script>
 
 <template>
-  <div class="demo" :class="{ web: isH5 }">
+  <div class="demo">
     <h2 class="title">
       基础用法
     </h2>

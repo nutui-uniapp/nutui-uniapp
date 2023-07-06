@@ -85,3 +85,11 @@ export default {
     </nut-collapse>
   </div>
 </template>
+
+<route lang="json">
+{
+  "style": {
+    "navigationBarTitleText": "Collapse"
+  }
+}
+</route>

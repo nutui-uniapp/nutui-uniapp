@@ -1,5 +1,11 @@
 @import './reset.css';
 
+html .dark {
+  .uni-page-head {  
+        background-color: #1B1C1E;  
+        color: white;  
+    }  
+}
 
 page,
 #app {

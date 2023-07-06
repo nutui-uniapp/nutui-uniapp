@@ -22,6 +22,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
     background: props.background,
     duration: props.duration,
     position: props.position,
+    safeAreaInsetTop: props.safeAreaInsetTop,
   })
 
   const errorMsg = (msg: string) => {
@@ -51,6 +52,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
       customColor: option.customColor || props.customColor,
       background: option.background || props.background,
       duration: option.duration || props.duration,
+      safeAreaInsetTop: option.safeAreaInsetTop || props.safeAreaInsetTop,
 
     }
     isShowPopup.value = true
