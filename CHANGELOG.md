@@ -1,3 +1,15 @@
+# [0.1.0](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.1.0) (2023-07-07)
+
+
+### Bug Fixes
+
+* 修复小程序暗黑模式失效 ([a445f04](https://github.com/yang1206/uniapp-nutui/commit/a445f042bd8ab1d0ecdc9f738a9eff704a299fe7))
+* 修复支付宝小程序不支持编译错误 ([2c8e0dd](https://github.com/yang1206/uniapp-nutui/commit/2c8e0dda43ad9687211d8f939a6ad20230c4d486))
+* 修复支付宝小程序中部分兼容问题 ([6fa5132](https://github.com/yang1206/uniapp-nutui/commit/6fa513211ffdf60bf9592be198befb2e5c690122))
+* 修复h5组件之间引用样式丢失 ([d884e28](https://github.com/yang1206/uniapp-nutui/commit/d884e28d8210308bed1aeb4a488bc3f9f0963aed))
+
+
+
 ## [0.0.9](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.0.9) (2023-07-06)
 
 
