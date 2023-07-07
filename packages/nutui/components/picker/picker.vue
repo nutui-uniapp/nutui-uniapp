@@ -221,8 +221,8 @@ export default defineComponent({
     <slot name="top" />
 
     <!-- Taro 下转换成 微信小程序 -->
+    <!-- #ifndef H5 -->
     <picker-view
-      v-if="!isH5"
       :indicator-style="`height:${optionHeight}px`"
       :value="defaultIndexes"
       :style="pickerViewStyles"
@@ -244,9 +244,11 @@ export default defineComponent({
         </view>
       </picker-view-column>
     </picker-view>
+    <!-- #endif -->
 
     <!-- Taro 下转换成 H5 -->
-    <view v-else class="nut-picker__column" :style="columnStyle">
+    <!-- #ifdef H5 -->
+    <view class="nut-picker__column" :style="columnStyle">
       <view v-for="(column, columnIndex) in columnsList" :key="columnIndex" class="nut-picker__columnitem">
         <NutPickerColumn
           :ref="swipeRef"
@@ -257,14 +259,14 @@ export default defineComponent({
           :swipe-duration="swipeDuration"
           :visible-option-num="visibleOptionNum"
           :option-height="optionHeight"
-          @change="
-            (option:PickerOption) => {
-              changeHandler(columnIndex, option);
-            }
+          @change="(option: PickerOption) => {
+            changeHandler(columnIndex, option);
+          }
           "
         />
       </view>
     </view>
+    <!-- #endif -->
     <slot name="default" />
   </view>
 </template>
