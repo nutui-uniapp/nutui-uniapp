@@ -11,7 +11,7 @@ import type { FileItem } from './type'
 
 const props = defineProps(uploaderProps)
 const emit = defineEmits(uploaderEmits)
-
+defineExpose({ submit, chooseImage, clearUploadQueue })
 const fileList = reactive(props.fileList) as Array<FileItem>
 let uploadQueue: Promise<{ upload: () => void }>[] = []
 
@@ -77,7 +77,11 @@ function executeUpload(fileItem: FileItem, index: number) {
   }
 
   const task = createUploader(uploadOption)
-  if (props.autoUpload) {
+  if (props.beforeUpload) {
+    props.beforeUpload(uni.uploadFile, uploadOption)
+  }
+
+  else if (props.autoUpload) {
     task.upload()
   }
   else {
@@ -169,7 +173,7 @@ function onDelete(file: FileItem, index: number) {
   }
 }
 
-function onChange(event: InputEvent) {
+function chooseImage(event: InputEvent) {
   if (props.disabled)
     return
 
@@ -184,19 +188,11 @@ function onChange(event: InputEvent) {
     camera: props.camera,
     maxCount: maximum - fileList.length,
   }, props).then((files) => {
-    if (props.beforeUpload) {
-      props.beforeUpload(files).then((f: ChooseFile[]) => {
-        const filteredFiles: ChooseFile[] = filterFiles(new Array<ChooseFile>().slice.call(f))
-        readFile(filteredFiles)
-      })
-    }
-    else {
-      const filteredFiles: ChooseFile[] = filterFiles(
-        new Array<ChooseFile>().slice.call(files),
-      )
+    const filteredFiles: ChooseFile[] = filterFiles(
+      new Array<ChooseFile>().slice.call(files),
+    )
 
-      readFile(filteredFiles)
-    }
+    readFile(filteredFiles)
 
     emit('change', { fileList, event })
   })
@@ -221,7 +217,7 @@ export default defineComponent({
     <view v-if="$slots.default" class="nut-uploader__slot">
       <slot />
       <template v-if="Number(maximum) - fileList.length">
-        <NutButton custom-class="nut-uploader__input" @click="(onChange as any)" />
+        <NutButton custom-class="nut-uploader__input" @click="(chooseImage as any)" />
       </template>
     </view>
 
@@ -293,7 +289,7 @@ export default defineComponent({
       <slot name="upload-icon">
         <NutIcon name="photograph" custom-color="#808080" />
       </slot>
-      <NutButton custom-class="nut-uploader__input" :class="{ disabled }" @click="(onChange as any)" />
+      <NutButton custom-class="nut-uploader__input" :class="{ disabled }" @click="(chooseImage as any)" />
     </view>
   </view>
 </template>

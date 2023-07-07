@@ -33,6 +33,8 @@ onMounted(() => {
     window.addEventListener('message', (e) => {
       if (e.data.type === 'route') {
         const path = e.data.data.split('/demo/').slice(1).join('/')
+        if (!path)
+          return
 
         if (path !== 'index')
           go(`/components/${path}.html`)

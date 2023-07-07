@@ -76,13 +76,13 @@
 <nut-uploader :url="uploadUrl" :data="formData" :headers="formData" :with-Credentials="true"></nut-uploader>
 ```
 
-### 自定义上传方式(before-xhr-upload)
+### 自定义上传方式(before-upload)
 
 
 
 ```html
 <template>
-  <nut-uploader url="https://xxxx" :before-xhr-upload="beforeXhrUpload"></nut-uploader>
+  <nut-uploader url="https://xxxx" :before-upload="beforeXhrUpload"></nut-uploader>
 </template>
 
 <script lang="ts">
@@ -254,7 +254,7 @@ setup() {
 | disabled                  | 是否禁用文件上传                                                                                         | Boolean                           | `false`                     |
 | multiple                  | 是否支持文件多选                                                                                         | Boolean                           | `true`                      |
 | timeout                   | 超时时间，单位为毫秒                                                                                     | Number \| String                  | `1000 * 30`                 |
-| before-xhr-upload         | 执行 `Taro.uploadFile` 上传时，自定义方式                                                                | Function(Taro.uploadFile，option) | `null`                      |
+| before-upload         | 执行 `uni.uploadFile` 上传时，自定义方式                                                                | Function(uni.uploadFile，option) | `null`                      |
 
 ### FileItem
 

@@ -75,7 +75,7 @@ export default {
     }
 
     const beforeXhrUpload = (taroUploadFile: any, options: any) => {
-      console.log(taroUploadFile)
+      console.log(taroUploadFile, options)
 
       // taroUploadFile  是 uni.uploadFile ， 你也可以自定义设置其它函数
       const uploadTask = taroUploadFile({
@@ -99,13 +99,6 @@ export default {
         },
       })
       options.onStart?.(options)
-      uploadTask.progress((res: { progress: any; totalBytesSent: any; totalBytesExpectedToSend: any }) => {
-        options.onProgress?.(res, options)
-        // console.log('上传进度', res.progress);
-        // console.log('已经上传的数据长度', res.totalBytesSent);
-        // console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend);
-      })
-      // uploadTask.abort(); // 取消上传任务
     }
 
     return {
@@ -198,7 +191,7 @@ export default {
     <h2 class="title">
       自定义 uni.uploadFile 上传方式(before-xhr-upload)
     </h2>
-    <nut-uploader :url="uploadUrl" :before-xhr-upload="beforeXhrUpload" />
+    <nut-uploader :url="uploadUrl" :before-upload="beforeXhrUpload" />
     <h2 class="title">
       选中文件后，通过按钮手动执行上传
     </h2>

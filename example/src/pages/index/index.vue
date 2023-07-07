@@ -43,7 +43,9 @@ export default {
       <view class="info">
         <h1 class="title">
           NutUI
-          <text>For UniAPP</text>
+          <text class="ml-5px">
+            For UniAPP
+          </text>
         </h1>
         <text>京东风格的轻量级小程序组件库</text>
       </view>
@@ -54,19 +56,19 @@ export default {
     </view>
     <view class="index-components n-bg">
       <div v-for="_nav in nav" :key="_nav.name" class="com-item">
-        <span class="title">
+        <view class="title">
           {{ _nav.name }}
-        </span>
+        </view>
         <div class="info">
           <template v-for="_package in reorder(_nav.packages)" :key="_package.name">
-            <span v-if="_package.show && _package.taro && _package.exportEmpty !== false" class="info n-bg-2 n-text-color">
+            <view v-if="_package.show && _package.taro && _package.exportEmpty !== false" class="info n-bg-2 n-text-color">
               <text class="link" @click="navigateTo(_package.name, _nav.enName)">
                 {{ _package.name }}
                 &nbsp;&nbsp;
                 {{ _package.cName }}
               </text>
               <nut-icon size="14px" color="#979797" name="right" />
-            </span>
+            </view>
           </template>
         </div>
       </div>

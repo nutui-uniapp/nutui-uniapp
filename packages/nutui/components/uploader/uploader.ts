@@ -76,3 +76,9 @@ export const uploaderEmits = {
 }
 
 export type UploaderEmits = typeof uploaderEmits
+
+export interface UploaderInst {
+  submit: () => void
+  chooseImage: () => void
+  clearUploadQueue: (index: number) => void
+}
