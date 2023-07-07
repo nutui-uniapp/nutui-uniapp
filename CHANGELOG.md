@@ -1,3 +1,13 @@
+## [0.1.1](https://github.com/yang1206/uniapp-nutui/compare/v0.1.0...v0.1.1) (2023-07-07)
+
+
+### Bug Fixes
+
+* 修复picker 在h5中适配错误 ([cdd9aa4](https://github.com/yang1206/uniapp-nutui/commit/cdd9aa4da991145776b10c4f76ae02dbc156110b))
+* 修复uploader组件自定义上传错误 ([af87d68](https://github.com/yang1206/uniapp-nutui/commit/af87d6852dca14f7f212141bfbb80f247bcb8cbf))
+
+
+
 # [0.1.0](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.1.0) (2023-07-07)
 
 
