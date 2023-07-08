@@ -2,7 +2,7 @@
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerOption } from '../pickercolumn/types'
-import { isH5, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutPickerColumn from '../pickercolumn/pickercolumn.vue'
 import { pickerEmits, pickerProps } from './picker'
@@ -188,6 +188,15 @@ const {
   pickerViewStyles,
 } = componentWeapp()
 // #endif
+
+function confirmIf() {
+  // #ifdef H5
+  confirmHandler()
+  // #endif
+  // #ifndef H5
+  confirmHandlerMp()
+  // #endif
+}
 </script>
 
 <script lang="ts">
@@ -212,7 +221,7 @@ export default defineComponent({
       <view class="nut-picker__title">
         {{ title }}
       </view>
-      <view class="nut-picker__confirm nut-picker__right nut-picker__button" @click="isH5 ? confirmHandler() : confirmHandlerMp()">
+      <view class="nut-picker__confirm nut-picker__right nut-picker__button" @click="confirmIf ">
         {{
           okText || translate('confirm')
         }}
