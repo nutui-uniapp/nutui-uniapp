@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/yang1206/uniapp-nutui/compare/v0.1.1...v0.1.2) (2023-07-08)
+
+
+### Bug Fixes
+
+* 修复运行时环境判断错误 ([ce3b0c7](https://github.com/yang1206/uniapp-nutui/commit/ce3b0c70e18826defb87074117294326240f42ec))
+
+
+
 ## [0.1.1](https://github.com/yang1206/uniapp-nutui/compare/v0.1.0...v0.1.1) (2023-07-07)
 
 
