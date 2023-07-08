@@ -1,8 +1,7 @@
 {
   "id": "nutui-uni",
   "displayName": "nutui-uniapp",
-  "name": "uniapp-nutui",
-  "type": "module",
+  "name": "nutui-uniapp",
   "version": "0.1.2",
   "description": "京东风格的轻量级移动端 Uniapp、Vue3 组件库（支持小程序开发）",
   "author": "yang1206 <y1149221897@outlook.com>",
@@ -89,25 +88,5 @@
         }
       }
     }
-  },
-  "sideEffects": [
-    "*.scss",
-    "./components/nutui-uni/_locale/**",
-    "*/components/nutui-uni/components/**/*.vue"
-  ],
-  "main": "./components/nutui-uni/dist/index.cjs",
-  "module": "./components/nutui-uni/dist/index.mjs",
-  "types": "./components/nutui-uni/dist/index.d.ts",
-  "publishConfig": {
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
-  },
-  "files": [
-    "components/nutui-uni/dist",
-    "components/nutui-uni/styles",
-    "components/nutui-uni/components",
-    "components/nutui-uni/README.md",
-    "components/nutui-uni/locale/**"
-  ]
+  }
 }
