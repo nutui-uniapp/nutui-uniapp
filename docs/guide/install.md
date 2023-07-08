@@ -1,8 +1,8 @@
 # 安装
 
-为了能够获得良好的开发体验，目前仅推荐使用vite
+> 为了能够获得良好的开发体验，推荐使用[vite cli](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
 
-## 安装依赖
+## npm安装 (cli)
 
  ::: code-group
 
@@ -19,10 +19,9 @@
   ```
   :::
 
+### 配置 UniAPP-NutUi
 
-## 配置 UniAPP-NutUi
-
-## 按需导入
+### 按需导入
 
 像下面这样更新 `pages.json` 文件：
 
@@ -32,7 +31,7 @@
   "easycom": {
     "autoscan": true,
     "custom": {
-      "^nut(.*)": "uniapp-nutui/componentsuniapp-nutui/components/$1/$1.vue"
+      "^nut-(.*)": "uniapp-nutui/components/$1/$1.vue"
     }
   }
 }
@@ -89,6 +88,53 @@ export default defineConfig({
 
 现在只需使用一个组件，它将按需自动导入。
 
+```html
+<template>
+  <nut-button type="primary">
+        主要按钮
+  </nut-button>
+</template>
+```
+
+## HBuilderX 导入
+
+前往 uniapp插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
+
+### 按需导入
+
+像下面这样更新 `pages.json` 文件：
+
+```json
+// pages.json
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "nut-(.*)": "@/uni_modules/nutui-uni/components/nutui-uni/components/$1/$1.vue"
+    }
+  }
+}
+```
+
+### 样式引入
+
+<!-- 组件库与uniapp都依赖sass，请先安装sass -->
+
+在项目文件 `app.vue` 文件中添加如下代码：
+
+```css
+@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/index.scss';
+```
+
+导入样式变量
+
+在项目文件 `uni.scss` 文件中添加如下代码：
+
+```scss
+@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/variables.scss';
+```
+
+然后就可以使用组件了
 ```html
 <template>
   <nut-button type="primary">

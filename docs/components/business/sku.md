@@ -20,7 +20,6 @@
 </template>
 <script lang="ts">
 import { ref,reactive,onMounted,toRefs} from 'vue';
-import Taro from '@tarojs/taro'
 export default {
   setup() {
       const base = ref(false);
@@ -30,7 +29,7 @@ export default {
       });
 
       onMounted(() => {
-        Taro.request({
+        uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/data.js', //仅为示例，并非真实的接口地址
           success: function (res) {
             console.log(res.data)
@@ -114,7 +113,6 @@ export default {
 </template>
 <script lang="ts">
 import { ref,reactive,onMounted,toRefs} from 'vue';
-import Taro from '@tarojs/taro'
 export default {
 setup() {
     const notSell = ref(false);
@@ -126,7 +124,7 @@ setup() {
     const btnExtraText = ref('抱歉，此商品在所选区域暂无存货');
 
     onMounted(() => {
-        Taro.request({
+        uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/data.js', //仅为示例，并非真实的接口地址
           success: function (res) {
             console.log(res.data)
@@ -203,7 +201,6 @@ setup() {
 </template>
 <script lang="ts">
 import { ref,reactive,onMounted,toRefs} from 'vue';
-import Taro from '@tarojs/taro'
 export default {
 setup() {
     const customStepper = ref(false);
@@ -213,7 +210,7 @@ setup() {
     });
 
     onMounted(() => {
-        Taro.request({
+        uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/data.js', //仅为示例，并非真实的接口地址
           success: function (res) {
             console.log(res.data)
@@ -317,7 +314,6 @@ Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可�
 </template>
 <script lang="ts">
 import { ref,reactive,onMounted,toRefs} from 'vue';
-import Taro from '@tarojs/taro'
 export default {
 setup() {
     const customBySlot = ref(false);
@@ -368,7 +364,7 @@ setup() {
     ]);
 
     onMounted(() => {
-        Taro.request({
+        uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/data.js', //仅为示例，并非真实的接口地址
           success: function (res) {
             console.log(res.data)

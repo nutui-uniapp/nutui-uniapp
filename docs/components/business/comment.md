@@ -31,12 +31,11 @@
 </template>
 <script lang="ts">
 import { reactive, ref,onMounted } from 'vue';
-import Taro from '@tarojs/taro';
 export default {
   setup() {
     let cmt = ref({});
     onMounted(()=>{
-        Taro.request({
+        uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/comment_data.json', //仅为示例，并非真实的接口地址
           success: function (res) {
             cmt.value = res.data.Comment;
@@ -97,12 +96,11 @@ export default {
 </template>
 <script lang="ts">
 import { reactive, ref,onMounted } from 'vue';
-import Taro from '@tarojs/taro';
 export default {
   setup() {
     let cmt = ref({});
     onMounted(()=>{
-      Taro.request({
+      uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/comment_data.json', //仅为示例，并非真实的接口地址
           success: function (res) {
             cmt.value = res.data.Comment;
@@ -141,12 +139,11 @@ export default {
 </template>
 <script lang="ts">
 import { reactive, ref,onMounted } from 'vue';
-import Taro from '@tarojs/taro';
 export default {
   setup() {
     let cmt = ref({});
     onMounted(()=>{
-      Taro.request({
+      uni.request({
           url: 'https://storage.360buyimg.com/nutui/3x/comment_data.json', //仅为示例，并非真实的接口地址
           success: function (res) {
             cmt.value = res.data.Comment;

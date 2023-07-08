@@ -22,14 +22,14 @@
 
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const minDate = new Date(2020, 0, 1);
       const maxDate = new Date(2025, 10, 1);
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ({ selectedValue, selectedOptions })=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(''),
           icon:'none'
         });
@@ -122,12 +122,12 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ( { selectedValue, selectedOptions } )=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join('-'),
           icon:'none'
         });
@@ -162,14 +162,14 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup() {
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ( { selectedValue, selectedOptions } )=>{
         date = selectedValue.slice(0, 3).join('-');
         time = selectedValue.slice(3).join(':');
-        Taro.showToast({
+        uni.showToast({
           title:date + ' ' + time,
           icon:'none'
         });
@@ -204,12 +204,12 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ( { selectedValue, selectedOptions } )=>{
-         Taro.showToast({
+         uni.showToast({
           title:selectedValue.join(':'),
           icon:'none'
         });
@@ -244,12 +244,12 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ( { selectedValue, selectedOptions } )=>{
-         Taro.showToast({
+         uni.showToast({
           title:selectedValue.join(':'),
           icon:'none'
         });
@@ -287,14 +287,14 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ( { selectedValue, selectedOptions } )=>{
         const date = selectedOptions.slice(1, 3).map((op) => op.text).join('');
         const time = selectedOptions.slice(3).map((op) => op.value).join(':');
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions[0].text + '年' + date + ' ' + time,
           icon:'none'
         });
@@ -350,12 +350,12 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const currentDate = new Date(2022, 4, 10, 10, 10);
       const confirm = ( { selectedValue, selectedOptions } )=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedValue.join(':'),
           icon:'none'
         });
@@ -394,7 +394,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const currentDate = new Date(2022, 4, 10, 0, 0);
@@ -425,7 +425,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
         return options;
       };
       const confirm = ( { selectedValue, selectedOptions } )=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((option) => option.text).join(''),
           icon:'none'
         });

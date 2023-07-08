@@ -17,7 +17,7 @@
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const columns = ref([
@@ -31,7 +31,7 @@
       ]);
     
       const confirm = ( { selectedValue,selectedOptions })=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(','),
           icon:'none'
         });
@@ -114,7 +114,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const selectedValue = ref(['ZheJiang']);
@@ -129,7 +129,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
       ]);
     
       const confirm = ( { selectedValue,selectedOptions })=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(','),
           icon:'none'
         });
@@ -162,7 +162,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const selectedValue = ref(['ZheJiang']);
@@ -177,7 +177,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
       ]);
     
       const confirm = ( { selectedValue,selectedOptions })=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(','),
           icon:'none'
         });
@@ -210,7 +210,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const selectedTime = ref(['Wednesday','Afternoon']);
@@ -232,7 +232,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
       ]);
     
       const confirm = ( { selectedValue,selectedOptions })=>{
-        Taro.showToast({
+        uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(','),
           icon:'none'
         });
@@ -267,7 +267,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </template>
 <script lang="ts">
   import { ref } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const selectedCascader = ref(['FuJian', 'FuZhou','TaiJiang']);
@@ -319,7 +319,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
       ]);
     
       const confirm = ( { selectedValue,selectedOptions })=>{
-         Taro.showToast({
+         uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(','),
           icon:'none'
         });
@@ -351,7 +351,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </template>
 <script lang="ts">
   import { ref, onMounted } from 'vue';
-  import Taro from '@tarojs/taro'
+  
   export default {
     setup(props) {
       const asyncColumns = ref([]);
@@ -374,7 +374,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
       });
       
       const confirm = ( { selectedValue,selectedOptions })=>{
-         Taro.showToast({
+         uni.showToast({
           title:selectedOptions.map((val: any) => val.text).join(','),
           icon:'none'
         });

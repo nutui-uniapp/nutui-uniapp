@@ -9,10 +9,12 @@ lerna-debug.log*
 stats.html
 
 node_modules
+uni_modules/dist
 dist
 locale
 cache
 *.local
+dist.zip
 
 # Editor directories and files
 .vscode/*

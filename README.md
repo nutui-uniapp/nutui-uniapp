@@ -1,6 +1,8 @@
-
 <p align="center">
-<img src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png" style="width:100px;height:100px;" />
+<img src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
+width="100"
+height="100" style="max-width: 100%;" />
+</p>
 <h1 align="center">UniAPP-NutUi</h1>
 <p align="center">京东风格的轻量级 Uniapp 组件库，支持移动端 H5 和 小程序开发</p>
 <p align="center">
@@ -31,6 +33,10 @@ UniAPP-NutUI 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 - 🌍 支持国际化
 
 ## 安装
+
+> uniapp-nutui 提供了 npm 包和 uni_modules 包的方式安装组件。推荐使用 vite cli安装npm包，可以获得良好的 ts支持和更好的开发体验，npm包的更新维护也会更频繁及时
+
+### 方式一：npm
 
 ```bash
 pnpm add uniapp-nutui
@@ -74,7 +80,6 @@ export default defineConfig({
 
 样式引入
 
-<!-- 组件库与uniapp都依赖sass，请先安装sass -->
 
 在项目文件 `app.vue` 文件中添加如下代码：
 
@@ -112,6 +117,12 @@ And then enjoy it.
   </nut-button>
 </template>
 ```
+
+### 方式二：uni_modules
+
+前往 uniapp插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
+
+使用方式可查看[安装](https://uniapp-nutui.tech/guide/install.html)。
 
 ## 感谢
 

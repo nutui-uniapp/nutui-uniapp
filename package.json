@@ -32,7 +32,8 @@
     "postinstall": "npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "commit": "git pull && git add -A && git-cz && git push",
-    "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/uni.ts"
+    "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
+    "build:uni": "esno scripts/uni.ts"
   },
   "dependencies": {
     "vue": "3.2.47"
@@ -43,14 +44,17 @@
     "@commitlint/config-conventional": "^17.6.5",
     "@dcloudio/types": "^3.3.3",
     "@nutui/touch-emulator": "^1.0.0",
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.15.0",
     "@uni-helper/uni-app-types": "^0.5.8",
     "@vue/tsconfig": "^0.4.0",
     "bumpp": "^9.1.1",
+    "consola": "^3.2.3",
     "conventional-changelog-cli": "^3.0.0",
     "cz-git": "^1.6.1",
     "eslint": "^8.42.0",
     "esno": "^0.16.3",
+    "fs-extra": "^11.1.1",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.24",
     "postcss-html": "^1.5.0",

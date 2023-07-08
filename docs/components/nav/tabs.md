@@ -181,7 +181,7 @@ export default {
 
 可通过`direction`属性修改标题栏自动滚动方向。
 
-在`taro`环境下，必须设置`name`以开启标题栏自动滚动功能。
+在`uni`环境下，必须设置`name`以开启标题栏自动滚动功能。
 
 ```html
 <template>
@@ -393,7 +393,7 @@ export default {
 | title-gutter     | 标签间隙                                                                                           | number \| string | `0`          |
 | size             | 标签栏字体尺寸大小 可选值  large normal small                                                      | string           | `normal`     |
 | auto-height      | 自动高度。设置为 true 时，nut-tabs 和 nut-tabs__content 会随着当前 nut-tab-pane 的高度而发生变化。 | boolean          | `false`      |
-| name             | 在`taro`环境下，必须设置`name`以开启标题栏自动滚动功能。                                           | string           | ''           |
+| name             | 在`uni`环境下，必须设置`name`以开启标题栏自动滚动功能。                                           | string           | ''           |
 
 ### Tabs Slots
 
