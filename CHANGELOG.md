@@ -1,3 +1,17 @@
+## [0.1.4](https://github.com/yang1206/uniapp-nutui/compare/v0.1.3...v0.1.4) (2023-07-09)
+
+
+### Bug Fixes
+
+* 修复elevator在小程序环境文字不显示 ([87fc4e9](https://github.com/yang1206/uniapp-nutui/commit/87fc4e91222e3052d1c0ee849d8b7715d8768177))
+
+
+### Features
+
+* 增加组件全局类型定义文件 ([c84da47](https://github.com/yang1206/uniapp-nutui/commit/c84da47d8ad9a414965f8bc9f8d033f5bbe90435))
+
+
+
 ## [0.1.3](https://github.com/yang1206/uniapp-nutui/compare/v0.1.2...v0.1.3) (2023-07-09)
 
 
