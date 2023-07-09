@@ -1,4 +1,5 @@
 import fs from 'fs-extra'
+import consloa from 'consola'
 
 async function copy() {
   const sourceDir = 'packages/nutui'
@@ -6,7 +7,7 @@ async function copy() {
 
   await Promise.all([
     fs.remove('packages/uni_modules/dist'),
-    fs.ensureDir(`${destDir}/nutui-uni`),
+    fs.ensureDir(`${destDir}`),
   ])
 
   const excludedDir = [
@@ -24,6 +25,7 @@ async function copy() {
     'locale',
     'dist',
     'styles',
+    'global.d.ts',
   ]
 
   const excludedDir3 = [
@@ -43,7 +45,9 @@ async function copy() {
       ])
     }),
 
-  ])
+  ]).then(() => {
+    consloa.success('copy success !!!')
+  })
 }
 
 copy()

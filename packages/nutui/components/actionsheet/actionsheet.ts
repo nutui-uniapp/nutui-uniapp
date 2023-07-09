@@ -2,7 +2,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import { popupProps } from '../popup/popup'
 import { isBoolean } from '../_utils'
 
-export interface menuItems {
+export interface ActionSheetOption {
   disable: boolean
   loading: boolean
   color: string
@@ -41,7 +41,7 @@ export const actionsheetProps = {
     default: '',
   },
   menuItems: {
-    type: Array as PropType<menuItems[]>,
+    type: Array as PropType<ActionSheetOption[]>,
     default: () => [],
   },
   closeAbled: {

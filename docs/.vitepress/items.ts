@@ -127,9 +127,9 @@ export const components = [
 export const navComponents = components.map(i => ({ text: i.text, link: i.items[0].link }))
 
 export const guides = [
+  { text: '概览', link: '/guide/overview' },
   { text: '快速上手', link: '/guide/quick-start' },
   { text: '安装', link: '/guide/install' },
-  // { text: '概览', link: '/guide/overview' },
   { text: '国际化', link: '/guide/i18n' },
   { text: '定制主题', link: '/guide/theme' },
   // { text: '暗黑模式', link: '/guide/dark' },

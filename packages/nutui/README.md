@@ -19,7 +19,7 @@ height="100" style="max-width: 100%;" />
 
 UniAPP-NutUI 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了UniApp, 使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。
 
-使用请参考[安装](https://uniapp-nutui.tech/guide/install.html)。
+使用请参考[快速开始](https://uniapp-nutui.tech/guide/quick-start.html)。
 
 ## 特性
 
@@ -51,7 +51,8 @@ pnpm add uniapp-nutui
   "easycom": {
     "autoscan": true,
     "custom": {
-      "^nut(.*)": "uniapp-nutui/componentsuniapp-nutui/components/$1/$1.vue"
+      "^nut-(.*)?-(.*)": "uniapp-nutui/components/$1$2/$1$2.vue",
+      "^nut-(.*)": "uniapp-nutui/components/$1/$1.vue"
     }
   }
 }

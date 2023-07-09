@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /guide/quick-start
+      link: /guide/overview
 
 features:
   - icon: 🌈
@@ -24,7 +24,7 @@ features:
   - icon: 🔥
     title: 按需引入
     details: 提供解析器以自动仅导入被使用的组件。
-    link: /guide/install.html
+    link: /guide/quick-start.html
     linkText: 了解更多
   - icon: 🎉
     title: TS 支持

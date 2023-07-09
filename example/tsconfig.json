@@ -8,8 +8,22 @@
         "src/*"
       ]
     },
-    "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types", "@uni-helper/uni-app-types"]
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "@dcloudio/types",
+      "@uni-helper/uni-app-types",
+      "uniapp-nutui/global.d.ts"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/touchEmulator.js"]
+  "include": [
+    "node_modules/uniapp-nutui/global.d.ts",
+    "src/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/utils/touchEmulator.js"
+  ]
 }

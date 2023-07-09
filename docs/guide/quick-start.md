@@ -1,35 +1,161 @@
-# UniAPP-NutUI
+# 快速开始
 
-## 介绍
+> uniapp-nutui 提供了 npm 包和 uni_modules 包两种方式使用组件。
+> 为了能够获得良好的开发体验，推荐使用[vite cli](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
 
-UniAPP-NutUI 组件库，基于Taro版[`NutUi`](https://nutui.jd.com) 4.x版本修改而来，适配了UniApp, 使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。
+## npm安装 (cli)
 
-使用请参考[安装](./install.md)。
+ ::: code-group
 
-## 特性
+  ```bash [pnpm]
+  pnpm add uniapp-nutui
+  ```
 
-- 🚀 70+ 高质量组件，覆盖移动端主流场景
-- 💪 支持一套代码同时开发多端
-- 📖 基于京东 APP 10.0 视觉规范
-- 🍭 支持按需引用
-- 💪 支持 TypeScript
-- 💪 支持动态定制主题
-- 🍭 支持暗黑模式
-- 🌍 支持国际化
+  ```bash [yarn]
+  yarn add uniapp-nutui
+  ```
 
-## 预览
+  ```bash [npm]
+  npm install uniapp-nutui
+  ```
+  :::
 
-<p align="center">
-   <img src="https://s2.loli.net/2023/07/05/eJwPvqCY8EcZ7Vi.png" width="164" alt="NutUI" />
-  &nbsp;
-  <img src="https://s2.loli.net/2023/07/05/QyW2RHcmnuvIFwp.jpg" width="166" title="请用微信扫码">
-  &nbsp;
-</p>
+### 配置 UniAPP-NutUi
 
-## 贡献
+### 按需导入
 
-有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/yang1206/uniapp-nutui/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md)。
+像下面这样更新 `pages.json` 文件：
 
-感谢所有已经为 UniAPP-NutUI 做出贡献的人！
+```json
+// pages.json
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^nut-(.*)?-(.*)": "uniapp-nutui/components/$1$2/$1$2.vue",
+      "^nut-(.*)": "uniapp-nutui/components/$1/$1.vue"
+    }
+  }
+}
+```
+### 组件TS类型支持
 
-<a href="https://github.com/yang1206/uniapp-nutui/graphs/contributors"><img src="https://contributors.nn.ci/api?repo=yang1206/uniapp-nutui" /></a>
+想要获取全局组件类型， 需要使用 vscode与[volar插件](https://cn.vuejs.org/guide/typescript/overview.html#volar-takeover-mode)
+
+请在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型。
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    // ...
+    "types": ["uniapp-nutui/global.d.ts"]
+  }
+}
+```
+
+<Badge type="tip">推荐</Badge> 或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import Components from '@uni-helper/vite-plugin-uni-components'
+import { NutResolver } from 'uniapp-nutui'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  // ...
+  plugins: [
+    // ...
+    Components({
+      resolvers: [NutResolver()],
+    }),
+  ],
+})
+```
+
+### 样式引入
+
+<!-- 组件库与uniapp都依赖sass，请先安装sass -->
+
+在项目文件 `app.vue` 文件中添加如下代码：
+
+```css
+@import 'uniapp-nutui/styles/index';
+```
+
+导入样式变量
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  // ...
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "uniapp-nutui/styles/variables.scss";',
+      },
+    },
+  },
+})
+```
+
+现在只需使用一个组件，它将按需自动导入。
+
+```html
+<template>
+  <nut-button type="primary">
+        主要按钮
+  </nut-button>
+</template>
+```
+
+## HBuilderX 导入
+
+前往 uniapp插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
+
+### 按需导入
+
+像下面这样更新 `pages.json` 文件：
+
+```json
+// pages.json
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "nut-(.*)?-(.*)": "@/uni_modules/nutui-uni/components/nutui-uni/components/$1$2/$1$2.vue",
+      "nut-(.*)": "@/uni_modules/nutui-uni/components/nutui-uni/components/$1/$1.vue"
+    }
+  }
+}
+```
+
+### 样式引入
+
+<!-- 组件库与uniapp都依赖sass，请先安装sass -->
+
+在项目文件 `app.vue` 文件中添加如下代码：
+
+```css
+@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/index.scss';
+```
+
+导入样式变量
+
+在项目文件 `uni.scss` 文件中添加如下代码：
+
+```scss
+@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/variables.scss';
+```
+
+然后就可以使用组件了
+```html
+<template>
+  <nut-button type="primary">
+        主要按钮
+  </nut-button>
+</template>
+```

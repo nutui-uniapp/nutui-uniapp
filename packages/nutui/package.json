@@ -23,7 +23,6 @@
   ],
   "sideEffects": [
     "*.scss",
-    "./_locale/**",
     "*/components/**/*.vue"
   ],
   "exports": {
@@ -52,7 +51,8 @@
     "styles",
     "components",
     "README.md",
-    "locale/**"
+    "locale/**",
+    "global.d.ts"
   ],
   "scripts": {
     "build": "unbuild",

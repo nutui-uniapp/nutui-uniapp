@@ -4,12 +4,14 @@ import { isH5 } from '@uni-helper/uni-env'
 
 export default defineUniPages({
   // You can also define pages fields, which have the highest priority.
-  easycom: {
-    autoscan: true,
-    custom: {
-      // '^nut-(.*)': 'uniapp-nutui/components/$1/$1.vue',
-    },
-  },
+  // easycom: {
+  //   autoscan: true,
+  //   custom: {
+  //     '^nut-(.*)?-(.*)': 'uniapp-nutui/components/$1$2/$1$2.vue',
+  //     '^nut-(.*)': 'uniapp-nutui/components/$1/$1.vue',
+
+  //   },
+  // },
   pages: [
     {
       path: 'pages/index/index',

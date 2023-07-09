@@ -19,9 +19,9 @@ type PLATFORM =
   | 'quickapp-webview-union'
 
 /** Value of `process.env.UNI_PLATFORM` */
-export const platform = envShim.UNI_PLATFORM as PLATFORM
+const platform = envShim.UNI_PLATFORM as PLATFORM
 /** Detect if `process.env.UNI_PLATFORM` is `H5` */
-export const isH5 = platform === 'h5'
+const isH5 = platform === 'h5'
 
 export function NutResolver(): ComponentResolver {
   return {
