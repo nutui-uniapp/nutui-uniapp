@@ -7,7 +7,7 @@ import UniPages from '@uni-helper/vite-plugin-uni-pages'
 import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
 import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
 import unocss from 'unocss/vite'
-import { NutResolver } from '../packages/nutui/src'
+import { NutResolver } from 'uniapp-nutui'
 
 // https://vitejs.dev/config/
 export default defineConfig({

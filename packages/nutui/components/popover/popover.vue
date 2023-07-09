@@ -94,7 +94,13 @@ function getRootPosition() {
 
   if (width) {
     if (['bottom', 'top'].includes(direction)) {
-      const h = direction === 'bottom' ? height + cross : -(conentHeight + cross)
+      let h
+      // #ifdef H5
+      h = 0
+      // #endif
+      // #ifndef H5
+      h = direction === 'bottom' ? height + cross : -(conentHeight + cross)
+      // #endif
 
       popoverstyles.value.top = `${top + h}px`
       if (!skew)
