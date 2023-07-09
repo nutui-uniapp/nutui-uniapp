@@ -1,3 +1,17 @@
+## [0.1.3](https://github.com/yang1206/uniapp-nutui/compare/v0.1.2...v0.1.3) (2023-07-09)
+
+
+### Bug Fixes
+
+* 修复h5部分组件样式错误 ([cfb1e4b](https://github.com/yang1206/uniapp-nutui/commit/cfb1e4b4a88a8a6d3f674fb0bacf9c5283caabe9))
+
+
+### Features
+
+* 新增uni_modules安装方式 ([9df523b](https://github.com/yang1206/uniapp-nutui/commit/9df523bd65fcab1b3c57a1686381a0df278855a9))
+
+
+
 ## [0.1.2](https://github.com/yang1206/uniapp-nutui/compare/v0.1.1...v0.1.2) (2023-07-08)
 
 
