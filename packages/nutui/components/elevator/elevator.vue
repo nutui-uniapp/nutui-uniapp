@@ -194,9 +194,9 @@ export default defineComponent({
     >
       <view v-show="scrollY > 0 && isSticky" :style="fixedStyle" class="nut-elevator__list__fixed__wrapper">
         <view v-if="isSticky" class="nut-elevator__list__fixed nut-elevator__list__fixed--mini">
-          <text class="nut-elevator__fixed-title">
+          <view class="nut-elevator__fixed-title">
             {{ indexList[currentIndex]?.[acceptKey] }}
-          </text>
+          </view>
         </view>
       </view>
       <view id="elevator__item-wrap">
@@ -218,7 +218,7 @@ export default defineComponent({
             }"
             @click="handleClickItem(item[acceptKey], subitem)"
           >
-            <text v-if="!$slots.default" v-html="subitem.name" />
+            <view v-if="!$slots.default" v-html="subitem.name" />
             <slot v-else :item="subitem" />
           </view>
         </view>
