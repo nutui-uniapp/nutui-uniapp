@@ -1,3 +1,14 @@
+## [0.1.5](https://github.com/yang1206/uniapp-nutui/compare/v0.1.4...v0.1.5) (2023-07-13)
+
+
+### Features
+
+* 新增 codeInput组件 ([9b9516b](https://github.com/yang1206/uniapp-nutui/commit/9b9516ba7ce4a147c731a04f25532dfdaef730b6))
+* 新增loadingpage组件 ([4ae2c12](https://github.com/yang1206/uniapp-nutui/commit/4ae2c125240e933e5b95209411904d4854a89413))
+* 移植nutbingo的部分抽奖组件 ([6e19b1a](https://github.com/yang1206/uniapp-nutui/commit/6e19b1a9c62dd878bf77a32a90fce17b35d83afb))
+
+
+
 ## [0.1.4](https://github.com/yang1206/uniapp-nutui/compare/v0.1.3...v0.1.4) (2023-07-09)
 
 
