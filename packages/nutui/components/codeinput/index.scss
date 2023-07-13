@@ -1,0 +1,76 @@
+.nut-code-input {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+      font-size: 15px;
+      color: $code-input-content-color;
+    }
+
+    &__dot {
+      width: 7px;
+      height: 7px;
+      background-color: $title-color2;
+      border-radius: 100px;
+    }
+
+    &__line {
+      position: absolute;
+      bottom: 0;
+      width: 40px;
+      height: 4px;
+      background-color: $code-input-content-color;
+      border-radius: 100px;
+    }
+
+    /* #ifndef APP-PLUS */
+    &__cursor {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: $code-input-cursor-width;
+      height: $code-input-cursor-height;
+      transform: translate(-50%, -50%);
+      animation: $code-input-cursor-animation-duration nut-cursor-flicker infinite;
+    }
+
+    /* #endif */
+
+  }
+
+  &__input {
+    // 之所以需要input输入框，是因为有它才能唤起键盘
+    // 这里将它设置为两倍的屏幕宽度，再将左边的一半移出屏幕，为了不让用户看到输入的内容
+    position: absolute;
+    top: 0;
+    left: -325px;
+    width: 700px;
+    text-align: left;
+    background-color: transparent;
+  }
+}
+
+/* #ifndef APP-PLUS */
+// stylelint-disable-next-line keyframes-name-pattern
+@keyframes nut-cursor-flicker {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* #endif */

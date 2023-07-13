@@ -103,6 +103,8 @@ declare module '@vue/runtime-core' {
     NutTrendArrow: typeof import('./components/trendarrow/trendarrow.vue')['default']
     NutUploader: typeof import('./components/uploader/uploader.vue')['default']
     NutWatermark: typeof import('./components/watermark/watermark.vue')['default']
+    NutCodeInput: typeof import('./components/codeinput/codeinput.vue')['default']
+
   }
 
   // interface ComponentCustomProperties {}

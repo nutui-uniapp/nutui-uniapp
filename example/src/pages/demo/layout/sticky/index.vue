@@ -33,10 +33,10 @@ export default defineComponent({
 .sticky-demo {
   overflow: auto !important;
 }
-
 .sticky-container {
   width: 100%;
   height: 300px;
+  background-color: #fff;
 }
 </style>
 

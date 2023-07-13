@@ -222,7 +222,7 @@
           "cName": "粘性布局",
           "type": "component",
           "desc": "当组件在屏幕范围内时，会按照正常的布局排列，当组件滚出屏幕范围时，始终会固定在距离屏幕固定的距离处",
-          "show": true,
+          "show": false,
           "taro": true,
           "tarodoc": false,
           "author": "szg2008"
@@ -532,6 +532,17 @@
           "show": true,
           "desc": "输入框组件",
           "author": "gxx158"
+        },
+        {
+          "version": "3.0.0",
+          "name": "CodeInput",
+          "taro": true,
+          "sort": 2,
+          "cName": "验证码输入框",
+          "type": "component",
+          "show": true,
+          "desc": "验证码输入框组件",
+          "author": "yang1206"
         },
         {
           "version": "3.0.0",

@@ -1,7 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
 
-const { theme } = uni.getSystemInfoSync()
-
 export const barrageProps = {
   danmu: {
     type: Array,

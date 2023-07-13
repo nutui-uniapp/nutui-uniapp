@@ -1,5 +1,5 @@
 import { hyphenate } from './common'
-import { isString } from './is'
+import { isNumber, isString } from './is'
 
 export type NormalizedStyle = Record<string, string | number>
 
@@ -35,4 +35,11 @@ export function stringifyStyle(styles: NormalizedStyle | string | undefined): st
     }
   }
   return ret
+}
+
+export function getPx(value: string | number, unit = false) {
+  if (isNumber(value))
+    return unit ? `${value}px` : Number(value)
+
+  return unit ? `${Number.parseInt(value)}px` : Number.parseInt(value)
 }

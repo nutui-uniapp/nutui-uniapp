@@ -975,4 +975,13 @@ $invoice-padding: var(--nut-invoice-padding, 10px 10px 20px) !default;
 $trendarrow-font-size: var(--nut-trendarrow-font-size, 14px) !default;
 $trendarrow-before-icon-margin: var(--nut-trendarrow-before-icon-margin, 4px) !default;
 
+
+// CodeInput
+$code-input-cursor-width: var(--nut-code-input-cursor-width, 1px) !default;
+$code-input-cursor-height: var(--nut-code-input-cursor-height, 40%) !default;
+$code-input-cursor-animation-duration: 1s;
+$code-input-cursor-animation-name: nut-cursor-flicker;
+$code-input-content-color: var(--nut-code-content-color, #606266) !default;;
+
+
 @import './mixins/index';

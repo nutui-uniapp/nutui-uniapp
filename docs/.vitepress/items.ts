@@ -19,7 +19,7 @@ export const components = [
       { text: 'Divider 分割线', link: '/components/layout/divider' },
       { text: 'Grid 宫格', link: '/components/layout/grid' },
       { text: 'Layout 布局', link: '/components/layout/layout' },
-      { text: 'Sticky 粘性布局', link: '/components/layout/sticky' },
+      // { text: 'Sticky 粘性布局', link: '/components/layout/sticky' },
     ],
   },
   {
@@ -49,6 +49,7 @@ export const components = [
       { text: 'Form 表单', link: '/components/dentry/form' },
       { text: 'Input 输入框', link: '/components/dentry/input' },
       { text: 'InputNumber 数字输入框', link: '/components/dentry/inputnumber' },
+      { text: 'CodeInput 验证码输入框', link: '/components/dentry/codeinput' },
       { text: 'NumberKeyboard 数字键盘', link: '/components/dentry/numberkeyboard' },
       { text: 'Picker 选择器', link: '/components/dentry/picker' },
       { text: 'Radio 单选按钮', link: '/components/dentry/radio' },
