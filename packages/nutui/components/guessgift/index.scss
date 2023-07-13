@@ -1,0 +1,48 @@
+.nut-guess-gift {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  .bowl-item {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100px;
+    height: 100px;
+    background: url("https://img14.360buyimg.com/imagetools/jfs/t1/213395/37/9376/5774/61cc34b8Ec3d2eddd/1ddf6d42663e1285.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all ease-out 0.5s;
+  }
+
+  .gold-bean {
+    position: absolute;
+
+    // left: 50%;
+    // transform: translateX(-50%);
+    bottom: 30px;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    background: url("https://img13.360buyimg.com/imagetools/jfs/t1/219815/14/9349/4725/61cc34b8E059ebbd2/55e8002ae82a01ea.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  // stylelint-disable selector-class-pattern
+
+  ._opacity0 {
+    opacity: 0;
+  }
+
+  ._opacity1 {
+    opacity: 1;
+  }
+}
+
+.disabledClick {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}

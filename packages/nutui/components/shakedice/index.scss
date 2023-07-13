@@ -1,0 +1,109 @@
+.nut-shakedice {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+    // transform: rotateX(40deg) rotateY(-30deg);
+    transition: all 1s;
+    transform-style: preserve-3d;
+
+    .page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        display: flex;
+        width: 100px;
+        height: 100px;
+        font-size: 100px;
+        color: #fff;
+        text-align: center;
+        background: rgb(253 250 250);
+        border: 1px solid #000;
+        border-radius: 20px;
+
+        >text {
+            display: block;
+            width: 25px;
+            height: 25px;
+            background: black;
+            border-radius: 50%;
+        }
+    }
+
+    .page1 {
+        align-items: center;
+        justify-content: center;
+        transform: translateZ(50px);
+    }
+
+    .page2 {
+        align-items: center;
+        justify-content: space-around;
+        transform: rotateX(-90deg) translateZ(50px);
+    }
+
+    .page3 {
+        position: relative;
+
+        >span{
+            position: absolute;
+
+            &:first-child{
+                top: 10px;
+                right: 10px;
+            }
+
+            &:nth-child(2){
+                top: 37%;
+                left: 37%;
+            }
+
+            &:nth-child(3){
+                bottom: 10px;
+                left: 10px;
+            }
+        }
+
+        transform: rotateY(90deg) translateZ(50px);
+    }
+
+    .page4 {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        transform: rotateY(-90deg) translateZ(50px);
+    }
+
+    .page5 {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        transform: rotateX(90deg) translateZ(50px);
+
+        >span{
+            margin: 0 10px;
+
+            &:nth-child(3){
+                position: absolute;
+                top: 37%;
+                left: 37%;
+                margin: 0;
+            }
+        }
+    }
+
+    .page6 {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        transform: translateZ(-50px);
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}

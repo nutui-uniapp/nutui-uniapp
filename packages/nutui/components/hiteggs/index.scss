@@ -1,0 +1,130 @@
+.nut-hiteggs {
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 25px;
+  overflow: hidden;
+  background-size: 100% 100%;
+
+  .nut-eggs-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+
+    // stylelint-disable selector-class-pattern
+
+    .intactImg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: move 2s 0s infinite;
+
+      &.hide {
+        opacity: 0;
+      }
+    }
+
+    .splitImg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+    }
+
+    .hammer {
+      position: absolute;
+      top: -15px;
+      right: -18px;
+      width: 50px;
+      height: 30px;
+      transform: rotate(10deg);
+    }
+  }
+}
+
+// stylelint-disable declaration-block-no-duplicate-properties
+
+@keyframes move {
+  0%,
+  65% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  70% {
+    transform: rotate(6deg);
+    transform: rotate(6deg);
+  }
+
+  75% {
+    transform: rotate(-6deg);
+    transform: rotate(-6deg);
+  }
+
+  80% {
+    transform: rotate(6deg);
+    transform: rotate(6deg);
+  }
+
+  85% {
+    transform: rotate(-6deg);
+    transform: rotate(-6deg);
+  }
+
+  90% {
+    transform: rotate(6deg);
+    transform: rotate(6deg);
+  }
+
+  95% {
+    transform: rotate(-6deg);
+    transform: rotate(-6deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+
+// stylelint-disable keyframes-name-pattern
+
+@keyframes shake-rotate {
+  0% {
+    transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+
+  20% {
+    transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+
+  40% {
+    transform: rotate(50deg);
+    transform: rotate(50deg);
+  }
+
+  60% {
+    transform: rotate(50deg);
+    transform: rotate(50deg);
+  }
+
+  80% {
+    transform: rotate(30deg);
+    transform: rotate(30deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+}

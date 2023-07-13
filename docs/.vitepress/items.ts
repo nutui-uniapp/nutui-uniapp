@@ -122,6 +122,18 @@ export const components = [
       { text: 'TimeSelect 配送时间', link: '/components/business/timeselect' },
     ],
   },
+  {
+    text: '抽奖组件',
+    collapsed: false,
+    items: [
+      { text: 'TurnTable 大转盘抽奖', link: '/components/bingo/turntable' },
+      { text: 'Marquee 跑马灯抽奖', link: '/components/bingo/marquee' },
+      { text: 'GiftBox 神秘大礼盒', link: '/components/bingo/giftbox' },
+      { text: 'Hiteggs 砸金蛋', link: '/components/bingo/hiteggs' },
+      { text: 'DollMachine 抓娃娃机', link: '/components/bingo/dollmachine' },
+      { text: 'ShakeDice 摇骰子', link: '/components/bingo/shakedice' },
+    ],
+  },
 ]
 
 export const navComponents = components.map(i => ({ text: i.text, link: i.items[0].link }))

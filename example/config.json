@@ -1300,6 +1300,82 @@
           "taro": true
         }
       ]
+    },
+    {
+      "name": "抽奖组件",
+      "enName": "bingo",
+      "packages": [
+        {
+          "version": "1.0.0",
+          "name": "TurnTable",
+          "taro": true,
+          "tarodoc": true,
+          "sort": 1,
+          "cName": "大转盘抽奖",
+          "type": "component",
+          "show": true,
+          "desc": "大转盘抽奖",
+          "author": "Ymm0008"
+        },
+        {
+          "version": "1.0.0",
+          "name": "Marquee",
+          "taro": true,
+          "tarodoc": true,
+          "sort": 1,
+          "cName": "跑马灯抽奖",
+          "type": "component",
+          "show": true,
+          "desc": "跑马灯抽奖",
+          "author": "Ymm0008"
+        },
+        {
+          "version": "1.0.0",
+          "name": "GiftBox",
+          "taro": true,
+          "tarodoc": true,
+          "sort": 1,
+          "cName": "神秘大礼盒",
+          "type": "component",
+          "show": true,
+          "desc": "神秘大礼盒",
+          "author": "Ymm0008"
+        },
+        {
+          "name": "Hiteggs",
+          "taro": true,
+          "tarodoc": true,
+          "sort": 1,
+          "cName": "砸金蛋",
+          "type": "component",
+          "show": true,
+          "desc": "砸金蛋",
+          "author": "Drjingfubo"
+        },
+        {
+          "version": "1.0.0",
+          "name": "DollMachine",
+          "taro": true,
+          "tarodoc": true,
+          "sort": 1,
+          "cName": "娃娃机",
+          "type": "component",
+          "show": true,
+          "desc": "娃娃机",
+          "author": "Ymm0008"
+        },
+        {
+          "name": "ShakeDice",
+          "taro": true,
+          "tarodoc": true,
+          "sort": 1,
+          "cName": "摇骰子",
+          "type": "component",
+          "show": true,
+          "desc": "摇骰子",
+          "author": "Drjingfubo"
+        }
+      ]
     }
   ]
 }

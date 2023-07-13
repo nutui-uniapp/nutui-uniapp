@@ -1,0 +1,134 @@
+.nut-marquee {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 8px;
+
+    // stylelint-disable selector-class-pattern
+
+
+    .bgContent {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .marqueeBg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url("https://img10.360buyimg.com/imagetools/jfs/t1/189406/15/21216/26045/61309346E9aa7922b/5dc34e22d3a7bb0e.png")no-repeat center;
+        background-size: 100% 100%;
+    }
+
+    .start {
+        position: relative;
+        top: -5px;
+        left: -2px;
+        width: 75px;
+        height: 75px;
+        background: url("https://img13.360buyimg.com/imagetools/jfs/t1/205479/17/4245/32041/61309346E02bd3b6b/b41be60bedbb1e69.png") no-repeat center;
+        background-size: 100% 100%;
+    }
+
+    .disabledDraw {
+        background: url("https://img10.360buyimg.com/imagetools/jfs/t1/193040/14/21217/16320/61309346E6569e270/36e45126a5f1fc9c.png") no-repeat center;
+        background-size: 100% 100%;
+    }
+
+    .gift-list {
+        padding: 0;
+        margin: 0;
+
+        .gift-item {
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            list-style: none;
+            background: url("https://img10.360buyimg.com/imagetools/jfs/t1/187454/31/21425/27854/61309346E7c791c2c/a12649fbffb63a34.png") no-repeat center;
+            background-size: 100% 100%;
+
+            .gift-img {
+                width: 35px;
+                height: 35px;
+                margin: 8px auto;
+
+                image,
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .desc {
+                display: block;
+                max-width: 70px;
+                margin: 0 auto;
+                overflow: hidden;
+                font-size: 12px;
+                font-weight: 500;
+                color:#fff;
+                text-align: center;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        // 上面3个奖品
+      .gift-1,.gift-2,.gift-3 {
+            top: 25px;
+        }
+
+        .gift-1 {
+            left: 15px;
+        }
+
+        .gift-2 {
+            left: 110px;
+        }
+
+        .gift-3 {
+            left: 205px;
+        }
+
+        // 中间2个奖品
+      .gift-4,.gift-8 {
+            top: 110px;
+        }
+
+        .gift-4 {
+            left: 205px;
+        }
+
+        .gift-8 {
+            left: 15px;
+        }
+
+        // 下面3个奖品
+      .gift-5,.gift-6,.gift-7 {
+            top: 190px;
+        }
+
+        .gift-5 {
+            left: 205px;
+        }
+
+        .gift-6 {
+            left: 110px;
+        }
+
+        .gift-7 {
+            left: 15px;
+        }
+
+        // 中奖
+      .active {
+            background: url("https://img10.360buyimg.com/imagetools/jfs/t1/189406/15/21216/26045/61309346E9aa7922b/5dc34e22d3a7bb0e.png") no-repeat center;
+            background-size: 100% 100%;
+        }
+    }
+}
