@@ -62,6 +62,8 @@ declare module '@vue/runtime-core' {
     NutInputNumber: typeof import('uniapp-nutui/components/inputnumber/inputnumber.vue')['default']
     NutInvoice: typeof import('uniapp-nutui/components/invoice/invoice.vue')['default']
     NutList: typeof import('uniapp-nutui/components/list/list.vue')['default']
+    NutLoadingpage: typeof import('uniapp-nutui/components/loadingpage/loadingpage.vue')['default']
+    NutLoadingPage: typeof import('uniapp-nutui/components/loadingpage/loadingpage.vue')['default']
     NutMarquee: typeof import('uniapp-nutui/components/marquee/marquee.vue')['default']
     NutMenu: typeof import('uniapp-nutui/components/menu/menu.vue')['default']
     NutMenuItem: typeof import('uniapp-nutui/components/menuitem/menuitem.vue')['default']

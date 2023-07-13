@@ -17,13 +17,13 @@ height="100" style="max-width: 100%;" />
 
 ## 介绍
 
-UniAPP-NutUI 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了UniApp, 使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。
+uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了uni-app, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
 
 使用请参考[快速开始](https://uniapp-nutui.tech/guide/quick-start.html)。
 
 ## 特性
 
-- 🚀 70+ 高质量组件，覆盖移动端主流场景
+- 🚀 80+ 高质量组件，覆盖移动端主流场景
 - 💪 支持一套代码同时开发多端
 - 📖 基于京东 APP 10.0 视觉规范
 - 🍭 支持按需引用

@@ -984,4 +984,9 @@ $code-input-cursor-animation-name: nut-cursor-flicker;
 $code-input-content-color: var(--nut-code-content-color, #606266) !default;;
 
 
+// LoadingPage
+$loadingpage-icon-margin-bottom: var(--nut-loadingpage-icon-margin-bottom, 10px) !default;
+
+
+
 @import './mixins/index';

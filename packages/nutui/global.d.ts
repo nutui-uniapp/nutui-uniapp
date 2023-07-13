@@ -104,6 +104,18 @@ declare module '@vue/runtime-core' {
     NutUploader: typeof import('./components/uploader/uploader.vue')['default']
     NutWatermark: typeof import('./components/watermark/watermark.vue')['default']
     NutCodeInput: typeof import('./components/codeinput/codeinput.vue')['default']
+    NutDollMachine: typeof import('./components/dollmachine/dollmachine.vue')['default']
+    NutGiftBox: typeof import('./components/giftbox/giftbox.vue')['default']
+    NutHitEggs: typeof import('./components/hiteggs/hiteggs.vue')['default']
+    NutMarquee: typeof import('./components/marquee/marquee.vue')['default']
+    NutShakeDice: typeof import('./components/shakedice/shakedice.vue')['default']
+    NutTurnTable: typeof import('./components/turntable/turntable.vue')['default']
+    NutLoadingPage: typeof import('./components/loadingpage/loadingpage.vue')['default']
+
+
+
+
+
 
   }
 

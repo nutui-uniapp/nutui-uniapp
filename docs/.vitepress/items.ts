@@ -92,6 +92,7 @@ export const components = [
       { text: 'Empty 空状态', link: '/components/exhibition/empty' },
       { text: 'ImagePreview 图片预览', link: '/components/exhibition/imagepreview' },
       { text: 'List 虚拟列表', link: '/components/exhibition/list' },
+      { text: 'LoadingPage 加载页', link: '/components/exhibition/loadingpage' },
       { text: 'Noticebar 公告栏', link: '/components/exhibition/noticebar' },
       { text: 'Popover 气泡弹出框', link: '/components/exhibition/popover' },
       { text: 'Price 价格', link: '/components/exhibition/price' },

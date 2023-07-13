@@ -906,17 +906,14 @@
         },
         {
           "version": "3.0.0",
-          "name": "Video",
+          "name": "LoadingPage",
+          "taro": true,
           "type": "component",
-          "cName": "视频播放器",
-          "desc": "视频播放组件",
-          "sort": 20,
-          "taro": false,
+          "cName": "加载页",
+          "desc": "加载时占位提示",
+          "sort": 24,
           "show": true,
-          "tarodoc": true,
-          "exportEmpty": false,
-          "exportEmptyTaro": false,
-          "author": "zy19940510"
+          "author": "yang1206"
         },
         {
           "version": "3.0.0",
@@ -1142,7 +1139,7 @@
           "cName": "引导",
           "desc": "漫游式引导组件",
           "show": true,
-          "taro": true,
+          "taro": false,
           "tarodoc": false,
           "type": "component",
           "author": "yangxiaolu"
