@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: NutUi for UniAPP
-  text: 适配UniAPP与Vue 3的京东风格的轻量级移动端组件库
-  tagline: 一个基于 Vue.js 的UI 库，允许你制作漂亮的小程序
+  text: 京东风格的轻量级移动端组件库
+  tagline: 一个基于 Vue.js与 Uni-APP 的UI 库，允许你制作漂亮的小程序
   image:
     src: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png'
     alt: NutUi
