@@ -31,6 +31,7 @@ const prevTabIndex = ref(0)
 const tabName = ref(['province', 'city', 'country', 'town'])
 const scrollDis = ref([0, 0, 0, 0])
 const scrollTop = ref(0)
+const regionData = reactive<Array<RegionData[]>>([])
 
 const regionList = computed(() => {
   switch (tabIndex.value) {
@@ -87,8 +88,13 @@ const closeWay = ref('self')
 
 const lineDistance = ref(20)
 
-// 设置选中省市县
+    // 设置选中省市县
 function initCustomSelected() {
+  regionData[0] = props.province || []
+  regionData[1] = props.city || []
+  regionData[2] = props.country || []
+  regionData[3] = props.town || []
+
   const defaultValue = props.modelValue
   const num = defaultValue.length
   if (num > 0) {
@@ -98,20 +104,7 @@ function initCustomSelected() {
       return
     }
     for (let index = 0; index < num; index++) {
-      let arr: RegionData[] = []
-      switch (index) {
-        case 0:
-          arr = props.province
-          break
-        case 1:
-          arr = props.city
-          break
-        case 2:
-          arr = props.country
-          break
-        default:
-          arr = props.town
-      }
+      const arr: RegionData[] = regionData[index]
       selectedRegion.value[index] = arr.filter((item: RegionData) => item.id === defaultValue[index])[0]
     }
     scrollTo()
@@ -128,19 +121,19 @@ function getTabName(item: RegionData | null, index: number) {
     return props.columnsPlaceholder[index] || translate('select')
 }
 
-// 手动关闭 点击叉号(cross)，或者蒙层(mask)
+    // 手动关闭 点击叉号(cross)，或者蒙层(mask)
 function handClose(type = 'self') {
   closeWay.value = type === 'cross' ? 'cross' : 'self'
 
   showPopup.value = false
 }
 
-// 点击遮罩层关闭
+    // 点击遮罩层关闭
 function clickOverlay() {
   closeWay.value = 'mask'
 }
 
-// 切换下一级列表
+    // 切换下一级列表
 function nextAreaList(item: RegionData) {
   const tab = tabIndex.value
   prevTabIndex.value = tabIndex.value
@@ -154,16 +147,14 @@ function nextAreaList(item: RegionData) {
 
   selectedRegion.value[tab] = item
 
-  for (let i = tab + 2; i < 4; i++)
-    selectedRegion.value.splice(i, 1)
+  // 删除右边已选择数据
+  selectedRegion.value.splice(tab + 1, selectedRegion.value.length - (tab + 1))
 
-  if (tab < 3) {
+  if (regionData[tab + 1]?.length > 0) {
     tabIndex.value = tab + 1
 
     callBackParams.next = tabName.value[tabIndex.value]
     callBackParams.value = item
-
-    emit('change', callBackParams)
 
     scrollTo()
   }
@@ -171,8 +162,9 @@ function nextAreaList(item: RegionData) {
     handClose()
     emit('update:modelValue')
   }
+  emit('change', callBackParams)
 }
-// 切换地区Tab
+    // 切换地区Tab
 function changeRegionTab(item: RegionData, index: number) {
   prevTabIndex.value = tabIndex.value
   if (getTabName(item, index)) {
@@ -191,7 +183,7 @@ function scrollTo() {
   })
 }
 
-// 选择现有地址
+    // 选择现有地址
 function selectedExist(item: existRegionData) {
   const copyExistAdd = props.existAddress
   let prevExistAdd = {}
@@ -210,14 +202,14 @@ function selectedExist(item: existRegionData) {
 
   handClose()
 }
-// 初始化
+    // 初始化
 function initAddress() {
   selectedRegion.value = []
   tabIndex.value = 0
   scrollTo()
 }
 
-// 关闭
+    // 关闭
 function close() {
   const data = {
     addressIdStr: '',
@@ -250,13 +242,13 @@ function close() {
 
   if (closeWay.value === 'self')
     emit('close', callBackParams)
-
-  else emit('closeMask', { closeWay })
+  else
+    emit('closeMask', { closeWay })
 
   emit('update:visible', false)
 }
 
-// 选择其他地址
+    // 选择其他地址
 function switchModule() {
   const type = privateType.value
   privateType.value = type === 'exist' ? 'custom' : 'exist'
@@ -305,6 +297,7 @@ export default defineComponent({
     v-model:visible="showPopup"
     position="bottom"
     :lock-scroll="lockScroll"
+    :round="round"
     @close="close"
     @click-overlay="clickOverlay"
     @open="closeWay = 'self'"

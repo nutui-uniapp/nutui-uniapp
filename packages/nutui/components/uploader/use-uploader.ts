@@ -79,14 +79,14 @@ export function chooseFile({
   sizeType,
   camera,
   maxCount,
-}: ChooseFileOptions, props: UploaderProps): Promise<ChooseFile[]> {
+}: ChooseFileOptions, props: UploaderProps, fileList: any[]): Promise<ChooseFile[]> {
   return new Promise((resolve, reject) => {
     // chooseMedia 目前只支持微信小程序原生，其余端全部使用 chooseImage API
     // #ifdef MP-WEIXIN
 
     uni.chooseMedia({
       /** 最多可以选择的文件个数 */
-      count: multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+      count: multiple ? Number(props.maximum) * 1 - fileList.length : 1,
       /** 文件类型 */
       mediaType: props.mediaType,
       /** 图片和视频选择的来源 */

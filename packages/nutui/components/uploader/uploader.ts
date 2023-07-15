@@ -17,7 +17,7 @@ export const uploaderProps = {
 
   timeout: { type: [Number, String], default: 1000 * 30 },
   // defaultFileList: { type: Array, default: () => new Array<FileItem>() },
-  fileList: { type: Array, default: () => [] },
+  fileList: { type: Array<any>, default: () => [] },
   isPreview: { type: Boolean, default: true },
   // picture、list
   listType: { type: String, default: 'picture' },

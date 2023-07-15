@@ -1,4 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
+import { isBoolean } from '../_utils'
 
 export const stickyProps = {
   top: {
@@ -7,12 +8,18 @@ export const stickyProps = {
   },
   zIndex: {
     type: [Number, String],
-    default: 2000,
+    default: 99,
   },
-  parentHeight: {
-    type: [Number],
-    default: 667,
+  scrollTop: {
+    type: [Number, String],
+    default: 1,
   },
 }
 
 export type StickyProps = ExtractPropTypes<typeof stickyProps>
+
+export const stickyEmits = {
+  change: (isFixed: boolean) => isBoolean(isFixed),
+}
+
+export type StickyEmits = typeof stickyEmits

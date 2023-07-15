@@ -113,7 +113,7 @@ export default {
         },
         onChange({ custom, next, value }: any) {
           formData2.address += value.name
-          const name = addressModule.state[next]
+          const name = (addressModule as any).state[next]
           if (name.length < 1)
             addressModule.state.show = false
         },
@@ -143,18 +143,30 @@ export default {
       })
     }
     // 函数校验
-    const customValidator = (val: string) => /^\d+$/.test(val)
-    const customRulePropValidator = (val: string, rule: FormItemRuleWithoutValidator) => {
+    const customValidator = async (val: string) => /^\d+$/.test(val)
+    const customRulePropValidator = async (val: string, rule: FormItemRuleWithoutValidator) => {
       return (rule?.reg as RegExp).test(val)
     }
-    const nameLengthValidator = (val: string) => val?.length >= 2
+    const nameLengthValidator = async (val: string) => val?.length >= 2
     // Promise 异步校验
-    const asyncValidator = (val: string) => {
-      return new Promise((resolve) => {
-        console.log('模拟异步验证中...')
+    const asyncValidator = async (val: string): Promise<string> => {
+      const telReg = /^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/
+      return new Promise((resolve, reject) => {
+        uni.showLoading({
+          title: '模拟异步验证中...',
+        })
         setTimeout(() => {
-          console.log('验证完成')
-          resolve(/^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/.test(val))
+          uni.hideLoading()
+          if (!val)
+          // eslint-disable-next-line prefer-promise-reject-errors
+            reject('请输入联系电话')
+
+          else if (!telReg.test(val))
+          // eslint-disable-next-line prefer-promise-reject-errors
+            reject('联系电话格式不正确')
+
+          else
+            resolve('')
         }, 1000)
       })
     }
@@ -341,7 +353,7 @@ export default {
         <nut-uploader
           v-model:file-list="formData2.defaultFileList"
           url="http://服务地址"
-          accept="image/*"
+          accept="image"
           maximum="3"
           multiple
         />

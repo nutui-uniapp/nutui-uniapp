@@ -4,7 +4,7 @@ import { computed, defineComponent, provide, reactive, watch } from 'vue'
 import { PREFIX, getPropByPath, isObject, isPromise } from '../_utils'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemRule } from '../formitem/types'
-import { useProvide } from '../_hooks'
+import { isVNode, useProvide } from '../_hooks'
 import { FORM_KEY, formEmits, formProps } from './form'
 import type { ErrorMessage, FormRule, FormRules } from './types'
 
@@ -37,27 +37,32 @@ watch(
 )
 
 function findFormItem(vnodes: VNode[]) {
-  let task: FormRule[] = []
-  vnodes.forEach((vnode: VNode) => {
-    let type = vnode.type
-    type = (type as any).name || type
-    if (type === 'nut-form-item' || type?.toString().endsWith('form-item')) {
-      task.push({
-        prop: vnode.props?.prop,
-        rules: vnode.props?.rules || [],
-      })
-    }
-    else if (Array.isArray(vnode.children) && vnode.children?.length) {
-      task = task.concat(findFormItem(vnode.children as VNode[]))
-    }
-    else if (isObject(vnode.children) && Object.keys(vnode.children)) {
-      // 异步节点获取
-      if ((vnode.children as any)?.default) {
-        vnode.children = (vnode.children as any).default()
-        task = task.concat(findFormItem(vnode.children as VNode[]))
+  const task: FormRule[] = []
+  const search = (vnode: any) => {
+    if (isVNode(vnode)) {
+      const type = (vnode?.type as any)?.name || vnode?.type
+      if (type === 'nut-form-item' || type?.toString().endsWith('form-item')) {
+        task.push({
+          prop: vnode.props?.prop,
+          rules: vnode.props?.rules || [],
+        })
+      }
+      else if (Array.isArray(vnode.children) && vnode.children?.length) {
+        search(vnode.children)
+      }
+      else if (isObject(vnode.children) && Object.keys(vnode.children)) {
+        // 异步节点获取
+        if ((vnode.children as any)?.default)
+          search((vnode.children as any).default())
       }
     }
-  })
+    else if (Array.isArray(vnode)) {
+      vnode.forEach((v: any) => {
+        search(v)
+      })
+    }
+  }
+  search(vnodes)
   return task
 }
 
@@ -68,7 +73,7 @@ function tipMessage(errorMsg: ErrorMessage) {
   formErrorTip.value[errorMsg.prop] = errorMsg.message
 }
 
-function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
+async function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
   const { rules, prop } = item
 
   const _Promise = (errorMsg: ErrorMessage): Promise<ErrorMessage> => {
@@ -107,19 +112,15 @@ function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
     if (validator) {
       const result = validator(value, ruleWithoutValidator)
       if (isPromise(result)) {
-        return new Promise((resolve, reject) => {
-          result
-            .then((res) => {
-              if (!res) {
-                tipMessage(errorMsg)
-                resolve(errorMsg)
-              }
-              else {
-                resolve(true)
-              }
-            })
-            .catch(e => reject(e))
-        })
+        try {
+          const value = await result
+          if (value === false)
+            return _Promise(errorMsg)
+        }
+        catch (error) {
+          const validateErrorMsg = { prop, message: error as string }
+          return _Promise(validateErrorMsg)
+        }
       }
       else {
         if (!result)
@@ -141,15 +142,10 @@ function validate(customProp = '') {
       const task = findFormItem(internalChildren?.map(child => child.vnode))
 
       const errors = task.map((item) => {
-        if (customProp) {
-          if (customProp === item.prop)
-            return checkRule(item)
-          else
-            return Promise.resolve(true)
-        }
-        else {
-          return checkRule(item)
-        }
+        if (customProp && customProp !== item.prop)
+          return Promise.resolve(true)
+
+        return checkRule(item)
       })
 
       Promise.all(errors).then((errorRes) => {

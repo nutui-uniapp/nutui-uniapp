@@ -1,25 +1,59 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, ref } from 'vue'
+import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, watch } from 'vue'
+import { onPageScroll } from '@dcloudio/uni-app'
 import { PREFIX } from '../_utils'
-import { stickyProps } from './sticky'
+import { useRect } from '../_hooks'
+import { stickyEmits, stickyProps } from './sticky'
 
 const props = defineProps(stickyProps)
-const root = ref<HTMLElement>()
+const emit = defineEmits(stickyEmits)
+const instance = getCurrentInstance() as ComponentInternalInstance
 
-const rootStyle = computed(() => {
+const refRandomId = Math.random().toString(36).slice(-8)
+const rootId = `rootRef-${refRandomId}`
+const state = reactive({
+  fixed: false,
+  height: 0,
+  width: 0,
+})
+const rootStyle = computed<CSSProperties | undefined>(() => {
+  if (state.fixed)
+    return { height: `${state.height}px` }
+  return {}
+})
+const stickyStyle = computed<CSSProperties>(() => {
+  if (!state.fixed)
+    return {}
   return {
-    height: `${props.parentHeight}px`,
-  }
-})
-
-const stickyStyle = computed(() => {
-  const style: CSSProperties = {
     top: `${props.top}px`,
-    zIndex: +props.zIndex,
+    height: `${state.height}px`,
+    width: `${state.width}px`,
+    position: state.fixed ? 'fixed' : undefined,
+    zIndex: Number(props.zIndex),
   }
-
-  return style
 })
+function handleScroll() {
+  useRect(rootId, instance).then((rootRect) => {
+    state.height = rootRect.height
+    state.width = rootRect.width
+    state.fixed = Number(props.top) >= rootRect.top
+  })
+}
+watch(
+  () => state.fixed,
+  (val) => {
+    emit('change', val)
+  },
+)
+if (props.scrollTop !== -1) {
+  onPageScroll(() => {
+    handleScroll()
+  })
+}
+
+else { watch(() => props.scrollTop, handleScroll) }
+
+onMounted(handleScroll)
 </script>
 
 <script lang="ts">
@@ -35,8 +69,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="root" :style="rootStyle">
-    <view :class="`${componentName} nut-sticky--stickyed`" :style="stickyStyle">
+  <view :id="rootId" class="nut-sticky" :style="rootStyle">
+    <view class="nut-sticky__box" :style="stickyStyle">
       <slot />
     </view>
   </view>

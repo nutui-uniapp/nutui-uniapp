@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, reactive } from 'vue'
+import { computed, defineComponent, reactive, ref, watch } from 'vue'
 import { PREFIX } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutProgress from '../progress/progress.vue'
@@ -12,8 +12,15 @@ import type { FileItem } from './type'
 const props = defineProps(uploaderProps)
 const emit = defineEmits(uploaderEmits)
 defineExpose({ submit, chooseImage, clearUploadQueue })
-const fileList = reactive(props.fileList) as Array<FileItem>
-let uploadQueue: Promise<{ upload: () => void }>[] = []
+const fileList = ref(props.fileList as Array<FileItem>)
+const uploadQueue = ref<Promise<any>[]>([])
+
+watch(
+  () => props.fileList,
+  () => {
+    fileList.value = props.fileList
+  },
+)
 
 const classes = computed(() => {
   const prefixCls = componentName
@@ -63,7 +70,7 @@ function executeUpload(fileItem: FileItem, index: number) {
       option,
       fileItem,
     })
-    emit('update:fileList', fileList)
+    emit('update:fileList', fileList.value)
   }
   uploadOption.onFailure = (data: GeneralCallbackResult, option: UploadOptions) => {
     fileItem.status = 'error'
@@ -85,7 +92,7 @@ function executeUpload(fileItem: FileItem, index: number) {
     task.upload()
   }
   else {
-    uploadQueue.push(
+    uploadQueue.value.push(
       new Promise((resolve, reject) => {
         resolve(task)
       }),
@@ -95,15 +102,15 @@ function executeUpload(fileItem: FileItem, index: number) {
 
 function clearUploadQueue(index = -1) {
   if (index > -1) {
-    uploadQueue.splice(index, 1)
+    uploadQueue.value.splice(index, 1)
   }
   else {
-    uploadQueue = []
-    fileList.splice(0, fileList.length)
+    uploadQueue.value = []
+    fileList.value.splice(0, fileList.value.length)
   }
 }
 function submit() {
-  Promise.all(uploadQueue).then((res) => {
+  Promise.all(uploadQueue.value).then((res) => {
     res.forEach(i => i.upload())
   })
 }
@@ -132,7 +139,7 @@ function readFile(files: ChooseFile[]) {
     if (props.isPreview)
       fileItem.url = fileType === 'video' ? file.thumbTempFilePath : filepath
 
-    fileList.push(fileItem)
+    fileList.value.push(fileItem)
     executeUpload(fileItem, index)
   })
 }
@@ -151,7 +158,7 @@ function filterFiles(files: ChooseFile[]) {
   if (oversizes.length)
     emit('oversize', oversizes)
 
-  const currentFileLength = files.length + fileList.length
+  const currentFileLength = files.length + fileList.value.length
   if (currentFileLength > maximum)
     files.splice(files.length - (currentFileLength - maximum))
 
@@ -161,10 +168,10 @@ function filterFiles(files: ChooseFile[]) {
 function onDelete(file: FileItem, index: number) {
   clearUploadQueue(index)
   if (props.beforeDelete(file, fileList)) {
-    fileList.splice(index, 1)
+    fileList.value.splice(index, 1)
     emit('delete', {
       file,
-      fileList,
+      fileList: fileList.value,
       index,
     })
   }
@@ -186,15 +193,15 @@ function chooseImage(event: InputEvent) {
     maxDuration: +props.maxDuration,
     sizeType: props.sizeType,
     camera: props.camera,
-    maxCount: maximum - fileList.length,
-  }, props).then((files) => {
+    maxCount: maximum - fileList.value.length,
+  }, props, fileList.value).then((files) => {
     const filteredFiles: ChooseFile[] = filterFiles(
       new Array<ChooseFile>().slice.call(files),
     )
 
     readFile(filteredFiles)
 
-    emit('change', { fileList, event })
+    emit('change', { fileList: fileList.value, event })
   })
 }
 </script>

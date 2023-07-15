@@ -1,4 +1,5 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { AvatarShape, AvatarSize } from '../avatar'
 
 export const AVATAR_KEY = Symbol('avatarGroup')
 export const avatargroupProps = {
@@ -19,12 +20,12 @@ export const avatargroupProps = {
     default: '#666',
   },
   size: {
-    type: String,
-    default: '',
+    type: String as PropType<AvatarSize> || Number,
+    default: 'normal',
   },
   shape: {
-    type: String,
-    default: '',
+    type: String as PropType<AvatarShape>,
+    default: 'round',
   },
   span: {
     type: String,

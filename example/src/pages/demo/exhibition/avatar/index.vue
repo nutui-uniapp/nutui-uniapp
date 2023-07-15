@@ -6,8 +6,12 @@ export default {
     const handleClick = () => {
       uni.showToast({ title: '触发点击头像' })
     }
+    const avatarCount = ref(4)
+    const addAvatar = () => {
+      avatarCount.value += 1
+    }
 
-    return { handleClick }
+    return { handleClick, addAvatar, avatarCount }
   },
 }
 </script>
@@ -144,6 +148,25 @@ export default {
         <nut-icon name="my" />
       </nut-avatar>
     </nut-cell>
+    <h2 class="title demo-avatar-group-title">
+      动态添加头像
+      <nut-button size="mini" @click="addAvatar">
+        添加
+      </nut-button>
+    </h2>
+    <nut-cell>
+      <nut-cell>
+        <nut-avatar-group max-count="4" z-index="right">
+          <nut-avatar v-for="i in avatarCount" :key="i">
+            <nut-icon v-if="i % 2 === 0" name="my" />
+            <img
+              v-else
+              src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
+            >
+          </nut-avatar>
+        </nut-avatar-group>
+      </nut-cell>
+    </nut-cell>
   </div>
 </template>
 
@@ -163,6 +186,12 @@ export default {
 img,image{
   width: 100%;
   height: 100%;
+}
+.demo-avatar-group-title {
+  display: flex;
+  align-items: center;
+  row-gap: 8px;
+  column-gap: 8px;
 }
 </style>
 
