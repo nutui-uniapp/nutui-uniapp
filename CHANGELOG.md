@@ -1,3 +1,12 @@
+## [0.1.6](https://github.com/yang1206/uniapp-nutui/compare/v0.1.5...v0.1.6) (2023-07-15)
+
+
+### Bug Fixes
+
+* 同步nutui的修复 ([94b3b27](https://github.com/yang1206/uniapp-nutui/commit/94b3b27b7cf097be660e0d254bb6001cca577a07))
+
+
+
 ## [0.1.5](https://github.com/yang1206/uniapp-nutui/compare/v0.1.4...v0.1.5) (2023-07-13)
 
 
