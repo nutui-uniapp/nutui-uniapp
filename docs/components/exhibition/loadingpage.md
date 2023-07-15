@@ -1,4 +1,4 @@
-# LoadingPage 验证码输入框
+# LoadingPage 加载页
 
 ### 介绍
 
