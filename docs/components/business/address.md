@@ -578,7 +578,6 @@
 | exist-address-title| 已有地址文案 ，`type=‘exist’` 时生效| string | `配送至` |
 | custom-and-exist-title| 自定义地址与已有地址切换按钮文案 ，`type=‘exist’` 时生效| string | `选择其他地址` |
 | columns-placeholder | 列提示文字 | string \| Array | `请选择` |
-| lock-scroll  | 背景是否锁定      | boolean        | `true`  |
 
 * `provinceName` 省的名字
 * `cityName` 市的名字

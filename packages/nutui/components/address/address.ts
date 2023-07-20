@@ -80,7 +80,7 @@ export const addressEmits = {
   }) => true,
   'switchModule': (val: { type: string }) => true,
   'closeMask': (val: { closeWay: Ref<string> }) => true,
-  'selected': (val: {}, item: existRegionData, copyExistAdd: existRegionData[]) => true,
+  'selected': (val: any, item: existRegionData, copyExistAdd: existRegionData[]) => true,
 
 }
 

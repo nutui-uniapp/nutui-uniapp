@@ -34,7 +34,7 @@ uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 
 ## 安装
 
-> uniapp-nutui 提供了 npm 包和 uni_modules 包的方式安装组件。推荐使用 vite cli安装npm包，可以获得良好的 ts支持和更好的开发体验，npm包的更新维护也会更频繁及时
+> uniapp-nutui 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了uni_modules，但是组件库在 hbuilder中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts支持与开发体验
 
 ### 方式一：npm
 

@@ -86,8 +86,6 @@ let selectedExistAddress = reactive({}) // 当前选择的地址
 
 const closeWay = ref('self')
 
-const lineDistance = ref(20)
-
     // 设置选中省市县
 function initCustomSelected() {
   regionData[0] = props.province || []
