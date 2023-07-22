@@ -11,17 +11,8 @@ const classes = computed(() => {
     [`${componentName}--strike`]: props.strikeThrough,
   }
 })
-function replaceSpecialChar(url: string) {
-  url = url.replace(/&quot;/g, '"')
-  url = url.replace(/&amp;/g, '&')
-  url = url.replace(/&lt;/g, '<')
-  url = url.replace(/&gt;/g, '>')
-  url = url.replace(/&nbsp;/g, ' ')
-  url = url.replace(/&yen;/g, '￥')
-  return url
-}
 const showSymbol = computed(() => {
-  const symbol = props.needSymbol ? replaceSpecialChar(props.symbol) : ''
+  const symbol = props.needSymbol ? props.symbol : ''
   return symbol
 })
 function checkPoint(price: string | number) {
@@ -76,12 +67,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes, customClass]" :style="customStyle">
+  <view :class="classes">
     <view
       v-if="needSymbol && position === 'before'"
       class="nut-price--symbol"
       :class="`nut-price--symbol-${size}`"
-      decode="true"
       v-html="showSymbol"
     />
     <view :class="`nut-price--${size}`">
@@ -97,7 +87,6 @@ export default defineComponent({
       v-if="needSymbol && position === 'after'"
       class="nut-price--symbol"
       :class="`nut-price--symbol-${size}`"
-      decode="true"
       v-html="showSymbol"
     />
   </view>

@@ -103,7 +103,7 @@
 | thousands      | 是否按照千分号形式显示                    | boolean          | `false`  |
 | position       | 符号显示在价格前或者后，`before`、`after`  | string           | `before` |
 | size           | 价格尺寸，`small`、`normal`、`large`     | string           | `normal` |
-| strike-through`v4.0.3`          | 是否展示划线价    | Boolean           | false |
+| strike-through          | 是否展示划线价    | Boolean           | false |
 
 ## 主题定制
 

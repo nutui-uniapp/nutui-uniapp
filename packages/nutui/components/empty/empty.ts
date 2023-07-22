@@ -1,8 +1,10 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+
+export type EmptyImage = 'empty' | 'error' | 'network' | string
 
 export const emptyProps = {
   image: {
-    type: String,
+    type: String as PropType<EmptyImage>,
     default: 'empty', // 默认empty
   },
   imageSize: {

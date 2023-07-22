@@ -26,6 +26,7 @@ export type SwipePosition = 'left' | 'right' | ''
 export const swipeEmits = {
   open: (info: { name: string; position: SwipePosition }) => info,
   close: (info: { name: string; position: SwipePosition }) => info,
+  click: (val: any) => true,
 }
 
 export type SwipeEmits = typeof swipeEmits

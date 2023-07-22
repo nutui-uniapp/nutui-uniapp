@@ -6,6 +6,10 @@ export const animateProps = {
     type: String as PropType<AnimateType>,
     default: '',
   },
+  show: {
+    type: Boolean,
+    default: false,
+  },
   action: {
     type: String as PropType<AnimateAction>,
     default: 'initial',
@@ -16,6 +20,7 @@ export const animateProps = {
   },
   duration: {
     type: [String, Number],
+    default: 500,
   },
 }
 
@@ -23,6 +28,7 @@ export type AnimateProps = ExtractPropTypes<typeof animateProps>
 
 export const animateEmits = {
   click: (evt: Event) => evt,
+  animate: () => true,
 }
 
 export type AnimateEmits = typeof animateEmits

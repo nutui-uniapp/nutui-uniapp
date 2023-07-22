@@ -1,6 +1,9 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { commonProps } from '../_utils'
 
+export type PriceSize = 'small' | 'normal' | 'large'
+export type PricePosition = 'before' | 'after'
+
 export const priceProps = {
   ...commonProps,
   price: {
@@ -24,11 +27,11 @@ export const priceProps = {
     default: false,
   },
   position: {
-    type: String as PropType<'after' | 'before'>,
+    type: String as PropType<PricePosition>,
     default: 'before',
   },
   size: {
-    type: String,
+    type: String as PropType<PriceSize>,
     default: 'normal',
   },
   strikeThrough: {

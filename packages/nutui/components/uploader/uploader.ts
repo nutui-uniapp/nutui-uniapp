@@ -59,6 +59,10 @@ export const uploaderProps = {
     type: String as PropType<'back' | 'front' | undefined>,
     default: 'back',
   },
+  mode: {
+    type: String as PropType<'aspectFit' | 'scaleToFill' | 'aspectFill' | 'widthFix' | 'heightFix' | 'top' | 'bottom' | 'center' | 'left' | 'right' | 'top left' | 'top right' | 'bottom left' | 'bottom right'>,
+    default: 'aspectFit',
+  },
 }
 
 export type UploaderProps = ExtractPropTypes<typeof uploaderProps>

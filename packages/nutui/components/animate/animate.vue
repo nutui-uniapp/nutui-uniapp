@@ -1,38 +1,47 @@
 <script setup lang="ts">
-import { computed, defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_utils'
 import { animateEmits, animateProps } from './animate'
 
 const props = defineProps(animateProps)
 const emit = defineEmits(animateEmits)
 
-const { type, loop, action } = toRefs(props)
-
-const state = reactive({
-  clicked: false,
-})
-
+const animated = ref(props.action === 'initial' || props.show === true || props.loop)
 const classes = computed(() => {
-  const prefixCls = componentName
+  const prefixCls = 'nut-animate'
   return {
     'nut-animate__container': true,
-    [`${prefixCls}-${type.value}`]: action.value === 'initial' || state.clicked ? type.value : false,
-    'loop': loop.value,
+    [`${prefixCls}-${props.type}`]: animated.value,
+    'loop': props.loop,
   }
 })
 
-function handleClick(event: Event) {
-  state.clicked = true
-
-  // 如果不是无限循环，清除类名
-  if (!loop.value) {
-    setTimeout(() => {
-      state.clicked = false
-    }, 1000)
-  }
-
-  emit('click', event)
+function animate() {
+  animated.value = false
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      animated.value = true
+    })
+  })
 }
+
+function handleClick(event: Event) {
+  if (props.action === 'click') {
+    animate()
+    emit('click', event)
+    emit('animate')
+  }
+}
+
+watch(
+  () => props.show,
+  (val) => {
+    if (val) {
+      animate()
+      emit('animate')
+    }
+  },
+)
 </script>
 
 <script lang="ts">

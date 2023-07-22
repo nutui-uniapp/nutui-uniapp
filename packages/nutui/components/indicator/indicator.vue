@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { computed, defineComponent, toRefs } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX, padZero } from '../_utils'
 import { indicatorProps } from './indicator'
 
 const props = defineProps(indicatorProps)
 
-const { block, align } = toRefs(props)
-
 const classes = computed(() => {
   const prefixCls = componentName
   return {
     [prefixCls]: true,
-    [`${prefixCls}--block`]: block.value,
-    [`${prefixCls}--align__${align.value}`]: block.value && align.value,
+    [`${prefixCls}--block`]: props.block,
+    [`${prefixCls}--align__${props.align}`]: props.block && props.align,
   }
 })
 </script>

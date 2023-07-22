@@ -1,22 +1,22 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+
+export type IndicatorAlign = 'left' | 'center' | 'right'
 
 export const indicatorProps = {
   size: {
     type: Number,
     default: 3,
-    required: true,
   },
   current: {
     type: Number,
     default: 1,
-    required: true,
   },
   block: {
     type: Boolean,
     default: false,
   },
   align: {
-    type: String,
+    type: String as PropType<IndicatorAlign>,
     default: 'center',
   },
   fillZero: {

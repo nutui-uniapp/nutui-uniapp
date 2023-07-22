@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, toRefs } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import { tagEmits, tagProps } from './tag'
@@ -9,36 +9,37 @@ const props = defineProps(tagProps)
 
 const emit = defineEmits(tagEmits)
 
-const { type, customColor, plain, round, mark, textColor } = toRefs(props)
-
 const classes = computed(() => {
-  const prefixCls = componentName
+  const prefixCls = 'nut-tag'
   return {
     [prefixCls]: true,
-    [`${prefixCls}--${type.value}`]: type.value,
-    [`${prefixCls}--plain`]: plain.value,
-    [`${prefixCls}--round`]: round.value,
-    [`${prefixCls}--mark`]: mark.value,
+    [`${prefixCls}--${props.type}`]: props.type,
+    [`${prefixCls}--plain`]: props.plain,
+    [`${prefixCls}--round`]: props.round,
+    [`${prefixCls}--mark`]: props.mark,
   }
 })
 
-function getStyle(): CSSProperties {
+// 综合考虑 textColor、color、plain 组合使用时的效果
+const style = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
-  if (textColor.value)
-    style.color = textColor.value
+  // 标签内字体颜色
+  if (props.textColor)
+    style.color = props.textColor
 
-  else if (customColor.value && plain.value)
-    style.color = customColor.value
+  else if (props.customColor && props.plain)
+    style.color = props.customColor
 
-  if (plain.value) {
+  // 标签背景与边框颜色
+  if (props.plain) {
     style.background = '#fff'
-    style['border-color'] = customColor.value
+    style['border-color'] = props.customColor
   }
-  else if (customColor.value) {
-    style.background = customColor.value
+  else if (props.customColor) {
+    style.background = props.customColor
   }
   return style
-}
+})
 
 function onClose(event: Event) {
   event.stopPropagation()
@@ -64,7 +65,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="getStyle()" @click="onClick">
+  <view :class="classes" :style="style" @click="onClick">
     <slot />
     <NutIcon v-if="closeable" name="close" custom-class="nut-tag--close" size="11" @click="onClose" />
   </view>

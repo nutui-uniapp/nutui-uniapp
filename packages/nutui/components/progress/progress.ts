@@ -1,4 +1,5 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { ProgressSize, ProgressStatus } from './types'
 
 export const progressProps = {
   percentage: {
@@ -7,11 +8,11 @@ export const progressProps = {
     required: true,
   },
   size: {
-    type: String,
+    type: String as PropType<ProgressSize>,
     default: 'base',
   },
   status: {
-    type: String,
+    type: String as PropType<ProgressStatus>,
     default: 'text',
   },
   strokeWidth: {
@@ -37,10 +38,6 @@ export const progressProps = {
   textBackground: {
     type: String,
     default: '',
-  },
-  iconColor: {
-    type: String,
-    default: '#439422',
   },
   isShowPercentage: {
     type: Boolean,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, watch } from 'vue'
 import { PREFIX } from '../_utils'
 import { useRect, useTouch } from '../_hooks'
 import { type SwipePosition, swipeEmits, swipeProps } from './swipe'
@@ -9,12 +9,8 @@ const emit = defineEmits(swipeEmits)
 
 const instance = getCurrentInstance() as ComponentInternalInstance
 const refRandomId = Math.random().toString(36).slice(-8)
-const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
-})
+const lockClick = ref(false)
+
 async function getRefWidth(elementId: string) {
   const rect = await useRect(elementId, instance)
   return rect.width || 0
@@ -30,13 +26,24 @@ async function initWidth() {
   rightRefWidth.value = await getRefWidth(rightRefId)
 }
 
+const parent = inject('swipeGroup', null) as any
+
+watch(
+  () => parent?.name?.value,
+  (name) => {
+    if (props.name !== name && parent && parent.lock)
+      close()
+  },
+)
+
 onMounted(() => {
   setTimeout(() => {
     initWidth()
   }, 100)
 })
 
-let opened = false
+const opened = ref(false)
+
 let position: SwipePosition = ''
 let oldPosition: SwipePosition = ''
 
@@ -46,7 +53,8 @@ const state = reactive({
 })
 
 function open(p: SwipePosition = '') {
-  opened = true
+  parent && parent.update(props.name)
+  opened.value = true
   if (p)
     state.offset = p === 'left' ? -rightRefWidth.value : leftRefWidth.value
 
@@ -58,11 +66,22 @@ function open(p: SwipePosition = '') {
 
 function close() {
   state.offset = 0
-  opened = false
-  emit('close', {
-    name: props.name,
-    position,
-  })
+  if (opened.value) {
+    opened.value = false
+    emit('close', {
+      name: props.name,
+      position,
+    })
+  }
+}
+
+function onClick(e: Event, position: string, lock: boolean) {
+  if (lock)
+    e.stopPropagation()
+  else
+    close()
+
+  emit('click', position)
 }
 
 const touchStyle = computed(() => {
@@ -76,7 +95,7 @@ function setoffset(deltaX: number) {
   let offset = deltaX
   switch (position) {
     case 'left':
-      if (opened && oldPosition === position)
+      if (opened.value && oldPosition === position)
         offset = -rightRefWidth.value
 
       else
@@ -84,7 +103,7 @@ function setoffset(deltaX: number) {
 
       break
     case 'right':
-      if (opened && oldPosition === position)
+      if (opened.value && oldPosition === position)
         offset = leftRefWidth.value
 
       else
@@ -107,6 +126,7 @@ const touchMethods = {
       return
     touch.move(event)
     if (touch.isHorizontal()) {
+      lockClick.value = true
       state.moving = true
       setoffset(touch.deltaX.value)
       if (props.touchMovePreventDefault)
@@ -140,6 +160,9 @@ const touchMethods = {
           }
           break
       }
+      setTimeout(() => {
+        lockClick.value = false
+      }, 0)
     }
   },
 }
@@ -164,18 +187,18 @@ export default defineComponent({
 
 <template>
   <view
-    :class="classes" :style="touchStyle" @touchstart="touchMethods.onTouchStart" @touchmove="touchMethods.onTouchMove" @touchend="touchMethods.onTouchEnd"
+    class="nut-swipe" :style="touchStyle" @touchstart="touchMethods.onTouchStart" @touchmove="touchMethods.onTouchMove" @touchend="touchMethods.onTouchEnd"
     @touchcancel="touchMethods.onTouchEnd"
   >
-    <view :id="leftRefId" class="nut-swipe__left">
+    <view :id="leftRefId" class="nut-swipe__left" @click="onClick($event, 'left', true)">
       <slot name="left" />
     </view>
 
-    <view class="nut-swipe__content">
+    <view class="nut-swipe__content" @click="onClick($event, 'content', lockClick)">
       <slot name="default" />
     </view>
 
-    <view :id="rightRefId" class="nut-swipe__right">
+    <view :id="rightRefId" class="nut-swipe__right" @click="onClick($event, 'right', true)">
       <slot name="right" />
     </view>
   </view>

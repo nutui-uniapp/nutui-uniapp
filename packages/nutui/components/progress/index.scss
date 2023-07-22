@@ -1,6 +1,7 @@
 .nut-progress {
   position: relative;
   display: flex;
+  align-items: center;
   width: 100%;
 
   .nut-progress-outer {
@@ -15,6 +16,7 @@
       background: $progress-inner-background-color;
       border-radius: $progress-outer-border-radius;
       transition: all 0.4s;
+      transition: all 0.4s;
 
       // position: relative;
     }
@@ -24,6 +26,12 @@
       flex-direction: column;
       justify-content: center;
       color: #fff;
+    }
+
+    .nut-progress-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .nut-active {
@@ -57,6 +65,7 @@
       height: $progress-small-height;
 
       .nut-progress-text {
+
         // top: $progress-small-text-top;
         top: 50%;
         padding: $progress-small-text-padding;

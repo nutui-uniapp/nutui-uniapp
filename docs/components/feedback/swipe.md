@@ -139,7 +139,43 @@ export default {
 </script>
 ```
 
+### 使用 SwipeGroup 控制 Swipe 之间互斥
 
+此时各个 Swipe 的 name 为必填项。
+
+
+```vue
+<template>
+  <nut-swipe-group lock>
+    <nut-swipe name="11">
+      <nut-cell round-radius="0" title="左滑删除" />
+      <template #right>
+        <nut-button shape="square" style="height: 100%" type="danger">
+          删除
+        </nut-button>
+      </template>
+    </nut-swipe>
+    <nut-swipe name="22">
+      <nut-cell round-radius="0" title="左滑删除" />
+      <template #right>
+        <nut-button shape="square" style="height: 100%" type="danger">
+          删除
+        </nut-button>
+      </template>
+    </nut-swipe>
+    <div>
+      <nut-swipe name="33">
+        <nut-cell round-radius="0" title="左滑删除" />
+        <template #right>
+          <nut-button shape="square" style="height: 100%" type="danger">
+            删除
+          </nut-button>
+        </template>
+      </nut-swipe>
+    </div>
+  </nut-swipe-group>
+</template>
+```
 
 ## Swipe
 
@@ -175,3 +211,12 @@ export default {
 |--------|------------------|---------------------|
 | open   | 滑动单元格侧边栏，left 指向左滑，right 指向右滑 | `name, position: 'left' | 'right'` |
 | close  | 收起单元格侧边栏，同上 | `name, position: 'left' | 'right'` |
+
+
+## SwipeGroup
+
+### Props
+
+| 参数         | 说明                                                                         | 类型    | 默认值  |
+| ------------ | ---------------------------------------------------------------------------- | ------- | ------- |
+| lock | 控制内部 Swipe 互斥，即滑动打开某一个 Swipe 时，触发其余 Swipe 的 close 方法 | boolean | `false` |

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, reactive, ref, watch } from 'vue'
+import { defineComponent, reactive, ref, watch } from 'vue'
 import { PREFIX } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutProgress from '../progress/progress.vue'
@@ -21,13 +21,6 @@ watch(
     fileList.value = props.fileList
   },
 )
-
-const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
-})
 
 function fileItemClick(fileItem: FileItem) {
   emit('fileItemClick', { fileItem })
@@ -220,7 +213,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view class="nut-uploader">
     <view v-if="$slots.default" class="nut-uploader__slot">
       <slot />
       <template v-if="Number(maximum) - fileList.length">
@@ -246,13 +239,13 @@ export default defineComponent({
           </slot>
         </view>
 
-        <img
+        <image
           v-if="(item?.type?.includes('image') || item?.type?.includes('video')) && item.url"
           class="nut-uploader__preview-img__c"
-          mode="aspectFit"
+          :mode="mode"
           :src="item.url"
           @click="fileItemClick(item)"
-        >
+        />
         <view v-else class="nut-uploader__preview-img__file">
           <view class="nut-uploader__preview-img__file__name" @click="fileItemClick(item)">
             <view class="file-name__tips">

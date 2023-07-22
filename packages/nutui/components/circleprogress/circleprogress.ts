@@ -1,10 +1,11 @@
-import type { ExtractPropTypes } from 'vue'
-import { isNumber } from '../_utils'
+import type { ExtractPropTypes, PropType } from 'vue'
+
+export type CircleProgressStrokeLinecap = 'butt' | 'round' | 'square'
 
 export const circleprogressProps = {
   progress: {
     type: [Number, String],
-    required: true,
+    default: 0,
   },
   strokeWidth: {
     type: [Number, String],
@@ -15,7 +16,7 @@ export const circleprogressProps = {
     default: 50,
   },
   strokeLinecap: {
-    type: String,
+    type: String as PropType<CircleProgressStrokeLinecap>,
     default: 'round',
   },
   customColor: {
@@ -33,9 +34,3 @@ export const circleprogressProps = {
 }
 
 export type CircleProgressProps = ExtractPropTypes<typeof circleprogressProps>
-
-export const circleprogressEmits = {
-  'update:progress': (val: number) => isNumber(val),
-}
-
-export type CircleProgressEmits = typeof circleprogressEmits

@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { defineComponent, useSlots } from 'vue'
+import { defineComponent } from 'vue'
 import { PREFIX } from '../_utils'
 import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
 import { cardProps } from './card'
 
 const props = defineProps(cardProps)
-const slots = useSlots()
-function isHaveSlot(slot: string) {
-  return slots[slot]
-}
 </script>
 
 <script lang="ts">
@@ -26,7 +22,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-card" :class="customClass" :style="customStyle">
+  <div class="nut-card">
     <div class="nut-card__left">
       <img :src="imgUrl" alt="">
     </div>
@@ -36,30 +32,22 @@ export default defineComponent({
       </div>
       <slot name="prolist" />
       <div v-if="isNeedPrice" class="nut-card__right__price">
-        <template v-if="isHaveSlot('price')">
-          <slot name="price" />
-        </template>
-        <NutPrice v-else :price="price" />
-        <template v-if="isHaveSlot('origin')">
-          <slot name="origin" />
-        </template>
-        <NutPrice v-else custom-class="nut-card__right__price__origin" :price="vipPrice" />
-        <template v-if="isHaveSlot('tag')">
-          <slot name="tag" />
-        </template>
+        <slot name="price">
+          <NutPrice :price="price" />
+        </slot>
+        <slot name="origin">
+          <NutPrice class="nut-card__right__price__origin" :price="vipPrice" />
+        </slot>
       </div>
       <div class="nut-card__right__other">
-        <template v-if="isHaveSlot('shop-tag')">
-          <slot name="shop-tag" />
-        </template>
-        <template v-else>
+        <slot name="shop-tag">
           <NutTag type="danger">
             {{ shopDesc }}
           </NutTag>
           <NutTag plain>
             {{ delivery }}
           </NutTag>
-        </template>
+        </slot>
       </div>
       <div class="nut-card__right__shop">
         <div class="nut-card__right__shop__name">

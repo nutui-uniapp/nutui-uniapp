@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import { computed, defineComponent, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_utils'
-import { circleprogressEmits, circleprogressProps } from './circleprogress'
+import { circleprogressProps } from './circleprogress'
 
 interface Item {
   key?: string
   value?: string
 }
 const props = defineProps(circleprogressProps)
-const emit = defineEmits(circleprogressEmits)
 
-const slotDefault = !!useSlots().default
-const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
-})
 const currentRate = ref(props.progress)
 const refRandomId = Math.random().toString(36).slice(-8)
 const isObject = (val: unknown): val is Record<any, any> => val !== null && typeof val === 'object'
@@ -79,9 +71,8 @@ const format = (progress: string | number) => Math.min(Math.max(+progress, 0), 1
 
 watch(
   () => props.progress,
-  (value, oldvalue) => {
+  (value) => {
     currentRate.value = Math.min(Math.max(+value!, 0), 100)
-    emit('update:progress', format(Number.parseFloat(Number(value).toFixed(1))))
   },
 )
 </script>
@@ -100,11 +91,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes" :style="{ height: `${Number(radius) * 2}px`, width: `${Number(radius) * 2}px` }">
+  <div class="nut-circle-progress" :style="{ height: `${Number(radius) * 2}px`, width: `${Number(radius) * 2}px` }">
     <div :style="style" />
     <div class="nut-circle-progress__text">
-      <slot />
-      <span v-if="!slotDefault">{{ progress }}%</span>
+      <slot>
+        <span>{{ progress }}%</span>
+      </slot>
     </div>
   </div>
 </template>
