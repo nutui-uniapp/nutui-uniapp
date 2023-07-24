@@ -1,3 +1,12 @@
+## [0.1.8](https://github.com/yang1206/uniapp-nutui/compare/v0.1.7...v0.1.8) (2023-07-24)
+
+
+### Bug Fixes
+
+* (codeInput) 双向绑定失效 ([b9ef603](https://github.com/yang1206/uniapp-nutui/commit/b9ef6034a79b043991b63e032f2a24212d8bb46a))
+
+
+
 ## [0.1.7](https://github.com/yang1206/uniapp-nutui/compare/v0.1.6...v0.1.7) (2023-07-22)
 
 
