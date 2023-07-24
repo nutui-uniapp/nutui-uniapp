@@ -82,9 +82,11 @@ export const codeinputProps = {
 export type CodeInputProps = ExtractPropTypes<typeof codeinputProps>
 
 export const codeinputEmits = {
-  change: (val: string) => isString(val),
-  input: (val: string) => isString(val),
-  finish: (val: string) => isString(val),
+  'change': (val: string) => isString(val),
+  'input': (val: string) => isString(val),
+  'finish': (val: string) => isString(val),
+  'update:modelValue': (val: number | string) => isString(val),
+
 }
 
 export type CodeInputEmits = typeof codeinputEmits

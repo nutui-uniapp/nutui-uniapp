@@ -72,6 +72,8 @@ watch(() => props.modelValue, (val) => {
 
 function inputHandler(e: { detail: { value: string } }) {
   const value = e.detail.value
+  emit('update:modelValue', value)
+
   inputValue.value = value
   // 是否允许输入“.”符号
   if (props.disabledDot) {
