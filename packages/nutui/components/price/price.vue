@@ -11,8 +11,17 @@ const classes = computed(() => {
     [`${componentName}--strike`]: props.strikeThrough,
   }
 })
+function replaceSpecialChar(url: string) {
+  url = url.replace(/&quot;/g, '"')
+  url = url.replace(/&amp;/g, '&')
+  url = url.replace(/&lt;/g, '<')
+  url = url.replace(/&gt;/g, '>')
+  url = url.replace(/&nbsp;/g, ' ')
+  url = url.replace(/&yen;/g, '￥')
+  return url
+}
 const showSymbol = computed(() => {
-  const symbol = props.needSymbol ? props.symbol : ''
+  const symbol = props.needSymbol ? replaceSpecialChar(props.symbol) : ''
   return symbol
 })
 function checkPoint(price: string | number) {
