@@ -126,7 +126,7 @@ And then enjoy it.
 
 ## 感谢
 
-- [Anu](https://github.com/jd-solanki/anu)
+- [ano-ui](https://github.com/ano-ui/ano-ui)
 - [NutUi](https://github.com/jdf2e/nutui)
 - [Uni-NutUi](https://github.com/jwaterwater/uni-nutui)
 - [vin-ui](https://github.com/vingogo/vin-ui)
