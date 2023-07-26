@@ -52,6 +52,7 @@
   }
 
 
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -89,8 +90,7 @@
       box-shadow: 0 4px 10px 0 rgba($color: #000, $alpha: 6%);
 
       .nut-calendar__weekday {
-        &:first-of-type,
-        &:last-of-type {
+        &.weekend {
           color: $calendar-day67-font-color;
         }
       }
@@ -121,7 +121,7 @@
         text-align: center;
       }
 
-      view:nth-of-type(2) {
+      div:nth-of-type(2) {
         .nut-calendar__month-title {
           padding-top: 0;
         }
@@ -149,13 +149,6 @@
       .nut-calendar__days {
         overflow: hidden;
 
-        .nut-calendar__days-item {
-          .nut-calendar__day:nth-child(7n + 0),
-          .nut-calendar__day:nth-child(7n + 1) {
-            color: $calendar-day67-font-color;
-          }
-        }
-
         .nut-calendar__day {
           position: relative;
           display: flex;
@@ -166,6 +159,10 @@
           width: 14.28%;
           height: 64px;
           font-weight: $calendar-day-font-weight;
+
+          &.weekend {
+            color: $calendar-day67-font-color;
+          }
 
           .nut-calendar__day-tips {
             position: absolute;

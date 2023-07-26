@@ -18,7 +18,10 @@ defineExpose({
 const componentName = `${PREFIX}-calendar-item`
 const { translate } = useTranslate(componentName)
 // 新增：自定义周起始日
-const weekdays = translate('weekdays')
+const weekdays = (translate('weekdays') as any).map((day: string, index: number) => ({
+  day,
+  weekend: index === 0 || index === 6,
+}))
 const weeks = ref([...weekdays.slice(props.firstDayOfWeek, 7), ...weekdays.slice(0, props.firstDayOfWeek)])
 // element refs
 const scalePx = ref(2)
@@ -95,36 +98,41 @@ function getCurrDate(day: Day, month: MonthInfo) {
   return `${month.curData[0]}-${month.curData[1]}-${getNumTwoBit(+day.day)}`
 }
 
-// 获取样式
-function getClass(day: Day, month: MonthInfo) {
+function getClass(day: Day, month: MonthInfo, index?: number) {
+  const res = []
+  if (
+    typeof index === 'number'
+    && ((index + 1 + props.firstDayOfWeek) % 7 === 0 || (index + props.firstDayOfWeek) % 7 === 0)
+  )
+    res.push('weekend')
+
   const currDate = getCurrDate(day, month)
   const { type } = props
   if (day.type === 'curr') {
     if (
       isEqual(state.currDate as string, currDate)
-          || ((type === 'range' || type === 'week') && (isStart(currDate) || isEnd(currDate)))
-          || (type === 'multiple' && isMultiple(currDate))
+      || ((type === 'range' || type === 'week') && (isStart(currDate) || isEnd(currDate)))
+      || (type === 'multiple' && isMultiple(currDate))
     )
-      return `${state.dayPrefix}--active`
+      res.push(`${state.dayPrefix}--active`)
     else if (
       (state.propStartDate && compareDate(currDate, state.propStartDate))
-          || (state.propEndDate && compareDate(state.propEndDate, currDate))
+      || (state.propEndDate && compareDate(state.propEndDate, currDate))
     )
-      return `${state.dayPrefix}--disabled`
+      res.push(`${state.dayPrefix}--disabled`)
     else if (
       (type === 'range' || type === 'week')
-          && Array.isArray(state.currDate)
-          && Object.values(state.currDate).length === 2
-          && compareDate(state.currDate[0], currDate)
-          && compareDate(currDate, state.currDate[1])
+      && Array.isArray(state.currDate)
+      && Object.values(state.currDate).length === 2
+      && compareDate(state.currDate[0], currDate)
+      && compareDate(currDate, state.currDate[1])
     )
-      return `${state.dayPrefix}--choose`
-    else
-      return null
+      res.push(`${state.dayPrefix}--choose`)
   }
   else {
-    return `${state.dayPrefix}--disabled`
+    res.push(`${state.dayPrefix}--disabled`)
   }
+  return res
 }
 
 function confirm() {
@@ -146,7 +154,7 @@ function confirm() {
 
 // 选中数据
 function chooseDay(day: Day, month: MonthInfo, isFirst = false) {
-  if (getClass(day, month) !== `${state.dayPrefix}--disabled`) {
+  if (!getClass(day, month).includes(`${state.dayPrefix}--disabled`)) {
     const { type } = props
     const [y, m] = month.curData
     const days = [...month.curData]
@@ -584,7 +592,7 @@ function isActive(day: Day, month: MonthInfo) {
   return (
     (props.type === 'range' || props.type === 'week')
         && day.type === 'curr'
-        && getClass(day, month) === 'nut-calendar__day--active'
+        && getClass(day, month).includes('nut-calendar__day--active')
   )
 }
 
@@ -617,7 +625,8 @@ function mothsViewScroll(e: any) {
   if (state.monthsData.length <= 1)
     return
 
-  const currentScrollTop = e.target.scrollTop
+  const currentScrollTop = e.detail.scrollTop
+
   let current = Math.floor(currentScrollTop / state.avgHeight)
   if (current === 0) {
     if (currentScrollTop >= state.monthsData[current + 1]?.cssScrollHeight)
@@ -707,8 +716,13 @@ export default defineComponent({
         {{ state.yearMonthTitle }}
       </view>
       <view class="nut-calendar__weekdays">
-        <view v-for="(item, index) of weeks" :key="index" class="nut-calendar__weekday">
-          {{ item }}
+        <view
+          v-for="(item, index) of weeks"
+          :key="index"
+          class="nut-calendar__weekday"
+          :class="{ weekend: item.weekend }"
+        >
+          {{ item.day }}
         </view>
       </view>
     </view>
@@ -731,7 +745,7 @@ export default defineComponent({
             <view class="nut-calendar__days">
               <view class="nut-calendar__days-item" :class="type === 'range' ? 'nut-calendar__days-item--range' : ''">
                 <template v-for="(day, i) of month.monthData" :key="i">
-                  <view class="nut-calendar__day" :class="getClass(day, month)" @click="chooseDay(day, month)">
+                  <view class="nut-calendar__day" :class="getClass(day, month, i)" @click="chooseDay(day, month)">
                     <!-- 日期显示slot -->
                     <view class="nut-calendar__day-value">
                       <!-- #ifdef MP -->
