@@ -11,7 +11,7 @@ const inputValue = ref('')
 const isFocus = ref(props.focus)
 
 const codeLength = computed(() => {
-  return new Array(Number(props.maxlength))
+  return Array.from({ length: Number(props.maxlength) })
 })
 const itemStyle = computed(() => {
   return (index: number) => {

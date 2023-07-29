@@ -70,7 +70,7 @@ export const addressEmits = {
   'update:modelValue': () => true,
   'type': () => true,
   'close': (val: {
-    data: {}
+    data: any
     type: string
   }) => true,
   'change': (val: {

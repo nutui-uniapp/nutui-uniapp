@@ -8,7 +8,7 @@ export const popoverProps = {
   list: { type: Array as PropType<PopoverList[]>, default: [] },
   theme: { type: String as PropType<PopoverTheme>, default: 'light' },
   location: { type: String as PropType<PopoverLocation>, default: 'bottom' },
-  offset: { type: Array<Number>, default: [0, 12] },
+  offset: { type: Array<number>, default: [0, 12] },
   arrowOffset: { type: Number, default: 0 },
   showArrow: { type: Boolean, default: true },
   duration: { type: [Number, String], default: 200 },

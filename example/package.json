@@ -75,11 +75,11 @@
     "@unocss/preset-rem-to-px": "^0.53.1",
     "@vue/tsconfig": "^0.4.0",
     "sass": "^1.62.1",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.6",
     "unocss": "^0.53.1",
     "unocss-applet": "^0.5.3",
     "unplugin-auto-import": "^0.16.4",
-    "vite": "4.4.2",
-    "vue-tsc": "1.6.5"
+    "vite": "4.4.7",
+    "vue-tsc": "1.8.8"
   }
 }

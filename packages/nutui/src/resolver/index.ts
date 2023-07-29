@@ -1,3 +1,4 @@
+import process from 'node:process'
 import type { ComponentResolver } from '@uni-helper/vite-plugin-uni-components'
 
 const processShim: typeof process

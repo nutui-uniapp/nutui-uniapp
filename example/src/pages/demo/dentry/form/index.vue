@@ -22,10 +22,10 @@ export default {
     const dynamicForm = {
       state: reactive({
         name: '',
-        tels: new Array({
+        tels: [{
           key: 1,
           value: '',
-        }),
+        }],
       }),
 
       methods: {

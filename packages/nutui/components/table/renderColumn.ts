@@ -3,7 +3,7 @@ import { defineComponent, h } from 'vue'
 
 export default defineComponent({
   props: {
-    slots: Array as PropType<Array<Function | undefined>>,
+    slots: Array as PropType<Array<() => void | undefined>>,
     record: Object,
   },
   setup(props: any) {

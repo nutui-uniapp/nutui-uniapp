@@ -5,19 +5,19 @@ export interface ImageInterface {
 }
 
 export interface ImagePreviewOptions {
-  show: Boolean
+  show: boolean
   images: ImageInterface[]
   videos: []
-  contentClose: Boolean
-  initNo: Number
-  paginationVisible: Boolean
-  paginationColor: String
-  autoplay: [Number, String]
-  isWrapTeleport: Boolean
+  contentClose: boolean
+  initNo: number
+  paginationVisible: boolean
+  paginationColor: string
+  autoplay: [number, string]
+  isWrapTeleport: boolean
   showIndex?: boolean
   closeable?: boolean
   closeIcon?: string
-  closeIconPosition?: String
+  closeIconPosition?: string
   beforeClose?: Interceptor
   maxZoom?: number
   minZoom?: number

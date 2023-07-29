@@ -1,8 +1,24 @@
 <script lang="ts">
 import { reactive, toRefs } from 'vue'
-import config from '../../../config.json'
+import config from '../../../config'
 import { useAppStore } from '@/store'
 
+interface Item {
+  version?: string
+  name: string
+  uni?: boolean
+  sort: any
+  cName: string
+  type: string
+  show: boolean
+  desc: string
+  author: string
+  exportEmpty?: boolean
+  exclude?: boolean
+  cType?: string
+  unidoc?: boolean
+  exportEmptyUni?: boolean
+}
 const { darkMode } = storeToRefs(useAppStore())
 export default {
   name: 'NutUI',
@@ -11,8 +27,8 @@ export default {
       nav: config.nav,
     })
 
-    const reorder = (packages: any) => {
-      return packages.sort((x: any, y: any) => {
+    const reorder = (packages: Item): Item => {
+      return packages.sort((x: { name: string }, y: { name: string }) => {
         return x.name.toLowerCase().localeCompare(y.name.toLowerCase())
       })
     }
@@ -56,21 +72,23 @@ export default {
     </view>
     <view class="index-components n-bg">
       <div v-for="_nav in nav" :key="_nav.name" class="com-item">
-        <view class="title">
-          {{ _nav.name }}
-        </view>
-        <div class="info">
-          <template v-for="_package in reorder(_nav.packages)" :key="_package.name">
-            <view v-if="_package.show && _package.taro && _package.exportEmpty !== false" class="info n-bg-2 n-text-color">
-              <text class="link" @click="navigateTo(_package.name, _nav.enName)">
-                {{ _package.name }}
-                &nbsp;&nbsp;
-                {{ _package.cName }}
-              </text>
-              <nut-icon size="14px" color="#979797" name="right" />
-            </view>
-          </template>
-        </div>
+        <template v-if="_nav.show">
+          <view class="title">
+            {{ _nav.name }}
+          </view>
+          <div class="info">
+            <template v-for="_package in reorder(_nav.packages as any)" :key="_package.name">
+              <view v-if="_package.show && _package.uni && _package.exportEmpty !== false" class="info n-bg-2 n-text-color">
+                <text class="link" @click="navigateTo(_package.name, _nav.enName)">
+                  {{ _package.name }}
+                  &nbsp;&nbsp;
+                  {{ _package.cName }}
+                </text>
+                <nut-icon size="14px" color="#979797" name="right" />
+              </view>
+            </template>
+          </div>
+        </template>
       </div>
     </view>
   </view>

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import config from '../../config.json'
+import config from '../../config'
 
 export default defineComponent({
   name: 'DemoHeader',

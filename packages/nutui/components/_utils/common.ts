@@ -99,7 +99,7 @@ export function deepMerge(target: any, newObj: any) {
 }
 
 export function myFixed(num: any, digit = 2) {
-  if (Object.is(Number.parseFloat(num), NaN))
+  if (Object.is(Number.parseFloat(num), Number.NaN))
     return console.warn(`传入的值：${num}不是一个数字`)
 
   num = Number.parseFloat(num)

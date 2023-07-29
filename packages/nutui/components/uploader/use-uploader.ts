@@ -124,10 +124,10 @@ export type GeneralCallbackResult = UniApp.GeneralCallbackResult
 
 export type UploadOptions = UniNamespace.UploadFileOption & {
   xhrState?: number
-  onStart?: Function
-  onProgress?: Function
-  onSuccess?: Function
-  onFailure?: Function
+  onStart?: (option: UploadOptions) => void
+  onProgress?: (result: UniApp.OnProgressUpdateResult, option: UploadOptions) => void
+  onSuccess?: (result: UniApp.UploadFileSuccessCallbackResult, option: UploadOptions) => void
+  onFailure?: (result: UniApp.GeneralCallbackResult | UniApp.UploadFileSuccessCallbackResult, option: UploadOptions) => void
 }
 
 export function createUploader(options: UploadOptions) {

@@ -57,7 +57,7 @@ export function isString(val: unknown): val is string {
   return is(val, 'String')
 }
 
-export function isFunction(val: unknown): val is Function {
+export function isFunction(val: unknown): val is () => void {
   return typeof val === 'function'
 }
 

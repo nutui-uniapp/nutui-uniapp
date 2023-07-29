@@ -23,7 +23,7 @@ export interface BaseLang {
     end: string
     start: string
     title: string
-    monthTitle: Function
+    monthTitle: any
     today: string
   }
   shortpassword: {
@@ -76,8 +76,8 @@ export interface BaseLang {
   }
   comment: {
     complaintsText: string
-    additionalReview: Function
-    additionalImages: Function
+    additionalReview: any
+    additionalImages: any
   }
   infiniteloading: {
     loading: string

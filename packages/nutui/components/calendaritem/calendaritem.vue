@@ -163,7 +163,7 @@ function chooseDay(day: Day, month: MonthInfo, isFirst = false) {
     days[4] = getWhatDay(+days[0], +days[1], +days[2])
     if (type === 'multiple') {
       if (isArray(state.currDate) && state.currDate.length > 0) {
-        let hasIndex = NaN
+        let hasIndex = Number.NaN
         state.currDate.forEach((item: string, index: number) => {
           if (item === days[3])
             hasIndex = index

@@ -27,7 +27,7 @@ export default {
     }
 
     const changeText = (index: any) => {
-      data.categoryChild2 = [].concat((data.category as any)?.children as any)
+      data.categoryChild2 = [].concat((data.category as any)[index].children)
     }
 
     const changeCustom = () => {

@@ -14,9 +14,9 @@ export default {
       tab5value: '0',
       tab6value: '0',
       tab7value: 'c1',
-      list3: Array.from(new Array(2).keys()),
-      list4: Array.from(new Array(10).keys()),
-      list5: Array.from(new Array(2).keys()),
+      list3: Array.from(Array.from({ length: 2 }).keys()),
+      list4: Array.from(Array.from({ length: 10 }).keys()),
+      list5: Array.from(Array.from({ length: 2 }).keys()),
       list6: [
         {
           title: '自定义 1',

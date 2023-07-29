@@ -39,7 +39,7 @@
     "vue": "3.2.47"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.5",
+    "@antfu/eslint-config": "^0.39.8",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@dcloudio/types": "^3.3.3",
@@ -51,14 +51,14 @@
     "bumpp": "^9.1.1",
     "consola": "^3.2.3",
     "conventional-changelog-cli": "^3.0.0",
-    "cz-git": "^1.6.1",
-    "eslint": "^8.42.0",
-    "esno": "^0.16.3",
+    "cz-git": "^1.7.0",
+    "eslint": "^8.46.0",
+    "esno": "^0.17.0",
     "fs-extra": "^11.1.1",
     "lint-staged": "^13.2.2",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.27",
     "postcss-html": "^1.5.0",
-    "sass": "^1.62.1",
+    "sass": "^1.64.1",
     "simple-git-hooks": "^2.8.1",
     "stylelint": "^15.7.0",
     "stylelint-config-html": "^1.1.0",
@@ -68,13 +68,13 @@
     "stylelint-config-standard": "^33.0.0",
     "stylelint-config-standard-scss": "^9.0.0",
     "stylelint-order": "^6.0.3",
-    "typescript": "5.0.4",
+    "typescript": "5.1.6",
     "unbuild": "^1.2.1",
     "uni-tsc": "^0.0.2",
-    "vite": "4.3.9",
-    "vitepress": "1.0.0-beta.5",
-    "vitest": "^0.32.2",
-    "vue-tsc": "1.6.5"
+    "vite": "4.4.7",
+    "vitepress": "1.0.0-beta.6",
+    "vitest": "^0.33.0",
+    "vue-tsc": "1.8.8"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

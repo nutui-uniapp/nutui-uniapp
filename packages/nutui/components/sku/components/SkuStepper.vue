@@ -40,7 +40,7 @@ function getExtraText() {
   const { stepperExtraText } = props
 
   if (stepperExtraText && TypeOfFun(stepperExtraText) === 'function')
-    return (stepperExtraText as Function)()
+    return (stepperExtraText as () => void)()
 
   else
     return ''

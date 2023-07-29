@@ -45,7 +45,7 @@ export const tourProps = {
     default: true,
   },
   offset: {
-    type: Array as PropType<Number[]>,
+    type: Array as PropType<number[]>,
     default: [8, 10],
   },
   bgColor: {

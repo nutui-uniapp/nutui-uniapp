@@ -49,7 +49,7 @@ export function makeStringProp<T>(defaultVal: T) {
   }
 }
 
-export type ClassType = String | Object | Array<ClassType>
+export type ClassType = string | object | Array<ClassType>
 
 export const commonProps = {
   customClass: {
