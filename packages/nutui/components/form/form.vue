@@ -4,7 +4,7 @@ import { computed, defineComponent, provide, reactive, watch } from 'vue'
 import { PREFIX, getPropByPath, isObject, isPromise } from '../_utils'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemRule } from '../formitem/types'
-import { isVNode, useProvide } from '../_hooks'
+import { useProvide } from '../_hooks'
 import { FORM_KEY, formEmits, formProps } from './form'
 import type { ErrorMessage, FormRule, FormRules } from './types'
 
@@ -37,32 +37,31 @@ watch(
 )
 
 function findFormItem(vnodes: VNode[]) {
-  const task: FormRule[] = []
-  const search = (vnode: any) => {
-    if (isVNode(vnode)) {
-      const type = (vnode?.type as any)?.name || vnode?.type
-      if (type === 'nut-form-item' || type?.toString().endsWith('form-item')) {
-        task.push({
-          prop: vnode.props?.prop,
-          rules: vnode.props?.rules || [],
-        })
-      }
-      else if (Array.isArray(vnode.children) && vnode.children?.length) {
-        search(vnode.children)
-      }
-      else if (isObject(vnode.children) && Object.keys(vnode.children)) {
-        // 异步节点获取
-        if ((vnode.children as any)?.default)
-          search((vnode.children as any).default())
+  let task: FormRule[] = []
+  vnodes.forEach((vnode: VNode) => {
+    let type = vnode.type
+    type = (type as any).name || type
+    if (type === 'nut-form-item' || type?.toString().endsWith('form-item')) {
+      task.push({
+        prop: vnode.props?.prop,
+        rules: vnode.props?.rules || [],
+      })
+    }
+    else if (Array.isArray(vnode.children) && vnode.children?.length) {
+      task = task.concat(findFormItem(vnode.children as VNode[]))
+    }
+    else if (isObject(vnode.children) && Object.keys(vnode.children)) {
+      // 异步节点获取
+      if ((vnode.children as any)?.default) {
+        vnode.children = (vnode.children as any).default()
+        task = task.concat(findFormItem(vnode.children as VNode[]))
       }
     }
     else if (Array.isArray(vnode)) {
-      vnode.forEach((v: any) => {
-        search(v)
-      })
+      task = task.concat(findFormItem(vnode as VNode[]))
     }
-  }
-  search(vnodes)
+  })
+
   return task
 }
 
