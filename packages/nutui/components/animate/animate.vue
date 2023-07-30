@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_utils'
+import requestAniFrame from '../_utils/raf'
 import { animateEmits, animateProps } from './animate'
 
 const props = defineProps(animateProps)
@@ -18,11 +19,20 @@ const classes = computed(() => {
 
 function animate() {
   animated.value = false
+  // #ifdef H5
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       animated.value = true
     })
   })
+  // #endif
+  // #ifndef H5
+  requestAniFrame(() => {
+    requestAniFrame(() => {
+      animated.value = true
+    })
+  })
+  // #endif
 }
 
 function handleClick(event: Event) {
