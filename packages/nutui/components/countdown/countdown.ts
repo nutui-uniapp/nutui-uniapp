@@ -66,7 +66,7 @@ export const countdownEmits = {
     ms: number
   }) => val instanceof String || Object,
   onEnd: () => true,
-  onRestart: (val: number) => isNumber(val),
+  onRestart: (val: number) => true,
   onPaused: (val: number) => isNumber(val),
 }
 

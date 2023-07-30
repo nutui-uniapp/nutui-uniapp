@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
-import { PREFIX, getTimeStamp, isMp, padZero } from '../_utils'
+import { PREFIX, getTimeStamp, isH5, padZero } from '../_utils'
+import requestAniFrame from '../_utils/raf'
 import { countdownEmits, countdownProps } from './countdown'
 
 const props = defineProps(countdownProps)
@@ -108,21 +109,21 @@ function tick() {
       emits('onEnd')
     }
 
-    if (isMp && remainTime > 0)
+    if (remainTime > 0)
       tick()
   }
 
-  if (isMp) {
+  if (isH5) {
     (state.timer as any) = requestAnimationFrame(() => {
       if (state.counting)
         countdown()
     })
   }
   else {
-    (state.timer as any) = setInterval(() => {
+    (state.timer as any) = requestAniFrame(() => {
       if (state.counting)
         countdown()
-    }, 1)
+    })
   }
 }
 
@@ -135,10 +136,10 @@ function start() {
   }
 }
 function pause() {
-  if (isMp)
+  if (isH5)
     cancelAnimationFrame(state.timer as any)
   else
-    clearInterval(state.timer as any)
+    clearTimeout(state.timer as any)
 
   state.counting = false
   emits('onPaused', state.restTime)

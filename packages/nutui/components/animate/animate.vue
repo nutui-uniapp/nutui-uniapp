@@ -20,19 +20,11 @@ const classes = computed(() => {
 function animate() {
   animated.value = false
   // #ifdef H5
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      animated.value = true
-    })
-  })
-  // #endif
-  // #ifndef H5
   requestAniFrame(() => {
     requestAniFrame(() => {
       animated.value = true
     })
   })
-  // #endif
 }
 
 function handleClick(event: Event) {
