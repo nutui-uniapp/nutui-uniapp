@@ -17,7 +17,7 @@ height="100" style="max-width: 100%;" />
 
 ## 介绍
 
-uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了uniapp, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
+uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了uni-app, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
 
 使用请参考[快速开始](https://uniapp-nutui.tech/guide/quick-start.html)。
 
@@ -44,21 +44,11 @@ pnpm add uniapp-nutui
 
 ## 使用
 
-更新 `pages.json` 文件：
+使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件。
 
-```json
-{
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^nut-(.*)?-(.*)": "uniapp-nutui/components/$1$2/$1$2.vue",
-      "^nut-(.*)": "uniapp-nutui/components/$1/$1.vue"
-    }
-  }
-}
+```bash
+pnpm add @uni-helper/vite-plugin-uni-components -D
 ```
-
-或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件。
 
 ```ts
 // vite.config.ts
@@ -105,8 +95,6 @@ export default defineConfig({
   },
 })
 ```
-
-And then enjoy it.
 
 现在只需使用一个组件，它将按需自动导入。
 

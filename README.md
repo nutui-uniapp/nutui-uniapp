@@ -44,21 +44,11 @@ pnpm add uniapp-nutui
 
 ## 使用
 
-更新 `pages.json` 文件：
+使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件。
 
-```json
-{
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^nut-(.*)?-(.*)": "uniapp-nutui/components/$1$2/$1$2.vue",
-      "^nut-(.*)": "uniapp-nutui/components/$1/$1.vue"
-    }
-  }
-}
+```bash
+pnpm add @uni-helper/vite-plugin-uni-components -D
 ```
-
-或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件。
 
 ```ts
 // vite.config.ts
@@ -80,7 +70,6 @@ export default defineConfig({
 ```
 
 样式引入
-
 
 在项目文件 `app.vue` 文件中添加如下代码：
 
@@ -106,8 +95,6 @@ export default defineConfig({
   },
 })
 ```
-
-And then enjoy it.
 
 现在只需使用一个组件，它将按需自动导入。
 
