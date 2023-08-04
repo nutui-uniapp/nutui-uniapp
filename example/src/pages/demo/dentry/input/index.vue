@@ -103,11 +103,11 @@ export default {
     <h2 class="title">
       配合表单使用
     </h2>
-    <!-- <nut-form :model-value="state">
+    <nut-form :model-value="state">
       <nut-form-item label-align="center" label="文本">
         <nut-input v-model="state.val2" placeholder="请输入文本" :border="false" />
       </nut-form-item>
-    </nut-form> -->
+    </nut-form>
 
     <h2 class="title">
       格式化输入内容

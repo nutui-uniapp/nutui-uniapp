@@ -191,7 +191,7 @@ export default defineComponent({
   <view :class="[classes, customClass]" @click="onClick">
     <view class="nut-input-value">
       <view class="nut-input-inner">
-        <view class="nut-input-left-box">
+        <view v-if="$slots.left" class="nut-input-left-box">
           <slot name="left" />
         </view>
         <view class="nut-input-box">
