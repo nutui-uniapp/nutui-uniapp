@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: NutUi for UniAPP
+  name: NutUi for uni-app
   text: 京东风格的轻量级移动端组件库
-  tagline: 一个基于 Vue.js与 Uni-APP 的UI 库，允许你制作漂亮的小程序
+  tagline: 一个基于 Vue.js与 uni-app 的UI 库，允许你制作漂亮的小程序
   image:
     src: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png'
     alt: NutUi
@@ -18,7 +18,7 @@ hero:
 features:
   - icon: 🌈
     title: 组件设计
-    details: 基于NutUi 4.x，适配了UniAPP，使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。
+    details: 基于NutUi 4.x，适配了uni-app，使用 Vue 技术栈开发小程序应用，开箱即用，帮助研发快速开发用户界面，提升开发效率，改善开发体验。
     # link: /guide/overview.html
     # linkText: 快速开始
   - icon: 🔥

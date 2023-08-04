@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "uniapp-nutui": "workspace:^"
+  },
+  "devDependencies": {
+    "@vite-pwa/vitepress": "^0.2.0"
   }
 }

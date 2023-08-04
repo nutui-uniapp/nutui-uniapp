@@ -30,6 +30,6 @@ uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com) 4.x版本�
 
 有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/yang1206/uniapp-nutui/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md)。
 
-感谢所有已经为 UniAPP-NutUI 做出贡献的人！
+感谢所有已经为 uniapp-nutui 做出贡献的人！
 
 <a href="https://github.com/yang1206/uniapp-nutui/graphs/contributors"><img src="https://contributors.nn.ci/api?repo=yang1206/uniapp-nutui" /></a>

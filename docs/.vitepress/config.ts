@@ -1,11 +1,13 @@
 import { defineConfig } from 'vitepress'
+import { withPwa } from '@vite-pwa/vitepress'
 import { version } from '../../package.json'
 import { components, guides, navComponents } from './items'
+import { pwa } from './scripts/pwa'
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
-  title: 'UniAPP-NutUi',
-  description: '京东风格的移动端组件库，完全适配Uniapp',
+export default withPwa(defineConfig({
+  title: 'uniapp-nutui',
+  description: '京东风格的移动端组件库，完全适配uni-app',
   lastUpdated: true,
   head: [
     ['meta', { property: 'og:title', content: 'NutUi' }],
@@ -13,7 +15,7 @@ export default defineConfig({
       'meta',
       {
         property: 'og:description',
-        content: '京东风格的移动端组件库，完全适配Uniapp',
+        content: '京东风格的移动端组件库，完全适配uni-app',
       },
     ],
     ['meta', { property: 'og:url', content: 'https://github.com/yang1206/uniapp-nutui' }],
@@ -27,6 +29,23 @@ export default defineConfig({
     nav: [
       { text: '指南', items: guides },
       { text: '组件', items: navComponents },
+      {
+        text: '其他',
+        items: [
+          {
+            text: ' NutUI-Vue',
+            link: 'https://nutui.jd.com/h5/vue/4x/#/zh-CN/guide/intro',
+          },
+          {
+            text: ' NutUI-Taro',
+            link: 'https://nutui.jd.com/taro/vue/4x/#/zh-CN/guide/intro',
+          },
+          {
+            text: ' NutUI-React',
+            link: 'https://nutui.jd.com/h5/react/2x/#/zh-CN/guide/intro-react',
+          },
+        ],
+      },
       {
         text: `v${version}`,
         items: [
@@ -44,6 +63,7 @@ export default defineConfig({
           },
         ],
       },
+
     ],
 
     search: {
@@ -87,4 +107,5 @@ export default defineConfig({
       dark: 'vitesse-dark',
     },
   },
-})
+  pwa,
+}))
