@@ -274,23 +274,25 @@ export default defineComponent({
     <template v-if="!initLoading && panes.length">
       <NutTabPane v-for="(pane, index) in panes" :key="index" :title="formatTabTitle(pane)">
         <view role="menu" class="nut-cascader-pane">
-          <template v-for="node in pane.nodes" :key="node.value">
-            <view
-              class="nut-cascader-item"
-              :aria-checked="methods.isSelected(pane, node)"
-              :aria-disabled="node.disabled || undefined"
-              :class="{ active: methods.isSelected(pane, node), disabled: node.disabled }"
-              role="menuitemradio"
-              @click="methods.handleNode(node, false)"
-            >
-              <view class="nut-cascader-item__title">
-                {{ node.text }}
-              </view>
+          <scroll-view scroll-y style="height: 100%">
+            <template v-for="node in pane.nodes" :key="node.value">
+              <view
+                class="nut-cascader-item"
+                :aria-checked="methods.isSelected(pane, node)"
+                :aria-disabled="node.disabled || undefined"
+                :class="{ active: methods.isSelected(pane, node), disabled: node.disabled }"
+                role="menuitemradio"
+                @click="methods.handleNode(node, false)"
+              >
+                <view class="nut-cascader-item__title">
+                  {{ node.text }}
+                </view>
 
-              <NutIcon v-if="node.loading" loading custom-class="nut-cascader-item__icon-loading" name="loading" />
-              <NutIcon v-else custom-class="nut-cascader-item__icon-check" name="checklist" />
-            </view>
-          </template>
+                <NutIcon v-if="node.loading" loading custom-class="nut-cascader-item__icon-loading" name="loading" />
+                <NutIcon v-else custom-class="nut-cascader-item__icon-check" name="checklist" />
+              </view>
+            </template>
+          </scroll-view>
         </view>
       </NutTabPane>
     </template>

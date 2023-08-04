@@ -62,6 +62,7 @@ export default defineComponent({
       :close-icon="closeIcon"
       :destroy-on-close="false"
       :close-icon-position="closeIconPosition"
+      :lock-scroll="lockScroll"
     >
       <template v-if="title">
         <view class="nut-cascader__bar" v-html="title" />
