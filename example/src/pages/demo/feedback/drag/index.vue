@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo" catchtouchmove="true">
+  <div class="demo h-100vh!" catchtouchmove="true">
     <h2 class="title">
       基础用法
     </h2>
@@ -44,29 +44,18 @@ export default {
         X轴移动
       </nut-button>
     </nut-drag>
-    <h2 class="title">
-      自动吸边
-    </h2>
-    <nut-drag
-      direction="x"
-      :attract="true"
-    >
-      <nut-button type="primary">
-        拖动我
-      </nut-button>
-    </nut-drag>
-    <h2 class="title">
+    <!-- <h2 class="title">
       限制拖拽边界
     </h2>
     <div class="drag-boundary" />
     <nut-drag
-      :boundary="{ top: 420, left: 0, bottom: bottom(), right: right() }"
-      :style="{ top: '420px', left: '50px' }"
+      :boundary="{ top: 330, left: 0, bottom: bottom(), right: right() }"
+      :style="{ top: '330px', left: '50px' }"
     >
       <nut-button type="primary">
         限制拖拽边界
       </nut-button>
-    </nut-drag>
+    </nut-drag> -->
   </div>
 </template>
 
@@ -85,7 +74,7 @@ export default {
 
 .drag-boundary {
   position: absolute;
-  top: 420px;
+  top: 330px;
   left: 0;
   width: 300px;
   height: 200px;

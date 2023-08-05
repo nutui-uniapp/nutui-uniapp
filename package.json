@@ -81,7 +81,7 @@
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix",
-    "*.{scss,css,vue}": "stylelint  --fix"
+    "*.{scss,css,vue}": "stylelint  --fix --allow-empty-input"
   },
   "config": {
     "commitizen": {
