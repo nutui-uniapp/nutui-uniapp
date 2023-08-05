@@ -6,7 +6,7 @@ import NutProgress from '../progress/progress.vue'
 import NutIcon from '../icon/icon.vue'
 import NutButton from '../button/button.vue'
 import { uploaderEmits, uploaderProps } from './uploader'
-import { type ChooseFile, type GeneralCallbackResult, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
+import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
 import type { FileItem } from './type'
 
 const props = defineProps(uploaderProps)
@@ -27,11 +27,12 @@ function fileItemClick(fileItem: FileItem) {
 }
 
 function executeUpload(fileItem: FileItem, index: number) {
-  const { type, url, name, formData } = fileItem
+  const { type, url, formData } = fileItem
+
   const uploadOption: UploadOptions = {
     url: props.url,
     filePath: url,
-    name,
+    name: props.name,
     fileType: type,
     header: props.headers,
     timeout: +props?.timeout,
@@ -65,7 +66,7 @@ function executeUpload(fileItem: FileItem, index: number) {
     })
     emit('update:fileList', fileList.value)
   }
-  uploadOption.onFailure = (data: GeneralCallbackResult, option: UploadOptions) => {
+  uploadOption.onFailure = (data, option: UploadOptions) => {
     fileItem.status = 'error'
     fileItem.message = translate('error')
     emit('failure', {
@@ -124,7 +125,7 @@ function readFile(files: ChooseFile[]) {
     }
     fileItem.uid = new Date().getTime().toString()
     fileItem.path = filepath
-    fileItem.name = filepath || file.name
+    fileItem.name = file.name || filepath
     fileItem.status = 'ready'
     fileItem.message = translate('waitingUpload')
     fileItem.type = fileType!

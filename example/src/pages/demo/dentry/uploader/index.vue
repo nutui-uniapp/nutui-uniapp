@@ -59,8 +59,8 @@ export default {
     const onOversize = (files: File[]) => {
       console.log('oversize 触发 文件大小不能超过 50kb', files)
     }
-    const onDelete = (file: any, fileList: any[]) => {
-      console.log('delete 事件触发', file, fileList)
+    const onDelete = (res: { file: any; fileList: any[]; index: number }) => {
+      console.log('delete 事件触发', res.file, res.fileList)
     }
     const onProgress = ({ event, options, percentage }: any) => {
       progressPercentage.value = percentage
