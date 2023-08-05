@@ -1,3 +1,14 @@
+## [0.2.1](https://github.com/yang1206/uniapp-nutui/compare/v0.2.0...v0.2.1) (2023-08-05)
+
+
+### Bug Fixes
+
+* (cascader) 修复在 Popup 中的滑动问题 ([302cd53](https://github.com/yang1206/uniapp-nutui/commit/302cd531426f892425810989b73a8376d0231175))
+* (input) 修复空白节点导致的样式对齐问题 ([11b1d87](https://github.com/yang1206/uniapp-nutui/commit/11b1d870030a3a9b4ba9037c2d14735186b65ab0))
+* (uploader) name参数无效 ([b21acd0](https://github.com/yang1206/uniapp-nutui/commit/b21acd0c1b61fae6a6cdd6ecb1d8db7084820bbc)), closes [#9](https://github.com/yang1206/uniapp-nutui/issues/9)
+
+
+
 # [0.2.0](https://github.com/yang1206/uniapp-nutui/compare/v0.1.8...v0.2.0) (2023-07-30)
 
 
