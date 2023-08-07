@@ -40,12 +40,13 @@ const styles: ComputedRef = computed(() => {
 })
 
 function inputType(type: InputType) {
+  // #ifdef H5
   if (type === 'number')
     return 'text'
 
   if (type === 'digit')
     return 'tel'
-
+  // #endif
   return type
 }
 

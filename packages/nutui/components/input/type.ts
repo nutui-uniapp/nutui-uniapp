@@ -25,7 +25,11 @@ export type InputType =
   | 'password'
   | 'textarea'
   | 'datetime-local'
+  | 'idcard'
+  | 'safe-password'
+  | 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'
 
+export type UniInputType = 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'
 export interface InputRule {
   pattern?: RegExp
   message?: string
