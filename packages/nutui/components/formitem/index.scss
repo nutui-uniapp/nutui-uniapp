@@ -40,13 +40,16 @@
     display: inline-block !important;
     flex: none !important;
     width: $form-item-label-width;
-    min-width: auto;
     margin-right: $form-item-label-margin-right;
     font-size: $form-item-label-font-size;
     font-weight: normal;
     text-align: $form-item-label-text-align;
     word-wrap: break-word;
 
+    &.nut-cell__title {
+      min-width: auto;
+    }
+    
     &.required {
       &::before {
         margin-right: $form-item-required-margin-right;
