@@ -36,7 +36,7 @@ function change() {
       return item.name === key
     })
   }
-  parent?.changeIndex((Number(indexValue) ? Number(indexValue) : +key), state.index)
+  parent?.changeIndex(indexValue !== null ? +indexValue! : +key, state.index)
 }
 </script>
 

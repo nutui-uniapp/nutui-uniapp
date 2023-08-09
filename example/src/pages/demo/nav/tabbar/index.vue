@@ -5,12 +5,9 @@ export default {
   setup() {
     const active = ref(2)
     const activeName = ref('category')
-    function tabSwitch(item: any, index: number) {
-
-      // uni.showToast({
-      //   title: `${JSON.stringify(item)},${index}`,
-      //   icon: 'none',
-      // })
+    function tabSwitch(item: any, index: number | string) {
+      // eslint-disable-next-line no-console
+      console.log(item, index)
     }
     const activeImg = ref(
       'https://img11.360buyimg.com/imagetools/jfs/t1/70423/4/20553/3652/62e74629E23ba550e/aeeed0e3b9f43ae6.png',
