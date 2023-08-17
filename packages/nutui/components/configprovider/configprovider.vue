@@ -70,7 +70,7 @@ export default defineComponent ({
 </script>
 
 <template>
-  <view :class="`nut-theme-${theme}`" :style="mapThemeVarsToCSSVars(themeVars)">
+  <view :class="`nut-theme-${props.theme}`" :style="mapThemeVarsToCSSVars(themeVars)">
     <slot />
   </view>
 </template>
