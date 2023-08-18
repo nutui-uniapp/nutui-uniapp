@@ -66,22 +66,44 @@ export default defineComponent({
         <slot />
       </view>
 
-      <NutIcon
-        :name="!isCurValue ? 'check-normal' : 'check-checked'"
-        :size="pxCheck(iconSize)"
-        :width="pxCheck(iconSize)"
-        :height="pxCheck(iconSize)"
-        :pop-class="color"
-      />
+      <slot v-if="!isCurValue" name="icon">
+        <NutIcon
+          name="check-normal"
+          :size="pxCheck(iconSize)"
+          :width="pxCheck(iconSize)"
+          :height="pxCheck(iconSize)"
+          :pop-class="color"
+        />
+      </slot>
+      <slot v-else name="checkedIcon">
+        <NutIcon
+          name="check-checked"
+          :size="pxCheck(iconSize)"
+          :width="pxCheck(iconSize)"
+          :height="pxCheck(iconSize)"
+          :pop-class="color"
+        />
+      </slot>
     </template>
     <template v-else>
-      <NutIcon
-        :name="!isCurValue ? 'check-normal' : 'check-checked'"
-        :size="pxCheck(iconSize)"
-        :width="pxCheck(iconSize)"
-        :height="pxCheck(iconSize)"
-        :pop-class="color"
-      />
+      <slot v-if="!isCurValue" name="icon">
+        <NutIcon
+          name="check-normal"
+          :size="pxCheck(iconSize)"
+          :width="pxCheck(iconSize)"
+          :height="pxCheck(iconSize)"
+          :pop-class="color"
+        />
+      </slot>
+      <slot v-else name="checkedIcon">
+        <NutIcon
+          name="check-checked"
+          :size="pxCheck(iconSize)"
+          :width="pxCheck(iconSize)"
+          :height="pxCheck(iconSize)"
+          :pop-class="color"
+        />
+      </slot>
       <view :class="getLabelClass">
         <slot />
       </view>

@@ -122,13 +122,13 @@
       <nut-radio-group v-model="radioVal">
         <nut-radio label="1">
           自定义图标
-          <template #icon> <nut-icon  name="check-list" /> </template>
-          <template #checkedIcon> <nut-icon  name="check-list" color="red" /> </template>
+          <template #icon> <nut-icon  name="checklist" /> </template>
+          <template #checkedIcon> <nut-icon  name="checklist" custom-color="red" /> </template>
         </nut-radio>
         <nut-radio label="2">
           自定义图标
-          <template #icon> <nut-icon  name="check-list" /> </template>
-          <template #checkedIcon> <nut-icon  name="check-list" color="red" /> </template>
+          <template #icon> <nut-icon  name="checklist" /> </template>
+          <template #checkedIcon> <nut-icon  name="checklist" custom-color="red" /> </template>
         </nut-radio>
       </nut-radio-group>
     </nut-cell>
