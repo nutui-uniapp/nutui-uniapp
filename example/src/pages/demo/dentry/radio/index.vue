@@ -128,19 +128,19 @@ export default {
           <nut-radio label="1">
             自定义图标
             <template #icon>
-              <nut-icon name="check-list" />
+              <nut-icon name="checklist" />
             </template>
             <template #checkedIcon>
-              <nut-icon name="check-list" color="red" />
+              <nut-icon name="checklist" custom-color="red" />
             </template>
           </nut-radio>
           <nut-radio label="2">
             自定义图标
             <template #icon>
-              <nut-icon name="check-list" />
+              <nut-icon name="checklist" />
             </template>
             <template #checkedIcon>
-              <nut-icon name="check-list" color="red" />
+              <nut-icon name="checklist" custom-color="red" />
             </template>
           </nut-radio>
         </nut-radio-group>
