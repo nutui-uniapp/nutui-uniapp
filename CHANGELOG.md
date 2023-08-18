@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/yang1206/uniapp-nutui/compare/v0.2.2...v0.2.3) (2023-08-18)
+
+
+### Bug Fixes
+
+* 修复 configProvider 取值错误问题 ([3a5d5fb](https://github.com/yang1206/uniapp-nutui/commit/3a5d5fb36c33ec35394b74aa443c62ad753ec992))
+
+
+
 ## [0.2.2](https://github.com/yang1206/uniapp-nutui/compare/v0.2.1...v0.2.2) (2023-08-09)
 
 
