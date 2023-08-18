@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/yang1206/uniapp-nutui/compare/v0.2.3...v0.2.4) (2023-08-18)
+
+
+### Bug Fixes
+
+* (radio) 自定义图标 slot丢失 ([7ac6772](https://github.com/yang1206/uniapp-nutui/commit/7ac6772e0ea1775ff739803386cff1d2a8b17617)), closes [#15](https://github.com/yang1206/uniapp-nutui/issues/15)
+
+
+
 ## [0.2.3](https://github.com/yang1206/uniapp-nutui/compare/v0.2.2...v0.2.3) (2023-08-18)
 
 
