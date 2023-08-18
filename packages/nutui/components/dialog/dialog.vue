@@ -70,7 +70,7 @@ const { translate } = useTranslate(componentName)
         <slot v-if="$slots.footer" name="footer" />
         <template v-else>
           <NutButton
-            v-if="!noCancelBtn"
+            v-if="!dialogStatus.noCancelBtn"
             size="small"
             plain
             type="primary"
