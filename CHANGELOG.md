@@ -1,3 +1,14 @@
+## [0.2.5](https://github.com/yang1206/uniapp-nutui/compare/v0.2.4...v0.2.5) (2023-08-24)
+
+
+### Bug Fixes
+
+* (form) 样式未正确覆盖 ([838db2a](https://github.com/yang1206/uniapp-nutui/commit/838db2ab3af66b79355392e3038cc4c9388168c5)), closes [#28](https://github.com/yang1206/uniapp-nutui/issues/28)
+* 修复通过ref调用对话框时，noCancelBtn属性无效的bug ([6f7d516](https://github.com/yang1206/uniapp-nutui/commit/6f7d516320044ca8d96104531725eb8556732367))
+* fix: (input) 修复左右插件默认文字无法显示 ([8b59931](https://github.com/yang1206/uniapp-nutui/commit/8b59931b4c1f6080ee320af9fa0a4072ec03c235))
+
+
+
 ## [0.2.4](https://github.com/yang1206/uniapp-nutui/compare/v0.2.3...v0.2.4) (2023-08-18)
 
 
