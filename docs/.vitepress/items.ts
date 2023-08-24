@@ -145,5 +145,6 @@ export const guides = [
   { text: '快速上手', link: '/guide/quick-start' },
   { text: '国际化', link: '/guide/i18n' },
   { text: '定制主题', link: '/guide/theme' },
+  { text: '注意事项', link: '/guide/faq' },
   { text: '更新日志', link: '/guide/changelog' },
 ]

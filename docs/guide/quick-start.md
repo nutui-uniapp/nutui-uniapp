@@ -69,6 +69,8 @@ export default defineConfig({
     Components({
       resolvers: [NutResolver()],
     }),
+    // uni插件一定要放到后面
+    uni()
   ],
 })
 ```
@@ -79,8 +81,10 @@ export default defineConfig({
 
 在项目文件 `app.vue` 文件中添加如下代码：
 
-```css
+```scss
+<style lang="scss">
 @import 'uniapp-nutui/styles/index';
+</style
 ```
 
 导入样式变量
@@ -141,8 +145,10 @@ export default defineConfig({
 
 在项目文件 `app.vue` 文件中添加如下代码：
 
-```css
+```scss
+<style lang="scss">
 @import '@/uni_modules/nutui-uni/components/nutui-uni/styles/index.scss';
+</style>
 ```
 
 导入样式变量
