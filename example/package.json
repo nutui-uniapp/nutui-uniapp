@@ -1,6 +1,6 @@
 {
   "name": "@uniapp-nutui/example",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "scripts": {
     "dev:app": "uni -p app",
     "dev:app-android": "uni -p app-android",
