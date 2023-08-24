@@ -15,6 +15,12 @@
         "message": "Expected class selector to be kebab-case"
       }
     ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["::v-deep","deep","v-deep"]
+      }
+    ],
     "no-descending-specificity" :null,
     "no-empty-source" :null,
     "keyframes-name-pattern": "^[a-z]+([A-Z][a-z]*)*$"

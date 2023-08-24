@@ -45,15 +45,14 @@
     border-radius: $cell-border-radius;
     box-shadow: $cell-box-shadow;
 
-
-    .nut-cell {
+  :deep(.nut-cell) {
       margin: 0;
       border-radius: 0;
       box-shadow: none;
     }
   }
 
-  .nut-cell {
+  :deep(.nut-cell) {
     &::after {
       border-bottom: $cell-after-border-bottom;
     }

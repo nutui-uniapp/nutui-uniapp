@@ -67,7 +67,7 @@
     &__slots {
       text-align: $form-item-body-slots-text-align;
 
-      .nut-input-text {
+      :deep(.nut-input-text) {
         width: 100%;
         padding: 0;
         margin: 0;
@@ -80,11 +80,11 @@
         outline: 0 none;
       }
 
-      .nut-range-container {
+      :deep(.nut-range-container) {
         min-height: 24px;
       }
 
-      .nut-textarea {
+      :deep(.nut-textarea) {
         padding: 0 !important;
 
         .nut-textarea__textarea {
