@@ -103,10 +103,12 @@ function componentWeapp() {
     const prevDefaultValue = defaultIndexes.value
     let changeIndex = 0
     // 判断变化的是第几个
-    data.detail.value.forEach((col: number, index: number) => {
-      if (prevDefaultValue[index] !== col)
-        changeIndex = index
-    })
+    for (let i = 0; i < data.detail.value?.length; i++) {
+      if (prevDefaultValue[i] !== data.detail.value?.[i]) {
+        changeIndex = i
+        break
+      }
+    }
 
     // 选择的是哪个 option
     changeHandler(changeIndex, columnsList.value[changeIndex][data.detail.value[changeIndex]])
