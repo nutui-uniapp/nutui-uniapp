@@ -20,6 +20,7 @@ const {
   defaultValues,
   columnsList,
   selectedOptions,
+  columnFieldNames,
   isSameValue,
   columnsType,
   classes,
@@ -62,7 +63,7 @@ function componentWeapp() {
     picking: false,
   })
 
-  // 选中项的位置  taro
+  // 选中项的位置
   const defaultIndexes = ref<number[]>([])
 
   const pickerViewStyles = computed(() => {
@@ -74,10 +75,11 @@ function componentWeapp() {
 
   const defaultValuesConvert = () => {
     const defaultIndexs: number[] = []
+    const fields = columnFieldNames.value
     if (defaultValues.value.length > 0) {
       defaultValues.value.forEach((value, index) => {
         for (let i = 0; i < columnsList.value[index].length; i++) {
-          if (columnsList.value[index][i].value === value) {
+          if (columnsList.value[index][i][fields.value] === value) {
             defaultIndexs.push(i)
             break
           }
@@ -88,7 +90,7 @@ function componentWeapp() {
       if (columnsList && columnsList.value.length > 0) {
         columnsList.value.forEach((item) => {
           defaultIndexs.push(0)
-          item.length > 0 && defaultValues.value.push(item[0].value)
+          item.length > 0 && defaultValues.value.push(item[0][fields.value])
         })
       }
     }
@@ -240,22 +242,26 @@ export default defineComponent({
       @pickstart="handlePickstart"
       @pickend="handlePickend"
     >
-      <picker-view-column v-for="(column, columnIndex) in columnsList" :key="columnIndex">
+      <picker-view-column
+        v-for="(column, columnIndex) in columnsList"
+        :key="columnIndex"
+        :filed-names="columnFieldNames"
+      >
         <view
           v-for="(item, index) in column"
-          :key="item.value ? item.value : index"
+          :key="item[columnFieldNames.value] ?? index"
           class="nut-picker-roller-item-tarotile"
           :style="{
             lineHeight: pxCheck(optionHeight),
           }"
         >
-          {{ item.text }}
+          {{ item[columnFieldNames.text] }}
         </view>
       </picker-view-column>
     </picker-view>
     <!-- #endif -->
 
-    <!-- Taro 下转换成 H5 -->
+    <!-- Uni 下转换成 H5 -->
     <!-- #ifdef H5 -->
     <view class="nut-picker__column" :style="columnStyle">
       <view v-for="(column, columnIndex) in columnsList" :key="columnIndex" class="nut-picker__columnitem">
@@ -264,6 +270,7 @@ export default defineComponent({
           :column="column"
           :columns-type="columnsType"
           :value="defaultValues[columnIndex]"
+          :field-names="columnFieldNames"
           :three-dimensional="false"
           :swipe-duration="swipeDuration"
           :visible-option-num="visibleOptionNum"

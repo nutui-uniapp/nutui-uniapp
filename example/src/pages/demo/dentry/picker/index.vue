@@ -114,6 +114,31 @@ export default {
     ])
     const asyncColumns = ref<PickerOption[]>([])
 
+    const customColumns = ref([
+      {
+        name: '浙江',
+        code: 'ZheJiang',
+        list: [
+          {
+            name: '杭州',
+            code: 'HangZhou',
+            list: [
+              { name: '西湖', code: 'XiHu' },
+              { name: '余杭', code: 'YuHang' },
+            ],
+          },
+          {
+            name: '温州',
+            code: 'WenZhou',
+            list: [
+              { name: '鹿城区', code: 'LuCheng' },
+              { name: '瓯海区', code: 'OuHai' },
+            ],
+          },
+        ],
+      },
+    ])
+
     const show = ref(false)
     const popupDesc = ref()
 
@@ -133,19 +158,24 @@ export default {
       }, 1000)
     })
 
-    const confirm = ({ selectedValue, selectedOptions }: { selectedValue: string[]; selectedOptions: any }) => {
+    const confirm = ({ selectedValue, selectedOptions }: { selectedValue: (string | number)[]; selectedOptions: any }) => {
       showToast.value = true
       msg.value = selectedOptions.map((val: any) => val.text).join(',')
     }
 
-    const change = ({ selectedValue }: { selectedValue: string[] }) => {
+    const change = ({ selectedValue }: { selectedValue: (string | number)[] }) => {
       /* eslint-disable no-console */
       console.log(selectedValue)
     }
 
-    const popupConfirm = ({ selectedValue, selectedOptions }: { selectedValue: string[]; selectedOptions: any }) => {
+    const popupConfirm = ({ selectedValue, selectedOptions }: { selectedValue: (string | number)[]; selectedOptions: any }) => {
       popupDesc.value = selectedOptions.map((val: any) => val.text).join(',')
       show.value = false
+    }
+
+    const customCloumnConfirm = ({ selectedOptions }: { selectedValue: (string | number)[]; selectedOptions: any }) => {
+      showToast.value = true
+      msg.value = selectedOptions.map((val: any) => val.name).join(',')
     }
 
     return {
@@ -163,10 +193,12 @@ export default {
       effectColumns,
       showToast,
       portColumns,
+      customColumns,
       popupConfirm,
       popupDesc,
       msg,
       popupValue,
+      customCloumnConfirm,
     }
   },
 }
@@ -222,6 +254,20 @@ export default {
       异步获取
     </h2>
     <nut-picker v-model="asyncValue" :columns="asyncColumns" title="城市选择" @confirm="confirm" />
+
+    <h2 class="title">
+      自定义字段名
+    </h2>
+    <nut-picker
+      :columns="customColumns"
+      :field-names="{
+        text: 'name',
+        value: 'code',
+        children: 'list',
+      }"
+      title="请选择城市"
+      @confirm="customCloumnConfirm"
+    />
 
     <nut-toast v-model:visible="showToast" :msg="msg" type="text" />
   </div>

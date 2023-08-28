@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { PickerOption } from './types'
+import type { PickerFieldNames, PickerOption } from './types'
 
 export const pickercolumnProps = {
   // 当前选中项
@@ -25,6 +25,15 @@ export const pickercolumnProps = {
   optionHeight: {
     type: [Number, String],
     default: 36,
+  },
+  fieldNames: {
+    type: Object as PropType<Required<PickerFieldNames>>,
+    default: () => ({}),
+  },
+  // 特殊环境判断
+  uni: {
+    type: Boolean,
+    defualt: false,
   },
 }
 
