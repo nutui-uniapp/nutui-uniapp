@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
 import type { PickerOption } from '../pickercolumn/types'
 import { pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
@@ -18,6 +18,7 @@ const {
   changeHandler,
   confirm,
   defaultValues,
+  defaultIndexes,
   columnsList,
   selectedOptions,
   columnFieldNames,
@@ -64,7 +65,6 @@ function componentWeapp() {
   })
 
   // 选中项的位置
-  const defaultIndexes = ref<number[]>([])
 
   const pickerViewStyles = computed(() => {
     const styles: CSSProperties = {}
@@ -72,31 +72,6 @@ function componentWeapp() {
     styles['--line-height'] = `${+props.optionHeight}px`
     return styles
   })
-
-  const defaultValuesConvert = () => {
-    const defaultIndexs: number[] = []
-    const fields = columnFieldNames.value
-    if (defaultValues.value.length > 0) {
-      defaultValues.value.forEach((value, index) => {
-        for (let i = 0; i < columnsList.value[index].length; i++) {
-          if (columnsList.value[index][i][fields.value] === value) {
-            defaultIndexs.push(i)
-            break
-          }
-        }
-      })
-    }
-    else {
-      if (columnsList && columnsList.value.length > 0) {
-        columnsList.value.forEach((item) => {
-          defaultIndexs.push(0)
-          item.length > 0 && defaultValues.value.push(item[0][fields.value])
-        })
-      }
-    }
-
-    return defaultIndexs
-  }
 
   // 平铺展示时，滚动选择
   const tileChange = (data: any) => {
@@ -112,9 +87,6 @@ function componentWeapp() {
 
     // 选择的是哪个 option
     changeHandler(changeIndex, columnsList.value[changeIndex][data.detail.value[changeIndex]])
-    // console.log('设置默认值');
-
-    defaultIndexes.value = defaultValuesConvert()
   }
 
   // 确定
@@ -137,23 +109,6 @@ function componentWeapp() {
   const handlePickend = () => {
     state.picking = false
   }
-
-  onMounted(() => {
-    if (defaultValues.value.length > 0)
-      defaultIndexes.value = defaultValuesConvert()
-  })
-
-  watch(
-    () => props.modelValue,
-    (newValues) => {
-      if (!isSameValue(newValues, defaultValues.value)) {
-        setTimeout(() => {
-          defaultIndexes.value = defaultValuesConvert()
-        }, 100)
-      }
-    },
-    { deep: true },
-  )
 
   return {
     classes,
@@ -185,7 +140,6 @@ const {
 // #ifndef H5
 const {
   confirmHandler: confirmHandlerMp,
-  defaultIndexes,
   tileChange,
   handlePickstart,
   handlePickend,
