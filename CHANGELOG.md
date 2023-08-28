@@ -1,3 +1,20 @@
+# [0.3.0](https://github.com/yang1206/uniapp-nutui/compare/v0.2.5...v0.3.0) (2023-08-28)
+
+
+### Bug Fixes
+
+* (actionsheet) 修复 close-abled 失效问题 ([fabe18d](https://github.com/yang1206/uniapp-nutui/commit/fabe18dca78f30b4146d2fefebb053be1fa85882))
+* (countdown) millisecond format ([086c2a9](https://github.com/yang1206/uniapp-nutui/commit/086c2a93736a5fb8b763447a41275522b3c15f7b))
+* (picker) 小程序环境切换选项无响应 ([06ca0e8](https://github.com/yang1206/uniapp-nutui/commit/06ca0e86c990aa8caec56c1edbdc6217f576a664))
+* (picker) 修复 field-names 在级联模式下的问题 ([a5fa8cf](https://github.com/yang1206/uniapp-nutui/commit/a5fa8cf18fabc526156ff7aec0207b79bc6fc811))
+
+
+### Features
+
+* (picker) support custom column field names ([808482d](https://github.com/yang1206/uniapp-nutui/commit/808482dbf9b50d7559bbef9c4977fbb6d7a1445e))
+
+
+
 ## [0.2.5](https://github.com/yang1206/uniapp-nutui/compare/v0.2.4...v0.2.5) (2023-08-24)
 
 
