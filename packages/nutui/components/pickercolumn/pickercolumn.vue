@@ -71,7 +71,7 @@ const maskStyles = computed(() => {
 
 function onTouchStart(event: TouchEvent) {
   touch.start(event)
-  if (moving.value) {
+  if (moving.value && !props.uni) {
     const { transform } = window?.getComputedStyle(roller.value?.$el)
 
     if (props.threeDimensional) {
@@ -197,7 +197,7 @@ function setChooseValue() {
 
 function modifyStatus(type: boolean) {
   const { column } = props
-  const index = column.findIndex(columnItem => columnItem.value === props.value)
+  const index = column.findIndex(columnItem => columnItem[props.fieldNames.value] === props.value)
 
   state.currIndex = index === -1 ? 1 : (index as number) + 1
   const move = index === -1 ? 0 : (index as number) * +props.optionHeight
@@ -262,23 +262,23 @@ export default defineComponent({
       :style="threeDimensional ? touchRollerStyle : touchTileStyle"
       @transitionend="stopMomentum"
     >
-      <template v-for="(item, index) in column" :key="item.value ? item.value : index">
+      <template v-for="(item, index) in column" :key="item[fieldNames.value] ?? index">
         <!-- 3D 效果 -->
         <view
-          v-if="item && item.text && threeDimensional"
+          v-if="item && item[fieldNames.text] && threeDimensional"
           class="nut-picker-roller-item"
           :class="{ 'nut-picker-roller-item-hidden': isHidden(index + 1) }"
           :style="setRollerStyle(index + 1)"
         >
-          {{ item.text }}
+          {{ item[fieldNames.text] }}
         </view>
         <!-- 平铺 -->
         <view
-          v-if="item && item.text && !threeDimensional"
-          class="nut-picker-roller-item-title"
+          v-if="item && item[fieldNames.text] && !threeDimensional"
+          class="nut-picker-roller-item-tile"
           :style="{ height: pxCheck(optionHeight), lineHeight: pxCheck(optionHeight) }"
         >
-          {{ item.text }}
+          {{ item[fieldNames.text] }}
         </view>
       </template>
     </view>

@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { PickerOption } from '../pickercolumn/types'
+import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
 
 export const pickerProps = {
   modelValue: {
@@ -43,6 +43,10 @@ export const pickerProps = {
   optionHeight: {
     type: [Number, String],
     default: 36,
+  },
+  fieldNames: {
+    type: Object as PropType<PickerFieldNames>,
+    default: () => ({}),
   },
 }
 

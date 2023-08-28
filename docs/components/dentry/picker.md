@@ -386,6 +386,55 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </script>
 ```
 
+### 自定义字段名 v0.3.0
+
+可以使用 `field-names` 属性自定义 `columns` 中数据的格式。
+
+
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const value = ref([])
+const fieldNames = ref({
+  text: 'name',
+  value: 'code',
+  children: 'list'
+})
+const columns = ref([
+  {
+    name: '浙江',
+    code: 'ZheJiang',
+    list: [
+      {
+        name: '杭州',
+        code: 'HangZhou',
+        list: [
+          { name: '西湖', code: 'XiHu' },
+          { name: '余杭区', code: 'YuHang' }
+        ]
+      },
+      {
+        name: '温州',
+        code: 'WenZhou',
+        list: [
+          { name: '鹿城区', code: 'LuCheng' },
+          { name: '瓯海区', code: 'OuHai' }
+        ]
+      }
+    ]
+  }
+])
+
+function confirm({ selectedValue, selectedOptions }) {
+  console.log(selectedOptions.map(val => val.text).join(','))
+}
+</script>
+
+<template>
+  <nut-picker v-model="value" :columns="columns" :field-names="fieldNames" title="城市选择" @confirm="confirm" />
+</template>
+```
 
 
 ## API
@@ -396,6 +445,7 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 |--------------|----------------------------------|--------|------------------|
 | v-model:value         | 默认选中项               | Array | `[]`              |
 | columns         | 对象数组，配置每一列显示的数据               | PickerOption[] \| PickerOption[][] | -                |
+| field-names`v0.3.0` | 自定义 columns 中的字段        | object                             | `{ text: 'text', value: 'value', children: 'children' }` |
 | title                  | 设置标题                   | string  | -      |
 | cancel-text            | 取消按钮文案               | string  | `取消`  |
 | ok-text                | 确定按钮文案               | string  | `确定`   |
