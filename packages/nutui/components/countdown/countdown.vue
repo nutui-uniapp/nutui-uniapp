@@ -82,7 +82,7 @@ function parseFormat(time: { d: number; h: number; m: number; s: number; ms: num
     else if (format.includes('SS'))
       format = format.replace('SS', msC.slice(0, 2))
     else if (format.includes('S'))
-      format = format.replace('SS', msC.slice(0, 1))
+      format = format.replace('S', msC.slice(0, 1))
   }
   return format
 }
