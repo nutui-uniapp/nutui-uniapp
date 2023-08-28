@@ -33,8 +33,10 @@ function chooseItem(item: { disable: boolean; loading: boolean }, index: any) {
 }
 
 function close() {
-  emit('close')
-  emit('update:visible', false)
+  if (props.closeAbled) {
+    emit('close')
+    emit('update:visible', false)
+  }
 }
 </script>
 
