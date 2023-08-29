@@ -75,6 +75,17 @@ export default defineConfig({
 })
 ```
 
+如果你使用 `pnpm` ，请在根目录下创建一个 `.npmrc` 文件，参见[issue](https://github.com/antfu/unplugin-vue-components/issues/389)。
+
+```
+// .npmrc
+public-hoist-pattern[]=@vue*
+// or
+// shamefully-hoist = true
+```
+
+see more in [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components#installation)
+
 ### 样式引入
 
 <!-- 组件库与uniapp都依赖sass，请先安装sass -->
