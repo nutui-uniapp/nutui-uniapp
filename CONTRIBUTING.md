@@ -23,10 +23,10 @@
 
 1. Fork [此仓库](https://github.com/yang1206/uniapp-nutui)，从 `main` 创建分支。新功能实现请发 pull request 到 `feature` 分支。其他更改发到 `main` 分支。
 2. 使用 `pnpm install` 安装依赖。
-3. 使用 `pnpm run dev` 启动项目，并运行 `pnpm run example` 查看示例，运行 `pnpm run docs` 查看文档站点。
-4. 对代码库进行更改。如果适用的话，请确保写了相应的测试。
-5. 确认执行 `pnpm run test` 后所有的测试都是通过的。
-6. 提交代码前使用 `pnpm run test:ci` 进行构建 `CI` 测试。
+3. 使用 `pnpm build:all` 编译。
+4. 使用 `pnpm run dev` 启动项目，并运行 `pnpm run example` 查看示例，运行 `pnpm run docs` 查看文档站点。
+5. 对代码库进行更改。如果适用的话，请确保写了相应的测试。
+6. 确认执行 `pnpm run test` 后所有的测试都是通过的。
 7. 提交 git commit, 请同时遵守 [Commit 规范](#commit-指南)。
 8. 提交 pull request, 如果有对应的 issue，请进行[关联](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)。
 
@@ -61,7 +61,7 @@ Commit messages 请遵循[conventional-changelog 标准](https://www.conventiona
 
 本仓库使用 `pnpm` 管理，包括以下 packages：
 
-1. `nutui`: 组件库入口
+1. `packages/nutui`: 组件库入口
 2. `docs`: 组件库文档站
 3. `example`: 调试组件库的示例
 

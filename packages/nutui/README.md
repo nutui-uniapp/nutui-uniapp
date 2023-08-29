@@ -55,7 +55,7 @@ uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 
 ## 贡献指南
 
-修改代码请阅读我们的 [贡献指南](https://github.com/yang1206/uniapp-nutui/blob/develop/CONTRIBUTING.md)。
+修改代码请阅读我们的 [贡献指南](https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md)。
 
 使用过程中发现任何问题都可以提 [Issue](https://github.com/yang1206/uniapp-nutui/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/yang1206/uniapp-nutui/pulls)。
 
@@ -77,4 +77,4 @@ uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 
 ## License
 
-[MIT](https://github.com/yang1206/uniapp-nutui/blob/main/LICENSE) License &copy; 2022-PRESENT [Yang1206](https://github.com/yang1206) and all contributors.
+[MIT](https://github.com/yang1206/uniapp-nutui/blob/main/LICENSE) License &copy; 2023-PRESENT [Yang1206](https://github.com/yang1206) and all contributors.
