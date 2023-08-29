@@ -172,14 +172,14 @@ export default defineComponent({
               <template v-if="item.type === 'number' || item.type === 'custom'">
                 {{ item.id }}
               </template>
-              <img
+              <image
                 v-if="item.type === 'lock'"
                 src="https://img11.360buyimg.com/imagetools/jfs/t1/146371/38/8485/738/5f606425Eca239740/14f4b4f5f20d8a68.png"
-              >
-              <img
+              />
+              <image
                 v-if="item.type === 'delete'"
                 src="https://img11.360buyimg.com/imagetools/jfs/t1/129395/8/12735/2030/5f61ac37E70cab338/fb477dc11f46056c.png"
-              >
+              />
             </div>
           </div>
         </div>
@@ -191,9 +191,9 @@ export default defineComponent({
               @touchmove="(event: TouchEvent) => onTouchMove(event)"
               @touchend="onTouchEnd"
             >
-              <img
+              <image
                 src="https://img11.360buyimg.com/imagetools/jfs/t1/129395/8/12735/2030/5f61ac37E70cab338/fb477dc11f46056c.png"
-              >
+              />
             </div>
           </div>
           <div class="nut-key__wrapper nut-key__wrapper--finish" @click="closeBoard()">

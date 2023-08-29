@@ -48,7 +48,7 @@ export default defineComponent({
   <view class="nut-empty">
     <view class="nut-empty__box" :style="style">
       <slot name="image">
-        <img v-if="src" class="nut-empty__box--img" :src="src">
+        <image v-if="src" class="nut-empty__box--img" :src="src" />
       </slot>
     </view>
 
