@@ -33,10 +33,10 @@ export default defineComponent({
       <slot name="prolist" />
       <div v-if="isNeedPrice" class="nut-card__right__price">
         <slot name="price">
-          <NutPrice :price="price" />
+          <NutPrice v-if="price" :price="price" />
         </slot>
         <slot name="origin">
-          <NutPrice class="nut-card__right__price__origin" :price="vipPrice" />
+          <NutPrice v-if="vipPrice" class="nut-card__right__price__origin" :price="vipPrice" />
         </slot>
       </div>
       <div class="nut-card__right__other">
