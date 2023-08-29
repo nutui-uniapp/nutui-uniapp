@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/yang1206/uniapp-nutui/compare/v0.3.0...v0.3.1) (2023-08-29)
+
+
+### Features
+
+* (card) 不填写价格则不展示 ([5f3bf98](https://github.com/yang1206/uniapp-nutui/commit/5f3bf98257d58ec530a853c8217b0fa4c6117084))
+
+
+
 # [0.3.0](https://github.com/yang1206/uniapp-nutui/compare/v0.2.5...v0.3.0) (2023-08-28)
 
 
