@@ -1,6 +1,6 @@
 import { createSSRApp } from 'vue'
 
-import { Locale } from 'uniapp-nutui/locale'
+import { Locale } from 'nutui-uniapp/locale'
 import App from './App.vue'
 import 'uno.css'
 import './main.scss'

@@ -6,7 +6,7 @@ import { pwa } from './scripts/pwa'
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(defineConfig({
-  title: 'uniapp-nutui',
+  title: 'nutui-uniapp',
   description: '京东风格的移动端组件库，完全适配uni-app',
   lastUpdated: true,
   head: [
@@ -18,7 +18,7 @@ export default withPwa(defineConfig({
         content: '京东风格的移动端组件库，完全适配uni-app',
       },
     ],
-    ['meta', { property: 'og:url', content: 'https://github.com/yang1206/uniapp-nutui' }],
+    ['meta', { property: 'og:url', content: 'https://github.com/nutui-uniapp/nutui-uniapp' }],
     ['meta', { name: 'referrer', content: 'no-referrer' }],
     ['link', { rel: 'icon', href: 'https://s2.loli.net/2023/08/30/1AxH9rbqi4kvCls.png', type: 'image/png' }],
   ],
@@ -51,15 +51,15 @@ export default withPwa(defineConfig({
         items: [
           {
             text: '更新日志',
-            link: 'https://github.com/yang1206/uniapp-nutui/releases',
+            link: 'https://github.com/nutui-uniapp/nutui-uniapp/releases',
           },
           {
             text: '贡献',
-            link: 'https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md',
+            link: 'https://github.com/nutui-uniapp/nutui-uniapp/blob/main/CONTRIBUTING.md',
           },
           {
             text: '行为准则',
-            link: 'https://github.com/yang1206/uniapp-nutui/blob/main/CODE_OF_CONDUCT.md',
+            link: 'https://github.com/nutui-uniapp/nutui-uniapp/blob/main/CODE_OF_CONDUCT.md',
           },
         ],
       },
@@ -85,10 +85,10 @@ export default withPwa(defineConfig({
       ],
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/yang1206/uniapp-nutui' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/nutui-uniapp/nutui-uniapp' }],
 
     editLink: {
-      pattern: 'https://github.com/yang1206/uniapp-nutui/edit/main/docs/:path',
+      pattern: 'https://github.com/nutui-uniapp/nutui-uniapp/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页',
     },
 

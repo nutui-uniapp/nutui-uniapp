@@ -123,7 +123,7 @@ importers:
 
   docs:
     dependencies:
-      uniapp-nutui:
+      nutui-uniapp:
         specifier: workspace:^
         version: link:../packages/nutui
     devDependencies:
@@ -178,12 +178,12 @@ importers:
       '@uni-helper/uni-env':
         specifier: ^0.0.3
         version: 0.0.3
+      nutui-uniapp:
+        specifier: workspace:^
+        version: link:../packages/nutui
       pinia:
         specifier: 2.0.36
         version: 2.0.36(typescript@5.1.6)(vue@3.2.47)
-      uniapp-nutui:
-        specifier: workspace:^
-        version: link:../packages/nutui
       vue:
         specifier: 3.2.47
         version: 3.2.47

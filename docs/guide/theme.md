@@ -2,11 +2,11 @@
 
 ### 介绍
 
-uniapp-nutui 支持灵活的样式定制，满足多种视觉业务和品牌需求，包括但不限于全局主色调和特定组件视觉定制的支持。
+nutui-uniapp 支持灵活的样式定制，满足多种视觉业务和品牌需求，包括但不限于全局主色调和特定组件视觉定制的支持。
 
 ### 方式一: 使用 CSS Variables 进行主题配置
 
-`uniapp-nutui` 组件可以通过 CSS Vars 来组织样式，通过覆盖这些 CSS 变量，可以实现定制主题、动态切换主题等功能。 每个组件变量都在各个组件文档底部详细提供。
+`nutui-uniapp` 组件可以通过 CSS Vars 来组织样式，通过覆盖这些 CSS 变量，可以实现定制主题、动态切换主题等功能。 每个组件变量都在各个组件文档底部详细提供。
 
 您可在 ConfigProvider 组件 进行体验。
 
@@ -34,7 +34,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import \'@/assets/custom_theme.scss\';@import \'uniapp-nutui/styles/variables.scss\';',
+        additionalData: '@import \'@/assets/custom_theme.scss\';@import \'nutui-uniapp/styles/variables.scss\';',
       },
     },
   },

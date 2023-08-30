@@ -1,6 +1,6 @@
 # 快速开始
 
-> uniapp-nutui 提供了 npm 包和 uni_modules 包两种方式使用组件。
+> nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。
 > 为了能够获得良好的开发体验，推荐使用[vite cli](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
 
 ## npm安装 (cli)
@@ -8,19 +8,19 @@
  ::: code-group
 
   ```bash [pnpm]
-  pnpm add uniapp-nutui
+  pnpm add nutui-uniapp
   ```
 
   ```bash [yarn]
-  yarn add uniapp-nutui
+  yarn add nutui-uniapp
   ```
 
   ```bash [npm]
-  npm install uniapp-nutui
+  npm install nutui-uniapp
   ```
   :::
 
-### 配置 UniAPP-NutUi
+### 配置 nutui-uniapp
 
 ### 按需导入
 
@@ -32,8 +32,8 @@
   "easycom": {
     "autoscan": true,
     "custom": {
-      "^nut-(.*)?-(.*)": "uniapp-nutui/components/$1$2/$1$2.vue",
-      "^nut-(.*)": "uniapp-nutui/components/$1/$1.vue"
+      "^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
+      "^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
     }
   }
 }
@@ -48,7 +48,7 @@
 {
   "compilerOptions": {
     // ...
-    "types": ["uniapp-nutui/global.d.ts"]
+    "types": ["nutui-uniapp/global.d.ts"]
   }
 }
 ```
@@ -59,7 +59,7 @@
 // vite.config.ts
 import { defineConfig } from 'vite'
 import Components from '@uni-helper/vite-plugin-uni-components'
-import { NutResolver } from 'uniapp-nutui'
+import { NutResolver } from 'nutui-uniapp'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -94,7 +94,7 @@ see more in [unplugin-vue-components](https://github.com/antfu/unplugin-vue-comp
 
 ```scss
 <style lang="scss">
-@import 'uniapp-nutui/styles/index';
+@import 'nutui-uniapp/styles/index';
 </style
 ```
 
@@ -110,7 +110,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "uniapp-nutui/styles/variables.scss";',
+        additionalData: '@import "nutui-uniapp/styles/variables.scss";',
       },
     },
   },
@@ -131,7 +131,7 @@ export default defineConfig({
 
 前往 uniapp插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
 
-> uniapp-nutui 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了uni_modules，但是组件库在 hbuilder中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts支持与开发体验
+> nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了uni_modules，但是组件库在 hbuilder中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts支持与开发体验
 
 ### 按需导入
 

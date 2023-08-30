@@ -1,8 +1,8 @@
-# uniapp-nutui
+# NutUi-uniapp
 
 ## 介绍
 
-uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com) 4.x版本修改而来，适配了uni-app, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
+nutui-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com) 4.x版本修改而来，适配了uni-app, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
 
 使用请参考[快速开始](./quick-start.md)。
 
@@ -28,8 +28,8 @@ uniapp-nutui 组件库，基于Taro版[`NutUi`](https://nutui.jd.com) 4.x版本�
 
 ## 贡献
 
-有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/yang1206/uniapp-nutui/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/yang1206/uniapp-nutui/blob/main/CONTRIBUTING.md)。
+有兴趣贡献的开发人员应该阅读[行为准则](https://github.com/nutui-uniapp/nutui-uniapp/blob/main/CODE_OF_CONDUCT.md)和[贡献指南](https://github.com/nutui-uniapp/nutui-uniapp/blob/main/CONTRIBUTING.md)。
 
-感谢所有已经为 uniapp-nutui 做出贡献的人！
+感谢所有已经为 nutui-uniapp 做出贡献的人！
 
-<a href="https://github.com/yang1206/uniapp-nutui/graphs/contributors"><img src="https://contributors.nn.ci/api?repo=yang1206/uniapp-nutui" /></a>
+<a href="https://github.com/nutui-uniapp/nutui-uniapp/graphs/contributors"><img src="https://contributors.nn.ci/api?repo=nutui-uniapp/nutui-uniapp" /></a>

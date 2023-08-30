@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, h, onMounted, onUnmounted, reactive, toRefs } from 'vue'
-import NutButton from 'uniapp-nutui/components/button/button.vue'
-import NutIcon from 'uniapp-nutui/components/icon/icon.vue'
+import NutButton from 'nutui-uniapp/components/button/button.vue'
+import NutIcon from 'nutui-uniapp/components/icon/icon.vue'
 
 export default defineComponent({
   props: {},

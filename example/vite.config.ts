@@ -9,7 +9,7 @@ import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
 import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
 import unocss from 'unocss/vite'
 
-import { NutResolver } from 'uniapp-nutui'
+import { NutResolver } from 'nutui-uniapp'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -45,7 +45,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "uniapp-nutui/styles/variables.scss";',
+        additionalData: '@import "nutui-uniapp/styles/variables.scss";',
       },
     },
   },

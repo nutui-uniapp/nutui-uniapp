@@ -1,5 +1,5 @@
 {
-  "name": "@uniapp-nutui/example",
+  "name": "@nutui-uniapp/example",
   "version": "0.3.1",
   "scripts": {
     "dev:app": "uni -p app",
@@ -54,8 +54,8 @@
     "@dcloudio/uni-mp-xhs": "3.0.0-alpha-3081220230802001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3081220230802001",
     "@uni-helper/uni-env": "^0.0.3",
+    "nutui-uniapp": "workspace:^",
     "pinia": "2.0.36",
-    "uniapp-nutui": "workspace:^",
     "vue": "3.2.47",
     "vue-i18n": "^9.1.9"
   },
