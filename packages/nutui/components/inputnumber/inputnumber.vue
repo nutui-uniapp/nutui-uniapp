@@ -18,8 +18,8 @@ function fixedDecimalPlaces(v: string | number): string {
   return Number(v).toFixed(Number(props.decimalPlaces))
 }
 function change(event: Event) {
-  const input = event.target as HTMLInputElement
-  emit('update:modelValue', input.value, event)
+  const value = event?.detail.value
+  emit('update:modelValue', value, event)
 }
 function emitChange(value: string | number, event: Event) {
   const output_value: number | string = fixedDecimalPlaces(value)
@@ -58,13 +58,15 @@ function blur(event: Event) {
   if (props.readonly)
     return
   const input = event.target as HTMLInputElement
-  let value = +input.value
-  if (value < Number(props.min))
-    value = Number(props.min)
-  else if (value > Number(props.max))
-    value = Number(props.max)
-
-  emitChange(value, event)
+  // 如果没有值将不进行change修改
+  if (input.value) {
+    let value = +input.value
+    if (value < Number(props.min))
+      value = Number(props.min)
+    else if (value > Number(props.max))
+      value = Number(props.max)
+    emitChange(value, event)
+  }
   emit('blur', event)
 }
 function focus(event: Event) {
