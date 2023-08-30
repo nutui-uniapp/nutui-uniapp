@@ -184,12 +184,12 @@ export default defineComponent({
           @webkitTransitionEnd="ropeHeightEnd"
         />
         <div ref="machineClawDom" class="machine-claw" :style="clawStyle">
-          <img
+          <image
             v-if="giftPrize"
             :src="giftPrize"
             alt="加载失败"
             class="gift-prize"
-          >
+          />
         </div>
       </div>
       <div class="machine-gift-box">

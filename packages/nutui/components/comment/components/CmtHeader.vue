@@ -39,7 +39,7 @@ export default defineComponent ({
     <view v-if="info" class="nut-comment-header" @click="handleClick">
       <view class="nut-comment-header__user">
         <view class="nut-comment-header__user-avter">
-          <img v-if="info.avatar" :src="info.avatar">
+          <image v-if="info.avatar" :src="info.avatar" />
         </view>
 
         <view v-if="type === 'default'" :class="[`nut-comment-header__user-${type}`]">

@@ -38,7 +38,7 @@ export default defineComponent({
             class="nut-category-pane__childItem"
             @click="onChange(sku)"
           >
-            <img class="nut-category-pane__childImg" :src="sku.backImg">
+            <image class="nut-category-pane__childImg" :src="sku.backImg" />
             <div class="nut-category-pane__skuImg">
               {{ sku?.catName }}
             </div>

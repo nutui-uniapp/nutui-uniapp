@@ -89,7 +89,7 @@ export default defineComponent({
       v-for="(itV, index) in videos" :key="itV.id" class="nut-comment-images__item nut-comment-images__item--video"
       @click="showImages('video', index)"
     >
-      <img :src="itV.mainUrl">
+      <image :src="itV.mainUrl" />
       <view class="nut-comment-images__play" />
     </view>
     <!-- images -->
@@ -99,7 +99,7 @@ export default defineComponent({
         class="nut-comment-images__item nut-comment-images__item--imgbox"
         @click="showImages('img', index + videos.length)"
       >
-        <img :src="itI.smallImgUrl ? itI.smallImgUrl : itI.imgUrl">
+        <image :src="itI.smallImgUrl ? itI.smallImgUrl : itI.imgUrl" />
 
         <view
           v-if="type === 'multi' && totalImages.length > 9 && videos.length + index > 7"

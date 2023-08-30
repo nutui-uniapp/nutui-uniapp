@@ -31,7 +31,7 @@ export default defineComponent ({
 <template>
   <view class="nut-sku-header">
     <image v-if="!isH5" class="nut-sku-header-img" :src="goods.imagePath" />
-    <img v-else class="nut-sku-header-img" :src="goods.imagePath">
+    <image v-else class="nut-sku-header-img" :src="goods.imagePath" />
     <view class="nut-sku-header-right">
       <template v-if="getSlots('sku-header-price')">
         <slot name="sku-header-price" />

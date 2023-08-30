@@ -117,7 +117,7 @@ export default defineComponent({
         :style="bgItemStyle"
       >
         <div class="gift-img">
-          <img :src="item.prizeImg">
+          <image :src="item.prizeImg" />
         </div>
         <span class="desc" v-html="item.prizeName" />
       </li>

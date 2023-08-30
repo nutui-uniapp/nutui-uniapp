@@ -227,7 +227,7 @@ export default defineComponent({
             {{ item.prizeName }}
           </view>
           <view class="drawTable-img">
-            <img :src="item.prizeImg">
+            <image :src="item.prizeImg" />
           </view>
         </view>
       </view>

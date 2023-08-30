@@ -24,7 +24,7 @@ export default defineComponent({
 <template>
   <div class="nut-card">
     <div class="nut-card__left">
-      <img :src="imgUrl" alt="">
+      <image :src="imgUrl" alt="" />
     </div>
     <div class="nut-card__right">
       <div class="nut-card__right__title">
