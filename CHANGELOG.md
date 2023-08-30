@@ -1,3 +1,12 @@
+# [1.0.0](https://github.com/yang1206/uniapp-nutui/compare/v0.3.1...v1.0.0) (2023-08-30)
+
+
+### Bug Fixes
+
+* :bug: 解决因组件使用img标签导致微信小程序编译出错问题 ([856f317](https://github.com/yang1206/uniapp-nutui/commit/856f3177ea4a34a6473c51d864324b2b314d5927))
+
+
+
 ## [0.3.1](https://github.com/yang1206/uniapp-nutui/compare/v0.3.0...v0.3.1) (2023-08-29)
 
 
