@@ -10,7 +10,7 @@ height="100" style="max-width: 100%;" />
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/nutui-uniapp/nutui-uniapp?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2yang1206%2Funiapp-nutui">
  </a>
 <a href="https://www.npmjs.com/package/nutui-uniapp">
-  <img alt="npm" src="https://img.shields.io/npm/v/uniapp-nutui?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Funiapp-nutui">
+  <img alt="npm" src="https://img.shields.io/npm/v/nutui-uniapp?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Funiapp-nutui">
 </a>
 <a href="https://www.npmjs.com/package/uniapp-nutui">
   <img alt="npm" src="https://img.shields.io/npm/dw/uniapp-nutui?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Funiapp-nutui">
