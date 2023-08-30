@@ -53,7 +53,7 @@ export default {
   <view class="index n-bg-2">
     <view class="index-header n-bg-2">
       <image
-        src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
+        src="https://s2.loli.net/2023/08/30/1AxH9rbqi4kvCls.png"
         alt="" srcset=""
       />
       <view class="info">

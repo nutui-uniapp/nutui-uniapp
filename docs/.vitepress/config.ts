@@ -20,10 +20,10 @@ export default withPwa(defineConfig({
     ],
     ['meta', { property: 'og:url', content: 'https://github.com/yang1206/uniapp-nutui' }],
     ['meta', { name: 'referrer', content: 'no-referrer' }],
-    ['link', { rel: 'icon', href: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png', type: 'image/png' }],
+    ['link', { rel: 'icon', href: 'https://s2.loli.net/2023/08/30/1AxH9rbqi4kvCls.png', type: 'image/png' }],
   ],
   themeConfig: {
-    logo: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png',
+    logo: 'https://s2.loli.net/2023/08/30/foMY3ui4nQpUA1C.png',
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
