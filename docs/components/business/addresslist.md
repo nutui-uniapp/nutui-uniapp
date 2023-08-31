@@ -240,14 +240,14 @@ export default {
 
 | 事件名             | 说明                 | 回调参数          | 备注               |
 | ------------------ | -------------------- | ----------------- | ------------------ |
-| del-icon      | 点击删除图标         | event: Event,item | 公共               |
-| edit-icon     | 点击编辑图标         | event: Event,item | 公共               |             |
-| click-item         | 点击地址列表每一项   | event: Event,item | 公共               |
+| del-icon      | 点击删除图标         | event: Event,item,index | 公共               |
+| edit-icon     | 点击编辑图标         | event: Event,item,index | 公共               |             |
+| click-item         | 点击地址列表每一项   | event: Event,item,index | 公共               |
 | add    | 点击底部添加地址按钮 | event: Event      | 公共               |
-| long-copy | 点击复制地址按钮     | event: Event,item | 长按功能下点击事件 |
-| long-set  | 点击设置默认按钮     | event: Event,item | 长按功能下点击事件 |
-| long-del  | 点击删除地址按钮     | event: Event,item | 长按功能下点击事件 |
-| swipe-del      | 默认右滑删除按钮     | event: Event,item | 滑动功能下点击事件 |
+| long-copy | 点击复制地址按钮     | event: Event,item,index | 长按功能下点击事件 |
+| long-set  | 点击设置默认按钮     | event: Event,item,index | 长按功能下点击事件 |
+| long-del  | 点击删除地址按钮     | event: Event,item,index | 长按功能下点击事件 |
+| swipe-del      | 默认右滑删除按钮     | event: Event,item,index | 滑动功能下点击事件 |
 
 ### Slots
 
