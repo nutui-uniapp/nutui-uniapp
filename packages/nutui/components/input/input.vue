@@ -72,10 +72,10 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.slice(0, Number(props.maxLength))
 
-  if (props.type === 'digit')
+  if (props.type === 'number')
     value = formatNumber(value, false, false)
 
-  if (props.type === 'number')
+  if (props.type === 'digit')
     value = formatNumber(value, true, true)
 
   if (props.formatter && trigger === props.formatTrigger)
