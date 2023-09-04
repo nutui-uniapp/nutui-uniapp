@@ -4,7 +4,9 @@ import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
 import type { PickerOption } from '../pickercolumn/types'
 import { pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
+// #ifdef H5
 import NutPickerColumn from '../pickercolumn/pickercolumn.vue'
+// #endif
 import { pickerEmits, pickerProps } from './picker'
 import { componentName, usePicker } from './use-picker'
 
