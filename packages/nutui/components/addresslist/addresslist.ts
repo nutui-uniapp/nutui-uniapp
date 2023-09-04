@@ -26,13 +26,13 @@ export const addresslistProps = {
 export type AddressListProps = ExtractPropTypes<typeof addresslistProps>
 
 export const addresslistEmits = {
-  delIcon: (val: Event, item: unknown) => true,
-  editIcon: (val: Event, item: unknown) => true,
-  clickItem: (val: Event, item: unknown) => true,
-  longCopy: (val: Event, item: unknown) => true,
-  longSet: (val: Event, item: unknown) => true,
-  longDel: (val: Event, item: unknown) => true,
-  swipeDel: (val: Event, item: unknown) => true,
+  delIcon: (val: Event, item: unknown, index: number | string) => true,
+  editIcon: (val: Event, item: unknown, index: number | string) => true,
+  clickItem: (val: Event, item: unknown, index: number | string) => true,
+  longCopy: (val: Event, item: unknown, index: number | string) => true,
+  longSet: (val: Event, item: unknown, index: number | string) => true,
+  longDel: (val: Event, item: unknown, index: number | string) => true,
+  swipeDel: (val: Event, item: unknown, index: number | string) => true,
   add: (val: Event) => true,
 
 }

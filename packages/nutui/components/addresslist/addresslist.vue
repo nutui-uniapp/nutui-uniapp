@@ -38,32 +38,32 @@ watch(
   { deep: true },
 )
 
-function clickDelIcon(event: Event, item: unknown) {
-  emit('delIcon', event, item)
+function clickDelIcon(event: Event, item: unknown, index: number | string) {
+  emit('delIcon', event, item, index)
   event.stopPropagation()
 }
-function clickEditIcon(event: Event, item: unknown) {
-  emit('editIcon', event, item)
+function clickEditIcon(event: Event, item: unknown, index: number | string) {
+  emit('editIcon', event, item, index)
   event.stopPropagation()
 }
-function clickContentItem(event: Event, item: unknown) {
-  emit('clickItem', event, item)
+function clickContentItem(event: Event, item: unknown, index: number | string) {
+  emit('clickItem', event, item, index)
   event.stopPropagation()
 }
-function clickLongCopy(event: Event, item: unknown) {
-  emit('longCopy', event, item)
+function clickLongCopy(event: Event, item: unknown, index: number | string) {
+  emit('longCopy', event, item, index)
   event.stopPropagation()
 }
-function clickLongSet(event: Event, item: unknown) {
-  emit('longSet', event, item)
+function clickLongSet(event: Event, item: unknown, index: number | string) {
+  emit('longSet', event, item, index)
   event.stopPropagation()
 }
-function clickLongDel(event: Event, item: unknown) {
-  emit('longDel', event, item)
+function clickLongDel(event: Event, item: unknown, index: number | string) {
+  emit('longDel', event, item, index)
   event.stopPropagation()
 }
-function clickSwipeDel(event: Event, item: unknown) {
-  emit('swipeDel', event, item)
+function clickSwipeDel(event: Event, item: unknown, index: number | string) {
+  emit('swipeDel', event, item, index)
   event.stopPropagation()
 }
 function addAddress(event: Event) {
@@ -98,13 +98,13 @@ export default defineComponent({
       :address="item"
       :long-press="longPress"
       :swipe-edition="swipeEdition"
-      @delIcon="clickDelIcon"
-      @editIcon="clickEditIcon"
-      @clickItem="clickContentItem"
-      @swipeDel="clickSwipeDel"
-      @longCopy="clickLongCopy"
-      @longSet="clickLongSet"
-      @longDel="clickLongDel"
+      @delIcon="clickDelIcon($event, item, index)"
+      @editIcon="clickEditIcon($event, item, index)"
+      @clickItem="clickContentItem($event, item, index)"
+      @swipeDel="clickSwipeDel($event, item, index)"
+      @longCopy="clickLongCopy($event, item, index)"
+      @longSet="clickLongSet($event, item, index)"
+      @longDel="clickLongDel($event, item, index)"
     >
       <template #content-info>
         <slot name="item-infos" :item="item" />
