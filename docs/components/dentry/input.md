@@ -367,6 +367,7 @@
 | type         | 输入框类型，支持原生 `input` 标签的所有 `type` 属性，另外还支持 `number` `digit`     | string         | `text`  |
 | placeholder  | 输入框为空时占位符                      | string         | -       |
 | input-align  | 输入框内容对齐方式，可选值 `left`、`center`、`right` | string | `left` |
+| custom-style  | 自定义的样式，对象形式。 | Object | {} |
 | border       | 是否显示下边框                         | boolean        | `true` |
 | disabled     | 是否禁用                              | boolean        | `false` |
 | readonly     | 是否只读                              | boolean        | `false` |
