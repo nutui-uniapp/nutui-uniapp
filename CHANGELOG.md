@@ -1,3 +1,19 @@
+## [1.0.1](https://github.com/yang1206/uniapp-nutui/compare/v1.0.0...v1.0.1) (2023-09-05)
+
+
+### Bug Fixes
+
+* :bug: 修改inputnumber组件失去焦点以及change的时候展示错误 ([54d7e50](https://github.com/yang1206/uniapp-nutui/commit/54d7e5036af02f171c0e3dc2e12fb9db20f1bd80))
+* (picker)修复在非h5环境下多余引入导致无法真机调试 ([c9c8236](https://github.com/yang1206/uniapp-nutui/commit/c9c8236376cf190d20708202deb2c4b81cb7b691))
+* **input:** 修复type值number与digit两个校验逻辑反了 ([5c6c3a4](https://github.com/yang1206/uniapp-nutui/commit/5c6c3a4c1dcf24450f966988d93baf293fe4c720))
+
+
+### Features
+
+* :sparkles: 地址列表组件新增index索引回调 ([3f3bbc0](https://github.com/yang1206/uniapp-nutui/commit/3f3bbc00c74f6673322dc6cfa509f297dacc8299))
+
+
+
 # [1.0.0](https://github.com/yang1206/uniapp-nutui/compare/v0.3.1...v1.0.0) (2023-08-30)
 
 
