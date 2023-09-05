@@ -98,19 +98,3 @@ export const isQuickappWebview = platform === EPlatform.QuickappWebview
 export const isQuickappWebviewUnion = platform === EPlatform.QuickappWebviewUnion
 /** 快应用华为 */
 export const isQuickappWebviewHuawei = platform === EPlatform.QuickappWebviewHuawei
-
-// utils
-function toBoolean(val: any) {
-  return val ? val !== 'false' : false
-}
-
-function parseJSON<T>(val: any) {
-  let obj: T
-  try {
-    obj = JSON.parse(val || '{}') as T
-  }
-  catch (error) {
-    obj = {} as T
-  }
-  return obj
-}
