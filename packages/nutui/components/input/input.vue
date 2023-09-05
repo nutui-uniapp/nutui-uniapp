@@ -34,9 +34,12 @@ const classes = computed(() => {
 })
 
 const styles: ComputedRef = computed(() => {
-  return {
+  let style = {}
+  style = {
     textAlign: props.inputAlign,
+    ...props.customStyle,
   }
+  return style
 })
 
 function inputType(type: InputType) {
