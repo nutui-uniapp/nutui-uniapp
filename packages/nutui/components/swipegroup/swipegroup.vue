@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, provide, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { swipegroupProps } from './swipegroup'
 
 const props = defineProps(swipegroupProps)

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { rateEmits, rateProps } from './rate'
 
 const props = defineProps(rateProps)
 const emit = defineEmits(rateEmits)
-const refRandomId = Math.random().toString(36).slice(-8)
 
 const rateRefs = ref<HTMLElement[]>([])
 const classes = computed(() => {

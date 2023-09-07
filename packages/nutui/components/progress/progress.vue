@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, useSlots } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { progressProps } from './progress'
 

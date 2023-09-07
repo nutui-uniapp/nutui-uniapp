@@ -2,7 +2,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import NutIcon from '../../icon/icon.vue'
-import { PREFIX } from '../../_utils'
+import { PREFIX } from '../../_constants'
 
 const props = defineProps({
   type: {

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, provide, reactive, ref } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
-import { PREFIX } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import Icon from '../icon/icon.vue'
 import { menuProps } from './menu'
@@ -17,7 +17,6 @@ export default defineComponent({
     styleIsolation: 'shared',
   },
   setup(props, { slots }) {
-    const refRandomId = Math.random().toString(36).slice(-8)
     const barId = `nut-menu__bar${refRandomId}`
     const offset = ref(0)
     const isScrollFixed = ref(false)

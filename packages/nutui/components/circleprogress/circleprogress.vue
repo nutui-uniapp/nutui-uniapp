@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import { circleprogressProps } from './circleprogress'
 
 interface Item {
@@ -10,7 +10,7 @@ interface Item {
 const props = defineProps(circleprogressProps)
 
 const currentRate = ref(props.progress)
-const refRandomId = Math.random().toString(36).slice(-8)
+
 const isObject = (val: unknown): val is Record<any, any> => val !== null && typeof val === 'object'
 
 function transColor(color: string | undefined) {

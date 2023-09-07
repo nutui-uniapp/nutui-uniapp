@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import type { CalendarInst } from '../calendaritem/type'
 import NutPoPUp from '../popup/popup.vue'
 import NutCalendarItem from '../calendaritem/calendaritem.vue'

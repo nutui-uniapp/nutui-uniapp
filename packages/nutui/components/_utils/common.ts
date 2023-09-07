@@ -139,7 +139,7 @@ export function padZero(num: number | string, length = 2): string {
 export const clamp = (num: number, min: number, max: number): number => Math.min(Math.max(num, min), max)
 
 export function getScrollTopRoot(): number {
-  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+  return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
 }
 
 type ObjectIndex = Record<string, unknown>
@@ -179,3 +179,29 @@ export function omit(obj: Record<string, unknown>, keys: string[]) {
     return prev
   }, {} as Record<string, unknown>)
 }
+
+export interface Deferred<T> extends Promise<T> {
+  resolve: (value?: T) => void
+  reject: (value?: any) => void
+}
+
+export function createDeferred<T>(): Deferred<T> {
+  let resolve: Deferred<T>['resolve'] = noop
+  let reject: Deferred<T>['reject'] = noop
+  const promise = new Promise((_resolve, _reject) => {
+    resolve = _resolve
+    reject = _reject
+  }) as unknown as Deferred<T>
+
+  promise.resolve = resolve
+  promise.reject = reject
+  return promise
+}
+
+export function toArray<T>(value?: T | T[]): T[] {
+  if (!value)
+    return []
+  return Array.isArray(value) ? value : [value]
+}
+
+export function noop() { }

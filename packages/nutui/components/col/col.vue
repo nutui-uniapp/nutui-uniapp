@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, inject } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { colProps } from './col'
 
 const props = defineProps(colProps)

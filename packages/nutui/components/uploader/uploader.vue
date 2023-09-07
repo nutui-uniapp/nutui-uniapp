@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutProgress from '../progress/progress.vue'
 import NutIcon from '../icon/icon.vue'

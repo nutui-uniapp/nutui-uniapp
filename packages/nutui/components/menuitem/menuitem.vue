@@ -1,8 +1,9 @@
 <script lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, nextTick, onUnmounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import PopUp from '../popup/popup.vue'
 import Icon from '../icon/icon.vue'
+import { useSelectorQuery } from '../_hooks'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
 
 let _zIndex = 2000
@@ -30,6 +31,7 @@ export default defineComponent({
       isShowPlaceholderElement: false,
     })
     const instance = getCurrentInstance() as ComponentInternalInstance
+    const { query } = useSelectorQuery(instance)
 
     const useParent: any = () => {
       const parent = inject('menuParent', null)
@@ -75,7 +77,6 @@ export default defineComponent({
       if (show) {
         nextTick(() => {
           setTimeout(() => {
-            const query = uni.createSelectorQuery().in(instance)
             query.selectAll('#nut-menu-item__content').boundingClientRect()
             query.exec((res: any[]) => {
               const data = res[0]

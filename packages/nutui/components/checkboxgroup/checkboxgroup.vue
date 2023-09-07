@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
 import { computed, defineComponent, provide, reactive, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 
 const props = defineProps(checkboxgroupProps)

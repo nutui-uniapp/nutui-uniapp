@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
-import { PREFIX, funInterceptor } from '../_utils'
+import { funInterceptor } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 
 import NutSwiper from '../swiper/swiper.vue'

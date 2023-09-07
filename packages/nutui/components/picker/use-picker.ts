@@ -1,6 +1,6 @@
 import { computed, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 
 const DEFAULT_FILED_NAMES = {
   text: 'text',

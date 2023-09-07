@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { type SwipePosition, swipeEmits, swipeProps } from './swipe'
 
@@ -8,7 +8,7 @@ const props = defineProps(swipeProps)
 const emit = defineEmits(swipeEmits)
 
 const instance = getCurrentInstance() as ComponentInternalInstance
-const refRandomId = Math.random().toString(36).slice(-8)
+
 const lockClick = ref(false)
 
 async function getRefWidth(elementId: string) {

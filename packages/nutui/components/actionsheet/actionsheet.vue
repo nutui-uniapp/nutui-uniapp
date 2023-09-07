@@ -2,7 +2,7 @@
 import { computed, defineComponent, useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { actionsheetEmits, actionsheetProps } from './actionsheet'
 
 const props = defineProps(actionsheetProps)

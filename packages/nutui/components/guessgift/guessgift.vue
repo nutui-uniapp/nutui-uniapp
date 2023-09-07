@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
-import { useRect } from '../_hooks'
+import { PREFIX, refRandomId } from '../_constants'
+import { useRect, useSelectorQuery } from '../_hooks'
 import { guessgiftEmits, guessgiftProps } from './guessgift'
 
 const props = defineProps(guessgiftProps)
 
 const emit = defineEmits(guessgiftEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-const refRandomId = Math.random().toString(36).slice(-8)
+const { query } = useSelectorQuery(instance)
 
 defineExpose({ start })
 const bowlList = reactive([1, 2, 3])
@@ -60,7 +60,6 @@ let bowlElement: any = reactive([])
 const guessGiftEle: any = ref()
 const goldBeanEle: any = ref()
 onMounted(() => {
-  const query = uni.createSelectorQuery().in(instance)
   query.selectAll('.bowl-item').boundingClientRect()
   query.selectAll('.guess-gift').boundingClientRect()
   query.selectAll('.gold-bean').boundingClientRect()

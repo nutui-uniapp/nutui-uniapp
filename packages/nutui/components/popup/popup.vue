@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutOverlay from '../overlay/overlay.vue'
 import NutIcon from '../icon/icon.vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { popupEmits, popupProps } from './popup'
 import { usePopup } from './use-popup'
 

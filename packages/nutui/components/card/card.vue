@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
 import { cardProps } from './card'

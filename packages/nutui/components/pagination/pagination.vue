@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, toRefs, watchEffect } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import { paginationEmits, paginationProps } from './pagination'
 

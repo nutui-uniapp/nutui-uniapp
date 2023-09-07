@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, inject, reactive } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { stepEmits, stepProps } from './step'
 
 const props = defineProps(stepProps)

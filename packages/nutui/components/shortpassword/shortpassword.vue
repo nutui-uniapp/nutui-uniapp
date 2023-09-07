@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import NutPopUp from '../popup/popup.vue'
 import { useTranslate } from '../../locale'

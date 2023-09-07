@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, getCurrentInstance, reactive, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { computed, defineComponent, reactive, watch } from 'vue'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
 import { tableEmits, tableProps } from './table'
@@ -10,7 +9,6 @@ import RenderColumn from './renderColumn'
 
 const props = defineProps(tableProps)
 const emit = defineEmits(tableEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
 const state = reactive({
   curData: props.data,
 })

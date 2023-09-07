@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
+import { useSelectorQuery } from '../_hooks'
 import { signatureEmits, signatureProps } from './signature'
 
 const props = defineProps(signatureProps)
 
 const emit = defineEmits(signatureEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { query } = useSelectorQuery(instance.proxy as any)
+
 let points = reactive<any[]>([]) // 路径点集合
 
 const classes = computed(() => {
@@ -110,8 +113,7 @@ function onSave() {
 }
 
 onMounted(() => {
-  uni.createSelectorQuery().in(instance.proxy)
-    .select(`#${canvasSetId}`)
+  query.select(`#${canvasSetId}`)
     .fields({ size: true }, (res: any) => {
       canvasSetting(res.width, res.height)
     })

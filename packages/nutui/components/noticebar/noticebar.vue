@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { useSelectorQuery } from '../_hooks'
 import type { stateProps } from './noticebar'
 import { noticebarEmits, noticebarProps } from './noticebar'
 
@@ -10,6 +12,8 @@ const props = defineProps(noticebarProps)
 const emit = defineEmits(noticebarEmits)
 const slots = useSlots()
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
+
 const wrap = ref<null | HTMLElement>(null)
 const content = ref<null | HTMLElement>(null)
 
@@ -108,20 +112,6 @@ watch(
   },
 )
 
-function getRect(selector: string) {
-  return new Promise((resolve) => {
-    uni.createSelectorQuery()
-    // #ifndef MP-ALIPAY
-      .in(instance)
-    // #endif
-      .select(selector)
-      .boundingClientRect()
-      .exec((rect = []) => {
-        resolve(rect[0])
-      })
-  })
-}
-
 function initScrollWrap() {
   if (state.showNoticebar === false)
     return
@@ -133,12 +123,12 @@ function initScrollWrap() {
     let wrapWidth = 0
     let offsetWidth = 0
 
-    getRect(`.wrap${state.id}`).then((rect: any) => {
-      if (rect?.width > 0)
-        wrapWidth = rect.width
-      getRect(`.content${state.id}`).then((rect: any) => {
-        if (rect?.width > 0)
-          offsetWidth = rect.width
+    getSelectorNodeInfo(`.wrap${state.id}`).then((rect) => {
+      if (rect.width! > 0)
+        wrapWidth = rect.width!
+      getSelectorNodeInfo(`.content${state.id}`).then((rect) => {
+        if (rect.width! > 0)
+          offsetWidth = rect.width!
         state.isCanScroll = props.scrollable == null ? offsetWidth > wrapWidth : props.scrollable
         if (state.isCanScroll) {
           state.wrapWidth = wrapWidth

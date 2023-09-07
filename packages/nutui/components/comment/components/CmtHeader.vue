@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
-import { PREFIX } from '../../_utils'
+import { PREFIX } from '../../_constants'
 import NutRate from '../../rate/rate.vue'
 
 const props = defineProps({

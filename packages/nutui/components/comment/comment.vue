@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { commentEmits, commentProps } from './comment'
 import CommentHeader from './components/CmtHeader.vue'

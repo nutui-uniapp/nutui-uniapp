@@ -1,5 +1,5 @@
 import { type ComputedRef, type SetupContext, computed, reactive, toRefs, watch, watchEffect } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { animationName } from '../_constants/types'
 import { type PopupEmits, type PopupProps } from './popup'
 

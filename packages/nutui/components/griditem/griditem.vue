@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, computed, defineComponent } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import { GRID_KEY, type GridProps } from '../grid'
 import { useInject, useRouter } from '../_hooks'
 import { gridItemEmits, gridItemProps } from './griditem'

@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
 import { numberkeyboardEmits, numberkeyboardProps } from './numberkeyboard'

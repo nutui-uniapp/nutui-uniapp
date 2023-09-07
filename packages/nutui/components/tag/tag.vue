@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { tagEmits, tagProps } from './tag'
 

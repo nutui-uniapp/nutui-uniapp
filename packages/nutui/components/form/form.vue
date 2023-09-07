@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import { computed, defineComponent, provide, reactive, watch } from 'vue'
-import { PREFIX, getPropByPath, isObject, isPromise } from '../_utils'
+import { getPropByPath, isObject, isPromise } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemRule } from '../formitem/types'
 import { useProvide } from '../_hooks'

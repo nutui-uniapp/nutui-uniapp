@@ -1,5 +1,4 @@
 export * from './pxCheck'
-export * from './prefix'
 export * from './env'
 export * from './common'
 export * from './date'

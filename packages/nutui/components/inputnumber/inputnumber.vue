@@ -1,7 +1,8 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
 
@@ -17,8 +18,8 @@ const classes = computed(() => {
 function fixedDecimalPlaces(v: string | number): string {
   return Number(v).toFixed(Number(props.decimalPlaces))
 }
-function change(event: Event) {
-  const value = event?.detail.value
+function change(event: any) {
+  const value = event.detail.value
   emit('update:modelValue', value, event)
 }
 function emitChange(value: string | number, event: Event) {
@@ -58,8 +59,8 @@ function blur(event: Event) {
   if (props.readonly)
     return
   const input = event.target as HTMLInputElement
-   // 如果没有值将不进行change修改
-   if (input.value) {
+  // 如果没有值将不进行change修改
+  if (input.value) {
     let value = +input.value
     if (value < Number(props.min))
       value = Number(props.min)

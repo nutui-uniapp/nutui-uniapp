@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutForm from '../form/form.vue'
 import NutFormItem from '../formitem/formitem.vue'
 import NutRadio from '../radio/radio.vue'

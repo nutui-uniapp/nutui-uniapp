@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, inject, onBeforeUnmount, onMounted, reactive, useSlots, watch } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { checkboxEmits, checkboxProps } from './checkbox'
 

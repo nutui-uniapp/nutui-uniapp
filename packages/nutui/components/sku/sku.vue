@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
 import { skuEmits, skuProps } from './sku'

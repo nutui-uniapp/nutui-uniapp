@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, useSlots } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { dividerProps } from './divider'
 
 const props = defineProps(dividerProps)

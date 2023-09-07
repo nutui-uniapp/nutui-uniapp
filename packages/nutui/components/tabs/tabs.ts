@@ -5,17 +5,6 @@ export type TabsSize = 'large' | 'normal' | 'small'
 
 export const TAB_KEY = Symbol('tabs')
 
-export interface RectItem {
-  bottom: number
-  dataset: { sid: string }
-  height: number
-  id: string
-  left: number
-  right: number
-  top: number
-  width: number
-}
-
 export const tabsProps = {
   ...commonProps,
   modelValue: {

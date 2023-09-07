@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import { PREFIX, TypeOfFun } from '../../_utils'
+import { PREFIX } from '../../_constants'
+import { TypeOfFun } from '../../_utils'
 import NutInputNumber from '../../inputnumber/inputnumber.vue'
 
 const props = defineProps({

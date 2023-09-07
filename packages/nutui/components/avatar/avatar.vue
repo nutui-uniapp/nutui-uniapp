@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, toRefs } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { AVATAR_KEY, type AvatarGroupProps } from '../avatargroup'
 import { useInject } from '../_hooks'
 import { avatarProps } from './avatar'
@@ -19,6 +19,7 @@ const classes = computed(() => {
     [prefixCls]: true,
     [`nut-avatar-${size.value || parent?.props?.size || 'normal'}`]: true,
     [`nut-avatar-${shape.value || parent?.props?.shape || 'normal'}`]: true,
+    [props.customClass]: props.customClass,
   }
 })
 
@@ -29,6 +30,7 @@ const styles = computed(() => {
     backgroundColor: `${bgColor.value}`,
     color: `${customColor.value}`,
     marginLeft: (parent?.props?.span ? `${parent?.props?.span}px` : ''),
+    ...props.customStyle,
   }
 })
 </script>

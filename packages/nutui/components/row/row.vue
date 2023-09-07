@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { rowProps } from './row'
 
 const props = defineProps(rowProps)

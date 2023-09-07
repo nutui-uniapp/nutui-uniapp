@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { categoryEmits, categoryProps } from './category'
 
 const props = defineProps(categoryProps)

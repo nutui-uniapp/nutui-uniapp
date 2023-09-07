@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, provide, useSlots } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
 import { FORM_KEY } from '../form/form'
 import { useInject } from '../_hooks'

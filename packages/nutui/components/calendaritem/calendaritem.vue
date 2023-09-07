@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX, compareDate, date2Str, formatResultDate, getDay, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isArray, isEqual, isH5 } from '../_utils'
+import { compareDate, date2Str, formatResultDate, getDay, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isArray, isEqual, isH5 } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
 import { calendaritemEmits, calendaritemProps } from './calendaritem'

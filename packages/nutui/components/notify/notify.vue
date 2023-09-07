@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutPopUp from '../popup/popup.vue'
 import { notifyEmits, notifyProps } from './notify'
 import { useNotify } from './use-notify'

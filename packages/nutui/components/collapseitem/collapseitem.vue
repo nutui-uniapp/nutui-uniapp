@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { useSelectorQuery } from '../_hooks'
 import { collapseitemProps } from './collapseitem'
 
 const props = defineProps(collapseitemProps)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
+
 const slots = useSlots()
-const refRandomId = Math.random().toString(36).slice(-8)
+
 const target = `#nut-collapse__item-${refRandomId}`
+
 const currentHeight = ref<string>('auto')
 const inAnimation = ref(false)
 const timeoutId = ref<any>('')
@@ -65,14 +69,7 @@ watch(
 // #endif
 
 function getRect(selector: string) {
-  return new Promise((resolve) => {
-    uni.createSelectorQuery().in(instance)
-      .select(selector)
-      .boundingClientRect()
-      .exec((rect = []) => {
-        resolve(rect[0])
-      })
-  })
+  return getSelectorNodeInfo(selector)
 }
 
 const expanded = computed(() => {

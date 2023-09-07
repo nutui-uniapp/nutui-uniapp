@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { toastEmits, toastProps } from './toast'
 import { useToast } from './use-toast'
 

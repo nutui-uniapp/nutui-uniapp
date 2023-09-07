@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { defineComponent, useSlots } from 'vue'
 import { useTranslate } from '../../../locale'
-import { PREFIX, isH5 } from '../../_utils'
+import { PREFIX } from '../../_constants'
+import { isH5 } from '../../_utils'
 import NutPrice from '../../price/price.vue'
 
 const props = defineProps({

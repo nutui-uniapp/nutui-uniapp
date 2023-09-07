@@ -1,5 +1,6 @@
 import { type CSSProperties, type SetupContext, computed, onMounted, ref, watch } from 'vue'
-import { PREFIX, funInterceptor } from '../_utils'
+import { funInterceptor } from '../_utils'
+import { PREFIX } from '../_constants'
 import type { DialogEmits, DialogProps } from './dialog'
 import type { DialogOptions } from './type'
 

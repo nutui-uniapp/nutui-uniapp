@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
-import { PREFIX, isArray } from '../_utils'
+import { isArray } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
@@ -10,7 +11,6 @@ import { popoverEmits, popoverProps } from './popover'
 
 const props = defineProps(popoverProps)
 const emit = defineEmits(popoverEmits)
-const refRandomId = Math.random().toString(36).slice(-8)
 
 const instance = getCurrentInstance() as ComponentInternalInstance
 const popoverID = `popoverRef${refRandomId}`
@@ -142,10 +142,11 @@ async function getContentWidth() {
     // TODO 联动 tour  uniapp微信小程序无法实现，获取不到组件外节点的信息
     // 父节点可以拿到，根节点拿不动
     rect = await useRect(props.targetId, instance.parent!)
-    if (rect.left < 0)
+
+    if (rect.left! < 0)
       rect.left = 200
 
-    if (rect.top < 0)
+    if (rect.top! < 0)
       rect.top = 200
 
     // #endif
@@ -174,8 +175,8 @@ async function getPopoverContentW(type = 1) {
   const rectContent = await useRect(el, instance)
 
   conentRootRect = {
-    height: rectContent.height,
-    width: rectContent.width,
+    height: rectContent.height!,
+    width: rectContent.width!,
   }
 
   getRootPosition()

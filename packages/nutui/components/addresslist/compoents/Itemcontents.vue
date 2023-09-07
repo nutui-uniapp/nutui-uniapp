@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineComponent } from 'vue'
-import { PREFIX } from '../../_utils'
+import { PREFIX } from '../../_constants'
 import { useTranslate } from '../../../locale'
 import NutIcon from '../../icon/icon.vue'
 

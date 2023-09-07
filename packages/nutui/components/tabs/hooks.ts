@@ -1,9 +1,9 @@
 import { type ComponentInternalInstance, onMounted, reactive, ref } from 'vue'
 import { useTouch } from '../_hooks'
 import { isH5 } from '../_utils'
+import { refRandomId } from '../_constants'
 
 type TouchPosition = 'left' | 'right' | 'top' | 'bottom' | ''
-const refRandomId = Math.random().toString(36).slice(-8)
 
 export function useTabContentTouch(props: any, tabMethods: any, uni?: ComponentInternalInstance, useRect?: any) {
   const tabsContentRef = ref<HTMLElement>()

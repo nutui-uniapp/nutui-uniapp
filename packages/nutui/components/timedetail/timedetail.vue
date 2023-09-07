@@ -1,13 +1,11 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
-import type { ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, getCurrentInstance, inject, reactive } from 'vue'
-import { PREFIX } from '../_utils'
+import { computed, defineComponent, inject, reactive } from 'vue'
+import { PREFIX } from '../_constants'
 import { timedetailEmits, timedetailProps } from './timedetail'
 
 const props = defineProps(timedetailProps)
 const emit = defineEmits(timedetailEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
 /* eslint-disable eqeqeq */
 
 const currentKey = inject('currentKey')

@@ -1,7 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent, inject, reactive } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { timepannelEmits, timepannelProps } from './timepannel'
 
 const props = defineProps(timepannelProps)

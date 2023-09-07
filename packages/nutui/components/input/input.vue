@@ -1,7 +1,8 @@
 <!-- eslint-disable padded-blocks -->
 <script lang="ts" setup>
 import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX, isH5 } from '../_utils'
+import { isH5 } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
@@ -37,7 +38,6 @@ const styles: ComputedRef = computed(() => {
   let style = {}
   style = {
     textAlign: props.inputAlign,
-    ...props.customStyle,
   }
   return style
 })
@@ -70,7 +70,6 @@ function _onInput(event: any) {
 }
 
 function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
-  // #2178 & Taro #2642
   emit('update:modelValue', value)
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.slice(0, Number(props.maxLength))
@@ -203,7 +202,7 @@ export default defineComponent({
             ref="inputRef"
             :type="inputType(type) as any"
             class="input-text"
-            :style="styles"
+            :style="[styles, props.customStyle]"
             :placeholder="placeholder"
             :disabled="disabled"
             :readonly="readonly"

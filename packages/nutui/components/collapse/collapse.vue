@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { collapseEmits, collapseProps } from './collapse'
 
 const props = defineProps(collapseProps)

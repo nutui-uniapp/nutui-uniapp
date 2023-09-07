@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { shakediceEmits, shakediceProps } from './shakedice'
 
 const props = defineProps(shakediceProps)

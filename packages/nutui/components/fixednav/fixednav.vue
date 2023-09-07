@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutOverlay from '../overlay/overlay.vue'
 import NutIcon from '../icon/icon.vue'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide, readonly, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
 
 const props = defineProps(radiogroupProps)

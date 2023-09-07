@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties, Ref } from 'vue'
 import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
 import { type InputTextAlign, searchbarEmits, searchbarProps } from './searchbar'

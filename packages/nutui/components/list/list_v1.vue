@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, reactive, watch } from 'vue'
 import type { ComponentInternalInstance, ComputedRef } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useRect } from '../_hooks'
 import { clientHeight, listEmits, listProps } from './list'
 import type { CachedPosition } from './type'

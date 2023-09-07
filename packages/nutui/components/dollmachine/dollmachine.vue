@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { dollmachineEmits, dollmachineProps } from './dollmachine'
 
 const props = defineProps(dollmachineProps)

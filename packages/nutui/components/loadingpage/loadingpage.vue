@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
 import { loadingpageProps } from './loadingpage'

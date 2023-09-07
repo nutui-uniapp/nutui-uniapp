@@ -88,13 +88,6 @@ export const inputProps = {
     type: String as PropType<InputMode>,
     default: 'text',
   },
-  // 输入框的自定义样式
-  customStyle: {
-    type: Object,
-    default() {
-      return {}
-    },
-  },
 }
 
 export const inputEmits = {

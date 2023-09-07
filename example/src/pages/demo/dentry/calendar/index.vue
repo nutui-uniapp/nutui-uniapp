@@ -66,7 +66,7 @@ export default {
     }
 
     const select = (param: string) => {
-      uni.showToast({ title: param })
+      uni.showToast({ title: JSON.stringify(param) })
     }
     const setChooseValue1 = (param: string) => {
       state.date1 = [...[param[0][3], param[1][3]]]

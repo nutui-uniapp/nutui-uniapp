@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX, isH5, isMpWeixin } from '../_utils'
+import { isH5, isMpWeixin } from '../_utils'
+import { PREFIX } from '../_constants'
 import { turntableEmits, turntableProps } from './turntable'
 import type { TPrizeItem } from './type'
 

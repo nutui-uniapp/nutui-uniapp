@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
-import { PREFIX, isH5 } from '../_utils'
+import { isH5 } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { type SliderValue, rangeEmits, rangeProps } from './range'
 
 const props = defineProps(rangeProps)
 const emit = defineEmits(rangeEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-const refRandomId = Math.random().toString(36).slice(-8)
+
 const RangeID = computed(() => `root-${refRandomId}`)
 
 const buttonIndex = ref(0)
@@ -185,11 +186,11 @@ async function onClick(event: any) {
     clientX = event.touches[0].clientX
     clientY = event.touches[0].clientY
   }
-  let delta = clientX - rect.left
-  let total = rect.width
+  let delta = clientX - rect.left!
+  let total = rect.width!
   if (props.vertical) {
-    delta = clientY - rect.top
-    total = rect.height
+    delta = clientY - rect.top!
+    total = rect.height!
   }
   const value = Number(min) + (delta / total) * scope.value
   if (isRange(modelValue)) {
@@ -234,11 +235,11 @@ async function onTouchMove(event: TouchEvent) {
 
   const rect = await useRect(RangeID.value, instance)
   let delta = touch.deltaX.value
-  let total = rect.width
+  let total = rect.width!
   let diff = (delta / total) * scope.value
   if (props.vertical) {
     delta = touch.deltaY.value
-    total = rect.height
+    total = rect.height!
     diff = (delta / total) * scope.value
   }
   if (isRange(startValue))

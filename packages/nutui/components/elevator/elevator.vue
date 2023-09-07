@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { elevatorEmits, elevatorProps } from './elevator'
 import type { ElevatorData } from './type'
 

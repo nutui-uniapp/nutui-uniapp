@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, computed, defineComponent, reactive } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
 import { sidenavbaritemEmits, sidenavbaritemProps } from './sidenavbaritem'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, watch } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
-import { PREFIX } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import { stickyEmits, stickyProps } from './sticky'
 
@@ -9,7 +9,6 @@ const props = defineProps(stickyProps)
 const emit = defineEmits(stickyEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 
-const refRandomId = Math.random().toString(36).slice(-8)
 const rootId = `rootRef-${refRandomId}`
 const state = reactive({
   fixed: false,
@@ -34,9 +33,9 @@ const stickyStyle = computed<CSSProperties>(() => {
 })
 function handleScroll() {
   useRect(rootId, instance).then((rootRect) => {
-    state.height = rootRect.height
-    state.width = rootRect.width
-    state.fixed = Number(props.top) >= rootRect.top
+    state.height = rootRect.height!
+    state.width = rootRect.width!
+    state.fixed = Number(props.top) >= rootRect.top!
   })
 }
 watch(

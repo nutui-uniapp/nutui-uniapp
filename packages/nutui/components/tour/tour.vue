@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import NutPopover from '../popover/popover.vue'
 import { useRect } from '../_hooks'
@@ -76,15 +76,15 @@ function getRootPosition() {
     // #ifndef H5
     // TODO  uniapp微信小程序无法实现，获取不到组件外节点的信息
     rect = await useRect(item.target, instance.root)
-    if (rect.left < 0)
-      rect.left = -rect.left
+    if (rect.left! < 0)
+      rect.left = -rect.left!
 
-    if (rect.top < 0)
-      rect.top = -rect.top
-    if (rect.right < 0)
-      rect.right = -rect.right
-    if (rect.bottom < 0)
-      rect.bottom = -rect.bottom
+    if (rect.top! < 0)
+      rect.top = -rect.top!
+    if (rect.right! < 0)
+      rect.right = -rect.right!
+    if (rect.bottom! < 0)
+      rect.bottom = -rect.bottom!
 
     // #endif
 
@@ -121,8 +121,6 @@ watch(
     showPopup.value[state.active] = val
   },
 )
-
-const refRandomId = Math.random().toString(36).slice(-8)
 </script>
 
 <script lang="ts">

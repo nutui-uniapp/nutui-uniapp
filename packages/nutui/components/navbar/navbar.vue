@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, type ComputedRef, computed, defineComponent, getCurrentInstance, onMounted, ref, toRefs } from 'vue'
-import { PREFIX, pxCheck } from '../_utils'
+import { pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { useSelectorQuery } from '../_hooks'
 import { navbarEmits, navbarProps } from './navbar'
 
 const props = defineProps(navbarProps)
 const emit = defineEmits(navbarEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
+
 const { border, fixed, safeAreaInsetTop, placeholder, zIndex } = toRefs(props)
 
 const navHeight = ref(0)
@@ -44,10 +48,8 @@ onMounted(() => {
     // #endif
 
     // #ifdef H5
-    const query = uni.createSelectorQuery().in(instance)
-    query.select('#navBarHtml').boundingClientRect()
-    query.exec((res) => {
-      navHeight.value = res[0].height
+    getSelectorNodeInfo('#navBarHtml').then((res) => {
+      navHeight.value = res.height!
     })
     // #endif
   }

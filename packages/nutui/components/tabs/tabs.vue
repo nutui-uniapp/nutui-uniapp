@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
-import { PREFIX, TypeOfFun, pxCheck } from '../_utils'
+import { TypeOfFun, pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import raf from '../_utils/raf'
-import { useProvide, useRect } from '../_hooks'
+import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
-import { type RectItem, TAB_KEY, Title, tabsEmits, tabsProps } from './tabs'
+import { TAB_KEY, Title, tabsEmits, tabsProps } from './tabs'
 import { useTabContentTouch } from './hooks'
 
 const props = defineProps(tabsProps)
 const emit = defineEmits(tabsEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo, getSelectorNodeInfos } = useSelectorQuery(instance)
+
 const container = ref(null)
 const { internalChildren } = useProvide(TAB_KEY, `${PREFIX}-tabs`)({
   activeKey: computed(() => props.modelValue || 0),
@@ -68,26 +71,8 @@ const titleRef = ref([]) as Ref<HTMLElement[]>
 const scrollLeft = ref(0)
 const scrollTop = ref(0)
 const scrollWithAnimation = ref(false)
-function getRect(selector: string) {
-  return new Promise((resolve) => {
-    uni.createSelectorQuery().in(instance)
-      .select(selector)
-      .boundingClientRect()
-      .exec((rect = []) => {
-        resolve(rect[0])
-      })
-  })
-}
-function getAllRect(selector: string) {
-  return new Promise((resolve) => {
-    uni.createSelectorQuery().in(instance)
-      .selectAll(selector)
-      .boundingClientRect()
-      .exec((rect = []) => resolve(rect[0]))
-  })
-}
 const navRectRef = ref()
-const titleRectRef = ref<RectItem[]>([])
+const titleRectRef = ref<UniApp.NodeInfo[]>([])
 const canShowLabel = ref(false)
 function scrollIntoView() {
   if (!props.name)
@@ -95,15 +80,15 @@ function scrollIntoView() {
 
   raf(() => {
     Promise.all([
-      getRect(`#nut-tabs__titles_${props.name}`),
-      getAllRect(`#nut-tabs__titles_${props.name} .nut-tabs__titles-item`),
-    ]).then(([navRect, titleRects]: any) => {
+      getSelectorNodeInfo(`#nut-tabs__titles_${props.name}`),
+      getSelectorNodeInfos(`#nut-tabs__titles_${props.name} .nut-tabs__titles-item`),
+    ]).then(([navRect, titleRects]) => {
       navRectRef.value = navRect
       titleRectRef.value = titleRects
 
       if (navRectRef.value) {
         if (props.direction === 'vertical') {
-          const titlesTotalHeight = titleRects.reduce((prev: number, curr: RectItem) => prev + curr.height, 0)
+          const titlesTotalHeight = titleRects.reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.height!, 0)
           if (titlesTotalHeight > navRectRef.value.height)
             canShowLabel.value = true
 
@@ -111,7 +96,7 @@ function scrollIntoView() {
             canShowLabel.value = false
         }
         else {
-          const titlesTotalWidth = titleRects.reduce((prev: number, curr: RectItem) => prev + curr.width, 0)
+          const titlesTotalWidth = titleRects.reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.width!, 0)
           if (titlesTotalWidth > navRectRef.value.width)
             canShowLabel.value = true
 
@@ -120,22 +105,22 @@ function scrollIntoView() {
         }
       }
 
-      const titleRect: RectItem = titleRectRef.value[currentIndex.value]
+      const titleRect: UniApp.NodeInfo = titleRectRef.value[currentIndex.value]
 
       let to = 0
       if (props.direction === 'vertical') {
         const DEFAULT_PADDING = 11
         const top = titleRects
           .slice(0, currentIndex.value)
-          .reduce((prev: number, curr: RectItem) => prev + curr.height + 0, DEFAULT_PADDING)
-        to = top - (navRectRef.value.height - titleRect.height) / 2
+          .reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.height! + 0, DEFAULT_PADDING)
+        to = top - (navRectRef.value.height - titleRect.height!) / 2
       }
       else {
         const DEFAULT_PADDING = 31
         const left = titleRects
           .slice(0, currentIndex.value)
-          .reduce((prev: number, curr: RectItem) => prev + curr.width + 20, DEFAULT_PADDING)
-        to = left - (navRectRef.value.width - titleRect.width) / 2
+          .reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.width! + 20, DEFAULT_PADDING)
+        to = left - (navRectRef.value.width - titleRect.width!) / 2
       }
 
       nextTick(() => {

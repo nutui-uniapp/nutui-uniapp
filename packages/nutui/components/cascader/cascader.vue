@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutPopUp from '../popup/popup.vue'
 import NutCascaderItem from '../cascaderitem/cascaderitem.vue'
 import { cascaderEmits, cascaderProps } from './cascader'

@@ -2,7 +2,7 @@
 import { type CSSProperties, defineComponent } from 'vue'
 import { computed, toRefs } from 'vue'
 import Icon from '../icon/icon.vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)

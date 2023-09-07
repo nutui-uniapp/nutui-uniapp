@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_utils'
-import { useRect } from '../_hooks'
+import { PREFIX, refRandomId } from '../_constants'
+import { useRect, useSelectorQuery } from '../_hooks'
 import type { EllipsisedValue } from './ellipsis'
 import { ellipsisEmits, ellipsisProps } from './ellipsis'
 
@@ -9,7 +9,7 @@ const props = defineProps(ellipsisProps)
 
 const emit = defineEmits(ellipsisEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-const refRandomId = Math.random().toString(36).slice(-8)
+const { query } = useSelectorQuery(instance)
 
 const rootId = `root${refRandomId}`
 const symbolContainId = `symbolContain${refRandomId}`
@@ -60,7 +60,6 @@ async function getSymbolInfo() {
 }
 
 async function getReference() {
-  const query = uni.createSelectorQuery().in(instance)
   query.select(rootId)
         && query
           .select(`#${rootId}`)
@@ -92,7 +91,7 @@ async function getReference() {
 async function calcEllipse() {
   const refe = await useRect(rootContainId, instance)
 
-  if (refe.height <= maxHeight) {
+  if (refe.height! <= maxHeight) {
     state.exceeded = false
   }
   else {

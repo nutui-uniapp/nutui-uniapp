@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComputedRef, computed, defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import { TAB_KEY } from '../tabs'
 import { tabpaneEmits, tabpaneProps } from './tabpane'

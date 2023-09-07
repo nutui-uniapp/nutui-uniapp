@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { transitionEmits, transitionProps } from './transition'
 import { isKeyOfAnimations, useTransition } from './use-transition'
 

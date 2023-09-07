@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { hiteggsEmits, hiteggsProps } from './hiteggs'
 
 const props = defineProps(hiteggsProps)

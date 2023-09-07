@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type ComputedRef, watchEffect } from 'vue'
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutTransition from '../transition/transition.vue'
 import { useLockScroll } from '../_hooks'
 import { overlayEmits, overlayProps } from './overlay'

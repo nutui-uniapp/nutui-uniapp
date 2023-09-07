@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties, ComputedRef } from 'vue'
 import { computed, defineComponent, reactive } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import type { SwiperProps } from '../swiper/swiper'
 import { SWIPER_KEY } from '../swiper/swiper'

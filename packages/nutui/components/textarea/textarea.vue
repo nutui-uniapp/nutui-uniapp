@@ -2,8 +2,10 @@
 <script setup lang="ts">
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
-import { PREFIX, isH5, isMpAlipay } from '../_utils'
+import { isH5, isMpAlipay } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
+import { useSelectorQuery } from '../_hooks'
 import { textareaEmits, textareaProps } from './textarea'
 
 export interface InputTarget extends HTMLInputElement {
@@ -12,6 +14,7 @@ export interface InputTarget extends HTMLInputElement {
 const props = defineProps(textareaProps)
 const emit = defineEmits(textareaEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
 const classes = computed(() => {
   const prefixCls = componentName
@@ -112,16 +115,12 @@ watch(
 )
 
 function copyHeight() {
-
-  const query = uni.createSelectorQuery().in(instance)
-  query.select('#nut-textarea__cpoytext').boundingClientRect()
-  query.exec((res) => {
-
-    if (res[0]) {
+  getSelectorNodeInfo('#nut-textarea__cpoytext').then((res) => {
+    if (res) {
       if (props.modelValue === '')
         textareaHeight.value = 20
       else
-        textareaHeight.value = res[0].height || 20
+        textareaHeight.value = res.height || 20
 
       nextTick(getContentHeight)
     }

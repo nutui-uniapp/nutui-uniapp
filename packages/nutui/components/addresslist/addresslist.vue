@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import NutButton from '../button/button.vue'
-import { PREFIX, floatData } from '../_utils'
+import { floatData } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import GeneralShell from './compoents/generalshell.vue'
 import { addresslistEmits, addresslistProps } from './addresslist'

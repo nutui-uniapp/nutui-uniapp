@@ -2,7 +2,7 @@
 import { defineComponent, ref } from 'vue'
 import NutButton from '../../button/button.vue'
 import NutSwipe from '../../swipe/swipe.vue'
-import { PREFIX } from '../../_utils'
+import { PREFIX } from '../../_constants'
 import ItemContents from './Itemcontents.vue'
 
 const props = defineProps({

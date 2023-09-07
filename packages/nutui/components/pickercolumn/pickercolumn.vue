@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX, clamp, preventDefault, pxCheck } from '../_utils'
+import { clamp, preventDefault, pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useTouch } from '../_hooks'
 import { pickercolumnEmits, pickercolumnProps } from './pickercolumn'
 import type { TouchParams } from './types'

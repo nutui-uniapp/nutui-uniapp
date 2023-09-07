@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
+import { useSelectorQuery } from '../_hooks'
 import { barrageEmits, barrageProps } from './barrage'
 
 const props = defineProps(barrageProps)
 
 const emit = defineEmits(barrageEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
 
 defineExpose({ add })
+
+const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
 const classTime = new Date().getTime()
 
 const slotDefault = !!useSlots().default
 
 const timeId = ref(new Date().getTime())
 const danmuList = ref<any>(props.danmu)
-const danmuListSlots = ref<any>([])
 const rows = ref<number>(props.rows)
 const top = ref<number>(props.top)
 const speeds = props.speeds
@@ -30,6 +32,7 @@ const classes = computed(() => {
 })
 
 onMounted(() => {
+  // #ifdef H5
   if (slotDefault) {
     const list = document
       .getElementsByClassName(`nut-barrage__slotBody${classTime}`)[0]
@@ -37,6 +40,7 @@ onMounted(() => {
     const childrens = list?.[0]?.children || []
     danmuList.value = childrens
   }
+  // #endif
   runStep()
 })
 
@@ -53,20 +57,15 @@ function add(word: string) {
 }
 
 function getNode(index: number) {
-  const query = uni.createSelectorQuery().in(instance)
-  setTimeout(() => {
+  setTimeout(async () => {
     let width = 100
-    query.select(`.nut-barrage--dmBody${timeId.value}`).boundingClientRect((rec: any) => {
-      width = rec?.width || 300
-    })
-    query
-      .select(`.nut-barrage__item${index}`)
-      .boundingClientRect((recs: any) => {
-        const height = recs?.height
-        const nodeTop = `${(index % rows.value) * (height + top.value) + 20}px`
-        styleInfo(index, nodeTop, width)
-      })
-      .exec()
+    const dmBodyNodeInfo = await getSelectorNodeInfo(`.nut-barrage--dmBody${timeId.value}`)
+    width = dmBodyNodeInfo?.width || 300
+    const itemNodeInfo = await getSelectorNodeInfo(`.nut-barrage__item${index}`)
+
+    const height = itemNodeInfo?.height
+    const nodeTop = `${(index % rows.value) * (height! + top.value) + 20}px`
+    styleInfo(index, nodeTop, width)
   }, 500)
 }
 

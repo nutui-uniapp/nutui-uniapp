@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, toRefs } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutAvatar from '../avatar/avatar.vue'
 import { skeletonProps } from './skeleton'
 

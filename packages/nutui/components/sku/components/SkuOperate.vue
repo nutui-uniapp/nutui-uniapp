@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent, useSlots } from 'vue'
-import { PREFIX } from '../../_utils'
+import { PREFIX } from '../../_constants'
 
 const props = defineProps({
   // 底部按钮配置  confirm cart  buy

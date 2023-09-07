@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
-import { PREFIX, isDate as isDateU, padZero } from '../_utils'
+import { isDate as isDateU, padZero } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
 import { datepickerEmits, datepickerProps } from './datepicker'

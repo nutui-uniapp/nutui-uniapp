@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PREFIX, padZero } from '../_utils'
+import { padZero } from '../_utils'
+import { PREFIX } from '../_constants'
 import { indicatorProps } from './indicator'
 
 const props = defineProps(indicatorProps)

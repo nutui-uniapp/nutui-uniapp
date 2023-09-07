@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, reactive, useSlots } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
 import NutBadge from '../badge/badge.vue'
 import NutIcon from '../icon/icon.vue'
 import type { provideData } from '../tabbar/type'

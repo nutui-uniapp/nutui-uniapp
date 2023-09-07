@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
-import { PREFIX } from '../_utils'
+import { PREFIX } from '../_constants'
+import { useSelectorQuery } from '../_hooks'
 import { tabbarEmits, tabbarProps } from './tabbar'
 
 const props = defineProps(tabbarProps)
 const emit = defineEmits(tabbarEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
+
 const { bottom, placeholder } = toRefs(props)
 const mdValue = reactive({
   val: props.modelValue,
@@ -36,12 +39,8 @@ watch(
 )
 onMounted(() => {
   if (bottom.value && placeholder.value) {
-    setTimeout(() => {
-      const query = uni.createSelectorQuery().in(instance)
-      query.select('.nut-tabbar').boundingClientRect()
-      query.exec((res) => {
-        height.value = res[0].height
-      })
+    setTimeout(async () => {
+      height.value = (await getSelectorNodeInfo('.nut-tabbar')).height
     }, 500)
   }
 })
