@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/yang1206/uniapp-nutui/compare/v1.0.1...v1.1.0) (2023-09-07)
+
+
+### Features
+
+* :sparkles: 新增Input组件customStyle自定义属性 ([c42a5fe](https://github.com/yang1206/uniapp-nutui/commit/c42a5fe0fc6ecb4bf89ff9a7213529055c2c8670))
+
+
+
 ## [1.0.1](https://github.com/yang1206/uniapp-nutui/compare/v1.0.0...v1.0.1) (2023-09-05)
 
 
