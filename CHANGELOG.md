@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/yang1206/uniapp-nutui/compare/v1.1.0...v1.1.1) (2023-09-07)
+
+
+### Bug Fixes
+
+* (input) 自动聚焦无效 ([8744788](https://github.com/yang1206/uniapp-nutui/commit/874478877e38272c51b437cf17d20c2f272d8876)), closes [#39](https://github.com/yang1206/uniapp-nutui/issues/39)
+
+
+
 # [1.1.0](https://github.com/yang1206/uniapp-nutui/compare/v1.0.1...v1.1.0) (2023-09-07)
 
 
