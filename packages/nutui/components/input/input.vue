@@ -168,9 +168,6 @@ watch(
 )
 
 onMounted(() => {
-  if (props.autofocus)
-    inputRef.value.focus()
-
   updateValue(getModelValue(), props.formatTrigger)
 })
 </script>
@@ -206,6 +203,7 @@ export default defineComponent({
             :placeholder="placeholder"
             :disabled="disabled"
             :readonly="readonly"
+            :focus="autofocus"
             :maxlength="maxLength ? +maxLength : -1"
             :value="modelValue"
             :format-trigger="formatTrigger"

@@ -67,7 +67,7 @@ export default {
     <h2 class="title">
       基础用法
     </h2>
-    <nut-input v-model="state.val1" type="text" placeholder="文本" />
+    <nut-input v-model="state.val1" autofocus type="text" placeholder="文本" />
 
     <h2 class="title">
       自定义类型
