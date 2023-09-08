@@ -5,12 +5,12 @@
   "description": "京东风格的轻量级移动端 Uniapp、Vue3 组件库（支持小程序开发）",
   "author": "yang1206 <y1149221897@outlook.com>",
   "license": "MIT",
-  "homepage": "https://github.com/nutui-uniapp/uniapp-nutui#readme",
+  "homepage": "https://github.com/nutui-uniapp/nutui-uniapp#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nutui-uniapp/uniapp-nutui.git"
+    "url": "git+https://github.com/nutui-uniapp/nutui-uniapp.git"
   },
-  "bugs": "https://github.com/nutui-uniapp/uniapp-nutui/issues",
+  "bugs": "https://github.com/nutui-uniapp/nutui-uniapp/issues",
   "keywords": [
     "uniapp",
     "nutui",

@@ -9,16 +9,16 @@ body:
         这个表单仅用于错误报告。对于在使用中遇到的问题，请优先使用以下方式寻找解决方案：
 
         - 查看组件文档 [uniapp-nutui](https://www.uniapp-nutui.tech/)
-        - 在 [Issue](https://github.com/yang1206/uniapp-nutui/issues) 列表中查找解决方案
-        - 查看 [常见问题 QA](https://github.com/yang1206/uniapp-nutui/issues/2461)
+        - 在 [Issue](https://github.com/nutui-uniapp/nutui-uniapp/issues) 列表中查找解决方案
+        - 查看 [常见问题 QA](https://github.com/nutui-uniapp/nutui-uniapp/issues/2461)
 
         注意：如果你发现一个已关闭 issue 的问题在最新版本中仍然存在，请不要在旧 issue 下面留言，而应该使用当前的表单创建新的 issue。
 
   - type: input
     id: version
     attributes:
-      label: uniapp-nutui 版本号
-      description: 输入使用的 uniapp-nutui 版本号
+      label: nutui-uniapp 版本号
+      description: 输入使用的 nutui-uniapp 版本号
       placeholder: 例如：0.2.4
     validations:
       required: true
@@ -83,7 +83,7 @@ body:
       label: 环境信息
       description:
 
-        你可以执行 `npx envinfo --system --npmPackages uniapp-nutui --binaries --browsers`。
+        你可以执行 `npx envinfo --system --npmPackages nutui-uniapp --binaries --browsers`。
 
   - type: textarea
     id: extra
