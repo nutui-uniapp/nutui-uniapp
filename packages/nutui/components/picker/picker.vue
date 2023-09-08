@@ -4,8 +4,10 @@ import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
 import type { PickerOption } from '../pickercolumn/types'
 import { pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
+
 // #ifdef H5
 import NutPickerColumn from '../pickercolumn/pickercolumn.vue'
+
 // #endif
 import { pickerEmits, pickerProps } from './picker'
 import { componentName, usePicker } from './use-picker'
@@ -80,7 +82,7 @@ function componentWeapp() {
     const prevDefaultValue = defaultIndexes.value
     let changeIndex = 0
     // 判断变化的是第几个
-    for (let i = 0; i < data.detail.value?.length; i++) {
+    for (let i = 0; i < data.detail.value.length; i++) {
       if (prevDefaultValue[i] !== data.detail.value?.[i]) {
         changeIndex = i
         break
@@ -207,7 +209,7 @@ export default defineComponent({
       >
         <view
           v-for="(item, index) in column"
-          :key="item[columnFieldNames.value] ?? index"
+          :key="item[columnFieldNames.value] ? item[columnFieldNames.value] : index"
           class="nut-picker-roller-item-tarotile"
           :style="{
             lineHeight: pxCheck(optionHeight),

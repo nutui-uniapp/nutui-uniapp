@@ -263,7 +263,7 @@ export default defineComponent({
       :style="threeDimensional ? touchRollerStyle : touchTileStyle"
       @transitionend="stopMomentum"
     >
-      <template v-for="(item, index) in column" :key="item[fieldNames.value] ?? index">
+      <template v-for="(item, index) in column" :key="item[fieldNames.value] ? item[fieldNames.value] : index">
         <!-- 3D 效果 -->
         <view
           v-if="item && item[fieldNames.text] && threeDimensional"

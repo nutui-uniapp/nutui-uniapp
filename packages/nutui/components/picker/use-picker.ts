@@ -128,7 +128,7 @@ export function usePicker(props: any, emit: any) {
       defaultValues.value = defaultValues.value ? defaultValues.value : []
 
       if (columnsType.value === 'cascade') {
-        defaultValues.value[columnIndex] = option[fields.value] ?? ''
+        defaultValues.value[columnIndex] = option[fields.value] ? option[fields.value] : ''
         let index = columnIndex
         let cursor = option
         while (cursor && cursor[fields.children] && cursor[fields.children][0]) {
