@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/yang1206/uniapp-nutui/compare/v1.1.1...v1.1.2) (2023-09-08)
+
+
+### Bug Fixes
+
+* 修复支付宝小程序编译失败 ([d814b4f](https://github.com/yang1206/uniapp-nutui/commit/d814b4ff073bc1f11bd971df8d035f0924ff16fe))
+
+
+
 ## [1.1.1](https://github.com/yang1206/uniapp-nutui/compare/v1.1.0...v1.1.1) (2023-09-07)
 
 
