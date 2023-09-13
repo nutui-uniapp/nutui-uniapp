@@ -152,6 +152,7 @@ function scrollDirection(to: number, direction: 'horizontal' | 'vertical') {
 function init(vnodes: VNode[] = internalChildren.map(item => item.vnode)) {
   titles.value = []
   vnodes = vnodes?.filter(item => typeof item.children !== 'string')
+
   if (vnodes && vnodes.length)
     renderTitles(vnodes)
 
@@ -162,9 +163,9 @@ function init(vnodes: VNode[] = internalChildren.map(item => item.vnode)) {
 }
 
 watch(
-  () => internalChildren.map(item => item.props),
+  () => internalChildren,
   (vnodes: any[]) => {
-    init(internalChildren.map(item => item.vnode))
+    init(vnodes)
   },
   { deep: true },
 )
