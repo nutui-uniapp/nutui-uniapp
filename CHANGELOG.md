@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/yang1206/uniapp-nutui/compare/v1.1.3...v1.1.4) (2023-09-14)
+
+
+### Bug Fixes
+
+* (cascader) 动态加载标题无法正确显示 ([a3d7594](https://github.com/yang1206/uniapp-nutui/commit/a3d7594510bdf5088646b0dd3cfb8ed62eb70b2c))
+
+
+
 ## [1.1.3](https://github.com/yang1206/uniapp-nutui/compare/v1.1.2...v1.1.3) (2023-09-08)
 
 
