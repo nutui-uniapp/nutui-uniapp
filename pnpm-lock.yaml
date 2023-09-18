@@ -125,7 +125,7 @@ importers:
     dependencies:
       nutui-uniapp:
         specifier: workspace:^
-        version: link:../packages/uni_modules/dist/nutui-uni/components/nutui-uni
+        version: link:../packages/nutui
     devDependencies:
       '@vite-pwa/vitepress':
         specifier: ^0.2.0
@@ -180,7 +180,7 @@ importers:
         version: 0.0.3
       nutui-uniapp:
         specifier: workspace:^
-        version: link:../packages/uni_modules/dist/nutui-uni/components/nutui-uni
+        version: link:../packages/nutui
       pinia:
         specifier: 2.0.36
         version: 2.0.36(typescript@5.1.6)(vue@3.2.47)
@@ -260,18 +260,6 @@ importers:
       '@uni-helper/uni-app-types':
         specifier: ^0.5.10
         version: 0.5.10(typescript@5.1.6)
-      vue:
-        specifier: ^3.2.0
-        version: 3.2.47
-
-  packages/uni_modules/dist/nutui-uni:
-    dependencies:
-      vue:
-        specifier: ^3.2.0
-        version: 3.2.47
-
-  packages/uni_modules/dist/nutui-uni/components/nutui-uni:
-    dependencies:
       vue:
         specifier: ^3.2.0
         version: 3.2.47
