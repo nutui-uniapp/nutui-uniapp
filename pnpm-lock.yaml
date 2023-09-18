@@ -257,6 +257,9 @@ importers:
 
   packages/nutui:
     dependencies:
+      '@uni-helper/uni-app-types':
+        specifier: ^0.5.10
+        version: 0.5.10(typescript@5.1.6)
       vue:
         specifier: ^3.2.0
         version: 3.2.47
@@ -4888,7 +4891,6 @@ packages:
       '@dcloudio/types': 3.3.3
       typescript: 5.1.6
       vue3: /vue@3.3.4
-    dev: true
 
   /@uni-helper/uni-env@0.0.3:
     resolution: {integrity: sha512-K6MEnmN7Dg+NnEkfUUhjaKc/rPVY7tcGdsVUKOlC1/z2E6H6zjSSTdJg8z+sVJtZ03Ff1G/MHz2PYDyAS6gjQQ==}
