@@ -47,7 +47,7 @@
     "@nutui/touch-emulator": "^1.0.0",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.15.0",
-    "@uni-helper/uni-app-types": "^0.5.8",
+    "@uni-helper/uni-app-types": "^0.5.10",
     "@vue/tsconfig": "^0.4.0",
     "bumpp": "^9.1.1",
     "consola": "^3.2.3",

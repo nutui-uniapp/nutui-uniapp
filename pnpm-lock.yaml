@@ -34,8 +34,8 @@ importers:
         specifier: ^18.15.0
         version: 18.15.0
       '@uni-helper/uni-app-types':
-        specifier: ^0.5.8
-        version: 0.5.8(typescript@5.1.6)
+        specifier: ^0.5.10
+        version: 0.5.10(typescript@5.1.6)
       '@vue/tsconfig':
         specifier: ^0.4.0
         version: 0.4.0
@@ -210,8 +210,8 @@ importers:
         specifier: ^1.1.79
         version: 1.1.79
       '@uni-helper/uni-app-types':
-        specifier: ^0.5.8
-        version: 0.5.8(typescript@5.1.6)
+        specifier: ^0.5.10
+        version: 0.5.10(typescript@5.1.6)
       '@uni-helper/vite-plugin-uni-components':
         specifier: ^0.0.6
         version: 0.0.6(rollup@3.28.1)
@@ -257,11 +257,12 @@ importers:
 
   packages/nutui:
     dependencies:
+      '@uni-helper/uni-app-types':
+        specifier: ^0.5.10
+        version: 0.5.10(typescript@5.1.6)
       vue:
         specifier: ^3.2.0
         version: 3.2.47
-
-  packages/uni_modules/temp: {}
 
 packages:
 
@@ -4869,8 +4870,8 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@uni-helper/uni-app-types@0.5.8(typescript@5.1.6):
-    resolution: {integrity: sha512-iB2JG6ygBjGcUvSAKpuxrK8JfPBYuLXf3p8fMTM3Mtwoi+VvcyU4hJJwbndX3mqqVJw/lGpsOlPIBozp8NZ3Cg==}
+  /@uni-helper/uni-app-types@0.5.10(typescript@5.1.6):
+    resolution: {integrity: sha512-54WgxfRnAJBs+jgbnTsNyY2SS84C13g6hWx7zkywcMHldb4SDoK1iVSKjt8uZ9BSDsfBLgfQLSDkzSwm5GN9dg==}
     engines: {node: '>=14.18'}
     peerDependencies:
       typescript: ^4.8.0 || ^5.0.0
@@ -4878,7 +4879,6 @@ packages:
       '@dcloudio/types': 3.3.3
       typescript: 5.1.6
       vue3: /vue@3.3.4
-    dev: true
 
   /@uni-helper/uni-env@0.0.3:
     resolution: {integrity: sha512-K6MEnmN7Dg+NnEkfUUhjaKc/rPVY7tcGdsVUKOlC1/z2E6H6zjSSTdJg8z+sVJtZ03Ff1G/MHz2PYDyAS6gjQQ==}
