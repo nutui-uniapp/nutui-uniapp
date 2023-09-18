@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/yang1206/uniapp-nutui/compare/v1.1.4...v1.1.5) (2023-09-18)
+
+
+### Features
+
+* (button) 支持 open-type 等开放能力属性 ([eb72466](https://github.com/yang1206/uniapp-nutui/commit/eb724660ca3e163387863fc0260155004c832feb)), closes [#58](https://github.com/yang1206/uniapp-nutui/issues/58) [#58](https://github.com/yang1206/uniapp-nutui/issues/58)
+
+
+
 ## [1.1.4](https://github.com/yang1206/uniapp-nutui/compare/v1.1.3...v1.1.4) (2023-09-14)
 
 
