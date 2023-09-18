@@ -17,7 +17,6 @@ async function copy() {
     'build.config.ts',
     'env.d.ts',
     'tsconfig.json',
-    'package.json',
   ]
 
   const excludedDir2 = [
@@ -41,7 +40,6 @@ async function copy() {
         fs.copy(sourceDir, `${destDir}/components/nutui-uni`, {
           filter: src => ![...excludedDir, ...excludedDir3].some(d => src.includes(d)),
         }),
-        fs.copy('packages/uni_modules/temp', destDir),
       ])
     }),
 

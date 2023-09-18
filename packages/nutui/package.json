@@ -1,6 +1,7 @@
 {
+  "id": "nutui-uni",
   "name": "nutui-uniapp",
-  "type": "module",
+  "displayName": "nutui-uniapp",
   "version": "1.1.4",
   "description": "京东风格的轻量级移动端 Uniapp、Vue3 组件库（支持小程序开发）",
   "author": "yang1206 <y1149221897@outlook.com>",
@@ -17,7 +18,7 @@
     "nutui4",
     "vue",
     "vue3",
-    "vue component",
+    "小程序",
     "vue3 component",
     "vite"
   ],
@@ -41,11 +42,6 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "publishConfig": {
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
-  },
   "files": [
     "dist",
     "styles",
@@ -54,11 +50,88 @@
     "locale/**",
     "global.d.ts"
   ],
+  "engines": {
+    "HBuilderX": "^3.6.17"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub"
   },
   "peerDependencies": {
+    "@uni-helper/uni-app-types": "^0.5.10",
     "vue": "^3.2.0"
+  },
+  "dcloudext": {
+    "type": "component-vue",
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "",
+      "data": "",
+      "permissions": ""
+    },
+    "npmurl": "https://www.npmjs.com/package/uniapp-nutui"
+  },
+  "uni_modules": {
+    "dependencies": [],
+    "encrypt": [],
+    "platforms": {
+      "cloud": {
+        "tcb": "y",
+        "aliyun": "y"
+      },
+      "client": {
+        "Vue": {
+          "vue2": "n",
+          "vue3": "y"
+        },
+        "App": {
+          "app-vue": "u",
+          "app-nvue": "u"
+        },
+        "H5-mobile": {
+          "Safari": "y",
+          "Android Browser": "y",
+          "微信浏览器(Android)": "y",
+          "QQ浏览器(Android)": "y"
+        },
+        "H5-pc": {
+          "Chrome": "y",
+          "IE": "n",
+          "Edge": "y",
+          "Firefox": "y",
+          "Safari": "y"
+        },
+        "小程序": {
+          "微信": "y",
+          "阿里": "y",
+          "百度": "u",
+          "字节跳动": "u",
+          "QQ": "u",
+          "钉钉": "u",
+          "快手": "u",
+          "飞书": "u",
+          "京东": "u"
+        },
+        "快应用": {
+          "华为": "u",
+          "联盟": "u"
+        }
+      }
+    }
   }
 }

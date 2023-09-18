@@ -139,6 +139,8 @@
 
 ### Props
 
+> `nut-button`继承了 uni-app button的绝大部分属性，部分小程序特殊属性请查看[button](https://uniapp.dcloud.net.cn/component/button.html)
+
 | 参数      | 说明                                                                   | 类型    | 默认值    |
 | --------- | ---------------------------------------------------------------------- | ------- | --------- |
 | type      | 类型，可选值为 `primary` `info` `warning` `danger` `success` `default` | string  | `default` |
@@ -150,6 +152,13 @@
 | disabled  | 是否禁用按钮                                                           | boolean | `false`   |
 | block     | 是否为块级元素                                                         | boolean | `false`   |
 | loading   | 按钮 `loading` 状态                                                    | boolean | `false`   |
+| open-type `v1.1.5` | 小程序开放能力 | string [查看 uniapp 文档](https://uniapp.dcloud.net.cn/component/button.html#open-type-%E6%9C%89%E6%95%88%E5%80%BC) | -|
+| lang `v1.1.5`   | 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。                                                    | string | `en`   |
+| session-from `v1.1.5`   | 会话来源，open-type="contact"时有效                                                    | string | -   |
+| send-message-title `v1.1.5`   | 会话内消息卡片标题，open-type="contact"时有效                                                    | string | -   |
+| send-message-path `v1.1.5`   | 会话内消息卡片点击跳转小程序路径，open-type="contact"时有效 | string | -   |
+| send-message-img `v1.1.5`   | 会话内消息卡片图片，open-type="contact"时有效 | string | -   |
+| show-message-card `v1.1.5`   | 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，open-type="contact"时有效 | string | -   |
 
 ### Slots
 
@@ -159,11 +168,25 @@
 | icon    | 按钮图标 |
 
 ### Events
+> `nut-button`继承了 uni-app button的open-type回调事件，请查看[button](https://uniapp.dcloud.net.cn/component/button.html)
 
 | 事件名 | 说明           | 回调参数            |
 | ------ | -------------- | ------------------- |
 | click  | 点击按钮时触发 | `event: MouseEvent` |
-
+| getphonenumber `v1.1.5` | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| getuserinfo `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| error `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| opensetting `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| launchapp `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| contact `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| chooseavatar `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| agreeprivacyauthorization `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| addgroupapp `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  |
+| chooseaddress `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  
+| chooseinvoicetitle `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  
+| subscribe `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  
+| login `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  
+| im `v1.1.5`  | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |  
 ## 主题定制
 
 ### 样式变量

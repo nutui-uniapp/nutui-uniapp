@@ -13,13 +13,12 @@
       "dom"
     ],
     "types": [
-      "nutui-uniapp/global.d.ts",
       "@dcloudio/types",
       "@uni-helper/uni-app-types"
     ]
   },
   "include": [
-    // "node_modules/nutui-uniapp/global.d.ts",
+    "node_modules/nutui-uniapp/global.d.ts",
     "src/**/*.vue",
     "src/**/*.ts",
     "src/**/*.js",

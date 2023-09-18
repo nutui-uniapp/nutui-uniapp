@@ -66,7 +66,7 @@
     "@dcloudio/uni-stacktracey": "3.0.0-alpha-3081220230802001",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3081220230802001",
     "@iconify-json/tabler": "^1.1.79",
-    "@uni-helper/uni-app-types": "^0.5.8",
+    "@uni-helper/uni-app-types": "^0.5.10",
     "@uni-helper/vite-plugin-uni-components": "^0.0.6",
     "@uni-helper/vite-plugin-uni-layouts": "^0.1.1",
     "@uni-helper/vite-plugin-uni-manifest": "^0.1.3",

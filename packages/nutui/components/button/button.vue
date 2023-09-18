@@ -64,11 +64,42 @@ export default defineComponent({
 </script>
 
 <template>
-  <view
+  <button
     :class="[classes, customClass]"
     :style="[getStyle, customStyle]"
-    :form-type="formType === 'button' ? undefined : formType"
+    :form-type="props.formType === 'button' ? undefined : props.formType"
+    :open-type="props.openType"
+    :hover-start-time="10000000"
+    hover-stop-propagation
+    :lang="props.lang"
+    :session-from="props.sessionFrom"
+    :send-message-title="props.sendMessageTitle"
+    :send-message-path="props.sendMessagePath"
+    :send-message-img="props.sendMessageImg"
+    :show-message-card="props.showMessageCard"
+    :group-id="props.groupId"
+    :guild-id="props.guildId"
+    :public-id="props.publicId"
+    :data-im-id="props.dataImId"
+    :data-im-type="props.dataImType"
+    :data-goods-id="props.dataGoodsId"
+    :data-order-id="props.dataOrderId"
+    :data-biz-line="props.dataBizLine"
     @click="handleClick"
+    @getphonenumber="emits('getphonenumber', $event)"
+    @getuserinfo="emits('getuserinfo', $event)"
+    @error="emits('error', $event)"
+    @opensetting="emits('opensetting', $event)"
+    @addgroupapp="emits('addgroupapp', $event)"
+    @chooseaddress="emits('chooseaddress', $event)"
+    @chooseavatar="emits('chooseavatar', $event)"
+    @chooseinvoicetitle="emits('chooseinvoicetitle', $event)"
+    @launchapp="emits('launchapp', $event)"
+    @login="emits('login', $event)"
+    @subscribe="emits('subscribe', $event)"
+    @contact="emits('contact', $event)"
+    @agreeprivacyauthorization="emits('agreeprivacyauthorization', $event)"
+    @im="emits('im', $event)"
   >
     <view class="nut-button__wrap">
       <Icon v-if="loading" name="loading" class="nut-icon-loading" />
@@ -77,7 +108,7 @@ export default defineComponent({
         <slot />
       </view>
     </view>
-  </view>
+  </button>
 </template>
 
 <style lang="scss">
