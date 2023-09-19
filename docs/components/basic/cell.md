@@ -139,6 +139,18 @@
 </template>
 ```
 
+### 直接使用插槽（slot desc）
+
+```vue
+<template>
+  <nut-cell title="我是标题">
+    <template #desc>
+      <span>描述文字 <b style="color: red">2</b></span>
+    </template>
+  </nut-cell>
+</template>
+```
+
 ## API
 
 ### CellGroup Props
@@ -175,6 +187,7 @@
 | default | 自定义内容            |
 | link    | 自定义右侧 `link` 区域  |
 | title   | 自定义 `title` 标题区域 |
+| desc `v1.1.6`    | 自定义 `desc` 描述区域  |
 
 ### CellGroup Slots
 

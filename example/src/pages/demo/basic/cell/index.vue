@@ -48,6 +48,15 @@ const switchChecked = ref(true)
       </template>
     </nut-cell>
 
+    <h2 class="title">
+      直接使用插槽(slot desc)
+    </h2>
+    <nut-cell title="我是标题">
+      <template #desc>
+        <span>描述文字 <b style="color: red">2</b></span>
+      </template>
+    </nut-cell>
+
     <nut-cell-group title="链接 | 分组用法">
       <nut-cell title="链接" is-link />
       <nut-cell

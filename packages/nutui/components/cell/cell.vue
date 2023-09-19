@@ -68,11 +68,13 @@ export default defineComponent({
         </template>
       </view>
       <view
-        v-if="desc" class="nut-cell__value"
+        v-if="desc || $slots.desc" class="nut-cell__value"
         :class="{ 'nut-cell__value--alone': (!title && !subTitle && !$slots.title) }"
         :style="{ 'text-align': descTextAlign }"
       >
-        {{ desc }}
+        <slot name="desc">
+          {{ desc }}
+        </slot>
       </view>
       <slot name="link">
         <Icon v-if="isLink || to" name="right" class="nut-cell__link" />
