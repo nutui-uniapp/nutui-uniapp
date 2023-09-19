@@ -15,6 +15,7 @@ interface TestCalendarState {
   isVisible7: boolean
   isVisible8: boolean
   isVisible9: boolean
+  isVisible10: boolean
   date1: string[]
   date2: string
   date3: string
@@ -24,6 +25,8 @@ interface TestCalendarState {
   date7: string[]
   date8: string
   date9: string[]
+  date10: string
+  disabled10: boolean
 }
 export default {
   props: {},
@@ -42,6 +45,7 @@ export default {
       date7: [],
       date8: '',
       date9: ['2020-01-23', '2020-01-26'],
+      date10: '2023-09-03',
       isVisible1: false,
       isVisible2: false,
       isVisible3: false,
@@ -51,6 +55,8 @@ export default {
       isVisible7: false,
       isVisible8: false,
       isVisible9: false,
+      isVisible10: false,
+      disabled10: false,
     })
     const openSwitch = (param: any) => {
       state[`${param}`] = true
@@ -63,6 +69,10 @@ export default {
     const setChooseValue = (param: string) => {
       state.date = param[3]
       state.dateWeek = param[4]
+    }
+
+    const setSelectalue10 = (param: any) => {
+      state.disabled10 = param[2] % 2 === 0
     }
 
     const select = (param: string) => {
@@ -122,6 +132,12 @@ export default {
         calendarRef.value.scrollToDate(date2Str(date1))
       }
     }
+
+    const clickBtn10 = (dateInfo: any) => {
+      state.date10 = dateInfo.date[3]
+      state.isVisible10 = false
+    }
+
     return {
       ...toRefs(state),
       openSwitch,
@@ -138,9 +154,11 @@ export default {
       setChooseValue7,
       setChooseValue8,
       setChooseValue9,
+      setSelectalue10,
       goDate,
       calendarRef,
       select,
+      clickBtn10,
     }
   },
 }
@@ -303,6 +321,30 @@ export default {
         </template>
         <template #day="date">
           <view>{{ date.date.day }}</view>
+        </template>
+      </nut-calendar>
+    </div>
+    <div>
+      <nut-cell
+        :show-icon="true"
+        title="自定义底部"
+        :desc="date10 ? `${date10}` : '请选择'"
+        @click="openSwitch('isVisible10')"
+      />
+      <nut-calendar
+        v-model:visible="isVisible10"
+        :default-value="date10"
+        :poppable="true"
+        :is-auto-back-fill="false"
+        @close="closeSwitch('isVisible10')"
+        @select="setSelectalue10"
+      >
+        <template #footer-info="dateInfo">
+          <nut-button size="large" block round type="primary" :disabled="disabled10" @click="clickBtn10(dateInfo)">
+            {{
+              disabled10 ? '偶数的日期不能选择' : '奇数的日期可以选择'
+            }}
+          </nut-button>
         </template>
       </nut-calendar>
     </div>

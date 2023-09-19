@@ -590,6 +590,67 @@ export default {
 </style>
 ```
 
+### 自定义底部区域 （不支持微信小程序）
+
+```html
+<template>
+  <nut-cell
+    :show-icon="true"
+    title="自定义底部区域"
+    :desc="date ? `${date}` : '请选择'"
+    @click="openSwitch('isVisible')"
+  >
+  </nut-cell>
+  <nut-calendar
+    v-model:visible="isVisible"
+    :default-value="date"
+    :poppable="true"
+    :is-auto-back-fill="false"
+    @close="closeSwitch('isVisible')"
+    @select="setSelectalue"
+  >
+    <template #footer-info="dateInfo">
+      <nut-button size="large" block round type="primary" :disabled="disabled" @click="clickBtn(dateInfo)"
+        >{{ disabled?'偶数的日期不能选择':'奇数的日期可以选择' }}</nut-button
+      >
+    </template>
+  </nut-calendar>
+</template>
+
+<script lang="ts">
+  import { reactive, toRefs, ref } from 'vue';
+  export default {
+    setup() {
+      const state = reactive({
+        date: '2023-09-03',
+        isVisible: false,
+        disabled: false
+      });
+      const openSwitch = (param) => {
+        state[`${param}`] = true;
+      };
+      const closeSwitch = (param) => {
+        state[`${param}`] = false;
+      };
+      const setSelectalue = (param: any) => {
+        state.disabled = param[2] % 2 === 0;
+      };
+      const clickBtn = (dateInfo: any) => {
+        state.date = dateInfo.date[3];
+        state.isVisible = false;
+      };
+      return {
+        ...toRefs(state),
+        setSelectalue,
+        openSwitch,
+        closeSwitch,
+        clickBtn
+      };
+    }
+  };
+</script>
+```
+
 
 
 ### 自定义周起始日
@@ -642,11 +703,7 @@ export default {
 </script>
 ```
 
-
-
 ### 平铺展示
-
-
 
 ```html
 <template>
@@ -699,7 +756,7 @@ export default {
 | 参数              | 说明                                              | 类型            | 默认值          |
 |-------------------|---------------------------------------------------|-----------------|-----------------|
 | v-model:visible   | 是否可见                                          | boolean         | `false`           |
-| type   `v4.0.1`           | 类型，日期单择`one`，区间选择`range`,日期多选`multiple`,周选择`week`(`v4.0.1`)     | string       | '`one`'           |
+| type              | 类型，日期单择`one`，区间选择`range`,日期多选`multiple`,周选择`week`     | string       | '`one`'           |
 | poppable          | 是否弹窗状态展示                                  | boolean         | `true`            |
 | is-auto-back-fill | 自动回填                                          | boolean         | `false`           |
 | title             | 显示标题                                          | string          | `日期选择`      |
@@ -731,7 +788,7 @@ export default {
 | day |  日期信息 |
 | top-info |  日期顶部信息 |
 | bottom-info |  日期底部信息 |
-
+| footer-info `v1.1.6` | 日历自定义底部，替代confirm按钮（不支持微信小程序）        |
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html) 可以获取到 `Calendar` 实例并调用实例方法。

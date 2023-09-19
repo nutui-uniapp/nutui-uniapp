@@ -25,6 +25,9 @@ const dayInfo = computed(() => {
 const bottomInfo = computed(() => {
   return slots['bottom-info']
 })
+const footerInfo = computed(() => {
+  return slots['footer-info']
+})
 const show = ref(props.visible)
 // element refs
 const calendarRef = ref<null | CalendarInst>(null)
@@ -126,6 +129,10 @@ export default defineComponent({
       <template v-if="bottomInfo" #bottom-info="date">
         <slot name="bottom-info" :date="date.date" />
       </template>
+      <!-- TODO uniapp不支持微信小程序 slot多级嵌套透传 -->
+      <template v-if="footerInfo" #footer-info="date">
+        <slot name="footer-info" :date="date.date" />
+      </template>
     </NutCalendarItem>
   </NutPoPUp>
   <NutCalendarItem
@@ -160,6 +167,9 @@ export default defineComponent({
     </template>
     <template v-if="bottomInfo" #bottom-info="date">
       <slot name="bottom-info" :date="date.date" />
+    </template>
+    <template v-if="footerInfo" #footer-info="date">
+      <slot name="footer-info" :date="date.date" />
     </template>
   </NutCalendarItem>
 </template>
