@@ -38,6 +38,24 @@
   color: $searchbar-input-bar-color;
   background: $searchbar-background;
 
+  &.safe-area-inset-bottom {
+    position: relative;
+    margin-bottom: constant(safe-area-inset-bottom);
+    margin-bottom: env(safe-area-inset-bottom);
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: constant(safe-area-inset-bottom);
+      height: env(safe-area-inset-bottom);
+      content: '';
+      background: $searchbar-background;
+    }
+  }
+
+
   &::placeholder {
     color: $searchbar-input-bar-placeholder-color;
   }

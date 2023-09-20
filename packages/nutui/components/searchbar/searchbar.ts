@@ -67,6 +67,10 @@ export const searchbarProps = {
     type: String as PropType<confirmTextType>,
     default: 'done',
   },
+  safeAreaInsetBottom: {
+    type: Boolean,
+    default: false,
+  },
 }
 
 export type SearchbarProps = ExtractPropTypes<typeof searchbarProps>

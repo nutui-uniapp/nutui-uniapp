@@ -106,7 +106,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="customClass" class="nut-searchbar" :style="[searchbarStyle, customStyle]">
+  <view :class="[customClass, { 'safe-area-inset-bottom': safeAreaInsetBottom }]" class="nut-searchbar" :style="[searchbarStyle, customStyle]">
     <view v-if="$slots.leftout" class="nut-searchbar__search-icon nut-searchbar__left-search-icon" @click="leftIconClick">
       <slot name="leftout" />
     </view>

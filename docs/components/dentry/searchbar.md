@@ -220,7 +220,7 @@
 | disabled | 是否禁用输入框 | boolean | `false` |
 | readonly | 输入框只读 | boolean | `false` |
 | input-align | 对齐方式，可选 `left` `center` `right` | string | `left` |
-
+| safe-area-inset-bottom `v1.1.6` | 是否开启 iphone 系列全面屏底部安全区适配                                                                                     | boolean          | `false`       |
 ### Events
 
 | 事件名 | 说明           | 回调参数     |
