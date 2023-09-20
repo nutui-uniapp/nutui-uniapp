@@ -104,7 +104,6 @@
 
       input {
         width: 100%;
-        min-width: 214px;
         height: 100%;
         padding-left: 4px;
       }
@@ -161,7 +160,8 @@
       font-size: 14px;
       background-color: transparent;
       border-color: transparent;
-      border-radius: 16px;
+      
+      // border-radius: 16px;
       outline: none;
     }
 
