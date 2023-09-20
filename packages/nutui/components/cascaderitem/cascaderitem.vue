@@ -269,8 +269,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- TODO异步加载时标题无法展示 -->
-  <NutTabs v-model="tabsCursor" custom-class="nut-cascader" title-scroll @click="methods.handleTabClick">
+  <NutTabs v-model="tabsCursor" :type="props.titleType" :ellipsis="props.titleEllipsis" :title-gutter="props.titleGutter" :size="props.titleSize" custom-class="nut-cascader" title-scroll @click="methods.handleTabClick">
     <template v-if="!initLoading && panes.length">
       <NutTabPane v-for="(pane, index) in panes" :key="index" :title="formatTabTitle(pane)">
         <view role="menu" class="nut-cascader-pane">

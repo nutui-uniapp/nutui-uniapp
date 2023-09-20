@@ -1,6 +1,7 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { isBoolean } from '../_utils'
 import { popupProps } from '../popup/popup'
+import type { TabsSize } from '../tabs/tabs'
 import type { CascaderOption, CascaderValue } from './types'
 
 export const cascaderProps = {
@@ -31,6 +32,22 @@ export const cascaderProps = {
     default: true,
   },
   convertConfig: Object,
+  titleSize: {
+    type: String as import('vue').PropType<TabsSize>,
+    default: 'normal',
+  },
+  titleType: {
+    type: String as PropType<'line' | 'card' | 'smile'>,
+    default: 'line',
+  },
+  titleEllipsis: {
+    type: Boolean,
+    default: true,
+  },
+  titleGutter: {
+    type: [Number, String],
+    default: 0,
+  },
 }
 
 export type CascaderProps = ExtractPropTypes<typeof cascaderProps>

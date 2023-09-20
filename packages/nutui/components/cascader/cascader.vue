@@ -78,6 +78,10 @@ export default defineComponent({
         :children-key="childrenKey"
         :convert-config="convertConfig"
         :visible="innerVisible"
+        :title-ellipsis="titleEllipsis"
+        :title-gutter="titleGutter"
+        :title-size="titleSize"
+        :title-type="titleType"
         @change="onChange"
         @path-change="onPathChange"
       />
@@ -95,6 +99,10 @@ export default defineComponent({
       :children-key="childrenKey"
       :convert-config="convertConfig"
       :visible="innerVisible"
+      :title-ellipsis="titleEllipsis"
+      :title-gutter="titleGutter"
+      :title-size="titleSize"
+      :title-type="titleType"
       @change="onChange"
       @path-change="onPathChange"
     />

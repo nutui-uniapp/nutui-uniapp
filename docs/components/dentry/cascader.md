@@ -4,8 +4,6 @@
 
 级联选择器，用于多层级数据的选择，典型场景为省市区选择。
 
-
-
 ### 基础用法
 
 传入`options`列表。
@@ -376,7 +374,10 @@ export default {
 | close-icon-position | 取消按钮位置，继承 `Popup` 组件                         | string   | `"top-right"` |
 | closeable           | 是否显示关闭按钮，继承 `Popup` 组件                     | boolean  | `false`        |
 | poppable            | 是否需要弹层展示（设置为 `false` 后，`title` 失效）          | boolean  | `true`        |
-
+| title-gutter `v1.1.7`     | 标签间隙                                                                                           | number \| string | `0`          |
+| title-size `v1.1.7`            | 标签栏字体尺寸大小 可选值  large normal small                                                      | string           | `normal`     |
+| title-ellipsis `v1.1.7`        | 是否省略过长的标题文字                                                                             | boolean          | `true`       |
+| title-type `v1.1.7`           | 选中底部展示样式 可选值 line、smile                                                                | string           | `line`       |
 ### Events
 
 | 事件名      | 说明             | 回调参数           |

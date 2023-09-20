@@ -1,5 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { CascaderOption, CascaderValue } from '../cascader/types'
+import type { TabsSize } from '../tabs/tabs'
 
 export const cascaderitemProps = {
   visible: Boolean,
@@ -23,6 +24,22 @@ export const cascaderitemProps = {
     default: 'children',
   },
   convertConfig: Object,
+  titleSize: {
+    type: String as import('vue').PropType<TabsSize>,
+    default: 'normal',
+  },
+  titleType: {
+    type: String as PropType<'line' | 'card' | 'smile'>,
+    default: 'line',
+  },
+  titleEllipsis: {
+    type: Boolean,
+    default: true,
+  },
+  titleGutter: {
+    type: [Number, String],
+    default: 0,
+  },
 }
 
 export type CascaderItemProps = ExtractPropTypes<typeof cascaderitemProps>
