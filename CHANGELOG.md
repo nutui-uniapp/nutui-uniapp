@@ -1,3 +1,19 @@
+## [1.1.6](https://github.com/yang1206/uniapp-nutui/compare/v1.1.5...v1.1.6) (2023-09-20)
+
+
+### Bug Fixes
+
+* (searchbar) 修复抖音小程序searchbar输入抖动的问题 ([d634587](https://github.com/yang1206/uniapp-nutui/commit/d6345871aeb1a19244b87ca278d9dec4bd936e37))
+
+
+### Features
+
+* (calendar) 日历底部增加插槽 ([ff956dc](https://github.com/yang1206/uniapp-nutui/commit/ff956dc4bfe67cb57b6bd556efe814dc5f8080f2))
+* (cell)  add desc slot ([eb0facf](https://github.com/yang1206/uniapp-nutui/commit/eb0facfe84e1ee7848053c198683d9f63ea73377))
+* (searchbar) 增加safe-area-inset-bottom 属性 ([8fc2907](https://github.com/yang1206/uniapp-nutui/commit/8fc2907ec987bdc2952d7f94c72996a5ba3eb5f9))
+
+
+
 ## [1.1.5](https://github.com/yang1206/uniapp-nutui/compare/v1.1.4...v1.1.5) (2023-09-18)
 
 
