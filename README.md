@@ -7,16 +7,16 @@ height="100" style="max-width: 100%;" />
 <p align="center">京东风格的轻量级 uni-app 组件库，支持移动端 H5 和 小程序开发</p>
 <p align="center">
 <a href="https://github.com/nutui-uniapp/nutui-uniapp">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/nutui-uniapp/nutui-uniapp?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2yang1206%2Funiapp-nutui">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/nutui-uniapp/nutui-uniapp?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2nutui-uniapp%2Fnutui-uniapp">
  </a>
 <a href="https://www.npmjs.com/package/nutui-uniapp">
-  <img alt="npm" src="https://img.shields.io/npm/v/nutui-uniapp?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Funiapp-nutui">
+  <img alt="npm" src="https://img.shields.io/npm/v/nutui-uniapp?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fnutui-uniapp">
 </a>
-<a href="https://www.npmjs.com/package/uniapp-nutui">
-  <img alt="npm" src="https://img.shields.io/npm/dw/uniapp-nutui?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Funiapp-nutui">
+<a href="https://www.npmjs.com/package/nutui-uniapp">
+  <img alt="npm" src="https://img.shields.io/npm/dw/nutui-uniapp?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fnutui-uniapp">
 </a>
-<a href="https://www.npmjs.com/package/uniapp-nutui">
-  <img src="https://img.shields.io/npm/dt/uniapp-nutui?style=flat-square">
+<a href="https://www.npmjs.com/package/nutui-uniapp">
+  <img src="https://img.shields.io/npm/dt/nutui-uniapp?style=flat-square">
 </a>
 </p>
 
