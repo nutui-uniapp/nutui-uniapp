@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/yang1206/uniapp-nutui/compare/v1.1.6...v1.1.7) (2023-09-20)
+
+
+### Features
+
+* (cascader) 增加标题配置项 ([d1fde7b](https://github.com/yang1206/uniapp-nutui/commit/d1fde7b09c209778f114bccc7a130c4762eb6c04))
+
+
+
 ## [1.1.6](https://github.com/yang1206/uniapp-nutui/compare/v1.1.5...v1.1.6) (2023-09-20)
 
 
