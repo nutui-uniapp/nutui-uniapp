@@ -3,14 +3,14 @@ import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   setup() {
-    const state = reactive({
+    const state = reactive<{ count: any[] }>({
       count: Array.from({ length: 100 }).fill(0),
     })
 
     const handleScroll = () => {
       const arr = Array.from({ length: 100 }).fill(0)
       const len = state.count.length
-      state.count = state.count.concat(arr.map((item: number, index: number) => len + index + 1))
+      state.count = state.count.concat(arr.map((item, index: number) => len + index + 1))
     }
 
     onMounted(() => {

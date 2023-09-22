@@ -215,7 +215,7 @@ export default {
           </view>
         </div>
       </template>
-      <nut-tab-pane v-for="item in state.list6" :key="item" :pane-key="item.paneKey">
+      <nut-tab-pane v-for="item in state.list6" :key="item.paneKey" title="" :pane-key="item.paneKey">
         {{ item.title }}
       </nut-tab-pane>
     </nut-tabs>

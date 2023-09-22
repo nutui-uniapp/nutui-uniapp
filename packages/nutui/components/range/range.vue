@@ -317,7 +317,7 @@ export default defineComponent({
             :aria-valuemax="+max"
             aria-orientation="horizontal"
             @touchstart.stop.prevent="
-              (e) => {
+              (e:any) => {
                 if (typeof index === 'number') {
                   // 实时更新当前拖动的按钮索引
                   buttonIndex = index;
@@ -328,7 +328,7 @@ export default defineComponent({
             @touchmove.stop.prevent="onTouchMove"
             @touchend.stop.prevent="onTouchEnd"
             @touchcancel.stop.prevent="onTouchEnd"
-            @click="(e) => e.stopPropagation()"
+            @click="(e:any) => e.stopPropagation()"
           >
             <slot v-if="$slots.button" name="button" />
             <view v-else class="nut-range-button" :style="buttonStyle">
@@ -349,14 +349,14 @@ export default defineComponent({
             aria-orientation="horizontal"
             :catch-move="true"
             @touchstart.stop.prevent="
-              (e) => {
+              (e:any) => {
                 onTouchStart(e);
               }
             "
             @touchmove.stop.prevent="onTouchMove"
             @touchend.stop.prevent="onTouchEnd"
             @touchcancel.stop.prevent="onTouchEnd"
-            @click="(e) => e.stopPropagation()"
+            @click="(e:any) => e.stopPropagation()"
           >
             <slot v-if="$slots.button" name="button" />
             <view v-else class="nut-range-button" :style="buttonStyle">

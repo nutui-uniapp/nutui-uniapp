@@ -47,7 +47,7 @@ export const inputnumberEmits = {
   'reduce': (evt: any | number) => true,
   'add': (evt: any | number) => true,
   'overlimit': (evt: any, type: 'reduce' | 'add') => true,
-  'change': (val1?: string | number, val2?: string | any | number) => true,
+  'change': (val1: string | number, val2?: any) => true,
   'update:modelValue': (val1?: string, val2?: string | any) => true,
 }
 

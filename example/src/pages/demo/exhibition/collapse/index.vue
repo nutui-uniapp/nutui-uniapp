@@ -15,7 +15,7 @@ export default {
       title3: '标题3',
       subTitle: '副标题',
     })
-    const change = (name: string) => {
+    const change = (name: string | number | (string | number)[]) => {
     /* eslint-disable no-console */
       console.log(`点击了name是${name}的面板`)
     }

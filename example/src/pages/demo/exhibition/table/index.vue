@@ -265,7 +265,7 @@ export default defineComponent({
     <h2 class="title">
       支持排序
     </h2>
-    <nut-table :columns="columns6" :data="data6" @sorter="handleSorter" />
+    <nut-table :columns="columns6 as any" :data="data6" @sorter="handleSorter" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import type { ToastInst } from 'uniapp-nutui'
+import type { ToastInst } from 'nutui-uniapp'
 
 export default defineComponent({
   setup() {

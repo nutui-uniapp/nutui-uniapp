@@ -21,7 +21,7 @@ const state = reactive({
   moving: false,
   offset: 0,
   touchTime: 0,
-  autoplayTimer: null as NodeJS.Timeout | undefined | null,
+  autoplayTimer: null as any | undefined | null,
   childrenVNode: [] as VNode[],
   style: {},
 })

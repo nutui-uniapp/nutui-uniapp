@@ -12,10 +12,10 @@ export default {
     })
 
     const handleStep = (params: string | number) => {
-      if (state[params] >= 3)
-        state[params] = 1
+      if (state[params as 'current1'] >= 3)
+        state[params as 'current1'] = 1
       else
-        state[params] += 1
+        state[params as 'current1'] += 1
     }
 
     return {

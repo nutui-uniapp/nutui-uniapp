@@ -3,7 +3,7 @@ import { computed, defineComponent, useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
 import { PREFIX } from '../_constants'
-import { actionsheetEmits, actionsheetProps } from './actionsheet'
+import { type ActionSheetOption, actionsheetEmits, actionsheetProps } from './actionsheet'
 
 const props = defineProps(actionsheetProps)
 const emit = defineEmits(actionsheetEmits)
@@ -16,7 +16,7 @@ const classes = computed(() => {
   }
 })
 
-function isHighlight(item: { [x: string]: string | boolean }) {
+function isHighlight(item: ActionSheetOption) {
   return props.chooseTagValue && props.chooseTagValue === item[props.optionTag] ? props.customColor : ''
 }
 
@@ -25,7 +25,7 @@ function cancelActionSheet() {
   emit('update:visible', false)
 }
 
-function chooseItem(item: { disable: boolean; loading: boolean }, index: any) {
+function chooseItem(item: ActionSheetOption, index: any) {
   if (!item.disable && !item.loading) {
     emit('choose', item, index)
     emit('update:visible', false)

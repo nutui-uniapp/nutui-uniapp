@@ -139,8 +139,8 @@ export default defineComponent({
         console.log(`最多买${val.value}件哦`)
     }
 
-    const clickBtnOperate = (op: string) => {
-      console.log('点击了操作按钮', op)
+    const clickBtnOperate = (value: { type: string; value: string | number }) => {
+      console.log('点击了操作按钮', value)
     }
     // 关闭弹框
     const close = () => {

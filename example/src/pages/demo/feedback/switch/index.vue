@@ -18,10 +18,10 @@ export default {
     const checkedAsync = ref(true)
     const loadingAsync = ref(false)
 
-    const change = (value: boolean, event: Event) => {
+    const change = (value: boolean, event?: Event) => {
       uni.showToast({ title: `value：${value}` })
     }
-    const changeAsync = (value: boolean, event: Event) => {
+    const changeAsync = (value: boolean, event?: Event) => {
       uni.showToast({ title: `2秒后异步触发 ${value}` })
 
       loadingAsync.value = true

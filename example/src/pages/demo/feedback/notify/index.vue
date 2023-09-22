@@ -1,7 +1,7 @@
 <script lang="ts">
 import { reactive, ref } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
-import type { NotifyInst } from 'uniapp-nutui'
+import type { NotifyInst, NotifyType } from 'nutui-uniapp'
 import { useAppStore } from '@/store'
 
 const { customBarHeight } = storeToRefs(useAppStore())
@@ -39,11 +39,11 @@ export default {
       state: reactive({
         show: false,
         desc: '',
-        type: 'primary',
+        type: 'primary' as NotifyType,
         duration: 3000,
       }),
       methods: {
-        cellClick(type: string, desc: string, duration: number) {
+        cellClick(type: NotifyType, desc: string, duration: number) {
           customState.state.show = true
           customState.state.type = type
           customState.state.desc = desc

@@ -40,8 +40,8 @@ export default defineComponent({
       cover: false,
     })
 
-    const handleChange1 = (pannelKey: number) => {
-      state.currentKey1 = pannelKey
+    const handleChange1 = (pannelKey: number | string) => {
+      state.currentKey1 = +pannelKey
       state.currentTime1 = []
       state.currentTime1.push({
         key: state.currentKey1,
@@ -68,8 +68,8 @@ export default defineComponent({
       toastState.cover = false
     }
 
-    const handleChange2 = (pannelKey: number) => {
-      state.currentKey2 = pannelKey
+    const handleChange2 = (pannelKey: number | string) => {
+      state.currentKey2 = +pannelKey
       /* eslint-disable eqeqeq */
 
       const curTime = state.currentTime2.find((item: any) => item.key == pannelKey)
@@ -128,6 +128,7 @@ export default defineComponent({
       selectTime2,
       handleClick2,
       handleClick3,
+
     }
   },
 })
@@ -208,7 +209,7 @@ export default defineComponent({
         <nut-time-detail :times="times2" @select="selectTime2" />
       </template>
     </nut-time-select>
-    <nut-toast v-model:visible="show" :msg="msg" :type="type" :cover="cover" />
+    <nut-toast v-model:visible="show" :msg="msg" :type="type as any" :cover="cover" />
   </div>
 </template>
 

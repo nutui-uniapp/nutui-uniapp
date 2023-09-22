@@ -1,7 +1,7 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
-import type { SwipeInts } from 'uniapp-nutui'
+import type { SwipeInts } from 'nutui-uniapp'
 
 export default {
   setup() {

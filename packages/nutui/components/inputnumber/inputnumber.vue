@@ -105,7 +105,7 @@ export default defineComponent({
         <NutIcon name="minus" :size="pxCheck(buttonSize)" />
       </slot>
     </view>
-    <view v-if="readonly" class="nut-input-number__text--readonly">
+    <view v-if="props.readonly" class="nut-input-number__text--readonly">
       {{ modelValue }}
     </view>
     <input

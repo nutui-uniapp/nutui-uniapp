@@ -33,16 +33,16 @@ export default {
       ],
       indeterminate: false,
     })
-    const changeBox1 = (state: boolean, label: string) => {
+    const changeBox1 = (state: boolean | string, label: string | undefined) => {
       /* eslint-disable no-console */
       console.log(state, label)
     }
 
-    const changeBox2 = (state: boolean, label: string) => {
+    const changeBox2 = (state: boolean | string, label: string | undefined) => {
       console.log(state, label)
     }
 
-    const changeBox3 = (state: boolean, label: string) => {
+    const changeBox3 = (state: boolean | string, label: string | undefined) => {
       console.log(`${state ? '选中' : '取消'} ${label}`)
     }
 
@@ -50,7 +50,7 @@ export default {
       console.log(label)
     }
 
-    const changeBox5 = (value: boolean) => {
+    const changeBox5 = (value: boolean | string) => {
       group2.value.toggleAll(value)
     }
 

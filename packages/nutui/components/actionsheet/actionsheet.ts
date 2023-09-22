@@ -3,12 +3,11 @@ import { popupProps } from '../popup/popup'
 import { isBoolean } from '../_utils'
 
 export interface ActionSheetOption {
-  disable: boolean
-  loading: boolean
-  color: string
+  disable?: boolean
+  loading?: boolean
+  color?: string
   name: string
-  subname: string
-  [x: string]: string | boolean
+  subname?: string
 }
 export const actionsheetProps = {
   ...popupProps,
@@ -17,11 +16,11 @@ export const actionsheetProps = {
     default: '',
   },
   optionTag: {
-    type: String,
+    type: String as PropType<keyof ActionSheetOption>,
     default: 'name',
   },
   optionSubTag: {
-    type: String,
+    type: String as PropType<keyof ActionSheetOption>,
     default: 'subname',
   },
   chooseTagValue: {
@@ -56,7 +55,7 @@ export const actionsheetEmits = {
   'close': () => true,
   'update:visible': (val: boolean) => isBoolean(val),
   'cancel': () => true,
-  'choose': (item: { disable: boolean; loading: boolean }, index: any) => {
+  'choose': (item: ActionSheetOption, index: any) => {
     return {
       item, index,
     }

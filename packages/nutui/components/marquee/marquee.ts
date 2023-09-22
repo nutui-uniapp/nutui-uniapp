@@ -3,6 +3,7 @@ import type { ExtractPropTypes } from 'vue'
 export const marqueeProps = {
   // 抽奖样式
   styleOpt: {
+    type: Object,
     default: () => {
       return {
         itemStyle: {},

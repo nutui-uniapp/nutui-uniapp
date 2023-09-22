@@ -1,6 +1,6 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue'
-import type { PickerOption } from 'uniapp-nutui'
+import type { PickerOption } from 'nutui-uniapp'
 
 export default {
   props: {},
@@ -259,7 +259,7 @@ export default {
       自定义字段名
     </h2>
     <nut-picker
-      :columns="customColumns"
+      :columns="customColumns as any"
       :field-names="{
         text: 'name',
         value: 'code',

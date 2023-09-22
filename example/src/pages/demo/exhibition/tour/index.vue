@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { StepOptions } from 'nutui-uniapp'
 import { reactive, toRefs } from 'vue'
 
 export default {
@@ -30,7 +31,7 @@ export default {
           target: 'target4',
           location: 'top-end',
         },
-      ],
+      ] as StepOptions[],
 
       steps1: [
         {

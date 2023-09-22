@@ -67,7 +67,7 @@ export default {
     <h2 class="title">
       右侧添加搜索文字
     </h2>
-    <nut-searchbar v-model="searchValue3" :confirm-type="confirmType">
+    <nut-searchbar v-model="searchValue3" :confirm-type="confirmType as any">
       <template #rightout>
         搜索
       </template>

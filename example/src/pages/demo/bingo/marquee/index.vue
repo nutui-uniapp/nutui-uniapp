@@ -99,7 +99,7 @@ export default {
       :prize-index="prizeIndex"
       :speed="100"
       :circle="40"
-      :style-opt="styleOpt"
+      :style-opt="styleOpt as any"
       @start-turns="startTurns"
       @end-turns="endTurns"
     />

@@ -7,7 +7,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
     props.onClick && props.onClick()
   }
   // timer
-  let timer: null | NodeJS.Timeout = null
+  let timer: null | any = null
   const clearTimer = () => {
     timer && clearTimeout(timer)
     timer = null

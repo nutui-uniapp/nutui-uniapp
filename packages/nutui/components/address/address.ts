@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType, Ref } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { popupProps } from '../popup'
 import { isBoolean } from '../_utils'
 import type { RegionData, existRegionData } from './type'
@@ -73,14 +73,10 @@ export const addressEmits = {
     data: any
     type: string
   }) => true,
-  'change': (val: {
-    next?: string
-    value?: RegionData
-    custom: string
-  }) => true,
-  'switchModule': (val: { type: string }) => true,
-  'closeMask': (val: { closeWay: Ref<string> }) => true,
-  'selected': (val: any, item: existRegionData, copyExistAdd: existRegionData[]) => true,
+  'change': (val: any) => true,
+  'switchModule': (val: any) => true,
+  'closeMask': (val: any) => true,
+  'selected': (val: any, item: any, copyExistAdd: any[]) => true,
 
 }
 

@@ -21,7 +21,7 @@
     "node_modules/nutui-uniapp/global.d.ts",
     "src/**/*.vue",
     "src/**/*.ts",
-    "src/**/*.js",
+    "src/pages/demo/business/category/data.js",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/utils/touchEmulator.js"

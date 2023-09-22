@@ -181,7 +181,7 @@ export default defineComponent({
 
 <template>
   <view :class="classes">
-    <view v-if="readonly" id="nut-textarea__textarea" class="nut-textarea__textarea nut-textarea__textarea__readonly">
+    <view v-if="props.readonly" id="nut-textarea__textarea" class="nut-textarea__textarea nut-textarea__textarea__readonly">
       {{ modelValue }}
     </view>
     <textarea

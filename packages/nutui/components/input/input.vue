@@ -220,7 +220,7 @@ export default defineComponent({
             @compositionend="endComposing"
             @compositionstart="startComposing"
           >
-          <view v-if="readonly" class="nut-input-disabled-mask" @click="onClickInput" />
+          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="onClickInput" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
               {{ modelValue ? modelValue.length : 0 }}

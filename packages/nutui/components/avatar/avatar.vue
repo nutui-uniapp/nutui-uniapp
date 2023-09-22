@@ -19,18 +19,16 @@ const classes = computed(() => {
     [prefixCls]: true,
     [`nut-avatar-${size.value || parent?.props?.size || 'normal'}`]: true,
     [`nut-avatar-${shape.value || parent?.props?.shape || 'normal'}`]: true,
-    [props.customClass]: props.customClass,
   }
 })
 
 const styles = computed(() => {
   return {
-    width: sizeValue.includes(size.value) ? '' : `${size.value}px`,
-    height: sizeValue.includes(size.value) ? '' : `${size.value}px`,
+    width: sizeValue.includes(size.value as string) ? '' : `${size.value}px`,
+    height: sizeValue.includes(size.value as string) ? '' : `${size.value}px`,
     backgroundColor: `${bgColor.value}`,
     color: `${customColor.value}`,
     marginLeft: (parent?.props?.span ? `${parent?.props?.span}px` : ''),
-    ...props.customStyle,
   }
 })
 </script>
@@ -49,7 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="avatarRef" :style="styles" :class="classes">
+  <view ref="avatarRef" :style="[styles, props.customStyle]" :class="[classes, props.customClass]">
     <slot />
   </view>
 </template>
