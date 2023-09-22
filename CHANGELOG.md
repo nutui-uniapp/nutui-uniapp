@@ -1,3 +1,12 @@
+## [1.1.8](https://github.com/yang1206/uniapp-nutui/compare/v1.1.7...v1.1.8) (2023-09-22)
+
+
+### Bug Fixes
+
+* type error ([85f9daf](https://github.com/yang1206/uniapp-nutui/commit/85f9daf3526233eeba6e3170554e4116886a95d5)), closes [#62](https://github.com/yang1206/uniapp-nutui/issues/62) [#62](https://github.com/yang1206/uniapp-nutui/issues/62)
+
+
+
 ## [1.1.7](https://github.com/yang1206/uniapp-nutui/compare/v1.1.6...v1.1.7) (2023-09-20)
 
 
