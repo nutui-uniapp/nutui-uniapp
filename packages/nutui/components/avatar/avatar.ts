@@ -7,7 +7,7 @@ export type AvatarShape = 'round' | 'square'
 export const avatarProps = {
   ...commonProps,
   size: {
-    type: String as PropType<AvatarSize> || Number,
+    type: [String, Number] as PropType<AvatarSize | string | number>,
     default: 'normal',
   },
   shape: {

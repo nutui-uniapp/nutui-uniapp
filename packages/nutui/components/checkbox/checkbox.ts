@@ -35,12 +35,7 @@ export const checkboxProps = {
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
 
 export const checkboxEmits = {
-  'change': (val: boolean | string, val2?: string) => {
-    return {
-      val,
-      val2,
-    }
-  },
+  'change': (val: boolean | string, val2?: string) => true,
   'update:modelValue': (val: boolean | string) => isBoolean(val),
 }
 

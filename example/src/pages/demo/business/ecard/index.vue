@@ -21,11 +21,11 @@ export default defineComponent({
     const inputChange = (val: number) => {
       money.value = val
     }
-    const change = (item: { price: number }) => {
-      money.value = item.price
+    const change = (item: { price: number | string }) => {
+      money.value = item.price as number
     }
-    const changeStep = (num: number, price: number) => {
-      const val = price * num
+    const changeStep = (num: number | string, price: number | string) => {
+      const val = +price * +num
       money.value = val
     }
     return {

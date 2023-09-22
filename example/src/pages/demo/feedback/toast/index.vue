@@ -1,7 +1,7 @@
 <script lang="ts">
 import { reactive } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
-import type { ToastInst } from 'uniapp-nutui'
+import type { ToastInst, ToastType } from 'nutui-uniapp'
 
 export default {
 
@@ -22,7 +22,7 @@ export default {
     const page = {
       state: reactive({
         msg: 'toast',
-        type: 'text',
+        type: 'text' as ToastType,
         show: false,
         cover: false,
         title: '',
@@ -41,7 +41,7 @@ export default {
         ) => {
           page.state.show = true
           page.state.msg = msg
-          page.state.type = type
+          page.state.type = type as ToastType
           page.state.cover = cover
           page.state.title = title!
           page.state.bottom = bottom!

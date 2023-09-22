@@ -1,6 +1,6 @@
 <script lang="ts">
 import { reactive, ref } from 'vue'
-import type { MenuItemInst } from 'uniapp-nutui'
+import type { MenuItemInst } from 'nutui-uniapp'
 
 export default {
 

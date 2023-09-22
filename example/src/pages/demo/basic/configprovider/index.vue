@@ -35,7 +35,7 @@ export default {
       ],
     })
 
-    const addressModule = reactive({
+    const addressModule = reactive<any>({
       state: {
         show: false,
         province: [

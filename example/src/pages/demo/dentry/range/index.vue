@@ -30,7 +30,7 @@ export default {
       },
     })
     /* eslint-disable no-console */
-    const onChange = (value: number) => console.log(`当前值：${value}`)
+    const onChange = (value: number | number[]) => console.log(`当前值：${value}`)
     return {
       ...toRefs(state),
       onChange,

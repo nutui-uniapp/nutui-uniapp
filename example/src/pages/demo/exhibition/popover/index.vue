@@ -1,5 +1,6 @@
 <script lang="ts">
 import { reactive, ref, toRefs } from 'vue'
+import type { PopoverLocation } from 'nutui-uniapp'
 
 export default {
   setup() {
@@ -19,7 +20,7 @@ export default {
       customTarget: false,
       customColor: false,
     })
-    const curPostion = ref('top')
+    const curPostion = ref<PopoverLocation>('top')
 
     const columns = ref([
       { text: 'top', value: 'top' },

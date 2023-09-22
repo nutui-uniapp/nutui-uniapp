@@ -4,8 +4,8 @@ import { defineComponent, reactive, ref, toRefs } from 'vue'
 /* eslint-disable no-console */
 
 interface CalBack {
-  next: string
-  value: string
+  next?: string
+  value?: RegionData
   custom: string
 }
 interface RegionData {
@@ -36,7 +36,7 @@ interface AddressResult extends AddressList {
 }
 export default defineComponent({
   setup() {
-    const address = reactive({
+    const address = reactive<any>({
       province: [
         { id: 1, name: '北京', title: 'B' },
         { id: 2, name: '广西', title: 'G' },
@@ -139,7 +139,7 @@ export default defineComponent({
     }
 
     const onChange = (cal: CalBack, tag: string) => {
-      const name = (address as any)[cal.next]
+      const name = (address)[cal.next!]
       if (name?.length < 1)
         (showPopup as any)[tag] = false
     }
@@ -243,7 +243,7 @@ export default defineComponent({
       ...toRefs(icon),
       ...toRefs(text),
       ...toRefs(showPopup),
-      ...toRefs(address),
+      address,
     }
   },
 })
@@ -258,10 +258,10 @@ export default defineComponent({
 
     <nut-address
       v-model:visible="normal"
-      :province="province"
-      :city="city"
-      :country="country"
-      :town="town"
+      :province="address.province"
+      :city="address.city"
+      :country="address.country"
+      :town="address.town"
       @change="(cal: CalBack) => onChange(cal, 'normal')"
       @close="close1"
     />
@@ -274,10 +274,10 @@ export default defineComponent({
     <nut-address
       v-model="value"
       v-model:visible="select"
-      :province="province"
-      :city="city"
-      :country="country"
-      :town="town"
+      :province="address.province"
+      :city="address.city"
+      :country="address.country"
+      :town="address.town"
       :columns-placeholder="placeholder"
       @change="(cal: CalBack) => onChange(cal, 'select')"
       @close="close6"
@@ -292,10 +292,10 @@ export default defineComponent({
       v-model="value2"
       v-model:visible="normal2"
       type="custom2"
-      :province="province"
-      :city="city"
-      :country="country"
-      :town="town"
+      :province="address.province"
+      :city="address.city"
+      :country="address.country"
+      :town="address.town"
       height="270px"
       :columns-placeholder="placeholder"
       @change="(cal: CalBack) => onChange(cal, 'normal2')"
@@ -357,10 +357,10 @@ export default defineComponent({
       v-model:visible="other"
       type="exist"
       :exist-address="existAddress"
-      :province="province"
-      :city="city"
-      :country="country"
-      :town="town"
+      :province="address.province"
+      :city="address.city"
+      :country="address.country"
+      :town="address.town"
       :back-btn-icon="backBtnIcon"
       @change="(cal: CalBack) => onChange(cal, 'other')"
       @close="close4"

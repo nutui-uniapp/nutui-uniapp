@@ -58,12 +58,12 @@ export default {
       isVisible10: false,
       disabled10: false,
     })
-    const openSwitch = (param: any) => {
-      state[`${param}`] = true
+    const openSwitch = (param: string) => {
+      state[`${param as 'isVisible1'}`] = true
     }
 
-    const closeSwitch = (param: any) => {
-      state[`${param}`] = false
+    const closeSwitch = (param: string) => {
+      state[`${param as 'isVisible1'}`] = false
     }
 
     const setChooseValue = (param: string) => {
@@ -320,7 +320,7 @@ export default {
           </view>
         </template>
         <template #day="date">
-          <view>{{ date.date.day }}</view>
+          <view>{{ (date.date as any).day }}</view>
         </template>
       </nut-calendar>
     </div>
@@ -370,11 +370,11 @@ export default {
         @choose="setChooseValue6"
       >
         <template #day="date">
-          <view>{{ date.date.day <= 9 ? `0${date.date.day}` : date.date.day }}</view>
+          <view>{{ (date.date as any).day <= 9 ? `0${(date.date as any).day}` : (date.date as any).day }}</view>
         </template>
         <template #bottom-info="date">
           <view class="info">
-            {{ date.date ? (date.date.day === 10 ? '十' : '') : '' }}
+            {{ date.date ? ((date.date as any).day === 10 ? '十' : '') : '' }}
           </view>
         </template>
       </nut-calendar>

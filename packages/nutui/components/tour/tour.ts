@@ -4,7 +4,7 @@ import { commonProps, isBoolean } from '../_utils'
 
 export interface StepOptions {
   target: string
-  content: string
+  content?: string
   location?: PopoverLocation
   popoverOffset?: number[]
   arrowOffset?: number

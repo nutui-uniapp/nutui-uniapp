@@ -19,7 +19,7 @@ export default {
       currentDate7: new Date(2022, 4, 10, 0, 0),
     })
 
-    const formatter = (type: string, option: { text: string }) => {
+    const formatter = (type: string, option: any) => {
       switch (type) {
         case 'year':
           option.text += ''
@@ -42,7 +42,7 @@ export default {
       return option
     }
 
-    const formatter1 = (type: string, option: { text: string }) => {
+    const formatter1 = (type: string, option: any) => {
       switch (type) {
         case 'year':
           option.text += '年'

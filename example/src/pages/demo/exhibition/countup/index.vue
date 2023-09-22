@@ -14,7 +14,7 @@ export default {
         'https://img10.360buyimg.com/imagetools/jfs/t1/121466/20/6784/28830/5f06e7f2Edbb8998c/9bdd9e7b24dff9fe.png',
       prizeLevel: 0,
     })
-    const scrollAniEnd = (val: boolean) => {
+    const scrollAniEnd = (val?: boolean) => {
     /* eslint-disable no-console */
       console.log(val ? '恭喜中奖！！！' : '很遗憾！没有中奖')
       setTimeout(() => {

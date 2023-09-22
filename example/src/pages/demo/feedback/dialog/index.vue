@@ -1,11 +1,11 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
-import type { DialogInst } from 'uniapp-nutui'
+import type { DialogInst, NutAnimationName } from 'nutui-uniapp'
 
 export default {
   setup() {
-    const transition = ref('zoom')
+    const transition = ref<NutAnimationName>('zoom')
     const dialogRef = ref<DialogInst>()
     const visible1 = ref(false)
     const visible2 = ref(false)

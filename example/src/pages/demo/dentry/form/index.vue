@@ -1,193 +1,171 @@
-<script lang="ts">
+<script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type { FormItemRuleWithoutValidator } from 'uniapp-nutui'
+import type { FormItemRule, FormItemRuleWithoutValidator } from 'nutui-uniapp'
 
-export default {
-  props: {},
-  setup() {
-    /* eslint-disable no-console */
-    const formData = reactive({
-      name: '',
-      age: '',
-      tel: '',
-      address: '',
-    })
-    const basicData = reactive({
-      name: '',
-      age: '',
-      tel: '',
-      address: '',
-    })
-    const dynamicRefForm = ref<any>(null)
-    const dynamicForm = {
-      state: reactive({
-        name: '',
-        tels: [{
-          key: 1,
-          value: '',
-        }],
-      }),
+/* eslint-disable no-console */
+const formData = reactive({
+  name: '',
+  age: '',
+  tel: '',
+  address: '',
+})
+const basicData = reactive({
+  name: '',
+  age: '',
+  tel: '',
+  address: '',
+})
+const dynamicRefForm = ref<any>(null)
+const dynamicForm = {
+  state: reactive({
+    name: '',
+    tels: [{
+      key: 1,
+      value: '',
+    }],
+  }),
 
-      methods: {
-        submit() {
-          dynamicRefForm.value.validate().then(({ valid, errors }: any) => {
-            if (valid)
-              console.log('success', dynamicForm)
-            else
-              console.log('error submit!!', errors)
-          })
-        },
-        reset() {
-          dynamicRefForm.value.reset()
-        },
-        remove() {
-          dynamicForm.state.tels.splice(dynamicForm.state.tels.length - 1, 1)
-        },
-        add() {
-          const newIndex = dynamicForm.state.tels.length
-          dynamicForm.state.tels.push({
-            key: Date.now(),
-            value: '',
-          })
-        },
-      },
-    }
-
-    const validate = (item: any) => {
-      console.log(item)
-    }
-
-    const formData2 = reactive({
-      switch: false,
-      checkbox: false,
-      radio: 0,
-      number: 0,
-      rate: 3,
-      range: 30,
-      address: '',
-      defaultFileList: [
-        {
-          name: '文件1.png',
-          url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-          status: 'success',
-          message: '上传成功',
-          type: 'image',
-        },
-        {
-          name: '文件2.png',
-          url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-          status: 'uploading',
-          message: '上传中...',
-          type: 'image',
-        },
-      ],
-    })
-
-    const addressModule = reactive({
-      state: {
-        show: false,
-        province: [
-          { id: 1, name: '北京' },
-          { id: 2, name: '广西' },
-          { id: 3, name: '江西' },
-          { id: 4, name: '四川' },
-        ],
-        city: [
-          { id: 7, name: '朝阳区' },
-          { id: 8, name: '崇文区' },
-          { id: 9, name: '昌平区' },
-          { id: 6, name: '石景山区' },
-        ],
-        country: [
-          { id: 3, name: '八里庄街道' },
-          { id: 9, name: '北苑' },
-          { id: 4, name: '常营乡' },
-        ],
-        town: [],
-      },
-      methods: {
-        show() {
-          addressModule.state.show = !addressModule.state.show
-          if (addressModule.state.show)
-            formData2.address = ''
-        },
-        onChange({ custom, next, value }: any) {
-          formData2.address += value?.name
-          const name = (addressModule as any).state[next]
-          if (name.length < 1)
-            addressModule.state.show = false
-        },
-      },
-    })
-
-    const ruleForm = ref<any>(null)
-
-    const submit = () => {
-      ruleForm.value.validate().then(({ valid, errors }: any) => {
+  methods: {
+    submit() {
+      dynamicRefForm.value.validate().then(({ valid, errors }: any) => {
         if (valid)
-          console.log('success', formData)
+          console.log('success', dynamicForm)
         else
           console.log('error submit!!', errors)
       })
-    }
-    const reset = () => {
-      ruleForm.value.reset()
-    }
-    // 失去焦点校验
-    const customBlurValidate = (prop: string) => {
-      ruleForm.value.validate(prop).then(({ valid, errors }: any) => {
-        if (valid)
-          console.log('success', formData)
-        else
-          console.log('error submit!!', errors)
+    },
+    reset() {
+      dynamicRefForm.value.reset()
+    },
+    remove() {
+      dynamicForm.state.tels.splice(dynamicForm.state.tels.length - 1, 1)
+    },
+    add() {
+      const newIndex = dynamicForm.state.tels.length
+      dynamicForm.state.tels.push({
+        key: Date.now(),
+        value: '',
       })
-    }
-    // 函数校验
-    const customValidator = async (val: string) => /^\d+$/.test(val)
-    const customRulePropValidator = async (val: string, rule: FormItemRuleWithoutValidator) => {
-      return (rule?.reg as RegExp).test(val)
-    }
-    const nameLengthValidator = async (val: string) => val?.length >= 2
-    // Promise 异步校验
-    const asyncValidator = async (val: string): Promise<string> => {
-      const telReg = /^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/
-      return new Promise((resolve, reject) => {
-        uni.showLoading({
-          title: '模拟异步验证中...',
-        })
-        setTimeout(() => {
-          uni.hideLoading()
-          if (!val)
-          // eslint-disable-next-line prefer-promise-reject-errors
-            reject('请输入联系电话')
-
-          else if (!telReg.test(val))
-          // eslint-disable-next-line prefer-promise-reject-errors
-            reject('联系电话格式不正确')
-
-          else
-            resolve('')
-        }, 1000)
-      })
-    }
-    return {
-      ruleForm,
-      formData,
-      validate,
-      customValidator,
-      customRulePropValidator,
-      nameLengthValidator,
-      asyncValidator,
-      customBlurValidate,
-      submit,
-      reset,
-      formData2,
-      addressModule,
-      dynamicForm,
-      basicData,
-      dynamicRefForm,
-    }
+    },
   },
+}
+
+function validate(item: any) {
+  console.log(item)
+}
+
+const formData2 = reactive({
+  switch: false,
+  checkbox: false,
+  radio: 0,
+  number: 0,
+  rate: 3,
+  range: 30,
+  address: '',
+  defaultFileList: [
+    {
+      name: '文件1.png',
+      url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+      status: 'success',
+      message: '上传成功',
+      type: 'image',
+    },
+    {
+      name: '文件2.png',
+      url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+      status: 'uploading',
+      message: '上传中...',
+      type: 'image',
+    },
+  ],
+})
+
+const addressModule = reactive({
+  state: {
+    show: false,
+    province: [
+      { id: 1, name: '北京' },
+      { id: 2, name: '广西' },
+      { id: 3, name: '江西' },
+      { id: 4, name: '四川' },
+    ],
+    city: [
+      { id: 7, name: '朝阳区' },
+      { id: 8, name: '崇文区' },
+      { id: 9, name: '昌平区' },
+      { id: 6, name: '石景山区' },
+    ],
+    country: [
+      { id: 3, name: '八里庄街道' },
+      { id: 9, name: '北苑' },
+      { id: 4, name: '常营乡' },
+    ],
+    town: [],
+  },
+  methods: {
+    show() {
+      addressModule.state.show = !addressModule.state.show
+      if (addressModule.state.show)
+        formData2.address = ''
+    },
+    onChange({ custom, next, value }: any) {
+      formData2.address += value?.name
+      const name = (addressModule as any).state[next]
+      if (name.length < 1)
+        addressModule.state.show = false
+    },
+  },
+})
+
+const ruleForm = ref<any>(null)
+
+function submit() {
+  ruleForm.value.validate().then(({ valid, errors }: any) => {
+    if (valid)
+      console.log('success', formData)
+    else
+      console.log('error submit!!', errors)
+  })
+}
+function reset() {
+  ruleForm.value.reset()
+}
+// 失去焦点校验
+function customBlurValidate(prop: string) {
+  ruleForm.value.validate(prop).then(({ valid, errors }: any) => {
+    if (valid)
+      console.log('success', formData)
+    else
+      console.log('error submit!!', errors)
+  })
+}
+// 函数校验
+const customValidator = async (val: string) => /^\d+$/.test(val)
+async function customRulePropValidator(val: string, rule: FormItemRuleWithoutValidator) {
+  return (rule?.reg as RegExp).test(val)
+}
+const nameLengthValidator = async (val: string) => val?.length >= 2
+// Promise 异步校验
+async function asyncValidator(val: string): Promise<string> {
+  const telReg = /^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/
+  return new Promise((resolve, reject) => {
+    uni.showLoading({
+      title: '模拟异步验证中...',
+    })
+    setTimeout(() => {
+      uni.hideLoading()
+      if (!val)
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('请输入联系电话')
+
+      else if (!telReg.test(val))
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('联系电话格式不正确')
+
+      else
+        resolve('')
+    }, 1000)
+  })
 }
 </script>
 
@@ -278,7 +256,7 @@ export default {
           { validator: customValidator, message: '必须输入数字' },
           { validator: customRulePropValidator, message: '必须输入数字', reg: /^\d+$/ },
           { regex: /^(\d{1,2}|1\d{2}|200)$/, message: '必须输入0-200区间' },
-        ]"
+        ] as FormItemRule[]"
       >
         <nut-input
           v-model="formData.age"

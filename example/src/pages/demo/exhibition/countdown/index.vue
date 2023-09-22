@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMounted, reactive, ref, toRefs } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
-import type { CountdownInst } from 'uniapp-nutui'
+import type { CountdownInst } from 'nutui-uniapp'
 
 export default {
   setup() {

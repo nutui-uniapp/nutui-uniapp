@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { NutAnimationName } from 'nutui-uniapp'
 
 const showValue = ref(false)
 const transitionName = ref('')
@@ -17,7 +18,7 @@ function log(msg: string) {
 <template>
   <div class="demo">
     <nut-transition
-      :show="showValue" :name="transitionName" :duration="200" timing-function="ease-in"
+      :show="showValue" :name="transitionName as NutAnimationName" :duration="200" timing-function="ease-in"
       custom-class="fixed top-50 bottom-50 left-20 right-20 h-50 z-200 bg-primary rounded-lg flex items-center justify-center" @before-enter="log('before-enter')"
       @enter="log('enter')" @after-enter="log('after-enter')" @before-leave="log('before-leave')" @leave="log('leave')"
       @after-leave="log('after-leave')"

@@ -6,6 +6,6 @@ export interface TableColumnProps {
   align?: string
   stylehead?: string
   stylecolumn?: string
-  sorter?: () => void
+  sorter?: (row1: any, row2: any) => boolean
   render?: (rowData?: object, rowIndex?: number) => VNodeChild | string | VNode
 }

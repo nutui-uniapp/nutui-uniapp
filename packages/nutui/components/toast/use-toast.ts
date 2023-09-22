@@ -3,7 +3,7 @@ import type { ToastEmits, ToastProps } from './toast'
 import type { ToastOptions, ToastType } from './types'
 
 export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit']) {
-  let timer: null | NodeJS.Timeout = null
+  let timer: any = null
   const isShowToast = ref<boolean>(false)
   const typeIcons: Record<ToastType, string> = {
     text: '',

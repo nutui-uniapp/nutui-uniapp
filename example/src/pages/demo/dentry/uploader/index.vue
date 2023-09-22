@@ -1,121 +1,102 @@
-<script lang="ts">
+<script setup lang="ts">
+import type { ProgressStatus } from 'nutui-uniapp'
 import { reactive, ref } from 'vue'
 
-export default {
-
-  setup() {
-    const uploadUrl = 'https://my-json-server.typicode.com/linrufeng/demo/posts'
-    const progressPercentage = ref<string | number>(0)
-    const formData = {
-      custom: 'test',
-    }
-    const defaultFileList = reactive([
-      {
-        name: '文件1.png',
-        url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-        status: 'success',
-        message: '上传成功',
-        type: 'image',
-      },
-      {
-        name: '文件2.png',
-        url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-        status: 'error',
-        message: '上传失败',
-        type: 'image',
-      },
-      {
-        name: '文件3.png',
-        url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-        status: 'uploading',
-        message: '上传中...',
-        type: 'image',
-      },
-    ])
-    const defaultFileList1 = reactive([
-      {
-        name: '文件1.png',
-        url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-        status: 'success',
-        message: '上传成功',
-        type: 'image',
-      },
-      {
-        name: '文件2.png',
-        url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-        status: 'error',
-        message: '上传失败',
-        type: 'image',
-      },
-      {
-        name: '文件3.png',
-        url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-        status: 'uploading',
-        message: '上传中...',
-        type: 'image',
-      },
-    ])
-    /* eslint-disable no-console */
-    const onOversize = (files: File[]) => {
-      console.log('oversize 触发 文件大小不能超过 50kb', files)
-    }
-    const onDelete = (res: { file: any; fileList: any[]; index: number }) => {
-      console.log('delete 事件触发', res.file, res.fileList)
-    }
-    const onProgress = ({ event, options, percentage }: any) => {
-      progressPercentage.value = percentage
-      console.log('progress 事件触发', percentage)
-    }
-    const uploadRef = ref<any>(null)
-    const submitUpload = () => {
-      uploadRef.value.submit()
-    }
-    const clearUpload = () => {
-      uploadRef.value.clearUploadQueue()
-    }
-
-    const beforeXhrUpload = (taroUploadFile: any, options: any) => {
-      console.log(taroUploadFile, options)
-
-      // taroUploadFile  是 uni.uploadFile ， 你也可以自定义设置其它函数
-      const uploadTask = taroUploadFile({
-        url: options.url,
-        filePath: options.taroFilePath,
-        fileType: options.fileType,
-        header: {
-          'Content-Type': 'multipart/form-data',
-          ...options.headers,
-        }, //
-        formData: options.formData,
-        name: options.name,
-        success(response: { errMsg: any; statusCode: number; data: string }) {
-          if (options.xhrState === response.statusCode)
-            options.onSuccess?.(response, options)
-          else
-            options.onFailure?.(response, options)
-        },
-        fail(e: any) {
-          options.onFailure?.(e, options)
-        },
-      })
-      options.onStart?.(options)
-    }
-
-    return {
-      onOversize,
-      onDelete,
-      onProgress,
-      progressPercentage,
-      uploadUrl,
-      defaultFileList,
-      defaultFileList1,
-      formData,
-      uploadRef,
-      submitUpload,
-      clearUpload,
-      beforeXhrUpload,
-    }
+const uploadUrl = 'https://my-json-server.typicode.com/linrufeng/demo/posts'
+const progressPercentage = ref<string | number>(0)
+const formData = {
+  custom: 'test',
+}
+const defaultFileList = reactive([
+  {
+    name: '文件1.png',
+    url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+    status: 'success',
+    message: '上传成功',
+    type: 'image',
   },
+  {
+    name: '文件2.png',
+    url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+    status: 'error',
+    message: '上传失败',
+    type: 'image',
+  },
+  {
+    name: '文件3.png',
+    url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+    status: 'uploading',
+    message: '上传中...',
+    type: 'image',
+  },
+])
+const defaultFileList1 = reactive([
+  {
+    name: '文件1.png',
+    url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+    status: 'success',
+    message: '上传成功',
+    type: 'image',
+  },
+  {
+    name: '文件2.png',
+    url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+    status: 'error',
+    message: '上传失败',
+    type: 'image',
+  },
+  {
+    name: '文件3.png',
+    url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+    status: 'uploading',
+    message: '上传中...',
+    type: 'image',
+  },
+])
+/* eslint-disable no-console */
+function onOversize(files: File[]) {
+  console.log('oversize 触发 文件大小不能超过 50kb', files)
+}
+function onDelete(res: { file: any; fileList: any[]; index: number }) {
+  console.log('delete 事件触发', res.file, res.fileList)
+}
+function onProgress({ event, options, percentage }: any) {
+  progressPercentage.value = percentage
+  console.log('progress 事件触发', percentage)
+}
+const uploadRef = ref<any>(null)
+function submitUpload() {
+  uploadRef.value.submit()
+}
+function clearUpload() {
+  uploadRef.value.clearUploadQueue()
+}
+
+function beforeXhrUpload(taroUploadFile: any, options: any) {
+  console.log(taroUploadFile, options)
+
+  // taroUploadFile  是 uni.uploadFile ， 你也可以自定义设置其它函数
+  const uploadTask = taroUploadFile({
+    url: options.url,
+    filePath: options.taroFilePath,
+    fileType: options.fileType,
+    header: {
+      'Content-Type': 'multipart/form-data',
+      ...options.headers,
+    }, //
+    formData: options.formData,
+    name: options.name,
+    success(response: { errMsg: any; statusCode: number; data: string }) {
+      if (options.xhrState === response.statusCode)
+        options.onSuccess?.(response, options)
+      else
+        options.onFailure?.(response, options)
+    },
+    fail(e: any) {
+      options.onFailure?.(e, options)
+    },
+  })
+  options.onStart?.(options)
 }
 </script>
 
@@ -157,7 +138,7 @@ export default {
     <nut-progress
       :percentage="progressPercentage"
       stroke-color="linear-gradient(270deg, rgba(18,126,255,1) 0%,rgba(32,147,255,1) 32.815625%,rgba(13,242,204,1) 100%)"
-      :status="progressPercentage === 100 ? '' : 'active'"
+      :status="(progressPercentage === 100 ? '' : 'active') as ProgressStatus"
     />
     <!--
       album 从相册选图
