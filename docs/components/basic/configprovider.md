@@ -144,8 +144,8 @@
   // 暗黑模式下颜色
   --nut-dark-background: #131313;
   --nut-dark-background2: #1b1b1b;
-  --nut-nut-dark-background3: #141414;
-  --nut-nut-dark-background4: #323233;
+  --nut-dark-background3: #141414;
+  --nut-dark-background4: #323233;
   --nut-dark-background5: #646566;
   --nut-dark-background6: #380e08;
   --nut-dark-background7: #707070;
