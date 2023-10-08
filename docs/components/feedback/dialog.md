@@ -29,7 +29,7 @@
 
 ``` javascript
 import { ref } from 'vue';
-import type { DialogInst } from 'uniapp-nutui'
+import type { DialogInst } from 'nutui-uniapp'
 export default {
   setup() {
     const dialogRef = ref<DialogInst>()

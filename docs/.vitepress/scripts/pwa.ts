@@ -4,8 +4,8 @@ export const pwa: Partial<VitePWAOptions> = {
   base: '/',
   scope: '/',
   manifest: {
-    name: 'uniapp-nutui',
-    short_name: 'uniapp-nutui',
+    name: 'nutui-uniapp',
+    short_name: 'nutui-uniapp',
     theme_color: '#ffffff',
     icons: [
       {

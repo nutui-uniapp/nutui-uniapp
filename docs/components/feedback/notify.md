@@ -54,7 +54,7 @@ export default {
 </template>
 <script lang="ts">
 import { ref } from 'vue';
-import type { NotifyInst } from 'uniapp-nutui'
+import type { NotifyInst } from 'nutui-uniapp'
 export default {
   setup() {
     const notifyRef = ref<NotifyInst>()

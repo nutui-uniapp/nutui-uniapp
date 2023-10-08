@@ -84,7 +84,7 @@
       "data": "",
       "permissions": ""
     },
-    "npmurl": "https://www.npmjs.com/package/uniapp-nutui"
+    "npmurl": "https://www.npmjs.com/package/nutui-uniapp"
   },
   "uni_modules": {
     "dependencies": [],

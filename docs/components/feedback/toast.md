@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ToastInst } from 'uniapp-nutui'
+import type { ToastInst } from 'nutui-uniapp'
 const toastRef = ref<ToastInst>()
 const refClick = (type: string, msg: string) => {
       toastRef.value?.showToast[type as 'fail' | 'success' | 'warn' | 'loading'](msg,

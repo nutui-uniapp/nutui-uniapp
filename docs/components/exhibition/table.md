@@ -341,8 +341,8 @@
 </template>
 <script lang="ts">
   import { reactive, toRefs, h } from 'vue';
-  import NutButton from 'uniapp-nutui/components/button/button.vue'、
-  import NutIcon from 'uniapp-nutui/components/icon/icon.vue'
+  import NutButton from 'nutui-uniapp/components/button/button.vue'、
+  import NutIcon from 'nutui-uniapp/components/icon/icon.vue'
 
   export default {
     setup() {
