@@ -1,3 +1,12 @@
+## [1.1.9](https://github.com/yang1206/uniapp-nutui/compare/v1.1.8...v1.1.9) (2023-10-10)
+
+
+### Bug Fixes
+
+* (address-list) 小程序点击事件无法阻止冒泡 ([38616a9](https://github.com/yang1206/uniapp-nutui/commit/38616a967ea792c99cd5ef12a866132467eff88b))
+
+
+
 ## [1.1.8](https://github.com/yang1206/uniapp-nutui/compare/v1.1.7...v1.1.8) (2023-09-22)
 
 
