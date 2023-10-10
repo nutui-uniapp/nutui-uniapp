@@ -150,7 +150,7 @@ export default defineComponent({
     <template #right>
       <view style="height: 100%;">
         <slot name="swipe-right-btn">
-          <NutButton shape="square" custom-style="height: 100%;" type="danger" @click="swipeDelClick">
+          <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="swipeDelClick">
             删除
           </NutButton>
         </slot>

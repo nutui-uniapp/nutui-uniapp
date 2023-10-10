@@ -61,8 +61,8 @@ export default defineComponent({
       </div>
       <div class="nut-address-list-item__info-handle">
         <slot name="content-icon">
-          <NutIcon name="del" custom-class="nut-address-list-item__info-handle-del" @click="delClick" />
-          <NutIcon name="edit" custom-class="nut-address-list-item__info-handle-edit" @click="editClick" />
+          <NutIcon name="del" custom-class="nut-address-list-item__info-handle-del" @tap.stop="delClick" />
+          <NutIcon name="edit" custom-class="nut-address-list-item__info-handle-edit" @tap.stop="editClick" />
         </slot>
       </div>
     </div>
