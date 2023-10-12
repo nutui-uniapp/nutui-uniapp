@@ -4,12 +4,9 @@
 
 用于内容选择和切换
 
-
 ### 基础用法
 
 可以通过设置 `position` 来控制左右展示
-
-
 
 ``` html
 <template>
@@ -18,16 +15,16 @@
   </nut-cell>
   <nut-popup position="right" v-model:visible="show1" :style="{ width, height }">
     <nut-side-navbar>
-      <nut-sub-side-navbar title="智能城市AI" ikey="6">
-        <nut-sub-side-navbar title="人体识别1" ikey="9">
-          <nut-side-navbar-item ikey="10" title="人体检测1"></nut-side-navbar-item>
-          <nut-side-navbar-item ikey="11" title="细粒度人像分割1"></nut-side-navbar-item>
-        </nut-sub-side-navbar>
-        <nut-sub-side-navbar title="人体识别2" ikey="12">
-          <nut-side-navbar-item ikey="13" title="人体检测2"></nut-side-navbar-item>
-          <nut-side-navbar-item ikey="14" title="细粒度人像分割2"></nut-side-navbar-item>
-        </nut-sub-side-navbar>
-      </nut-sub-side-navbar>
+      <nut-subside-navbar title="智能城市AI" ikey="6">
+        <nut-subside-navbar title="人体识别1" ikey="9">
+          <nut-side-navbaritem ikey="10" title="人体检测1"></nut-side-navbaritem>
+          <nut-side-navbaritem ikey="11" title="细粒度人像分割1"></nut-side-navbaritem>
+        </nut-subside-navbar>
+        <nut-subside-navbar title="人体识别2" ikey="12">
+          <nut-side-navbaritem ikey="13" title="人体检测2"></nut-side-navbaritem>
+          <nut-side-navbaritem ikey="14" title="细粒度人像分割2"></nut-side-navbaritem>
+        </nut-subside-navbar>
+      </nut-subside-navbar>
     </nut-side-navbar>
   </nut-popup>
 </template>
@@ -54,13 +51,9 @@
 </script>
 ```
 
-
-
 ### 嵌套（建议最多三层）
 
 该组件在小程序环境下不支持异步加载数据，建议在获取到完整数据后再进行组件的渲染。
-
-
 
 ``` html
 <template>
@@ -69,24 +62,24 @@
   </nut-cell>
   <nut-popup position="right" v-model:visible="show3" :custom-style="{ width, height }">
     <nut-side-navbar :show="show3">
-      <nut-side-navbar-item ikey="1" title="人脸识别" @click="handleClick4('人脸识别')"></nut-side-navbar-item>
-      <nut-side-navbar-item ikey="2" title="自然语言处理"></nut-side-navbar-item>
-      <nut-sub-side-navbar title="图像理解" ikey="3" :open="false">
-        <nut-side-navbar-item ikey="4" title="菜品识别"></nut-side-navbar-item>
-        <nut-side-navbar-item ikey="5" title="拍照购"></nut-side-navbar-item>
-      </nut-sub-side-navbar>
-      <nut-sub-side-navbar title="智能城市AI" ikey="6">
-        <nut-side-navbar-item ikey="7" title="企业风险预警模型"></nut-side-navbar-item>
-        <nut-side-navbar-item ikey="8" title="水质量检测"></nut-side-navbar-item>
-        <nut-sub-side-navbar title="人体识别" ikey="9">
-          <nut-side-navbar-item ikey="10" title="人体检测"></nut-side-navbar-item>
-          <nut-side-navbar-item ikey="11" title="细粒度人像分割"></nut-side-navbar-item>
-        </nut-sub-side-navbar>
-      </nut-sub-side-navbar>
-      <nut-sub-side-navbar title="自然语言处理" ikey="12">
-        <nut-side-navbar-item ikey="13" title="词法分析"></nut-side-navbar-item>
-        <nut-side-navbar-item ikey="14" title="句法分析"></nut-side-navbar-item>
-      </nut-sub-side-navbar>
+      <nut-side-navbaritem ikey="1" title="人脸识别" @click="handleClick4('人脸识别')"></nut-side-navbaritem>
+      <nut-side-navbaritem ikey="2" title="自然语言处理"></nut-side-navbaritem>
+      <nut-subside-navbar title="图像理解" ikey="3" :open="false">
+        <nut-side-navbaritem ikey="4" title="菜品识别"></nut-side-navbaritem>
+        <nut-side-navbaritem ikey="5" title="拍照购"></nut-side-navbaritem>
+      </nut-subside-navbar>
+      <nut-subside-navbar title="智能城市AI" ikey="6">
+        <nut-side-navbaritem ikey="7" title="企业风险预警模型"></nut-side-navbaritem>
+        <nut-side-navbaritem ikey="8" title="水质量检测"></nut-side-navbaritem>
+        <nut-subside-navbar title="人体识别" ikey="9">
+          <nut-side-navbaritem ikey="10" title="人体检测"></nut-side-navbaritem>
+          <nut-side-navbaritem ikey="11" title="细粒度人像分割"></nut-side-navbaritem>
+        </nut-subside-navbar>
+      </nut-subside-navbar>
+      <nut-subside-navbar title="自然语言处理" ikey="12">
+        <nut-side-navbaritem ikey="13" title="词法分析"></nut-side-navbaritem>
+        <nut-side-navbaritem ikey="14" title="句法分析"></nut-side-navbaritem>
+      </nut-subside-navbar>
     </nut-side-navbar>
   </nut-popup>
 </template>
@@ -118,8 +111,6 @@
   }
 </script>
 ```
-
-
 
 ## API
 

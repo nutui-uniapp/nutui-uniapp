@@ -6,7 +6,7 @@ import { SIDEN_NAVBAR_KEY, sidenavbarProps } from './sidenavbar'
 
 const props = defineProps(sidenavbarProps)
 
-const componentName = `${PREFIX}-grid`
+const componentName = `${PREFIX}-side-navbar`
 
 useProvide(SIDEN_NAVBAR_KEY, `${componentName}-item`)({ props })
 

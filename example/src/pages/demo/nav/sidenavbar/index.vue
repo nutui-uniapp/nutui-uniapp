@@ -65,14 +65,14 @@ export default defineComponent({
     </nut-cell>
     <nut-popup v-model:visible="show2" z-index="3000" position="left" :custom-style="{ width, height }">
       <nut-side-navbar>
-        <nut-sub-side-navbar title="图像理解" ikey="3" :open="false">
-          <nut-side-navbar-item ikey="4" title="菜品识别" />
-          <nut-side-navbar-item ikey="5" title="拍照购" />
-        </nut-sub-side-navbar>
-        <nut-sub-side-navbar title="自然语言处理" ikey="12">
-          <nut-side-navbar-item ikey="13" title="词法分析" />
-          <nut-side-navbar-item ikey="14" title="句法分析" />
-        </nut-sub-side-navbar>
+        <nut-subside-navbar title="图像理解" ikey="3" :open="false">
+          <nut-side-navbaritem ikey="4" title="菜品识别" />
+          <nut-side-navbaritem ikey="5" title="拍照购" />
+        </nut-subside-navbar>
+        <nut-subside-navbar title="自然语言处理" ikey="12">
+          <nut-side-navbaritem ikey="13" title="词法分析" />
+          <nut-side-navbaritem ikey="14" title="句法分析" />
+        </nut-subside-navbar>
       </nut-side-navbar>
     </nut-popup>
     <h2 class="title">
@@ -84,24 +84,24 @@ export default defineComponent({
       </nut-cell>
       <nut-popup v-model:visible="show3" z-index="3000" position="right" :custom-style="{ width, height }">
         <nut-side-navbar :show="show3">
-          <nut-side-navbar-item ikey="1" title="人脸识别" @click="handleClick4('人脸识别')" />
-          <nut-side-navbar-item ikey="2" title="云存自然语言处理" />
-          <nut-sub-side-navbar title="图像理解" ikey="3" :open="false">
-            <nut-side-navbar-item ikey="4" title="菜品识别" />
-            <nut-side-navbar-item ikey="5" title="拍照购" />
-          </nut-sub-side-navbar>
-          <nut-sub-side-navbar title="智能城市AI" ikey="6">
-            <nut-side-navbar-item ikey="7" title="企业风险预警模型" />
-            <nut-side-navbar-item ikey="8" title="水质量检测" />
-            <nut-sub-side-navbar title="人体识别" ikey="9">
-              <nut-side-navbar-item ikey="10" title="人体检测" />
-              <nut-side-navbar-item ikey="11" title="细粒度人像分割" />
-            </nut-sub-side-navbar>
-          </nut-sub-side-navbar>
-          <nut-sub-side-navbar title="自然语言处理" ikey="12">
-            <nut-side-navbar-item ikey="13" title="词法分析" />
-            <nut-side-navbar-item ikey="14" title="句法分析" />
-          </nut-sub-side-navbar>
+          <nut-side-navbaritem ikey="1" title="人脸识别" @click="handleClick4('人脸识别')" />
+          <nut-side-navbaritem ikey="2" title="云存自然语言处理" />
+          <nut-subside-navbar title="图像理解" ikey="3" :open="false">
+            <nut-side-navbaritem ikey="4" title="菜品识别" />
+            <nut-side-navbaritem ikey="5" title="拍照购" />
+          </nut-subside-navbar>
+          <nut-subside-navbar title="智能城市AI" ikey="6">
+            <nut-side-navbaritem ikey="7" title="企业风险预警模型" />
+            <nut-side-navbaritem ikey="8" title="水质量检测" />
+            <nut-subside-navbar title="人体识别" ikey="9">
+              <nut-side-navbaritem ikey="10" title="人体检测" />
+              <nut-side-navbaritem ikey="11" title="细粒度人像分割" />
+            </nut-subside-navbar>
+          </nut-subside-navbar>
+          <nut-subside-navbar title="自然语言处理" ikey="12">
+            <nut-side-navbaritem ikey="13" title="词法分析" />
+            <nut-side-navbaritem ikey="14" title="句法分析" />
+          </nut-subside-navbar>
         </nut-side-navbar>
       </nut-popup>
     </div>
@@ -110,7 +110,7 @@ export default defineComponent({
 
 <route lang="json">
 {
-"style": {
+  "style": {
     "navigationBarTitleText": "SideNavbar"
   }
 }
