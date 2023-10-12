@@ -1,3 +1,7 @@
+## [1.1.10](https://github.com/yang1206/uniapp-nutui/compare/v1.1.9...v1.1.10) (2023-10-12)
+
+
+
 ## [1.1.9](https://github.com/yang1206/uniapp-nutui/compare/v1.1.8...v1.1.9) (2023-10-10)
 
 
