@@ -1,0 +1,7 @@
+.nut-sticky {
+		/* #ifdef APP-PLUS || MP-WEIXIN || MP-TOUTIAO */
+		// 此处默认写sticky属性，是为了给微信和APP通过uni.createSelectorQuery查询是否支持css sticky使用
+		position: sticky;
+
+		/* #endif */
+	}

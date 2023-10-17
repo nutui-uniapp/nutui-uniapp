@@ -86,18 +86,6 @@ export function floatData(format: any, dataOp: any, mapOps: any) {
   return format
 }
 
-export function deepMerge(target: any, newObj: any) {
-  Object.keys(newObj).forEach((key) => {
-    const targetValue = target[key]
-    const newObjValue = newObj[key]
-    if (isObject(targetValue) && isObject(newObjValue))
-      deepMerge(targetValue, newObjValue)
-    else
-      target[key] = newObjValue
-  })
-  return target
-}
-
 export function myFixed(num: any, digit = 2) {
   if (Object.is(Number.parseFloat(num), Number.NaN))
     return console.warn(`传入的值：${num}不是一个数字`)

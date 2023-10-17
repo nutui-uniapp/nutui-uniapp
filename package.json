@@ -23,7 +23,6 @@
     "build:h5": "npm -C example run build:h5",
     "dev:app": "npm -C example run dev:app",
     "build:app": "npm -C example run build:app",
-    "type-check": "npm -C example vue-tsc --noEmit",
     "docs:dev": "npm -C docs run dev",
     "docs:build": "npm -C docs run build",
     "docs:preview": "npm -C docs run serve",
@@ -34,8 +33,9 @@
     "postinstall": "npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "commit": "git pull && git add -A && git-cz && git push",
-    "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
-    "build:uni": "esno scripts/uni.ts"
+    "build:all": "pnpm lint-staged && pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
+    "build:uni": "esno scripts/uni.ts",
+    "lint-staged": "npm -C example run type-check && npx lint-staged"
   },
   "dependencies": {
     "vue": "3.3.4"
@@ -79,7 +79,7 @@
     "vue-tsc": "1.8.8"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm type-check && pnpm lint-staged"
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix",
