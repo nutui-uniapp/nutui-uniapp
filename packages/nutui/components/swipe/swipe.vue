@@ -167,7 +167,8 @@ const touchMethods = {
   },
 }
 defineExpose({
-  open, close,
+  open,
+  close,
 })
 </script>
 

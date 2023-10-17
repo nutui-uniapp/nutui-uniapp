@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref } from 'vue'
+import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import type { CascaderOption, CascaderPane, CascaderTabs, CascaderValue, convertConfig } from '../cascader/types'

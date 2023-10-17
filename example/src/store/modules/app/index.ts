@@ -18,7 +18,8 @@ export const useAppStore = defineStore(
     const customBarHeight = computed(
       () => !menuButtonBounding.value
         ? 0
-        : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
+        : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value,
+    )
     // #ifdef H5
     watch(darkMode, (isDark) => {
       isDark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
@@ -32,7 +33,8 @@ export const useAppStore = defineStore(
       customBarHeight,
       menuButtonBounding,
     }
-  })
+  },
+)
 
 export function useAppStoreWidthOut() {
   return useAppStore(pinia)

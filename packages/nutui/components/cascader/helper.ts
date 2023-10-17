@@ -1,8 +1,6 @@
 import type { CascaderConfig, CascaderOption, convertConfig } from './types'
 
-export function formatTree(tree: CascaderOption[],
-  parent: CascaderOption | null,
-  config: CascaderConfig): CascaderOption[] {
+export function formatTree(tree: CascaderOption[], parent: CascaderOption | null, config: CascaderConfig): CascaderOption[] {
   return tree.map((node: CascaderOption) => {
     const { value: valueKey = 'value', text: textKey = 'text', children: childrenKey = 'children' } = config
 

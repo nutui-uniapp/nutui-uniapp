@@ -57,7 +57,6 @@ function onInput(event: any) {
   if (isH5) {
     if (!(event.detail as InputTarget)!.composing)
       _onInput(event)
-
   }
   else {
     _onInput(event)
@@ -86,43 +85,8 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   if (value !== props.modelValue)
     emit('update:modelValue', value)
   // emit('change', value);
-
-}
-
-function onFocus(event: any) {
-  if (props.disabled || props.readonly)
-    return
-
-  const input = event.detail as HTMLInputElement
-  const value = input.value
-  active.value = true
-  emit('focus', event)
   // emit('update:modelValue', value);
-}
-
-function onBlur(event: any) {
-  if (props.disabled || props.readonly)
-    return
-
-  setTimeout(() => {
-    active.value = false
-  }, 200)
-
-  const input = event.detail as HTMLInputElement
-  let value = input.value
-  if (props.maxLength && value.length > Number(props.maxLength))
-    value = value.slice(0, Number(props.maxLength))
-
-  updateValue(getModelValue(), 'onBlur')
-  emit('blur', event)
   // emit('update:modelValue', value);
-}
-
-function clear(event: Event) {
-  event.stopPropagation()
-  if (props.disabled)
-    return
-  emit('update:modelValue', '', event)
   // emit('change', '', event);
   emit('clear', '', event)
 }
@@ -148,7 +112,6 @@ function onClick(event: MouseEvent) {
 function startComposing({ target }: Event) {
   if (isH5)
     (target as InputTarget)!.composing = true
-
 }
 
 function endComposing({ target }: Event) {
@@ -231,7 +194,7 @@ export default defineComponent({
           v-if="clearable && !readonly"
           v-show="(active || showClearIcon) && modelValue.length > 0"
           class="nut-input-clear-box"
-          @click="clear"
+          @click="onClear"
         >
           <slot name="clear">
             <NutIcon name="mask-close" custom-class="nut-input-clear" :size="clearSize" :width="clearSize" :height="clearSize" />

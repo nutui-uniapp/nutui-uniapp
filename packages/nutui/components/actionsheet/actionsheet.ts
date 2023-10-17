@@ -57,7 +57,8 @@ export const actionsheetEmits = {
   'cancel': () => true,
   'choose': (item: ActionSheetOption, index: any) => {
     return {
-      item, index,
+      item,
+      index,
     }
   },
 

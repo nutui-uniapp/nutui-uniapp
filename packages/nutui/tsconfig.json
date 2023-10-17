@@ -1,21 +1,21 @@
 {
   "extends": "../../tsconfig.json",
-  "exclude": [
-    "**/dist/**",
-    "**/locale/**"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.d.ts",
-    "**/*.vue",
-    "**/*.tsx"
-  ],
   "compilerOptions": {
     "types": [
       "@dcloudio/types",
       "@uni-helper/uni-app-types"
     ]
   },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.vue",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "**/dist/**",
+    "**/locale/**"
+  ],
   "vueCompilerOptions": {
     "experimentalRuntimeMode": "runtime-uni-app",
     "nativeTags": [

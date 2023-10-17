@@ -82,15 +82,14 @@ function getDefaultClassNames(name: string) {
   }
 }
 
-export function getClassNames(name: string,
-  {
-    enterClass,
-    enterActiveClass,
-    enterToClass,
-    leaveClass,
-    leaveActiveClass,
-    leaveToClass,
-  }: IClassNameProps): IClassNames {
+export function getClassNames(name: string, {
+  enterClass,
+  enterActiveClass,
+  enterToClass,
+  leaveClass,
+  leaveActiveClass,
+  leaveToClass,
+}: IClassNameProps): IClassNames {
   const defaultClassNames = getDefaultClassNames(name)
   return {
     enter: enterClass || defaultClassNames.enter,

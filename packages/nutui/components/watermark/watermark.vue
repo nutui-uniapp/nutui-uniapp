@@ -4,7 +4,7 @@ import { PREFIX } from '../_constants'
 import { watermarkEmits, watermarkProps } from './watermark'
 
 const props = defineProps(watermarkProps)
-const emit = defineEmits(watermarkEmits)
+defineEmits(watermarkEmits)
 
 const state = reactive({
   base64Url: '',
@@ -84,12 +84,7 @@ function initH5() {
     throw new Error('当前环境不支持Canvas')
   }
 }
-function dealWithImage(ctx: any,
-  img: HTMLImageElement,
-  ratio: number,
-  canvas: HTMLCanvasElement,
-  markWidth: number,
-  markHeight: number) {
+function dealWithImage(ctx: any, img: HTMLImageElement, ratio: number, canvas: HTMLCanvasElement, markWidth: number, markHeight: number) {
   ctx.translate(markWidth / 2, markHeight / 2)
   ctx.rotate((Math.PI / 180) * Number(rotate))
   img.crossOrigin = 'anonymous'
@@ -107,11 +102,7 @@ function dealWithImage(ctx: any,
     state.base64Url = canvas.toDataURL()
   }
 }
-function dealWithText(ctx: any,
-  ratio: number,
-  canvas: HTMLCanvasElement,
-  markWidth: number,
-  markHeight: number) {
+function dealWithText(ctx: any, ratio: number, canvas: HTMLCanvasElement, markWidth: number, markHeight: number) {
   ctx.textBaseline = 'middle'
   ctx.textAlign = 'center'
   // 文字绕中间旋转

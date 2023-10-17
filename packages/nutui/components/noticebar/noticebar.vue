@@ -165,8 +165,8 @@ function onAnimationEnd(event: Event) {
 }
 
 /**
-     * 利益点滚动方式一
-     */
+ * 利益点滚动方式一
+ */
 function startRollEasy() {
   showhorseLamp();
   (state.timer as any) = setInterval(showhorseLamp, ~~(props.height / props.speed / 4) * 1000 + props.standTime)
@@ -198,8 +198,8 @@ function scroll(n: number, last: boolean) {
   }, n * props.speed)
 }
 /**
-     * 点击滚动单元
-     */
+ * 点击滚动单元
+ */
 function go(item: any) {
   emit('click', item)
 }
@@ -232,31 +232,6 @@ onMounted(() => {
     initScrollWrap()
   }
 })
-
-function updateSlotChild() {
-  if (slots.default)
-    state.scrollList = [].concat(slots.default()[0].children as any)
-}
-
-function watchSlots() {
-  setTimeout(() => {
-    const observer = new MutationObserver((slots) => {
-      state.showNotica = false
-      setTimeout(() => {
-        state.showNotica = true
-      })
-      updateSlotChild()
-    })
-    const ele = document.getElementsByClassName('nut-noticebar-custom-item')[0]
-
-    if (ele) {
-      observer.observe(ele, {
-        childList: true,
-        subtree: true,
-      })
-    }
-  }, 100)
-}
 
 onActivated(() => {
   if (state.keepAlive)

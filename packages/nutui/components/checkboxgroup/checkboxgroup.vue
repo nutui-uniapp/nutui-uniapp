@@ -7,7 +7,8 @@ import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 const props = defineProps(checkboxgroupProps)
 const emit = defineEmits(checkboxgroupEmits)
 defineExpose({
-  toggleAll, toggleReverse,
+  toggleAll,
+  toggleReverse,
 })
 const state = reactive({
   children: [] as ComponentPublicInstance[],

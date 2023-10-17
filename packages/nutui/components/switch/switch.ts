@@ -46,7 +46,8 @@ export const switchEmits = {
   'update:modelValue': (val: string | number | boolean) => isBoolean(val),
   'change': (val: any, evt?: Event) => {
     return {
-      val, evt,
+      val,
+      evt,
     }
   },
 }

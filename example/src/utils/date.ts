@@ -12,16 +12,16 @@ export function getTimeStamp(timeStr?: string | number) {
 }
 
 /**
-   * 是否为闫年
-   * @return {Boolse} true|false
-   */
+ * 是否为闫年
+ * @return {Boolse} true|false
+ */
 export function isLeapYear(y: number): boolean {
   return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0
 }
 
 /**
  * 返回星期数
- * @return {String}
+ * @return {string}
  */
 export function getWhatDay(year: number, month: number, day: number): string {
   const date = new Date(`${year}/${month}/${day}`)
@@ -32,7 +32,7 @@ export function getWhatDay(year: number, month: number, day: number): string {
 
 /**
  * 返回星期数
- * @return {Number}
+ * @return {number}
  */
 export function getMonthPreDay(year: number, month: number): number {
   const date = new Date(`${year}/${month}/01`)
@@ -45,7 +45,7 @@ export function getMonthPreDay(year: number, month: number): number {
 
 /**
  * 返回月份天数
- * @return {Number}
+ * @return {number}
  */
 export function getMonthDays(year: string, month: string): number {
   if (month.startsWith('0'))
@@ -79,7 +79,7 @@ export function date2Str(date: Date, split?: string): string {
 
 /**
  * 返回日期格式字符串
- * @param {Number} 0返回今天的日期、1返回明天的日期，2返回后天得日期，依次类推
+ * @param {number} 0返回今天的日期、1返回明天的日期，2返回后天得日期，依次类推
  * @return {string} '2014-12-31'
  */
 export function getDay(i: number): string {
@@ -92,7 +92,7 @@ export function getDay(i: number): string {
 
 /**
  * 时间比较
- * @return {Boolean}
+ * @return {boolean}
  */
 export function compareDate(date1: string, date2: string): boolean {
   const startTime = new Date(date1.replace('-', '/').replace('-', '/'))
@@ -105,7 +105,7 @@ export function compareDate(date1: string, date2: string): boolean {
 
 /**
  * 时间是否相等
- * @return {Boolean}
+ * @return {boolean}
  */
 export function isEqual(date1: string, date2: string): boolean {
   const startTime = new Date(date1).getTime()
@@ -126,7 +126,7 @@ export function getMonthWeek(year: string, month: string, date: string, firstDay
   }
   return Math.ceil((d + remainder) / 7)
 }
-export function getYearWeek(year: string, month: string, date: string, firstDayOfWeek = 0): number {
+export function getYearWeek(year: string, month: string, date: string): number {
   const dateNow = new Date(Number(year), Number.parseInt(month) - 1, Number(date))
   const dateFirst = new Date(Number(year), 0, 1)
   const dataNumber = Math.round((dateNow.valueOf() - dateFirst.valueOf()) / 86400000)

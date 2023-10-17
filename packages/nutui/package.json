@@ -29,8 +29,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./package.json": "./package.json",
     "./locale": {
@@ -43,12 +43,12 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "styles",
-    "components",
     "README.md",
+    "components",
+    "dist",
+    "global.d.ts",
     "locale/**",
-    "global.d.ts"
+    "styles"
   ],
   "engines": {
     "HBuilderX": "^3.6.17"

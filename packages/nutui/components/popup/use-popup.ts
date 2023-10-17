@@ -1,7 +1,7 @@
 import { type ComputedRef, type SetupContext, computed, reactive, toRefs, watch, watchEffect } from 'vue'
 import { PREFIX } from '../_constants'
 import { animationName } from '../_constants/types'
-import { type PopupEmits, type PopupProps } from './popup'
+import type { PopupEmits, PopupProps } from './popup'
 
 const initIndex = 500
 let _zIndex = initIndex
@@ -71,7 +71,7 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     // close();
   }
 
-  const onClickOverlay = (e: Event) => {
+  const onClickOverlay = () => {
     emit('click-overlay')
     if (props.closeOnClickOverlay)
       emit('update:visible', false)

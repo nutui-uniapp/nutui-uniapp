@@ -48,7 +48,7 @@ export function getPx(value: string | number, unit = false) {
  * @description 样式转换
  * 对象转字符串，或者字符串转对象
  * @param {object | string} customStyle 需要转换的目标
- * @param {String} target 转换的目的，object-转为对象，string-转为字符串
+ * @param {string} target 转换的目的，object-转为对象，string-转为字符串
  * @returns {object|string}
  */
 export function addStyle(customStyle: string | object, target = 'object') {

@@ -114,11 +114,6 @@ declare module '@vue/runtime-core' {
     NutTurnTable: typeof import('./components/turntable/turntable.vue')['default']
     NutLoadingPage: typeof import('./components/loadingpage/loadingpage.vue')['default']
 
-
-
-
-
-
   }
 
   // interface ComponentCustomProperties {}

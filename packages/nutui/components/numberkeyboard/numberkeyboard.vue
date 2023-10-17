@@ -59,7 +59,6 @@ function genCustomKeys() {
 
     else
       keys.push({ id: 0, type: 'number' }, { id: customKeys[0] as string, type: 'custom' })
-
   }
   else if (customKeys.length === 2) {
     keys.push(
@@ -90,7 +89,6 @@ function onTouchstart(item: { id: string | number; type: string }, event: TouchE
     emit('input', item.id)
     if (props.modelValue.length < (props.maxlength as number))
       emit('update:modelValue', props.modelValue + item.id)
-
   }
   if (item.type === 'lock')
     closeBoard()

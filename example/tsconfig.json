@@ -1,21 +1,21 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    "lib": [
-      "esnext",
-      "dom"
-    ],
     "types": [
       "@dcloudio/types",
       "@uni-helper/uni-app-types"
-    ]
+    ],
+    "sourceMap": true
   },
   "include": [
     "node_modules/nutui-uniapp/global.d.ts",

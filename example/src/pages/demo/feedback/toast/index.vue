@@ -8,12 +8,10 @@ export default {
   setup() {
     const toastRef = ref<ToastInst>()
     const refClick = (type: string, msg: string) => {
-      toastRef.value?.showToast[type as 'fail' | 'success' | 'warn' | 'loading'](msg,
-        {
-          title: '使用ref调用更加方便与灵活',
-          duration: 0,
-        },
-      )
+      toastRef.value?.showToast[type as 'fail' | 'success' | 'warn' | 'loading'](msg, {
+        title: '使用ref调用更加方便与灵活',
+        duration: 0,
+      })
 
       setTimeout(() => {
         toastRef.value?.hideToast()

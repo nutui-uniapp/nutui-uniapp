@@ -2,16 +2,15 @@ import { isPromise } from './is'
 
 export type Interceptor = (...args: any[]) => Promise<boolean> | boolean | undefined | void
 
-export function funInterceptor(interceptor: Interceptor | undefined,
-  {
-    args = [],
-    done,
-    canceled,
-  }: {
-    args?: unknown[]
-    done: (val?: any) => void
-    canceled?: () => void
-  }) {
+export function funInterceptor(interceptor: Interceptor | undefined, {
+  args = [],
+  done,
+  canceled,
+}: {
+  args?: unknown[]
+  done: (val?: any) => void
+  canceled?: () => void
+}) {
   if (interceptor) {
     const returnVal = interceptor(null, ...args)
 

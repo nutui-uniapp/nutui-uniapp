@@ -45,7 +45,8 @@ export type TabBarProps = ExtractPropTypes<typeof tabbarProps>
 export const tabbarEmits = {
   'tabSwitch': (val: any, index: number | string) => {
     return {
-      val, index,
+      val,
+      index,
     }
   },
   'update:modelValue': (val: string | number) => isString(val) || isNumber(val),

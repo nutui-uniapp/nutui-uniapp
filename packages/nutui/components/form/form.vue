@@ -132,10 +132,10 @@ async function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
 }
 
 /**
-       * 校验
-       * @param customProp 指定校验，用于用户自定义场景时触发，例如 blur、change 事件
-       * @returns
-       */
+ * 校验
+ * @param customProp 指定校验，用于用户自定义场景时触发，例如 blur、change 事件
+ * @returns
+ */
 function validate(customProp = '') {
   return new Promise((resolve, reject) => {
     try {

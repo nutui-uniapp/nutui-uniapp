@@ -181,15 +181,13 @@ function raise(index: number) {
     bowlLock.value = true
   }, 300)
 
-  watch(() => bowlList,
-    (val) => {
-      val.forEach(async (item, index) => {
-        const rect = await useRect(`${refRandomId}-${index}`, instance)
+  watch(() => bowlList, (val) => {
+    val.forEach(async (item, index) => {
+      const rect = await useRect(`${refRandomId}-${index}`, instance)
 
-        bowlEle.push(rect)
-      })
-    },
-    { immediate: true, deep: true })
+      bowlEle.push(rect)
+    })
+  }, { immediate: true, deep: true })
 }
 </script>
 

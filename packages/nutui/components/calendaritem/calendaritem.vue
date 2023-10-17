@@ -248,7 +248,7 @@ function handleWeekDate(weekDate: string[]) {
   const obj = {
     date: weekDate,
     monthWeekNum: getMonthWeek(y, m, d, props.firstDayOfWeek),
-    yearWeekNum: getYearWeek(y, m, d, props.firstDayOfWeek),
+    yearWeekNum: getYearWeek(y, m, d),
   }
   return obj
 }
@@ -287,10 +287,7 @@ function getDaysStatus(days: number, type: string, dateInfo: { year: string; mon
   })
 }
 // 获取上一个月的最后一周天数，填充当月空白
-function getPreDaysStatus(days: number,
-  type: string,
-  dateInfo: { year: string; month: string },
-  preCurrMonthDays: number) {
+function getPreDaysStatus(days: number, type: string, dateInfo: { year: string; month: string }, preCurrMonthDays: number) {
   // 新增：自定义周起始日}, preCurrMonthDays: number) => {
   // 新增：自定义周起始日
   days = days - props.firstDayOfWeek

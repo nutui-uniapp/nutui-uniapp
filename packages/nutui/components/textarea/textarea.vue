@@ -51,7 +51,6 @@ function change(event: any) {
   if (isH5) {
     if (!composing.value)
       _onInput(event)
-
   }
   else {
     _onInput(event)
@@ -97,11 +96,9 @@ function getContentHeight() {
 
     if (minHeight !== undefined)
       height = Math.max(height, minHeight)
-
   }
   if (height)
     heightSet.value = `${height}px`
-
 }
 watch(
   () => props.modelValue,
@@ -133,7 +130,6 @@ function getRefWidth() {
   query.exec((res: any) => {
     if (res[0])
       copyTxtStyle.value.width = `${res[0].width}px`
-
   })
 }
 onMounted(() => {
@@ -142,7 +138,6 @@ onMounted(() => {
       setTimeout(() => {
         getRefWidth()
         copyHeight()
-
       }, 300)
     })
   }
@@ -151,7 +146,6 @@ const composing = ref(false)
 function startComposing(event: Event) {
   if (isH5)
     composing.value = true
-
 }
 
 function endComposing({ target }: Event) {

@@ -140,10 +140,12 @@ function onTouchMove(event: TouchEvent) {
       },
     )
 
-    /** 此处计算倍数，距离放大（缩小） k 倍则 scale 也 扩大（缩小） k 倍。距离放大（缩小）倍数 = 结束时两点距离 除以 开始时两点距离
-         * 注意此处的 scale 变化是基于 store.scale 的。
-         * store.scale 是一个暂存值，比如第一次放大 2 倍，则 store.scale 为 2。
-         * 再次两指触碰的时候，store.originScale 就为 store.scale 的值，基于此时的 store.scale 继续放大缩小。 **/
+    /**
+     * 此处计算倍数，距离放大（缩小） k 倍则 scale 也 扩大（缩小） k 倍。距离放大（缩小）倍数 = 结束时两点距离 除以 开始时两点距离
+     * 注意此处的 scale 变化是基于 store.scale 的。
+     * store.scale 是一个暂存值，比如第一次放大 2 倍，则 store.scale 为 2。
+     * 再次两指触碰的时候，store.originScale 就为 store.scale 的值，基于此时的 store.scale 继续放大缩小。 *
+     */
     const curScale = curDistance / store.oriDistance
     store.scale = store.originScale * curScale
 
