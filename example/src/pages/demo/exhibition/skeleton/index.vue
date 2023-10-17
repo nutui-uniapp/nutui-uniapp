@@ -53,9 +53,9 @@ export default {
       <nut-skeleton width="250px" height="15px" title animated avatar row="3" :loading="!checked">
         <view class="container">
           <nut-avatar :size="50">
-            <img
+            <image
               src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
-            >
+            />
           </nut-avatar>
           <view class="right-content">
             <view class="title">

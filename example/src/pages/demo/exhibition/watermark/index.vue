@@ -45,7 +45,7 @@ export default defineComponent({
       局部用法
     </h2>
     <nut-cell class="wrap wrap2">
-      <img :src="src" alt="">
+      <image :src="src" alt="" />
       <nut-watermark :full-page="false" font-color="#fa2c19" content="nut-ui" />
     </nut-cell>
   </div>
@@ -59,7 +59,7 @@ export default defineComponent({
     display: block;
     position: relative;
     background: #fff;
-    > img {
+    > image {
       width: 100%;
       max-height: 100%;
     }

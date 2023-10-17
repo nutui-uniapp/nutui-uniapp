@@ -87,7 +87,7 @@ export default {
     </h2>
     <nut-searchbar v-model="searchValue6">
       <template #clear-icon>
-        <img :src="icon" style="width: 20px; height: 20px;">
+        <image :src="icon" style="width: 20px; height: 20px;" />
       </template>
     </nut-searchbar>
 

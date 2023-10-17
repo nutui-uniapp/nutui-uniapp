@@ -350,11 +350,11 @@ export default defineComponent({
                 class="nut-address__detail-item" :class="[selectedRegion[tabIndex]?.id === item.id ? 'active' : '']"
                 @click="nextAreaList(item)"
               >
-                <div>
+                <view>
                   <slot v-if="selectedRegion[tabIndex]?.id === item.id" name="icon">
                     <NutIcon name="Check" custom-class="nut-address-select-icon" width="13px" />
                   </slot>{{ item.name }}
-                </div>
+                </view>
               </div>
             </scroll-view>
           </div>

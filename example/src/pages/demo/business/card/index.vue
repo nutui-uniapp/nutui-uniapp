@@ -86,11 +86,11 @@ export default {
         </div>
       </template>
       <template #tag>
-        <img
+        <image
           class="tag"
           src="https://img11.360buyimg.com/jdphoto/s58x28_jfs/t9451/359/415622649/15318/b0943e5d/59a78495N3bd2a9f8.png"
           alt=""
-        >
+        />
       </template>
     </nut-card>
     <h2 class="title">
@@ -135,7 +135,7 @@ export default {
   margin: 3px 0 1px;
   height: 15px;
   overflow: hidden;
-  > span,text {
+  > text {
     float: left;
     padding: 0 5px;
     border-radius: 1px;

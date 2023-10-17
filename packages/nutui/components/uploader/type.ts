@@ -1,7 +1,3 @@
-import { useTranslate } from '../../locale'
-
-const { translate } = useTranslate('nut-uploader')
-
 export type SizeType = 'original' | 'compressed'
 export type SourceType = 'album' | 'camera'
 export type AcceptType = 'image' | 'media' | 'video' | 'all'
@@ -13,7 +9,7 @@ export interface FileItem {
 
   message: string
 
-  uid: string
+  uid?: string
 
   name: string
 
@@ -23,7 +19,7 @@ export interface FileItem {
 
   path?: string
 
-  percentage: string | number
+  percentage?: string | number
 
-  formData: any
+  formData?: any
 }

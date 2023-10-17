@@ -311,7 +311,7 @@ export default {
 </template>
 
 <style lang="scss">
-.demo > h2 {
+.demo > .title {
   padding: 0;
 }
 .brickBox {

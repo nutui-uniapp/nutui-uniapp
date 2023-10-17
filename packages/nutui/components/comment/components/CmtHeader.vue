@@ -44,7 +44,7 @@ export default defineComponent ({
 
         <view v-if="type === 'default'" :class="[`nut-comment-header__user-${type}`]">
           <view :class="[`nut-comment-header__user-${type}-name`]">
-            <span>{{ info.nickName }}</span>
+            <text>{{ info.nickName }}</text>
             <slot name="labels" />
           </view>
 
@@ -55,7 +55,9 @@ export default defineComponent ({
         </view>
 
         <view v-else :class="[`nut-comment-header__user-${type}`]">
-          <span :class="[`nut-comment-header__user-${type}-name`]">{{ info.nickName }}</span>
+          <text :class="[`nut-comment-header__user-${type}-name`]">
+            {{ info.nickName }}
+          </text>
           <slot name="labels" />
         </view>
       </view>
@@ -110,7 +112,7 @@ export default defineComponent ({
         overflow: hidden;
         border-radius: 50%;
 
-        img,image {
+        image {
           width: 20px;
           height: 20px;
         }
@@ -141,7 +143,7 @@ export default defineComponent ({
           font-size: 12px;
           color: $comment-header-user-name-color;
 
-          > span,text {
+          > text {
             margin-right: 8px;
           }
         }

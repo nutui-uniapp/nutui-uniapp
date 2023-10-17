@@ -53,11 +53,11 @@ export default defineComponent({
         @clickImages="clickImages"
       >
         <template #comment-labels>
-          <img
+          <image
             class="nut-comment-header__labels--item"
             src="https://img11.360buyimg.com/imagetools/jfs/t1/211858/17/4258/12101/618e6f78Ed0edcadc/e83a673555edf59f.jpg"
             style="width: 100rpx"
-          >
+          />
         </template>
       </nut-comment>
     </nut-cell>
@@ -76,16 +76,18 @@ export default defineComponent({
         @clickImages="clickImages"
       >
         <template #comment-labels>
-          <img
+          <image
             class="nut-comment-header__labels--item"
             src="https://storage.360buyimg.com/imgtools/78925d9440-f9e874d0-e93d-11eb-8e5c-0da9e18a13b1.png"
             style="height: 12px; width: 60rpx"
-          >
+          />
         </template>
 
         <template #comment-shop-reply>
           <div class="nut-comment-shop">
-            <span style="display: inline">京东美妆国际：</span>尊敬的客户您好，非常抱歉给您带来不愉快的购物体验，关于过敏，什么成分都不存在个别性和普遍性。
+            <text style="display: inline">
+              京东美妆国际：
+            </text>尊敬的客户您好，非常抱歉给您带来不愉快的购物体验，关于过敏，什么成分都不存在个别性和普遍性。
           </div>
         </template>
       </nut-comment>

@@ -102,7 +102,7 @@ export const components = [
       { text: 'Swiper 轮播', link: '/components/exhibition/swiper' },
       { text: 'Table 表格', link: '/components/exhibition/table' },
       { text: 'Tag 标签', link: '/components/exhibition/tag' },
-      { text: 'Tour 引导', link: '/components/exhibition/tour' },
+      // { text: 'Tour 引导', link: '/components/exhibition/tour' },
       { text: 'TrendArrow 趋势箭头', link: '/components/exhibition/trendarrow' },
       { text: 'Watermark 水印', link: '/components/exhibition/watermark' },
     ],

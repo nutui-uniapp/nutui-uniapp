@@ -4,10 +4,7 @@
 
 基于 Canvas 的签名组件。默认竖屏模式使用，如使用横屏模式，请开发者自行设置旋转角度或者宽高。(目前微信小程序导出图片失败)
 
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -15,7 +12,7 @@
     @confirm="confirm" 
     @clear="clear"
   ></nut-signature>
-  <img :src="demoSignUrl" class="demoSignUrl" v-if="demoSignUrl" />
+  <image :src="demoSignUrl" class="demoSignUrl" v-if="demoSignUrl" />
 </template>
 <script>
 export default {
@@ -40,8 +37,6 @@ export default {
 </script>
 ```
 
-
-
 ### 修改颜色和签字粗细
 
 ```html
@@ -52,7 +47,7 @@ export default {
     @confirm="confirm" 
     @clear="clear"
   ></nut-signature>
-  <img :src="demoSignUrl" class="demoSignUrl" v-if="demoSignUrl" />
+  <image :src="demoSignUrl" class="demoSignUrl" v-if="demoSignUrl" />
 </template>
 <script>
 import { reactive } from 'vue';

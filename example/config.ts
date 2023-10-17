@@ -1146,7 +1146,7 @@ export default {
           cType: '展示组件',
           cName: '引导',
           desc: '漫游式引导组件',
-          show: true,
+          show: false,
           uni: !!isH5,
           unidoc: false,
           type: 'component',

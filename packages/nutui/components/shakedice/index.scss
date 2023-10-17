@@ -46,7 +46,7 @@
     .page3 {
         position: relative;
 
-        >span{
+        >text{
             position: absolute;
 
             &:first-child{
@@ -82,7 +82,7 @@
         justify-content: center;
         transform: rotateX(90deg) translateZ(50px);
 
-        >span{
+        >text{
             margin: 0 10px;
 
             &:nth-child(3){

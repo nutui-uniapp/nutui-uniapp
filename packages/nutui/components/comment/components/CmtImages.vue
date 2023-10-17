@@ -105,7 +105,7 @@ export default defineComponent({
           v-if="type === 'multi' && totalImages.length > 9 && videos.length + index > 7"
           class="nut-comment-images__mask"
         >
-          <span>共 {{ totalImages.length }} 张</span>
+          <text>共 {{ totalImages.length }} 张</text>
           <NutIcon name="right" size="12px" />
         </view>
       </view>
@@ -130,7 +130,6 @@ export default defineComponent({
       overflow: hidden;
       border-radius: 6px;
 
-      img,
       image {
         width: 80px;
         height: 80px;
@@ -143,7 +142,6 @@ export default defineComponent({
       &--video {
 
         /* stylelint-disable-next-line rule-empty-line-before */
-        img,
         image {
           position: absolute;
           top: 50%;
@@ -183,7 +181,6 @@ export default defineComponent({
       height: 90px;
       margin: 8px 8px 0 0;
 
-      img,
       image {
         width: 100%;
         height: 100%;

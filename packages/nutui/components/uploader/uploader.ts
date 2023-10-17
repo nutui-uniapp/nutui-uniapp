@@ -45,16 +45,22 @@ export const uploaderProps = {
     },
   },
   onChange: { type: Function },
-  // // 当accept为video时生效，是否压缩视频，默认为true（默认 true ）
-  // compressed: { type: Boolean, default: true },
-  // 当accept为video时生效，拍摄视频最长拍摄时间，单位秒（默认 60 ）
+  /**
+   * 当accept为video时生效，是否压缩视频，默认为true（默认 true ）
+   * compressed: { type: Boolean, default: true },
+   * 当accept为video时生效，拍摄视频最长拍摄时间，单位秒（默认 60 ）
+   */
   maxDuration: { type: [Number, String], default: 60 },
-  // 所选的图片的尺寸, 可选值为original compressed
+  /**
+   * 所选的图片的尺寸, 可选值为original compressed
+   */
   sizeType: {
     type: Array as PropType<SizeType[]>,
     default: ['original', 'compressed'],
   },
-  // 当accept为video时生效，可选值为back或front
+  /**
+   * 当accept为video时生效，可选值为back或front
+   */
   camera: {
     type: String as PropType<'back' | 'front' | undefined>,
     default: 'back',

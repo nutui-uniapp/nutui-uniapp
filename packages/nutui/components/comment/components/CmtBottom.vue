@@ -65,14 +65,16 @@ export default defineComponent ({
 <template>
   <view class="nut-comment-bottom">
     <view class="nut-comment-bottom__lable" @click="handleClick">
-      <span v-if="type !== 'complex'" style="display: inline">{{ info.size }}</span>
+      <text v-if="type !== 'complex'" style="display: inline">
+        {{ info.size }}
+      </text>
     </view>
 
     <view class="nut-comment-bottom__cpx">
       <template v-for="(name, i) in mergeOp" :key="i">
         <view class="nut-comment-bottom__cpx-item" :class="[`nut-comment-bottom__cpx-item--${name}`]" @click="operate(name)">
           <template v-if="name !== 'more'">
-            <span>{{ info[name] }}</span>
+            <text>{{ info[name] }}</text>
             <NutIcon v-if="name === 'like'" name="fabulous" />
             <NutIcon v-else name="comment" />
           </template>
@@ -98,7 +100,7 @@ export default defineComponent ({
         color: $dark-color;
 
         &-item {
-          span,text {
+          text {
             color: $dark-color;
           }
         }
@@ -134,7 +136,7 @@ export default defineComponent ({
         align-items: center;
         margin-right: 18px;
 
-        span,text {
+        text {
           margin-right: 5px;
           color: $black;
         }

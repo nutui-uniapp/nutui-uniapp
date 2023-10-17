@@ -96,13 +96,7 @@
           white-space: nowrap;
         }
 
-        span {
-          display: inline-block;
-          max-width: 100px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+        
 
         .nut-address__region-line--mini {
           position: absolute;
@@ -157,7 +151,7 @@
             font-weight: bold;
           }
 
-          > div,view {
+          > view {
             display: flex;
             align-items: center;
             margin: 10px 0;
@@ -203,10 +197,10 @@
             color: $address-icon-color !important;
           }
 
-          span {
-            display: inline-block;
-            flex: 1;
-          }
+          // span {
+          //   display: inline-block;
+          //   flex: 1;
+          // }
         }
       }
     }

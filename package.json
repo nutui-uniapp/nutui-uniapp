@@ -23,6 +23,7 @@
     "build:h5": "npm -C example run build:h5",
     "dev:app": "npm -C example run dev:app",
     "build:app": "npm -C example run build:app",
+    "type-check": "npm -C example vue-tsc --noEmit",
     "docs:dev": "npm -C docs run dev",
     "docs:build": "npm -C docs run build",
     "docs:preview": "npm -C docs run serve",
@@ -78,7 +79,7 @@
     "vue-tsc": "1.8.8"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "pnpm type-check && pnpm lint-staged"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix",

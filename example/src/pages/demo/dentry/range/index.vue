@@ -101,9 +101,9 @@ export default {
     <nut-cell custom-class="cell">
       <nut-range v-model="value9" @change="onChange">
         <template #button>
-          <div class="custom-button">
+          <view class="custom-button">
             {{ value9 }}
-          </div>
+          </view>
         </template>
       </nut-range>
     </nut-cell>

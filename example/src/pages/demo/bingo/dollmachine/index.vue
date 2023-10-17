@@ -73,7 +73,7 @@ page .demo,
 .show-demo {
   background: #ffffff;
 }
-h2 {
+.title {
   padding: 0 20px;
 }
 </style>

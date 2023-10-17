@@ -130,15 +130,15 @@ export default {
     <nut-cell title="点击试试" @click="showTour2 = true">
       <template #link>
         <div class="tour-demo-img">
-          <img
+          <image
             id="target6"
             src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
             alt=""
-          >
-          <img
+          />
+          <image
             src="https://img10.360buyimg.com/imagetools/jfs/t1/31842/40/20385/1762/63998e3eE594254bb/98ff51da635ead4a.png"
             alt=""
-          >
+          />
         </div>
       </template>
     </nut-cell>
@@ -224,7 +224,7 @@ export default {
   display: flex;
   align-items: center;
   height: 117px;
-  > img,image {
+  > image {
     width: 67px;
     height: 67px;
     margin-right: 18px;
@@ -233,17 +233,17 @@ export default {
   .info {
     display: flex;
     flex-direction: column;
-    h1 {
-      margin: 0;
-      height: 48px;
-      font-size: 34px;
-      color: rgba(51, 51, 51, 1);
-    }
-    p {
-      height: 18px;
-      font-size: 12px;
-      color: rgba(154, 155, 157, 1);
-    }
+    // h1 {
+    //   margin: 0;
+    //   height: 48px;
+    //   font-size: 34px;
+    //   color: rgba(51, 51, 51, 1);
+    // }
+    // p {
+    //   height: 18px;
+    //   font-size: 12px;
+    //   color: rgba(154, 155, 157, 1);
+    // }
   }
 }
 
@@ -254,7 +254,6 @@ export default {
 }
 
 .tour-demo-img {
-  img,
   image {
     width: 20px;
     height: 20px;

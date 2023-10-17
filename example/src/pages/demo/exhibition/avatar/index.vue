@@ -29,14 +29,14 @@ export default {
         />
       </nut-avatar>
       <nut-avatar size="normal">
-        <img
+        <image
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-        >
+        />
       </nut-avatar>
       <nut-avatar size="small">
-        <img
+        <image
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-        >
+        />
       </nut-avatar>
     </nut-cell>
     <h2 class="title">
@@ -55,10 +55,10 @@ export default {
     </h2>
     <nut-cell>
       <nut-avatar>
-        <img
+        <image
 
           src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-        >
+        />
       </nut-avatar>
       <nut-avatar><nut-icon name="my" /></nut-avatar>
       <nut-avatar>王</nut-avatar>
@@ -95,10 +95,10 @@ export default {
     <nut-cell>
       <nut-avatar-group span="-4">
         <nut-avatar>
-          <img
+          <image
 
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-          >
+          />
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
         <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
@@ -110,10 +110,10 @@ export default {
     <nut-cell>
       <nut-avatar-group max-count="3" max-color="#fff" max-bg-color="#498ff2">
         <nut-avatar>
-          <img
+          <image
 
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-          >
+          />
         </nut-avatar>
         <nut-avatar><nut-icon name="my" /></nut-avatar>
         <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">
@@ -159,10 +159,10 @@ export default {
         <nut-avatar-group max-count="4" z-index="right">
           <nut-avatar v-for="i in avatarCount" :key="i">
             <nut-icon v-if="i % 2 === 0" name="my" />
-            <img
+            <image
               v-else
               src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png"
-            >
+            />
           </nut-avatar>
         </nut-avatar-group>
       </nut-cell>
@@ -183,7 +183,7 @@ export default {
     color: #fff;
   }
 }
-img,image{
+image{
   width: 100%;
   height: 100%;
 }

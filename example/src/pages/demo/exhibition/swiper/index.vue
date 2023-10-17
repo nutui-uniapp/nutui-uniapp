@@ -64,7 +64,7 @@ export default {
     <view class="demo-box">
       <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" auto-play="2000">
         <nut-swiper-item v-for="item in list" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
       </nut-swiper>
     </view>
@@ -74,7 +74,7 @@ export default {
     <view class="demo-box">
       <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" auto-play="2000">
         <nut-swiper-item v-for="item in list1" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
       </nut-swiper>
     </view>
@@ -84,7 +84,7 @@ export default {
     <view class="demo-box">
       <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" auto-play="2000">
         <nut-swiper-item v-for="item in list2" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
       </nut-swiper>
     </view>
@@ -94,7 +94,7 @@ export default {
     <view class="demo-box">
       <nut-swiper :init-page="page2" :loop="false" width="300">
         <nut-swiper-item v-for="item in list" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
       </nut-swiper>
     </view>
@@ -104,7 +104,7 @@ export default {
     <view class="demo-box">
       <nut-swiper :init-page="page3" :loop="true" @change="change">
         <nut-swiper-item v-for="item in list" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
         <template #page>
           <div class="page">
@@ -119,7 +119,7 @@ export default {
     <view class="demo-box">
       <nut-swiper :init-page="page" :loop="true" auto-play="2000" @change="change1">
         <nut-swiper-item v-for="item in list1" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
         <template #page>
           <div class="page">
@@ -134,7 +134,7 @@ export default {
     <view class="demo-box">
       <nut-swiper ref="swiper" :init-page="page" :loop="true">
         <nut-swiper-item v-for="item in list" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
       </nut-swiper>
       <view class="nut-swiper-btns">
@@ -160,7 +160,7 @@ export default {
         custom-style="height: 150px"
       >
         <nut-swiper-item v-for="item in list" :key="item">
-          <img :src="item" alt="">
+          <image :src="item" alt="" />
         </nut-swiper-item>
       </nut-swiper>
     </view>
@@ -172,8 +172,7 @@ export default {
   position: relative;
   .nut-swiper-item {
     height: 150px;
-    image,
-    img {
+    image {
       width: 100%;
       height: 100%;
     }
@@ -181,8 +180,7 @@ export default {
   &.vertical-center {
     .nut-swiper-item {
       height: 300px;
-      image,
-      img {
+      image {
         width: 100%;
         height: 100%;
       }

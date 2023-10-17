@@ -4,12 +4,9 @@
 
 用于进行评论列表的展示。
 
-
 ### 评论图片单行展示
 
 默认情况下，单个商品的评论的图片是按照单行滑动进行展示的。
-
-
 
 ```html
 <template>
@@ -22,7 +19,7 @@
     :operation="['replay']"
   >
     <template #comment-labels>
-      <img
+      <image
         style="height:15px;width:50px"
         src="https://img11.360buyimg.com/imagetools/jfs/t1/211858/17/4258/12101/618e6f78Ed0edcadc/e83a673555edf59f.jpg"
       />
@@ -58,13 +55,9 @@ export default {
 </script>
 ```
 
-
-
 ### 评论图片多行展示
 
 通过 headerType 的值可以设置图片多行展示。
-
-
 
 ```html
 <template>
@@ -87,7 +80,7 @@ export default {
 
   <template #comment-shop-reply>
     <div class="nut-comment-shop">
-      <span style="display:inline-block">京东美妆国际：</span
+      <text style="display:inline-block">京东美妆国际：</text
       >尊敬的客户您好，非常抱歉给您带来不愉快的购物体验，关于过敏，什么成分都不存在个别性和普遍性。
     </div>
   </template>
@@ -119,11 +112,7 @@ export default {
 </script>
 ```
 
-
-
 ### 追评展示
-
-
 
 ```html
 <template>
@@ -161,8 +150,6 @@ export default {
 }
 </script>
 ```
-
-
 
 ## API
 

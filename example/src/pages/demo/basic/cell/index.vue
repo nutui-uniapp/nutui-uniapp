@@ -78,10 +78,10 @@ const switchChecked = ref(true)
     <nut-cell-group title="自定义左侧 Icon 区域">
       <nut-cell title="图片">
         <template #icon>
-          <img
+          <image
             class="nut-icon"
             src="https://img11.360buyimg.com/imagetools/jfs/t1/137646/13/7132/1648/5f4c748bE43da8ddd/a3f06d51dcae7b60.png"
-          >
+          />
         </template>
       </nut-cell>
     </nut-cell-group>

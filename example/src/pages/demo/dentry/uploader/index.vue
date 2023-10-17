@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { ProgressStatus } from 'nutui-uniapp'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 const uploadUrl = 'https://my-json-server.typicode.com/linrufeng/demo/posts'
 const progressPercentage = ref<string | number>(0)
 const formData = {
   custom: 'test',
 }
-const defaultFileList = reactive([
+const defaultFileList = ref([
   {
     name: '文件1.png',
     url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
@@ -30,7 +30,7 @@ const defaultFileList = reactive([
     type: 'image',
   },
 ])
-const defaultFileList1 = reactive([
+const defaultFileList1 = ref([
   {
     name: '文件1.png',
     url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',

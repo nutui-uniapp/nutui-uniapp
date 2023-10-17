@@ -43,7 +43,7 @@ export default {
     <div class="show">
       <nut-empty description="无优惠券">
         <template #image>
-          <img src="https://static-ftcms.jd.com/p/files/61a9e3313985005b3958672e.png">
+          <image src="https://static-ftcms.jd.com/p/files/61a9e3313985005b3958672e.png" />
         </template>
       </nut-empty>
     </div>

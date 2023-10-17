@@ -143,7 +143,7 @@ export default {
 .padding {
   padding-left: 0 !important;
   padding-right: 0 !important;
-  h2 {
+  .title {
     padding-left: 27px !important;
   }
 }
