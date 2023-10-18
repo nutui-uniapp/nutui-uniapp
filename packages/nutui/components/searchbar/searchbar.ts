@@ -71,20 +71,24 @@ export const searchbarProps = {
     type: Boolean,
     default: false,
   },
+  cursorSpacing: {
+    type: Number,
+    default: 0,
+  },
 }
 
 export type SearchbarProps = ExtractPropTypes<typeof searchbarProps>
 
 export const searchbarEmits = {
-  'update:modelValue': (val: string | number, event: Event) => true,
-  'change': (val: string | number, event: Event) => true,
-  'blur': (val: string | number, event: Event) => true,
-  'focus': (val: string | number, event: Event) => true,
-  'clear': (val: string | number) => true,
-  'search': (val: string | number) => true,
-  'clickInput': (event: Event) => true,
-  'clickLeftIcon': (val: string | number, event: Event) => true,
-  'clickRightIcon': (val: string | number, event: Event) => true,
+  'update:modelValue': (_val: string | number, _event: Event) => true,
+  'change': (_val: string | number, _event: Event) => true,
+  'blur': (_val: string | number, _event: Event) => true,
+  'focus': (_val: string | number, _event: Event) => true,
+  'clear': (_val: string | number) => true,
+  'search': (_val: string | number) => true,
+  'clickInput': (_event: Event) => true,
+  'clickLeftIcon': (_val: string | number, _event: Event) => true,
+  'clickRightIcon': (_val: string | number, _event: Event) => true,
 }
 
 export type SearchbarEmits = typeof searchbarEmits

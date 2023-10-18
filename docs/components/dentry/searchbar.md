@@ -221,6 +221,8 @@
 | readonly | 输入框只读 | boolean | `false` |
 | input-align | 对齐方式，可选 `left` `center` `right` | string | `left` |
 | safe-area-inset-bottom `v1.1.6` | 是否开启 iphone 系列全面屏底部安全区适配                                                                                     | boolean          | `false`       |
+| cursor-spacing`v1.2.0`         | 指定光标与键盘的距离，取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离                        | number           | 0             |
+
 ### Events
 
 | 事件名 | 说明           | 回调参数     |
