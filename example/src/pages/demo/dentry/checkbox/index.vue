@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import { reactive, ref, toRefs } from 'vue'
 
 export default {
-  setup(props, context) {
+  setup() {
     const group = ref(null) as Ref
     const group2 = ref(null) as Ref
     const data = reactive({
@@ -306,9 +306,6 @@ export default {
 }
 
 .nut-checkbox {
-  display: flex;
-  margin-right: 20px;
-
   .nut-checkbox__label {
     margin-left: 10px;
   }
