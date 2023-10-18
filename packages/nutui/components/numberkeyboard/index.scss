@@ -67,7 +67,23 @@
       .nut-key__wrapper {
         .nut-key {
           position: absolute;
+
+          /* #ifndef APP-PLUS */
+          
           inset: 0 6px 6px 0;
+
+          /* #endif */
+
+          /* #ifdef APP-PLUS */
+
+          /* stylelint-disable declaration-block-no-redundant-longhand-properties */
+          top: 0;
+          right: 6px;
+          bottom: 6px;
+          left:0;
+
+          /* #endif */
+          
           height: auto;
         }
 
