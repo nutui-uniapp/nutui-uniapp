@@ -127,6 +127,7 @@ export default defineComponent({
             :disabled="disabled"
             :readonly="readonly"
             :style="styleSearchbar"
+            :cursor-spacing="cursorSpacing"
             @click="clickInput"
             @input="valueChange"
             @focus="valueFocus"
