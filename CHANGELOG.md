@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/yang1206/uniapp-nutui/compare/v1.2.0...v1.2.1) (2023-10-18)
+
+
+### Bug Fixes
+
+* (number-keyboard) type="rightColumn"时，某些版本安卓机无法正常显示 ([a5307ba](https://github.com/yang1206/uniapp-nutui/commit/a5307bae5cc65cb0695823646a0b767edde4f399)), closes [#78](https://github.com/yang1206/uniapp-nutui/issues/78)
+
+
+
 # [1.2.0](https://github.com/yang1206/uniapp-nutui/compare/v1.1.10...v1.2.0) (2023-10-18)
 
 
