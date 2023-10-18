@@ -175,17 +175,14 @@ export default defineComponent({
 
 <template>
   <view :class="classes">
-    <view v-if="props.readonly" id="nut-textarea__textarea" class="nut-textarea__textarea nut-textarea__textarea__readonly">
-      {{ modelValue }}
-    </view>
+    <textarea v-if="props.readonly" id="nut-textarea__textarea" v-model="modelValue" :disabled="true" class="nut-textarea__textarea nut-textarea__textarea__readonly" />
     <textarea
       v-else
       id="nut-textarea__textarea"
       class="nut-textarea__textarea" :class="[isMpAlipay && 'nut-textarea__ali']"
       :style="styles"
       :rows="rows"
-      :disabled="disabled"
-      :readonly="readonly"
+      :disabled="disabled || readonly"
       :value="modelValue"
       :show-count="false"
       :maxlength="maxLength ? +maxLength : -1"
