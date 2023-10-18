@@ -7,13 +7,11 @@ import { radioProps } from './radio'
 
 const props = defineProps(radioProps)
 const parent: any = inject('parent', null)
-const position = computed(() => {
-  return parent.position
-})
-const reverseState = position.value === 'left'
+
+const reverseState = computed(() => parent.position.value === 'left')
 
 const classes = computed(() => {
-  return `${componentName} ${componentName}--${props.shape} ${reverseState ? `${componentName}--reverse` : ''}`
+  return `${componentName} ${componentName}--${props.shape} ${reverseState.value ? `${componentName}--reverse` : ''}`
 })
 function handleClick() {
   if (isCurValue.value || props.disabled)
