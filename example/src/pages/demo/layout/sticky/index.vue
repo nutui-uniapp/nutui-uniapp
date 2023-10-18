@@ -47,23 +47,28 @@ export default defineComponent({
 </route>
 
 <style lang="scss" scoped>
- .sticky-demo {
-    padding: 0 17px 17px;
-    background: #f7f8fa;
-
-    &::-webkit-scrollbar {
-      width: 0;
-      background: transparent;
-    }
-
-   .title {
-      padding: 0 10px;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      font-weight: normal;
-      color: rgb(144 156 164 / 100%);
-    }
-
+.nut-theme-dark {
+  .sticky-demo {
+    background: black !important;
   }
+}
+
+.sticky-demo {
+  padding: 17px 17px 17px;
+  background: #f7f8fa;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  .title {
+    padding: 0 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(144 156 164 / 100%);
+  }
+
+}
 </style>
