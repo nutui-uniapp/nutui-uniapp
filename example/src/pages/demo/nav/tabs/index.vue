@@ -89,7 +89,7 @@ export default {
     <h2 class="title">
       通过 pane-key 匹配
     </h2>
-    <nut-tabs v-model="state.tab2value">
+    <nut-tabs v-model="state.tab2value" swipeable>
       <nut-tab-pane title="Tab 1" pane-key="0">
         Tab 1
       </nut-tab-pane>
