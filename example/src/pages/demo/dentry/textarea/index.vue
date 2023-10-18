@@ -7,7 +7,7 @@ export default {
     const value = ref('')
     const value2 = ref('')
     const value3 = ref('')
-    const value4 = ref('')
+    const value4 = ref('textarea \n 只读状态')
 
     return {
       value,
@@ -36,7 +36,7 @@ export default {
     <h2 class="title">
       只读、禁用
     </h2>
-    <nut-textarea readonly model-value="textarea 只读状态" />
+    <nut-textarea v-model="value4" readonly />
     <nut-textarea disabled model-value="textarea 禁用状态" />
   </div>
 </template>
