@@ -1,3 +1,23 @@
+# [1.2.0](https://github.com/yang1206/uniapp-nutui/compare/v1.1.10...v1.2.0) (2023-10-18)
+
+
+### Bug Fixes
+
+* (input) clear 事件回调参数错误 ([2d506ba](https://github.com/yang1206/uniapp-nutui/commit/2d506ba86430ed0b46ed223251e959e37ef598e3))
+* (radio) 修复按钮类型激活背景边框样式 ([8736e91](https://github.com/yang1206/uniapp-nutui/commit/8736e9191643c741b20a24ba2fa7ad21640ecc6e))
+* (radio) 修复radio-group的textPosition属性没有响应式 ([85b2fa4](https://github.com/yang1206/uniapp-nutui/commit/85b2fa4ef24beccc3ecdfc55667214351ddb822a))
+* (tabs) 修复item设置disabled时仍可以滑动过去 ([3b7c77a](https://github.com/yang1206/uniapp-nutui/commit/3b7c77ab19fc56231444f5ee87305eb55356ba46))
+* (textarea) 修复readonly 属性失效与无法渲染换行 ([b8d37d4](https://github.com/yang1206/uniapp-nutui/commit/b8d37d40029fe484cd67e482efea00b704d9549f))
+
+
+### Features
+
+* (searchbar) 增加cursor-spacing属性 ([42393ac](https://github.com/yang1206/uniapp-nutui/commit/42393acf21303d4b8553df8adf5dd9dbd2d0ac3d))
+* (sticky) 重构sticky组件 ([bb9457b](https://github.com/yang1206/uniapp-nutui/commit/bb9457b2ee7d2b90cf1f8fcdcf9b870c84b280a0))
+* 基础组件最外层元素 flex -> inline-flex ([e065f9f](https://github.com/yang1206/uniapp-nutui/commit/e065f9f034d0da2deed659c1a55cef93efde17b0))
+
+
+
 ## [1.1.10](https://github.com/yang1206/uniapp-nutui/compare/v1.1.9...v1.1.10) (2023-10-12)
 
 
