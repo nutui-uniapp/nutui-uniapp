@@ -391,7 +391,7 @@
 | update:model-value | 输入框内容变化时触发 | `val`  |
 | focus  | 输入框聚焦时触发     | `event` |
 | blur   | 输入框失焦时触发     | `event`  |
-| clear  | 点击清除按钮时触发   | `event`  |
+| clear  | 点击清除按钮时触发   | `val`  |
 | click  | 点击组件时触发      | `event`  |
 | click-input      | 点击输入区域时触发      | `event`  |
 

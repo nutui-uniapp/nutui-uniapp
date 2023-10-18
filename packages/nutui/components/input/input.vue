@@ -88,7 +88,7 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   // emit('update:modelValue', value);
   // emit('update:modelValue', value);
   // emit('change', '', event);
-  emit('clear', '', event)
+  emit('clear', '')
 }
 
 function resetValidation() {

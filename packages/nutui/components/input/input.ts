@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { commonProps } from '../_utils'
+import { commonProps, isObject, isString } from '../_utils'
 import type { ConfirmTextType, InputFormatTrigger, InputMode, InputType } from './type'
 
 export const inputProps = {
@@ -91,14 +91,14 @@ export const inputProps = {
 }
 
 export const inputEmits = {
-  'click': (evt: any) => evt,
-  'clickInput': (evt: any) => evt,
-  'blur': (evt: any) => evt,
-  'focus': (evt: any) => evt,
-  'clear': (val: string, evt: any) => evt,
+  'click': (evt: any) => isObject(evt),
+  'clickInput': (evt: any) => isObject(evt),
+  'blur': (evt: any) => isObject(evt),
+  'focus': (evt: any) => isObject(evt),
+  'clear': (_val: string) => isString(_val),
   'keypress': () => true,
-  'confirm': (val: string, val2: any) => true,
-  'update:modelValue': (val1?: string, val2?: any) => true,
+  'confirm': (_val: string, _val2: any) => true,
+  'update:modelValue': (_val1?: string, _val2?: any) => true,
 }
 
 export type InputEmits = typeof inputEmits

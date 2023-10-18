@@ -38,7 +38,7 @@ export default {
       state.show = true
       state.msg = msg
     }
-    const clear = (value: string | number, event: Event) => {
+    const clear = (value: string | number) => {
       /* eslint-disable no-console */
       console.log('clear:', value, event)
       showToast('clear')
