@@ -65,6 +65,7 @@
         height: 100%;
         content: '';
         background-color: $radio-label-button-background;
+        border-radius: $radio-button-border-radius;
         opacity: 0.05;
       }
     }
