@@ -99,7 +99,7 @@ export default defineComponent({
     <view
       class="nut-input-number__icon nut-input-number__left"
       :class="{ 'nut-input-number__icon--disabled': !reduceAllow() }"
-      @click="reduce"
+      @click="(reduce as any)"
     >
       <slot name="left-icon">
         <NutIcon name="minus" :size="pxCheck(buttonSize)" />
@@ -125,7 +125,7 @@ export default defineComponent({
     <view
       class="nut-input-number__icon nut-input-number__right"
       :class="{ 'nut-input-number__icon--disabled': !addAllow() }"
-      @click="add"
+      @click="(add as any)"
     >
       <slot name="right-icon">
         <NutIcon name="plus" :size="pxCheck(buttonSize)" />
