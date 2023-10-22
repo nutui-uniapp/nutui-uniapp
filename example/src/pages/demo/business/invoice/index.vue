@@ -29,29 +29,29 @@ export default {
     const data: any = ref([
       {
         type: 'radio',
-        label: '发票类型',
+        label: '类型',
         radioLabel: [
           {
-            label: '企业',
+            label: '测试企业',
           },
           {
-            label: '个人或事业单位',
+            label: '测试个人或事业单位',
           },
         ],
         formItemProp: 'type',
         required: true,
       },
       {
-        label: '发票抬头',
-        placeholder: '请输入发票抬头',
+        label: '抬头',
+        placeholder: '请输入抬头',
         formItemProp: 'name',
         required: true,
       },
       {
-        label: '纳税人识别号',
-        placeholder: '请输入纳税人识别号',
+        label: '识别号',
+        placeholder: '请输入识别号',
         formItemProp: 'num',
-        rules: [{ message: '请输入纳税人识别号' }],
+        rules: [{ message: '请输入识别号' }],
       },
       {
         label: '注册地址',
@@ -61,23 +61,23 @@ export default {
         required: true,
       },
       {
-        label: '注册电话',
-        placeholder: '请输入注册电话',
+        label: '号码',
+        placeholder: '请输入号码',
         formItemProp: 'tel',
         rules: [
-          { required: true, message: '请输入联系电话' },
-          { validator: asyncValidator, message: '电话格式不正确' },
+          { required: true, message: '请输入号码' },
+          { validator: asyncValidator, message: '号码格式不正确' },
         ],
         required: true,
       },
       {
-        label: '开户行',
-        placeholder: '请输入开户行',
+        label: '行',
+        placeholder: '请输入行',
         formItemProp: 'bank',
       },
       {
-        label: '银行账户',
-        placeholder: '请输入银行账户',
+        label: '账户',
+        placeholder: '请输入账户',
         formItemProp: 'account',
       },
     ])

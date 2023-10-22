@@ -12,14 +12,14 @@ const formData = reactive({
 const basicData = reactive({
   name: '',
   age: '',
-  tel: '',
+  time: '',
   address: '',
 })
 const dynamicRefForm = ref<any>(null)
 const dynamicForm = {
   state: reactive({
     name: '',
-    tels: [{
+    time: [{
       key: 1,
       value: '',
     }],
@@ -38,20 +38,15 @@ const dynamicForm = {
       dynamicRefForm.value.reset()
     },
     remove() {
-      dynamicForm.state.tels.splice(dynamicForm.state.tels.length - 1, 1)
+      dynamicForm.state.time.splice(dynamicForm.state.time.length - 1, 1)
     },
     add() {
-      const newIndex = dynamicForm.state.tels.length
-      dynamicForm.state.tels.push({
+      dynamicForm.state.time.push({
         key: Date.now(),
         value: '',
       })
     },
   },
-}
-
-function validate(item: any) {
-  console.log(item)
 }
 
 const formData2 = reactive({
@@ -108,7 +103,7 @@ const addressModule = reactive({
       if (addressModule.state.show)
         formData2.address = ''
     },
-    onChange({ custom, next, value }: any) {
+    onChange({ _custom, next, value }: any) {
       formData2.address += value?.name
       const name = (addressModule as any).state[next]
       if (name.length < 1)
@@ -175,14 +170,14 @@ async function asyncValidator(val: string): Promise<string> {
       基础用法
     </h2>
     <nut-form>
-      <nut-form-item label="姓名">
-        <nut-input v-model="basicData.name" custom-class="nut-input-text" placeholder="请输入姓名" type="text" />
+      <nut-form-item label="昵称">
+        <nut-input v-model="basicData.name" custom-class="nut-input-text" placeholder="请输入昵称" type="text" />
       </nut-form-item>
-      <nut-form-item label="年龄">
-        <nut-input v-model="basicData.age" custom-class="nut-input-text" placeholder="请输入年龄" type="text" />
+      <nut-form-item label="网龄">
+        <nut-input v-model="basicData.age" custom-class="nut-input-text" placeholder="请输入网龄" type="text" />
       </nut-form-item>
-      <nut-form-item label="联系电话">
-        <nut-input v-model="basicData.tel" custom-class="nut-input-text" placeholder="请输入联系电话" type="text" />
+      <nut-form-item label="时间">
+        <nut-input v-model="basicData.time" custom-class="nut-input-text" placeholder="请输入时间" type="text" />
       </nut-form-item>
       <nut-form-item label="地址">
         <nut-input v-model="basicData.address" custom-class="nut-input-text" placeholder="请输入地址" type="text" />
@@ -195,18 +190,18 @@ async function asyncValidator(val: string): Promise<string> {
       动态表单
     </h2>
     <nut-form ref="dynamicRefForm" :model-value="dynamicForm.state">
-      <nut-form-item label="姓名" prop="name" required :rules="[{ required: true, message: '请填写姓名' }]">
+      <nut-form-item label="昵称" prop="name" required :rules="[{ required: true, message: '请填写姓名' }]">
         <nut-input v-model="dynamicForm.state.name" custom-class="nut-input-text" placeholder="请输入姓名" type="text" />
       </nut-form-item>
       <nut-form-item
-        v-for="(item, index) in dynamicForm.state.tels"
+        v-for="(item, index) in dynamicForm.state.time"
         :key="item.key"
-        :label="`联系方式${index}`"
+        :label="`时间${index}`"
         :prop="`tels.${index}.value`"
         required
-        :rules="[{ required: true, message: `请填写联系方式${index}` }]"
+        :rules="[{ required: true, message: `请填写时间${index}` }]"
       >
-        <nut-input v-model="item.value" custom-class="nut-input-text" :placeholder="`请输入联系方式${index}`" type="text" />
+        <nut-input v-model="item.value" custom-class="nut-input-text" :placeholder="`请输入时间${index}`" type="text" />
       </nut-form-item>
       <nut-cell>
         <nut-button size="small" custom-style="margin-right: 10px" @click="dynamicForm.methods.add">
@@ -248,11 +243,11 @@ async function asyncValidator(val: string): Promise<string> {
         />
       </nut-form-item>
       <nut-form-item
-        label="年龄"
+        label="网龄"
         prop="age"
         required
         :rules="[
-          { required: true, message: '请填写年龄' },
+          { required: true, message: '请填写网龄' },
           { validator: customValidator, message: '必须输入数字' },
           { validator: customRulePropValidator, message: '必须输入数字', reg: /^\d+$/ },
           { regex: /^(\d{1,2}|1\d{2}|200)$/, message: '必须输入0-200区间' },
@@ -261,23 +256,23 @@ async function asyncValidator(val: string): Promise<string> {
         <nut-input
           v-model="formData.age"
           custom-class="nut-input-text"
-          placeholder="请输入年龄，必须数字且0-200区间"
+          placeholder="请输入网龄，必须数字且0-200区间"
           type="text"
         />
       </nut-form-item>
       <nut-form-item
-        label="联系电话"
+        label="号码"
         prop="tel"
         required
         :rules="[
-          { required: true, message: '请填写联系电话' },
-          { validator: asyncValidator, message: '电话格式不正确' },
+          { required: true, message: '请填写号码' },
+          { validator: asyncValidator, message: '号码格式不正确' },
         ]"
       >
         <nut-input
           v-model="formData.tel"
           custom-class="nut-input-text"
-          placeholder="请输入联系电话，异步校验电话格式"
+          placeholder="请输入号码，异步号码格式"
           type="text"
         />
       </nut-form-item>
