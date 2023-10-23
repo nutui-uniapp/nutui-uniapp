@@ -7,6 +7,10 @@ export const imagepreviewProps = {
     type: Boolean,
     default: false,
   },
+  scale: {
+    type: Boolean,
+    default: false,
+  },
   images: {
     type: Array as PropType<ImageInterface[]>,
     default: () => [],
