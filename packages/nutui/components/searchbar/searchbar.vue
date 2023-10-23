@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties, Ref } from 'vue'
-import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
+import { computed, defineComponent, reactive, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
@@ -86,10 +86,6 @@ const styleSearchbar = computed(() => {
   return style
 })
 const inputsearch: Ref<HTMLElement | null> = ref(null)
-onMounted(() => {
-  if (props.autofocus)
-    (inputsearch.value as HTMLElement).focus()
-})
 </script>
 
 <script lang="ts">
@@ -107,7 +103,7 @@ export default defineComponent({
 
 <template>
   <view :class="[customClass, { 'safe-area-inset-bottom': safeAreaInsetBottom }]" class="nut-searchbar" :style="[searchbarStyle, customStyle]">
-    <view v-if="$slots.leftout" class="nut-searchbar__search-icon nut-searchbar__left-search-icon" @click="leftIconClick">
+    <view v-if="$slots.leftout" class="nut-searchbar__search-icon nut-searchbar__left-search-icon" @click="(leftIconClick as any)">
       <slot name="leftout" />
     </view>
     <view class="nut-searchbar__search-input" :class="[shape]" :style="{ ...inputSearchbarStyle, ...focusCss }">
@@ -123,12 +119,13 @@ export default defineComponent({
             :maxlength="maxLength ? +maxLength : -1"
             :placeholder="placeholder || translate('placeholder')"
             :value="String(modelValue)"
+            :auto-focus="autofocus"
             :confirm-type="confirmType"
             :disabled="disabled"
             :readonly="readonly"
             :style="styleSearchbar"
             :cursor-spacing="cursorSpacing"
-            @click="clickInput"
+            @click="(clickInput as any)"
             @input="valueChange"
             @focus="valueFocus"
             @blur="valueBlur"
@@ -141,14 +138,14 @@ export default defineComponent({
           v-if="clearable"
           v-show="String(modelValue).length > 0"
           class="nut-searchbar__search-icon nut-searchbar__input-clear"
-          @click="handleClear"
+          @click="(handleClear as any)"
         >
           <template v-if="$slots['clear-icon']">
             <slot name="clear-icon" />
           </template>
           <NutIcon v-else :name="clearIcon" />
         </view>
-        <view v-if="$slots.rightin" class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon" @click="rightIconClick">
+        <view v-if="$slots.rightin" class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon" @click="(rightIconClick as any)">
           <slot name="rightin" />
         </view>
       </view>
