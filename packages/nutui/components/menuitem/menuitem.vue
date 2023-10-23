@@ -22,7 +22,7 @@ export default defineComponent({
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
-  setup(props, { emit, slots }) {
+  setup(props, { emit }) {
     const state = reactive({
       zIndex: _zIndex,
       showPopup: false,
@@ -73,7 +73,7 @@ export default defineComponent({
         return { ...heightStyle, top: 'auto' }
     })
     const contentHeight = ref('auto')
-    const toggle = (show = !state.showPopup, options: { immediate?: boolean } = {}) => {
+    const toggle = (show = !state.showPopup, _options: { immediate?: boolean } = {}) => {
       if (show) {
         nextTick(() => {
           setTimeout(() => {

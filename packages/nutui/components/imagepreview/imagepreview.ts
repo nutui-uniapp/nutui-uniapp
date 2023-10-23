@@ -54,7 +54,7 @@ export type ImagePreviewProps = ExtractPropTypes<typeof imagepreviewProps>
 
 export const imagepreviewEmits = {
   close: () => true,
-  change: (val: number) => true,
+  change: (_val: number) => true,
 }
 
 export type ImagePreviewEmits = typeof imagepreviewEmits

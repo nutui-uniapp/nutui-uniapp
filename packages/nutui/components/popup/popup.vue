@@ -9,7 +9,9 @@ import { usePopup } from './use-popup'
 
 const props = defineProps(popupProps)
 const emit = defineEmits(popupEmits)
+function toMoveHandle() {
 
+}
 const { onClickOverlay, showSlot, onClickCloseIcon, closed, transitionName, onOpened, onClosed, classes, popStyle, onClick } = usePopup(props, emit)
 </script>
 
@@ -49,13 +51,14 @@ export default defineComponent({
     @after-enter="onOpened"
     @after-leave="onClosed"
     @click="onClick"
+    @touchmove.stop.prevent="props.lockScroll ? toMoveHandle : ''"
   >
     <slot v-if="showSlot" />
     <view
       v-if="closed"
       class="nut-popup__close-icon"
       :class="`nut-popup__close-icon--${closeIconPosition}`"
-      @click="onClickCloseIcon"
+      @click="(onClickCloseIcon as any)"
     >
       <slot name="closeIcon">
         <NutIcon name="close" height="12px" />

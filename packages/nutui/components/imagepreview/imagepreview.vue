@@ -213,8 +213,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutPopup v-model:visible="state.showPop" pop-class="nut-image-preview-custom-pop">
-    <view class="nut-image-preview" @touchstart.capture="onTouchStart">
+  <NutPopup v-model:visible="state.showPop" :lock-scroll="true" pop-class="nut-image-preview-custom-pop">
+    <view class="nut-image-preview" @touchstart.capture="(onTouchStart as any)">
       <NutSwiper
         v-if="state.showPop"
         :auto-play="autoplay"

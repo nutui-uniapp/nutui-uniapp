@@ -18,7 +18,7 @@ const classes = computed(() => {
   }
 })
 
-const tabItemRef = reactive({
+const _tabItemRef = reactive({
   province: ref<null | HTMLElement>(null),
   city: ref<null | HTMLElement>(null),
   country: ref<null | HTMLElement>(null),
@@ -300,7 +300,7 @@ export default defineComponent({
     @click-overlay="clickOverlay"
     @open="closeWay = 'self'"
   >
-    <view class="nut-address">
+    <view :class="classes">
       <view class="nut-address__header">
         <view class="nut-address__header-back" @click="switchModule">
           <slot name="back-icon">

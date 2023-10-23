@@ -57,7 +57,7 @@ export type PopupProps = ExtractPropTypes<typeof popupProps>
 
 export const popupEmits = {
   'update:visible': (visible: boolean) => isBoolean(visible),
-  'click-pop': (evt?: any) => true,
+  'click-pop': (evt?: any) => evt instanceof Object,
   'click-close-icon': () => true,
   'open': () => true,
   'close': () => true,
