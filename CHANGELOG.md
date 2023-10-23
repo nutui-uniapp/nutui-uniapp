@@ -1,3 +1,18 @@
+## [1.2.2](https://github.com/yang1206/uniapp-nutui/compare/v1.2.1...v1.2.2) (2023-10-23)
+
+
+### Bug Fixes
+
+* (input) 修复 input 事件缺失 ([a34e543](https://github.com/yang1206/uniapp-nutui/commit/a34e543a7ae37ff1d0fad1cee06e79be8f868ecf)), closes [#79](https://github.com/yang1206/uniapp-nutui/issues/79)
+* 修复lockScroll无效 ([520d693](https://github.com/yang1206/uniapp-nutui/commit/520d6939639d76871255b1953ecbbf8045d2318d))
+
+
+### Features
+
+* (imagepreview) 支持双指缩放图片 ([c7a9a90](https://github.com/yang1206/uniapp-nutui/commit/c7a9a9073fdc017ce93ddc47825c2290b53e34e7))
+
+
+
 ## [1.2.1](https://github.com/yang1206/uniapp-nutui/compare/v1.2.0...v1.2.1) (2023-10-18)
 
 
