@@ -38,9 +38,9 @@ export default {
       state.show = true
       state.msg = msg
     }
-    const clear = (value: string | number) => {
+    const clear = () => {
       /* eslint-disable no-console */
-      console.log('clear:', value, event)
+      console.log('clear')
       showToast('clear')
     }
     const clickInput = (value: string | number) => {
@@ -86,7 +86,7 @@ export default {
     <h2 class="title">
       显示清除图标
     </h2>
-    <nut-input v-model="state.clear" clearable clear-size="14" placeholder="显示清除图标" />
+    <nut-input v-model="state.clear" clearable clear-size="14" placeholder="显示清除图标" @clear="clear" />
     <nut-input
       v-model="state.clear2"
       placeholder="自定义清除图标"

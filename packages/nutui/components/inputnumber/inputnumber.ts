@@ -44,11 +44,11 @@ export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
 export const inputnumberEmits = {
   'blur': (evt: any) => evt,
   'focus': (evt: any) => evt,
-  'reduce': (evt: any | number) => true,
-  'add': (evt: any | number) => true,
-  'overlimit': (evt: any, type: 'reduce' | 'add') => true,
-  'change': (val1: string | number, val2?: any) => true,
-  'update:modelValue': (val1?: string, val2?: string | any) => true,
+  'reduce': (_evt: any | number) => true,
+  'add': (_evt: any | number) => true,
+  'overlimit': (_evt: any, _type: 'reduce' | 'add') => true,
+  'change': (_val1: string | number, _val2?: any) => true,
+  'update:modelValue': (_val1?: string, _val2?: string | any) => true,
 }
 
 export type InputNumberEmits = typeof inputnumberEmits

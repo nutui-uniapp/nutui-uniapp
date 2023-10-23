@@ -1,6 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script lang="ts" setup>
 import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import type { InputOnBlurEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import { isH5 } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
@@ -53,7 +54,7 @@ function inputType(type: InputType) {
   return type
 }
 
-function onInput(event: any) {
+function handleInput(event: any) {
   if (isH5) {
     if (!(event.detail as InputTarget)!.composing)
       _onInput(event)
@@ -84,11 +85,6 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
 
   if (value !== props.modelValue)
     emit('update:modelValue', value)
-  // emit('change', value);
-  // emit('update:modelValue', value);
-  // emit('update:modelValue', value);
-  // emit('change', '', event);
-  emit('clear', '')
 }
 
 function resetValidation() {
@@ -98,14 +94,14 @@ function resetValidation() {
   }
 }
 
-function onClickInput(event: MouseEvent) {
+function handleClickInput(event: MouseEvent) {
   if (props.disabled)
     return
 
   emit('clickInput', event)
 }
 
-function onClick(event: MouseEvent) {
+function handleClick(event: MouseEvent) {
   emit('click', event)
 }
 
@@ -133,6 +129,39 @@ watch(
 onMounted(() => {
   updateValue(getModelValue(), props.formatTrigger)
 })
+
+function handleFocus(evt: InputOnFocusEvent) {
+  if (props.disabled || props.readonly)
+    return
+
+  active.value = true
+  emit('focus', evt)
+}
+
+function handleBlur(evt: InputOnBlurEvent) {
+  if (props.disabled || props.readonly)
+    return
+
+  setTimeout(() => {
+    active.value = false
+  }, 200)
+
+  const input = evt.detail as HTMLInputElement
+  let value = input.value
+  if (props.maxLength && value.length > Number(props.maxLength))
+    value = value.slice(0, Number(props.maxLength))
+
+  updateValue(getModelValue(), 'onBlur')
+  emit('blur', evt)
+}
+
+function handleClear(event: Event) {
+  event.stopPropagation()
+  if (props.disabled)
+    return
+  emit('update:modelValue', '', event)
+  emit('clear')
+}
 </script>
 
 <script lang="ts">
@@ -151,7 +180,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes, customClass]" @click="onClick">
+  <view :class="[classes, customClass]" @click="(handleClick as any)">
     <view class="nut-input-value">
       <view class="nut-input-inner">
         <view v-if="$slots.left" class="nut-input-left-box">
@@ -175,15 +204,15 @@ export default defineComponent({
             :adjust-position="adjustPosition"
             :always-system="alwaysSystem"
             :input-mode="inputMode"
-            @input="onInput"
-            @focus="onFocus"
-            @blur="onBlur"
-            @click="onClickInput"
-            @change="endComposing"
-            @compositionend="endComposing"
-            @compositionstart="startComposing"
+            @input="handleInput"
+            @focus="handleFocus"
+            @blur="handleBlur"
+            @click="(handleClickInput as any)"
+            @change="(endComposing as any)"
+            @compositionend="(endComposing as any)"
+            @compositionstart="(startComposing as any)"
           >
-          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="onClickInput" />
+          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
               {{ modelValue ? modelValue.length : 0 }}
@@ -194,7 +223,7 @@ export default defineComponent({
           v-if="clearable && !readonly"
           v-show="(active || showClearIcon) && modelValue.length > 0"
           class="nut-input-clear-box"
-          @click="onClear"
+          @click="(handleClear as any)"
         >
           <slot name="clear">
             <NutIcon name="mask-close" custom-class="nut-input-clear" :size="clearSize" :width="clearSize" :height="clearSize" />
