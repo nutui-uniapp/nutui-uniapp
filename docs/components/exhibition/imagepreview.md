@@ -4,10 +4,7 @@
 
 支持全屏预览视频和图片
 
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -55,11 +52,7 @@
 </script>
 ```
 
-
-
 ### 设置初始页码
-
-
 
 ```html
 <template>
@@ -106,11 +99,7 @@
 </script>
 ```
 
-
-
 ### 设置轮播指示器及颜色
-
-
 
 ```html
 <template>
@@ -163,8 +152,6 @@
 </script>
 ```
 
-
-
 ## API
 
 ### Props
@@ -183,18 +170,13 @@
 | close-icon-position | 关闭图标位置，可选值：`top-left`                              | string                                            | `top-right` |
 | before-close        | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 `Promise` | (active: number) => boolean \| Promise<`boolean`> | -           |
 | is-Loop             | 是否循环播放                                                  | boolean                                           | `true`      |
+| scale `v1.2.2`            | 是否支持双指缩放                                                  | boolean                                           | `false`      |
 
 ### ImageArray 数据结构
 
 | 键名 | 说明         | 类型   |
 | ---- | ------------ | ------ |
 | src  | 预览图片链接 | string |
-### VideoArray 数据结构
-
-| 键名 | 说明 | 类型 |
-|----- | ----- | ----- |
-| source | 视频地址和类型设置，等同于 Video 组件的 [source 属性](#/zh-CN/video) | object|
-| options | 控制视频播放属性，等同于 Video 组件的 [options 属性](#/zh-CN/video) | object |
 
 ### Events
 

@@ -228,7 +228,11 @@ export default defineComponent({
         @change="setActive"
       >
         <NutSwiperItem v-for="(item, index) in images" :key="index">
-          <image :src="item.src" mode="aspectFit" class="nut-image-preview-img" @click.stop="closeOnImg" />
+          <movable-area class="nut-image-movable-area">
+            <movable-view :disabled="!scale" inertia scale-area class="nut-image-preview-img" :scale="scale" direction="all">
+              <image :src="item.src" mode="aspectFit" class="nut-image-preview-img" @click.stop="closeOnImg" />
+            </movable-view>
+          </movable-area>
         </NutSwiperItem>
       </NutSwiper>
     </view>
