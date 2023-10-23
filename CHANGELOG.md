@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/yang1206/uniapp-nutui/compare/v1.2.2...v1.2.3) (2023-10-23)
+
+
+### Bug Fixes
+
+* (searchbar) autofocus无效 ([f467a11](https://github.com/yang1206/uniapp-nutui/commit/f467a111337bafcc4963d5fa7a4238de797f46e0))
+
+
+
 ## [1.2.2](https://github.com/yang1206/uniapp-nutui/compare/v1.2.1...v1.2.2) (2023-10-23)
 
 
