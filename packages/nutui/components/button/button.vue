@@ -85,7 +85,7 @@ export default defineComponent({
     :data-goods-id="props.dataGoodsId"
     :data-order-id="props.dataOrderId"
     :data-biz-line="props.dataBizLine"
-    @click="handleClick"
+    @click="(handleClick as any)"
     @getphonenumber="emits('getphonenumber', $event)"
     @getuserinfo="emits('getuserinfo', $event)"
     @error="emits('error', $event)"

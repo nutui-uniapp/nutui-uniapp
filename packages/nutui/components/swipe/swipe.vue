@@ -191,15 +191,15 @@ export default defineComponent({
     class="nut-swipe" :style="touchStyle" @touchstart="touchMethods.onTouchStart" @touchmove="touchMethods.onTouchMove" @touchend="touchMethods.onTouchEnd"
     @touchcancel="touchMethods.onTouchEnd"
   >
-    <view :id="leftRefId" class="nut-swipe__left" @click="onClick($event, 'left', true)">
+    <view :id="leftRefId" class="nut-swipe__left" @click="onClick($event as any, 'left', true)">
       <slot name="left" />
     </view>
 
-    <view class="nut-swipe__content" @click="onClick($event, 'content', lockClick)">
+    <view class="nut-swipe__content" @click="onClick($event as any, 'content', lockClick)">
       <slot name="default" />
     </view>
 
-    <view :id="rightRefId" class="nut-swipe__right" @click="onClick($event, 'right', true)">
+    <view :id="rightRefId" class="nut-swipe__right" @click="onClick($event as any, 'right', true)">
       <slot name="right" />
     </view>
   </view>

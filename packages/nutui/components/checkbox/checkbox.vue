@@ -138,7 +138,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" @click="handleClick">
+  <view :class="classes" @click="(handleClick as any)">
     <view v-if="shape === 'button'" :class="getButtonClass">
       <slot />
     </view>

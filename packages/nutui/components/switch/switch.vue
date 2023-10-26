@@ -59,7 +59,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="style" @click="onClick">
+  <view :class="classes" :style="style" @click="(onClick as any)">
     <view class="nut-switch-button">
       <slot v-if="loading" name="icon">
         <NutIcon name="loading1" :custom-color="activeColor" />

@@ -53,7 +53,7 @@ export default defineComponent({
       <view class="nut-fixed-nav__list">
         <view
           v-for="(item, index) in navList" :key="item.id || index"
-          class="nut-fixed-nav__list-item" :class="{ active: item.id === current }" @click="selected(item, $event)"
+          class="nut-fixed-nav__list-item" :class="{ active: item.id === current }" @click="selected(item, $event as any)"
         >
           <image :src="item.icon" />
           <view class="span">

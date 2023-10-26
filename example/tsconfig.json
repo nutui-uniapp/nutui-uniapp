@@ -13,6 +13,7 @@
     },
     "types": [
       "@dcloudio/types",
+      "nutui-uniapp/global.d.ts",
       "@uni-helper/uni-app-types"
     ],
     "sourceMap": true

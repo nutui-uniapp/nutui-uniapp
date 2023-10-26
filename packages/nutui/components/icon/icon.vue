@@ -46,8 +46,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <image v-if="isImage" :class="classes" :style="getStyle" :src="name" @click="handleClick" />
-  <text v-else :class="classes" :style="[getStyle, customStyle]" @click="handleClick" />
+  <image v-if="isImage" :class="classes" :style="getStyle" :src="name" @click="(handleClick as any)" />
+  <text v-else :class="classes" :style="[getStyle, customStyle]" @click="(handleClick as any)" />
 </template>
 
 <style lang="scss">

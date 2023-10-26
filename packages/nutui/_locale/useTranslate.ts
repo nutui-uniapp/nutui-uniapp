@@ -13,7 +13,7 @@ export function useTranslate(compName: string) {
    * @param args
    * @returns
    */
-  function translate(keyPath: string, ...args: unknown[]): string {
+  function translate(keyPath: string, ...args: []): string {
     // 依赖响应能力
     const { languages } = Locale
 

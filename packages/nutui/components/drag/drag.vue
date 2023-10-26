@@ -121,7 +121,7 @@ function touchMove(e: TouchEvent) {
       state.top = state.yPum
   }
 }
-function touchEnd(e: TouchEvent) {
+function _touchEnd(e: TouchEvent) {
   // const target = e.currentTarget as HTMLElement;
 
   const touch = e.changedTouches[0]
@@ -226,8 +226,8 @@ export default defineComponent({
     :class="[classes, myDragID]"
     :style="[getStyle, customStyle]"
     :catchtouchmove="true"
-    @touchstart="touchStart"
-    @touchmove="touchMove"
+    @touchstart="(touchStart as any)"
+    @touchmove="(touchMove as any)"
   >
     <slot />
   </view>

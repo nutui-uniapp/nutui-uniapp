@@ -92,6 +92,7 @@ declare module '@vue/runtime-core' {
     NutSkeleton: typeof import('nutui-uniapp/components/skeleton/skeleton.vue')['default']
     NutSku: typeof import('nutui-uniapp/components/sku/sku.vue')['default']
     NutSkuHeader: typeof import('nutui-uniapp/components/skuheader/skuheader.vue')['default']
+    NutSkuOperate: typeof import('nutui-uniapp/components/skuoperate/skuoperate.vue')['default']
     NutStep: typeof import('nutui-uniapp/components/step/step.vue')['default']
     NutSteps: typeof import('nutui-uniapp/components/steps/steps.vue')['default']
     NutSticky: typeof import('nutui-uniapp/components/sticky/sticky.vue')['default']

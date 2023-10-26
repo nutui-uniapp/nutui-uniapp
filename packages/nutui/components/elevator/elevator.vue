@@ -218,7 +218,7 @@ export default defineComponent({
             }"
             @click="handleClickItem(item[acceptKey], subitem)"
           >
-            <view v-if="!$slots.default" v-html="subitem.name" />
+            <rich-text v-if="!$slots.default" :nodes="subitem.name" />
             <slot v-else :item="subitem" />
           </view>
         </view>
@@ -227,7 +227,7 @@ export default defineComponent({
     <view v-show="scrollStart" v-if="indexList.length > 0" class="nut-elevator__code--current">
       {{ indexList[codeIndex][acceptKey] }}
     </view>
-    <view class="nut-elevator__bars" @touchstart="touchStart" @touchmove.stop.prevent="touchMove" @touchend="touchEnd">
+    <view class="nut-elevator__bars" @touchstart="(touchStart as any)" @touchmove.stop.prevent="(touchMove as any)" @touchend="touchEnd">
       <view class="nut-elevator__bars__inner">
         <view
           v-for="(item, index) in indexList"
