@@ -1,17 +1,54 @@
 {
-  "id": "nutui-uni",
-  "name": "nutui-uniapp",
-  "displayName": "nutui-uniapp",
-  "version": "1.2.3",
-  "description": "京东风格的轻量级移动端 Uniapp、Vue3 组件库（支持小程序开发）",
   "author": "yang1206 <y1149221897@outlook.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/nutui-uniapp/nutui-uniapp#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nutui-uniapp/nutui-uniapp.git"
-  },
   "bugs": "https://github.com/nutui-uniapp/nutui-uniapp/issues",
+  "dcloudext": {
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "",
+      "data": "",
+      "permissions": ""
+    },
+    "npmurl": "https://www.npmjs.com/package/nutui-uniapp",
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "type": "component-vue"
+  },
+  "description": "京东风格的轻量级移动端 Uniapp、Vue3 组件库（支持小程序开发）",
+  "displayName": "nutui-uniapp",
+  "engines": {
+    "HBuilderX": "^3.6.17"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*",
+    "./locale": {
+      "import": "./locale/index.mjs",
+      "types": "./locale/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "README.md",
+    "components",
+    "dist",
+    "global.d.ts",
+    "locale/**",
+    "styles"
+  ],
+  "homepage": "https://github.com/nutui-uniapp/nutui-uniapp#readme",
+  "id": "nutui-uni",
   "keywords": [
     "uniapp",
     "nutui",
@@ -22,116 +59,80 @@
     "vue3 component",
     "vite"
   ],
-  "sideEffects": [
-    "*.scss",
-    "*/components/**/*.vue"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./package.json": "./package.json",
-    "./locale": {
-      "types": "./locale/index.d.ts",
-      "import": "./locale/index.mjs"
-    },
-    "./*": "./*"
-  },
+  "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "README.md",
-    "components",
-    "dist",
-    "global.d.ts",
-    "locale/**",
-    "styles"
-  ],
-  "engines": {
-    "HBuilderX": "^3.6.17"
+  "name": "nutui-uniapp",
+  "peerDependencies": {
+    "@uni-helper/uni-app-types": "^0.5.10",
+    "vue": "^3.2.0"
   },
   "publishConfig": {
     "main": "./dist/index.cjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nutui-uniapp/nutui-uniapp.git"
+  },
   "scripts": {
     "build": "unbuild",
-    "stub": "unbuild --stub"
+    "stub": "unbuild --stub",
+    "type-check": "vue-tsc --noEmit"
   },
-  "peerDependencies": {
-    "@uni-helper/uni-app-types": "^0.5.10",
-    "vue": "^3.2.0"
-  },
-  "dcloudext": {
-    "type": "component-vue",
-    "sale": {
-      "regular": {
-        "price": "0.00"
-      },
-      "sourcecode": {
-        "price": "0.00"
-      }
-    },
-    "contact": {
-      "qq": ""
-    },
-    "declaration": {
-      "ads": "",
-      "data": "",
-      "permissions": ""
-    },
-    "npmurl": "https://www.npmjs.com/package/nutui-uniapp"
-  },
+  "sideEffects": [
+    "*.scss",
+    "*/components/**/*.vue"
+  ],
+  "types": "./dist/index.d.ts",
   "uni_modules": {
     "dependencies": [],
     "encrypt": [],
     "platforms": {
-      "cloud": {
-        "tcb": "y",
-        "aliyun": "y"
-      },
       "client": {
+        "App": {
+          "app-nvue": "u",
+          "app-vue": "u"
+        },
+        "H5-mobile": {
+          "Android Browser": "y",
+          "QQ浏览器(Android)": "y",
+          "Safari": "y",
+          "微信浏览器(Android)": "y"
+        },
+        "H5-pc": {
+          "Chrome": "y",
+          "Edge": "y",
+          "Firefox": "y",
+          "IE": "n",
+          "Safari": "y"
+        },
         "Vue": {
           "vue2": "n",
           "vue3": "y"
         },
-        "App": {
-          "app-vue": "u",
-          "app-nvue": "u"
-        },
-        "H5-mobile": {
-          "Safari": "y",
-          "Android Browser": "y",
-          "微信浏览器(Android)": "y",
-          "QQ浏览器(Android)": "y"
-        },
-        "H5-pc": {
-          "Chrome": "y",
-          "IE": "n",
-          "Edge": "y",
-          "Firefox": "y",
-          "Safari": "y"
-        },
         "小程序": {
-          "微信": "y",
-          "阿里": "y",
-          "百度": "u",
-          "字节跳动": "u",
           "QQ": "u",
-          "钉钉": "u",
+          "京东": "u",
+          "字节跳动": "u",
+          "微信": "y",
           "快手": "u",
-          "飞书": "u",
-          "京东": "u"
+          "百度": "u",
+          "钉钉": "u",
+          "阿里": "y",
+          "飞书": "u"
         },
         "快应用": {
           "华为": "u",
           "联盟": "u"
         }
+      },
+      "cloud": {
+        "aliyun": "y",
+        "tcb": "y"
       }
     }
-  }
+  },
+  "version": "1.2.3"
 }

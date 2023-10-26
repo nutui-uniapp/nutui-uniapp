@@ -45,7 +45,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes, customClass]" :style="[baseStyle, customStyle]" @click="handleClick">
+  <view :class="[classes, customClass]" :style="[baseStyle, customStyle]" @click="(handleClick as any)">
     <slot>
       <view v-if="$slots.icon" class="nut-cell__icon">
         <slot name="icon" />

@@ -256,7 +256,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-picker__list" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
+  <view class="nut-picker__list" @touchstart="(onTouchStart as any)" @touchmove="(onTouchMove as any)" @touchend="onTouchEnd">
     <view
       ref="roller"
       class="nut-picker-roller"

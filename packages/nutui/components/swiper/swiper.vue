@@ -348,10 +348,10 @@ export default defineComponent({
     :class="[classes, customClass]"
     :catch-move="isPreventDefault"
     :style="[customStyle]"
-    @touchstart="onTouchStart"
-    @touchmove="onTouchMove"
-    @touchend="onTouchEnd"
-    @touchcancel="onTouchEnd"
+    @touchstart="(onTouchStart as any)"
+    @touchmove="(onTouchMove as any)"
+    @touchend="(onTouchEnd as any)"
+    @touchcancel="(onTouchEnd as any)"
   >
     <view :class="classesInner" :style="state.style">
       <slot />

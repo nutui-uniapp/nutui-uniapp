@@ -273,7 +273,7 @@ export default defineComponent({
         'nut-noticebar__page--wrapable': wrapable,
       }"
       :style="barStyle"
-      @click="handleClick"
+      @click="(handleClick as any)"
     >
       <view class="nut-noticebar__page-lefticon">
         <slot name="left-icon">
@@ -285,13 +285,13 @@ export default defineComponent({
           ref="content"
           :class="wrapContentClass"
           :style="contentStyle"
-          @animationend="onAnimationEnd"
-          @webkitAnimationEnd="onAnimationEnd"
+          @animationend="(onAnimationEnd as any)"
+          @webkitAnimationEnd="(onAnimationEnd as any)"
         >
           <slot>{{ text }}</slot>
         </view>
       </view>
-      <view v-if="closeMode || $slots['right-icon']" class="nut-noticebar__page-righticon" @click.stop="onClickIcon">
+      <view v-if="closeMode || $slots['right-icon']" class="nut-noticebar__page-righticon" @click.stop="(onClickIcon as any)">
         <slot name="right-icon">
           <NutIcon name="circle-close" />
         </slot>

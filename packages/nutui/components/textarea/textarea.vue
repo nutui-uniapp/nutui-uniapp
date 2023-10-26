@@ -206,10 +206,9 @@ export default defineComponent({
       @input="change"
       @blur="blur"
       @focus="focus"
-      @change="endComposing"
-      @compositionend="endComposing"
-      @compositionstart="startComposing"
-      @confirm="confirm"
+      @change="(endComposing as any)"
+      @compositionend="(endComposing as any)"
+      @compositionstart="(startComposing as any)"
     />
     <view v-if="limitShow" class="nut-textarea__limit">
       {{ modelValue ? modelValue.length : 0 }}/{{ maxLength }}

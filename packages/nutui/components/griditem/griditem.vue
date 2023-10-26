@@ -90,7 +90,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="rootClass" :style="rootStyle" @click="handleClick">
+  <view :class="rootClass" :style="rootStyle" @click="(handleClick as any)">
     <view :class="contentClass">
       <slot />
       <view class="nut-grid-item__text">

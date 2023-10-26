@@ -15,7 +15,6 @@ const buttonIndex = ref(0)
 let startValue: SliderValue
 let currentValue: SliderValue
 
-const root = ref<HTMLElement>()
 const dragStatus = ref<'start' | 'draging' | ''>()
 const touch = useTouch()
 
@@ -325,9 +324,9 @@ export default defineComponent({
                 onTouchStart(e);
               }
             "
-            @touchmove.stop.prevent="onTouchMove"
-            @touchend.stop.prevent="onTouchEnd"
-            @touchcancel.stop.prevent="onTouchEnd"
+            @touchmove.stop.prevent="(onTouchMove as any)"
+            @touchend.stop.prevent="(onTouchEnd as any)"
+            @touchcancel.stop.prevent="(onTouchEnd as any)"
             @click="(e:any) => e.stopPropagation()"
           >
             <slot v-if="$slots.button" name="button" />
@@ -353,9 +352,9 @@ export default defineComponent({
                 onTouchStart(e);
               }
             "
-            @touchmove.stop.prevent="onTouchMove"
-            @touchend.stop.prevent="onTouchEnd"
-            @touchcancel.stop.prevent="onTouchEnd"
+            @touchmove.stop.prevent="(onTouchMove as any)"
+            @touchend.stop.prevent="(onTouchEnd as any)"
+            @touchcancel.stop.prevent="(onTouchEnd as any)"
             @click="(e:any) => e.stopPropagation()"
           >
             <slot v-if="$slots.button" name="button" />

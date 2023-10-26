@@ -151,8 +151,8 @@ const { translate } = useTranslate(componentName)
     style="height: 100%"
     @scrolltolower="lower"
     @scroll="scroll"
-    @touchstart="touchStart"
-    @touchmove="touchMove"
+    @touchstart="(touchStart as any)"
+    @touchmove="(touchMove as any)"
     @touchend="touchEnd"
   >
     <view class="nut-infinite-top" :style="getStyle">

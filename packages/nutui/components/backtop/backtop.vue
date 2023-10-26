@@ -60,7 +60,7 @@ export default defineComponent({
     >
       <slot name="content" />
     </scroll-view>
-    <view :class="classes" :style="style" @click.stop="click">
+    <view :class="classes" :style="style" @click.stop="(click as any)">
       <slot name="icon">
         <NutIcon :custom-color="customColor" name="top" :size="19" custom-class="nut-backtop-main" />
       </slot>

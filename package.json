@@ -36,7 +36,7 @@
     "commit": "git pull && git add -A && git-cz && git push",
     "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
     "build:uni": "esno scripts/uni.ts",
-    "lint-staged": "npm -C example run type-check && npx lint-staged"
+    "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged"
   },
   "dependencies": {
     "vue": "3.3.4"
@@ -77,7 +77,7 @@
     "vite": "4.4.11",
     "vitepress": "1.0.0-rc.22",
     "vitest": "^0.34.2",
-    "vue-tsc": "1.8.8"
+    "vue-tsc": "1.8.21"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

@@ -147,11 +147,11 @@ async function handleScrollEvent(e: any) {
     if (end.value >= state.list.length - 1)
       emit('scrollBottom')
   }
-  if (scrollTop > state.scrollTop)
-    emit('scrollUp', scrollTop)
+  // if (scrollTop > state.scrollTop)
+  //   emit('scrollUp', scrollTop)
 
-  else
-    emit('scrollDown', scrollTop)
+  // else
+  //   emit('scrollDown', scrollTop)
 
   state.scrollTop = scrollTop
 }

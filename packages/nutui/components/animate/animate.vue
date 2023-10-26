@@ -66,7 +66,7 @@ export default defineComponent({
       :style="{
         animationDuration: duration ? `${duration}ms` : undefined,
       }"
-      @click="handleClick"
+      @click="(handleClick as any)"
     >
       <slot />
     </view>
