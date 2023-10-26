@@ -16,6 +16,14 @@ export const inputProps = {
     type: String,
     default: '',
   },
+  placeholderStyle: {
+    type: String,
+    default: '',
+  },
+  placeholderClass: {
+    type: String,
+    default: 'input-placeholder',
+  },
   inputAlign: {
     type: String,
     default: 'left',

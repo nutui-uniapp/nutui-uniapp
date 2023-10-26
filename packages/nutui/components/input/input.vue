@@ -193,6 +193,8 @@ export default defineComponent({
             class="input-text"
             :style="[styles, props.customStyle]"
             :placeholder="placeholder"
+            :placeholder-style="placeholderStyle"
+            :placeholder-class="placeholderClass"
             :disabled="disabled"
             :readonly="readonly"
             :focus="autofocus"
