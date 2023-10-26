@@ -80,6 +80,17 @@ export default {
 | readonly    | 只读属性                                         | boolean        | `false`        |
 | disabled    | 禁用属性                                         | boolean        | `false`        |
 | autofocus   | 自动获取焦点                                     | boolean        | `false`        |
+| cursor-spacing | 指定光标与键盘的距离。取textarea距离底部的距离和cursor-spacing指定的距离的最小值作为光标与键盘的距离 | number | `0` |
+| cursor | 指定focus时的光标位置 | number | `-1` |
+| show-confirm-bar | 是否显示键盘上方带有”完成“按钮那一栏 | boolean | `false` |
+| selection-start | 光标起始位置，自动聚集时有效，需与selection-end搭配使用 | number | `-1` |
+| selection-end | 光标结束位置，自动聚集时有效，需与selection-start搭配使用 | number | `-1` |
+| adjust-position | 键盘弹起时，是否自动上推页面 | boolean | `false` |
+| hold-keyboard | focus时，点击页面的时候不收起键盘 | boolean | `false` |
+| disable-default-padding | 是否去掉 iOS 下的默认内边距 | boolean | `false` |
+| confirm-type | 设置键盘右下角按钮的文字，可选值 `send` `search` `next` `go` `done` `return` | string | `return` |
+| confirm-hold | 点击键盘右下角按钮时是否保持键盘不收起 | boolean | `false` |
+| adjust-keyboard-to | 键盘对齐位置，可选值 `cursor` `bottom` | string | `cursor` |
 
 ### Events
 
@@ -88,6 +99,7 @@ export default {
 | change | 输入框值改变时触发 | `value`       |
 | focus  | 聚焦时触发     | `event`       |
 | blur   | 失焦时触发     | `value,event` |
+| confirm | 点击完成按钮时触发 | `event` |
 
 ## 主题定制
 

@@ -88,6 +88,33 @@ export const inputProps = {
     type: String as PropType<InputMode>,
     default: 'text',
   },
+  cursorSpacing: {
+    type: Number,
+    default: 0,
+  },
+  alwaysEmbed: {
+    type: Boolean,
+    default: false,
+  },
+  confirmHold: {
+    type: Boolean,
+    default: false,
+  },
+  cursor: {
+    type: Number,
+  },
+  selectionStart: {
+    type: Number,
+    default: -1,
+  },
+  selectionEnd: {
+    type: Number,
+    default: -1,
+  },
+  holdKeyboard: {
+    type: Boolean,
+    default: false,
+  },
 }
 
 export const inputEmits = {
@@ -97,7 +124,7 @@ export const inputEmits = {
   'focus': (evt: any) => evt instanceof Object,
   'clear': () => true,
   'keypress': () => true,
-  'confirm': (_val: string, _val2: any) => true,
+  'confirm': (evt: any) => evt instanceof Object,
   'update:modelValue': (_val1?: string, _val2?: any) => true,
 }
 

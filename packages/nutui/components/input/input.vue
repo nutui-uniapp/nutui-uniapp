@@ -1,7 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script lang="ts" setup>
 import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import type { InputOnBlurEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
+import type { InputOnBlurEvent, InputOnFocusEvent, InputOnConfirmEvent } from '@uni-helper/uni-app-types'
 import { isH5 } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
@@ -162,6 +162,10 @@ function handleClear(event: Event) {
   emit('update:modelValue', '', event)
   emit('clear')
 }
+
+function handleConfirm(event: InputOnConfirmEvent) {
+  emit('confirm', event)
+}
 </script>
 
 <script lang="ts">
@@ -204,6 +208,13 @@ export default defineComponent({
             :adjust-position="adjustPosition"
             :always-system="alwaysSystem"
             :input-mode="inputMode"
+            :cursor-spacing="cursorSpacing"
+            :always-embed="alwaysEmbed"
+            :confirm-hold="confirmHold"
+            :cursor="cursor"
+            :selection-start="selectionStart"
+            :selection-end="selectionEnd"
+            :hold-keyboard="holdKeyboard"
             @input="handleInput"
             @focus="handleFocus"
             @blur="handleBlur"
@@ -211,6 +222,7 @@ export default defineComponent({
             @change="(endComposing as any)"
             @compositionend="(endComposing as any)"
             @compositionstart="(startComposing as any)"
+            @confirm="handleConfirm"
           >
           <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">

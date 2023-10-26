@@ -383,6 +383,13 @@
 | confirm-type | 键盘右下角按钮的文字，仅在`type='text'`时生效,可选值 `send`：发送、`search`：搜索、`next`：下一个、`go`：前往、`done`：完成 | string |   `done`   |
 | adjust-position | 键盘弹起时，是否自动上推页面     | boolean | `true` |
 | always-system | 是否强制使用系统键盘和 `Web-view` 创建的 `input` 元素。为 `true` 时，`confirm-type`、`confirm-hold` 可能失效    | boolean | `false` |
+| cursor-spacing | 指定光标与键盘的距离，取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离 | number | `0` |
+| always-embed | 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 (仅在 iOS 下生效) | boolean | `false` |
+| confirm-hold | 点击键盘右下角按钮时是否保持键盘不收起 | boolean | `false` |
+| cursor | 指定focus时的光标位置 | number | - |
+| selection-start | 光标起始位置，自动聚集时有效，需与selection-end搭配使用 | number | `-1` |
+| selection-end | 光标结束位置，自动聚集时有效，需与selection-start搭配使用 | number | `-1` |
+| hold-keyboard | focus时，点击页面的时候不收起键盘 | boolean | `false` |
 
 ### Events
 
@@ -394,6 +401,7 @@
 | clear  | 点击清除按钮时触发   | ``  |
 | click  | 点击组件时触发      | `event`  |
 | click-input      | 点击输入区域时触发      | `event`  |
+| confirm | 点击完成按钮时触发 | `event` |
 
 ### Slots
 
