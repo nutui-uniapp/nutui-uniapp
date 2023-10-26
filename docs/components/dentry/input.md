@@ -366,6 +366,8 @@
 | v-model      | 输入值，双向绑定                       | string         | -       |
 | type         | 输入框类型，支持原生 `input` 标签的所有 `type` 属性，另外还支持 `number` `digit`     | string         | `text`  |
 | placeholder  | 输入框为空时占位符                      | string         | -       |
+| placeholder-style | 指定 placeholder 的样式 | string | - |
+| placeholder-class | 指定 placeholder 的样式类 | string | `input-placeholder` |
 | input-align  | 输入框内容对齐方式，可选值 `left`、`center`、`right` | string | `left` |
 | custom-style  | 自定义的样式，对象形式。 | Object | {} |
 | border       | 是否显示下边框                         | boolean        | `true` |
