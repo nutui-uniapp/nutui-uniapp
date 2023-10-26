@@ -84,6 +84,10 @@ function blur(event: any) {
   emit('blur', event)
 }
 
+function confirm(event: any) {
+  emit('confirm', event)
+}
+
 const textareaHeight = ref(20)
 const heightSet = ref('auto')
 function getContentHeight() {
@@ -188,12 +192,24 @@ export default defineComponent({
       :maxlength="maxLength ? +maxLength : -1"
       :placeholder="placeholder || translate('placeholder')"
       :auto-focus="autofocus"
+      :cursor-spacing="cursorSpacing"
+      :cursor="cursor"
+      :show-confirm-bar="showConfirmBar"
+      :selection-start="selectionStart"
+      :selection-end="selectionEnd"
+      :adjust-position="adjustPosition"
+      :hold-keyboard="holdKeyboard"
+      :disable-default-padding="disableDefaultPadding"
+      :confirm-type="confirmType"
+      :confirm-hold="confirmHold"
+      :adjust-keyboard-to="adjustKeyboardTo"
       @input="change"
       @blur="blur"
       @focus="focus"
       @change="endComposing"
       @compositionend="endComposing"
       @compositionstart="startComposing"
+      @confirm="confirm"
     />
     <view v-if="limitShow" class="nut-textarea__limit">
       {{ modelValue ? modelValue.length : 0 }}/{{ maxLength }}
