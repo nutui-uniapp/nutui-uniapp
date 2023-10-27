@@ -1,3 +1,18 @@
+## [1.2.4](https://github.com/yang1206/uniapp-nutui/compare/v1.2.3...v1.2.4) (2023-10-27)
+
+
+### Bug Fixes
+
+* type error ([0b8ad0f](https://github.com/yang1206/uniapp-nutui/commit/0b8ad0f96d2d7b403023622ea0794e4b141466a7))
+* type error ([8498e02](https://github.com/yang1206/uniapp-nutui/commit/8498e02011786a9638ee2ebbb9a237de7eb5e449))
+
+
+### Features
+
+* **input:** 新增 placeholder-style 和 placeholder-class 属性 ([1409880](https://github.com/yang1206/uniapp-nutui/commit/14098807bdb90026d179eb24c739b4f854eeaf72))
+
+
+
 ## [1.2.3](https://github.com/yang1206/uniapp-nutui/compare/v1.2.2...v1.2.3) (2023-10-23)
 
 
