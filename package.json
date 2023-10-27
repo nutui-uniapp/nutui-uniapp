@@ -33,7 +33,6 @@
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "postinstall": "npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
-    "commit": "git pull && git add -A && git-cz && git push",
     "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
     "build:uni": "esno scripts/uni.ts",
     "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged"
@@ -54,7 +53,6 @@
     "bumpp": "^9.1.1",
     "consola": "^3.2.3",
     "conventional-changelog-cli": "^3.0.0",
-    "cz-git": "^1.7.0",
     "eslint": "^8.51.0",
     "esno": "^0.17.0",
     "fs-extra": "^11.1.1",
@@ -73,14 +71,14 @@
     "stylelint-order": "^6.0.3",
     "typescript": "5.2.2",
     "unbuild": "^2.0.0",
-    "uni-tsc": "^0.0.2",
     "vite": "4.4.11",
     "vitepress": "1.0.0-rc.22",
     "vitest": "^0.34.2",
     "vue-tsc": "1.8.21"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "npx commitlint --edit ${1}"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix",
