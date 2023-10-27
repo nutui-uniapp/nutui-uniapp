@@ -1,8 +1,6 @@
 /** @type {import('cz-git').UserConfig} */
 module.exports = {
-  rules: {
-    // @see: https://commitlint.js.org/#/reference-rules
-  },
+  extends: ['@commitlint/config-conventional'],
   prompt: {
     alias: { fd: 'docs: fix typos' },
     messages: {
