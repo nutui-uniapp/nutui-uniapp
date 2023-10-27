@@ -82,5 +82,5 @@
     "dev:quickapp-webview-union": "uni -p quickapp-webview-union",
     "type-check": "vue-tsc --noEmit"
   },
-  "version": "1.2.3"
+  "version": "1.2.4"
 }
