@@ -4,13 +4,9 @@
 
 常用于单元格左右滑删除等手势操作
 
-
-
 ## 代码演示
 
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -23,11 +19,7 @@
 </template>
 ```
 
-
-
 ### 禁止滑动
-
-
 
 ```html
 <template>
@@ -40,11 +32,7 @@
 </template>
 ```
 
-
-
 ### 左右滑动
-
-
 
 ```html
 <template>
@@ -61,11 +49,7 @@
 </template>
 ```
 
-
-
 ### 异步控制
-
-
 
 ```html
 <template>
@@ -105,11 +89,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义
-
-
 
 ```html
 <template>
@@ -142,7 +122,6 @@ export default {
 ### 使用 SwipeGroup 控制 Swipe 之间互斥
 
 此时各个 Swipe 的 name 为必填项。
-
 
 ```vue
 <template>
@@ -211,7 +190,6 @@ export default {
 |--------|------------------|---------------------|
 | open   | 滑动单元格侧边栏，left 指向左滑，right 指向右滑 | `name, position: 'left' | 'right'` |
 | close  | 收起单元格侧边栏，同上 | `name, position: 'left' | 'right'` |
-
 
 ## SwipeGroup
 

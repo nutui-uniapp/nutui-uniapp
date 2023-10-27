@@ -4,12 +4,9 @@
 
 用来对商品价格数值的小数点前后部分应用不同样式，还支持人民币符号、千位分隔符、设置小数点位数等功能。
 
-
 ### 价格大小
 
 支持 small、normal、large 三种尺寸，默认为 normal。
-
-
 
 ``` html
 <template>
@@ -19,13 +16,9 @@
 </template>
 ```
 
-
-
 ### 小数点位数
 
 `decimal-digits` 可设置小数点位数，默认展示2位小数。
-
-
 
 ``` html
 <template>
@@ -33,11 +26,7 @@
 </template>
 ```
 
-
-
 ### 划线价
-
-
 
 ``` html
 <template>
@@ -45,13 +34,9 @@
 </template>
 ```
 
-
-
 ### 货币符号
 
 `symbol` 可设置货币符号，默认为 `¥`。
-
-
 
 ``` html
 
@@ -60,13 +45,9 @@
 </template>
 ```
 
-
-
 ### 货币符号位置
 
 `position` 可以调整货币符号位置。
-
-
 
 ``` html
 <template>
@@ -74,21 +55,15 @@
 </template>
 ```
 
-
-
 ### 千位分隔
 
 `thousands` 可以按照千分号形式显示。
-
-
 
 ``` html
 <template>
     <nut-price :price="15213.1221" :decimal-digits="3" :thousands="true" />
 </template>
 ```
-
-
 
 ## API
 

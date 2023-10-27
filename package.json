@@ -27,15 +27,17 @@
     "docs:dev": "npm -C docs run dev",
     "docs:build": "npm -C docs run build",
     "docs:preview": "npm -C docs run serve",
+    "commit": "git-cz",
     "lint": "eslint . --fix",
+    "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
+    "lint:markdownlint": "markdownlint . --fix --ignore-path=.gitignore",
+    "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged",
     "clean": "npx rimraf ./node_modules ./**/**/node_modules",
     "release": "bumpp package.json packages/*/package.json example/package.json",
-    "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "postinstall": "npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
-    "build:uni": "esno scripts/uni.ts",
-    "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged"
+    "build:uni": "esno scripts/uni.ts"
   },
   "dependencies": {
     "vue": "3.3.4"
@@ -44,6 +46,7 @@
     "@antfu/eslint-config": "^1.0.0-beta.27",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/prompt": "^18.2.0",
     "@dcloudio/types": "^3.4.0",
     "@nutui/touch-emulator": "^1.0.0",
     "@types/fs-extra": "^11.0.1",
@@ -57,6 +60,7 @@
     "esno": "^0.17.0",
     "fs-extra": "^11.1.1",
     "lint-staged": "^13.2.2",
+    "markdownlint-cli": "^0.37.0",
     "postcss": "^8.4.31",
     "postcss-html": "^1.5.0",
     "sass": "^1.69.3",
@@ -82,12 +86,12 @@
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix",
-    "*.{scss,css,vue}": "stylelint  --fix --allow-empty-input"
+    "*.{scss,css,vue}": "stylelint  --fix --allow-empty-input",
+    "*.md": "markdownlint --fix --ignore-path=.gitignore"
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-git",
-      "useEmoji": true
+      "path": "@commitlint/prompt"
     }
   }
 }

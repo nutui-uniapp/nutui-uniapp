@@ -4,11 +4,7 @@
 
 数字滚动组件，用于数字的动态效果展示
 
-
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -18,11 +14,7 @@
 </template>
 ```
 
-
-
 ### 自定义数字图片展示
-
-
 
 ```html
 <template>
@@ -61,11 +53,7 @@ export default {
 </script>
 ```
 
-
-
 ### 抽奖
-
-
 
 ```html
 <template>
@@ -146,8 +134,6 @@ export default {
 </style>
 
 ```
-
-
 
 ## API
 

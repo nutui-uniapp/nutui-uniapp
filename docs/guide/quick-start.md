@@ -18,6 +18,7 @@
   ```bash [npm]
   npm install nutui-uniapp
   ```
+
   :::
 
 ### 配置 nutui-uniapp
@@ -38,11 +39,13 @@
   }
 }
 ```
+
 ### 组件TS类型支持
 
 想要获取全局组件类型， 需要使用 vscode与[volar插件](https://cn.vuejs.org/guide/typescript/overview.html#volar-takeover-mode)
 
 请在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型。
+
 ```json
 // tsconfig.json
 {
@@ -77,7 +80,7 @@ export default defineConfig({
 
 如果你使用 `pnpm` ，请在根目录下创建一个 `.npmrc` 文件，参见[issue](https://github.com/antfu/unplugin-vue-components/issues/389)。
 
-```
+```bash
 // .npmrc
 public-hoist-pattern[]=@vue*
 // or
@@ -171,6 +174,7 @@ export default defineConfig({
 ```
 
 然后就可以使用组件了
+
 ```html
 <template>
   <nut-button type="primary">

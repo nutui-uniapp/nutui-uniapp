@@ -55,9 +55,7 @@
 </template>
 ```
 
-
 ### 垂直分割线
-
 
 ``` html
 <template>
@@ -70,7 +68,6 @@
   </div>
 </template>
 ```
-
 
 ## API
 

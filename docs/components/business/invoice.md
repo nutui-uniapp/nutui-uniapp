@@ -4,10 +4,7 @@
 
 展示申请发票页面。
 
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -121,8 +118,6 @@ export default {
 </script>
 ```
 
-
-
 ## API
 
 ### Props
@@ -144,7 +139,7 @@ export default {
 | placeholder   | 输入框 `placeholder`           | string                                  |
 | radio-label   | 单选 `label`           | string                                  |
 | form-item-prop | 表单域 `v-model` 字段， 在使用表单校验功能的情况下，该属性是必填的 | string |
-| rules | 校验规则，[可参考 FormItem Rule 数据结构](#/zh-CN/form) | Array |
+| rules | 校验规则，[可参考 FormItem Rule 数据结构](/components/dentry/form) | Array |
 | required | 是否显示必填字段的标签旁边的红色星号 | boolean |
 
 ### Events

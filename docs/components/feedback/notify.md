@@ -147,6 +147,7 @@ export default {
 ```
 
 ### 留出顶部安全距离
+
 ```html
 <template>
   <nut-cell is-link @click="showNotify1">

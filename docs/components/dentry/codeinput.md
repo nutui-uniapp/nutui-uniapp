@@ -110,4 +110,3 @@ export default {
 | --nut-code-input-cursor-animation-duration| _1s_   |
 | --nut-code-input-cursor-animation-name| _nut-cursor-flicker_   |
 | --nut-code-input-content-color| _var(--nut-code-content-color)_   |
-

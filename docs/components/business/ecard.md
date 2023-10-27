@@ -6,8 +6,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
   <nut-ecard
@@ -58,8 +56,6 @@
   };
 </script>
 ```
-
-
 
 ## API
 

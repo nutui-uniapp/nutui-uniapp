@@ -9,8 +9,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
   <nut-picker :columns="columns" title="城市选择" @confirm="confirm"></nut-picker>
@@ -43,13 +41,9 @@
 </script>
 ```
 
-
-
 ### 搭配 Popup 使用
 
 Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
-
-
 
 ```html
 <template>
@@ -94,13 +88,9 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </script>
 ```
 
-
-
 ### 默认选中项
 
 通过设置 `modelValue` 实现默认选中项，`modelValue` 是一个包含每项配置 value 值的数组。
-
-
 
 ```html
 <template>
@@ -141,13 +131,9 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </script>
 ```
 
-
-
 ### 平铺展示
 
 属性 `threeDimensional` 可关闭 3D 滚动效果。
-
-
 
 ```html
 <template>
@@ -189,13 +175,9 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </script>
 ```
 
-
-
 ### 多列展示
 
 `columns` 属性可以通过二维数组的形式配置多列选择。
-
-
 
 ```html
 <template>
@@ -248,13 +230,9 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </script>
 ```
 
-
-
 ### 多级联动
 
 使用 `columns` 属性的 `children` 字段可以实现选项级联的效果。
-
-
 
 ```html
 <template>
@@ -332,13 +310,9 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 </script>
 ```
 
-
-
 ### 异步获取
 
 在实际开发中，大部分情况 `Columns` 属性的数据是通过异步方式获取的。
-
-
 
 ```html
 <template>
@@ -390,7 +364,6 @@ Picker 通常作为用于辅助表单填写，可以搭配 Popup 实现效果。
 
 可以使用 `field-names` 属性自定义 `columns` 中数据的格式。
 
-
 ```vue
 <script setup>
 import { ref } from 'vue'
@@ -435,7 +408,6 @@ function confirm({ selectedValue, selectedOptions }) {
   <nut-picker v-model="value" :columns="columns" :field-names="fieldNames" title="城市选择" @confirm="confirm" />
 </template>
 ```
-
 
 ## API
 

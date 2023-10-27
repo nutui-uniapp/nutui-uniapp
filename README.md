@@ -3,7 +3,7 @@
 width="100"
 height="100" style="max-width: 100%;" />
 </p>
-<h1 align="center">NutUi-uniapp</h1>
+<h1 align="center">nutui-uniapp</h1>
 <p align="center">京东风格的轻量级 uni-app 组件库，支持移动端 H5 和 小程序开发</p>
 <p align="center">
 <a href="https://github.com/nutui-uniapp/nutui-uniapp">
@@ -29,7 +29,7 @@ height="100" style="max-width: 100%;" />
 
 ## 介绍
 
-NutUi-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了uni-app, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
+nutui-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版本修改而来，适配了uni-app, 使用 Vue 技术栈开发小程序应用，开箱即用，拥有丰富的业务组件。
 
 ## 特性
 
@@ -45,7 +45,6 @@ NutUi-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 ## 快速开始
 
 请参考[快速开始](https://nutui-uniapp.netlify.app/guide/quick-start.html)。
-
 
 ## 链接
 
@@ -67,7 +66,6 @@ NutUi-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 <a href="https://github.com/nutui-uniapp/nutui-uniapp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nutui-uniapp/nutui-uniapp" />
 </a>
-
 
 ## 感谢
 

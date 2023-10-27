@@ -1,54 +1,39 @@
 ## [1.2.4](https://github.com/yang1206/uniapp-nutui/compare/v1.2.3...v1.2.4) (2023-10-27)
 
-
 ### Bug Fixes
 
 * type error ([0b8ad0f](https://github.com/yang1206/uniapp-nutui/commit/0b8ad0f96d2d7b403023622ea0794e4b141466a7))
 * type error ([8498e02](https://github.com/yang1206/uniapp-nutui/commit/8498e02011786a9638ee2ebbb9a237de7eb5e449))
-
 
 ### Features
 
 * **input:** 新增 placeholder-style 和 placeholder-class 属性 ([1409880](https://github.com/yang1206/uniapp-nutui/commit/14098807bdb90026d179eb24c739b4f854eeaf72))
 * 补充input、textarea部分属性 &nbsp;-&nbsp; by @xiaohe0601 [<samp>(b5bc4cf)</samp>](https://github.com/nutui-uniapp/nutui-uniapp/commit/b5bc4cf)
 
-
-
 ## [1.2.3](https://github.com/yang1206/uniapp-nutui/compare/v1.2.2...v1.2.3) (2023-10-23)
-
 
 ### Bug Fixes
 
 * (searchbar) autofocus无效 ([f467a11](https://github.com/yang1206/uniapp-nutui/commit/f467a111337bafcc4963d5fa7a4238de797f46e0))
 
-
-
 ## [1.2.2](https://github.com/yang1206/uniapp-nutui/compare/v1.2.1...v1.2.2) (2023-10-23)
-
 
 ### Bug Fixes
 
 * (input) 修复 input 事件缺失 ([a34e543](https://github.com/yang1206/uniapp-nutui/commit/a34e543a7ae37ff1d0fad1cee06e79be8f868ecf)), closes [#79](https://github.com/yang1206/uniapp-nutui/issues/79)
 * 修复lockScroll无效 ([520d693](https://github.com/yang1206/uniapp-nutui/commit/520d6939639d76871255b1953ecbbf8045d2318d))
 
-
 ### Features
 
 * (imagepreview) 支持双指缩放图片 ([c7a9a90](https://github.com/yang1206/uniapp-nutui/commit/c7a9a9073fdc017ce93ddc47825c2290b53e34e7))
 
-
-
 ## [1.2.1](https://github.com/yang1206/uniapp-nutui/compare/v1.2.0...v1.2.1) (2023-10-18)
-
 
 ### Bug Fixes
 
 * (number-keyboard) type="rightColumn"时，某些版本安卓机无法正常显示 ([a5307ba](https://github.com/yang1206/uniapp-nutui/commit/a5307bae5cc65cb0695823646a0b767edde4f399)), closes [#78](https://github.com/yang1206/uniapp-nutui/issues/78)
 
-
-
 # [1.2.0](https://github.com/yang1206/uniapp-nutui/compare/v1.1.10...v1.2.0) (2023-10-18)
-
 
 ### Bug Fixes
 
@@ -58,53 +43,37 @@
 * (tabs) 修复item设置disabled时仍可以滑动过去 ([3b7c77a](https://github.com/yang1206/uniapp-nutui/commit/3b7c77ab19fc56231444f5ee87305eb55356ba46))
 * (textarea) 修复readonly 属性失效与无法渲染换行 ([b8d37d4](https://github.com/yang1206/uniapp-nutui/commit/b8d37d40029fe484cd67e482efea00b704d9549f))
 
-
 ### Features
 
 * (searchbar) 增加cursor-spacing属性 ([42393ac](https://github.com/yang1206/uniapp-nutui/commit/42393acf21303d4b8553df8adf5dd9dbd2d0ac3d))
 * (sticky) 重构sticky组件 ([bb9457b](https://github.com/yang1206/uniapp-nutui/commit/bb9457b2ee7d2b90cf1f8fcdcf9b870c84b280a0))
 * 基础组件最外层元素 flex -> inline-flex ([e065f9f](https://github.com/yang1206/uniapp-nutui/commit/e065f9f034d0da2deed659c1a55cef93efde17b0))
 
-
-
 ## [1.1.10](https://github.com/yang1206/uniapp-nutui/compare/v1.1.9...v1.1.10) (2023-10-12)
 
-
-
 ## [1.1.9](https://github.com/yang1206/uniapp-nutui/compare/v1.1.8...v1.1.9) (2023-10-10)
-
 
 ### Bug Fixes
 
 * (address-list) 小程序点击事件无法阻止冒泡 ([38616a9](https://github.com/yang1206/uniapp-nutui/commit/38616a967ea792c99cd5ef12a866132467eff88b))
 
-
-
 ## [1.1.8](https://github.com/yang1206/uniapp-nutui/compare/v1.1.7...v1.1.8) (2023-09-22)
-
 
 ### Bug Fixes
 
 * type error ([85f9daf](https://github.com/yang1206/uniapp-nutui/commit/85f9daf3526233eeba6e3170554e4116886a95d5)), closes [#62](https://github.com/yang1206/uniapp-nutui/issues/62) [#62](https://github.com/yang1206/uniapp-nutui/issues/62)
 
-
-
 ## [1.1.7](https://github.com/yang1206/uniapp-nutui/compare/v1.1.6...v1.1.7) (2023-09-20)
-
 
 ### Features
 
 * (cascader) 增加标题配置项 ([d1fde7b](https://github.com/yang1206/uniapp-nutui/commit/d1fde7b09c209778f114bccc7a130c4762eb6c04))
 
-
-
 ## [1.1.6](https://github.com/yang1206/uniapp-nutui/compare/v1.1.5...v1.1.6) (2023-09-20)
-
 
 ### Bug Fixes
 
 * (searchbar) 修复抖音小程序searchbar输入抖动的问题 ([d634587](https://github.com/yang1206/uniapp-nutui/commit/d6345871aeb1a19244b87ca278d9dec4bd936e37))
-
 
 ### Features
 
@@ -112,59 +81,39 @@
 * (cell)  add desc slot ([eb0facf](https://github.com/yang1206/uniapp-nutui/commit/eb0facfe84e1ee7848053c198683d9f63ea73377))
 * (searchbar) 增加safe-area-inset-bottom 属性 ([8fc2907](https://github.com/yang1206/uniapp-nutui/commit/8fc2907ec987bdc2952d7f94c72996a5ba3eb5f9))
 
-
-
 ## [1.1.5](https://github.com/yang1206/uniapp-nutui/compare/v1.1.4...v1.1.5) (2023-09-18)
-
 
 ### Features
 
 * (button) 支持 open-type 等开放能力属性 ([eb72466](https://github.com/yang1206/uniapp-nutui/commit/eb724660ca3e163387863fc0260155004c832feb)), closes [#58](https://github.com/yang1206/uniapp-nutui/issues/58) [#58](https://github.com/yang1206/uniapp-nutui/issues/58)
 
-
-
 ## [1.1.4](https://github.com/yang1206/uniapp-nutui/compare/v1.1.3...v1.1.4) (2023-09-14)
-
 
 ### Bug Fixes
 
 * (cascader) 动态加载标题无法正确显示 ([a3d7594](https://github.com/yang1206/uniapp-nutui/commit/a3d7594510bdf5088646b0dd3cfb8ed62eb70b2c))
 
-
-
 ## [1.1.3](https://github.com/yang1206/uniapp-nutui/compare/v1.1.2...v1.1.3) (2023-09-08)
 
-
-
 ## [1.1.2](https://github.com/yang1206/uniapp-nutui/compare/v1.1.1...v1.1.2) (2023-09-08)
-
 
 ### Bug Fixes
 
 * 修复支付宝小程序编译失败 ([d814b4f](https://github.com/yang1206/uniapp-nutui/commit/d814b4ff073bc1f11bd971df8d035f0924ff16fe))
 
-
-
 ## [1.1.1](https://github.com/yang1206/uniapp-nutui/compare/v1.1.0...v1.1.1) (2023-09-07)
-
 
 ### Bug Fixes
 
 * (input) 自动聚焦无效 ([8744788](https://github.com/yang1206/uniapp-nutui/commit/874478877e38272c51b437cf17d20c2f272d8876)), closes [#39](https://github.com/yang1206/uniapp-nutui/issues/39)
 
-
-
 # [1.1.0](https://github.com/yang1206/uniapp-nutui/compare/v1.0.1...v1.1.0) (2023-09-07)
-
 
 ### Features
 
 * :sparkles: 新增Input组件customStyle自定义属性 ([c42a5fe](https://github.com/yang1206/uniapp-nutui/commit/c42a5fe0fc6ecb4bf89ff9a7213529055c2c8670))
 
-
-
 ## [1.0.1](https://github.com/yang1206/uniapp-nutui/compare/v1.0.0...v1.0.1) (2023-09-05)
-
 
 ### Bug Fixes
 
@@ -172,33 +121,23 @@
 * (picker)修复在非h5环境下多余引入导致无法真机调试 ([c9c8236](https://github.com/yang1206/uniapp-nutui/commit/c9c8236376cf190d20708202deb2c4b81cb7b691))
 * **input:** 修复type值number与digit两个校验逻辑反了 ([5c6c3a4](https://github.com/yang1206/uniapp-nutui/commit/5c6c3a4c1dcf24450f966988d93baf293fe4c720))
 
-
 ### Features
 
 * :sparkles: 地址列表组件新增index索引回调 ([3f3bbc0](https://github.com/yang1206/uniapp-nutui/commit/3f3bbc00c74f6673322dc6cfa509f297dacc8299))
 
-
-
 # [1.0.0](https://github.com/yang1206/uniapp-nutui/compare/v0.3.1...v1.0.0) (2023-08-30)
-
 
 ### Bug Fixes
 
 * :bug: 解决因组件使用img标签导致微信小程序编译出错问题 ([856f317](https://github.com/yang1206/uniapp-nutui/commit/856f3177ea4a34a6473c51d864324b2b314d5927))
 
-
-
 ## [0.3.1](https://github.com/yang1206/uniapp-nutui/compare/v0.3.0...v0.3.1) (2023-08-29)
-
 
 ### Features
 
 * (card) 不填写价格则不展示 ([5f3bf98](https://github.com/yang1206/uniapp-nutui/commit/5f3bf98257d58ec530a853c8217b0fa4c6117084))
 
-
-
 # [0.3.0](https://github.com/yang1206/uniapp-nutui/compare/v0.2.5...v0.3.0) (2023-08-28)
-
 
 ### Bug Fixes
 
@@ -207,15 +146,11 @@
 * (picker) 小程序环境切换选项无响应 ([06ca0e8](https://github.com/yang1206/uniapp-nutui/commit/06ca0e86c990aa8caec56c1edbdc6217f576a664))
 * (picker) 修复 field-names 在级联模式下的问题 ([a5fa8cf](https://github.com/yang1206/uniapp-nutui/commit/a5fa8cf18fabc526156ff7aec0207b79bc6fc811))
 
-
 ### Features
 
 * (picker) support custom column field names ([808482d](https://github.com/yang1206/uniapp-nutui/commit/808482dbf9b50d7559bbef9c4977fbb6d7a1445e))
 
-
-
 ## [0.2.5](https://github.com/yang1206/uniapp-nutui/compare/v0.2.4...v0.2.5) (2023-08-24)
-
 
 ### Bug Fixes
 
@@ -223,28 +158,19 @@
 * (dialog) 修复通过ref调用对话框时，noCancelBtn属性无效的bug ([6f7d516](https://github.com/yang1206/uniapp-nutui/commit/6f7d516320044ca8d96104531725eb8556732367))
 * (input) 修复左右插件默认文字无法显示 ([8b59931](https://github.com/yang1206/uniapp-nutui/commit/8b59931b4c1f6080ee320af9fa0a4072ec03c235))
 
-
-
 ## [0.2.4](https://github.com/yang1206/uniapp-nutui/compare/v0.2.3...v0.2.4) (2023-08-18)
-
 
 ### Bug Fixes
 
 * (radio) 自定义图标 slot丢失 ([7ac6772](https://github.com/yang1206/uniapp-nutui/commit/7ac6772e0ea1775ff739803386cff1d2a8b17617)), closes [#15](https://github.com/yang1206/uniapp-nutui/issues/15)
 
-
-
 ## [0.2.3](https://github.com/yang1206/uniapp-nutui/compare/v0.2.2...v0.2.3) (2023-08-18)
-
 
 ### Bug Fixes
 
 * (configProvider) 修复取值错误问题 ([3a5d5fb](https://github.com/yang1206/uniapp-nutui/commit/3a5d5fb36c33ec35394b74aa443c62ad753ec992))
 
-
-
 ## [0.2.2](https://github.com/yang1206/uniapp-nutui/compare/v0.2.1...v0.2.2) (2023-08-09)
-
 
 ### Bug Fixes
 
@@ -252,10 +178,7 @@
 * (input) 小程序部分type 属性失效 ([a88fa69](https://github.com/yang1206/uniapp-nutui/commit/a88fa69346dd0ce9b68c6d33b94f59915ab09ae5))
 * (tabbar) 切换事件回调参数丢失 ([9979494](https://github.com/yang1206/uniapp-nutui/commit/9979494fbb4c35b73ced81baee8ba94ea44761dc)), closes [#10](https://github.com/yang1206/uniapp-nutui/issues/10) [#10](https://github.com/yang1206/uniapp-nutui/issues/10)
 
-
-
 ## [0.2.1](https://github.com/yang1206/uniapp-nutui/compare/v0.2.0...v0.2.1) (2023-08-05)
-
 
 ### Bug Fixes
 
@@ -263,10 +186,7 @@
 * (input) 修复空白节点导致的样式对齐问题 ([11b1d87](https://github.com/yang1206/uniapp-nutui/commit/11b1d870030a3a9b4ba9037c2d14735186b65ab0))
 * (uploader) name参数无效 ([b21acd0](https://github.com/yang1206/uniapp-nutui/commit/b21acd0c1b61fae6a6cdd6ecb1d8db7084820bbc)), closes [#9](https://github.com/yang1206/uniapp-nutui/issues/9)
 
-
-
 # [0.2.0](https://github.com/yang1206/uniapp-nutui/compare/v0.1.8...v0.2.0) (2023-07-30)
-
 
 ### Bug Fixes
 
@@ -276,37 +196,25 @@
 * (form) 小程序验证失效 ([9067f4d](https://github.com/yang1206/uniapp-nutui/commit/9067f4dc167ecc13587bc7714810ae4fea0eb0d4))
 * (price) 修复小程序下符号转义丢失问题 ([9194c4c](https://github.com/yang1206/uniapp-nutui/commit/9194c4c59dab0a64383d5b86eb78473c43e4c019))
 
-
-
 ## [0.1.8](https://github.com/yang1206/uniapp-nutui/compare/v0.1.7...v0.1.8) (2023-07-24)
-
 
 ### Bug Fixes
 
 * (codeInput) 双向绑定失效 ([b9ef603](https://github.com/yang1206/uniapp-nutui/commit/b9ef6034a79b043991b63e032f2a24212d8bb46a))
 
-
-
 ## [0.1.7](https://github.com/yang1206/uniapp-nutui/compare/v0.1.6...v0.1.7) (2023-07-22)
-
 
 ### Features
 
 * 同步修复 ([dad75c8](https://github.com/yang1206/uniapp-nutui/commit/dad75c84907a6f9464db94581223d73108af6aab))
 
-
-
 ## [0.1.6](https://github.com/yang1206/uniapp-nutui/compare/v0.1.5...v0.1.6) (2023-07-15)
-
 
 ### Bug Fixes
 
 * 同步nutui的修复 ([94b3b27](https://github.com/yang1206/uniapp-nutui/commit/94b3b27b7cf097be660e0d254bb6001cca577a07))
 
-
-
 ## [0.1.5](https://github.com/yang1206/uniapp-nutui/compare/v0.1.4...v0.1.5) (2023-07-13)
-
 
 ### Features
 
@@ -314,57 +222,40 @@
 * 新增loadingpage组件 ([4ae2c12](https://github.com/yang1206/uniapp-nutui/commit/4ae2c125240e933e5b95209411904d4854a89413))
 * 移植nutbingo的部分抽奖组件 ([6e19b1a](https://github.com/yang1206/uniapp-nutui/commit/6e19b1a9c62dd878bf77a32a90fce17b35d83afb))
 
-
-
 ## [0.1.4](https://github.com/yang1206/uniapp-nutui/compare/v0.1.3...v0.1.4) (2023-07-09)
-
 
 ### Bug Fixes
 
 * 修复elevator在小程序环境文字不显示 ([87fc4e9](https://github.com/yang1206/uniapp-nutui/commit/87fc4e91222e3052d1c0ee849d8b7715d8768177))
 
-
 ### Features
 
 * 增加组件全局类型定义文件 ([c84da47](https://github.com/yang1206/uniapp-nutui/commit/c84da47d8ad9a414965f8bc9f8d033f5bbe90435))
 
-
-
 ## [0.1.3](https://github.com/yang1206/uniapp-nutui/compare/v0.1.2...v0.1.3) (2023-07-09)
-
 
 ### Bug Fixes
 
 * 修复h5部分组件样式错误 ([cfb1e4b](https://github.com/yang1206/uniapp-nutui/commit/cfb1e4b4a88a8a6d3f674fb0bacf9c5283caabe9))
 
-
 ### Features
 
 * 新增uni_modules安装方式 ([9df523b](https://github.com/yang1206/uniapp-nutui/commit/9df523bd65fcab1b3c57a1686381a0df278855a9))
 
-
-
 ## [0.1.2](https://github.com/yang1206/uniapp-nutui/compare/v0.1.1...v0.1.2) (2023-07-08)
-
 
 ### Bug Fixes
 
 * 修复运行时环境判断错误 ([ce3b0c7](https://github.com/yang1206/uniapp-nutui/commit/ce3b0c70e18826defb87074117294326240f42ec))
 
-
-
 ## [0.1.1](https://github.com/yang1206/uniapp-nutui/compare/v0.1.0...v0.1.1) (2023-07-07)
-
 
 ### Bug Fixes
 
 * 修复picker 在h5中适配错误 ([cdd9aa4](https://github.com/yang1206/uniapp-nutui/commit/cdd9aa4da991145776b10c4f76ae02dbc156110b))
 * 修复uploader组件自定义上传错误 ([af87d68](https://github.com/yang1206/uniapp-nutui/commit/af87d6852dca14f7f212141bfbb80f247bcb8cbf))
 
-
-
 # [0.1.0](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.1.0) (2023-07-07)
-
 
 ### Bug Fixes
 
@@ -372,12 +263,9 @@
 * 修复支付宝小程序不支持编译错误 ([2c8e0dd](https://github.com/yang1206/uniapp-nutui/commit/2c8e0dda43ad9687211d8f939a6ad20230c4d486))
 * 修复支付宝小程序中部分兼容问题 ([6fa5132](https://github.com/yang1206/uniapp-nutui/commit/6fa513211ffdf60bf9592be198befb2e5c690122))
 * 修复h5组件之间引用样式丢失 ([d884e28](https://github.com/yang1206/uniapp-nutui/commit/d884e28d8210308bed1aeb4a488bc3f9f0963aed))
-
-
 
 ## [0.0.9](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.0.9) (2023-07-06)
 
-
 ### Bug Fixes
 
 * 修复小程序暗黑模式失效 ([a445f04](https://github.com/yang1206/uniapp-nutui/commit/a445f042bd8ab1d0ecdc9f738a9eff704a299fe7))
@@ -385,62 +273,43 @@
 * 修复支付宝小程序中部分兼容问题 ([6fa5132](https://github.com/yang1206/uniapp-nutui/commit/6fa513211ffdf60bf9592be198befb2e5c690122))
 * 修复h5组件之间引用样式丢失 ([d884e28](https://github.com/yang1206/uniapp-nutui/commit/d884e28d8210308bed1aeb4a488bc3f9f0963aed))
 
-
-
 ## [0.0.8](https://github.com/yang1206/uniapp-nutui/compare/v0.0.7...v0.0.8) (2023-07-05)
-
 
 ### Bug Fixes
 
 * 修复支付宝小程序编译错误 ([bdd6540](https://github.com/yang1206/uniapp-nutui/commit/bdd65408d77aff73509da7d18a2d04d11b105904))
 * 修复h5组件之间引用样式丢失 ([b784635](https://github.com/yang1206/uniapp-nutui/commit/b7846354ffb7355a1328f804aa689b1e85487807))
 
-
-
 ## [0.0.7](https://github.com/yang1206/uniapp-nutui/compare/v0.0.6...v0.0.7) (2023-07-04)
-
 
 ### Bug Fixes
 
 * 修复小程序暗黑模式失效 ([753f87a](https://github.com/yang1206/uniapp-nutui/commit/753f87ae5c7a9f69e789e18b346ac1b4393f581d))
 
-
-
 ## [0.0.6](https://github.com/yang1206/uniapp-nutui/compare/v0.0.5...v0.0.6) (2023-07-03)
-
 
 ### Bug Fixes
 
 * sku 样式错乱 ([ebdd0df](https://github.com/yang1206/uniapp-nutui/commit/ebdd0dfeba50ba53a6126e8e3dc12b0f69c39f6c))
 
-
-
 ## [0.0.5](https://github.com/yang1206/uniapp-nutui/compare/v0.0.4...v0.0.5) (2023-07-03)
-
 
 ### Bug Fixes
 
 * 修复addresslist 样式丢失 ([a36e7e2](https://github.com/yang1206/uniapp-nutui/commit/a36e7e248bc5071978574a016b1e6a967053f690))
 
-
-
 ## [0.0.4](https://github.com/yang1206/uniapp-nutui/compare/v0.0.3...v0.0.4) (2023-07-03)
-
 
 ### Bug Fixes
 
 * 微信小程序打包生成无意义的index.js文件 ([9c9804d](https://github.com/yang1206/uniapp-nutui/commit/9c9804dea5646a74da163feb176058129d0e2e34))
 * 修复steps 在小程序样式混乱 ([72bbb19](https://github.com/yang1206/uniapp-nutui/commit/72bbb19f34d93598fb40f50e3d54c3b5257825ff))
 
-
-
 ## [0.0.1](https://github.com/yang1206/uniapp-nutui/compare/89499ddbcc62fc62228a0f18ce076511287b5dd5...v0.0.1) (2023-07-02)
-
 
 ### Bug Fixes
 
 * 解决一些已知问题 ([b00a7c4](https://github.com/yang1206/uniapp-nutui/commit/b00a7c416b1f8077968b6e599637b92814481926))
-
 
 ### Features
 
@@ -466,6 +335,3 @@
 * tabs ([e31e9f5](https://github.com/yang1206/uniapp-nutui/commit/e31e9f546c2054c2f196212ca2e03d4bba40168d))
 * toast ([281f225](https://github.com/yang1206/uniapp-nutui/commit/281f225ba296b463e124dce51f69689a0bdb3c23))
 * transition 支持自定义动画 ([4fd9314](https://github.com/yang1206/uniapp-nutui/commit/4fd931469a5aa867a040cc625a5b6226b5cb5c77))
-
-
-

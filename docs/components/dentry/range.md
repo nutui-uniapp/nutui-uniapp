@@ -4,11 +4,7 @@
   
 滑动输入条，用于在给定的范围内选择一个值。
 
-
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -33,11 +29,7 @@
 
 ```
 
-
-
 ### 双滑块
-
-
 
 ```html
 <template>
@@ -61,11 +53,7 @@ export default {
 </script>
 ```
 
-
-
 ### 指定范围
-
-
 
 ```html
 <template>
@@ -89,11 +77,7 @@ export default {
 </script>
 ```
 
-
-
 ### 设置步长
-
-
 
 ```html
 <template>
@@ -117,11 +101,7 @@ export default {
 </script>
 ```
 
-
-
 ### 隐藏范围
-
-
 
 ```html
 <template>
@@ -145,11 +125,7 @@ export default {
 </script>
 ```
 
-
-
 ### 隐藏标签
-
-
 
 ```html
 <template>
@@ -173,11 +149,7 @@ export default {
 </script>
 ```
 
-
-
 ### 禁用
-
-
 
 ```html
 <template>
@@ -201,11 +173,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义样式
-
-
 
 ```html
 <template>
@@ -235,11 +203,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义按钮
-
-
 
 ```html
 <style>
@@ -278,11 +242,7 @@ export default {
 </script>
 ```
 
-
-
 ### 垂直方向
-
-
 
 ```html
 <style>
@@ -326,11 +286,7 @@ export default {
 </script>
 ```
 
-
-
 ### 刻度标记
-
-
 
 ```html
 <style>
@@ -399,8 +355,6 @@ export default {
 };
 </script>
 ```
-
-
 
 ## API
   

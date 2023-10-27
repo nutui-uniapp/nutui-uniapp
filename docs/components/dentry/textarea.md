@@ -4,11 +4,7 @@
 
 文本框内输入或编辑文字，支持限制输入数量。
 
-
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -25,11 +21,7 @@ export default {
 </script>
 ```
 
-
-
 ### 显示字数统计
-
-
 
 ```html
 <template>
@@ -37,11 +29,7 @@ export default {
 </template>
 ```
 
-
-
 ### 高度自定义，拉伸
-
-
 
 ```html
 <template>
@@ -49,11 +37,7 @@ export default {
 </template>
 ```
 
-
-
 ### 只读、禁用
-
-
 
 ```html
 <template>
@@ -61,8 +45,6 @@ export default {
   <nut-textarea disabled model-value="textarea 禁用状态" />
 </template>
 ```
-
-
 
 ## API
 

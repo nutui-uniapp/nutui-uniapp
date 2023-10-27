@@ -4,11 +4,7 @@
 
 空状态时的占位提示
 
-
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -16,11 +12,7 @@
 </template>
 ```
 
-
-
 ### 图片类型
-
-
 
 ```html
 <template>
@@ -49,11 +41,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义图片
-
-
 
 ```html
 <template>
@@ -65,11 +53,7 @@ export default {
 </template>
 ```
 
-
-
 ### 底部内容
-
-
 
 ```html
 <template>
@@ -80,8 +64,6 @@ export default {
   </nut-empty>
 </template>
 ```
-
-
 
 ## API
 

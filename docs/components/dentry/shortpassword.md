@@ -8,8 +8,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
   <nut-cell title="基础用法" is-link @click="state.visible1 = true;"></nut-cell>
@@ -43,11 +41,7 @@ export default{
 </script>
 ```
 
-
-
 ### 自定义密码长度4
-
-
 
 ```html
 <template>
@@ -98,11 +92,7 @@ export default{
 </script>
 ```
 
-
-
 ### 忘记密码提示语事件回调
-
-
 
 ```html
 <template>
@@ -150,11 +140,7 @@ export default{
 </script>
 ```
 
-
-
 ### 错误提示语
-
-
 
 ```html
 <template>
@@ -203,8 +189,6 @@ export default{
   }
 </script>
 ```
-
-
 
 ## API
 

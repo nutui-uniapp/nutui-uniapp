@@ -4,11 +4,9 @@
 
 虚拟数字键盘，用于输入支付密码的场景。
 
-
 ### 默认键盘
 
 在线调试请将浏览器变为手机模式
-
 
 ```html
 <template>
@@ -45,11 +43,7 @@ export default{
 </script>
 ```
 
-
-
 ### 带右侧栏键盘
-
-
 
 ```html
 <template>
@@ -93,11 +87,7 @@ export default{
 </script>
 ```
 
-
-
 ### 随机数键盘
-
-
 
 ```html
 <template>
@@ -139,11 +129,7 @@ export default{
 </script>
 ```
 
-
-
 ### 带标题栏键盘
-
-
 
 ```html
 <template>
@@ -184,11 +170,7 @@ export default{
 </script>
 ```
 
-
-
 ### 身份证键盘
-
-
 
 ```html
 <template>
@@ -228,11 +210,7 @@ export default{
 </script>
 ```
 
-
-
 ### 双向绑定
-
-
 
 ```html
 <template>
@@ -274,8 +252,6 @@ export default{
   }
 </script>
 ```
-
-
 
 ## API
 

@@ -4,10 +4,7 @@
 
 日历，可平铺/弹窗展示
 
-
 ### 基础用法
-
-
 
 ```html
 <template>
@@ -58,11 +55,7 @@ export default {
 </script>
 ```
 
-
-
 ### 选择日期区间
-
-
 
 ```html
 <template>
@@ -122,11 +115,7 @@ export default {
 </style>
 ```
 
-
-
 ### 选择多个日期
-
-
 
 ```html
 <template>
@@ -183,13 +172,9 @@ export default {
 </script>
 ```
 
-
-
 ### 选择周
 
 当设置为周选择时，会根据`first-day-of-week` 判断周的起始与结束日期。如`first-day-of-week`为0时，一周的起始日期为星期日。其他情况时，一周的起始日期为星期一。
-
-
 
 ```html
 <template>
@@ -251,11 +236,7 @@ export default {
 </style>
 ```
 
-
-
 ### 快捷选择-单选
-
-
 
 ```html
 <template>
@@ -305,11 +286,7 @@ export default {
 </script>
 ```
 
-
-
 ### 快捷选择-范围选择
-
-
 
 ```html
 <template>
@@ -365,11 +342,7 @@ export default {
 </style>
 ```
 
-
-
 ### 自定义日历按钮
-
-
 
 ```html
 <template>
@@ -519,11 +492,7 @@ export default {
 </style>
 ```
 
-
-
 ### 自定义时间文案
-
-
 
 ```html
 <template>
@@ -651,11 +620,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义周起始日
-
-
 
 ```html
 <template>
@@ -746,8 +711,6 @@ export default {
 </style>
 
 ```
-
-
 
 ## API
 

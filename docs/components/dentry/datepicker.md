@@ -4,10 +4,7 @@
 
 时间选择器，支持日期、年月、时分等维度，通常与弹出层组件配合使用。
 
-
 ### 选择年月日
-
-
 
 ```html
 <template>
@@ -46,11 +43,7 @@
 
 ```
 
-
-
 ### 搭配 Popup 使用
-
-
 
 ```html
 <template>
@@ -100,13 +93,9 @@
 
 ```
 
-
-
 ### 选择月日
 
 DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `type` 设置为 year-month 即可选择年份和月份，设置为 month-day 即可选择月份和日期。
-
-
 
 ```html
 <template>
@@ -141,13 +130,9 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </script>
 ```
 
-
-
 ### 选择年月日时分
 
 将 `type` 设置为 datetime 即可选择完整的时间。
-
-
 
 ```html
 <template>
@@ -185,11 +170,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </script>
 ```
 
-
-
 ### 选择时分秒
-
-
 
 ```html
 <template>
@@ -225,11 +206,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </script>
 ```
 
-
-
 ### 选择时分 v4.0.5
-
-
 
 ```html
 <template>
@@ -265,13 +242,9 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </script>
 ```
 
-
-
 ### 格式化选项
 
 通过传入 `formatter` 函数，可以对选项文字进行格式化处理。 `isShowChinese` 属性同样是也为选项后面添加文案，但 `formatter` 函数的优先级高于 `isShowChinese` 属性。
-
-
 
 ```html
 <template>
@@ -331,11 +304,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </script>
 ```
 
-
-
 ### 分钟数递增步长设置
-
-
 
 ```html
 <template>
@@ -371,13 +340,9 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 </script>
 ```
 
-
-
 ### 过滤选项
 
 通过 `filter` 函数可以对选项数组进行过滤，实现自定义时间间隔。
-
-
 
 ```html
 <template>
@@ -442,8 +407,6 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
   };
 </script>
 ```
-
-
 
 ## API
 

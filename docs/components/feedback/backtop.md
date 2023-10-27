@@ -85,7 +85,6 @@ export default {
 | z-index         | 设置组件页面层级   | number  | `10`       |
 | custom-color         | 自定义图标颜色   | number  | `10`       |
 
-
 ### Events
 
 | 事件名  | 说明     | 回调参数    |

@@ -6,8 +6,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
   <nut-barrage ref="danmu" :danmu="list"></nut-barrage>
@@ -37,8 +35,6 @@ export default {
 };
 </script>
 ```
-
-
 
 ## API
 

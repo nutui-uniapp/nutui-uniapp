@@ -4,9 +4,7 @@
 
 给子元素添加动画效果
 
-
 ### 通过 show 控制动画
-
 
 ```vue
 <script setup>
@@ -42,8 +40,6 @@ function onClick2() {
 :::
 
 ### 循环动画
-
-
 
 ```vue
 <template>
@@ -84,7 +80,6 @@ function onClick2() {
   </nut-animate>
 </template>
 ```
-
 
 ### 点击触发
 

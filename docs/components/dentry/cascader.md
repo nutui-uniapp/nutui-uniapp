@@ -8,7 +8,6 @@
 
 传入`options`列表。
 
-
 ```html
 <template>
     <nut-cell title="选择地址" :desc="demo1.value.toString() || '请选择地址'" @click="demo1.visible = true"> </nut-cell>
@@ -92,12 +91,9 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义属性名称
 
 可通过`textKey`、`valueKey`、`childrenKey`指定属性名。
-
 
 ```html
 <template>
@@ -163,12 +159,9 @@ export default {
 </script>
 ```
 
-
-
 ### 动态加载
 
 使用`lazy`标识是否需要动态获取数据，此时不传`options`代表所有数据都需要通过`lazyLoad`加载，首次加载通过`root`属性区分，当遇到非叶子节点时会调用`lazyLoad`方法，参数为当前节点和`resolve`方法，注意`resolve`方法必须调用，不传子节点时会被当做叶子节点处理。
-
 
 ```html
 <template>
@@ -229,11 +222,7 @@ export default {
 </script>
 ```
 
-
-
 ### 部分数据动态加载
-
-
 
 ```html
 <template>
@@ -296,13 +285,9 @@ export default {
 </script>
 ```
 
-
-
 ### 自动转换
 
 如果你的数据为可转换为树形结构的扁平结构时，可以通过`convertConfig`告诉组件需要进行自动转换，`convertConfig`接受4个参数，`topId`为顶层节点的父级id，`idKey`为节点唯一id，`pidKey`为指向父节点id的属性名，存在`sortKey`将根据指定字段调用Array.prototype.sort()进行同层排序。
-
-
 
 ```html
 <template>
@@ -352,8 +337,6 @@ export default {
 }
 </script>
 ```
-
-
 
 ## API
 

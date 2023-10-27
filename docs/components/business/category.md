@@ -4,13 +4,10 @@
 
 用于展示商品分类的组件。
 
-
 ### 经典分类模式
 
 data 数据格式可参考
 [categoryData.js](https://storage.360buyimg.com/nutui/3x/categoryData.js)。
-
-
 
 ```html
 <template>
@@ -52,11 +49,7 @@ export default {
 </script>
 ```
 
-
-
 ### 只显示文字
-
-
 
 ```html
 <template>
@@ -102,11 +95,7 @@ export default {
 </script>
 ```
 
-
-
 ### 自定义分类
-
-
 
 ```html
 <template>
@@ -144,8 +133,6 @@ export default {
 };
 </script>
 ```
-
-
 
 ## API
 

@@ -4,7 +4,6 @@
 
 用于将本地的图片或文件上传至服务器。
 
-
 ### 基础用法
 
 ``` html
@@ -78,8 +77,6 @@
 
 ### 自定义上传方式(before-upload)
 
-
-
 ```html
 <template>
   <nut-uploader url="https://xxxx" :before-upload="beforeXhrUpload"></nut-uploader>
@@ -129,8 +126,6 @@ export default {
 }
 </script>
 ```
-
-
 
 ### 选中文件后，通过按钮手动执行上传
 

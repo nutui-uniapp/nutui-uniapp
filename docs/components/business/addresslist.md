@@ -6,8 +6,6 @@
 
 ### 基础用法
 
-
-
 ```html
 <template>
   <nut-address-list
@@ -66,11 +64,7 @@ export default {
 </script>
 ```
 
-
-
 ### 长按功能
-
-
 
 ```html
 <template>
@@ -146,11 +140,7 @@ export default {
 </script>
 ```
 
-
-
 ### 滑动功能
-
-
 
 ```html
 <template>
@@ -221,8 +211,6 @@ export default {
   };
 </script>
 ```
-
-
 
 ## API
 
