@@ -13,12 +13,13 @@ export function useTranslate(compName: string) {
    * @param args
    * @returns
    */
-  function translate(keyPath: string, ...args: []): string {
+  function translate(keyPath: string, ...args: unknown[]): string {
     // 依赖响应能力
     const { languages } = Locale
 
     const text = getPropByPath(languages(), `${compName.split('-').slice(1).join('-').replace('-', '')}.${keyPath}`) || getPropByPath(languages(), keyPath)
 
+    // @ts-expect-error no types
     return isFunction(text) ? text(...args) : text
   }
   return {

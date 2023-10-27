@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
+import type { TextareaConfirmType } from '@uni-helper/uni-app-types'
 import { isH5, isMpAlipay } from '../_utils'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
@@ -84,7 +85,7 @@ function blur(event: any) {
   emit('blur', event)
 }
 
-function confirm(event: any) {
+function _confirm(event: any) {
   emit('confirm', event)
 }
 
@@ -200,7 +201,7 @@ export default defineComponent({
       :adjust-position="adjustPosition"
       :hold-keyboard="holdKeyboard"
       :disable-default-padding="disableDefaultPadding"
-      :confirm-type="confirmType"
+      :confirm-type="confirmType as TextareaConfirmType"
       :confirm-hold="confirmHold"
       :adjust-keyboard-to="adjustKeyboardTo"
       @input="change"
