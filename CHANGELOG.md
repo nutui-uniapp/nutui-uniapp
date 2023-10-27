@@ -10,6 +10,7 @@
 ### Features
 
 * **input:** 新增 placeholder-style 和 placeholder-class 属性 ([1409880](https://github.com/yang1206/uniapp-nutui/commit/14098807bdb90026d179eb24c739b4f854eeaf72))
+* 补充input、textarea部分属性 &nbsp;-&nbsp; by @xiaohe0601 [<samp>(b5bc4cf)</samp>](https://github.com/nutui-uniapp/nutui-uniapp/commit/b5bc4cf)
 
 
 
