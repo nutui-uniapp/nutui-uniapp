@@ -54,6 +54,9 @@ importers:
       conventional-changelog-cli:
         specifier: ^3.0.0
         version: 3.0.0
+      cz-git:
+        specifier: ^1.7.1
+        version: 1.7.1
       eslint:
         specifier: ^8.51.0
         version: 8.51.0
@@ -6747,6 +6750,11 @@ packages:
       '@commitlint/load': 18.2.0(typescript@5.2.2)
     transitivePeerDependencies:
       - typescript
+    dev: true
+
+  /cz-git@1.7.1:
+    resolution: {integrity: sha512-NMe4REukCS7op1YA1jixRXOgII8Um2/Ii8TeyFEOISgp2ZzeobzkMOP8dXSrTQ3bvmm7YpPOdr2301yJkOJcbA==}
+    engines: {node: '>=v12.20.0'}
     dev: true
 
   /dargs@7.0.0:
