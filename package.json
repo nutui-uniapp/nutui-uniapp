@@ -54,6 +54,7 @@
     "@uni-helper/uni-app-types": "^0.5.12",
     "@vue/tsconfig": "^0.4.0",
     "bumpp": "^9.1.1",
+    "commitizen": "^4.3.0",
     "consola": "^3.2.3",
     "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.51.0",
