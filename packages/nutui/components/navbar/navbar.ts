@@ -41,6 +41,13 @@ export const navbarProps = {
 export type NavBarProps = ExtractPropTypes<typeof navbarProps>
 
 export const navbarEmits = {
+  clickBack: () => true,
+  clickTitle: () => true,
+  clickIcon: () => true,
+  clickRight: () => true,
+  /**
+   * will be deprecated
+   */
   onClickBack: () => true,
   onClickTitle: () => true,
   onClickIcon: () => true,

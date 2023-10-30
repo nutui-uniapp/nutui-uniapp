@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, type ComputedRef, computed, defineComponent, getCurrentInstance, onMounted, ref, toRefs } from 'vue'
+import { type CSSProperties, type ComponentInternalInstance, type ComputedRef, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
 import { pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
-import { useSelectorQuery } from '../_hooks'
+import { useRect } from '../_hooks'
 import { navbarEmits, navbarProps } from './navbar'
 
 const props = defineProps(navbarProps)
 const emit = defineEmits(navbarEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
 const { border, fixed, safeAreaInsetTop, placeholder, zIndex } = toRefs(props)
-
-const navHeight = ref(0)
+const { statusBarHeight } = uni.getSystemInfoSync()
+const navHeight = ref<string | 'auto'>('auto')
 const classes = computed(() => {
   return {
     [componentName]: true,
@@ -23,10 +22,18 @@ const classes = computed(() => {
   }
 })
 
-const styles: ComputedRef = computed(() => {
-  return {
-    zIndex: zIndex.value,
+const rootStyle: ComputedRef = computed(() => {
+  const style: CSSProperties = {
+
   }
+  // #ifdef MP
+  if (placeholder.value && fixed.value) {
+    style.height = navHeight.value
+    style.paddingTop = pxCheck(statusBarHeight!)
+  }
+  // #endif
+
+  return style
 })
 
 const colorStyle = computed(() => {
@@ -35,40 +42,69 @@ const colorStyle = computed(() => {
     color: props.customColor,
   }
 })
+function getNavHeight() {
+  if (!fixed.value || !placeholder.value)
+    return
 
-onMounted(() => {
-  if (fixed.value && placeholder.value) {
-    // #ifndef H5
-    const menuButtonBounding = uni.getMenuButtonBoundingClientRect()
-    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 44
+  // #ifdef MP
+  const menuButtonBounding = uni.getMenuButtonBoundingClientRect()
 
-    navHeight.value = !menuButtonBounding
-      ? 0
-      : menuButtonBounding.bottom + menuButtonBounding.top - statusBarHeight
-    // #endif
+  navHeight.value = !menuButtonBounding
+    ? '44px'
+    : pxCheck(menuButtonBounding.bottom + menuButtonBounding.top - statusBarHeight!)
+  // #endif
 
-    // #ifdef H5
-    getSelectorNodeInfo('#navBarHtml').then((res) => {
-      navHeight.value = res.height!
-    })
-    // #endif
+  // #ifndef MP
+  useRect('navBarHtml', instance).then((res) => {
+    navHeight.value = pxCheck(res.height!)
+  })
+  // #endif
+}
+
+function handleBack() {
+  const pages = getCurrentPages()
+  if (pages.length > 1) {
+    uni.navigateBack()
   }
-})
+  else {
+    uni.redirectTo({
+      url: '/',
+    })
+  }
+}
 
 function handleLeft() {
   emit('onClickBack')
+  emit('clickBack')
 }
 
 function handleCenter() {
   emit('onClickTitle')
+  emit('clickTitle')
 }
 function handleCenterIcon() {
   emit('onClickIcon')
+  emit('clickIcon')
 }
 
 function handleRight() {
   emit('onClickRight')
+  emit('clickRight')
 }
+onMounted(() => {
+  if (props.fixed && props.placeholder) {
+    nextTick(() => {
+      getNavHeight()
+    })
+  }
+})
+watch(
+  [() => props.fixed, () => props.placeholder],
+  () => {
+    getNavHeight()
+  },
+  { deep: true, immediate: false },
+)
 </script>
 
 <script lang="ts">
@@ -85,11 +121,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-if="fixed && placeholder" class="nut-navbar--placeholder" :style="{ height: `${navHeight}px`, zIndex }">
-    <view id="navBarHtml" :class="[classes, customClass]" :style="[styles, customStyle]">
+  <view class="nut-navbar--placeholder" :style="{ height: navHeight, zIndex }">
+    <view id="navBarHtml" :class="[classes, customClass]" :style="[rootStyle, customStyle]">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="left-show">
-          <NutIcon custom-class="right-icon" name="left" height="12px" :size="size" :custom-color="customColor" />
+          <NutIcon custom-class="right-icon" name="left" height="12px" :size="size" :custom-color="customColor" @click="handleBack" />
         </slot>
         <view v-if="leftText" :style="colorStyle" class="nut-navbar__text">
           {{ leftText }}
@@ -97,7 +133,7 @@ export default defineComponent({
         <slot name="left" />
       </view>
       <view class="nut-navbar__title">
-        <view v-if="title" class="title" :style="colorStyle" @click="handleCenter">
+        <view v-if="title" class="text" :style="colorStyle" @click="handleCenter">
           {{ title }}
         </view>
         <view v-if="titleIcon" class="icon" @click="handleCenterIcon">
@@ -111,32 +147,6 @@ export default defineComponent({
         </view>
         <slot name="right" />
       </view>
-    </view>
-  </view>
-  <view v-else :class="[classes, customClass]" :style="[styles, customStyle]">
-    <view class="nut-navbar__left" @click="handleLeft">
-      <slot v-if="leftShow" name="left-show">
-        <NutIcon custom-class="left-icon" name="left" height="12px" :size="size" :custom-color="customColor" />
-      </slot>
-      <view v-if="leftText" :style="colorStyle" class="nut-navbar__text">
-        {{ leftText }}
-      </view>
-      <slot name="left" />
-    </view>
-    <view class="nut-navbar__title">
-      <view v-if="title" class="title" :style="colorStyle" @click="handleCenter">
-        {{ title }}
-      </view>
-      <view v-if="titleIcon" class="icon" @click="handleCenterIcon">
-        <slot name="title-icon" />
-      </view>
-      <slot name="content" />
-    </view>
-    <view class="nut-navbar__right" @click="handleRight">
-      <view v-if="desc" :style="customStyle" class="nut-navbar__text">
-        {{ desc }}
-      </view>
-      <slot name="right" />
     </view>
   </view>
 </template>
