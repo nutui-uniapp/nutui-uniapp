@@ -20,6 +20,7 @@
   margin-bottom: $navbar-margin-bottom;
   overflow: hidden;
   font-size: $navbar-title-base-font;
+  line-height: $navbar-height;
   color: $navbar-color;
   background: $navbar-background;
   box-shadow: $navbar-box-shadow;
@@ -45,6 +46,7 @@
   }
 
   &--placeholder {
+    display: block;
     width: 100%;
   }
 
@@ -72,7 +74,7 @@
     }
   }
 
-  .nutui-iconfont {
+  :deep(.nutui-iconfont) {
     .nut-icon-left {
       text-align: left;
     }
@@ -87,7 +89,7 @@
     margin: 0 auto;
     text-align: center;
 
-    .title {
+    .text {
       display: -webkit-box;
       min-width: $navbar-title-width;
       overflow: hidden;
@@ -108,7 +110,7 @@
       font-size: 0;
     }
 
-    .nut-icon {
+    :deep(.nut-icon) {
       display: inline;
     }
 
@@ -120,11 +122,11 @@
       display: inline-block;
     }
 
-    .nut-tabs__titles {
+    :deep(.nut-tabs__titles) {
       background: $white;
     }
 
-    .nut-tab-pane {
+    :deep(.nut-tab-pane) {
       display: none;
     }
   }

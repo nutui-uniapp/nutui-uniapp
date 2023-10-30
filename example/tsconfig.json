@@ -13,8 +13,8 @@
     },
     "types": [
       "@dcloudio/types",
-      "nutui-uniapp/global.d.ts",
-      "@uni-helper/uni-app-types"
+      "@uni-helper/uni-app-types",
+      "nutui-uniapp/global.d.ts"
     ],
     "sourceMap": true
   },
@@ -26,5 +26,13 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/utils/touchEmulator.js"
-  ]
+  ],
+  "vueCompilerOptions": {
+    "nativeTags": [
+      "block",
+      "component",
+      "template",
+      "slot"
+    ]
+  }
 }
