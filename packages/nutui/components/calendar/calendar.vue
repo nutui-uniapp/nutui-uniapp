@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, ref, useSlots } from 'vue'
 import { PREFIX } from '../_constants'
 import type { CalendarInst } from '../calendaritem/type'
 import NutPoPUp from '../popup/popup.vue'
@@ -28,7 +28,6 @@ const bottomInfo = computed(() => {
 const footerInfo = computed(() => {
   return slots['footer-info']
 })
-const show = ref(props.visible)
 // element refs
 const calendarRef = ref<null | CalendarInst>(null)
 function scrollToDate(date: string) {
@@ -40,12 +39,10 @@ function initPosition() {
 
 // methods
 function update() {
-  show.value = false
   emit('update:visible', false)
 }
 
 function close() {
-  show.value = false
   emit('close')
   emit('update:visible', false)
 }
@@ -62,12 +59,6 @@ function select(param: string) {
   // close();
   emit('select', param)
 }
-watch(
-  () => props.visible,
-  (value: boolean) => {
-    show.value = value
-  },
-)
 </script>
 
 <script lang="ts">
@@ -86,7 +77,7 @@ export default defineComponent({
   <NutPoPUp
     v-if="poppable"
     v-bind="props"
-    v-model:visible="show"
+    :visible="visible"
     position="bottom"
     round
     closeable
@@ -95,7 +86,6 @@ export default defineComponent({
     @click-close-icon="closePopup"
   >
     <NutCalendarItem
-      v-if="show"
       ref="calendarRef"
       :type="type"
       :is-auto-back-fill="isAutoBackFill"

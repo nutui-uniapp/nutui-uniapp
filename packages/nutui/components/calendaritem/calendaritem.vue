@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { compareDate, date2Str, formatResultDate, getDay, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isArray, isEqual, isH5 } from '../_utils'
+import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
+import { compareDate, date2Str, formatResultDate, getDay, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
 import { calendaritemEmits, calendaritemProps } from './calendaritem'
 import type { CalendarTaroState, Day, MonthInfo } from './type'
 
+type StringArr = string[]
+interface CalendarDateProp {
+  year: string
+  month: string
+}
 const props = defineProps(calendaritemProps)
 
 const emit = defineEmits(calendaritemEmits)
@@ -26,9 +32,12 @@ const weekdays = (translate('weekdays') as any).map((day: string, index: number)
 const weeks = ref([...weekdays.slice(props.firstDayOfWeek, 7), ...weekdays.slice(0, props.firstDayOfWeek)])
 // element refs
 const scalePx = ref(2)
-const viewHeight = ref(0)
-const scrollWithAnimation = ref(false)
 const months = ref<null | HTMLElement>(null)
+const viewHeight = ref(0)
+const compConthsData = computed(() => {
+  return state.monthsData.slice(state.defaultRange[0], state.defaultRange[1])
+})
+const scrollWithAnimation = ref(false)
 const showTopBtn = computed(() => {
   return slots.btn
 })
@@ -38,11 +47,10 @@ const topInfo = computed(() => {
 const bottomInfo = computed(() => {
   return slots['bottom-info']
 })
-// state
+
 const state: CalendarTaroState = reactive({
   yearMonthTitle: '',
-  defaultRange: [0, 1],
-  compConthsDatas: [],
+  defaultRange: [],
   containerHeight: '100%',
   currDate: '',
   propStartDate: '',
@@ -85,8 +93,8 @@ function isEnd(currDate: string) {
   return isEqual(state.currDate[1], currDate)
 }
 function isMultiple(currDate: string) {
-  if (isArray(state.currDate) && state.currDate.length > 0) {
-    return state.currDate.some((item: string) => {
+  if (state.currDate?.length > 0) {
+    return (state.currDate as StringArr)?.some((item: string) => {
       return isEqual(item, currDate)
     })
   }
@@ -99,6 +107,7 @@ function getCurrDate(day: Day, month: MonthInfo) {
   return `${month.curData[0]}-${month.curData[1]}-${getNumTwoBit(+day.day)}`
 }
 
+// 获取样式
 function getClass(day: Day, month: MonthInfo, index?: number) {
   const res = []
   if (
@@ -135,12 +144,10 @@ function getClass(day: Day, month: MonthInfo, index?: number) {
   }
   return res
 }
-
+// 确认选择时触发
 function confirm() {
   const { type } = props
   if ((type === 'range' && state.chooseData.length === 2) || type !== 'range') {
-    // let chooseData = state.chooseData.slice(0);
-    // emit('choose', chooseData);
     let selectData: any = state.chooseData.slice(0)
     if (type === 'week') {
       selectData = {
@@ -163,9 +170,9 @@ function chooseDay(day: Day, month: MonthInfo, isFirst = false) {
     days[3] = `${days[0]}-${days[1]}-${days[2]}`
     days[4] = getWhatDay(+days[0], +days[1], +days[2])
     if (type === 'multiple') {
-      if (isArray(state.currDate) && state.currDate.length > 0) {
-        let hasIndex = Number.NaN
-        state.currDate.forEach((item: string, index: number) => {
+      if (state.currDate?.length > 0) {
+        let hasIndex: number | undefined;
+        (state.currDate as StringArr)?.forEach((item: string, index: number) => {
           if (item === days[3])
             hasIndex = index
         })
@@ -173,12 +180,12 @@ function chooseDay(day: Day, month: MonthInfo, isFirst = false) {
           state.chooseData.push([...days])
         }
         else {
-          if (!Number.isNaN(hasIndex)) {
-            state.currDate.splice(hasIndex, 1)
+          if (hasIndex !== undefined) {
+            (state.currDate as StringArr).splice(hasIndex, 1)
             state.chooseData.splice(hasIndex, 1)
           }
           else {
-            state.currDate.push(days[3])
+            (state.currDate as StringArr).push(days[3])
             state.chooseData.push([...days])
           }
         }
@@ -271,7 +278,7 @@ function getCurrData(type: string) {
 }
 
 // 获取日期状态
-function getDaysStatus(days: number, type: string, dateInfo: { year: string; month: string }) {
+function getDaysStatus(days: number, type: string, dateInfo: CalendarDateProp) {
   // 修复：当某个月的1号是周日时，月份下方会空出来一行
   const { year, month } = dateInfo
   if (type === 'prev' && days >= 7)
@@ -287,8 +294,7 @@ function getDaysStatus(days: number, type: string, dateInfo: { year: string; mon
   })
 }
 // 获取上一个月的最后一周天数，填充当月空白
-function getPreDaysStatus(days: number, type: string, dateInfo: { year: string; month: string }, preCurrMonthDays: number) {
-  // 新增：自定义周起始日}, preCurrMonthDays: number) => {
+function getPreDaysStatus(days: number, type: string, dateInfo: CalendarDateProp, preCurrMonthDays: number) {
   // 新增：自定义周起始日
   days = days - props.firstDayOfWeek
   // 修复：当某个月的1号是周日时，月份下方会空出来一行
@@ -311,14 +317,14 @@ function getMonth(curData: string[], type: string) {
   // 一号为周几
   const preMonthDays = getMonthPreDay(+curData[0], +curData[1])
 
-  let preMonth = +curData[1] - 1
-  let preYear = +curData[0]
+  let preMonth = Number(curData[1]) - 1
+  let preYear = Number(curData[0])
   if (preMonth <= 0) {
     preMonth = 12
     preYear += 1
   }
   // 当月天数与上个月天数
-  const currMonthDays = getMonthDays(curData[0], curData[1])
+  const currMonthDays = getMonthDays(String(curData[0]), String(curData[1]))
   const preCurrMonthDays = getMonthDays(`${preYear}`, `${preMonth}`)
 
   const title = {
@@ -355,18 +361,18 @@ function getMonth(curData: string[], type: string) {
 
   if (state.monthsData.length > 0) {
     cssScrollHeight
-          = state.monthsData[state.monthsData.length - 1]?.cssScrollHeight
-          + state.monthsData[state.monthsData.length - 1].cssHeight
+      = (state.monthsData[state.monthsData.length - 1] as MonthInfo).cssScrollHeight
+      + (state.monthsData[state.monthsData.length - 1] as MonthInfo).cssHeight
   }
   monthInfo.cssScrollHeight = cssScrollHeight
   if (type === 'next') {
     // 判断当前日期 是否大于 最后一天
     if (
       !state.endData
-          || !compareDate(
-            `${state.endData[0]}-${state.endData[1]}-${getMonthDays(state.endData[0], state.endData[1])}`,
-            `${curData[0]}-${curData[1]}-${curData[2]}`,
-          )
+      || !compareDate(
+        `${state.endData[0]}-${state.endData[1]}-${getMonthDays(state.endData[0], state.endData[1])}`,
+        `${curData[0]}-${curData[1]}-${curData[2]}`,
+      )
     )
       state.monthsData.push(monthInfo)
   }
@@ -374,10 +380,10 @@ function getMonth(curData: string[], type: string) {
     // 判断当前日期 是否小于 第一天
     if (
       !state.startData
-          || !compareDate(
-            `${curData[0]}-${curData[1]}-${curData[2]}`,
-            `${state.startData[0]}-${state.startData[1]}-01`,
-          )
+      || !compareDate(
+        `${curData[0]}-${curData[1]}-${curData[2]}`,
+        `${state.startData[0]}-${state.startData[1]}-01`,
+      )
     )
       state.monthsData.unshift(monthInfo)
     else
@@ -398,8 +404,9 @@ function initData() {
   // 根据是否存在默认时间，初始化当前日期,
   if (props.defaultValue || (Array.isArray(props.defaultValue) && props.defaultValue.length > 0)) {
     state.currDate
-          = props.type !== 'one' ? ([...props.defaultValue] as string[]) : (props.defaultValue as string | string[])
+      = props.type !== 'one' ? ([...props.defaultValue] as StringArr) : (props.defaultValue as string | StringArr)
   }
+
   // 判断时间范围内存在多少个月
   const startDate = {
     year: Number(state.startData[0]),
@@ -440,14 +447,13 @@ function initData() {
   else if (props.type === 'multiple' && Array.isArray(state.currDate)) {
     if (state.currDate.length > 0) {
       const defaultArr: string[] = []
-
       const obj: any = {}
       state.currDate.forEach((item: string) => {
         if (
           propStartDate
-              && !compareDate(item, propStartDate)
-              && propEndDate
-              && !compareDate(propEndDate, item)
+          && !compareDate(item, propStartDate)
+          && propEndDate
+          && !compareDate(propEndDate, item)
         ) {
           if (!Object.hasOwnProperty.call(obj, item)) {
             defaultArr.push(item)
@@ -483,7 +489,6 @@ function initData() {
       state.defaultData = [...splitDate(state.currDate as string)]
     }
   }
-
   // 设置默认可见区域
   let current = 0
   let lastCurrent = 0
@@ -527,10 +532,10 @@ function initData() {
   }
 
   const lastItem = state.monthsData[state.monthsData.length - 1]
-  const containerHeight = lastItem.cssHeight + lastItem?.cssScrollHeight
+  const containerHeight = lastItem.cssHeight + lastItem.cssScrollHeight
 
   state.containerHeight = `${containerHeight}px`
-  state.scrollTop = Math.ceil(state.monthsData[state.currentIndex]?.cssScrollHeight)
+  state.scrollTop = Math.ceil(state.monthsData[state.currentIndex].cssScrollHeight)
   state.avgHeight = Math.floor(containerHeight / (monthsNum + 1))
 
   if (months?.value)
@@ -550,7 +555,7 @@ function scrollToDate(date: string) {
       scrollWithAnimation.value = props.toDateAnimation
       requestAniFrame(() => {
         setTimeout(() => {
-          state.scrollTop = state.monthsData[index]?.cssScrollHeight
+          state.scrollTop = state.monthsData[index].cssScrollHeight
           setTimeout(() => {
             scrollWithAnimation.value = false
           }, 200)
@@ -560,37 +565,32 @@ function scrollToDate(date: string) {
   })
 }
 function initPosition() {
-  state.scrollTop = Math.ceil(state.monthsData[state.currentIndex]?.cssScrollHeight)
+  state.scrollTop = Math.ceil(state.monthsData[state.currentIndex].cssScrollHeight)
 }
+// 设置当前可见月份
 function setDefaultRange(monthsNum: number, current: number) {
-  let rangeArr: number[] = []
   if (monthsNum >= 3) {
     if (current > 0 && current < monthsNum)
-      rangeArr = [current - 1, current + 3]
+      state.defaultRange = [current - 1, current + 3]
 
     else if (current === 0)
-      rangeArr = [current, current + 4]
+      state.defaultRange = [current, current + 4]
 
     else if (current === monthsNum)
-      rangeArr = [current - 2, current + 2]
+      state.defaultRange = [current - 2, current + 2]
   }
   else {
-    rangeArr = [0, monthsNum + 2]
+    state.defaultRange = [0, monthsNum + 2]
   }
-  if (JSON.stringify(state.defaultRange) !== JSON.stringify(rangeArr)) {
-    state.defaultRange[0] = rangeArr[0]
-    state.defaultRange[1] = rangeArr[1]
-    state.compConthsDatas = state.monthsData.slice(rangeArr[0], rangeArr[1])
-  }
-  const defaultScrollTop = state.monthsData[state.defaultRange[0]]?.cssScrollHeight
+  const defaultScrollTop = state.monthsData[state.defaultRange[0]].cssScrollHeight
   state.translateY = defaultScrollTop
 }
 // 区间选择&&当前月&&选中态
 function isActive(day: Day, month: MonthInfo) {
   return (
     (props.type === 'range' || props.type === 'week')
-        && day.type === 'curr'
-        && getClass(day, month).includes('nut-calendar__day--active')
+    && day.type === 'curr'
+    && getClass(day, month).includes('nut-calendar__day--active')
   )
 }
 
@@ -611,39 +611,37 @@ function rangeTip() {
   if (state.currDate.length >= 2)
     return isEqual(state.currDate[0], state.currDate[1])
 }
-// 是否有是当前日期
+// 是否有 当前日期
 function isCurrDay(dateInfo: Day) {
-  const date = `${dateInfo.year}-${dateInfo.month}-${
-        Number(dateInfo.day) < 10 ? `0${dateInfo.day}` : dateInfo.day
-      }`
+  const date = `${dateInfo.year}-${dateInfo.month}-${Number(dateInfo.day) < 10 ? `0${dateInfo.day}` : dateInfo.day
+    }`
   return isEqual(date, date2Str(new Date()))
 }
-
-function mothsViewScroll(e: any) {
+// 滚动处理事件
+function mothsViewScroll(e: ScrollViewOnScrollEvent) {
   if (state.monthsData.length <= 1)
     return
 
   const currentScrollTop = e.detail.scrollTop
-
   let current = Math.floor(currentScrollTop / state.avgHeight)
   if (current === 0) {
-    if (currentScrollTop >= state.monthsData[current + 1]?.cssScrollHeight)
+    if (currentScrollTop >= state.monthsData[current + 1].cssScrollHeight)
       current += 1
   }
   else if (current > 0 && current < state.monthsNum - 1) {
-    if (currentScrollTop >= state.monthsData[current + 1]?.cssScrollHeight)
+    if (currentScrollTop >= state.monthsData[current + 1].cssScrollHeight)
       current += 1
 
-    if (currentScrollTop < state.monthsData[current]?.cssScrollHeight)
+    if (currentScrollTop < state.monthsData[current].cssScrollHeight)
       current -= 1
   }
   if (state.currentIndex !== current) {
     state.currentIndex = current
     setDefaultRange(state.monthsNum, current)
   }
-
-  state.yearMonthTitle = state.monthsData[current]?.title
+  state.yearMonthTitle = state.monthsData[current].title
 }
+
 // 重新渲染
 function resetRender() {
   state.chooseData.splice(0)
@@ -726,7 +724,6 @@ export default defineComponent({
     </view>
     <!-- content -->
     <scroll-view
-      id="nut-calendar__content"
       ref="months"
       :scroll-top="state.scrollTop"
       :scroll-y="true"
@@ -736,7 +733,7 @@ export default defineComponent({
     >
       <view class="nut-calendar__panel" :style="{ height: state.containerHeight }">
         <view class="nut-calendar__body" :style="{ transform: `translateY(${state.translateY}px)` }">
-          <view v-for="(month, index) of state.compConthsDatas" :key="index" class="nut-calendar__month">
+          <view v-for="(month, index) of compConthsData" :key="index" class="nut-calendar__month">
             <view class="nut-calendar__month-title">
               {{ month.title }}
             </view>
@@ -766,8 +763,11 @@ export default defineComponent({
                     <view v-if="!bottomInfo && showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
                       {{ translate('today') }}
                     </view>
-                    <view class="nut-calendar__day-tip" :class="{ 'nut-calendar__day-tips--top': rangeTip() }">
-                      {{ isStartTip(day, month) ? startText || translate('start') : '' }}
+                    <view
+                      v-if="isStartTip(day, month)"
+                      class="nut-calendar__day-tip" :class="{ 'nut-calendar__day-tips--top': rangeTip() }"
+                    >
+                      {{ startText || translate('start') }}
                     </view>
                     <view v-if="isEndTip(day, month)" class="nut-calendar__day-tip">
                       {{

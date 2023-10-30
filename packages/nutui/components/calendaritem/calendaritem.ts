@@ -48,8 +48,7 @@ export const calendaritemProps = {
   },
   defaultValue: {
     type: [String, Array],
-    default: null,
-    valid: (value: string | string[]) => value,
+    default: '',
   },
   startDate: {
     type: String,
