@@ -25,7 +25,8 @@ function change(event: any) {
 function emitChange(value: string | number, event: Event) {
   const output_value: number | string = fixedDecimalPlaces(value)
   emit('update:modelValue', output_value, event)
-  emit('change', output_value, event)
+  if (Number(props.modelValue) !== Number(output_value))
+    emit('change', output_value, event)
 }
 function addAllow(value = Number(props.modelValue)): boolean {
   return value < Number(props.max) && !props.disabled
@@ -35,21 +36,23 @@ function reduceAllow(value = Number(props.modelValue)): boolean {
 }
 function reduce(event: Event) {
   emit('reduce', event)
-  if (reduceAllow()) {
-    const output_value = Number(props.modelValue) - Number(props.step)
+  const output_value = Number(props.modelValue) - Number(props.step)
+  if (reduceAllow() && output_value >= Number(props.min)) {
     emitChange(output_value, event)
   }
   else {
+    emitChange(Number(props.min), event)
     emit('overlimit', event, 'reduce')
   }
 }
 function add(event: Event) {
   emit('add', event)
-  if (addAllow()) {
-    const output_value = Number(props.modelValue) + Number(props.step)
+  const output_value = Number(props.modelValue) + Number(props.step)
+  if (addAllow() && output_value <= Number(props.max)) {
     emitChange(output_value, event)
   }
   else {
+    emitChange(Number(props.max), event)
     emit('overlimit', event, 'add')
   }
 }
