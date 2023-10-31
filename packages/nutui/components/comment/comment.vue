@@ -59,11 +59,11 @@ export default defineComponent({
 
     <slot name="feature" />
 
-    <view
+    <rich-text
       class="nut-comment__main"
       :style="`-webkit-line-clamp:${conEllipsis}`"
+      :nodes="info.content"
       @click="handleClick"
-      v-html="info.content"
     />
 
     <ComentImages :images="images" :videos="videos" :type="imagesRows" @clickImages="clickImages" />
@@ -75,7 +75,7 @@ export default defineComponent({
       <view class="nut-comment__follow-com">
         {{ follow.content }}
       </view>
-      <view v-if="follow.images && follow.images.length > 0" class="nut-comment__follow-img">
+      <view v-if="follow.images && follow.images.length > 0" class="nut-comment__follow-img" @click="clickImages(follow.images)">
         {{ follow.images.length }} 张追评图片 <NutIcon name="right" size="12px" />
       </view>
     </view>
