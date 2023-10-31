@@ -8,7 +8,7 @@ interface Item {
   value?: string
 }
 const props = defineProps(circleprogressProps)
-
+const isIos = uni.getSystemInfoSync().platform === 'ios'
 const currentRate = ref(props.progress)
 
 const isObject = (val: unknown): val is Record<any, any> => val !== null && typeof val === 'object'
@@ -64,7 +64,7 @@ const style = computed(() => {
     background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100'  xmlns='http://www.w3.org/2000/svg'%3E${pa}${path}${path1}%3C/svg%3E")`,
     width: '100%',
     height: '100%',
-    transition: ' background-image .3s ease 0s,stroke .3s ease 0s',
+    transition: `${isIos ? '' : 'background-image .3s ease 0s, '}stroke .3s ease 0s`,
   }
 })
 const format = (progress: string | number) => Math.min(Math.max(+progress, 0), 100)
