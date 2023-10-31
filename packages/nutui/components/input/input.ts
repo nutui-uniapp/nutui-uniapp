@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { commonProps } from '../_utils'
-import type { ConfirmTextType, InputFormatTrigger, InputMode, InputType } from './type'
+import type { ConfirmTextType, InputAlignType, InputFormatTrigger, InputMode, InputType } from './type'
 
 export const inputProps = {
   ...commonProps,
@@ -25,7 +25,7 @@ export const inputProps = {
     default: 'input-placeholder',
   },
   inputAlign: {
-    type: String,
+    type: String as PropType<InputAlignType>,
     default: 'left',
   },
   required: {

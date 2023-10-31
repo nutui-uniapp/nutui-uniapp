@@ -74,8 +74,8 @@ export default {
     </h2>
     <nut-input v-model="state.text" placeholder="文本" />
     <nut-input v-model="state.password" type="password" placeholder="密码" />
-    <nut-input v-model="state.number" type="number" placeholder="数字" />
-    <nut-input v-model="state.digit" type="digit" placeholder="整数" />
+    <nut-input v-model="state.number" type="digit" placeholder="数字" />
+    <nut-input v-model="state.digit" type="number" placeholder="整数" />
 
     <h2 class="title">
       禁用和只读

@@ -1,13 +1,12 @@
-<!-- eslint-disable padded-blocks -->
 <script lang="ts" setup>
 import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import type { InputOnBlurEvent, InputOnFocusEvent, InputOnConfirmEvent } from '@uni-helper/uni-app-types'
+import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import { isH5 } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
-import type { InputFormatTrigger, InputTarget, InputType } from '.'
+import type { InputFormatTrigger, InputMode, InputTarget, InputType } from '.'
 
 const props = defineProps(inputProps)
 
@@ -36,22 +35,30 @@ const classes = computed(() => {
 })
 
 const styles: ComputedRef = computed(() => {
-  let style = {}
-  style = {
+  return {
     textAlign: props.inputAlign,
   }
-  return style
 })
 
-function inputType(type: InputType) {
+function getInputType(type: InputType): InputType {
   // #ifdef H5
   if (type === 'number')
-    return 'text'
+    return 'tel'
 
   if (type === 'digit')
-    return 'tel'
+    return 'text'
   // #endif
   return type
+}
+
+function getInputMode(type: InputType, mode: InputMode): InputMode {
+  // #ifdef H5
+  if (type === 'digit')
+    return 'decimal'
+  if (type === 'number')
+    return 'numeric'
+  // #endif
+  return mode
 }
 
 function handleInput(event: any) {
@@ -176,9 +183,7 @@ export default defineComponent({
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    // #ifndef H5
     styleIsolation: 'shared',
-    // #endif
   },
 })
 </script>
@@ -193,7 +198,7 @@ export default defineComponent({
         <view class="nut-input-box">
           <input
             ref="inputRef"
-            :type="inputType(type) as any"
+            :type="getInputType(props.type) as any"
             class="input-text"
             :style="[styles, props.customStyle]"
             :placeholder="placeholder"
@@ -209,7 +214,7 @@ export default defineComponent({
             :confirm-type="confirmType"
             :adjust-position="adjustPosition"
             :always-system="alwaysSystem"
-            :input-mode="inputMode"
+            :input-mode="getInputMode(props.type, props.inputMode)"
             :cursor-spacing="cursorSpacing"
             :always-embed="alwaysEmbed"
             :confirm-hold="confirmHold"
