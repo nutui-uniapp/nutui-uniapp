@@ -62,7 +62,7 @@ const { translate } = useTranslate(componentName)
 
       <view class="nut-dialog__content" :style="contentStyle">
         <slot v-if="$slots.default" name="default" />
-        <view v-else-if="typeof content === 'string'" v-html="dialogStatus.content || props.content" />
+        <rich-text v-else-if="typeof content === 'string'" :nodes="dialogStatus.content || props.content" />
         <!-- <component :is="content" v-else /> -->
       </view>
 

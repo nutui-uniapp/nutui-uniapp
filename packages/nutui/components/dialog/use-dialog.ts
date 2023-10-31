@@ -20,6 +20,7 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
     noCancelBtn: props.noCancelBtn,
     transition: props.transition,
     closeOnClickOverlay: props.closeOnClickOverlay,
+    okAutoClose: props.okAutoClose,
   })
 
   const showDialog = (options: DialogOptions) => {
@@ -28,6 +29,7 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
       content: options.content || props.content,
       cancelText: options.cancelText || props.cancelText,
       okText: options.okText || props.okText,
+      okAutoClose: options.okAutoClose || props.okAutoClose,
       textAlign: options.textAlign || props.textAlign,
       footerDirection: options.footerDirection || props.footerDirection,
       noFooter: options.noFooter || props.noFooter,
@@ -90,7 +92,8 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
 
   function onOk() {
     emit('ok')
-    closed('ok')
+    if (props.okAutoClose)
+      closed('ok')
   }
 
   function onClickOverlay() {

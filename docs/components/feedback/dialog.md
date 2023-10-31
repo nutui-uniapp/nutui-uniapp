@@ -145,6 +145,7 @@ export default {
 | pop-style              | 自定义 `popup` 弹框样式                                           | CSSProperties            | -          |
 | custom-class           | 自定义 `class`                                                   | string                   | -          |
 | before-close           | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 `Promise` | Function(action: string) | -          |
+| ok-auto-close `v1.3.0` | 确认按钮是否默认关闭弹窗 | boolean | `true` |
 
 ### Events
 

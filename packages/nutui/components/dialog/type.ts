@@ -13,6 +13,7 @@ export interface DialogOptions {
   footerDirection?: FooterDirection
   transition?: NutAnimationName
   closeOnClickOverlay?: boolean
+  okAutoClose?: boolean
 }
 
 export interface DialogInst {

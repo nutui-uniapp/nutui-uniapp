@@ -38,6 +38,10 @@ export const dialogProps = {
     type: String,
     default: '',
   },
+  okAutoClose: {
+    type: Boolean,
+    default: true,
+  },
   cancelAutoClose: {
     type: Boolean,
     default: true,
