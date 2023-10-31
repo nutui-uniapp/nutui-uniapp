@@ -301,9 +301,15 @@ watch(
     nextTick(() => {
       init(+val)
     })
-    // eventCenter.once((getCurrentInstance() as any).router.onReady, () => {
-    //   init(+val)
-    // })
+  },
+)
+
+watch(
+  () => props.height,
+  (val) => {
+    nextTick(() => {
+      init(+val)
+    })
   },
 )
 
@@ -313,11 +319,6 @@ watch(
     nextTick(() => {
       init()
     })
-    // eventCenter.once((getCurrentInstance() as any).router.onReady, () => {
-    //   Taro.nextTick(() => {
-    //     init()
-    //   })
-    // })
   },
 )
 
