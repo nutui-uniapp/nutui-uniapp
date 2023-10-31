@@ -133,7 +133,7 @@ export default defineComponent({
         <view class="nut-collapse-item__title-main-value">
           <slot v-if="$slots.title" name="title" />
           <template v-else>
-            <view class="nut-collapse-item__title-mtitle" v-html="title" />
+            <rich-text class="nut-collapse-item__title-mtitle" :nodes="title" />
           </template>
           <view v-if="label" class="nut-collapse-item__title-label">
             {{ label }}
@@ -143,12 +143,14 @@ export default defineComponent({
       <view v-if="$slots.value" class="nut-collapse-item__title-sub">
         <slot name="value" />
       </view>
-      <view v-else class="nut-collapse-item__title-sub" v-html="value" />
+      <rich-text v-else class="nut-collapse-item__title-sub" :nodes="value" />
       <view
         class="nut-collapse-item__title-icon" :class="[{ 'nut-collapse-item__title-icon--expanded': expanded }]"
         :style="{ transform: `rotate(${expanded ? rotate : 0}deg)` }"
       >
-        <NutIcon :name="icon" />
+        <slot name="icon">
+          <NutIcon :name="icon" />
+        </slot>
       </view>
     </view>
 
