@@ -201,8 +201,7 @@ export function usePicker(props: any, emit: any) {
   watch(
     () => props.columns,
     (val) => {
-      if (val.length)
-        state.formattedColumns = val as PickerOption[]
+      state.formattedColumns = val as PickerOption[]
     },
   )
 
