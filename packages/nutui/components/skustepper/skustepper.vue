@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import { PREFIX } from '../../_constants'
-import { TypeOfFun } from '../../_utils'
-import NutInputNumber from '../../inputnumber/inputnumber.vue'
+import { PREFIX } from '../_constants'
+import { TypeOfFun } from '../_utils'
+import NutInputNumber from '../inputnumber/inputnumber.vue'
 
 const props = defineProps({
   // 购买数量最大值
@@ -41,7 +41,7 @@ function getExtraText() {
   const { stepperExtraText } = props
 
   if (stepperExtraText && TypeOfFun(stepperExtraText) === 'function')
-    return (stepperExtraText as () => void)()
+    return (stepperExtraText as any)()
 
   else
     return ''
@@ -89,7 +89,7 @@ export default defineComponent ({
     <view class="nut-sku-stepper-title">
       {{ stepperTitle }}
     </view>
-    <view class="nut-sku-stepper-limit" v-html="getExtraText()" />
+    <rich-text class="nut-sku-stepper-limit" :nodes="getExtraText()" />
     <view class="nut-sku-stepper-count">
       <NutInputNumber
         v-model="goodsCount" :min="stepperMin" :max="stepperMax" @add="(add as any)" @reduce="(reduce as any)"

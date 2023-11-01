@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, onMounted, ref, watch } from 'vue'
-import { PREFIX } from '../../_constants'
+import { PREFIX } from '../_constants'
 
 interface SkuInfo {
   name: string

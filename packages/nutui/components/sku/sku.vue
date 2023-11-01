@@ -3,11 +3,11 @@ import { defineComponent, ref, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
+import SkuHeader from '../skuheader/skuheader.vue'
+import SkuOperate from '../skuoperate/skuoperate.vue'
+import SkuStepper from '../skustepper/skustepper.vue'
+import SkuSelect from '../skuselect/skuselect.vue'
 import { skuEmits, skuProps } from './sku'
-import SkuStepper from './components/SkuStepper.vue'
-import SkuSelect from './components/SkuSelect.vue'
-import SkuOperate from './components/SkuOperate.vue'
-import SkuHeader from './components/SkuHeader.vue'
 
 const props = defineProps(skuProps)
 const emit = defineEmits(skuEmits)
