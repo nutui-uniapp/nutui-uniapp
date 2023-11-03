@@ -1,3 +1,9 @@
+## [1.3.2](https://github.com/yang1206/uniapp-nutui/compare/v1.3.1...v1.3.2) (2023-11-03)
+
+### Features
+
+* **price:** 支持customClass与 customStyle ([43516f4](https://github.com/yang1206/uniapp-nutui/commit/43516f43f33540684ed98a4878b4fbd4925116dd))
+
 ## [1.3.1](https://github.com/yang1206/uniapp-nutui/compare/v1.3.0...v1.3.1) (2023-11-01)
 
 ### Bug Fixes
