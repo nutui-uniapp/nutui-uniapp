@@ -76,12 +76,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
-    <view
+  <view :class="[classes, customClass]" :style="customStyle">
+    <rich-text
       v-if="needSymbol && position === 'before'"
       class="nut-price--symbol"
       :class="`nut-price--symbol-${size}`"
-      v-html="showSymbol"
+      :nodes="showSymbol"
     />
     <view :class="`nut-price--${size}`">
       {{ formatThousands(price) }}
@@ -92,11 +92,11 @@ export default defineComponent({
     <view :class="`nut-price--decimal-${size}`">
       {{ formatDecimal(price) }}
     </view>
-    <view
+    <rich-text
       v-if="needSymbol && position === 'after'"
       class="nut-price--symbol"
       :class="`nut-price--symbol-${size}`"
-      v-html="showSymbol"
+      :nodes="showSymbol"
     />
   </view>
 </template>
