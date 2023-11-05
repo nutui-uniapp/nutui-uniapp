@@ -2,6 +2,7 @@
   "name": "nutui-uniapp",
   "type": "module",
   "version": "1.3.2",
+  "private": "true",
   "description": "",
   "author": "",
   "license": "MIT",
