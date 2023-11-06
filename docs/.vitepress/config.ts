@@ -30,6 +30,10 @@ export default withPwa(defineConfig({
       { text: '指南', items: guides },
       { text: '组件', items: navComponents },
       {
+        text: '示例',
+        link: 'https://nutui-uniapp.netlify.app/ui',
+      },
+      {
         text: '其他',
         items: [
           {
