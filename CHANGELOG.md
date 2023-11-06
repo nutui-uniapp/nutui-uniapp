@@ -1,3 +1,9 @@
+## [1.3.4](https://github.com/yang1206/uniapp-nutui/compare/v1.3.3...v1.3.4) (2023-11-06)
+
+### Bug Fixes
+
+* **watermark:** props丢失响应性 ([21984f5](https://github.com/yang1206/uniapp-nutui/commit/21984f551c77027fa4913200a6d72976cb5e9035)), closes [#95](https://github.com/yang1206/uniapp-nutui/issues/95)
+
 ## [1.3.3](https://github.com/yang1206/uniapp-nutui/compare/v1.3.2...v1.3.3) (2023-11-05)
 
 ## [1.3.2](https://github.com/yang1206/uniapp-nutui/compare/v1.3.1...v1.3.2) (2023-11-03)
