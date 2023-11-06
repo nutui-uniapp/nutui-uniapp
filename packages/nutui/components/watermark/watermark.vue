@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, reactive, watch } from 'vue'
+import { computed, defineComponent, reactive, toRefs, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { watermarkEmits, watermarkProps } from './watermark'
 
@@ -25,7 +25,7 @@ const {
   fontColor,
   fontSize,
   fontFamily,
-} = props
+} = toRefs(props)
 
 async function init() {
   let ratio = 1
@@ -34,10 +34,10 @@ async function init() {
       ratio = res.pixelRatio
     },
   })
-  const canvasWidth = `${(gapX + width) * ratio}`
-  const canvasHeight = `${(gapY + height) * ratio}`
-  const markWidth = width * ratio
-  const markHeight = height * ratio
+  const canvasWidth = `${(gapX.value + width.value) * ratio}`
+  const canvasHeight = `${(gapY.value + height.value) * ratio}`
+  const markWidth = width.value * ratio
+  const markHeight = height.value * ratio
   const canvas: any = uni.createOffscreenCanvas({
     type: '2d',
     width: Number(canvasWidth),
@@ -47,12 +47,12 @@ async function init() {
   const ctx: any = canvas.getContext('2d')
 
   if (ctx) {
-    if (image) {
+    if (image.value) {
       // 创建一个图片
       const img = canvas.createImage() as HTMLImageElement
       dealWithImage(ctx, img, ratio, ctx.canvas, markWidth, markHeight)
     }
-    else if (content) {
+    else if (content.value) {
       dealWithText(ctx, ratio, ctx.canvas, markWidth, markHeight)
     }
   }
@@ -64,19 +64,19 @@ function initH5() {
   const canvas = document.createElement('canvas')
   const ratio = window.devicePixelRatio
   const ctx = canvas.getContext('2d')
-  const canvasWidth = `${(gapX + width) * ratio}px`
-  const canvasHeight = `${(gapY + height) * ratio}px`
-  const markWidth = width * ratio
-  const markHeight = height * ratio
+  const canvasWidth = `${(gapX.value + width.value) * ratio}px`
+  const canvasHeight = `${(gapY.value + height.value) * ratio}px`
+  const markWidth = width.value * ratio
+  const markHeight = height.value * ratio
   canvas.setAttribute('width', canvasWidth)
   canvas.setAttribute('height', canvasHeight)
 
   if (ctx) {
-    if (image) {
+    if (image.value) {
       const img = new Image()
       dealWithImage(ctx, img, ratio, canvas, markWidth, markHeight)
     }
-    else if (content) {
+    else if (content.value) {
       dealWithText(ctx, ratio, canvas, markWidth, markHeight)
     }
   }
@@ -86,17 +86,17 @@ function initH5() {
 }
 function dealWithImage(ctx: any, img: HTMLImageElement, ratio: number, canvas: HTMLCanvasElement, markWidth: number, markHeight: number) {
   ctx.translate(markWidth / 2, markHeight / 2)
-  ctx.rotate((Math.PI / 180) * Number(rotate))
+  ctx.rotate((Math.PI / 180) * Number(rotate.value))
   img.crossOrigin = 'anonymous'
   img.referrerPolicy = 'no-referrer'
-  img.src = image // 要加载的图片 url, 可以是base64
+  img.src = image.value // 要加载的图片 url, 可以是base64
   img.onload = () => {
     ctx.drawImage(
       img,
-      (-imageWidth * ratio) / 2,
-      (-imageHeight * ratio) / 2,
-      imageWidth * ratio,
-      imageHeight * ratio,
+      (-imageWidth.value * ratio) / 2,
+      (-imageHeight.value * ratio) / 2,
+      imageWidth.value * ratio,
+      imageHeight.value * ratio,
     )
     ctx.restore()
     state.base64Url = canvas.toDataURL()
@@ -107,11 +107,11 @@ function dealWithText(ctx: any, ratio: number, canvas: HTMLCanvasElement, markWi
   ctx.textAlign = 'center'
   // 文字绕中间旋转
   ctx.translate(markWidth / 2, markHeight / 2)
-  ctx.rotate((Math.PI / 180) * Number(rotate))
-  const markSize = Number(fontSize) * ratio
-  ctx.font = `${fontStyle} normal ${fontWeight} ${markSize}px/${markHeight}px ${fontFamily}`
-  ctx.fillStyle = fontColor
-  ctx.fillText(content, 0, 0)
+  ctx.rotate((Math.PI / 180) * Number(rotate.value))
+  const markSize = Number(fontSize.value) * ratio
+  ctx.font = `${fontStyle.value} normal ${fontWeight.value} ${markSize}px/${markHeight}px ${fontFamily.value}`
+  ctx.fillStyle = fontColor.value
+  ctx.fillText(content.value, 0, 0)
   ctx.restore()
   state.base64Url = canvas.toDataURL()
 }
@@ -125,24 +125,30 @@ init()
 
 watch(
   () => [
-    zIndex,
-    gapX,
-    gapY,
-    width,
-    height,
-    rotate,
-    image,
-    imageWidth,
-    imageHeight,
-    content,
-    fontStyle,
-    fontWeight,
-    fontColor,
-    fontSize,
-    fontFamily,
+    zIndex.value,
+    gapX.value,
+    gapY.value,
+    width.value,
+    height.value,
+    rotate.value,
+    image.value,
+    imageWidth.value,
+    imageHeight.value,
+    content.value,
+    fontStyle.value,
+    fontWeight.value,
+    fontColor.value,
+    fontSize.value,
+    fontFamily.value,
   ],
   () => {
+    // #ifdef H5
+    initH5()
+    // #endif
+
+    // #ifndef H5
     init()
+    // #endif
   },
 )
 const classes = computed(() => {
