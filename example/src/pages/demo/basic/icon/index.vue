@@ -52,26 +52,30 @@ function copy(text: string) {
 
     <nut-cell-group v-for="item in icons.data" :key="item.name" :title="item.name">
       <nut-cell>
-        <ul class="ul">
-          <li v-for="icon in item.icons" :key="icon" class="li cursor-pointer" @click="copy(icon)">
+        <view class="ul">
+          <view v-for="icon in item.icons" :key="icon" class="li cursor-pointer" @click="copy(icon)">
             <nut-icon :name="icon" />
-            <span class="span">{{ icon }}</span>
-          </li>
-        </ul>
+            <text class="span text-center">
+              {{ icon }}
+            </text>
+          </view>
+        </view>
       </nut-cell>
     </nut-cell-group>
 
     <nut-cell-group v-for="item in icons.style" :key="item.name" :title="item.name">
       <nut-cell>
-        <ul class="icon-ul">
-          <li v-for="it in item.icons" :key="it.name" class="icon-li">
+        <view class="icon-ul">
+          <view v-for="it in item.icons" :key="it.name" class="icon-li">
             <nut-icon
               :name="it.name"
               :custom-class="`nut-icon-${it['animation-name']} nut-icon-${it['animation-time']}`"
             />
-            <span>{{ it['animation-name'] }}</span>
-          </li>
-        </ul>
+            <text class="text-center">
+              {{ it['animation-name'] }}
+            </text>
+          </view>
+        </view>
       </nut-cell>
     </nut-cell-group>
   </div>
