@@ -75,7 +75,7 @@ export default defineComponent({
       @on-click-icon="icon"
       @on-click-right="rightClick"
     >
-      <template #title-icon>
+      <template #titleIcon>
         <nut-icon name="cart2" width="16px" />
       </template>
       <template #right>

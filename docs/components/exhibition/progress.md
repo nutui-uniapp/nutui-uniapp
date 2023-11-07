@@ -99,7 +99,7 @@
           stroke-width="15"
           status="icon"
         >
-          <template #icon-name>
+          <template #iconName>
             <nut-icon  name="issue" color="red" width="15px" height="15px" />
           </template>
         </nut-progress>
@@ -171,7 +171,7 @@
 
 | 名称      | 说明             | 作用域参数 |
 | --------- | ---------------- | ---------- |
-| icon-name | 右侧 `icon` 内容 | -          |
+| iconName | 右侧 `icon` 内容 | -          |
 
 ## 主题定制
 

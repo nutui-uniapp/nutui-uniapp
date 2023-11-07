@@ -111,7 +111,7 @@ export default {
           stroke-width="15"
           status="icon"
         >
-          <template #icon-name>
+          <template #iconName>
             <nut-icon name="issue" color="red" width="15px" height="15px" />
           </template>
         </nut-progress>

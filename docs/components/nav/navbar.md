@@ -35,7 +35,7 @@
     :titleIcon="true"
     desc="编辑"
   >
-    <template #title-icon>
+    <template #titleIcon>
         <nut-icon name="cart2" width="16px" />
     </template>
     <template #right>
@@ -198,8 +198,8 @@ export default {
 | left | 自定义左侧内容 |
 | right | 自定义右侧内容 |
 | content |  自定义导航栏中间内容 |
-| left-show  | 左侧箭头自定义图标 |
-| title-icon  | 标题中自定义图标 |
+| leftShow  | 左侧箭头自定义图标 |
+| titleIcon  | 标题中自定义图标 |
 
 ## 主题定制
 

@@ -71,9 +71,9 @@ export default defineComponent ({
       {{ btnExtraText }}
     </view>
 
-    <slot name="operate-btn" />
+    <slot name="operateBtn" />
 
-    <view v-if="!getSlots('operate-btn')" class="nut-sku-operate-btn">
+    <view v-if="!getSlots('operateBtn')" class="nut-sku-operate-btn">
       <view
         v-for="(btn, i) in btnOptions" :key="i" class="nut-sku-operate-btn-item" :class="[`nut-sku-operate-btn-${btn}`]"
         @click="clickBtnOperate(btn)"

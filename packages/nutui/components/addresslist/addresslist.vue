@@ -107,20 +107,20 @@ export default defineComponent({
       @longSet="clickLongSet($event, item, index)"
       @longDel="clickLongDel($event, item, index)"
     >
-      <template #content-info>
-        <slot name="item-infos" :item="item" />
+      <template #contentInfo>
+        <slot name="itemInfos" :item="item" />
       </template>
-      <template #content-icons>
-        <slot name="item-icon" :item="item" />
+      <template #contentIcons>
+        <slot name="itemIcon" :item="item" />
       </template>
-      <template #content-addrs>
-        <slot name="item-addr" :item="item" />
+      <template #contentAddrs>
+        <slot name="itemAddr" :item="item" />
       </template>
-      <template v-if="longPress" #longpress-all>
-        <slot name="longpress-btns" :item="item" />
+      <template v-if="longPress" #longpressAll>
+        <slot name="longpressBtns" :item="item" />
       </template>
-      <template v-if="swipeEdition" #swipe-right-btn>
-        <slot name="swipe-right" :item="item" />
+      <template v-if="swipeEdition" #swipeRightBtn>
+        <slot name="swipeRight" :item="item" />
       </template>
     </GeneralShell>
     <div v-if="showBottomButton" class="nut-address-list__bottom" @click="addAddress">

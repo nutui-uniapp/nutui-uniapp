@@ -58,10 +58,10 @@ export default defineComponent({
     <span v-if="!arrowLeft" class="nut-trend-arrow-icon-before nut-trend-arrow-rate" :style="calcStyle">{{
       calcRate
     }}</span>
-    <slot v-if="Number(rate) !== 0 && state.rateTrend" name="up-icon">
+    <slot v-if="Number(rate) !== 0 && state.rateTrend" name="upIcon">
       <NutIcon name="triangle-up" :custom-color="riseColor" />
     </slot>
-    <slot v-if="Number(rate) !== 0 && !state.rateTrend" name="down-icon">
+    <slot v-if="Number(rate) !== 0 && !state.rateTrend" name="downIcon">
       <NutIcon name="triangle-down" :custom-color="dropColor" />
     </slot>
     <span v-if="arrowLeft" class="nut-trend-arrow-icon-after nut-trend-arrow-rate" :style="calcStyle">{{

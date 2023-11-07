@@ -17,16 +17,16 @@ const showTopBtn = computed(() => {
   return slots.btn
 })
 const topInfo = computed(() => {
-  return slots['top-info']
+  return slots.topInfo
 })
 const dayInfo = computed(() => {
   return slots.day
 })
 const bottomInfo = computed(() => {
-  return slots['bottom-info']
+  return slots.bottomInfo
 })
 const footerInfo = computed(() => {
-  return slots['footer-info']
+  return slots.footerInfo
 })
 // element refs
 const calendarRef = ref<null | CalendarInst>(null)
@@ -113,15 +113,15 @@ export default defineComponent({
       <template v-if="dayInfo" #day="date">
         <slot name="day" :date="date.date" />
       </template>
-      <template v-if="topInfo" #top-info="date">
-        <slot name="top-info" :date="date.date" />
+      <template v-if="topInfo" #topInfo="date">
+        <slot name="topInfo" :date="date.date" />
       </template>
       <template v-if="bottomInfo" #bottom-info="date">
-        <slot name="bottom-info" :date="date.date" />
+        <slot name="bottomInfo" :date="date.date" />
       </template>
       <!-- TODO uniapp不支持微信小程序 slot多级嵌套透传 -->
       <template v-if="footerInfo" #footer-info="date">
-        <slot name="footer-info" :date="date.date" />
+        <slot name="footerInfo" :date="date.date" />
       </template>
     </NutCalendarItem>
   </NutPoPUp>
@@ -152,14 +152,14 @@ export default defineComponent({
     <template v-if="dayInfo" #day="date">
       <slot name="day" :date="date.date" />
     </template>
-    <template v-if="topInfo" #top-info="date">
-      <slot name="top-info" :date="date.date" />
+    <template v-if="topInfo" #topInfo="date">
+      <slot name="topInfo" :date="date.date" />
     </template>
-    <template v-if="bottomInfo" #bottom-info="date">
-      <slot name="bottom-info" :date="date.date" />
+    <template v-if="bottomInfo" #bottomInfo="date">
+      <slot name="bottomInfo" :date="date.date" />
     </template>
-    <template v-if="footerInfo" #footer-info="date">
-      <slot name="footer-info" :date="date.date" />
+    <template v-if="footerInfo" #footerInfo="date">
+      <slot name="footerInfo" :date="date.date" />
     </template>
   </NutCalendarItem>
 </template>

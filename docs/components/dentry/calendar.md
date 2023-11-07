@@ -749,9 +749,9 @@ export default {
 |---------|--------------|
 | btn |  自定义日历标题下部，可用以添加自定义操作 |
 | day |  日期信息 |
-| top-info |  日期顶部信息 |
-| bottom-info |  日期底部信息 |
-| footer-info `v1.1.6` | 日历自定义底部，替代confirm按钮（不支持微信小程序）        |
+| topInfo |  日期顶部信息 |
+| bottomInfo |  日期底部信息 |
+| footerInfo `v1.1.6` | 日历自定义底部，替代confirm按钮（不支持微信小程序）        |
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html) 可以获取到 `Calendar` 实例并调用实例方法。

@@ -281,8 +281,8 @@ setup() {
 | 名称        | 说明                         |
 |-------------|------------------------------|
 | default     | 默认插槽自定义内容           |
-| upload-icon | 自定义上传按钮中间`icon`区域 |
-| delete-icon | 自定义右上角删除按钮区域     |
+| uploadIcon | 自定义上传按钮中间`icon`区域 |
+| deleteIcon | 自定义右上角删除按钮区域     |
 
 ### Methods
 

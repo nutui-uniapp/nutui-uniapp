@@ -108,18 +108,18 @@ export default defineComponent({
 <template>
   <div v-if="!swipeEdition" class="nut-address-list-general">
     <ItemContents :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem" @touchstart="holddownstart" @touchend="holddownend" @touchmove="holddownmove">
-      <template #content-top>
+      <template #contentTop>
         <slot name="content-info" />
       </template>
-      <template #content-icon>
+      <template #contentIcon>
         <slot name="content-icons" />
       </template>
-      <template #content-addr>
+      <template #contentAddr>
         <slot name="content-addrs" />
       </template>
     </ItemContents>
     <div v-if="longPress && showMaskRef" class="nut-address-list-general__mask" @click="maskClick">
-      <slot name="longpress-all">
+      <slot name="longpressAll">
         <div class="nut-address-list-general__mask-copy" @click="copyCLick">
           复制地址
         </div>
@@ -136,20 +136,20 @@ export default defineComponent({
   <NutSwipe v-else>
     <div class="nut-address-list-swipe">
       <ItemContents :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem" @touchmove="swipemove" @touchstart="swipestart">
-        <template #content-top>
-          <slot name="content-info" />
+        <template #contentTop>
+          <slot name="contentInfo" />
         </template>
-        <template #content-icon>
-          <slot name="content-icons" />
+        <template #contentIcon>
+          <slot name="contentIcons" />
         </template>
-        <template #content-addr>
-          <slot name="content-addrs" />
+        <template #contentAddr>
+          <slot name="contentAddrs" />
         </template>
       </ItemContents>
     </div>
     <template #right>
       <view style="height: 100%;">
-        <slot name="swipe-right-btn">
+        <slot name="swipeRightBtn">
           <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="swipeDelClick">
             删除
           </NutButton>

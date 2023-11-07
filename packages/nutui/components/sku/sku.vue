@@ -106,31 +106,25 @@ export default defineComponent({
     @click-close-icon="closePopup('icon')" @click-overlay="closePopup('overlay')" @close="closePopup('close')"
   >
     <view class="nut-sku">
-      <!-- #ifdef MP -->
-      <slot name="sku-header" />
-      <!-- #endif -->
-      <!-- #ifndef MP -->
-      <slot name="sku-header">
+      <slot name="skuHeader">
         <SkuHeader :goods="goods">
-          <template #sku-header-price>
-            <slot name="sku-header-price" />
+          <template #skuHeaderPrice>
+            <slot name="skuHeaderPrice" />
           </template>
 
-          <template #sku-header-extra>
-            <slot name="sku-header-extra" />
+          <template #skuHeaderExtra>
+            <slot name="skuHeaderExtra" />
           </template>
         </SkuHeader>
       </slot>
 
-      <!-- #endif -->
-
       <view class="nut-sku-content">
-        <slot name="sku-select-top" />
+        <slot name="skuSelectTop" />
 
-        <slot name="sku-select" />
+        <slot name="skuSelect" />
         <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @selectSku="selectSku" />
 
-        <slot name="sku-stepper">
+        <slot name="skuStepper">
           <SkuStepper
             :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
             :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
@@ -138,24 +132,18 @@ export default defineComponent({
           />
         </slot>
 
-        <slot name="sku-stepper-bottom" />
+        <slot name="skuStepperBottom" />
       </view>
 
-      // #ifdef MP-WEIXIN
-      <slot name="sku-operate" />
-      // #endif
-
-      // #ifndef MP-WEIXIN
       <SkuOperate
         :btn-extra-text="btnExtraText" :btn-options="btnOptions" :buy-text="buyText || translate('buyNow')"
         :add-cart-text="addCartText || translate('addToCart')" :confirm-text="confirmText || translate('confirm')"
         @clickBtnOperate="clickBtnOperate"
       >
-        <template #operate-btn>
-          <slot name="sku-operate" />
+        <template #operateBtn>
+          <slot name="skuOperate" />
         </template>
       </SkuOperate>
-      // #endif
     </view>
   </NutPopup>
 </template>

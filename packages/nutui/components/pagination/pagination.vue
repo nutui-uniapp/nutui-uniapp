@@ -93,7 +93,7 @@ export default defineComponent({
       class="nut-pagination-prev" :class="[mode === 'multi' ? '' : 'simple-border', modelValue === 1 ? 'disabled' : '']"
       @click="select(modelValue - 1, true)"
     >
-      <slot name="prev-text">
+      <slot name="prevText">
         {{ prevText || translate('prev') }}
       </slot>
     </view>
@@ -118,7 +118,7 @@ export default defineComponent({
       class="nut-pagination-next" :class="[modelValue >= countRef ? 'disabled' : '']"
       @click="select(modelValue + 1, true)"
     >
-      <slot name="next-text">
+      <slot name="nextText">
         {{ nextText || translate('next') }}
       </slot>
     </view>

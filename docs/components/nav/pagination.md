@@ -110,10 +110,10 @@ export default {
 ```html
 <template>
   <nut-pagination v-model="currentPage3" :total-items="500"  @change="pageChange"  :show-page-size="5">
-      <template #prev-text>
+      <template #prevText>
         <nut-icon name="left" size="10px" />
       </template>
-      <template #next-text>
+      <template #nextText>
         <nut-icon name="right" size="10px" />
       </template>
       <template #page="{ item }">
@@ -172,8 +172,8 @@ export default {
 
 | 名称      | 描述                 | 参数 |
 |-----------|----------------------|------|
-| prev-text | 自定义上一页按钮内容 | -    |
-| next-text | 自定义下一页按钮内容 | -    |
+| prevText | 自定义上一页按钮内容 | -    |
+| nextText | 自定义下一页按钮内容 | -    |
 | page      | 自定义页码           | -    |
 
 ## 主题定制

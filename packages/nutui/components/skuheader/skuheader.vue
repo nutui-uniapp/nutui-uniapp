@@ -5,7 +5,7 @@ import { isH5 } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutPrice from '../price/price.vue'
 
-const props = defineProps({
+defineProps({
   goods: {
     type: Object,
     default: () => {},
@@ -34,17 +34,15 @@ export default defineComponent ({
     <image v-if="!isH5" class="nut-sku-header-img" :src="goods.imagePath" />
     <image v-else class="nut-sku-header-img" :src="goods.imagePath" />
     <view class="nut-sku-header-right">
-      <template v-if="getSlots('sku-header-price')">
-        <slot name="sku-header-price" />
+      <template v-if="getSlots('skuHeaderPrice')">
+        <slot name="skuHeaderPrice" />
       </template>
-      <!-- TODO 没救了，uniapp的slot问题太多了 https://github.com/dcloudio/uni-app/issues/4229 -->
-
       <NutPrice v-else :price="goods.price" :need-symbol="true" :thousands="false" />
 
-      <template v-if="getSlots('sku-header-extra')">
-        <slot name="sku-header-extra" />
+      <template v-if="getSlots('skuHeaderExtra')">
+        <slot name="skuHeaderExtra" />
       </template>
-      <view v-if="goods.skuId && !getSlots('sku-header-extra')" class="nut-sku-header-right-extra">
+      <view v-if="goods.skuId && !getSlots('skuHeaderExtra')" class="nut-sku-header-right-extra">
         {{ translate('skuId')
         }}&nbsp;:&nbsp;{{ goods.skuId }}
       </view>

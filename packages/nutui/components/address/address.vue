@@ -303,7 +303,7 @@ export default defineComponent({
     <view :class="classes">
       <view class="nut-address__header">
         <view class="nut-address__header-back" @click="switchModule">
-          <slot name="back-icon">
+          <slot name="backIcon">
             <NutIcon v-show="type === 'exist' && privateType === 'custom'" name="left" size="14px" />
           </slot>
         </view>
@@ -317,7 +317,7 @@ export default defineComponent({
         </view>
 
         <view class="nut-address__header-close" @click="handClose('cross')">
-          <slot name="close-icon">
+          <slot name="closeIcon">
             <NutIcon name="close" custom-color="#cccccc" size="14px" />
           </slot>
         </view>
@@ -380,7 +380,7 @@ export default defineComponent({
               :class="[item.selectedAddress ? 'active' : '']"
               @click="selectedExist(item)"
             >
-              <slot v-if="!item.selectedAddress" name="unselected-icon">
+              <slot v-if="!item.selectedAddress" name="unselectedIcon">
                 <NutIcon name="location2" custom-class="nut-address-select-icon" width="13px" />
               </slot>
 

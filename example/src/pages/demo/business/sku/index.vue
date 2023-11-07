@@ -16,13 +16,6 @@ interface SkuItem {
   [key: string]: any
 }
 
-interface GoodsProps {
-  skuId: string | number
-  price: string // 商品信息展示区，商品价格
-  imagePath?: string
-  [key: string]: any
-}
-
 interface Data {
   skuData: Skus[]
   goodsInfo: any
@@ -199,16 +192,14 @@ export default defineComponent({
       @selectSku="selectSku"
       @close="close"
     >
-      <!-- #ifdef MP -->
-      <template #sku-header>
+      <template #skuHeader>
         <nut-sku-header :goods="goodsInfo" />
       </template>
-      <template #sku-operate>
+      <template #skuOperate>
         <nut-sku-operate
           @clickBtnOperate="clickBtnOperate"
         />
       </template>
-      <!-- #endif -->
     </nut-sku>
 
     <nut-sku
@@ -220,10 +211,10 @@ export default defineComponent({
       @selectSku="selectSku"
       @close="close"
     >
-      <template #sku-header>
+      <template #skuHeader>
         <nut-sku-header :goods="goodsInfo" />
       </template>
-      <template #sku-operate>
+      <template #skuOperate>
         <div class="sku-operate-box">
           <nut-button custom-class="sku-operate-box-dis" type="warning">
             查看相似商品
@@ -249,17 +240,15 @@ export default defineComponent({
       @clickBtnOperate="clickBtnOperate"
       @close="close"
     >
-      <!-- #ifdef MP -->
-      <template #sku-header>
+      <template #skuHeader>
         <nut-sku-header :goods="goodsInfo" />
       </template>
-      <template #sku-operate>
+      <template #skuOperate>
         <nut-sku-operate
           :btn-options="['buy', 'cart']"
           @clickBtnOperate="clickBtnOperate"
         />
       </template>
-      <!-- #endif -->
     </nut-sku>
 
     <nut-sku
@@ -271,21 +260,21 @@ export default defineComponent({
       @clickBtnOperate="clickBtnOperate"
       @close="close()"
     >
-      <template #sku-header>
+      <template #skuHeader>
         <nut-sku-header :goods="goodsInfo">
-          <template #sku-header-price>
+          <template #skuHeaderPrice>
             <div>
               <nut-price :price="goodsInfo.price" :need-symbol="true" :thousands="false" />
               <span class="tag" />
             </div>
           </template>
-          <template #sku-header-extra>
+          <template #skuHeaderExtra>
             <span class="text-12px c-skyblue">重量：0.1kg 编号：{{ goodsInfo.skuId }} </span>
           </template>
         </nut-sku-header>
       </template>
 
-      <template #sku-operate>
+      <template #skuOperate>
         <div class="sku-operate-box">
           <nut-button custom-class="sku-operate-item" shape="square" type="warning">
             加入购物车
@@ -296,7 +285,7 @@ export default defineComponent({
         </div>
       </template>
 
-      <template #sku-select-top>
+      <template #skuSelectTop>
         <div class="address">
           <nut-cell
             style="box-shadow: none; padding: 13px 0"

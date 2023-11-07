@@ -96,10 +96,10 @@
 <template>
   <nut-cell>
     <nut-trend-arrow :rate="10.2365">
-      <template #up-icon><nut-icon  name="success"  color="blue" size="18px" /></template>
+      <template #upIcon><nut-icon  name="success"  color="blue" size="18px" /></template>
     </nut-trend-arrow>
     <nut-trend-arrow :rate="-10.2365">
-      <template #down-icon><nut-icon  name="failure" color="red" /></template>
+      <template #downIcon><nut-icon  name="failure" color="red" /></template>
     </nut-trend-arrow>
   </nut-cell>
 </template>
@@ -125,8 +125,8 @@
 
 | 名称    | 说明         |
 |---------|--------------|
-| up-icon | 自定义向上箭头图标，默认使用 `TriangleUp` |
-| down-icon | 自定义向下箭头图标，默认使用 `TriangleDown` |
+| upIcon | 自定义向上箭头图标，默认使用 `TriangleUp` |
+| downIcon | 自定义向下箭头图标，默认使用 `TriangleDown` |
 
 ## 主题定制
 

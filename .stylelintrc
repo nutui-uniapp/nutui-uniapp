@@ -7,7 +7,9 @@
     "stylelint-config-html",
     "stylelint-config-recess-order"
   ],
-  "plugins": ["stylelint-order"],
+  "plugins": [
+    "stylelint-order"
+  ],
   "rules": {
     "selector-class-pattern": [
       "^([#a-z][$#{}a-z0-9]*)((-{1,2}|_{2})[$#{}a-z0-9]+)*$",
@@ -18,17 +20,24 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["::v-deep","deep","v-deep"]
+        "ignorePseudoClasses": [
+          "::v-deep",
+          "deep",
+          "v-deep"
+        ]
       }
     ],
     "selector-type-no-unknown": [
       true,
       {
-        "ignoreTypes": ["page"]
+        "ignoreTypes": [
+          "page",
+          "rich-text"
+        ]
       }
     ],
-    "no-descending-specificity" :null,
-    "no-empty-source" :null,
+    "no-descending-specificity": null,
+    "no-empty-source": null,
     "keyframes-name-pattern": "^[a-z]+([A-Z][a-z]*)*$"
   },
   "ignoreFiles": [
@@ -47,5 +56,4 @@
     "*.gif",
     "*.md"
   ]
-  
 }

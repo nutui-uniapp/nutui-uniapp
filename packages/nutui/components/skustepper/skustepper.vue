@@ -133,7 +133,8 @@ export default defineComponent ({
       color: $black;
     }
 
-    &-limit,rich-text {
+    &-limit,
+    rich-text {
       display: flex;
       flex: 1;
       align-items: center;

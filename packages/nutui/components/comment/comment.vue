@@ -53,7 +53,7 @@ export default defineComponent({
     <!-- 根据展示信息的多少，分为3种展示风格：simple，base，complex -->
     <CommentHeader :type="headerType" :info="info" :labels="labels" @handleClick="handleClick">
       <template #labels>
-        <slot name="comment-labels" />
+        <slot name="commentLabels" />
       </template>
     </CommentHeader>
 
@@ -88,7 +88,7 @@ export default defineComponent({
       @handleClick="handleClick"
     />
 
-    <slot name="comment-shop-reply" />
+    <slot name="commentShopReply" />
   </view>
 </template>
 

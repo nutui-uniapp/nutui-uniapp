@@ -18,7 +18,7 @@
     @clickImages="clickImages"
     :operation="['replay']"
   >
-    <template #comment-labels>
+    <template #commentLabels>
       <image
         style="height:15px;width:50px"
         src="https://img11.360buyimg.com/imagetools/jfs/t1/211858/17/4258/12101/618e6f78Ed0edcadc/e83a673555edf59f.jpg"
@@ -70,7 +70,7 @@ export default {
   ellipsis="6"
   @clickImages="clickImages"
 >
-  <template #comment-labels>
+  <template #commentLabels>
     <img
       class="nut-comment-header__labels--item"
       src="https://storage.360buyimg.com/imgtools/78925d9440-f9e874d0-e93d-11eb-8e5c-0da9e18a13b1.png"
@@ -78,7 +78,7 @@ export default {
     />
   </template>
 
-  <template #comment-shop-reply>
+  <template #commentShopReply>
     <div class="nut-comment-shop">
       <text style="display:inline-block">京东美妆国际：</text
       >尊敬的客户您好，非常抱歉给您带来不愉快的购物体验，关于过敏，什么成分都不存在个别性和普遍性。
@@ -180,8 +180,8 @@ export default {
 
 | 名称 | 说明           |
 |--------|----------------|
-| comment-labels  | 评论用户的标签 |
-| comment-shop-reply  | 评论最底部，用于展示商家回复|
+| commentLabels  | 评论用户的标签 |
+| commentShopReply  | 评论最底部，用于展示商家回复|
 
 ### images 数组
 

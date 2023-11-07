@@ -37,8 +37,6 @@ function onClick2() {
 </template>
 ```
 
-:::
-
 ### 循环动画
 
 ```vue
@@ -83,8 +81,6 @@ function onClick2() {
 
 ### 点击触发
 
-:::demo
-
 ```vue
 <template>
   <nut-animate type="slide-right" action="click">
@@ -109,8 +105,6 @@ function onClick2() {
   </nut-animate>
 </template>
 ```
-
-:::
 
 ## API
 

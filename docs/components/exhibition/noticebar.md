@@ -58,7 +58,7 @@
     <nut-noticebar
       :scrollable="false"
     >
-      <template v-slot:left-icon>
+      <template v-slot:leftIcon>
         <img
           src="https://img13.360buyimg.com/imagetools/jfs/t1/72082/2/3006/1197/5d130c8dE1c71bcd6/e48a3b60804c9775.png"
           style="width: 20px; height: 20px"
@@ -153,7 +153,7 @@
 ```html
 <template>
     <nut-noticebar direction='vertical' :list="horseLamp1" :speed='10' :standTime='1000' >
-      <template #right-icon>
+      <template #rightIcon>
         <nut-icon  name="fabulous"  />
       </template>
     </nut-noticebar>
@@ -203,8 +203,8 @@
 | 名称         | 说明                             |
 |--------------|----------------------------------|
 | default         | 通知文本的内容               |
-| right-icon        | 自定义右侧图标    |
-| left-icon        | 自定义左侧图标, 滚动方向为 `across` 生效    |
+| rightIcon        | 自定义右侧图标    |
+| leftIcon        | 自定义左侧图标, 滚动方向为 `across` 生效    |
 
 ### Events
 

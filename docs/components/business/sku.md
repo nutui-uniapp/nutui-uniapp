@@ -65,30 +65,6 @@ export default {
 </script>
 ```
 
-### 微信小程序的特殊处理
-
-由于 uniapp 混乱的 slot 机制，微信小程序环境需要手动传递 header与operate组件
-
-```html
-<nut-sku
-      v-model:visible="base"
-      :sku="skuData"
-      @selectSku="selectSku"
-      @close="close"
-    >
-      <!-- #ifdef MP-WEIXIN -->
-      <template #sku-header>
-        <nut-sku-header :goods="goodsInfo" />
-      </template>
-      <template #sku-operate>
-        <nut-sku-operate
-          @clickBtnOperate="clickBtnOperate"
-        />
-      </template>
-      <!-- #endif -->
-    </nut-sku>
-```
-
 ### 不可售
 
 ```html
@@ -103,7 +79,7 @@ export default {
     @selectSku="selectSku"
     :btnOptions="['buy', 'cart']"
   >
-    <template #sku-operate>
+    <template #skuOperate>
       <div class="sku-operate-box">
         <nut-button class="sku-operate-box-dis" type="warning">查看相似商品</nut-button>
         <nut-button class="sku-operate-box-dis" type="info">到货通知</nut-button>
@@ -277,24 +253,24 @@ Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可�
       @clickBtnOperate="clickBtnOperate"
   >
       <!-- 商品展示区，价格区域 -->
-      <template #sku-header-price>
+      <template #skuHeaderPrice>
           <div>
               <nut-price :price="goods.price" :needSymbol="true" :thousands="false"> </nut-price>
               <span class="tag"></span>
           </div>
       </template> 
       <!-- 商品展示区，编号区域 -->
-      <template #sku-header-extra>
+      <template #skuHeaderExtra>
           <span class="nut-sku-header-right-extra">重量：0.1kg  编号：{{skuId}}  </span>
       </template> 
       <!-- sku 展示区上方与商品信息展示区下方区域，无默认展示内容 -->
-      <template #sku-select-top>
+      <template #skuSelectTop>
           <div class="address">
               <nut-cell style="box-shadow:none;padding:13px 0" title="送至" :desc="addressDesc" @click="showAddressPopup=true"></nut-cell>
           </div>
       </template>
       <!-- 底部按钮操作区 -->
-      <template #sku-operate>
+      <template #skuOperate>
           <div class="sku-operate-box">
           <nut-button class="sku-operate-item" shape="square" type="warning">加入购物车</nut-button>
           <nut-button class="sku-operate-item" shape="square" type="primary">立即购买</nut-button>
@@ -462,14 +438,14 @@ Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可�
 
 | 名称 | 说明           |
 |--------|----------------|
-| sku-header  | 商品信息展示区，包含商品图片、价格、编号 |
-| sku-header-price  | 商品信息展示区，价格区域展示|
-| sku-header-extra  | 商品信息展示区，编号区域展示 |
-| sku-select-top | Sku 展示区上方与商品信息展示区下方区域，无默认展示内容 |
-| sku-select | Sku 展示区 |
-| sku-stepper  | 数量选择区 |
-| sku-stepper-bottom  | 数量选择区下方区域 |
-| sku-operate | 底部按钮操作区域 |
+| skuHeader  | 商品信息展示区，包含商品图片、价格、编号 |
+| skuHeaderPrice  | 商品信息展示区，价格区域展示|
+| skuHeaderExtra  | 商品信息展示区，编号区域展示 |
+| skuSelectTop | Sku 展示区上方与商品信息展示区下方区域，无默认展示内容 |
+| skuSelect | Sku 展示区 |
+| skuStepper  | 数量选择区 |
+| skuStepperBottom  | 数量选择区下方区域 |
+| skuOperate | 底部按钮操作区域 |
 
 ### goods 对象结构
 

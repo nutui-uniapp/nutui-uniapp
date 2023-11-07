@@ -173,7 +173,7 @@ export default defineComponent({
         text.two = val.data.addressStr
       }
     }
-    const selected = (prevExistAdd: AddressList, nowExistAdd: RegionData, arr: AddressList[]) => {
+    const selected = (prevExistAdd: AddressList, nowExistAdd: RegionData, _arr: AddressList[]) => {
       console.log(prevExistAdd)
       console.log(nowExistAdd)
     }
@@ -333,7 +333,7 @@ export default defineComponent({
       @close="close3"
       @selected="selected"
     >
-      <template #unselected-icon>
+      <template #unselectedIcon>
         <nut-icon name="heart1" custom-style="margin-right: 8px" />
       </template>
       <template #icon>

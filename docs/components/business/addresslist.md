@@ -243,11 +243,11 @@ export default {
 
 | 名称          | 说明                             | 作用域参数           |
 | ------------- | -------------------------------- | -------------- |
-| item-infos     | 地址列表项姓名/联系方式/默认一行 | `{ item }`           |
-| item-icon      | 地址列表项图标                   | `{ item }`           |
-| item-addr      | 地址列表项详细地址               | `{ item }`           |
-| swipe-right    | 地址列表项右滑区域               | `{ item }` |
-| longpress-btns | 地址列表项长按遮罩内容           | `{ item }` |
+| itemInfos     | 地址列表项姓名/联系方式/默认一行 | `{ item }`           |
+| itemIcon      | 地址列表项图标                   | `{ item }`           |
+| itemAddr      | 地址列表项详细地址               | `{ item }`           |
+| swipeRight    | 地址列表项右滑区域               | `{ item }` |
+| longpressBtns | 地址列表项长按遮罩内容           | `{ item }` |
 
 ### data 数组中每一项 与 options 对象的参数磨平
 

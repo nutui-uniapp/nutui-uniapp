@@ -5,7 +5,7 @@ import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
 import { cardProps } from './card'
 
-const props = defineProps(cardProps)
+defineProps(cardProps)
 </script>
 
 <script lang="ts">
@@ -40,7 +40,7 @@ export default defineComponent({
         </slot>
       </div>
       <div class="nut-card__right__other">
-        <slot name="shop-tag">
+        <slot name="shopTag">
           <NutTag type="danger">
             {{ shopDesc }}
           </NutTag>

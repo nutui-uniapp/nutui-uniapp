@@ -167,10 +167,10 @@
 ```html
 <template>
   <nut-input-number v-model="value">
-    <template #left-icon>
+    <template #leftIcon>
       <nut-icon  name="left"  />
     </template>
-    <template #right-icon>
+    <template #rightIcon>
       <nut-icon  name="right"  />
     </template>
   </nut-input-number>
@@ -206,8 +206,8 @@
 
 | 名称      | 说明           |
 |-----------|----------------|
-| left-icon  | 自定义左侧按钮 |
-| right-icon | 自定义右侧按钮 |
+| leftIcon  | 自定义左侧按钮 |
+| rightIcon | 自定义右侧按钮 |
 
 ### Events
 

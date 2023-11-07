@@ -40,10 +40,10 @@ export default defineComponent({
       自定义按钮
     </h2>
     <nut-pagination v-model="currentPage3" :total-items="500" :show-page-size="5" @change="pageChange">
-      <template #prev-text>
+      <template #prevText>
         <nut-icon name="left" size="10px" />
       </template>
-      <template #next-text>
+      <template #nextText>
         <nut-icon name="right" size="10px" />
       </template>
       <template #page="{ item }">

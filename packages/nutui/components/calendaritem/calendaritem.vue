@@ -42,10 +42,10 @@ const showTopBtn = computed(() => {
   return slots.btn
 })
 const topInfo = computed(() => {
-  return slots['top-info']
+  return slots.topInfo
 })
 const bottomInfo = computed(() => {
-  return slots['bottom-info']
+  return slots.bottomInfo
 })
 
 const state: CalendarTaroState = reactive({
@@ -754,10 +754,10 @@ export default defineComponent({
                     </view>
                     <!-- #ifdef H5 -->
                     <view v-if="topInfo" class="nut-calendar__day-tips nut-calendar__day-tips--top">
-                      <slot name="top-info" :date="day.type === 'curr' ? day : ''" />
+                      <slot name="topInfo" :date="day.type === 'curr' ? day : ''" />
                     </view>
                     <view v-if="bottomInfo" class="nut-calendar__day-tips nut-calendar__day-tips--bottom">
-                      <slot name="bottom-info" :date="day.type === 'curr' ? day : ''" />
+                      <slot name="bottomInfo" :date="day.type === 'curr' ? day : ''" />
                     </view>
                     <!-- #endif -->
                     <view v-if="!bottomInfo && showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">

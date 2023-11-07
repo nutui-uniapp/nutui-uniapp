@@ -116,7 +116,7 @@
       :delivery="state.delivery"
       :shopName="state.shopName"
     >
-      <template #shop-tag>
+      <template #shopTag>
         <div>自定义店铺介绍</div>
       </template>
       <template #price>
@@ -236,7 +236,7 @@
 | prolist |  自定义商品介绍 |
 | price |  价格自定义内容 |
 | origin |  价格后方自定义内容 |
-| shop-tag |  店铺介绍自定义 |
+| shopTag |  店铺介绍自定义 |
 | footer |  右下角内容自定义 |
 
 ## 主题定制

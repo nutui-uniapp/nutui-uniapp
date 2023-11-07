@@ -105,7 +105,7 @@ export default {
       :delivery="state.delivery"
       :shop-name="state.shopName"
     >
-      <template #shop-tag>
+      <template #shopTag>
         <div>这里是自定义区域</div>
       </template>
     </nut-card>

@@ -235,7 +235,7 @@ export default defineComponent({
         </view>
 
         <view v-if="isDeletable" class="close" @click="onDelete(item, index)">
-          <slot name="delete-icon">
+          <slot name="deleteIcon">
             <NutIcon name="failure" />
           </slot>
         </view>
@@ -287,7 +287,7 @@ export default defineComponent({
       class="nut-uploader__upload"
       :class="[listType]"
     >
-      <slot name="upload-icon">
+      <slot name="uploadIcon">
         <NutIcon name="photograph" custom-color="#808080" />
       </slot>
       <NutButton custom-class="nut-uploader__input" :class="{ disabled }" @click="(chooseImage as any)" />

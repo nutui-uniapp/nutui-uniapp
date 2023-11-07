@@ -276,7 +276,7 @@ export default defineComponent({
       @click="(handleClick as any)"
     >
       <view class="nut-noticebar__page-lefticon">
-        <slot name="left-icon">
+        <slot name="leftIcon">
           <NutIcon v-if="leftIcon" name="notice" size="16px" />
         </slot>
       </view>
@@ -291,8 +291,8 @@ export default defineComponent({
           <slot>{{ text }}</slot>
         </view>
       </view>
-      <view v-if="closeMode || $slots['right-icon']" class="nut-noticebar__page-righticon" @click.stop="(onClickIcon as any)">
-        <slot name="right-icon">
+      <view v-if="closeMode || $slots.rightIcon" class="nut-noticebar__page-righticon" @click.stop="(onClickIcon as any)">
+        <slot name="rightIcon">
           <NutIcon name="circle-close" />
         </slot>
       </view>
@@ -330,7 +330,7 @@ export default defineComponent({
       </template>
 
       <view class="go" @click="handleClickIcon()">
-        <slot name="right-icon">
+        <slot name="rightIcon">
           <NutIcon v-if="closeMode" name="circle-close" :custom-color="customColor" size="11px" />
         </slot>
       </view>

@@ -54,7 +54,7 @@ export default defineComponent({
         @click="handleclick"
         @clickImages="clickImages"
       >
-        <template #comment-labels>
+        <template #commentLabels>
           <image
             class="nut-comment-header__labels--item"
             src="https://img11.360buyimg.com/imagetools/jfs/t1/211858/17/4258/12101/618e6f78Ed0edcadc/e83a673555edf59f.jpg"
@@ -77,7 +77,7 @@ export default defineComponent({
         ellipsis="6"
         @clickImages="clickImages"
       >
-        <template #comment-labels>
+        <template #commentLabels>
           <image
             class="nut-comment-header__labels--item"
             src="https://storage.360buyimg.com/imgtools/78925d9440-f9e874d0-e93d-11eb-8e5c-0da9e18a13b1.png"
@@ -85,7 +85,7 @@ export default defineComponent({
           />
         </template>
 
-        <template #comment-shop-reply>
+        <template #commentShopReply>
           <div class="nut-comment-shop">
             <text style="display: inline">
               京东美妆国际：
