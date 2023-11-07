@@ -68,6 +68,7 @@ export const calendarProps = {
     default: 0,
     validator: (val: number) => val >= 0 && val <= 6,
   },
+  disabledDate: Function,
 }
 
 export type CalendarProps = ExtractPropTypes<typeof calendarProps>

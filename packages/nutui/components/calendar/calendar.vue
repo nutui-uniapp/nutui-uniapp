@@ -26,7 +26,7 @@ const bottomInfo = computed(() => {
   return slots.bottomInfo
 })
 const footerInfo = computed(() => {
-  return slots.footerInfo
+  return slots['footer-info']
 })
 // element refs
 const calendarRef = ref<null | CalendarInst>(null)
@@ -102,6 +102,7 @@ export default defineComponent({
       :show-sub-title="showSubTitle"
       :to-date-animation="toDateAnimation"
       :first-day-of-week="firstDayOfWeek"
+      :disabled-date="disabledDate"
       @update="update"
       @close="close"
       @choose="choose"
@@ -116,10 +117,9 @@ export default defineComponent({
       <template v-if="topInfo" #topInfo="date">
         <slot name="topInfo" :date="date.date" />
       </template>
-      <template v-if="bottomInfo" #bottom-info="date">
+      <template v-if="bottomInfo" #bottomInfo="date">
         <slot name="bottomInfo" :date="date.date" />
       </template>
-      <!-- TODO uniapp不支持微信小程序 slot多级嵌套透传 -->
       <template v-if="footerInfo" #footer-info="date">
         <slot name="footerInfo" :date="date.date" />
       </template>
@@ -142,6 +142,7 @@ export default defineComponent({
     :to-date-animation="toDateAnimation"
     :show-today="showToday"
     :first-day-of-week="firstDayOfWeek"
+    :disabled-date="disabledDate"
     @close="close"
     @choose="choose"
     @select="select"
@@ -158,7 +159,7 @@ export default defineComponent({
     <template v-if="bottomInfo" #bottomInfo="date">
       <slot name="bottomInfo" :date="date.date" />
     </template>
-    <template v-if="footerInfo" #footerInfo="date">
+    <template v-if="footerInfo" #footer-info="date">
       <slot name="footerInfo" :date="date.date" />
     </template>
   </NutCalendarItem>

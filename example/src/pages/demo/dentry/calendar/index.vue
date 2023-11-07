@@ -16,6 +16,7 @@ interface TestCalendarState {
   isVisible8: boolean
   isVisible9: boolean
   isVisible10: boolean
+  isVisible11: boolean
   date1: string[]
   date2: string
   date3: string
@@ -56,6 +57,7 @@ export default {
       isVisible8: false,
       isVisible9: false,
       isVisible10: false,
+      isVisible11: false,
       disabled10: false,
     })
     const openSwitch = (param: string) => {
@@ -137,6 +139,18 @@ export default {
       state.date10 = dateInfo.date[3]
       state.isVisible10 = false
     }
+    const disabledDate = (date: any) => {
+      const disabledDate: any = {
+        '2022-01-05': true,
+        '2022-01-06': true,
+        '2022-01-10': true,
+        '2022-01-11': true,
+        '2022-01-12': true,
+        '2022-01-13': true,
+        '2022-01-14': true,
+      }
+      return disabledDate[date]
+    }
 
     return {
       ...toRefs(state),
@@ -159,6 +173,7 @@ export default {
       calendarRef,
       select,
       clickBtn10,
+      disabledDate,
     }
   },
 }
@@ -339,12 +354,14 @@ export default {
         @close="closeSwitch('isVisible10')"
         @select="setSelectalue10"
       >
-        <template #footer-info="dateInfo">
-          <nut-button size="large" block round type="primary" :disabled="disabled10" @click="clickBtn10(dateInfo)">
-            {{
-              disabled10 ? '偶数的日期不能选择' : '奇数的日期可以选择'
-            }}
-          </nut-button>
+        <template #footerInfo="dateInfo">
+          <view class="flex justify-center w-full">
+            <nut-button size="large" block round type="primary" :disabled="disabled10" @click="clickBtn10(dateInfo)">
+              {{
+                disabled10 ? '偶数的日期不能选择' : '奇数的日期可以选择'
+              }}
+            </nut-button>
+          </view>
         </template>
       </nut-calendar>
     </div>
@@ -372,7 +389,7 @@ export default {
         <template #day="date">
           <view>{{ (date.date as any).day <= 9 ? `0${(date.date as any).day}` : (date.date as any).day }}</view>
         </template>
-        <template #bottom-info="date">
+        <template #bottomInfo="date">
           <view class="info">
             {{ date.date ? ((date.date as any).day === 10 ? '十' : '') : '' }}
           </view>
@@ -396,6 +413,26 @@ export default {
         :first-day-of-week="2"
         @close="closeSwitch('isVisible8')"
         @choose="setChooseValue8"
+      />
+    </div>
+    <h2 class="title">
+      自定义禁用日期
+    </h2>
+    <div>
+      <nut-cell
+        :show-icon="true"
+        title="自定义禁用日期"
+        :desc="date ? `${date}` : '请选择'"
+        @click="openSwitch('isVisible11')"
+      />
+      <nut-calendar
+        v-model:visible="isVisible11"
+        :default-value="date"
+        start-date="2022-01-01"
+        end-date="2022-11-30"
+        :disabled-date="disabledDate"
+        @close="closeSwitch('isVisible11')"
+        @choose="setChooseValue"
       />
     </div>
     <h2 class="title">

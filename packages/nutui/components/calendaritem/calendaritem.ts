@@ -62,6 +62,7 @@ export const calendaritemProps = {
     type: Number,
     default: 0,
   },
+  disabledDate: Function,
 }
 
 export const calendaritemEmits = {
