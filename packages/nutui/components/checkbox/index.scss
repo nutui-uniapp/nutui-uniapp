@@ -24,6 +24,7 @@
   display: $checkbox-display;
   align-items: center;
   margin-right: $checkbox-margin-right;
+  vertical-align: bottom;
 
   &--reverse {
     flex-direction: row-reverse;
