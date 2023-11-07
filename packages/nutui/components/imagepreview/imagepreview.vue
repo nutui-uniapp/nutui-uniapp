@@ -9,6 +9,7 @@ import NutSwiper from '../swiper/swiper.vue'
 import NutSwiperItem from '../swiperitem/swiperitem.vue'
 
 import NutIcon from '../icon/icon.vue'
+import type { ImageInterface } from './types'
 import { imagepreviewEmits, imagepreviewProps } from './imagepreview'
 
 const props = defineProps(imagepreviewProps)
@@ -167,6 +168,10 @@ function onTouchEnd() {
   }
 }
 
+function longPress(image: ImageInterface) {
+  emit('longPress', image)
+}
+
 function init() {
   document.addEventListener('touchmove', onTouchMove)
   document.addEventListener('touchend', onTouchEnd)
@@ -230,7 +235,13 @@ export default defineComponent({
         <NutSwiperItem v-for="(item, index) in images" :key="index">
           <movable-area class="nut-image-movable-area">
             <movable-view :disabled="!scale" inertia scale-area class="nut-image-preview-img" :scale="scale" direction="all">
-              <image :src="item.src" mode="aspectFit" class="nut-image-preview-img" @click.stop="closeOnImg" />
+              <image
+                mode="aspectFit"
+                class="nut-image-preview-img"
+                @longPress="longPress(item)"
+                @longTap="longPress(item)"
+                @click.stop="closeOnImg"
+              />
             </movable-view>
           </movable-area>
         </NutSwiperItem>

@@ -59,6 +59,7 @@ export type ImagePreviewProps = ExtractPropTypes<typeof imagepreviewProps>
 export const imagepreviewEmits = {
   close: () => true,
   change: (_val: number) => true,
+  longPress: (image: ImageInterface) => image instanceof Object,
 }
 
 export type ImagePreviewEmits = typeof imagepreviewEmits
