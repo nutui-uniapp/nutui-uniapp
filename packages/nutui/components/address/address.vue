@@ -293,6 +293,7 @@ export default defineComponent({
 <template>
   <NutPopup
     v-model:visible="showPopup"
+    :z-index="zIndex"
     position="bottom"
     :lock-scroll="lockScroll"
     :round="round"

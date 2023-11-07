@@ -56,6 +56,7 @@ export default defineComponent({
     <NutPopUp
       v-model:visible="innerVisible"
       position="bottom"
+      :z-index="zIndex"
       pop-class="nut-cascader__popup"
       round
       :closeable="closeable"
@@ -65,7 +66,7 @@ export default defineComponent({
       :lock-scroll="lockScroll"
     >
       <template v-if="title">
-        <view class="nut-cascader__bar" v-html="title" />
+        <rich-text class="nut-cascader__bar" :nodes="title" />
       </template>
 
       <NutCascaderItem

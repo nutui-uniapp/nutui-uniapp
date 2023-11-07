@@ -47,6 +47,7 @@ const { translate } = useTranslate(componentName)
     :overlay-class="overlayClass"
     :overlay-style="overlayStyle"
     :custom-style="popStyle"
+    :z-index="zIndex"
     round
     :transition="transition"
     @click-overlay="onClickOverlay"
