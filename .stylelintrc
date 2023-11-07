@@ -21,6 +21,12 @@
         "ignorePseudoClasses": ["::v-deep","deep","v-deep"]
       }
     ],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": ["page"]
+      }
+    ],
     "no-descending-specificity" :null,
     "no-empty-source" :null,
     "keyframes-name-pattern": "^[a-z]+([A-Z][a-z]*)*$"
