@@ -73,12 +73,12 @@ export default defineComponent({
     <nut-cell>
       <nut-trend-arrow :rate="10.2365">
         <template #upIcon>
-          <nut-icon name="success" color="blue" size="18px" />
+          <nut-icon name="success" custom-color="blue" size="18px" />
         </template>
       </nut-trend-arrow>
       <nut-trend-arrow :rate="-10.2365">
         <template #downIcon>
-          <nut-icon name="failure" color="red" />
+          <nut-icon name="failure" custom-color="red" />
         </template>
       </nut-trend-arrow>
     </nut-cell>
