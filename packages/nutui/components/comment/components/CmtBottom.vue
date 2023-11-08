@@ -65,9 +65,9 @@ export default defineComponent ({
 <template>
   <view class="nut-comment-bottom">
     <view class="nut-comment-bottom__lable" @click="handleClick">
-      <text v-if="type !== 'complex'" style="display: inline">
+      <span v-if="type !== 'complex'" style="display: inline;white-space:none;">
         {{ info.size }}
-      </text>
+      </span>
     </view>
 
     <view class="nut-comment-bottom__cpx">
