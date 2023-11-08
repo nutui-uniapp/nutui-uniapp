@@ -1,3 +1,30 @@
+# [1.4.0](https://github.com/yang1206/uniapp-nutui/compare/v1.3.5...v1.4.0) (2023-11-08)
+
+### Bug Fixes
+
+* **address:** backIcon会一直存在 ([3819937](https://github.com/yang1206/uniapp-nutui/commit/3819937ec0b59d6d869a986a24e1449fd7dd93f1))
+* **card:** price颜色未覆盖 ([2665bd1](https://github.com/yang1206/uniapp-nutui/commit/2665bd137c5d27f57b614ebe70e25299e89ff481))
+* **checkbox:** 修复样式对齐问题 ([155e25b](https://github.com/yang1206/uniapp-nutui/commit/155e25ba84676d1c5b816541da622f4c893db857))
+* **comment:** label 样式无法正确省略 ([5e56649](https://github.com/yang1206/uniapp-nutui/commit/5e56649f4f87d9e3f914c3923a9d68a4d724ae26))
+* **progress:** icon 颜色错误 ([18662d5](https://github.com/yang1206/uniapp-nutui/commit/18662d57046acfb6e5c57e7bef214dde1ce52c88))
+* **uploader:** h5进度遮罩样式错误 ([e4ccf4a](https://github.com/yang1206/uniapp-nutui/commit/e4ccf4abdfeb74141a703cda8685e1576590ae8d))
+
+* fix!: 短横线命名slot无法被正确替换 ([52587ed](https://github.com/yang1206/uniapp-nutui/commit/52587ed78feae3e35cd5f38e92cd6878f4c6c715)), closes [#96](https://github.com/yang1206/uniapp-nutui/issues/96)
+
+### Features
+
+* **calendar:** 增加自定义禁用函数disabled-date ([2b0363f](https://github.com/yang1206/uniapp-nutui/commit/2b0363fc58ca0087768a141b3f9dcfd4e4f15d44))
+* **calendar:** 增加footerSlot属性判断是否使用 footer 插槽 ([6e53d43](https://github.com/yang1206/uniapp-nutui/commit/6e53d435d179d7865087d03e1ecfd323d58f0162))
+* **image-preview:** 新增 long-press 事件 ([42893a5](https://github.com/yang1206/uniapp-nutui/commit/42893a50e1c5d59ec8611d0092f97c92f3797a6e))
+* popup 关联组件增加 z-index 属性 ([fe52d5f](https://github.com/yang1206/uniapp-nutui/commit/fe52d5fa7b05fdfec711b9eff7750cd51c291cf3))
+
+### BREAKING CHANGES
+
+* 组件的slot名称由短横线替换为驼峰格式
+
+受到影响的组件有: address , addresslist , calendar , card , comment , inputnumber , navbar , noticebar ,
+pagination , progress , sku , trendarrow , uploader
+
 ## [1.3.5](https://github.com/yang1206/uniapp-nutui/compare/v1.3.4...v1.3.5) (2023-11-07)
 
 ## [1.3.4](https://github.com/yang1206/uniapp-nutui/compare/v1.3.3...v1.3.4) (2023-11-06)
