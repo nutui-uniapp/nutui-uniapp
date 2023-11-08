@@ -2,13 +2,14 @@
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { badgeProps } from './badge'
+import { pxCheck } from '../_utils'
 
 const props = defineProps(badgeProps)
 
 const stl = computed(() => {
   return {
-    top: `${props.top}px`,
-    right: `${props.right}px`,
+    top: pxCheck(props.top),
+    right: pxCheck(props.right),
     zIndex: props.zIndex,
     background: props.customColor,
   }
