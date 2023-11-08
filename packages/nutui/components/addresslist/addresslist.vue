@@ -107,19 +107,19 @@ export default defineComponent({
       @longSet="clickLongSet($event, item, index)"
       @longDel="clickLongDel($event, item, index)"
     >
-      <template #contentInfo>
+      <template #content-info>
         <slot name="itemInfos" :item="item" />
       </template>
-      <template #contentIcons>
+      <template #content-icons>
         <slot name="itemIcon" :item="item" />
       </template>
-      <template #contentAddrs>
+      <template #content-addrs>
         <slot name="itemAddr" :item="item" />
       </template>
-      <template v-if="longPress" #longpressAll>
+      <template v-if="longPress" #longpress-all>
         <slot name="longpressBtns" :item="item" />
       </template>
-      <template v-if="swipeEdition" #swipeRightBtn>
+      <template v-if="swipeEdition" #swipe-right-btn>
         <slot name="swipeRight" :item="item" />
       </template>
     </GeneralShell>

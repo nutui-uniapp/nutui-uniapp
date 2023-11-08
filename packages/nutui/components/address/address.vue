@@ -304,8 +304,8 @@ export default defineComponent({
     <view :class="classes">
       <view class="nut-address__header">
         <view class="nut-address__header-back" @click="switchModule">
-          <slot name="backIcon">
-            <NutIcon v-show="type === 'exist' && privateType === 'custom'" name="left" size="14px" />
+          <slot v-if="type === 'exist' && privateType === 'custom'" name="backIcon">
+            <NutIcon name="left" size="14px" />
           </slot>
         </view>
 

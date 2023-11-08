@@ -45,7 +45,7 @@ function holdingFunc(event: Event) {
   showMaskRef.value = true
   emit('longDown', event, props.address)
 }
-    // 长按功能实现
+// 长按功能实现
 function holddownstart(event: Event) {
   loop = setTimeout(() => {
     holdingFunc(event)
@@ -107,19 +107,22 @@ export default defineComponent({
 
 <template>
   <div v-if="!swipeEdition" class="nut-address-list-general">
-    <ItemContents :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem" @touchstart="holddownstart" @touchend="holddownend" @touchmove="holddownmove">
-      <template #contentTop>
+    <ItemContents
+      :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem"
+      @touchstart="holddownstart" @touchend="holddownend" @touchmove="holddownmove"
+    >
+      <template #content-top>
         <slot name="content-info" />
       </template>
-      <template #contentIcon>
+      <template #content-icon>
         <slot name="content-icons" />
       </template>
-      <template #contentAddr>
+      <template #content-addr>
         <slot name="content-addrs" />
       </template>
     </ItemContents>
     <div v-if="longPress && showMaskRef" class="nut-address-list-general__mask" @click="maskClick">
-      <slot name="longpressAll">
+      <slot name="longpress-all">
         <div class="nut-address-list-general__mask-copy" @click="copyCLick">
           复制地址
         </div>
@@ -135,21 +138,24 @@ export default defineComponent({
   </div>
   <NutSwipe v-else>
     <div class="nut-address-list-swipe">
-      <ItemContents :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem" @touchmove="swipemove" @touchstart="swipestart">
-        <template #contentTop>
-          <slot name="contentInfo" />
+      <ItemContents
+        :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem"
+        @touchmove="swipemove" @touchstart="swipestart"
+      >
+        <template #content-top>
+          <slot name="content-info" />
         </template>
-        <template #contentIcon>
-          <slot name="contentIcons" />
+        <template #content-icon>
+          <slot name="content-icons" />
         </template>
-        <template #contentAddr>
-          <slot name="contentAddrs" />
+        <template #content-addr>
+          <slot name="content-addrs" />
         </template>
       </ItemContents>
     </div>
     <template #right>
       <view style="height: 100%;">
-        <slot name="swipeRightBtn">
+        <slot name="swipe-right-btn">
           <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="swipeDelClick">
             删除
           </NutButton>
@@ -161,7 +167,6 @@ export default defineComponent({
 
 <style lang="scss">
 .nut-theme-dark {
-  .nut-address-list {
     &-swipe,
     &-general {
       color: $dark-color;
@@ -177,7 +182,6 @@ export default defineComponent({
         }
       }
     }
-  }
 }
 
 .nut-address-list {

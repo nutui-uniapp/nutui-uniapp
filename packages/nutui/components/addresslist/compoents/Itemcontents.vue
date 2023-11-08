@@ -7,7 +7,7 @@ import NutIcon from '../../icon/icon.vue'
 const props = defineProps({
   item: {
     type: Object,
-    default: () => {},
+    default: () => { },
   },
 })
 const emit = defineEmits(['delIcon', 'editIcon', 'clickItem'])
@@ -45,7 +45,7 @@ export default defineComponent({
   <div class="nut-address-list-item" @click="contentsClick">
     <div class="nut-address-list-item__info">
       <div class="nut-address-list-item__info-contact">
-        <slot name="contentTop">
+        <slot name="content-top">
           <div class="nut-address-list-item__info-contact-name">
             {{ item.addressName }}
           </div>
@@ -60,14 +60,14 @@ export default defineComponent({
         </slot>
       </div>
       <div class="nut-address-list-item__info-handle">
-        <slot name="contentIcon">
+        <slot name="content-icon">
           <NutIcon name="del" custom-class="nut-address-list-item__info-handle-del" @tap.stop="delClick" />
           <NutIcon name="edit" custom-class="nut-address-list-item__info-handle-edit" @tap.stop="editClick" />
         </slot>
       </div>
     </div>
     <div class="nut-address-list-item__addr">
-      <slot name="contentAddr">
+      <slot name="content-addr">
         {{ item.fullAddress }}
       </slot>
     </div>

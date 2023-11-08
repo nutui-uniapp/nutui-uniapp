@@ -337,7 +337,7 @@ export default defineComponent({
         <nut-icon name="heart1" custom-style="margin-right: 8px" />
       </template>
       <template #icon>
-        <nut-icon name="heart-fill" custom-style="margin-right: 8px" color="#f00" />
+        <nut-icon name="heart-fill" custom-style="margin-right: 8px" custom-color="#f00" />
       </template>
       <template #bottom>
         <div class="nut-address-custom-buttom">
