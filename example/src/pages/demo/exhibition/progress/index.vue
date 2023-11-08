@@ -112,7 +112,7 @@ export default {
           status="icon"
         >
           <template #iconName>
-            <nut-icon name="issue" color="red" width="15px" height="15px" />
+            <nut-icon name="issue" custom-color="red" width="15px" height="15px" />
           </template>
         </nut-progress>
       </nut-cell>
