@@ -2,7 +2,7 @@
 
 ### Bug Fixes
 
-* badge的top、right不支持rpx单位 ([964e4ea](https://github.com/yang1206/uniapp-nutui/commit/964e4ea6e472889c7f43bc70491d3e3ac613cf31))
+* **badge:** badge的top、right不支持rpx单位 ([964e4ea](https://github.com/yang1206/uniapp-nutui/commit/964e4ea6e472889c7f43bc70491d3e3ac613cf31))
 
 # [1.4.0](https://github.com/yang1206/uniapp-nutui/compare/v1.3.5...v1.4.0) (2023-11-08)
 
