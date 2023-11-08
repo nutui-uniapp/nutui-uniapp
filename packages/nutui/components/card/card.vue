@@ -36,7 +36,9 @@ export default defineComponent({
           <NutPrice v-if="price" :price="price" />
         </slot>
         <slot name="origin">
-          <NutPrice v-if="vipPrice" class="nut-card__right__price__origin" :price="vipPrice" />
+          <view class="nut-card__right__price__origin">
+            <NutPrice v-if="vipPrice" :price="vipPrice" />
+          </view>
         </slot>
       </div>
       <div class="nut-card__right__other">

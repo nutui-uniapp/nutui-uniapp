@@ -63,7 +63,7 @@
       }
 
       .nut-card__right__price__origin {
-        &.nut-price {
+        :deep(.nut-price) {
           margin-left: 2px;
           color: #d2a448;
 
@@ -80,6 +80,7 @@
           }
         }
       }
+        
     }
 
     .nut-card__right__other {
