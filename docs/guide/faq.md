@@ -18,3 +18,7 @@ uniapp在小程序环境组件的 class 和 style 不会被成功编译，如果
 ::: details 某些组件在小程序有一些问题，仅支持 H5
 如 tour,signature等这些在文档中有标注 <Badge type="warning">H5</Badge> 的组件，代表仅支持 H5
 :::
+
+::: details 为什么使用某些插槽需要传递一个 props 属性，如`calendar`组件的footer 插槽
+由于 uni-app混乱的插槽机制，导致在微信小程序平台中某些具有默认内容的具名插槽无法正常使用，因此只能增加一个属性判断是否使用该插槽，具体可以查看这个 [issue](https://github.com/dcloudio/uni-app/issues/4229#issuecomment-1612487232)
+:::
