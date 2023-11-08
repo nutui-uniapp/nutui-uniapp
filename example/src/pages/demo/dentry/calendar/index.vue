@@ -351,10 +351,11 @@ export default {
         :default-value="date10"
         :poppable="true"
         :is-auto-back-fill="false"
+        footer-slot
         @close="closeSwitch('isVisible10')"
         @select="setSelectalue10"
       >
-        <template #footerInfo="dateInfo">
+        <template #footer="dateInfo">
           <view class="flex justify-center w-full">
             <nut-button size="large" block round type="primary" :disabled="disabled10" @click="clickBtn10(dateInfo)">
               {{
@@ -391,7 +392,7 @@ export default {
         </template>
         <template #bottomInfo="date">
           <view class="info">
-            {{ date.date ? ((date.date as any).day === 10 ? '十' : '') : '' }}
+            {{ (date?.date as any)?.day === '10' ? '十' : '' }}
           </view>
         </template>
       </nut-calendar>

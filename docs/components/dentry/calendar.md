@@ -574,6 +574,7 @@ export default {
     v-model:visible="isVisible"
     :default-value="date"
     :poppable="true"
+    footer-slot
     :is-auto-back-fill="false"
     @close="closeSwitch('isVisible')"
     @select="setSelectalue"
@@ -801,6 +802,7 @@ export default {
 | to-date-animation          | 是否启动滚动动画              | boolean          | `true` |
 | first-day-of-week          | 设置周起始日              | 0-6          | `0` |
 | disabled-date `v1.4.0` | 一个用来判断该日期是否被禁用的函数，接受一个`年-月-日`作为参数。 应该返回一个 Boolean 值。 | function | `-` |
+| footer-slot `v1.4.0` | 是否使用footer插槽，如果使用此值必须为 true | Boolean | `false` |
 ### Events
 
 | 事件名 | 说明                         | 回调参数                     |
@@ -817,7 +819,7 @@ export default {
 | day  `不支持微信小程序` |  日期信息 |
 | topInfo `不支持微信小程序` |  日期顶部信息 |
 | bottomInfo `不支持微信小程序` |  日期底部信息 |
-| footerInfo `v1.1.6` | 日历自定义底部，替代confirm按钮（不支持微信小程序）        |
+| footer `v1.4.0` | 日历自定义底部，替代confirm按钮        |
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html) 可以获取到 `Calendar` 实例并调用实例方法。

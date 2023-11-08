@@ -784,11 +784,11 @@ export default defineComponent({
     </scroll-view>
     <!-- footer -->
     <view v-if="poppable && !isAutoBackFill" class="nut-calendar__footer">
-      <slot name="footer-info" :date="state.chooseData">
-        <view class="nut-calendar__confirm" @click="confirm">
-          {{ confirmText || translate('confirm') }}
-        </view>
-      </slot>
+      <slot v-if="footerSlot" name="footer" :date="state.chooseData" />
+
+      <view v-else class="nut-calendar__confirm" @click="confirm">
+        {{ confirmText || translate('confirm') }}
+      </view>
     </view>
   </view>
 </template>

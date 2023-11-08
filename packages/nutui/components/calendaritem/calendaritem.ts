@@ -63,6 +63,10 @@ export const calendaritemProps = {
     default: 0,
   },
   disabledDate: Function,
+  footerSlot: {
+    type: Boolean,
+    default: false,
+  },
 }
 
 export const calendaritemEmits = {

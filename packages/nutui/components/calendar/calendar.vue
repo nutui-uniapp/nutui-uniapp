@@ -26,7 +26,7 @@ const bottomInfo = computed(() => {
   return slots.bottomInfo
 })
 const footerInfo = computed(() => {
-  return slots['footer-info']
+  return slots.footer
 })
 // element refs
 const calendarRef = ref<null | CalendarInst>(null)
@@ -103,6 +103,7 @@ export default defineComponent({
       :to-date-animation="toDateAnimation"
       :first-day-of-week="firstDayOfWeek"
       :disabled-date="disabledDate"
+      :footer-slot="footerSlot"
       @update="update"
       @close="close"
       @choose="choose"
@@ -120,8 +121,8 @@ export default defineComponent({
       <template v-if="bottomInfo" #bottomInfo="date">
         <slot name="bottomInfo" :date="date.date" />
       </template>
-      <template v-if="footerInfo" #footer-info="date">
-        <slot name="footerInfo" :date="date.date" />
+      <template #footer="date">
+        <slot name="footer" :date="date.date" />
       </template>
     </NutCalendarItem>
   </NutPoPUp>
@@ -143,6 +144,7 @@ export default defineComponent({
     :show-today="showToday"
     :first-day-of-week="firstDayOfWeek"
     :disabled-date="disabledDate"
+    :footer-slot="footerSlot"
     @close="close"
     @choose="choose"
     @select="select"
@@ -159,8 +161,8 @@ export default defineComponent({
     <template v-if="bottomInfo" #bottomInfo="date">
       <slot name="bottomInfo" :date="date.date" />
     </template>
-    <template v-if="footerInfo" #footer-info="date">
-      <slot name="footerInfo" :date="date.date" />
+    <template v-if="footerInfo" #footer="date">
+      <slot name="footer" :date="date.date" />
     </template>
   </NutCalendarItem>
 </template>
