@@ -335,6 +335,9 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+.elevator-wrapper{
+  background-color: white;
+}
 </style>
 
 <route lang="json">
