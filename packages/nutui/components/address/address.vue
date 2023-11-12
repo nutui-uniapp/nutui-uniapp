@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
 import NutElevator from '../elevator/elevator.vue'
 import { addressEmits, addressProps } from './address'
-import type { CustomRegionData, RegionData, existRegionData } from './type'
+import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './type'
 
 const props = defineProps(addressProps)
 const emit = defineEmits(addressEmits)
@@ -18,12 +18,6 @@ const classes = computed(() => {
   }
 })
 
-const _tabItemRef = reactive({
-  province: ref<null | HTMLElement>(null),
-  city: ref<null | HTMLElement>(null),
-  country: ref<null | HTMLElement>(null),
-  town: ref<null | HTMLElement>(null),
-})
 const showPopup = ref(props.visible)
 const privateType = ref(props.type)
 const tabIndex = ref(0)
@@ -31,7 +25,7 @@ const prevTabIndex = ref(0)
 const tabName = ref(['province', 'city', 'country', 'town'])
 const scrollDis = ref([0, 0, 0, 0])
 const scrollTop = ref(0)
-const regionData = reactive<Array<RegionData[]>>([])
+const regionData = reactive<Array<AddressRegionData[]>>([])
 
 const regionList = computed(() => {
   switch (tabIndex.value) {
@@ -46,25 +40,25 @@ const regionList = computed(() => {
   }
 })
 
-function transformData(data: RegionData[]) {
+function transformData(data: AddressRegionData[]) {
   if (!Array.isArray(data))
     throw new TypeError('params muse be array.')
 
   if (!data.length)
     return []
 
-  data.forEach((item: RegionData) => {
+  data.forEach((item: AddressRegionData) => {
     if (!item.title)
       console.warn('[NutUI] <Address> 请检查数组选项的 title 值是否有设置 ,title 为必填项 .')
   })
 
   const newData: CustomRegionData[] = []
 
-  data = data.sort((a: RegionData, b: RegionData) => {
+  data = data.sort((a: AddressRegionData, b: AddressRegionData) => {
     return a.title.localeCompare(b.title)
   })
 
-  data.forEach((item: RegionData) => {
+  data.forEach((item: AddressRegionData) => {
     const index = newData.findIndex((value: CustomRegionData) => value.title === item.title)
     if (index <= -1) {
       newData.push({
@@ -80,11 +74,11 @@ function transformData(data: RegionData[]) {
   return newData
 }
 
-const selectedRegion = ref<RegionData[]>([])
+const selectedRegion = ref<AddressRegionData[]>([])
 
 let selectedExistAddress = reactive({}) // 当前选择的地址
 
-const closeWay = ref('self')
+const closeWay = ref<'self' | 'mask' | 'cross'>('self')
 
     // 设置选中省市县
 function initCustomSelected() {
@@ -102,14 +96,14 @@ function initCustomSelected() {
       return
     }
     for (let index = 0; index < num; index++) {
-      const arr: RegionData[] = regionData[index]
-      selectedRegion.value[index] = arr.filter((item: RegionData) => item.id === defaultValue[index])[0]
+      const arr: AddressRegionData[] = regionData[index]
+      selectedRegion.value[index] = arr.filter((item: AddressRegionData) => item.id === defaultValue[index])[0]
     }
     scrollTo()
   }
 }
 
-function getTabName(item: RegionData | null, index: number) {
+function getTabName(item: AddressRegionData | null, index: number) {
   if (item && item.name)
     return item.name
   if (tabIndex.value < index && item)
@@ -132,12 +126,12 @@ function clickOverlay() {
 }
 
     // 切换下一级列表
-function nextAreaList(item: RegionData) {
+function nextAreaList(item: AddressRegionData) {
   const tab = tabIndex.value
   prevTabIndex.value = tabIndex.value
   const callBackParams: {
     next?: string
-    value?: RegionData
+    value?: AddressRegionData
     custom: string
   } = {
     custom: tabName.value[tab],
@@ -158,12 +152,12 @@ function nextAreaList(item: RegionData) {
   }
   else {
     handClose()
-    emit('update:modelValue')
+    emit(UPDATE_MODEL_EVENT)
   }
-  emit('change', callBackParams)
+  emit(CHANGE_EVENT, callBackParams)
 }
     // 切换地区Tab
-function changeRegionTab(item: RegionData, index: number) {
+function changeRegionTab(item: AddressRegionData, index: number) {
   prevTabIndex.value = tabIndex.value
   if (getTabName(item, index)) {
     tabIndex.value = index
@@ -182,11 +176,11 @@ function scrollTo() {
 }
 
     // 选择现有地址
-function selectedExist(item: existRegionData) {
+function selectedExist(item: AddressExistRegionData) {
   const copyExistAdd = props.existAddress
-  let prevExistAdd = {}
+  let prevExistAdd: AddressExistRegionData = {} as AddressExistRegionData
 
-  copyExistAdd.forEach((list: existRegionData) => {
+  copyExistAdd.forEach((list: AddressExistRegionData) => {
     if (list && list.selectedAddress)
       prevExistAdd = list
     list.selectedAddress = false
@@ -196,7 +190,7 @@ function selectedExist(item: existRegionData) {
 
   selectedExistAddress = item
 
-  emit('selected', prevExistAdd, item, copyExistAdd)
+  emit(SELECTED_EVENT, prevExistAdd, item, copyExistAdd)
 
   handClose()
 }
@@ -239,11 +233,11 @@ function close() {
   initAddress()
 
   if (closeWay.value === 'self')
-    emit('close', callBackParams)
+    emit(CLOSE_EVENT, callBackParams)
   else
-    emit('closeMask', { closeWay })
+    emit('closeMask', { closeWay: closeWay.value })
 
-  emit('update:visible', false)
+  emit(UPDATE_VISIBLE_EVENT, false)
 }
 
     // 选择其他地址
@@ -254,7 +248,7 @@ function switchModule() {
   emit('switchModule', { type: privateType.value })
 }
 
-function handleElevatorItem(key: string, item: RegionData) {
+function handleElevatorItem(key: string, item: AddressRegionData) {
   nextAreaList(item)
 }
 

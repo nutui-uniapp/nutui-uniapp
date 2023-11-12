@@ -2,7 +2,7 @@
 import { type CSSProperties, defineComponent } from 'vue'
 import { computed, toRefs } from 'vue'
 import Icon from '../icon/icon.vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)
@@ -13,7 +13,7 @@ const { type, size, shape, disabled, loading, customColor, plain, block } = toRe
 
 function handleClick(event: MouseEvent) {
   if (!loading.value && !disabled.value)
-    emits('click', event)
+    emits(CLICK_EVENT, event)
 }
 
 const classes = computed(() => {

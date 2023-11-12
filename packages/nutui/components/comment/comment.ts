@@ -1,67 +1,59 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import { isString, makeArrayProp, makeObjectProp, makeStringProp } from '../_utils'
+import { CLICK_EVENT } from '../_constants'
+import type { FollowType, ImagesType, InfoType, VideosType } from './type'
 
-interface VideosType {
-  id: number | string
-  mainUrl: string
-  videoUrl: string
-}
-interface ImagesType {
-  smallImgUrl: string
-  bigImgUrl: string
-  imgUrl: string
-}
 export const commentProps = {
-  headerType: {
-    type: String,
-    default: 'default', // 头部展示风格 default，complex
-  },
-
-  imagesRows: {
-    type: String,
-    default: 'one', // 'one'  'multi'
-  },
-
+  /**
+   * @description 头部样式展示类型，可选： `default`，`complex`
+   */
+  headerType: makeStringProp<'default' | 'complex'>('default'),
+  /**
+   * @description 评论图片展示行数，可选： `one`，`multi`
+   */
+  imagesRows: makeStringProp<'one' | 'multi'>('one'),
+  /**
+   * @description 设置评论内容省略行数
+   */
   ellipsis: {
     type: [String, Number, Boolean],
     default: false,
   },
-
-  videos: {
-    type: Array as PropType<VideosType[]>,
-    default: () => [],
-  },
-  images: {
-    type: Array as PropType<ImagesType[]>,
-    default: () => [],
-  },
-
-  info: {
-    type: Object,
-    default: () => ({}),
-  },
-
-  follow: {
-    type: Object,
-    default: () => ({}),
-  },
-
+  /**
+   * @description 视频信息
+   */
+  videos: makeArrayProp<VideosType>([]),
+  /**
+   * @description 图片信息
+   */
+  images: makeArrayProp<ImagesType>([]),
+  /**
+   * @description 评论详情
+   */
+  info: makeObjectProp<InfoType>({} as InfoType),
+  /**
+   * @description
+   */
   labels: {
     type: Function,
     default: () => '',
   },
-
-  operation: {
-    type: Array as PropType<string[]>,
-    default: ['replay', 'like', 'more'],
-  },
+  /**
+   * @description 追评内容
+   */
+  follow: makeObjectProp<FollowType>({} as FollowType),
+  /**
+   * @description 配置底部按钮
+   */
+  operation: makeArrayProp<'replay' | 'like' | 'more'>(['replay', 'like', 'more']),
 }
 
 export type CommentProps = ExtractPropTypes<typeof commentProps>
 
 export const commentEmits = {
-  click: (val: object) => true,
-  clickOperate: (val: string) => true,
-  clickImages: (val: any) => true,
+  [CLICK_EVENT]: (val: object) => val instanceof Object,
+  clickOperate: (val: string) => isString(val),
+  clickImages: (val: any) => val instanceof Object,
 }
 
 export type CommentEmits = typeof commentEmits

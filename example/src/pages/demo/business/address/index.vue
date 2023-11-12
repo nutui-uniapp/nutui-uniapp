@@ -1,17 +1,12 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue'
+import type { AddressExistRegionData, AddressRegionData, AddressType } from 'nutui-uniapp'
 
 /* eslint-disable no-console */
-
 interface CalBack {
   next?: string
-  value?: RegionData
+  value?: AddressRegionData
   custom: string
-}
-interface RegionData {
-  name: string
-  id: any
-  [key: string]: any
 }
 interface CalResult {
   type: string
@@ -173,7 +168,7 @@ export default defineComponent({
         text.two = val.data.addressStr
       }
     }
-    const selected = (prevExistAdd: AddressList, nowExistAdd: RegionData, _arr: AddressList[]) => {
+    const selected = (prevExistAdd: AddressExistRegionData, nowExistAdd: AddressExistRegionData, _arr: AddressExistRegionData[]) => {
       console.log(prevExistAdd)
       console.log(nowExistAdd)
     }
@@ -207,14 +202,16 @@ export default defineComponent({
       }
     }
 
-    const switchModule = (val: CalResult) => {
+    const switchModule = (val: { type: AddressType }) => {
       if (val.type === 'custom')
         console.log('点击了“选择其他地址”按钮')
       else
         console.log('点击了自定义地址左上角的返回按钮')
     }
 
-    const closeMask = (val: CalResult) => {
+    const closeMask = (val: {
+      closeWay: 'self' | 'mask' | 'cross'
+    }) => {
       console.log('关闭弹层', val)
     }
 
@@ -262,7 +259,7 @@ export default defineComponent({
       :city="address.city"
       :country="address.country"
       :town="address.town"
-      @change="(cal: CalBack) => onChange(cal, 'normal')"
+      @change="(cal) => onChange(cal, 'normal')"
       @close="close1"
     />
 
@@ -362,7 +359,7 @@ export default defineComponent({
       :country="address.country"
       :town="address.town"
       :back-btn-icon="backBtnIcon"
-      @change="(cal: CalBack) => onChange(cal, 'other')"
+      @change="(cal) => onChange(cal, 'other')"
       @close="close4"
       @selected="selected"
       @switch-module="switchModule"

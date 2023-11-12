@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
 import { computed, defineComponent, provide, reactive, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 
 const props = defineProps(checkboxgroupProps)
@@ -23,8 +23,8 @@ function unlink(child: ComponentInternalInstance) {
 }
 
 function updateValue(value: string[]) {
-  emit('update:modelValue', value)
-  emit('change', value)
+  emit(UPDATE_MODEL_EVENT, value)
+  emit(CHANGE_EVENT, value)
 }
 
 function toggleAll(checked: boolean) {
@@ -35,7 +35,7 @@ function toggleAll(checked: boolean) {
         values.push(item?.label)
     })
   }
-  emit('update:modelValue', values)
+  emit(UPDATE_MODEL_EVENT, values)
 }
 
 function toggleReverse() {
@@ -47,7 +47,7 @@ function toggleReverse() {
         return !props.modelValue.includes(item.label)
     })
     .map((item: any) => item.label)
-  emit('update:modelValue', value)
+  emit(UPDATE_MODEL_EVENT, value)
 }
 
 provide('parent', {
@@ -62,7 +62,7 @@ provide('parent', {
 watch(
   () => props.modelValue,
   (value) => {
-    emit('change', value)
+    emit(CHANGE_EVENT, value)
   },
 )
 </script>

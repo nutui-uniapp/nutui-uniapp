@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { commonProps } from '../_utils'
 
 export const iconProps = {
@@ -11,7 +11,6 @@ export const iconProps = {
   classPrefix: { type: String, default: 'nut-icon' },
   fontClassName: { type: String, default: 'nutui-iconfont' },
   customColor: { type: String, default: '' },
-  tag: { type: String as PropType<keyof HTMLElementTagNameMap>, default: 'i' },
 }
 
 export type IconProps = ExtractPropTypes<typeof iconProps>

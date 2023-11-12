@@ -568,8 +568,8 @@
 | change | 自定义选择地址时，选择地区时触发 |  参考 `onChange` |
 | selected | 选择已有地址列表时触发 | 参考 `selected` |
 | close | 地址选择弹框关闭时触发 | 参考 `close` |
-| close-mask |点击遮罩层或点击右上角叉号关闭时触发 | {closeWay:'mask'/'cross'} |
-| switch-module | 点击‘选择其他地址’或自定义地址选择左上角返回按钮触发 | {type:'exist'/'custom'/'custom2'} |
+| close-mask |点击遮罩层或点击右上角叉号关闭时触发 | `{closeWay:'mask'/'cross'}` |
+| switch-module | 点击‘选择其他地址’或自定义地址选择左上角返回按钮触发 | `{type:'exist'/'custom'/'custom2'}` |
 
 ### change 回调参数
 

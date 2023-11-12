@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import requestAniFrame from '../_utils/raf'
 import { animateEmits, animateProps } from './animate'
 
@@ -30,7 +30,7 @@ function animate() {
 function handleClick(event: Event) {
   if (props.action === 'click') {
     animate()
-    emit('click', event)
+    emit(CLICK_EVENT, event)
     emit('animate')
   }
 }

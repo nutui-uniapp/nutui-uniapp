@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, inject, onBeforeUnmount, onMounted, reactive, useSlots, watch } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { checkboxEmits, checkboxProps } from './checkbox'
 
@@ -56,8 +56,8 @@ let updateType = ''
 
 function emitChange(value: string | boolean, label?: string) {
   updateType = 'click'
-  emit('update:modelValue', value)
-  emit('change', value, label!)
+  emit(UPDATE_MODEL_EVENT, value)
+  emit(CHANGE_EVENT, value, label!)
 }
 
 watch(
@@ -67,7 +67,7 @@ watch(
       updateType = ''
 
     else
-      emit('change', v)
+      emit(CHANGE_EVENT, v)
   },
 )
 

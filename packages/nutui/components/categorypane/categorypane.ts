@@ -1,4 +1,5 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import { isString, makeArrayProp, makeStringProp } from '../_utils'
 
 export interface ChildType {
   catName?: string
@@ -10,29 +11,26 @@ export interface CustomType {
   [key: string]: any
 }
 export const categorypaneProps = {
-  // 分类模式
-  type: {
-    type: String,
-    default: 'classify',
-  },
+  /**
+   * @description 分类模式：`classify`，`text`，`custom`
+   */
+  type: makeStringProp<'classify' | 'text' | 'custom'>('classify'),
 
-  // 右侧导航数据
-  categoryChild: {
-    type: Array as PropType<ChildType>,
-    default: () => [],
-  },
+  /**
+   * @description 右侧展示当前分类数据
+   */
+  categoryChild: makeArrayProp<any>([]),
 
-  // 模式传入自定义数据
-  customCategory: {
-    type: Array as PropType<CustomType>,
-    default: () => [],
-  },
+  /**
+   * @description 自定义分类数据
+   */
+  customCategory: makeArrayProp<any>([]),
 }
 
 export type CategoryPaneProps = ExtractPropTypes<typeof categorypaneProps>
 
 export const categorypaneEmits = {
-  onChange: (sku: string) => true,
+  onChange: (sku: string) => isString(sku),
 }
 
 export type CategoryPaneEmits = typeof categorypaneEmits
