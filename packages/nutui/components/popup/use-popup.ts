@@ -1,5 +1,5 @@
 import { type ComputedRef, type SetupContext, computed, reactive, toRefs, watch, watchEffect } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { animationName } from '../_constants/types'
 import type { PopupEmits, PopupProps } from './popup'
 
@@ -45,14 +45,14 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     if (props.destroyOnClose)
       state.showSlot = true
 
-    emit('open')
+    emit(OPEN_EVENT)
   }
 
   const close = () => {
     // if (props.visible)
     //   return // 避免重复调用
-    emit('update:visible', false)
-    emit('close')
+    emit(UPDATE_VISIBLE_EVENT, false)
+    emit(CLOSE_EVENT)
     if (props.destroyOnClose) {
       setTimeout(() => {
         state.showSlot = false
@@ -67,23 +67,24 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   const onClickCloseIcon = (e: Event) => {
     e.stopPropagation()
     emit('click-close-icon')
-    emit('update:visible', false)
+    emit(UPDATE_VISIBLE_EVENT, false)
     // close();
   }
 
   const onClickOverlay = () => {
     emit('click-overlay')
     if (props.closeOnClickOverlay)
-      emit('update:visible', false)
+      emit(UPDATE_VISIBLE_EVENT, false)
       // close();
   }
 
   const onOpened = () => {
     emit('opend')
+    emit(OPENED_EVENT)
   }
 
   const onClosed = () => {
-    emit('closed')
+    emit(CLOSED_EVENT)
   }
 
   watch(

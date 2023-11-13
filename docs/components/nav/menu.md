@@ -353,12 +353,16 @@ export default {
 | scroll-fixed           | 滚动后是否固定，可设置固定位置 | boolean \| string \| number | `false`   |
 | title-class           | 自定义标题样式类               | string                  | -       |
 | lock-scroll`H5/WEAPP`           | 背景是否锁定                   | boolean                 | `true`    |
+| title-icon           | 自定义标题图标                   | string                 | -    |
+| direction           | 展开方向，可选值为`up` `down`                   | string                 | -    |
+| up-icon           | 收起的图标                   | string                 | `rect-up`    |
+| down-icon           | 展开的图标                   | string                 | `rect-down`    |
 
 ### Menu Slots
 
 | 名称 | 说明 |
 |-|-|
-| icon | 自定义标题图标 (不支持小程序) |
+| icon | 自定义标题图标 (不支持小程序,小程序建议使用 props 传递图标名称) |
 
 ### MenuItem Props
 

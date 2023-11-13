@@ -1,4 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import { CHANGE_EVENT, CLICK_EVENT } from '../_constants'
 import type { PickerFieldNames, PickerOption } from './types'
 
 export const pickercolumnProps = {
@@ -40,8 +41,8 @@ export const pickercolumnProps = {
 export type PickerColumnProps = ExtractPropTypes<typeof pickercolumnProps>
 
 export const pickercolumnEmits = {
-  click: () => true,
-  change: (val: PickerOption) => true,
+  [CLICK_EVENT]: () => true,
+  [CHANGE_EVENT]: (val: PickerOption) => val instanceof Object,
 }
 
 export type PickerColumnEmits = typeof pickercolumnEmits

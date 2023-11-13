@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, useSlots, watch } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
 import type { stateProps } from './noticebar'
@@ -201,14 +201,14 @@ function scroll(n: number, last: boolean) {
  * 点击滚动单元
  */
 function go(item: any) {
-  emit('click', item)
+  emit(CLICK_EVENT, item)
 }
 
 function handleClickIcon() {
   if (props.closeMode)
     state.showNoticebar = !props.closeMode
 
-  emit('close', state.scrollList[0])
+  emit(CLOSE_EVENT, state.scrollList[0])
 }
 
 onMounted(() => {

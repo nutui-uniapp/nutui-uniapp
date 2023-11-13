@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { hiteggsEmits, hiteggsProps } from './hiteggs'
 
 const props = defineProps(hiteggsProps)
@@ -24,7 +24,7 @@ function hitEggs(index: number) {
     arr.push(index)
     hitIndex.value = props.num + 1
     hitClick.value = false
-    emit('click')
+    emit(CLICK_EVENT)
   }, 1500)
 }
 </script>

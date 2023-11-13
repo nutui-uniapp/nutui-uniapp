@@ -60,7 +60,7 @@ export const cascaderProps = {
   /**
    * @description 取消按钮位置，继承 `Popup` 组件
    */
-  closeIconPosition: String,
+  closeIconPosition: makeStringProp<'top-right' | 'bottom-right' | 'bottom-left' | 'top-left'>('top-right'),
 
   /**
    * @description 是否显示关闭按钮，继承 `Popup` 组件

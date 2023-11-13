@@ -1,7 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeNumericProp } from '../_utils'
 
 export const marqueeProps = {
-  // 抽奖样式
+  /**
+   * @description 抽奖样式
+   */
   styleOpt: {
     type: Object,
     default: () => {
@@ -14,33 +17,38 @@ export const marqueeProps = {
       }
     },
   },
-  // 奖品列表
+  /**
+   * @description 奖品列表
+   */
   prizeList: {
     type: Array<any>,
     required: true,
   },
-  // 中奖奖品的index
-  prizeIndex: {
-    type: Number || String,
-    default: -1,
-  },
-  // 初始转动速度
-  speed: {
-    type: Number || String,
-    default: 150,
-  },
-  // 预抽奖，转动多少次进入抽奖环节
-  circle: {
-    type: Number || String,
-    default: 30,
-  },
+  /**
+   * @description 中奖奖品的index
+   */
+  prizeIndex: makeNumericProp(-1),
+  /**
+   * @description 初始转动速度
+   */
+  speed: makeNumericProp(150),
+  /**
+   * @description 预抽奖，转动多少次进入抽奖环节
+   */
+  circle: makeNumericProp(30),
 }
 
 export type MarqueeProps = ExtractPropTypes<typeof marqueeProps>
 
 export const marqueeEmits = {
   click: () => true,
+  /**
+   * @description 开始跑动的回调函数，此时将接口中的中奖索引，赋值到 prize-index
+   */
   startTurns: () => true,
+  /**
+   * @description 停止跑动后的回调函数
+   */
   endTurns: () => true,
 
 }

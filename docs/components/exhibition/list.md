@@ -84,8 +84,6 @@ body {
 | height         | 列表项的高度/预估高度，支持不固定高度               | Number | `80`                |
 | list-data         | 列表数据               | any[] | `[]`                |
 | container-height        | 容器高度(最大值不能超过可视区)              | Number | `可视区高度`                |
-| buffer-size        | 数据缓冲区长度              | Number | `5`                |
-| margin        | 列表之间的间隙，和自定义样式保持一致         | Number | `10`                |
 
 ### Slots
 

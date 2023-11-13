@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type ComputedRef, watchEffect } from 'vue'
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutTransition from '../transition/transition.vue'
 import { useLockScroll } from '../_hooks'
 import { overlayEmits, overlayProps } from './overlay'
@@ -24,9 +24,9 @@ const style: ComputedRef = computed(() => {
   }
 })
 function onClick(e: MouseEvent) {
-  emits('click', e)
+  emits(CLICK_EVENT, e)
   if (props.closeOnClickOverlay)
-    emits('update:visible', false)
+    emits(UPDATE_VISIBLE_EVENT, false)
 }
 // #ifdef H5
 const [lock, unlock] = useLockScroll(() => props.lockScroll)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
+import { CLICK_EVENT, PREFIX, refRandomId } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
 import type { EllipsisedValue } from './ellipsis'
 import { ellipsisEmits, ellipsisProps } from './ellipsis'
@@ -212,7 +212,7 @@ function clickHandle(type: number) {
 
 // 文本点击
 function handleClick() {
-  emit('click')
+  emit(CLICK_EVENT)
 }
 </script>
 

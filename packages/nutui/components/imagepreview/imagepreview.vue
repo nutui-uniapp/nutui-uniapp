@@ -2,7 +2,7 @@
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
 import { funInterceptor } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CLOSE_EVENT, PREFIX } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 
 import NutSwiper from '../swiper/swiper.vue'
@@ -70,7 +70,7 @@ function closeDone() {
   state.showPop = false
   state.store.scale = 1
   scaleNow()
-  emit('close')
+  emit(CLOSE_EVENT)
 }
 
 // 计算两个点的距离

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import NutForm from '../form/form.vue'
 import NutFormItem from '../formitem/formitem.vue'
@@ -15,10 +15,6 @@ const emit = defineEmits(invoiceEmits)
 const formRef = ref<FormInst>()
 
 const list: any = ref([])
-
-const state = reactive({
-  // list: []
-})
 
 const classes = computed(() => {
   const prefixCls = componentName

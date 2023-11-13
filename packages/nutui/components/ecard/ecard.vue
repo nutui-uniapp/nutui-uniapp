@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Ref, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
 import { ecardEmits, ecardProps } from './ecard'
@@ -38,7 +38,7 @@ function change(event: Event) {
 function inputClick() {
   currentIndex.value = 'input'
   stepValue.value = props.cardAmountMin
-  emit('update:modelValue', 0)
+  emit(UPDATE_MODEL_EVENT, 0)
   emit('inputClick')
 }
 function changeStep(value: number) {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
 import { getTimeStamp, isH5, padZero } from '../_utils'
-import { PREFIX } from '../_constants'
+import { INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import requestAniFrame from '../_utils/raf'
 import { countdownEmits, countdownProps } from './countdown'
 
@@ -127,7 +127,9 @@ function tick() {
     })
   }
 }
-
+/**
+ * @description 开始倒计时
+ */
 function start() {
   if (!state.counting && !props.autoStart) {
     state.counting = true
@@ -136,6 +138,9 @@ function start() {
     emits('onRestart', state.restTime)
   }
 }
+/**
+ * @description 暂停倒计时
+ */
 function pause() {
   if (isH5)
     cancelAnimationFrame(state.timer as any)
@@ -145,7 +150,9 @@ function pause() {
   state.counting = false
   emits('onPaused', state.restTime)
 }
-
+/**
+ * @description 重设倒计时，若 `auto-start` 为 `true`，重设后会自动开始倒计时
+ */
 function reset() {
   if (!props.autoStart) {
     pause()
@@ -168,8 +175,8 @@ watch(
   () => state.restTime,
   (value) => {
     const tranTime = formatRemainTime(value, 'custom')
-    emits('updateModelValue', tranTime)
-    emits('input', tranTime)
+    emits(UPDATE_MODEL_EVENT, tranTime)
+    emits(INPUT_EVENT, tranTime)
   },
 )
 
@@ -224,7 +231,7 @@ export default defineComponent({
       <slot />
     </template>
     <template v-else>
-      <view class="nut-countdown__content" v-html="renderTime" />
+      <rich-text class="nut-countdown__content" :nodes="renderTime as string" />
     </template>
   </view>
 </template>
