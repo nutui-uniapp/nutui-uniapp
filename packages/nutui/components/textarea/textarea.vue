@@ -1,5 +1,12 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
+import type { CSSProperties } from 'vue'
+import type * as CSS from 'csstype'
+import { computed, defineComponent, ref } from 'vue'
+import type { TextareaConfirmType } from '@uni-helper/uni-app-types'
+import { isH5, isMpAlipay, pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
+import { useTranslate } from '../../locale'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
 import type { TextareaConfirmType, TextareaOnConfirmEvent } from '@uni-helper/uni-app-types'
@@ -13,10 +20,9 @@ import { textareaEmits, textareaProps } from './textarea'
 export interface InputTarget extends HTMLInputElement {
   composing?: boolean
 }
+
 const props = defineProps(textareaProps)
 const emit = defineEmits(textareaEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
-const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
 const classes = computed(() => {
   const prefixCls = componentName
@@ -26,19 +32,22 @@ const classes = computed(() => {
   }
 })
 
-const styles: any = computed(() => {
-  const styleObj: { textAlign: InputAlignType; height?: string } = {
-    textAlign: props.textAlign!,
+const styles = computed<CSSProperties>(() => {
+  const styleObj: CSSProperties = {
+    textAlign: props.textAlign as CSS.TextAlignProperty,
   }
-  if (props.autosize)
-    styleObj.height = heightSet.value
+
+  if (typeof props.autosize === 'object') {
+    const { minHeight, maxHeight } = props.autosize
+
+    if (minHeight != null)
+      styleObj.minHeight = pxCheck(minHeight)
+
+    if (maxHeight != null)
+      styleObj.maxHeight = pxCheck(maxHeight)
+  }
 
   return styleObj
-})
-
-const copyTxtStyle = ref<CSSProperties>({
-  wordBreak: 'break-all',
-  width: '0',
 })
 
 function emitChange(value: string, event: Event) {
@@ -58,6 +67,7 @@ function change(event: any) {
     _onInput(event)
   }
 }
+
 function _onInput(event: any) {
   const input = event.detail as HTMLInputElement
   let value = input.value
@@ -90,64 +100,6 @@ function confirm(event: TextareaOnConfirmEvent) {
   emit(CONFIRM_EVENT, event)
 }
 
-const textareaHeight = ref(20)
-const heightSet = ref('auto')
-function getContentHeight() {
-  heightSet.value = 'auto'
-  let height = textareaHeight.value
-  if (typeof props.autosize === 'object') {
-    const { maxHeight, minHeight } = props.autosize
-    if (maxHeight !== undefined)
-      height = Math.min(height, maxHeight)
-
-    if (minHeight !== undefined)
-      height = Math.max(height, minHeight)
-  }
-  if (height)
-    heightSet.value = `${height}px`
-}
-watch(
-  () => props.modelValue,
-  () => {
-    if (props.autosize) {
-      setTimeout(() => {
-        copyHeight()
-      }, 100)
-    }
-  },
-)
-
-function copyHeight() {
-  getSelectorNodeInfo('#nut-textarea__cpoytext').then((res) => {
-    if (res) {
-      if (props.modelValue === '')
-        textareaHeight.value = 20
-      else
-        textareaHeight.value = res.height || 20
-
-      nextTick(getContentHeight)
-    }
-  })
-}
-
-function getRefWidth() {
-  const query = uni.createSelectorQuery().in(instance)
-  query.select('#nut-textarea__textarea').boundingClientRect()
-  query.exec((res: any) => {
-    if (res[0])
-      copyTxtStyle.value.width = `${res[0].width}px`
-  })
-}
-onMounted(() => {
-  if (props.autosize) {
-    nextTick(() => {
-      setTimeout(() => {
-        getRefWidth()
-        copyHeight()
-      }, 300)
-    })
-  }
-})
 const composing = ref(false)
 function startComposing(event: Event) {
   if (isH5)
@@ -194,6 +146,7 @@ export default defineComponent({
       :maxlength="maxLength ? +maxLength : -1"
       :placeholder="placeholder || translate('placeholder')"
       :auto-focus="autofocus"
+      :auto-height="!!autosize"
       :cursor-spacing="cursorSpacing"
       :cursor="cursor"
       :show-confirm-bar="showConfirmBar"
@@ -212,12 +165,10 @@ export default defineComponent({
       @change="(endComposing as any)"
       @compositionend="(endComposing as any)"
       @compositionstart="(startComposing as any)"
+      @confirm="_confirm"
     />
     <view v-if="limitShow" class="nut-textarea__limit">
       {{ modelValue ? modelValue.length : 0 }}/{{ maxLength }}
-    </view>
-    <view v-if="autosize" id="nut-textarea__cpoytext" class="nut-textarea__cpoytext" :style="copyTxtStyle">
-      {{ modelValue }}
     </view>
   </view>
 </template>

@@ -1,7 +1,4 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
-import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import type { InputAlignType } from '../input'
 import type { AdjustKeyboardTo, ConfirmTextType } from './type'
 
 export const textareaProps = {
