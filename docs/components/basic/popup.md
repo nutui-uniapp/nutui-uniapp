@@ -151,7 +151,7 @@
 | v-model:visible        | 控制当前组件显示/隐藏                                            | boolean        | `false`       |
 | z-index                | 遮罩层级                                                    | string \| number | `2000`        |
 | duration               | 组件显示/隐藏的动画时长，单位秒                                            | string \| number | `0.3`         |
-| lock-scroll            | 背景是否锁定                                                | boolean        | `true`       |
+| lock-scroll  `H5`          | 背景是否锁定                                                | boolean        | `true`       |
 | overlay                | 是否显示遮罩                                                | boolean        | `true`        |
 | close-on-click-overlay | 是否点击遮罩关闭                                            | boolean        | `true`        |
 | position               | 弹出位置（top,bottom,left,right,center）                    | string         | `"center"`    |

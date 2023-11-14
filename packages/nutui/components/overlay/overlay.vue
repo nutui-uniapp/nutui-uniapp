@@ -34,9 +34,6 @@ watchEffect(() => {
   props.visible ? lock() : unlock()
 })
 // #endif
-function toMoveHandle() {
-
-}
 </script>
 
 <script lang="ts">
@@ -59,7 +56,6 @@ export default defineComponent({
     :custom-class="[overlayClass, classes]"
     :duration="Number(props.duration)"
     @click="onClick"
-    @touchmove.stop.prevent="props.lockScroll ? toMoveHandle : ''"
   >
     <slot />
     <!-- </view> -->
