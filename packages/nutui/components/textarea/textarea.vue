@@ -3,18 +3,10 @@
 import type { CSSProperties } from 'vue'
 import type * as CSS from 'csstype'
 import { computed, defineComponent, ref } from 'vue'
-import type { TextareaConfirmType } from '@uni-helper/uni-app-types'
-import { isH5, isMpAlipay, pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
-import { useTranslate } from '../../locale'
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
 import type { TextareaConfirmType, TextareaOnConfirmEvent } from '@uni-helper/uni-app-types'
-import { isH5, isMpAlipay } from '../_utils'
+import { isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
-import { useSelectorQuery } from '../_hooks'
-import type { InputAlignType } from '../input'
 import { textareaEmits, textareaProps } from './textarea'
 
 export interface InputTarget extends HTMLInputElement {
@@ -165,7 +157,6 @@ export default defineComponent({
       @change="(endComposing as any)"
       @compositionend="(endComposing as any)"
       @compositionstart="(startComposing as any)"
-      @confirm="_confirm"
     />
     <view v-if="limitShow" class="nut-textarea__limit">
       {{ modelValue ? modelValue.length : 0 }}/{{ maxLength }}
