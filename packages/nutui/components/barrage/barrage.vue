@@ -3,11 +3,9 @@ import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
-import { barrageEmits, barrageProps } from './barrage'
+import { barrageProps } from './barrage'
 
 const props = defineProps(barrageProps)
-
-const emit = defineEmits(barrageEmits)
 
 defineExpose({ add })
 

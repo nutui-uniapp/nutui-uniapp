@@ -1,26 +1,27 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeNumberProp } from '../_utils'
 
 export const guessgiftProps = {
   initPrize: {
     type: Boolean,
     default: true,
   },
-  turnNumber: {
-    type: Number,
-    default: 20,
-  },
-  turnsFrequency: {
-    type: Number,
-    default: 500,
-  },
-  raiseHeight: {
-    type: Number,
-    default: 50,
-  },
-  prizeIndex: {
-    type: Number,
-    default: -1,
-  },
+  /**
+   * @description 交换次数
+   */
+  turnNumber: makeNumberProp(20),
+  /**
+   * @description 动画频率，位置交换更新
+   */
+  turnsFrequency: makeNumberProp(50),
+  /**
+   * @description 碗抬起的高度
+   */
+  raiseHeight: makeNumberProp(50),
+  /**
+   * @description 中奖奖品在列表的索引位置
+   */
+  prizeIndex: makeNumberProp(-1),
 }
 
 export type GuessGiftProps = ExtractPropTypes<typeof guessgiftProps>

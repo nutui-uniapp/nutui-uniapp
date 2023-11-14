@@ -2,7 +2,7 @@
 import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { isArray } from '../_utils'
-import { PREFIX, refRandomId } from '../_constants'
+import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
@@ -203,18 +203,18 @@ watch(
 )
 function update(val: boolean) {
   emit('update', val)
-  emit('update:visible', val)
+  emit(UPDATE_VISIBLE_EVENT, val)
 }
 function openPopover() {
   update(!props.visible)
-  emit('open')
+  emit(OPEN_EVENT)
 }
 function closePopover() {
-  emit('update:visible', false)
-  emit('close')
+  emit(UPDATE_VISIBLE_EVENT, false)
+  emit(CLOSE_EVENT)
 }
 function chooseItem(item: any, index: number) {
-  emit('choose', item, index)
+  emit(CHOOSE_EVENT, item, index)
   if (props.closeOnClickAction)
     closePopover()
 }

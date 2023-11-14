@@ -203,7 +203,7 @@
 | ---------------------- | ---------------- | -------------- | ------ |
 | v-model:visible        | 控制遮罩的显示/隐藏 | boolean        | `false`  |
 | z-index                | 自定义遮罩层级         | string \| number | `2000`   |
-| duration               | 显示/隐藏的动画时长，单位秒 | string \| number | `0.3`    |
+| duration               | 显示/隐藏的动画时长，单位毫秒 | string \| number | `300`    |
 | overlay-class          | 自定义遮罩类名   | string         | -      |
 | overlay-style          | 自定义遮罩样式   | CSSProperties  | -      |
 | lock-scroll            | 遮罩显示时的背景是否锁定     | boolean        | `true`  |

@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
 
@@ -20,13 +20,13 @@ function fixedDecimalPlaces(v: string | number): string {
 }
 function change(event: any) {
   const value = event.detail.value
-  emit('update:modelValue', value, event)
+  emit(UPDATE_MODEL_EVENT, value, event)
 }
 function emitChange(value: string | number, event: Event) {
   const output_value: number | string = fixedDecimalPlaces(value)
-  emit('update:modelValue', output_value, event)
+  emit(UPDATE_MODEL_EVENT, output_value, event)
   if (Number(props.modelValue) !== Number(output_value))
-    emit('change', output_value, event)
+    emit(CHANGE_EVENT, output_value, event)
 }
 function addAllow(value = Number(props.modelValue)): boolean {
   return value < Number(props.max) && !props.disabled
@@ -71,7 +71,7 @@ function blur(event: Event) {
       value = Number(props.max)
     emitChange(value, event)
   }
-  emit('blur', event)
+  emit(BLUR_EVENT, event)
 }
 function focus(event: Event) {
   if (props.disabled)
@@ -80,7 +80,7 @@ function focus(event: Event) {
     blur(event)
     return
   }
-  emit('focus', event)
+  emit(FOCUS_EVENT, event)
 }
 </script>
 

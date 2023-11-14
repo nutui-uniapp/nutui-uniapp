@@ -2,7 +2,7 @@
 import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
 import { compareDate, date2Str, formatResultDate, getDay, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CHOOSE_EVENT, PREFIX, SELECT_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
 import { calendaritemEmits, calendaritemProps } from './calendaritem'
@@ -154,7 +154,7 @@ function confirm() {
         weekDate: [handleWeekDate(state.chooseData[0] as string[]), handleWeekDate(state.chooseData[1] as string[])],
       }
     }
-    emit('choose', selectData)
+    emit(CHOOSE_EVENT, selectData)
     if (props.poppable)
       emit('update')
   }
@@ -244,7 +244,7 @@ function chooseDay(day: Day, month: MonthInfo, isFirst = false) {
         }
       }
       // 点击日期 触发
-      emit('select', selectData)
+      emit(SELECT_EVENT, selectData)
       if (props.isAutoBackFill || !props.poppable)
         confirm()
     }
@@ -402,7 +402,7 @@ function initData() {
   state.endData = splitDate(propEndDate)
 
   // 根据是否存在默认时间，初始化当前日期,
-  if (props.defaultValue || (Array.isArray(props.defaultValue) && props.defaultValue.length > 0)) {
+  if (props.defaultValue || (Array.isArray(props.defaultValue) && (props.defaultValue as any[]).length > 0)) {
     state.currDate
       = props.type !== 'one' ? ([...props.defaultValue] as StringArr) : (props.defaultValue as string | StringArr)
   }

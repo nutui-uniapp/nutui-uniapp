@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
 import SkuHeader from '../skuheader/skuheader.vue'
@@ -74,13 +74,13 @@ function closePopup(type: string) {
     emit('clickOverlay')
 
   if (type === 'close')
-    emit('close')
+    emit(CLOSE_EVENT)
 
   showPopup.value = false
 }
 
 function close() {
-  emit('update:visible', false)
+  emit(UPDATE_VISIBLE_EVENT, false)
 }
 const getSlots = (name: string) => slots[name]
 </script>

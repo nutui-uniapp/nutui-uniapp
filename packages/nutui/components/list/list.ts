@@ -1,34 +1,21 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeArrayProp, makeNumberProp } from '../_utils'
 
 export const clientHeight = uni.getSystemInfoSync().windowHeight || 667
 
 export const listProps = {
-  height: {
-    type: [Number],
-    default: 50,
-  },
-  listData: {
-    type: Array,
-    default: () => {
-      return []
-    },
-  },
-  bufferSize: {
-    type: Number,
-    default: 5,
-  },
-  containerHeight: {
-    type: [Number],
-    default: clientHeight,
-  },
-  estimateRowHeight: {
-    type: Number,
-    default: 80,
-  },
-  margin: {
-    type: Number,
-    default: 10,
-  },
+  /**
+   * @description 列表项的高度/预估高度，支持不固定高度
+   */
+  height: makeNumberProp(50),
+  /**
+   * @description 列表数据
+   */
+  listData: makeArrayProp([]),
+  /**
+   * @description 容器高度(最大值不能超过可视区)
+   */
+  containerHeight: makeNumberProp(clientHeight),
 }
 
 export type ListProps = ExtractPropTypes<typeof listProps>

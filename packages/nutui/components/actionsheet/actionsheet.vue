@@ -2,7 +2,7 @@
 import { computed, defineComponent, useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
-import { PREFIX } from '../_constants'
+import { CANCEL_EVENT, CHOOSE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { type ActionSheetOption, actionsheetEmits, actionsheetProps } from './actionsheet'
 
 const props = defineProps(actionsheetProps)
@@ -21,21 +21,21 @@ function isHighlight(item: ActionSheetOption) {
 }
 
 function cancelActionSheet() {
-  emit('cancel')
-  emit('update:visible', false)
+  emit(CANCEL_EVENT)
+  emit(UPDATE_VISIBLE_EVENT, false)
 }
 
 function chooseItem(item: ActionSheetOption, index: any) {
   if (!item.disable && !item.loading) {
-    emit('choose', item, index)
-    emit('update:visible', false)
+    emit(CHOOSE_EVENT, item, index)
+    emit(UPDATE_VISIBLE_EVENT, false)
   }
 }
 
 function close() {
   if (props.closeAbled) {
-    emit('close')
-    emit('update:visible', false)
+    emit(CLOSE_EVENT)
+    emit(UPDATE_VISIBLE_EVENT, false)
   }
 }
 </script>

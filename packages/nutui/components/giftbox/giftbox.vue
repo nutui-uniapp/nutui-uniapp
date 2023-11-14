@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { PREFIX } from '../_constants'
-import { giftboxEmits, giftboxProps } from './giftbox'
-
-const props = defineProps(giftboxProps)
+import { giftboxEmits } from './giftbox'
 
 const emit = defineEmits(giftboxEmits)
 defineExpose({ init })

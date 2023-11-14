@@ -2,7 +2,7 @@
 import { type CSSProperties, nextTick } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { getPx } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { codeinputEmits, codeinputProps } from './codeinput'
 
 const props = defineProps(codeinputProps)
@@ -73,7 +73,7 @@ watch(() => props.modelValue, (val) => {
 
 function inputHandler(e: { detail: { value: string } }) {
   const value = e.detail.value
-  emit('update:modelValue', value)
+  emit(UPDATE_MODEL_EVENT, value)
 
   inputValue.value = value
   // 是否允许输入“.”符号
@@ -83,9 +83,9 @@ function inputHandler(e: { detail: { value: string } }) {
     })
   }
   // 未达到maxlength之前，发送change事件，达到后发送finish事件
-  emit('change', value)
+  emit(CHANGE_EVENT, value)
   // 修改通过v-model双向绑定的值
-  emit('input', value)
+  emit(INPUT_EVENT, value)
   // 达到用户指定输入长度时，发出完成事件
   if (String(value).length >= Number(props.maxlength))
     emit('finish', value)

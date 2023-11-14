@@ -1,16 +1,22 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps } from '../_utils'
+import { commonProps, makeStringProp } from '../_utils'
 
 export const dragProps = {
   ...commonProps,
-  attract: {
-    type: Boolean,
-    default: false,
-  },
-  direction: {
-    type: String,
-    default: 'all',
-  },
+
+  /**
+   * @description 是否开启自动吸边（根据 screenWidth 进行吸边）
+   */
+  attract: Boolean,
+
+  /**
+   * @description 拖拽元素的拖拽方向限制，'x'/'y'/'all'三选一
+   */
+  direction: makeStringProp<'x' | 'y' | 'all'>('all'),
+
+  /**
+   * @description 拖拽元素的拖拽边界
+   */
   boundary: {
     type: Object,
     default: () => {

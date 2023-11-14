@@ -1,4 +1,5 @@
 import { type SetupContext, onUnmounted, ref, watch } from 'vue'
+import { UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { NotifyEmits, NotifyProps } from './notify'
 import type { NotifyOptions } from './type'
 
@@ -35,7 +36,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
 
   // hide popup
   const hide = () => {
-    emit('update:visible', false)
+    emit(UPDATE_VISIBLE_EVENT, false)
   }
 
   const hideNotify = () => {

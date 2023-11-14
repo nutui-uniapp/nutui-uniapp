@@ -1,6 +1,6 @@
 import { type CSSProperties, type SetupContext, computed, onMounted, ref, watch } from 'vue'
 import { funInterceptor } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { DialogEmits, DialogProps } from './dialog'
 import type { DialogOptions } from './type'
 
@@ -55,7 +55,7 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
       showPopup.value = value
 
       if (value)
-        emit('opened')
+        emit(OPENED_EVENT)
     },
   )
 
@@ -68,7 +68,7 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
 
   function update(val: boolean) {
     emit('update', val)
-    emit('update:visible', val)
+    emit(UPDATE_VISIBLE_EVENT, val)
   }
 
   function closed(action?: string) {
@@ -77,16 +77,16 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
       done: () => {
         showPopup.value = false
         update(false)
-        emit('closed')
+        emit(CLOSED_EVENT)
       },
     })
   }
 
   function onCancel() {
-    emit('cancel')
+    emit(CANCEL_EVENT)
     if (props.cancelAutoClose) {
       showPopup.value = false
-      closed('cancel')
+      closed(CANCEL_EVENT)
     }
   }
 

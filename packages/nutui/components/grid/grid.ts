@@ -1,49 +1,50 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export const GRID_KEY = Symbol('grid')
 
 export type GridDirection = 'horizontal' | 'vertical'
 
 export const gridProps = {
-  // 列数
-  columnNum: {
-    type: [Number, String],
-    default: 4,
-  },
-  // 是否显示边框
-  border: {
-    type: Boolean,
-    default: true,
-  },
-  // 格子之间间隔距离
-  gutter: {
-    type: [Number, String],
-    default: 0,
-  },
-  // 是否内容居中
-  center: {
-    type: Boolean,
-    default: true,
-  },
-  // 是否固定正方形
-  square: {
-    type: Boolean,
-    default: false,
-  },
-  // 内容与文字翻转
-  reverse: {
-    type: Boolean,
-    default: false,
-  },
-  // 内容排列方向
-  direction: {
-    type: String as import('vue').PropType<GridDirection>,
-  },
-  // 是否开启点击反馈
-  clickable: {
-    type: Boolean,
-    default: false,
-  },
+  /**
+   * @description 列数
+   */
+  columnNum: makeNumericProp(4),
+
+  /**
+   * @description 是否显示边框
+   */
+  border: truthProp,
+
+  /**
+   * @description 格子之间的间距，默认单位为 `px`
+   */
+  gutter: makeNumericProp(0),
+
+  /**
+   * @description 是否将格子内容居中显示
+   */
+  center: truthProp,
+
+  /**
+   * @description 是否将格子固定为正方形
+   */
+  square: Boolean,
+
+  /**
+   * @description 内容翻转
+   */
+  reverse: Boolean,
+
+  /**
+   * @description 格子内容排列的方向，可选值为 `horizontal`
+   */
+  direction: makeStringProp<GridDirection>('vertical'),
+
+  /**
+   * @description 是否开启格子点击反馈
+   */
+  clickable: Boolean,
 }
 
 export type GridProps = ExtractPropTypes<typeof gridProps>

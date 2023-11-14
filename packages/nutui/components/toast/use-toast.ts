@@ -1,4 +1,5 @@
 import { type SetupContext, computed, onUnmounted, ref, watch } from 'vue'
+import { CLOSED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { ToastEmits, ToastProps } from './toast'
 import type { ToastOptions, ToastType } from './types'
 
@@ -29,8 +30,8 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
     timer = null
   }
   const hide = () => {
-    emit('update:visible', false)
-    emit('closed')
+    emit(UPDATE_VISIBLE_EVENT, false)
+    emit(CLOSED_EVENT)
   }
 
   const hideToast = () => {

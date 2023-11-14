@@ -16,7 +16,7 @@ export default defineComponent({
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
-  setup(props, { slots }) {
+  setup(props) {
     const barId = `nut-menu__bar${refRandomId}`
     const offset = ref(0)
     const isScrollFixed = ref(false)

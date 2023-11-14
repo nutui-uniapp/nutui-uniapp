@@ -30,7 +30,7 @@ function executeUpload(fileItem: FileItem, index: number) {
   const { type, url, formData } = fileItem
 
   const uploadOption: UploadOptions = {
-    url: props.url,
+    url: props.url ? props.url : '',
     filePath: url,
     name: props.name,
     fileType: type,

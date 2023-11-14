@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, computed, defineComponent } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { GRID_KEY, type GridProps } from '../grid'
 import { useInject, useRouter } from '../_hooks'
 import { gridItemEmits, gridItemProps } from './griditem'
@@ -60,7 +60,7 @@ const contentClass = computed(() => {
 // click
 const router = useRouter()
 function handleClick(event: Event) {
-  emit('click', event)
+  emit(CLICK_EVENT, event)
 
   if (props.to && router) {
     router[props.replace ? 'replace' : 'push'](props.to as string)

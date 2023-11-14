@@ -4,8 +4,8 @@ import { computed, defineComponent, getCurrentInstance, inject, reactive } from 
 import { PREFIX } from '../_constants'
 import { stepEmits, stepProps } from './step'
 
-const props = defineProps(stepProps)
-const emit = defineEmits(stepEmits)
+defineProps(stepProps)
+defineEmits(stepEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const parent: any = inject('parent')
 parent.relation(instance)
@@ -77,7 +77,7 @@ export default defineComponent({
         <slot name="title" />
       </view>
       <view v-if="content || $slots.content" class="nut-step-content">
-        <view v-if="!$slots.content" v-html="content" />
+        <rich-text v-if="!$slots.content" :nodes="content" />
         <slot name="content" />
       </view>
     </view>

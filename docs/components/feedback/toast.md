@@ -100,7 +100,7 @@ export default {
 | text-align-center      | 多行文案是否居中                                                        | boolean         | `true`                          |
 | bg-color               | 背景颜色（透明度）                                                      | string          | "rgba(0, 0, 0, 0.8)"          |
 | custom-class           | 自定义类名                                                              | string          | ""                            |
-| icon                   | 自定义图标，**直接传入Component 或者 h函数**                            | Component       | -                             |
+| icon                   | 自定义图标                            | string       | -                             |
 | size                   | 文案尺寸，**small**/**base**/**large**三选一                            | string          | `"base"`                        |
 | cover                  | 是否显示遮罩层，loading类型默认显示                                     | boolean         | loading类型true/`其他类型false` |
 | cover-color            | 遮罩层颜色，默认透明                                                    | string          | "rgba(0,0,0,0)"               |

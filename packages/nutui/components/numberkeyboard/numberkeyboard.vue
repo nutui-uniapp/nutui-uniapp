@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLOSE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
 import { numberkeyboardEmits, numberkeyboardProps } from './numberkeyboard'
@@ -86,16 +86,16 @@ function onTouchstart(item: { id: string | number; type: string }, event: TouchE
   event.stopPropagation()
   clickKeyIndex.value = item.id
   if (item.type === 'number' || item.type === 'custom') {
-    emit('input', item.id)
+    emit(INPUT_EVENT, item.id)
     if (props.modelValue.length < (props.maxlength as number))
-      emit('update:modelValue', props.modelValue + item.id)
+      emit(UPDATE_MODEL_EVENT, props.modelValue + item.id)
   }
   if (item.type === 'lock')
     closeBoard()
 
   if (item.type === 'delete') {
     emit('delete')
-    emit('update:modelValue', props.modelValue.slice(0, props.modelValue.length - 1))
+    emit(UPDATE_MODEL_EVENT, props.modelValue.slice(0, props.modelValue.length - 1))
   }
 }
 function onTouchMove(event: TouchEvent) {
@@ -106,8 +106,8 @@ function onTouchEnd() {
 }
 
 function closeBoard() {
-  emit('close')
-  emit('update:visible', false)
+  emit(CLOSE_EVENT)
+  emit(UPDATE_VISIBLE_EVENT, false)
 }
 </script>
 

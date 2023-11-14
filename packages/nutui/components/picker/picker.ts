@@ -1,49 +1,52 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
+import { makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const pickerProps = {
-  modelValue: {
-    type: Array as PropType<(string | number)[]>,
-    default: () => [],
-  },
-  title: {
-    type: String,
-    default: '',
-  },
-  cancelText: {
-    type: String,
-    default: '',
-  },
-  okText: {
-    type: String,
-    default: '',
-  },
-  columns: {
-    type: Array as PropType<(PickerOption | PickerOption[])[]>,
-    default: () => {
-      return []
-    },
-  },
-  threeDimensional: {
-    type: Boolean,
-    default: true,
-  },
-  swipeDuration: {
-    type: [Number, String],
-    default: 1000,
-  },
-  showToolbar: {
-    type: Boolean,
-    default: true,
-  },
-  visibleOptionNum: {
-    type: [Number, String],
-    default: 7,
-  },
-  optionHeight: {
-    type: [Number, String],
-    default: 36,
-  },
+  /**
+   * @description 默认选中项
+   */
+  modelValue: makeArrayProp<(string | number)[]>([]),
+  /**
+   * @description 设置标题
+   */
+  title: makeStringProp(''),
+  /**
+   * @description 取消按钮文案
+   */
+  cancelText: makeStringProp(''),
+  /**
+   * @description 确定按钮文案
+   */
+  okText: makeStringProp(''),
+  /**
+   * @description 对象数组，配置每一列显示的数据
+   */
+  columns: makeArrayProp<(PickerOption | PickerOption[])[]>([]),
+  /**
+   * @description 是否开启3D效果
+   */
+  threeDimensional: truthProp,
+  /**
+   * @description 惯性滚动时长
+   */
+  swipeDuration: makeNumericProp(1000),
+  /**
+   * @description 是否显示顶部导航
+   */
+  showToolbar: truthProp,
+  /**
+   * @description 可见的选项个数
+   */
+  visibleOptionNum: makeNumericProp(7),
+  /**
+   * @description 选项高度
+   */
+  optionHeight: makeNumericProp(36),
+  /**
+   * @description 自定义 columns 中的字段
+   */
   fieldNames: {
     type: Object as PropType<PickerFieldNames>,
     default: () => ({}),
@@ -53,20 +56,20 @@ export const pickerProps = {
 export type PickerProps = ExtractPropTypes<typeof pickerProps>
 
 export const pickerEmits = {
-  'cancel': (val: {
+  [CANCEL_EVENT]: (val: {
     selectedValue: (string | number)[]
     selectedOptions: PickerOption[]
-  }) => val,
-  'change': (val: {
+  }) => val instanceof Object,
+  [CHANGE_EVENT]: (val: {
     columnIndex: number
     selectedValue: (string | number)[]
     selectedOptions: PickerOption[]
-  }) => val,
-  'confirm': (val: {
+  }) => val instanceof Object,
+  [CONFIRM_EVENT]: (val: {
     selectedValue: (string | number)[]
     selectedOptions: PickerOption[]
-  }) => val,
-  'update:modelValue': (val: (string | number)[]) => val,
+  }) => val instanceof Object,
+  [UPDATE_MODEL_EVENT]: (val: (string | number)[]) => val instanceof Object,
 }
 
 export type PickerEmits = typeof pickerEmits

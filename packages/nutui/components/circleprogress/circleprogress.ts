@@ -1,36 +1,37 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import { makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export type CircleProgressStrokeLinecap = 'butt' | 'round' | 'square'
 
 export const circleprogressProps = {
-  progress: {
-    type: [Number, String],
-    default: 0,
-  },
-  strokeWidth: {
-    type: [Number, String],
-    default: 5,
-  },
-  radius: {
-    type: [Number, String],
-    default: 50,
-  },
-  strokeLinecap: {
-    type: String as PropType<CircleProgressStrokeLinecap>,
-    default: 'round',
-  },
-  customColor: {
-    type: [String, Object],
-    default: '#FF673E',
-  },
-  pathColor: {
-    type: String,
-    default: '#d9d9d9',
-  },
-  clockwise: {
-    type: Boolean,
-    default: true,
-  },
+  /**
+   * @description 进度百分比
+   */
+  progress: makeNumericProp(0),
+  /**
+   * @description 圆弧的宽度
+   */
+  strokeWidth: makeNumericProp(5),
+  /**
+   * @description 半径
+   */
+  radius: makeNumericProp(50),
+  /**
+   * @description 圆环进度条端点形状，可选值为 `square`、`round`、`butt`
+   */
+  strokeLinecap: makeStringProp<CircleProgressStrokeLinecap>('round'),
+  /**
+   * @description 圆环进度条颜色
+   */
+  customColor: { type: [String, Object], default: '#FF673E' },
+  /**
+   * @description 圆环轨道颜色
+   */
+  pathColor: makeStringProp('#d9d9d9'),
+  /**
+   * @description 是否顺时针展示
+   */
+  clockwise: truthProp,
 }
 
 export type CircleProgressProps = ExtractPropTypes<typeof circleprogressProps>

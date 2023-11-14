@@ -61,7 +61,7 @@ export default defineComponent({
           <div v-if="toastStatus.title || title" class="nut-toast-title">
             {{ toastStatus.title || title }}
           </div>
-          <view class="nut-toast-text" v-html="toastStatus.msg || msg" />
+          <rich-text class="nut-toast-text" :nodes="toastStatus.msg || msg" />
         </view>
       </template>
     </view>
