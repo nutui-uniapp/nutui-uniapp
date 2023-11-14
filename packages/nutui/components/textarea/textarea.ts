@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { ConfirmTextType, AdjustKeyboardTo } from './type'
+import type { AdjustKeyboardTo, ConfirmTextType } from './type'
 
 export const textareaProps = {
   modelValue: {
@@ -95,7 +95,7 @@ export const textareaEmits = {
   'focus': (evt: Event) => evt,
   'change': (val1?: string, val2?: string | Event) => true,
   'update:modelValue': (val1?: string, val2?: string | Event) => true,
-  'confirm': (evt: any) => evt instanceof Object,
+  'confirm': (evt: Event) => evt,
 }
 
 export type TextareaEmits = typeof textareaEmits
