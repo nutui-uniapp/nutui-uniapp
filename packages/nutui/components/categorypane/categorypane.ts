@@ -30,7 +30,7 @@ export const categorypaneProps = {
 export type CategoryPaneProps = ExtractPropTypes<typeof categorypaneProps>
 
 export const categorypaneEmits = {
-  onChange: (sku: string) => isString(sku),
+  onChange: (sku: string | object) => isString(sku) || sku === undefined || sku instanceof Object,
 }
 
 export type CategoryPaneEmits = typeof categorypaneEmits

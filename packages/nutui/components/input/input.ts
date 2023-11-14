@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
-import { commonProps, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { ConfirmTextType, InputAlignType, InputFormatTrigger, InputMode, InputType } from './type'
 
@@ -137,7 +137,7 @@ export const inputEmits = {
   [CLEAR_EVENT]: () => true,
   keypress: () => true,
   [CONFIRM_EVENT]: (evt: InputOnConfirmEvent) => evt instanceof Object,
-  [UPDATE_MODEL_EVENT]: (val1?: string, val2?: Event) => isString(val1) && (val2 instanceof Object),
+  [UPDATE_MODEL_EVENT]: (val1?: string | number, val2?: Event) => (isString(val1) || isNumber(val1)) && ((val2 instanceof Object) || val2 === undefined),
 }
 
 export type InputEmits = typeof inputEmits

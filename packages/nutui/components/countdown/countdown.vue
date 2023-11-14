@@ -193,6 +193,7 @@ watch(
         state.handleEndTime = Date.now() + Number(state.restTime)
         tick()
       }
+
       emits('onRestart', state.restTime)
     }
   },

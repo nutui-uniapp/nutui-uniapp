@@ -42,7 +42,7 @@ export type PickerColumnProps = ExtractPropTypes<typeof pickercolumnProps>
 
 export const pickercolumnEmits = {
   [CLICK_EVENT]: () => true,
-  [CHANGE_EVENT]: (val: PickerOption) => val instanceof Object,
+  [CHANGE_EVENT]: (val: PickerOption) => val instanceof Object || Array.isArray(val) || val === undefined,
 }
 
 export type PickerColumnEmits = typeof pickercolumnEmits

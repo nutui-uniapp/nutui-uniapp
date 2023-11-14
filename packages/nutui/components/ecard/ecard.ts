@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
+import { isNull, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
 
 interface dataList {
@@ -61,7 +61,7 @@ export type ECardProps = ExtractPropTypes<typeof ecardProps>
 
 export const ecardEmits = {
   inputChange: (val: number) => isNumber(val),
-  changeStep: (val1: number, val2: number | string) => isNumber(val1) && (isNumber(val2) || isString(val2)),
+  changeStep: (val1: number | string, val2: number | string) => (isNumber(val1) || isString(val1)) && (isNumber(val2) || isString(val2) || isNull(val2)),
   inputClick: () => true,
   change: (item: {
     price: number | string

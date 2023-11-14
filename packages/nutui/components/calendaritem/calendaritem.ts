@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { getDay, isString, makeArrayProp, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { getDay, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { CHOOSE_EVENT, SELECT_EVENT } from '../_constants'
 
 export const calendaritemProps = {
@@ -31,7 +31,9 @@ export const calendaritemProps = {
   /**
    * @description 默认值，单个日期选择为 `string`，其他为 `string[]`
    */
-  defaultValue: makeArrayProp<string | string[]>([]),
+  defaultValue: {
+    type: [String, Array],
+  },
 
   /**
    * @description 开始日期
@@ -96,7 +98,7 @@ export const calendaritemProps = {
 }
 
 export const calendaritemEmits = {
-  [CHOOSE_EVENT]: (val: string) => isString(val),
+  [CHOOSE_EVENT]: (val: string | object) => isString(val) || val instanceof Object,
   close: () => true,
   update: () => true,
   [SELECT_EVENT]: (val: any) => val,

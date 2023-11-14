@@ -72,7 +72,7 @@ export const countupProps = {
 export type CountUpProps = ExtractPropTypes<typeof countupProps>
 
 export const countupEmits = {
-  scrollEnd: (val?: boolean) => isBoolean(val),
+  scrollEnd: (val?: boolean) => isBoolean(val) || val === undefined,
 }
 
 export type CountUpEmits = typeof countupEmits

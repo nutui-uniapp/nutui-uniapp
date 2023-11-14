@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, isNumber, isObject, makeArrayProp, makeNumericProp } from '../_utils'
+import { isBoolean, isNumber, isString, makeArrayProp, makeNumericProp } from '../_utils'
 import { CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const skuProps = {
@@ -66,12 +66,12 @@ export const skuEmits = {
   clickBtnOperate: (val: {
     type: string
     value: string | number
-  }) => isObject(val),
+  }) => val instanceof Object,
   clickCloseIcon: () => true,
   clickOverlay: () => true,
   [CLOSE_EVENT]: () => true,
-  reduce: (val: number) => isNumber(val),
-  add: (val: number) => isNumber(val),
+  reduce: (val: number | object) => isNumber(val) || isString(val) || val instanceof Object,
+  add: (val: number | object) => isNumber(val) || isString(val) || val instanceof Object,
   overLimit: (val: any) => val instanceof Object,
 }
 

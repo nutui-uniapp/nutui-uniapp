@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { isNumber, makeNumericProp } from '../_utils'
+import { isNumber, makeNumericProp, makeObjectProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export type SliderValue = number | number[]
@@ -59,7 +59,7 @@ export const rangeProps = {
   /**
    * @description 刻度标示
    */
-  marks: Object as PropType<any>,
+  marks: makeObjectProp<any>({}),
 }
 
 export type RangeProps = ExtractPropTypes<typeof rangeProps>

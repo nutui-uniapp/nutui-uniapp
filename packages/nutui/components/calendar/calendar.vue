@@ -47,7 +47,7 @@ function close() {
   emit(UPDATE_VISIBLE_EVENT, false)
 }
 
-function choose(param: string) {
+function choose(param: string | object) {
   close()
   emit(CHOOSE_EVENT, param)
 }

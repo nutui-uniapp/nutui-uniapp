@@ -48,12 +48,12 @@ function getExtraText() {
 }
 
 // 修改购买数量 add 加  reduce 减
-function add(value: number) {
-  emit('add', value)
+function add(value: any) {
+  emit('add', value.detail.vlaue)
 }
 
-function reduce(value: number) {
-  emit('reduce', value)
+function reduce(value: any) {
+  emit('reduce', value.detail.vlaue)
 }
 
 // stepper 极限值

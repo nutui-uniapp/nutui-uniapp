@@ -237,6 +237,7 @@ export default defineComponent({
             <movable-view :disabled="!scale" inertia scale-area class="nut-image-preview-img" :scale="scale" direction="all">
               <image
                 mode="aspectFit"
+                :src="item.src"
                 class="nut-image-preview-img"
                 @longPress="longPress(item)"
                 @longTap="longPress(item)"

@@ -19,7 +19,7 @@ export const formProps = {
 export type FormProps = ExtractPropTypes<typeof formProps>
 
 export const formEmits = {
-  validate: (msg: ErrorMessage) => msg,
+  validate: (msg: ErrorMessage) => msg instanceof Object,
 }
 
 export type FormEmits = typeof formEmits

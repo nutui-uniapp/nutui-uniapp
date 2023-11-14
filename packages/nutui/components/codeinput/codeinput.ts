@@ -71,7 +71,7 @@ export const codeinputEmits = {
   [CHANGE_EVENT]: (val: string) => isString(val),
   [INPUT_EVENT]: (val: string) => isString(val),
   finish: (val: string) => isString(val),
-  [UPDATE_MODEL_EVENT]: (val: number | string) => isString(val) && isNumber(val),
+  [UPDATE_MODEL_EVENT]: (val: number | string) => isString(val) || isNumber(val),
 
 }
 

@@ -65,8 +65,8 @@ export const countdownEmits = {
     ms: number
   }) => val instanceof Object || isString(val),
   onEnd: () => true,
-  onRestart: (val: number) => isNumber(val),
-  onPaused: (val: number) => isNumber(val),
+  onRestart: (val: number) => isNumber(val) || isString(val) || val === undefined,
+  onPaused: (val: number) => isNumber(val) || isString(val) || val === undefined,
 }
 
 export type CountdownEmits = typeof countdownEmits

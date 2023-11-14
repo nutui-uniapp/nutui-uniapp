@@ -84,15 +84,15 @@ export const searchbarProps = {
 export type SearchbarProps = ExtractPropTypes<typeof searchbarProps>
 
 export const searchbarEmits = {
-  [UPDATE_MODEL_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val)) && event instanceof Event,
-  [CHANGE_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val)) && event instanceof Event,
-  [BLUR_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val)) && event instanceof Event,
-  [FOCUS_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val)) && event instanceof Event,
-  [CLEAR_EVENT]: (val: string | number) => (isString(val) || isNumber(val)),
-  [SEARCH_EVENT]: (val: string | number) => (isString(val) || isNumber(val)),
+  [UPDATE_MODEL_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
+  [CHANGE_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
+  [BLUR_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
+  [FOCUS_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
+  [CLEAR_EVENT]: (val: string | number) => (isString(val) || isNumber(val) || val === undefined),
+  [SEARCH_EVENT]: (val: string | number) => (isString(val) || isNumber(val) || val === undefined),
   clickInput: (event: Event) => event instanceof Object,
-  clickLeftIcon: (val: string | number, event: Event) => (isString(val) || isNumber(val)) && event instanceof Event,
-  clickRightIcon: (val: string | number, event: Event) => (isString(val) || isNumber(val)) && event instanceof Event,
+  clickLeftIcon: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
+  clickRightIcon: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
 }
 
 export type SearchbarEmits = typeof searchbarEmits

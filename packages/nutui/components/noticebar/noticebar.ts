@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 
 export interface stateProps {
@@ -82,7 +82,7 @@ export type NoticeBarProps = ExtractPropTypes<typeof noticebarProps>
 
 export const noticebarEmits = {
   [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
-  [CLOSE_EVENT]: (evt: Event) => evt instanceof Object,
+  [CLOSE_EVENT]: (evt: Event | string) => evt instanceof Object || isString(evt),
   acrossEnd: (evt: Event) => evt instanceof Object,
 
 }

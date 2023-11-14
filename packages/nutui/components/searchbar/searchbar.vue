@@ -40,6 +40,7 @@ function valueFocus(event: any) {
   const value = input.value
   state.active = true
   focusCss.value = props.focusStyle
+
   emit(FOCUS_EVENT, value, event)
 }
 
