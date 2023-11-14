@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
 import { TypeOfFun, pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
@@ -214,11 +214,11 @@ const tabMethods = {
     tabMethods.updateValue(titles.value[currentIndex.value])
   },
   updateValue: (item: Title) => {
-    emit('update:modelValue', item.paneKey)
-    emit('change', item)
+    emit(UPDATE_MODEL_EVENT, item.paneKey)
+    emit(CHANGE_EVENT, item)
   },
   tabChange: (item: Title, index: number) => {
-    emit('click', item)
+    emit(CLICK_EVENT, item)
     if (item.disabled || currentIndex.value === index)
       return
 

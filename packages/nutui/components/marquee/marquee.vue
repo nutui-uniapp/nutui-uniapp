@@ -34,7 +34,7 @@ const index = ref(0)
 // 转动跑格子次数
 const cellNumber = ref(0)
 // 初始速度
-const velocity = ref(props.speed)
+const velocity = ref(+props.speed)
 // 至少需要转动多少次再进入抽奖环节
 const cycle = ref(props.circle)
 // 转动定时器
@@ -59,21 +59,21 @@ function rollMarquee() {
 
 function getPrize() {
   // 当前转动次数符合条件 && 转动到中奖位置
-  if (cellNumber.value > cycle.value && props.prizeIndex === index.value) {
+  if (cellNumber.value > +cycle.value && props.prizeIndex === index.value) {
     clearTimeout(timer.value) // 清除转动定时器
     // 恢复默认值和初始值
     timer.value = 0
     cellNumber.value = 0
-    velocity.value = props.speed
+    velocity.value = +props.speed
     cycle.value = props.circle
     setTimeout(() => {
-      index.value = props.prizeIndex
+      index.value = +props.prizeIndex
       emit('endTurns')
       lock.value = false
     }, 500)
   }
   else {
-    if (cellNumber.value < cycle.value)
+    if (cellNumber.value < +cycle.value)
       velocity.value -= 4
     else
       velocity.value += 20

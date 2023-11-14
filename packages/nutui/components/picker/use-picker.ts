@@ -1,6 +1,6 @@
 import { computed, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
-import { PREFIX } from '../_constants'
+import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 
 const DEFAULT_FILED_NAMES = {
   text: 'text',
@@ -116,7 +116,7 @@ export function usePicker(props: any, emit: any) {
   })
 
   const cancel = () => {
-    emit('cancel', {
+    emit(CANCEL_EVENT, {
       selectedValue: defaultValues.value,
       selectedOptions: selectedOptions.value,
     })
@@ -147,7 +147,7 @@ export function usePicker(props: any, emit: any) {
           : ''
       }
 
-      emit('change', {
+      emit(CHANGE_EVENT, {
         columnIndex,
         selectedValue: defaultValues.value,
         selectedOptions: selectedOptions.value,
@@ -163,7 +163,7 @@ export function usePicker(props: any, emit: any) {
       })
     }
 
-    emit('confirm', {
+    emit(CONFIRM_EVENT, {
       selectedValue: defaultValues.value,
       selectedOptions: selectedOptions.value,
     })
@@ -193,7 +193,7 @@ export function usePicker(props: any, emit: any) {
     defaultValues,
     (newValues) => {
       if (!isSameValue(newValues, props.modelValue))
-        emit('update:modelValue', newValues)
+        emit(UPDATE_MODEL_EVENT, newValues)
     },
     { deep: true },
   )

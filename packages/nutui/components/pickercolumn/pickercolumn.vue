@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { clamp, preventDefault, pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { useTouch } from '../_hooks'
 import { pickercolumnEmits, pickercolumnProps } from './pickercolumn'
 import type { TouchParams } from './types'
@@ -193,7 +193,7 @@ function setMove(move: number, type?: string, time?: number) {
 }
 
 function setChooseValue() {
-  emit('change', props.column[state.currIndex - 1])
+  emit(CHANGE_EVENT, props.column[state.currIndex - 1])
 }
 
 function modifyStatus(type: boolean) {

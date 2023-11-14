@@ -1,26 +1,25 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber } from '../_utils'
+import { isNumber, isString, makeNumericProp, makeObjectProp, makeStringProp, truthProp } from '../_utils'
+import { INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const countdownProps = {
-  modelValue: {
-    type: Object,
-    default: () => {
-      return {}
-    },
-  },
-  paused: {
-    default: false,
-    type: Boolean,
-  },
-
+  /**
+   * @description 当前时间，自定义展示内容时生效
+   */
+  modelValue: makeObjectProp({}),
+  /**
+   * @description 开始时间
+   */
   startTime: {
-    // 可以是服务器当前时间
     type: [Number, String],
     validator(v: Date) {
       const dateStr = new Date(v).toString().toLowerCase()
       return dateStr !== 'invalid date'
     },
   },
+  /**
+   * @description 结束时间
+   */
   endTime: {
     type: [Number, String],
     validator(v: Date) {
@@ -28,53 +27,62 @@ export const countdownProps = {
       return dateStr !== 'invalid date'
     },
   },
-  // 是否开启毫秒
-  millisecond: {
-    default: false,
-    type: Boolean,
-  },
-  // 时间格式化
-  format: {
-    type: String,
-    default: 'HH:mm:ss',
-  },
-  autoStart: {
-    type: Boolean,
-    default: true,
-  },
-
-  // 倒计时时长，单位毫秒
-  time: {
-    type: [Number, String],
-    default: 0,
-  },
+  /**
+   * @description 是否开启毫秒级渲染
+   */
+  millisecond: Boolean,
+  /**
+   * @description 时间格式
+   */
+  format: makeStringProp('HH:mm:ss'),
+  /**
+   * @description 是否自动开始倒计时
+   */
+  autoStart: truthProp,
+  /**
+   * @description 倒计时显示时间，单位是毫秒。`auto-start` 为 `false` 时生效
+   */
+  time: makeNumericProp(0),
+  /**
+   * @description 是否暂停
+   */
+  paused: Boolean,
 }
 
 export const countdownEmits = {
-  input: (val: string | {
+  [INPUT_EVENT]: (val: string | {
     d: number
     h: number
     m: number
     s: number
     ms: number
-  }) => val instanceof String || Object,
-  updateModelValue: (val: string | {
+  }) => val instanceof Object || isString(val),
+  [UPDATE_MODEL_EVENT]: (val: string | {
     d: number
     h: number
     m: number
     s: number
     ms: number
-  }) => val instanceof String || Object,
+  }) => val instanceof Object || isString(val),
   onEnd: () => true,
-  onRestart: (val: number) => true,
-  onPaused: (val: number) => isNumber(val),
+  onRestart: (val: number) => isNumber(val) || isString(val) || val === undefined,
+  onPaused: (val: number) => isNumber(val) || isString(val) || val === undefined,
 }
 
 export type CountdownEmits = typeof countdownEmits
 
 export interface CountdownInst {
+  /**
+   * @description 开始倒计时
+   */
   start: () => void
+  /**
+   * @description 暂停倒计时
+   */
   pause: () => void
+  /**
+   * @description 重设倒计时，若 `auto-start` 为 `true`，重设后会自动开始倒计时
+   */
   reset: () => void
 }
 

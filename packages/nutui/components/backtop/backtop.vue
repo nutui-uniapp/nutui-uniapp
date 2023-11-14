@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { backtopEmits, backtopProps } from './backtop'
 
@@ -32,7 +32,7 @@ function scroll(e: any) {
 
 function click(e: MouseEvent) {
   scrollTop.value = 1
-  emit('click', e)
+  emit(CLICK_EVENT, e)
 }
 </script>
 

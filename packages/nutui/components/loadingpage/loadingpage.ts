@@ -1,43 +1,43 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 
 export const loadingpageProps = {
-  loadingText: {
-    type: [String, Number],
-    default: '正在加载',
-  },
-  image: {
-    type: String,
-    default: '',
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  // 背景色
-  bgColor: {
-    type: String,
-    default: '#ffffff',
-  },
-  customColor: {
-    type: String,
-    default: '#C8C8C8',
-  },
-  fontSize: {
-    type: [String, Number],
-    default: 19,
-  },
-  iconSize: {
-    type: [String, Number],
-    default: 28,
-  },
-  loadingColor: {
-    type: String,
-    default: '#C8C8C8',
-  },
-  zIndex: {
-    type: Number,
-    default: 9999,
-  },
+  /**
+   * @description 提示内容
+   */
+  loadingText: makeStringProp('正在加载'),
+  /**
+   * @description 文字上方用于替换loading动画的图片
+   */
+  image: makeStringProp(''),
+  /**
+   * @description 是否加载中
+   */
+  loading: Boolean,
+  /**
+   * @description 背景颜色
+   */
+  bgColor: makeStringProp('#ffffff'),
+  /**
+   * @description 字体颜色
+   */
+  customColor: makeStringProp('#C8C8C8'),
+  /**
+   * @description 字体大小
+   */
+  fontSize: makeNumericProp(19),
+  /**
+   * @description 图标大小
+   */
+  iconSize: makeNumericProp(28),
+  /**
+   * @@description 边框和线条颜色
+   */
+  loadingColor: makeStringProp('#C8C8C8'),
+  /**
+   * @description 层级
+   */
+  zIndex: makeNumberProp(9999),
 }
 
 export type LoadingPageProps = ExtractPropTypes<typeof loadingpageProps>

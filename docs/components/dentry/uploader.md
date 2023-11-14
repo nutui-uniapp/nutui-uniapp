@@ -249,7 +249,8 @@ setup() {
 | disabled                  | 是否禁用文件上传                                                                                         | Boolean                           | `false`                     |
 | multiple                  | 是否支持文件多选                                                                                         | Boolean                           | `true`                      |
 | timeout                   | 超时时间，单位为毫秒                                                                                     | Number \| String                  | `1000 * 30`                 |
-| before-upload         | 执行 `uni.uploadFile` 上传时，自定义方式                                                                | Function(uni.uploadFile，option) | `null`                      |
+| before-upload         | 执行 `uni.uploadFile` 上传时，自定义方法                                                                | Function(uni.uploadFile，option) | `null`                      |
+| before-delete         | 除文件时的回调，返回值为 false 时不移除。支持返回一个 `Promise` 对象，`Promise` 对象 resolve(false) 或 reject 时不移除                                                                | Function(file): boolean 丨 Promise | -                      |
 | mode | 预览图片的 mode 属性                                                                                     | 查阅 uniapp[文档](https://uniapp.dcloud.net.cn/component/image.html)                           | `aspectFit`                 |
 
 ### FileItem

@@ -1,39 +1,39 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeArrayProp, makeNumberProp, truthProp } from '../_utils'
 
 export const barrageProps = {
-  danmu: {
-    type: Array,
-    default: () => [],
-  },
-  frequency: {
-    type: Number,
-    default: 500,
-  },
-  speeds: {
-    type: Number,
-    default: 5000,
-  },
-  rows: {
-    type: Number,
-    default: 3,
-  },
-  top: {
-    type: Number,
-    default: 10,
-  },
-  loop: {
-    type: Boolean,
-    default: true,
-  },
+  /**
+   * @description 弹幕列表数据
+   */
+  danmu: makeArrayProp<string>([]),
+
+  /**
+   * @description 可视区域内每个弹幕出现的时间间隔
+   */
+  frequency: makeNumberProp<number>(500),
+
+  /**
+   * @description 每个弹幕的滚动时间
+   */
+  speeds: makeNumberProp<number>(5000),
+
+  /**
+   * @description 弹幕行数，分几行展示
+   */
+  rows: makeNumberProp<number>(3),
+
+  /**
+   * @description 弹幕垂直距离
+   */
+  top: makeNumberProp<number>(10),
+
+  /**
+   * @description 是否循环播放
+   */
+  loop: truthProp,
 }
 
 export type BarrageProps = ExtractPropTypes<typeof barrageProps>
-
-export const barrageEmits = {
-  click: () => true,
-}
-
-export type BarrageEmits = typeof barrageEmits
 
 export interface BarrageInst {
   add: (word: string) => void

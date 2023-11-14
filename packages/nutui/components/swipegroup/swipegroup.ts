@@ -1,10 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
 
 export const swipegroupProps = {
-  lock: {
-    type: Boolean,
-    default: false,
-  },
+  /**
+   * @description 控制内部 Swipe 互斥，即滑动打开某一个 Swipe 时，触发其余 Swipe 的 close 方法
+   */
+  lock: Boolean,
 }
 
 export type SwipeGroupProps = ExtractPropTypes<typeof swipegroupProps>

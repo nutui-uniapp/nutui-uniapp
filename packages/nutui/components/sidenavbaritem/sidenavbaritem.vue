@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, reactive } from 'vue'
-import { PREFIX } from '../_constants'
+import { type CSSProperties, computed, defineComponent } from 'vue'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
 import { sidenavbaritemEmits, sidenavbaritemProps } from './sidenavbaritem'
 
-const props = defineProps(sidenavbaritemProps)
+defineProps(sidenavbaritemProps)
 
 const emit = defineEmits(sidenavbaritemEmits)
-
-const state = reactive({
-  count: 1,
-})
 
 const classes = computed(() => {
   const prefixCls = componentName
@@ -28,7 +24,7 @@ const style = computed(() => {
 })
 
 function handleClick() {
-  emit('click')
+  emit(CLICK_EVENT)
 }
 </script>
 

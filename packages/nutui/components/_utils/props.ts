@@ -28,6 +28,13 @@ export function makeArrayProp<T>(defaultVal: T[] = []) {
   }
 }
 
+export function makeObjectProp<T>(defaultVal: T) {
+  return {
+    type: Object as PropType<T>,
+    default: () => defaultVal,
+  }
+}
+
 export function makeNumberProp<T>(defaultVal: T) {
   return {
     type: Number,
@@ -52,10 +59,16 @@ export function makeStringProp<T>(defaultVal: T) {
 export type ClassType = string | object | Array<ClassType>
 
 export const commonProps = {
+  /**
+   * @description 自定义类名
+   */
   customClass: {
     type: [String, Object, Array] as PropType<ClassType>,
     default: '',
   },
+  /**
+   * @description 自定义样式
+   */
   customStyle: {
     type: [String, Object, Array] as PropType<StyleValue>,
     default: '',

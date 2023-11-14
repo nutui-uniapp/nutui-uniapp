@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { iconEmits, iconProps } from './icon'
 
 const props = defineProps(iconProps)
 const emits = defineEmits(iconEmits)
 
 function handleClick(event: Event) {
-  emits('click', event)
+  emits(CLICK_EVENT, event)
 }
 
 const isImage = computed(() => {

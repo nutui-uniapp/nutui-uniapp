@@ -6,6 +6,9 @@ import { PREFIX } from '../_constants'
 import NutPrice from '../price/price.vue'
 
 defineProps({
+  /**
+   * @description 商品
+   */
   goods: {
     type: Object,
     default: () => {},

@@ -1,4 +1,4 @@
-export interface RegionData {
+export interface AddressRegionData {
   name: string
   [key: string]: any
 }
@@ -8,7 +8,7 @@ export interface CustomRegionData {
   list: any[]
 }
 
-export interface existRegionData {
+export interface AddressExistRegionData {
   id?: string | number
   provinceName: string
   cityName: string
@@ -18,3 +18,5 @@ export interface existRegionData {
   selectedAddress: boolean
   [key: string]: any
 }
+
+export type AddressType = 'exist' | 'custom' | 'custom2'

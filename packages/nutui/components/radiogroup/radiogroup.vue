@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide, readonly, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
 
 const props = defineProps(radiogroupProps)
 const emit = defineEmits(radiogroupEmits)
-const updateValue = (value: string | boolean | number) => emit('update:modelValue', value)
+const updateValue = (value: string | boolean | number) => emit(UPDATE_MODEL_EVENT, value)
 
 provide('parent', {
   label: readonly(computed(() => props.modelValue)),
@@ -22,7 +22,7 @@ const classes = computed(() => {
 
 watch(
   () => props.modelValue,
-  value => emit('change', value),
+  value => emit(CHANGE_EVENT, value),
 )
 </script>
 

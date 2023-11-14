@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { PREFIX, SELECTED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutOverlay from '../overlay/overlay.vue'
 import NutIcon from '../icon/icon.vue'
@@ -21,10 +21,10 @@ const classes = computed(() => {
 const current = ref(-1)
 
 function updateValue(value = !props.visible) {
-  emit('update:visible', value)
+  emit(UPDATE_VISIBLE_EVENT, value)
 }
 function selected(item: any, event: Event) {
-  emit('selected', {
+  emit(SELECTED_EVENT, {
     item,
     event,
   })

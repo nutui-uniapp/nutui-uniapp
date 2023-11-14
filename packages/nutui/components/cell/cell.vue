@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import Icon from '../icon/icon.vue'
 import { cellEmits, cellProps } from './cell'
 
@@ -25,7 +25,7 @@ const baseStyle = computed(() => {
 })
 
 function handleClick(event: Event) {
-  emits('click', event)
+  emits(CLICK_EVENT, event)
 }
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
 import { isDate as isDateU, padZero } from '../_utils'
-import { PREFIX } from '../_constants'
+import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
 import { datepickerEmits, datepickerProps } from './datepicker'
@@ -9,7 +9,6 @@ import { datepickerEmits, datepickerProps } from './datepicker'
 const props = defineProps(datepickerProps)
 const emit = defineEmits(datepickerEmits)
 
-const currentYear = new Date().getFullYear()
 function isDate(val: Date): val is Date {
   return isDateU(val) && !Number.isNaN(val.getTime())
 }
@@ -155,7 +154,7 @@ function changeHandler({
 
     state.currentDate = formatValue(date as Date)
   }
-  emit('change', { columnIndex, selectedValue, selectedOptions })
+  emit(CHANGE_EVENT, { columnIndex, selectedValue, selectedOptions })
 }
 
 function formatterOption(type: string, value: string | number) {
@@ -210,11 +209,11 @@ function getDateIndex(type: string) {
 }
 
 function closeHandler(val: any) {
-  emit('cancel', val)
+  emit(CANCEL_EVENT, val)
 }
 
 function confirm(val: any) {
-  emit('confirm', val)
+  emit(CONFIRM_EVENT, val)
 }
 
 function generateList(list: Array<any>) {
@@ -277,7 +276,7 @@ watch(
   (newValues) => {
     const isSameValue = JSON.stringify(newValues) === JSON.stringify(props.modelValue)
     if (!isSameValue)
-      emit('update:modelValue', newValues)
+      emit(UPDATE_MODEL_EVENT, newValues)
   },
 )
 

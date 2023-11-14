@@ -3,23 +3,22 @@ import { badgeProps } from '../badge'
 
 export const tabbaritemProps = {
   ...badgeProps,
-  tabTitle: {
-    // 标签页的标题
-    type: String,
-    default: '',
-  },
-  name: {
-    type: String,
-  },
-  icon: {
-    // 标签页显示的icon
-    type: String,
-  },
-  href: {
-    // 标签页的跳转链接
-    type: String,
-    default: '',
-  },
+  /**
+   * @description 标签页的标题
+   */
+  tabTitle: String,
+  /**
+   * @description 标签名称，作为匹配的标识符
+   */
+  name: String,
+  /**
+   * @description 标签页显示的图标
+   */
+  icon: String,
+  /**
+   * @description 标签页的跳转链接
+   */
+  href: String,
 }
 
 export type TabBarItemProps = ExtractPropTypes<typeof tabbaritemProps>

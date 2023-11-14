@@ -1,5 +1,6 @@
 import type { SetupContext } from 'vue'
 import { computed, nextTick, ref, watch } from 'vue'
+import { CLICK_EVENT } from '../_constants'
 import type { TransitionEmits, TransitionProps } from './transition'
 import type { NutAnimations } from './types'
 
@@ -162,7 +163,7 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
 
   function clickHandler(evt: MouseEvent) {
     // evt.stopPropagation()
-    emit('click', evt)
+    emit(CLICK_EVENT, evt)
   }
 
   return {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import type { CascaderOption, CascaderPane, CascaderTabs, CascaderValue, convertConfig } from '../cascader/types'
 import Tree from '../cascader/tree'
 import { convertListToOptions } from '../cascader/helper'
@@ -156,8 +156,8 @@ function emitChange(pathNodes: CascaderOption[]) {
   const emitValue = pathNodes.map(node => node.value)
 
   innerValue.value = emitValue
-  emit('change', emitValue, pathNodes)
-  emit('update:modelValue', emitValue, pathNodes)
+  emit(CHANGE_EVENT, emitValue, pathNodes)
+  emit(UPDATE_MODEL_EVENT, emitValue, pathNodes)
 }
 
 function formatTabTitle(pane: CascaderPane) {

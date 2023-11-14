@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { categorypaneEmits, categorypaneProps } from './categorypane'
 
-const props = defineProps(categorypaneProps)
+defineProps(categorypaneProps)
 const emit = defineEmits(categorypaneEmits)
 function onChange(sku: string) {
   emit('onChange', sku)

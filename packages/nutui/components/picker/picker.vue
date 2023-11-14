@@ -24,9 +24,7 @@ const {
   defaultValues,
   defaultIndexes,
   columnsList,
-  selectedOptions,
   columnFieldNames,
-  isSameValue,
   columnsType,
   classes,
   cancel,
@@ -135,7 +133,6 @@ function componentWeapp() {
 
 // #ifdef H5
 const {
-  pickerColumn,
   swipeRef,
   columnStyle,
 } = componentWeb()

@@ -1,40 +1,43 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import { isNumber, isString } from '../_utils'
+import type { ExtractPropTypes } from 'vue'
+import { isNumber, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 import type { ElevatorData } from './type'
 
 export const elevatorProps = {
-  height: {
-    type: [Number, String],
-    default: '200px',
-  },
-  acceptKey: {
-    type: [String],
-    default: 'title',
-  },
-  indexList: {
-    type: Array as PropType<ElevatorData[]>,
-    default: () => {
-      return []
-    },
-  },
-  isSticky: {
-    type: [Boolean],
-    default: false,
-  },
-  spaceHeight: {
-    type: [Number],
-    default: 23,
-  },
-  titleHeight: {
-    type: [Number],
-    default: 35,
-  },
+  /**
+   * @description 电梯区域的高度
+   */
+  height: makeNumericProp('200px'),
+
+  /**
+   * @description 索引 key 值
+   */
+  acceptKey: makeStringProp('title'),
+
+  /**
+   * @description 索引列表
+   */
+  indexList: makeArrayProp<ElevatorData>([]),
+
+  /**
+   * @description 索引是否吸顶
+   */
+  isSticky: Boolean,
+
+  /**
+   * @description 右侧锚点的上下间距
+   */
+  spaceHeight: makeNumberProp(23),
+
+  /**
+   * @description 左侧索引的高度
+   */
+  titleHeight: makeNumberProp(35),
 }
 
 export type ElevatorProps = ExtractPropTypes<typeof elevatorProps>
 
 export const elevatorEmits = {
-  clickItem: (key: string, item: any) => { return { key, item } },
+  clickItem: (key: string, item: any) => isString(key) && (item instanceof Object),
   clickIndex: (key: string) => isString(key),
   change: (val: number) => isNumber(val),
 }

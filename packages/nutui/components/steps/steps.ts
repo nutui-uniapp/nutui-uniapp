@@ -1,24 +1,25 @@
 import type { ExtractPropTypes } from 'vue'
+import { isNumber, makeNumericProp, makeStringProp } from '../_utils'
 
 export const stepsProps = {
-  direction: {
-    type: String,
-    default: 'horizontal',
-  },
-  current: {
-    type: [String, Number],
-    default: '0',
-  },
-  progressDot: {
-    type: Boolean,
-    default: false,
-  },
+  /**
+   * @description 显示方向，`horizontal`,`vertical`
+   */
+  direction: makeStringProp<'horizontal' | 'vertical'>('horizontal'),
+  /**
+   * @description 当前所在的步骤
+   */
+  current: makeNumericProp(0),
+  /**
+   * @description 点状步骤条
+   */
+  progressDot: Boolean,
 }
 
 export type StepsProps = ExtractPropTypes<typeof stepsProps>
 
 export const stepsEmits = {
-  clickStep: (val: number) => true,
+  clickStep: (val: number) => isNumber(val),
 }
 
 export type StepsEmits = typeof stepsEmits

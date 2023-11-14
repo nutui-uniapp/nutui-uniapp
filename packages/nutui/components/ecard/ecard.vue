@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type Ref, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import type { InputOnFocusEvent } from '@uni-helper/uni-app-types'
+import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
 import { ecardEmits, ecardProps } from './ecard'
@@ -20,8 +21,8 @@ function handleClick(item: { price: number | string }, index: number) {
   currentValue.value = item.price
   emit('change', item)
 }
-function change(event: Event) {
-  const input = event.target as HTMLInputElement
+function change(event: InputOnFocusEvent) {
+  const input = event.detail
   const val = input.value.replace(/[^\d]/g, '')
   inputValue.value = val
   currentValue.value = val
@@ -38,11 +39,12 @@ function change(event: Event) {
 function inputClick() {
   currentIndex.value = 'input'
   stepValue.value = props.cardAmountMin
-  emit('update:modelValue', 0)
+  emit(UPDATE_MODEL_EVENT, 0)
   emit('inputClick')
 }
 function changeStep(value: number) {
   stepValue.value = value
+
   emit('changeStep', stepValue.value, currentValue.value!) // 返回数量, 返回当前选中值
 }
 watch(
@@ -89,7 +91,7 @@ export default defineComponent({
             type="text"
             class="nut-ecard-input"
             :placeholder="placeholder || translate('placeholder')"
-            @input="(change as any)"
+            @input="change"
           >
           {{ suffix }}
         </view>

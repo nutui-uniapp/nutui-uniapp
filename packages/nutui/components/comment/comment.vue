@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { commentEmits, commentProps } from './comment'
 import CommentHeader from './components/CmtHeader.vue'
@@ -27,7 +27,7 @@ function clickOperate(t: string) {
 }
 
 function handleClick() {
-  emit('click', props.info)
+  emit(CLICK_EVENT, props.info)
 }
 
 function clickImages(value: any) {

@@ -1,38 +1,45 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeNumberProp, makeStringProp } from '../_utils'
+import { CLICK_EVENT } from '../_constants'
 
 const { theme } = uni.getSystemInfoSync()
 
 export const backtopProps = {
-  height: {
-    type: String,
-    default: '100vh',
-  },
-  bottom: {
-    type: Number,
-    default: 20,
-  },
-  right: {
-    type: Number,
-    default: 10,
-  },
-  zIndex: {
-    type: Number,
-    default: 10,
-  },
-  distance: {
-    type: Number,
-    default: 200,
-  },
-  customColor: {
-    type: String,
-    default: theme === 'dark' ? '#fff' : '#000',
-  },
+  /**
+   * @description 滚动区域的高度
+   */
+  height: makeStringProp('100vh'),
+
+  /**
+   * @description 距离页面底部距离
+   */
+  bottom: makeNumberProp(20),
+
+  /**
+   * @description 距离页面右侧距离
+   */
+  right: makeNumberProp(10),
+
+  /**
+   * @description 页面垂直滚动多高后出现
+   */
+  distance: makeNumberProp(200),
+
+  /**
+   * @description 设置组件页面层级
+   */
+  zIndex: makeNumberProp(10),
+
+  /**
+   * @description 自定义图标颜色
+   */
+  customColor: makeStringProp(theme === 'dark' ? '#fff' : '#000'),
 }
 
 export type BacktopProps = ExtractPropTypes<typeof backtopProps>
 
 export const backtopEmits = {
-  click: (evt: MouseEvent) => evt,
+  [CLICK_EVENT]: (evt: MouseEvent) => evt instanceof Object,
 }
 
 export type BacktopEmits = typeof backtopEmits

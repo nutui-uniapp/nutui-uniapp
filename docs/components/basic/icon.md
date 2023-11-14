@@ -139,7 +139,6 @@ import './assets/font/iconfont.css';
 | size            | 图标大小，如 `20px` `2em` `2rem`        | String or Number | -                |
 | font-class-name | 自定义 icon 字体基础类名                | String           | `nutui-iconfont` |
 | class-prefix    | 自定义 icon 类名前缀，用于使用自定义图标 | String           | `nut-icon`       |
-| tag             | HTML 标签                               | String           | `i`              |
 
 ### Events
 

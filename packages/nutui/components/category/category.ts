@@ -1,5 +1,6 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import { isNumber } from '../_utils'
+import type { ExtractPropTypes } from 'vue'
+import { isNumber, makeArrayProp, makeStringProp } from '../_utils'
+import { CHANGE_EVENT } from '../_constants'
 
 export interface CategoryType {
   catName?: string
@@ -7,23 +8,21 @@ export interface CategoryType {
 }
 
 export const categoryProps = {
-  // 分类模式
-  type: {
-    type: String,
-    default: 'classify',
-  },
+  /**
+   * @description 分类模式：`classify`，`text`，`custom`
+   */
+  type: makeStringProp<'classify' | 'text' | 'custom'>('classify'),
 
-  // 左侧导航栏
-  category: {
-    type: Array as PropType<CategoryType>,
-    default: () => [],
-  },
+  /**
+   * @description 左侧导航栏数据列表
+   */
+  category: makeArrayProp<any>([]),
 }
 
 export type CategoryProps = ExtractPropTypes<typeof categoryProps>
 
 export const categoryEmits = {
-  change: (index: number) => isNumber(index),
+  [CHANGE_EVENT]: (index: number) => isNumber(index),
 }
 
 export type CategoryEmits = typeof categoryEmits

@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { defineComponent, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { categoryEmits, categoryProps } from './category'
 
-const props = defineProps(categoryProps)
+defineProps(categoryProps)
 const emit = defineEmits(categoryEmits)
 const checkIndex = ref(0)
-const categoryLeft = ref(false) // 是否显示slot
 
 function getChildList(index: any) {
   checkIndex.value = index
-  emit('change', index)
+  emit(CHANGE_EVENT, index)
 }
 </script>
 

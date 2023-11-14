@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { collapseEmits, collapseProps } from './collapse'
 
 const props = defineProps(collapseProps)
@@ -20,8 +20,8 @@ watch(() => props.modelValue, (val) => {
 
 function changeVal(val: string | number | Array<string | number>, name: string | number, status = true) {
   innerValue.value = val
-  emit('update:modelValue', val)
-  emit('change', val, name, status)
+  emit(UPDATE_MODEL_EVENT, val)
+  emit(CHANGE_EVENT, val, name, status)
 }
 
 function updateVal(name: string | number) {

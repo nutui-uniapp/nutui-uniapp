@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutPopUp from '../popup/popup.vue'
 import NutCascaderItem from '../cascaderitem/cascaderitem.vue'
 import { cascaderEmits, cascaderProps } from './cascader'
@@ -15,15 +15,15 @@ const innerVisible = computed({
     return props.visible
   },
   set(value) {
-    emit('update:visible', value)
+    emit(UPDATE_VISIBLE_EVENT, value)
   },
 })
 
 function onChange(value: CascaderValue, pathNodes: CascaderOption[]) {
   innerValue.value = value
   innerVisible.value = false
-  emit('change', value, pathNodes)
-  emit('update:modelValue', value)
+  emit(CHANGE_EVENT, value, pathNodes)
+  emit(UPDATE_MODEL_EVENT, value)
 }
 
 function onPathChange(pathNodes: CascaderOption[]) {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, toRefs, watchEffect } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { paginationEmits, paginationProps } from './pagination'
 
@@ -20,9 +20,9 @@ function select(curPage: number, isSelect: boolean) {
   if (curPage > countRef.value || curPage < 1)
     return
   if (curPage !== modelValue.value)
-    emit('update:modelValue', curPage)
+    emit(UPDATE_MODEL_EVENT, curPage)
   if (isSelect)
-    emit('change', curPage)
+    emit(CHANGE_EVENT, curPage)
 }
 // set page 对象
 function setPage(number: number, text: string | number, active = false) {

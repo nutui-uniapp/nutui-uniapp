@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, useSlots } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHOOSE_EVENT, CLOSE_EVENT, PREFIX, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { CalendarInst } from '../calendaritem/type'
 import NutPoPUp from '../popup/popup.vue'
 import NutCalendarItem from '../calendaritem/calendaritem.vue'
@@ -39,17 +39,17 @@ function initPosition() {
 
 // methods
 function update() {
-  emit('update:visible', false)
+  emit(UPDATE_VISIBLE_EVENT, false)
 }
 
 function close() {
-  emit('close')
-  emit('update:visible', false)
+  emit(CLOSE_EVENT)
+  emit(UPDATE_VISIBLE_EVENT, false)
 }
 
-function choose(param: string) {
+function choose(param: string | object) {
   close()
-  emit('choose', param)
+  emit(CHOOSE_EVENT, param)
 }
 
 function closePopup() {
@@ -57,7 +57,7 @@ function closePopup() {
 }
 function select(param: string) {
   // close();
-  emit('select', param)
+  emit(SELECT_EVENT, param)
 }
 </script>
 

@@ -2,7 +2,7 @@
 import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import { isH5 } from '../_utils'
-import { PREFIX } from '../_constants'
+import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
@@ -77,7 +77,7 @@ function _onInput(event: any) {
 }
 
 function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
-  emit('update:modelValue', value)
+  emit(UPDATE_MODEL_EVENT, value)
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.slice(0, Number(props.maxLength))
 
@@ -91,7 +91,7 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
     value = props.formatter(value)
 
   if (value !== props.modelValue)
-    emit('update:modelValue', value)
+    emit(UPDATE_MODEL_EVENT, value)
 }
 
 function resetValidation() {
@@ -109,7 +109,7 @@ function handleClickInput(event: MouseEvent) {
 }
 
 function handleClick(event: MouseEvent) {
-  emit('click', event)
+  emit(CLICK_EVENT, event)
 }
 
 function startComposing({ target }: Event) {
@@ -142,7 +142,7 @@ function handleFocus(evt: InputOnFocusEvent) {
     return
 
   active.value = true
-  emit('focus', evt)
+  emit(FOCUS_EVENT, evt)
 }
 
 function handleBlur(evt: InputOnBlurEvent) {
@@ -159,19 +159,19 @@ function handleBlur(evt: InputOnBlurEvent) {
     value = value.slice(0, Number(props.maxLength))
 
   updateValue(getModelValue(), 'onBlur')
-  emit('blur', evt)
+  emit(BLUR_EVENT, evt)
 }
 
 function handleClear(event: Event) {
   event.stopPropagation()
   if (props.disabled)
     return
-  emit('update:modelValue', '', event)
-  emit('clear')
+  emit(UPDATE_MODEL_EVENT, '', event)
+  emit(CLEAR_EVENT)
 }
 
 function handleConfirm(event: InputOnConfirmEvent) {
-  emit('confirm', event)
+  emit(CONFIRM_EVENT, event)
 }
 </script>
 

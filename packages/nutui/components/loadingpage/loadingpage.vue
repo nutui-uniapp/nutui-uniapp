@@ -5,7 +5,7 @@ import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
 import { loadingpageProps } from './loadingpage'
 
-const props = defineProps(loadingpageProps)
+defineProps(loadingpageProps)
 </script>
 
 <script lang="ts">

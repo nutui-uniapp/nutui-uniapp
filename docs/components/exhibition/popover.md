@@ -455,7 +455,7 @@ page,#app{
 | offset        | 出现位置的偏移量  | [number,number]   | `[0, 12]`  |
 | show-arrow        | 是否显示小箭头  | boolean  | `true`  |
 | custom-class        | 自定义 class 值  | string  | `''`  |
-| duration        | 动画时长，单位秒  |  number \| string  | `0.3`  |
+| duration        | 动画时长，单位毫秒  |  number \| string  | `300`  |
 | overlay        | 是否显示遮罩层  | boolean  | `false`  |
 | overlay-class        | 自定义遮罩层类名 | string  | `''`  |
 | overlay-style        | 自定义遮罩层样式  | string  | `''`  |

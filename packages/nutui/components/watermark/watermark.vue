@@ -47,12 +47,12 @@ async function init() {
   const ctx: any = canvas.getContext('2d')
 
   if (ctx) {
-    if (image.value) {
+    if (image?.value) {
       // 创建一个图片
       const img = canvas.createImage() as HTMLImageElement
       dealWithImage(ctx, img, ratio, ctx.canvas, markWidth, markHeight)
     }
-    else if (content.value) {
+    else if (content?.value) {
       dealWithText(ctx, ratio, ctx.canvas, markWidth, markHeight)
     }
   }
@@ -72,11 +72,11 @@ function initH5() {
   canvas.setAttribute('height', canvasHeight)
 
   if (ctx) {
-    if (image.value) {
+    if (image?.value) {
       const img = new Image()
       dealWithImage(ctx, img, ratio, canvas, markWidth, markHeight)
     }
-    else if (content.value) {
+    else if (content?.value) {
       dealWithText(ctx, ratio, canvas, markWidth, markHeight)
     }
   }
@@ -89,7 +89,7 @@ function dealWithImage(ctx: any, img: HTMLImageElement, ratio: number, canvas: H
   ctx.rotate((Math.PI / 180) * Number(rotate.value))
   img.crossOrigin = 'anonymous'
   img.referrerPolicy = 'no-referrer'
-  img.src = image.value // 要加载的图片 url, 可以是base64
+  img.src = image!.value! // 要加载的图片 url, 可以是base64
   img.onload = () => {
     ctx.drawImage(
       img,
@@ -111,7 +111,7 @@ function dealWithText(ctx: any, ratio: number, canvas: HTMLCanvasElement, markWi
   const markSize = Number(fontSize.value) * ratio
   ctx.font = `${fontStyle.value} normal ${fontWeight.value} ${markSize}px/${markHeight}px ${fontFamily.value}`
   ctx.fillStyle = fontColor.value
-  ctx.fillText(content.value, 0, 0)
+  ctx.fillText(content?.value, 0, 0)
   ctx.restore()
   state.base64Url = canvas.toDataURL()
 }
@@ -131,10 +131,10 @@ watch(
     width.value,
     height.value,
     rotate.value,
-    image.value,
+    image?.value,
     imageWidth.value,
     imageHeight.value,
-    content.value,
+    content?.value,
     fontStyle.value,
     fontWeight.value,
     fontColor.value,
