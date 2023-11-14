@@ -1,22 +1,26 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import { makeNumericProp, makeStringProp } from '../_utils'
 
 export const radioProps = {
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  shape: {
-    type: String as PropType<'round' | 'button'>,
-    default: 'round', // button
-  },
+  /**
+   * @description 是否禁用选择
+   */
+  disabled: Boolean,
+  /**
+   * @description 图标尺寸
+   */
+  iconSize: makeNumericProp(''),
+  /**
+   * @description 单选框标识
+   */
   label: {
     type: [String, Number, Boolean],
     default: '',
   },
-  iconSize: {
-    type: [String, Number],
-    default: '',
-  },
+  /**
+   * @description 形状，可选值为 button、round
+   */
+  shape: makeStringProp<'round' | 'button'>('round'),
 }
 
 export type RadioProps = ExtractPropTypes<typeof radioProps>

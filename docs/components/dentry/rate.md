@@ -193,7 +193,7 @@ export default {
 | disabled     | 是否禁用                                                                                            | Boolean          | `false`     |
 | spacing      | 间距                                                                                                | number \| string | `20`        |
 | size         | `Icon` 尺寸大小，如 `20px` `2em` `2rem`                                                             | number \| string | -           |
-| custom-icon  | 自定义 `Icon`, 传入 [VNode](https://cn.vuejs.org/guide/extras/render-function.html#creating-vnodes) | VNode            | `StarFillN` |
+| custom-icon  | 自定义 `Icon` | string            | `star-fill-n` |
 
 ### Events
 

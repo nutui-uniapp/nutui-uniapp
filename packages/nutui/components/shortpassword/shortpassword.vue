@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLOSE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import NutPopUp from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
@@ -15,7 +15,7 @@ const comLen = computed(() => range(Number(props.length)))
 const show = ref(props.visible)
 function focus(event: any) {
   event.stopPropagation()
-  emit('focus')
+  emit(FOCUS_EVENT)
 }
 watch(
   () => props.visible,
@@ -29,12 +29,12 @@ watch(
     realInput.value = value
 
     if (String(value).length === comLen.value)
-      emit('complete', value)
+      emit('complete', value!)
   },
 )
 function close() {
-  emit('update:visible', false)
-  emit('close')
+  emit(UPDATE_VISIBLE_EVENT, false)
+  emit(CLOSE_EVENT)
 }
 function range(val: number) {
   return Math.min(Math.max(4, val), 6)

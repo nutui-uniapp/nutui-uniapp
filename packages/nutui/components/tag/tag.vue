@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { tagEmits, tagProps } from './tag'
 
@@ -43,11 +43,11 @@ const style = computed<CSSProperties>(() => {
 
 function onClose(event: Event) {
   event.stopPropagation()
-  emit('close', event)
+  emit(CLOSE_EVENT, event)
 }
 
 function onClick(event: Event) {
-  emit('click', event)
+  emit(CLICK_EVENT, event)
 }
 </script>
 
@@ -65,7 +65,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="style" @click="onClick">
+  <view :class="classes" :style="style" @click="(onClick as any)">
     <slot />
     <NutIcon v-if="closeable" name="close" custom-class="nut-tag--close" size="11" @click="onClose" />
   </view>

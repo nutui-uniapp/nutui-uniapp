@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
+import { CLICK_EVENT, PREFIX, refRandomId } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { type SwipePosition, swipeEmits, swipeProps } from './swipe'
 
@@ -59,7 +59,7 @@ function open(p: SwipePosition = '') {
     state.offset = p === 'left' ? -rightRefWidth.value : leftRefWidth.value
 
   emit('open', {
-    name: props.name,
+    name: props.name!,
     position: position || p,
   })
 }
@@ -69,7 +69,7 @@ function close() {
   if (opened.value) {
     opened.value = false
     emit('close', {
-      name: props.name,
+      name: props.name!,
       position,
     })
   }
@@ -81,7 +81,7 @@ function onClick(e: Event, position: string, lock: boolean) {
   else
     close()
 
-  emit('click', position)
+  emit(CLICK_EVENT, position)
 }
 
 const touchStyle = computed(() => {

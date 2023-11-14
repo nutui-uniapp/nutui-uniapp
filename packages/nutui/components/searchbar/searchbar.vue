@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties, Ref } from 'vue'
 import { computed, defineComponent, reactive, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
 import { type InputTextAlign, searchbarEmits, searchbarProps } from './searchbar'
@@ -30,8 +30,8 @@ function valueChange(event: any) {
   if (props.maxLength && val?.length > Number(props.maxLength))
     val = val.slice(0, Number(props.maxLength))
 
-  emit('update:modelValue', val, event)
-  emit('change', val, event)
+  emit(UPDATE_MODEL_EVENT, val, event)
+  emit(CHANGE_EVENT, val, event)
 }
 
 const focusCss = ref({})
@@ -40,7 +40,7 @@ function valueFocus(event: any) {
   const value = input.value
   state.active = true
   focusCss.value = props.focusStyle
-  emit('focus', value, event)
+  emit(FOCUS_EVENT, value, event)
 }
 
 function valueBlur(event: any) {
@@ -54,17 +54,17 @@ function valueBlur(event: any) {
     value = value.slice(0, Number(props.maxLength))
 
   focusCss.value = {}
-  emit('blur', value, event)
+  emit(BLUR_EVENT, value, event)
 }
 
 function handleClear(event: Event) {
-  emit('update:modelValue', '', event)
-  emit('change', '', event)
-  emit('clear', '')
+  emit(UPDATE_MODEL_EVENT, '', event)
+  emit(CHANGE_EVENT, '', event)
+  emit(CLEAR_EVENT, '')
 }
 
 function handleSubmit() {
-  emit('search', props.modelValue)
+  emit(SEARCH_EVENT, props.modelValue)
 }
 
 function clickInput(event: Event) {

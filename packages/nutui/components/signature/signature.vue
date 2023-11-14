@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLEAR_EVENT, CONFIRM_EVENT, PREFIX } from '../_constants'
 import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
 import { useSelectorQuery } from '../_hooks'
@@ -83,7 +83,7 @@ function clear() {
   state.ctx.clearRect(0, 0, state.canvasWidth, state.canvasHeight)
   state.ctx.closePath()
   state.ctx.draw(true)
-  emit('clear')
+  emit(CLEAR_EVENT)
   isDraw.value = false
 }
 
@@ -103,10 +103,10 @@ function onSave() {
       success(result) {
         const _canvas = !isDraw.value ? '请绘制签名' : state.ctx
         const _filePath = !isDraw.value ? '' : result.tempFilePath
-        emit('confirm', _canvas, _filePath)
+        emit(CONFIRM_EVENT, _canvas, _filePath)
       },
       fail(result) {
-        emit('confirm', result)
+        emit(CONFIRM_EVENT, result)
       },
     })
   })

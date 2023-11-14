@@ -26,10 +26,10 @@ function cellClasses(item: TableColumnProps) {
   }
 }
 
-function stylehead(item: TableColumnProps) {
+function _stylehead(item: TableColumnProps) {
   return item.stylehead ? item.stylehead : ''
 }
-function stylecolumn(item: TableColumnProps) {
+function _stylecolumn(item: TableColumnProps) {
   return item.stylecolumn ? item.stylecolumn : ''
 }
 
@@ -129,7 +129,7 @@ export default defineComponent({
       </view>
     </view>
     <view v-if="summary" class="nut-table__summary">
-      <view class="nut-table__summary__text" v-html="summary().value" />
+      <rich-text class="nut-table__summary__text" :nodes="summary().value" />
     </view>
     <view v-if="!state.curData.length" class="nut-table__nodata">
       <div class="nut-table__nodata" :class="{ 'nut-table__nodata--border': bordered }">

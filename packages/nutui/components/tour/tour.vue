@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
+import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import NutPopover from '../popover/popover.vue'
 import { useRect } from '../_hooks'
@@ -64,7 +64,7 @@ function changeStep(type: string) {
     state.active = next
   }, 300)
 
-  emit('change', state.active)
+  emit(CHANGE_EVENT, state.active)
 }
 
 function getRootPosition() {
@@ -96,8 +96,8 @@ function getRootPosition() {
 function close() {
   state.showTour = false
   showPopup.value[state.active] = false
-  emit('close', state.active)
-  emit('update:modelValue', false)
+  emit(CLOSE_EVENT, state.active)
+  emit(UPDATE_MODEL_EVENT, false)
 }
 
 function handleClickMask() {

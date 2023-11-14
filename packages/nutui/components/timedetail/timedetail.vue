@@ -1,7 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent, inject, reactive } from 'vue'
-import { PREFIX } from '../_constants'
+import { PREFIX, SELECT_EVENT } from '../_constants'
 import { timedetailEmits, timedetailProps } from './timedetail'
 
 const props = defineProps(timedetailProps)
@@ -10,7 +10,7 @@ const emit = defineEmits(timedetailEmits)
 
 const currentKey = inject('currentKey')
 const currentTime = inject('currentTime')
-const muti = inject('muti')
+const _muti = inject('muti')
 
 const state = reactive({
   currentKey,
@@ -39,7 +39,7 @@ const renderData = computed(() => {
 })
 
 function handleTime(time: string) {
-  emit('select', time)
+  emit(SELECT_EVENT, time)
 }
 </script>
 

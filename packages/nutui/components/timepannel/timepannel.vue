@@ -1,7 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent, inject, reactive } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { timepannelEmits, timepannelProps } from './timepannel'
 
 const props = defineProps(timepannelProps)
@@ -22,7 +22,7 @@ const classes = computed(() => {
 })
 
 function handlePannel(pannelKey: number | string) {
-  emit('change', pannelKey)
+  emit(CHANGE_EVENT, pannelKey)
 }
 </script>
 

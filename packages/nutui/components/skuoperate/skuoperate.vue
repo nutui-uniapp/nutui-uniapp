@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent, useSlots } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 
 const props = defineProps({
   // 底部按钮配置  confirm cart  buy
@@ -9,7 +9,6 @@ const props = defineProps({
     type: Array as PropType<string[]>,
     default: () => ['confirm'],
   },
-
   btnExtraText: {
     type: String,
     default: '',
@@ -32,7 +31,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['click', 'changeSku', 'changeBuyCount', 'clickBtnOperate'])
+const emit = defineEmits([CLICK_EVENT, 'changeSku', 'changeBuyCount', 'clickBtnOperate'])
 const slots = useSlots()
 
 function getBtnDesc(type: string) {

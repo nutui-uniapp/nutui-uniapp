@@ -1,18 +1,19 @@
 import type { ExtractPropTypes } from 'vue'
+import { truthProp } from '../_utils'
 
 export const subsidenavbarProps = {
-  title: {
-    type: String,
-    default: '',
-  },
-  ikey: {
-    type: [String, Number],
-    default: '',
-  },
-  open: {
-    type: Boolean,
-    default: true,
-  },
+  /**
+   * @description 导航标题
+   */
+  title: String,
+  /**
+   * @description 导航唯一标识
+   */
+  ikey: [String, Number],
+  /**
+   * @description 导航是否默认展开
+   */
+  open: truthProp,
 }
 
 export type SubSidenavbarProps = ExtractPropTypes<typeof subsidenavbarProps>

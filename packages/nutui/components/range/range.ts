@@ -1,57 +1,74 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import { isNumber, makeNumericProp } from '../_utils'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export type SliderValue = number | number[]
 
 export const rangeProps = {
-  range: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: Boolean,
-  activeColor: String,
-  inactiveColor: String,
-  buttonColor: String,
-  vertical: {
-    type: Boolean,
-    default: false,
-  },
-  marks: {
-    type: Object,
-    default: {},
-  },
-  hiddenRange: {
-    type: Boolean,
-    default: false,
-  },
-  hiddenTag: {
-    type: Boolean,
-    default: false,
-  },
-  min: {
-    type: [Number, String],
-    default: 0,
-  },
-  max: {
-    type: [Number, String],
-    default: 100,
-  },
-  step: {
-    type: [Number, String],
-    default: 1,
-  },
+  /**
+   * @description 当前进度百分比
+   */
   modelValue: {
     type: [Number, Array] as PropType<SliderValue>,
     default: 0,
   },
+  /**
+   * @description 是否开启双滑块模式
+   */
+  range: Boolean,
+  /**
+   * @description 最大值
+   */
+  max: makeNumericProp(100),
+  /**
+   * @description 最小值
+   */
+  min: makeNumericProp(0),
+  /**
+   * @description 步长
+   */
+  step: makeNumericProp(1),
+  /**
+   * @description 是否禁用滑块
+   */
+  disabled: Boolean,
+  /**
+   * @description 是否竖向展示
+   */
+  vertical: Boolean,
+  /**
+   * @description 是否隐藏范围值
+   */
+  hiddenRange: Boolean,
+  /**
+   * @description 是否隐藏标签
+   */
+  hiddenTag: Boolean,
+  /**
+   * @description 进度条激活态颜色
+   */
+  activeColor: String,
+  /**
+   * @description 进度条非激活态颜色
+   */
+  inactiveColor: String,
+  /**
+   * @description 按钮颜色
+   */
+  buttonColor: String,
+  /**
+   * @description 刻度标示
+   */
+  marks: Object as PropType<any>,
 }
 
 export type RangeProps = ExtractPropTypes<typeof rangeProps>
 
 export const rangeEmits = {
-  'update:modelValue': (val: SliderValue) => true,
-  'dragStart': () => true,
-  'change': (val: SliderValue) => true,
-  'dragEnd': () => true,
+  [UPDATE_MODEL_EVENT]: (val: SliderValue) => isNumber(val) || val instanceof Object,
+  dragStart: () => true,
+  [CHANGE_EVENT]: (val: SliderValue) => isNumber(val) || val instanceof Object,
+  dragEnd: () => true,
 }
 
 export type RangeEmits = typeof rangeEmits

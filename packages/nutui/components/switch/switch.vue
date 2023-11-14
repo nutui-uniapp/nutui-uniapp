@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { switchEmits, switchProps } from './switch'
 
@@ -30,8 +30,8 @@ function onClick(event: Event) {
     return
   const value = isActive.value ? props.inactiveValue : props.activeValue
   updateType = 'click'
-  emit('update:modelValue', value)
-  emit('change', value, event)
+  emit(UPDATE_MODEL_EVENT, value)
+  emit(CHANGE_EVENT, value, event)
 }
 
 watch(
@@ -41,7 +41,7 @@ watch(
       updateType = ''
 
     else
-      emit('change', v)
+      emit(CHANGE_EVENT, v)
   },
 )
 </script>

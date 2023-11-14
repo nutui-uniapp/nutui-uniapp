@@ -2,11 +2,12 @@
 <script setup lang="ts">
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
-import type { TextareaConfirmType } from '@uni-helper/uni-app-types'
+import type { TextareaConfirmType, TextareaOnConfirmEvent } from '@uni-helper/uni-app-types'
 import { isH5, isMpAlipay } from '../_utils'
-import { PREFIX } from '../_constants'
+import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { useSelectorQuery } from '../_hooks'
+import type { InputAlignType } from '../input'
 import { textareaEmits, textareaProps } from './textarea'
 
 export interface InputTarget extends HTMLInputElement {
@@ -26,8 +27,8 @@ const classes = computed(() => {
 })
 
 const styles: any = computed(() => {
-  const styleObj: { textAlign: string; height?: string } = {
-    textAlign: props.textAlign,
+  const styleObj: { textAlign: InputAlignType; height?: string } = {
+    textAlign: props.textAlign!,
   }
   if (props.autosize)
     styleObj.height = heightSet.value
@@ -44,8 +45,8 @@ function emitChange(value: string, event: Event) {
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.substring(0, Number(props.maxLength))
 
-  emit('update:modelValue', value, event)
-  emit('change', value, event)
+  emit(UPDATE_MODEL_EVENT, value, event)
+  emit(CHANGE_EVENT, value, event)
 }
 
 function change(event: any) {
@@ -71,7 +72,7 @@ function focus(event: any) {
     return
   if (props.readonly)
     return
-  emit('focus', event)
+  emit(FOCUS_EVENT, event)
 }
 
 function blur(event: any) {
@@ -82,11 +83,11 @@ function blur(event: any) {
   const input = event.detail as HTMLInputElement
   const value = input.value
   emitChange(value, event)
-  emit('blur', event)
+  emit(BLUR_EVENT, event)
 }
 
-function _confirm(event: any) {
-  emit('confirm', event)
+function confirm(event: TextareaOnConfirmEvent) {
+  emit(CONFIRM_EVENT, event)
 }
 
 const textareaHeight = ref(20)
@@ -204,6 +205,7 @@ export default defineComponent({
       :confirm-type="confirmType as TextareaConfirmType"
       :confirm-hold="confirmHold"
       :adjust-keyboard-to="adjustKeyboardTo"
+      @confirm="confirm"
       @input="change"
       @blur="blur"
       @focus="focus"

@@ -51,7 +51,7 @@ const rotateTransition = ref('')
 const turntableDom = ref(null)
 const canvasDom = ref(null)
 const canvasDomEle = ref()
-const rorateDeg = ref(360 / prizeList.length)
+const _rorateDeg = ref(360 / prizeList.length)
 
 // 根据index计算每一格要旋转的角度的样式
 function getRotateAngle(index: number, flag?: string) {

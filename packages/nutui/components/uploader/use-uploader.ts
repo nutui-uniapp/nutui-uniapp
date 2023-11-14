@@ -72,13 +72,10 @@ export interface ChooseFileOptions {
 }
 
 export function chooseFile({
-  accept,
   multiple,
-  capture,
   maxDuration,
   sizeType,
   camera,
-  maxCount,
 }: ChooseFileOptions, props: UploaderProps, fileList: any[]): Promise<ChooseFile[]> {
   return new Promise((resolve, reject) => {
     // chooseMedia 目前只支持微信小程序原生，其余端全部使用 chooseImage API
@@ -94,7 +91,7 @@ export function chooseFile({
       /** 拍摄视频最长拍摄时间，单位秒。时间范围为 3s 至 30s 之间 */
       maxDuration,
       /** 仅对 mediaType 为 image 时有效，是否压缩所选文件 */
-      sizeType: props.sizeType,
+      sizeType,
       /** 仅在 sourceType 为 camera 时生效，使用前置或后置摄像头 */
       camera,
       /** 接口调用失败的回调函数 */
@@ -109,7 +106,7 @@ export function chooseFile({
       // 选择数量
       count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
       // 可以指定是原图还是压缩图，默认二者都有
-      sizeType: props.sizeType,
+      sizeType,
       sourceType: props.sourceType,
       success: res => resolve(formatImage(res as UniChooseFileSuccessCallbackResult)),
       fail: reject,

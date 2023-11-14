@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
 import { isH5 } from '../_utils'
-import { PREFIX, refRandomId } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { type SliderValue, rangeEmits, rangeProps } from './range'
 
@@ -164,10 +164,10 @@ function updateValue(value: SliderValue, end?: boolean) {
     value = format(value)
 
   if (!isSameValue(value, props.modelValue))
-    emit('update:modelValue', value)
+    emit(UPDATE_MODEL_EVENT, value)
 
   if (end && !isSameValue(value, startValue))
-    emit('change', value)
+    emit(CHANGE_EVENT, value)
 }
 
 async function onClick(event: any) {

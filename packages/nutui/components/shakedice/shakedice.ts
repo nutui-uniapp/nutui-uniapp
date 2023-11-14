@@ -1,18 +1,19 @@
 import type { ExtractPropTypes } from 'vue'
+import { makeNumberProp } from '../_utils'
 
 export const shakediceProps = {
-  time: {
-    type: Number,
-    default: 1,
-  },
-  speed: {
-    type: Number,
-    default: 3000,
-  },
-  id: {
-    type: Number,
-    default: 4,
-  },
+  /**
+   * @description 旋转时间，秒
+   */
+  time: makeNumberProp(1),
+  /**
+   * @description 旋转速度,ms
+   */
+  speed: makeNumberProp(3000),
+  /**
+   * @description 中奖的 id(1 为 1 点，依次类推)
+   */
+  id: makeNumberProp(4),
 }
 
 export type ShakeDiceProps = ExtractPropTypes<typeof shakediceProps>

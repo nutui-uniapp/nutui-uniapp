@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
 import { tabbarEmits, tabbarProps } from './tabbar'
 
@@ -16,7 +16,7 @@ const mdValue = reactive({
 })
 const height = ref()
 function changeIndex(index: number, active: number | string) {
-  emit('update:modelValue', active)
+  emit(UPDATE_MODEL_EVENT, active)
   parentData.modelValue = active
 
   emit('tabSwitch', parentData.children[index], active)

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { pxCheck } from '../_utils'
-import { PREFIX, refRandomId } from '../_constants'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { rateEmits, rateProps } from './rate'
 
@@ -16,8 +16,8 @@ const classes = computed(() => {
   }
 })
 function updateVal(value: number) {
-  emit('update:modelValue', value)
-  emit('change', value)
+  emit(UPDATE_MODEL_EVENT, value)
+  emit(CHANGE_EVENT, value)
 }
 function onClick(e: number, index: number) {
   if (props.disabled || props.readonly)

@@ -1,7 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent, provide } from 'vue'
-import { PREFIX } from '../_constants'
+import { PREFIX, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
 import { timeselectEmits, timeselectProps } from './timeselect'
@@ -29,8 +29,8 @@ const currentTime = computed(() => props.currentTime)
 const muti = computed(() => props.muti)
 
 function close() {
-  emit('update:visible', false)
-  emit('select', currentTime.value)
+  emit(UPDATE_VISIBLE_EVENT, false)
+  emit(SELECT_EVENT, currentTime.value)
 }
 
 provide('currentKey', currentKey)
