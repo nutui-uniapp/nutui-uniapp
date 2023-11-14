@@ -294,7 +294,7 @@
 | title                 | 弹层标题                                                    | string  | `取件时间`
 | current-key                 | 唯一标识                                                    | string \| number  | `0`
 | current-time                 | 当前选择的时间，数组元素包含:key: string; list: string[]      | Array  | `[]`
-| lock-scroll            | 背景是否锁定                                                | boolean        | `true`       |
+| lock-scroll   `H5`          | 背景是否锁定                                                | boolean        | `true`       |
 
 ### Slots
 

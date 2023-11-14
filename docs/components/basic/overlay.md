@@ -81,26 +81,59 @@
 
 ### 锁定背景滚动
 
-通过 `lock-scroll` 设置遮罩在显示时是否锁定背景，禁止滚动
+通过 `lock-scroll` 设置遮罩在显示时是否锁定背景，禁止滚动, 这个属性仅支持 H5
 
-```html
-<template>
-  <nut-button type="primary" @click="show = true">锁定背景滚动</nut-button>
-  <nut-overlay v-model:visible="show" :lock-scroll="true"></nut-overlay>
-</template>
+```vue
 <script lang="ts">
-  import { reactive, toRefs} from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        show: false
-      });
-      return {
-        ...toRefs(state)
-      };
+import { reactive, toRefs } from 'vue'
+
+export default {
+  setup() {
+    const state = reactive({
+      show: false
+    })
+    return {
+      ...toRefs(state)
     }
-  };
+  }
+}
 </script>
+
+<template>
+  <nut-button type="primary" @click="show = true">
+    锁定背景滚动
+  </nut-button>
+  <nut-overlay v-model:visible="show" :lock-scroll="true" />
+</template>
+```
+
+### 锁定背景滚动 (小程序与 APP)
+
+`lock-scroll`属性仅能在 H5生效，因为在 uniapp中没有办法有效的控制，因此我们只能使用官方提供的[方法](https://uniapp.dcloud.net.cn/component/uniui/uni-popup.html#%E7%A6%81%E6%AD%A2%E6%BB%9A%E5%8A%A8%E7%A9%BF%E9%80%8F), 通过`page-meta`标签控制
+
+```vue
+<script lang="ts">
+import { reactive, toRefs } from 'vue'
+
+export default {
+  setup() {
+    const state = reactive({
+      show: false
+    })
+    return {
+      ...toRefs(state)
+    }
+  }
+}
+</script>
+
+<template>
+  <page-meta :page-style="`overflow:${show ? 'hidden' : 'visible'}`" />
+  <view class="container">
+    <!-- 普通弹窗 -->
+    <nut-overlay v-model:visible="show" />
+  </view>
+</template>
 ```
 
 ### 嵌套内容
@@ -206,7 +239,7 @@
 | duration               | 显示/隐藏的动画时长，单位毫秒 | string \| number | `300`    |
 | overlay-class          | 自定义遮罩类名   | string         | -      |
 | overlay-style          | 自定义遮罩样式   | CSSProperties  | -      |
-| lock-scroll            | 遮罩显示时的背景是否锁定     | boolean        | `true`  |
+| lock-scroll    `H5`         | 遮罩显示时的背景是否锁定     | boolean        | `true`  |
 | close-on-click-overlay | 点击遮罩时是否关闭 | boolean    | `true`   |
 
 ### Events
