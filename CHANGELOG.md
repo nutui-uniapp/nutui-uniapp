@@ -1,3 +1,26 @@
+# [1.5.0](https://github.com/yang1206/uniapp-nutui/compare/v1.4.1...v1.5.0) (2023-11-15)
+
+### Bug Fixes
+
+* 修复部分组件事件验证错误 ([fdfeace](https://github.com/yang1206/uniapp-nutui/commit/fdfeace383b69751c5274c0f897de70a3fcb6213))
+* **cascader:** 级联二级切换无法被监听到 ([c78f382](https://github.com/yang1206/uniapp-nutui/commit/c78f382c02f76241919037b35c1834a73aeb6337)), closes [#105](https://github.com/yang1206/uniapp-nutui/issues/105)
+* **textarea:** 导入错误 ([71c4ceb](https://github.com/yang1206/uniapp-nutui/commit/71c4ceb3c74da553305c6a95f1faea51a20cd520))
+* textarea的autosize表现异常 ([d14813d](https://github.com/yang1206/uniapp-nutui/commit/d14813d6b32e2131a48abc7a8d6ec668c89023ce))
+
+* fix(overlay)!: 小程序与 APP平台不再支持`lock-scroll`属性 ([cd3a740](https://github.com/yang1206/uniapp-nutui/commit/cd3a74066829123299915787feaf2d675a8a487c)), closes [#103](https://github.com/yang1206/uniapp-nutui/issues/103)
+
+### Features
+
+* 组件props增加注释说明 ([a585716](https://github.com/yang1206/uniapp-nutui/commit/a585716ca5dc71b9577a491fc15d696a69aed0fb)), closes [#100](https://github.com/yang1206/uniapp-nutui/issues/100)
+* price ~ watermark ([e96a133](https://github.com/yang1206/uniapp-nutui/commit/e96a133c89b8762ab6cea0d0b450e29c496ceb5a))
+* **wip:** countdown ~ popup ([7160fed](https://github.com/yang1206/uniapp-nutui/commit/7160fedbfe6dc22bb7b8916e18f25b49125c0356))
+
+### BREAKING CHANGES
+
+* 小程序移除`lock-scroll`属性支持
+
+所有依赖overlay的组件的`lock-scroll`属性同理也将不再支持小程序与 APP 平台,禁用滚动穿透方法可参考文档
+
 ## [1.4.1](https://github.com/yang1206/uniapp-nutui/compare/v1.4.0...v1.4.1) (2023-11-08)
 
 ### Bug Fixes
