@@ -7,6 +7,11 @@ on:
 jobs:
   issue-reply:
     runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+      pull-requests: write
+
     steps:
       - name: Need Reproduce
         if: github.event.label.name == 'Need Reproduce'
