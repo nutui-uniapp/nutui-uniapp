@@ -38,7 +38,9 @@
     "postinstall": "npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
-    "build:uni": "esno scripts/uni.ts"
+    "build:uni": "esno scripts/uni.ts",
+    "upload:mp-weixin": "npm -C example run upload:mp-weixin",
+    "upload:mp-alipay": "npm -C example run upload:mp-alipay"
   },
   "dependencies": {
     "vue": "3.3.4"

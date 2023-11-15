@@ -1,0 +1,49 @@
+name: Upload To AlipayMiniProgram
+
+on:
+  push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - shell: bash
+        env:
+          TOOLID: ${{ secrets.ALI_TOOL_ID }}
+          APPID: ${{ secrets.ALI_APPID }}
+          PRIVATE_KEY: ${{ secrets.ALI_PRIVATE_KEY }}
+        run: |
+          if [[ -z $PRIVATE_KEY ]]; then
+            echo "##########"
+            echo ""
+            echo "Please set 'ALI_PRIVATE_KEY' key in actions secrets"
+            echo ""
+            echo "##########"
+            exit 1
+          else
+            echo '{
+              "alipay": {
+                "appid": "'$APPID'",
+                "toolId":"'$TOOLID'",
+                "privateKey": "'$PRIVATE_KEY'",
+                "projectPath": "example/dist/build/mp-alipay",
+                "autoincrement":true
+              },
+              "version": "",
+              "desc": ""
+            }' > .minicirc
+          fi
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: upload
+        run: |
+          npm i uni-mini-ci -g
+          yarn install
+          yarn upload:mp-alipay
