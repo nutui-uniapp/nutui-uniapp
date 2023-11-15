@@ -163,11 +163,11 @@ function init(vnodes: VNode[] = internalChildren.map(item => item.vnode)) {
 }
 
 watch(
-  () => internalChildren,
+  () => internalChildren.map(item => item.props),
   (vnodes: any[]) => {
-    init(vnodes)
+    init(internalChildren as any)
   },
-  { deep: true },
+  { deep: true, immediate: true },
 )
 
 watch(
