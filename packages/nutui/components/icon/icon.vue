@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { iconEmits, iconProps } from './icon'
 
@@ -16,9 +16,16 @@ const isImage = computed(() => {
 })
 
 const classes = computed(() => {
-  return isImage.value
-    ? `${componentName}__img`
-    : `${props.fontClassName} ${componentName} ${props.classPrefix}-${props.name}  ${props.customClass} ${props.popClass}`
+  const obj: Record<string, boolean> = {}
+  if (isImage.value) {
+    obj[`${componentName}__img`] = true
+  }
+  else {
+    obj[props.fontClassName] = true
+    obj[`${props.classPrefix}-${props.name}`] = true
+    obj[props.popClass] = true
+  }
+  return getMainClass(props, componentName, obj)
 })
 
 const getStyle = computed(() => {
@@ -28,7 +35,7 @@ const getStyle = computed(() => {
     width: pxCheck(props.width),
     height: pxCheck(props.height),
   }
-  return style
+  return getMainStyle(props, style)
 })
 </script>
 

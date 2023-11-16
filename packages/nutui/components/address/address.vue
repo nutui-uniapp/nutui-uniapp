@@ -80,7 +80,7 @@ let selectedExistAddress = reactive({}) // 当前选择的地址
 
 const closeWay = ref<'self' | 'mask' | 'cross'>('self')
 
-    // 设置选中省市县
+// 设置选中省市县
 function initCustomSelected() {
   regionData[0] = props.province || []
   regionData[1] = props.city || []
@@ -113,19 +113,19 @@ function getTabName(item: AddressRegionData | null, index: number) {
     return props.columnsPlaceholder[index] || translate('select')
 }
 
-    // 手动关闭 点击叉号(cross)，或者蒙层(mask)
+// 手动关闭 点击叉号(cross)，或者蒙层(mask)
 function handClose(type = 'self') {
   closeWay.value = type === 'cross' ? 'cross' : 'self'
 
   showPopup.value = false
 }
 
-    // 点击遮罩层关闭
+// 点击遮罩层关闭
 function clickOverlay() {
   closeWay.value = 'mask'
 }
 
-    // 切换下一级列表
+// 切换下一级列表
 function nextAreaList(item: AddressRegionData) {
   const tab = tabIndex.value
   prevTabIndex.value = tabIndex.value
@@ -156,7 +156,7 @@ function nextAreaList(item: AddressRegionData) {
   }
   emit(CHANGE_EVENT, callBackParams)
 }
-    // 切换地区Tab
+// 切换地区Tab
 function changeRegionTab(item: AddressRegionData, index: number) {
   prevTabIndex.value = tabIndex.value
   if (getTabName(item, index)) {
@@ -175,7 +175,7 @@ function scrollTo() {
   })
 }
 
-    // 选择现有地址
+// 选择现有地址
 function selectedExist(item: AddressExistRegionData) {
   const copyExistAdd = props.existAddress
   let prevExistAdd: AddressExistRegionData = {} as AddressExistRegionData
@@ -194,14 +194,14 @@ function selectedExist(item: AddressExistRegionData) {
 
   handClose()
 }
-    // 初始化
+// 初始化
 function initAddress() {
   selectedRegion.value = []
   tabIndex.value = 0
   scrollTo()
 }
 
-    // 关闭
+// 关闭
 function close() {
   const data = {
     addressIdStr: '',
@@ -240,7 +240,7 @@ function close() {
   emit(UPDATE_VISIBLE_EVENT, false)
 }
 
-    // 选择其他地址
+// 选择其他地址
 function switchModule() {
   const type = privateType.value
   privateType.value = type === 'exist' ? 'custom' : 'exist'
@@ -277,9 +277,7 @@ export default defineComponent({
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    // #ifndef H5
     styleIsolation: 'shared',
-    // #endif
   },
 })
 </script>

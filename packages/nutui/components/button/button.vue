@@ -3,6 +3,7 @@ import { type CSSProperties, defineComponent } from 'vue'
 import { computed, toRefs } from 'vue'
 import Icon from '../icon/icon.vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass, getMainStyle } from '../_utils'
 import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)
@@ -17,8 +18,7 @@ function handleClick(event: MouseEvent) {
 }
 
 const classes = computed(() => {
-  return {
-    [componentName]: true,
+  const obj = {
     [`${componentName}--${type.value}`]: type.value,
     [`${componentName}--${size.value}`]: size.value,
     [`${componentName}--${shape.value}`]: shape.value,
@@ -27,6 +27,7 @@ const classes = computed(() => {
     [`${componentName}--disabled`]: disabled.value,
     [`${componentName}--loading`]: loading.value,
   }
+  return getMainClass(props, componentName, obj)
 })
 
 const getStyle = computed(() => {
@@ -43,8 +44,7 @@ const getStyle = computed(() => {
       style.background = customColor.value
     }
   }
-
-  return style
+  return getMainStyle(props, style)
 })
 </script>
 
@@ -65,8 +65,8 @@ export default defineComponent({
 
 <template>
   <button
-    :class="[classes, customClass]"
-    :style="[getStyle, customStyle]"
+    :class="classes"
+    :style="getStyle"
     :form-type="props.formType === 'button' ? undefined : props.formType"
     :open-type="props.openType"
     :hover-start-time="10000000"
