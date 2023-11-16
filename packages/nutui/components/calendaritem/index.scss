@@ -11,13 +11,24 @@
     .nut-calendar__content {
       .nut-calendar__panel {
         .nut-calendar__days {
+          .nut-calendar__day{
+            &--disabled {
+              color: $dark-calendar-disabled !important;
+            }
+          }
+          
+
           .calendar-month-day {
             &-choose {
               color: $calendar-choose-font-color;
               background-color: $dark-calendar-choose-color;
             }
           }
+
+           
         }
+
+        
       }
     }
 
@@ -25,6 +36,8 @@
       color: $dark-color;
       background: $dark-background2;
     }
+
+    
   }
 }
 

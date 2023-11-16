@@ -126,7 +126,8 @@ function getClass(day: Day, month: MonthInfo, index?: number) {
     )
       res.push(`${state.dayPrefix}--active`)
     else if (
-      (state.propEndDate && compareDate(state.propEndDate, currDate))
+      (state.propStartDate && compareDate(currDate, state.propStartDate))
+      || (state.propEndDate && compareDate(state.propEndDate, currDate))
       || (props.disabledDate && props.disabledDate(currDate))
     )
       res.push(`${state.dayPrefix}--disabled`)

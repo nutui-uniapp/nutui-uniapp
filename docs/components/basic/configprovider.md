@@ -154,6 +154,7 @@
   --nut-dark-color3: rgba(232, 230, 227, 0.8);
   --nut-dark-color-gray: var(--nut-text-color);
   --nut-dark-calendar-choose-color: rgba(227, 227, 227, 0.2);
+  --nut-dark-calendar-disabled: #646566;
   // 字体
   --nut-font-family: PingFang SC, Microsoft YaHei, Helvetica, Hiragino Sans GB, SimSun, sans-serif;
 
