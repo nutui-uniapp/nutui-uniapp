@@ -1190,7 +1190,7 @@ export default {
           cName: '签名',
           desc: '签名组件',
           sort: 3,
-          show: !!isH5,
+          show: true,
           author: 'guoxiaoxiao',
         },
         {

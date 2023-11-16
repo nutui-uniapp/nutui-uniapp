@@ -1,80 +1,83 @@
-# Signature 签名  <Badge type="warning">H5</Badge>
+# Signature 签名
 
 ### 介绍
 
-基于 Canvas 的签名组件。默认竖屏模式使用，如使用横屏模式，请开发者自行设置旋转角度或者宽高。(目前微信小程序导出图片失败)
+基于 Canvas 的签名组件。默认竖屏模式使用，如使用横屏模式，请开发者自行设置旋转角度或者宽高。
 
 ### 基础用法
 
-```html
-<template>
-  <nut-signature  
-    @confirm="confirm" 
-    @clear="clear"
-  ></nut-signature>
-  <image :src="demoSignUrl" class="demoSignUrl" v-if="demoSignUrl" />
-</template>
+```vue
 <script>
 export default {
-    props: {},
-    setup() {
-      const demoSignUrl = ref('');
-      const confirm = (canvas, data) => {
-        if (data === '') {
-          console.log(canvas);
-          return false;
-        }
-        demoSignUrl.value = data;
-        console.log('图片地址', canvas, data);
-      };
-      const clear = () => {
-        demoSignUrl.value = '';
-        console.log('清除事件');
+  props: {},
+  setup() {
+    const demoSignUrl = ref('')
+    const confirm = (canvas, data) => {
+      if (data === '') {
+        console.log(canvas)
+        return false
       }
-      return { confirm, clear, demoSignUrl };
+      demoSignUrl.value = data
+      console.log('图片地址', canvas, data)
     }
+    const clear = () => {
+      demoSignUrl.value = ''
+      console.log('清除事件')
+    }
+    return { confirm, clear, demoSignUrl }
+  }
 }
 </script>
+
+<template>
+  <nut-signature
+    @confirm="confirm"
+    @clear="clear"
+  />
+  <image v-if="demoSignUrl" :src="demoSignUrl" class="demoSignUrl" />
+</template>
 ```
 
 ### 修改颜色和签字粗细
 
-```html
-<template>
-  <nut-signature  
-    :lineWidth="lineWidth" 
-    :strokeStyle="strokeStyle"
-    @confirm="confirm" 
-    @clear="clear"
-  ></nut-signature>
-  <image :src="demoSignUrl" class="demoSignUrl" v-if="demoSignUrl" />
-</template>
+```vue
 <script>
-import { reactive } from 'vue';
+import { reactive } from 'vue'
+
 export default {
   props: {},
   setup() {
     const state = reactive({
       lineWidth: 4,
       strokeStyle: 'green'
-    });
-    const demoSignUrl = ref('');
+    })
+    const demoSignUrl = ref('')
     const confirm = (canvas, data) => {
       if (data === '') {
-        console.log(canvas);
-        return false;
+        console.log(canvas)
+        return false
       }
-      demoSignUrl.value = data;
-      console.log('图片地址', canvas, data);
-    };
-    const clear = () => {
-      demoSignUrl.value = '';
-      console.log('清除事件');
+      demoSignUrl.value = data
+      console.log('图片地址', canvas, data)
     }
-    return { ...state, demoSignUrl, confirm, clear };
+    const clear = () => {
+      demoSignUrl.value = ''
+      console.log('清除事件')
+    }
+    return { ...state, demoSignUrl, confirm, clear }
   }
-};
+}
 </script>
+
+<template>
+  <nut-signature
+    :line-width="lineWidth"
+    :stroke-style="strokeStyle"
+    @confirm="confirm"
+    @clear="clear"
+  />
+  <image v-if="demoSignUrl" :src="demoSignUrl" class="demoSignUrl" />
+</template>
 ```
 
 ## API
