@@ -5,6 +5,7 @@ import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
 import NutElevator from '../elevator/elevator.vue'
+import { getMainClass } from '../_utils'
 import { addressEmits, addressProps } from './address'
 import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './type'
 
@@ -12,10 +13,7 @@ const props = defineProps(addressProps)
 const emit = defineEmits(addressEmits)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 const showPopup = ref(props.visible)
@@ -293,7 +291,7 @@ export default defineComponent({
     @click-overlay="clickOverlay"
     @open="closeWay = 'self'"
   >
-    <view :class="classes">
+    <view :class="classes" :style="customStyle">
       <view class="nut-address__header">
         <view class="nut-address__header-back" @click="switchModule">
           <slot v-if="type === 'exist' && privateType === 'custom'" name="backIcon">

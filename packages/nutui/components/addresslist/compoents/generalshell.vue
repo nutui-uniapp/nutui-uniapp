@@ -167,6 +167,7 @@ export default defineComponent({
 
 <style lang="scss">
 .nut-theme-dark {
+  .nut-address-list {
     &-swipe,
     &-general {
       color: $dark-color;
@@ -182,6 +183,8 @@ export default defineComponent({
         }
       }
     }
+  }
+
 }
 
 .nut-address-list {
