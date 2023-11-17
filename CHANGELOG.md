@@ -1,3 +1,14 @@
+## [1.5.1](https://github.com/yang1206/uniapp-nutui/compare/v1.5.0...v1.5.1) (2023-11-17)
+
+### Bug Fixes
+
+* **calendar:** 过期时间未被禁用 ([5b767b8](https://github.com/yang1206/uniapp-nutui/commit/5b767b88be6c32b8c8edf1212eedec2c60929a57))
+* **radio:** 修复`text-position`属性失效 ([1eadf1a](https://github.com/yang1206/uniapp-nutui/commit/1eadf1ac25087fc259d40c30723918e61b818c86))
+
+### Features
+
+* **(signature):** signature组件小程序端支持导出图片 ([2992d39](https://github.com/yang1206/uniapp-nutui/commit/2992d39522e18e5f6dd51f82f237171fdb789d2b))
+
 # [1.5.0](https://github.com/yang1206/uniapp-nutui/compare/v1.4.1...v1.5.0) (2023-11-15)
 
 ### Bug Fixes
