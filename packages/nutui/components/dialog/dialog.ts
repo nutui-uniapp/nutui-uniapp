@@ -1,12 +1,13 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { popupProps } from '../popup/popup'
-import { type Interceptor, isBoolean, makeStringProp, truthProp } from '../_utils'
+import { type Interceptor, commonProps, isBoolean, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export type TextAlign = 'left' | 'center' | 'right' | 'top'
 export type FooterDirection = 'horizontal' | 'vertical'
 export const dialogProps = {
   ...popupProps,
+  ...commonProps,
   /**
    * @description 点击蒙层是否关闭对话框
    */

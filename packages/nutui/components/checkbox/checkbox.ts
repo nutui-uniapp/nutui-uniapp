@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, isString, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isBoolean, isString, makeNumericProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const checkboxProps = {
+  ...commonProps,
   /**
    * @description 是否处于选中状态
    */

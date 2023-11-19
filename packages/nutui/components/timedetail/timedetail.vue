@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, inject, reactive } from 'vue'
 import { PREFIX, SELECT_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { timedetailEmits, timedetailProps } from './timedetail'
 
 const props = defineProps(timedetailProps)
@@ -18,10 +19,7 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 function getClass(item: string) {
@@ -59,7 +57,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view class="nut-time-detail__detail nut-time-detail__detail--moring">
       <!-- <view class="nut-time-detail__detail__time">上午</view> -->
       <view class="nut-time-detail__detail__list">

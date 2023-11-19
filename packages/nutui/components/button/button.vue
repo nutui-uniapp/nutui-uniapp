@@ -12,9 +12,9 @@ const emits = defineEmits(buttonEmits)
 
 const { type, size, shape, disabled, loading, customColor, plain, block } = toRefs(props)
 
-function handleClick(event: MouseEvent) {
+function handleClick(event: unknown) {
   if (!loading.value && !disabled.value)
-    emits(CLICK_EVENT, event)
+    emits(CLICK_EVENT, event as MouseEvent)
 }
 
 const classes = computed(() => {
@@ -85,7 +85,7 @@ export default defineComponent({
     :data-goods-id="props.dataGoodsId"
     :data-order-id="props.dataOrderId"
     :data-biz-line="props.dataBizLine"
-    @click="(handleClick as any)"
+    @click="handleClick"
     @getphonenumber="emits('getphonenumber', $event)"
     @getuserinfo="emits('getuserinfo', $event)"
     @error="emits('error', $event)"

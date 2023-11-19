@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeArrayProp, makeNumberProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumberProp, truthProp } from '../_utils'
 
 export const barrageProps = {
+  ...commonProps,
   /**
    * @description 弹幕列表数据
    */

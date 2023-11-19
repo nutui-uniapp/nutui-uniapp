@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, ref, useSlots, watch } from 'vue'
 import { CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
@@ -7,6 +7,7 @@ import SkuHeader from '../skuheader/skuheader.vue'
 import SkuOperate from '../skuoperate/skuoperate.vue'
 import SkuStepper from '../skustepper/skustepper.vue'
 import SkuSelect from '../skuselect/skuselect.vue'
+import { getMainClass } from '../_utils'
 import { skuEmits, skuProps } from './sku'
 
 const props = defineProps(skuProps)
@@ -15,7 +16,9 @@ const slots = useSlots()
 const showPopup = ref(props.visible)
 
 const goodsCount = ref(props.stepperMin)
-
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 watch(
   () => props.visible,
   (value) => {
@@ -105,7 +108,7 @@ export default defineComponent({
     safe-area-inset-bottom position="bottom" closeable round custom-style="height: 75%"
     @click-close-icon="closePopup('icon')" @click-overlay="closePopup('overlay')" @close="closePopup('close')"
   >
-    <view class="nut-sku">
+    <view :class="classes" :style="customStyle">
       <slot name="skuHeader">
         <SkuHeader :goods="goods">
           <template #skuHeaderPrice>

@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 
 export const countupProps = {
+  ...commonProps,
   /**
    * @description 初始数字
    */

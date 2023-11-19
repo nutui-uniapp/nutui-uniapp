@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeStringProp } from '../_utils'
+import { commonProps, makeStringProp } from '../_utils'
 
 export const cellgroupProps = {
+  ...commonProps,
   /**
    * @description 标题名称
    */

@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
 import type { AvatarShape, AvatarSize } from '../avatar'
-import { makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 
 export const AVATAR_KEY = Symbol('avatarGroup')
 export const avatargroupProps = {
+  ...commonProps,
   /**
    * @description 显示的最大头像个数
    */

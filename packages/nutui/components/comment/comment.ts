@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
-import { isString, makeArrayProp, makeObjectProp, makeStringProp } from '../_utils'
+import { commonProps, isString, makeArrayProp, makeObjectProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 import type { FollowType, ImagesType, InfoType, VideosType } from './type'
 
 export const commentProps = {
+  ...commonProps,
   /**
    * @description 头部样式展示类型，可选： `default`，`complex`
    */

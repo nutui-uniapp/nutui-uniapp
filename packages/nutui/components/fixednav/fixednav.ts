@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, makeArrayProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, makeArrayProp, makeStringProp, truthProp } from '../_utils'
 import { SELECTED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const fixednavProps = {
+  ...commonProps,
   /**
    * @description 是否打开
    */

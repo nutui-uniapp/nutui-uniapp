@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 
 export const rowProps = {
+  ...commonProps,
   /**
    * @description 布局方式，可选值为 `flex`
    */

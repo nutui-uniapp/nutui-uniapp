@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { type CSSProperties, nextTick } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { getPx } from '../_utils'
+import { getMainClass, getPx } from '../_utils'
 import { CHANGE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { codeinputEmits, codeinputProps } from './codeinput'
 
 const props = defineProps(codeinputProps)
 
 const emit = defineEmits(codeinputEmits)
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 const inputValue = ref('')
 const isFocus = ref(props.focus)
 
@@ -106,7 +109,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-code-input">
+  <view :class="classes" :style="customStyle">
     <view v-for="(item, index) in codeLength" :key="index" class="nut-code-input__item" :style="[itemStyle(index)]">
       <view v-if="dot && codeArray.length > index" class="nut-code-input__item__dot" />
       <text

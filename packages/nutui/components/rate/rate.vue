@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { rateEmits, rateProps } from './rate'
@@ -10,10 +10,7 @@ const emit = defineEmits(rateEmits)
 
 const rateRefs = ref<HTMLElement[]>([])
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 function updateVal(value: number) {
   emit(UPDATE_MODEL_EVENT, value)
@@ -49,7 +46,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view
       v-for="n in Number(count)" :id="`rateRefs-${refRandomId}${n}`" :key="n" ref="rateRefs" class="nut-rate-item"
       :style="n < Number(count) ? { marginRight: pxCheck(spacing!) } : {}"

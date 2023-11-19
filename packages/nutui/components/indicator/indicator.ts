@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 
 export type IndicatorAlign = 'left' | 'center' | 'right'
 
 export const indicatorProps = {
+  ...commonProps,
   /**
    * @description 步骤长度
    */

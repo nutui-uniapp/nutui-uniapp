@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, computed, defineComponent } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { GRID_KEY, type GridProps } from '../grid'
 import { useInject, useRouter } from '../_hooks'
@@ -14,14 +14,11 @@ const Parent = useInject<{ props: Required<GridProps> }>(GRID_KEY)
 const index = Parent.index
 const parent = Parent?.parent?.props
 // root
-const rootClass = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+const classes = computed(() => {
+  return getMainClass(props, componentName)
 })
 
-const rootStyle = computed(() => {
+const styles = computed(() => {
   if (!parent)
     return
   const style: CSSProperties = {
@@ -37,7 +34,7 @@ const rootStyle = computed(() => {
       style.marginTop = pxCheck(parent.gutter)
   }
 
-  return style
+  return getMainStyle(props, style)
 })
 
 // content
@@ -59,8 +56,8 @@ const contentClass = computed(() => {
 
 // click
 const router = useRouter()
-function handleClick(event: Event) {
-  emit(CLICK_EVENT, event)
+function handleClick(event: unknown) {
+  emit(CLICK_EVENT, event as MouseEvent)
 
   if (props.to && router) {
     router[props.replace ? 'replace' : 'push'](props.to as string)
@@ -90,7 +87,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="rootClass" :style="rootStyle" @click="(handleClick as any)">
+  <view :class="classes" :style="styles" @click="handleClick">
     <view :class="contentClass">
       <slot />
       <view class="nut-grid-item__text">

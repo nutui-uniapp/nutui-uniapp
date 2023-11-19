@@ -3,6 +3,7 @@ import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass, getMainStyle } from '../_utils'
 import { tagEmits, tagProps } from './tag'
 
 const props = defineProps(tagProps)
@@ -10,18 +11,16 @@ const props = defineProps(tagProps)
 const emit = defineEmits(tagEmits)
 
 const classes = computed(() => {
-  const prefixCls = 'nut-tag'
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--${props.type}`]: props.type,
-    [`${prefixCls}--plain`]: props.plain,
-    [`${prefixCls}--round`]: props.round,
-    [`${prefixCls}--mark`]: props.mark,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}--${props.type}`]: props.type,
+    [`${componentName}--plain`]: props.plain,
+    [`${componentName}--round`]: props.round,
+    [`${componentName}--mark`]: props.mark,
+  })
 })
 
 // 综合考虑 textColor、color、plain 组合使用时的效果
-const style = computed<CSSProperties>(() => {
+const style = computed<string>(() => {
   const style: CSSProperties = {}
   // 标签内字体颜色
   if (props.textColor)
@@ -38,7 +37,7 @@ const style = computed<CSSProperties>(() => {
   else if (props.customColor) {
     style.background = props.customColor
   }
-  return style
+  return getMainStyle(props, style)
 })
 
 function onClose(event: Event) {
@@ -46,8 +45,8 @@ function onClose(event: Event) {
   emit(CLOSE_EVENT, event)
 }
 
-function onClick(event: Event) {
-  emit(CLICK_EVENT, event)
+function onClick(event: unknown) {
+  emit(CLICK_EVENT, event as Event)
 }
 </script>
 
@@ -65,7 +64,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="style" @click="(onClick as any)">
+  <view :class="classes" :style="style" @click="onClick">
     <slot />
     <NutIcon v-if="closeable" name="close" custom-class="nut-tag--close" size="11" @click="onClose" />
   </view>

@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 import type { ElevatorData } from './type'
 
 export const elevatorProps = {
+  ...commonProps,
   /**
    * @description 电梯区域的高度
    */

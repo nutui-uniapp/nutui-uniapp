@@ -1,7 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
 import { badgeProps } from '../badge'
+import { commonProps } from '../_utils'
 
 export const tabbaritemProps = {
+  ...commonProps,
   ...badgeProps,
   /**
    * @description 标签页的标题

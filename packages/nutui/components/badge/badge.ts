@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 
 export const badgeProps = {
+  ...commonProps,
   /**
    * @description 显示的内容
    */

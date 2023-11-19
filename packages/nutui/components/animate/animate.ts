@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 import type { AnimateAction, AnimateType } from './type'
 
 export const animateProps = {
+  ...commonProps,
   /**
    * @description 控制动画，当值从 false 变为 true 时会触发一次动画
    */
@@ -36,7 +37,7 @@ export const animateProps = {
 export type AnimateProps = ExtractPropTypes<typeof animateProps>
 
 export const animateEmits = {
-  [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
+  [CLICK_EVENT]: (evt: MouseEvent) => evt instanceof Object,
   animate: () => true,
 }
 

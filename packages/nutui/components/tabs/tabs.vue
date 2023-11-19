@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
-import { TypeOfFun, pxCheck } from '../_utils'
+import { TypeOfFun, getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
@@ -268,6 +268,11 @@ const titleStyle = computed(() => {
 
   return { marginLeft: px, marginRight: px }
 })
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    [props.direction]: true,
+  })
+})
 </script>
 
 <script lang="ts">
@@ -284,7 +289,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="container" class="nut-tabs" :style="[customStyle]" :class="[customClass, direction]">
+  <view ref="container" :style="customStyle" :class="classes">
     <scroll-view
       :id="`nut-tabs__titles_${name}`"
       :scroll-x="getScrollX"

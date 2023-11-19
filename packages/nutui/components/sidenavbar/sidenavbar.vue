@@ -2,6 +2,7 @@
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { SIDEN_NAVBAR_KEY, sidenavbarProps } from './sidenavbar'
 
 const props = defineProps(sidenavbarProps)
@@ -11,10 +12,7 @@ const componentName = `${PREFIX}-side-navbar`
 useProvide(SIDEN_NAVBAR_KEY, `${componentName}-item`)({ props })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 </script>
 
@@ -31,7 +29,7 @@ export default defineComponent({
 
 <template>
   <!-- TODO 侧标导航样式有问题 -->
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view class="nut-side-navbar__content">
       <view class="nut-side-navbar__content__list">
         <slot />

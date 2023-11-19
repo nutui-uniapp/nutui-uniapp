@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isNumber, isString, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const codeinputProps = {
+  ...commonProps,
   /**
    * @description 键盘弹起时，是否自动上推页面
    */

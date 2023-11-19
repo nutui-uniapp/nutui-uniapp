@@ -2,9 +2,10 @@
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, inject, reactive } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { stepEmits, stepProps } from './step'
 
-defineProps(stepProps)
+const props = defineProps(stepProps)
 defineEmits(stepEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const parent: any = inject('parent')
@@ -27,11 +28,9 @@ const status = computed(() => {
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}-${status.value}`]: true,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}-${status.value}`]: true,
+  })
 })
 
 function handleClickStep() {
@@ -53,7 +52,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes]" @click="handleClickStep">
+  <view :class="classes" :style="customStyle" @click="handleClickStep">
     <view class="nut-step-head">
       <view class="nut-step-line" />
       <view class="nut-step-icon" :class="[!state.dot ? 'is-icon' : '']">

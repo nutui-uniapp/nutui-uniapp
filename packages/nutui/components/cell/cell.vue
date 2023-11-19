@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import Icon from '../icon/icon.vue'
 import { cellEmits, cellProps } from './cell'
@@ -9,19 +9,17 @@ const props = defineProps(cellProps)
 const emits = defineEmits(cellEmits)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--clickable`]: props.isLink || props.to,
-    [`${prefixCls}--center`]: props.center,
-    [`${prefixCls}--large`]: props.size === 'large',
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}--clickable`]: props.isLink || props.to,
+    [`${componentName}--center`]: props.center,
+    [`${componentName}--large`]: props.size === 'large',
+  })
 })
 
-const baseStyle = computed(() => {
-  return {
+const getStyle = computed(() => {
+  return getMainStyle(props, {
     borderRadius: pxCheck(props.roundRadius),
-  }
+  })
 })
 
 function handleClick(event: Event) {
@@ -45,7 +43,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes, customClass]" :style="[baseStyle, customStyle]" @click="(handleClick as any)">
+  <view :class="classes" :style="getStyle" @click="(handleClick as any)">
     <slot>
       <view v-if="$slots.icon" class="nut-cell__icon">
         <slot name="icon" />

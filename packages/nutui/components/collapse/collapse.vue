@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide, ref, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { collapseEmits, collapseProps } from './collapse'
 
 const props = defineProps(collapseProps)
@@ -8,10 +9,7 @@ const emit = defineEmits(collapseEmits)
 
 const innerValue = ref(props.modelValue || (props.accordion ? '' : []))
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 watch(() => props.modelValue, (val) => {
@@ -77,7 +75,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <slot />
   </view>
 </template>

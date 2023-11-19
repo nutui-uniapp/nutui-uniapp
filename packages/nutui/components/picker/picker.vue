@@ -170,7 +170,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view v-if="showToolbar" class="nut-picker__bar">
       <view class="nut-picker__cancel nut-picker__left nut-picker__button" @click="cancel">
         {{

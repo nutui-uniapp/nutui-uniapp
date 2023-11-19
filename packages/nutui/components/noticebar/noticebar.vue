@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, useSlots, watch } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, pxCheck } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
@@ -36,10 +36,7 @@ const state = reactive<stateProps>({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 const isEllipsis = computed(() => {
@@ -262,7 +259,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view
       v-show="state.showNoticebar"
       v-if="direction === 'across'"

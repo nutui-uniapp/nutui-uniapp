@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import type { FormItemRule } from './types'
 
 export const formitemProps = {
+  ...commonProps,
   /**
    * @description 是否显示必填字段的标签旁边的红色星号
    */

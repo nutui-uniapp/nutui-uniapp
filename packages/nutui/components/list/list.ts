@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeArrayProp, makeNumberProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumberProp } from '../_utils'
 
 export const clientHeight = uni.getSystemInfoSync().windowHeight || 667
 
 export const listProps = {
+  ...commonProps,
   /**
    * @description 列表项的高度/预估高度，支持不固定高度
    */

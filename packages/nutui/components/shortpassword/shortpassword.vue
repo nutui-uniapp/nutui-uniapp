@@ -4,6 +4,7 @@ import { CLOSE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_cons
 import NutIcon from '../icon/icon.vue'
 import NutPopUp from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
+import { getMainClass } from '../_utils'
 import { shortpasswordEmits, shortpasswordProps } from './shortpassword'
 
 const props = defineProps(shortpasswordProps)
@@ -13,6 +14,9 @@ const emit = defineEmits(shortpasswordEmits)
 const realInput = ref(props.modelValue)
 const comLen = computed(() => range(Number(props.length)))
 const show = ref(props.visible)
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function focus(event: any) {
   event.stopPropagation()
   emit(FOCUS_EVENT)
@@ -62,7 +66,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-short-password">
+  <view :class="classes" :style="customStyle">
     <NutPopUp
       v-model:visible="show"
       :custom-style="{

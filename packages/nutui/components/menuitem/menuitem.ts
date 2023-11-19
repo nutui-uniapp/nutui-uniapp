@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export interface MenuItemOption {
@@ -8,6 +8,7 @@ export interface MenuItemOption {
 }
 
 export const menuitemProps = {
+  ...commonProps,
   /**
    * @@description 菜单项标题
    */

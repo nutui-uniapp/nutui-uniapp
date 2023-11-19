@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, makeArrayProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, makeArrayProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT } from '../_constants'
 
 export interface CategoryType {
@@ -8,6 +8,7 @@ export interface CategoryType {
 }
 
 export const categoryProps = {
+  ...commonProps,
   /**
    * @description 分类模式：`classify`，`text`，`custom`
    */

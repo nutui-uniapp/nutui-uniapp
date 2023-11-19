@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { defineComponent, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
+import { computed, defineComponent, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useExtend } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { type IData, countupEmits, countupProps } from './countup'
 
 const props = defineProps(countupProps)
 const emit = defineEmits(countupEmits)
 defineExpose({ machineLuck })
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 const data = reactive<IData>({
   valFlag: false,
   current: 0,
@@ -455,7 +459,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-countup">
+  <view :class="classes" :style="customStyle">
     <template v-if="customBgImg !== ''">
       <template v-if="type === 'machine'">
         <view class="nut-countup__machine" :style="{ height: `${numHeight}px` }">

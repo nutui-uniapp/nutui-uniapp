@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const paginationProps = {
+  ...commonProps,
   /**
    * @description 当前页码
    */

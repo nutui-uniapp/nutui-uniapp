@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, makeArrayProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, makeArrayProp, truthProp } from '../_utils'
 import type { ErrorMessage } from '../form'
 
 export const invoiceProps = {
+  ...commonProps,
   /**
    * @description 发票数据
    */

@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
-import { pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { badgeProps } from './badge'
 
 const props = defineProps(badgeProps)
 
-const stl = computed(() => {
-  return {
+const getStyle = computed(() => {
+  return getMainStyle(props, {
     top: pxCheck(props.top),
     right: pxCheck(props.right),
     zIndex: props.zIndex,
     background: props.customColor,
-  }
+  })
+})
+const classes = computed(() => {
+  return getMainClass(props, componentName)
 })
 
 const content = computed(() => {
@@ -41,8 +44,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-badge">
-    <view v-if="!hidden && !dot && $slots.icon" class="nut-badge__icon" :style="stl">
+  <view :class="classes">
+    <view v-if="!hidden && !dot && $slots.icon" class="nut-badge__icon" :style="getStyle">
       <slot name="icon" />
     </view>
     <slot />
@@ -50,7 +53,7 @@ export default defineComponent({
       v-if="!hidden && (content || dot)"
       class="nut-badge__content nut-badge__content--sup"
       :class="{ 'nut-badge__content--dot': dot, 'nut-badge__content--bubble': !dot && bubble }"
-      :style="stl"
+      :style="getStyle"
     >
       {{ content }}
     </view>

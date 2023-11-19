@@ -2,6 +2,7 @@
 import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
 import { computed, defineComponent, provide, reactive, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 
 const props = defineProps(checkboxgroupProps)
@@ -9,6 +10,9 @@ const emit = defineEmits(checkboxgroupEmits)
 defineExpose({
   toggleAll,
   toggleReverse,
+})
+const classes = computed(() => {
+  return getMainClass(props, componentName)
 })
 const state = reactive({
   children: [] as ComponentPublicInstance[],
@@ -81,7 +85,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="componentName">
+  <view :class="classes" :style="customStyle">
     <slot />
   </view>
 </template>

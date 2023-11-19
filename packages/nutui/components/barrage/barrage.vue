@@ -3,6 +3,7 @@ import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { barrageProps } from './barrage'
 
 const props = defineProps(barrageProps)
@@ -22,11 +23,9 @@ const top = ref<number>(props.top)
 const speeds = props.speeds
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     [`nut-barrage--dmBody${timeId.value}`]: true,
-  }
+  })
 })
 
 onMounted(() => {
@@ -72,7 +71,6 @@ function runStep() {
     getNode(index)
   })
 }
-// const distance = ref('0');
 const styleList: any[] = reactive([])
 function styleInfo(index: number, nodeTop: string, width: number) {
   const timeIndex = index - rows.value > 0 ? index - rows.value : 0
@@ -112,7 +110,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <div>
       <div :class="[`nut-barrage__slotBody${classTime}`]">
         <view

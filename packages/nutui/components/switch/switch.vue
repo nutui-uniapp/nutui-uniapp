@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { computed, defineComponent, watch } from 'vue'
+import { type CSSProperties, computed, defineComponent, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass, getMainStyle } from '../_utils'
 import { switchEmits, switchProps } from './switch'
 
 const props = defineProps(switchProps)
 const emit = defineEmits(switchEmits)
 const isActive = computed(() => props.modelValue === props.activeValue)
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     [isActive.value ? 'nut-switch-open' : 'nut-switch-close']: true,
-    [`${prefixCls}-disable`]: props.disable,
-    [`${prefixCls}-base`]: true,
-  }
+    [`${componentName}-disable`]: props.disable,
+    [`${componentName}-base`]: true,
+  })
 })
 
-const style = computed(() => {
-  return {
+const styles = computed(() => {
+  const obj: CSSProperties = {
     backgroundColor: isActive.value ? props.activeColor : props.inactiveColor,
   }
+  return getMainStyle(props, obj)
 })
 
 let updateType = ''
@@ -59,7 +59,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="style" @click="(onClick as any)">
+  <view :class="classes" :style="styles" @click="(onClick as any)">
     <view class="nut-switch-button">
       <slot v-if="loading" name="icon">
         <NutIcon name="loading1" :custom-color="activeColor" />

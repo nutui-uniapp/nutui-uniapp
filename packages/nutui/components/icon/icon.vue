@@ -7,8 +7,8 @@ import { iconEmits, iconProps } from './icon'
 const props = defineProps(iconProps)
 const emits = defineEmits(iconEmits)
 
-function handleClick(event: Event) {
-  emits(CLICK_EVENT, event)
+function handleClick(event: unknown) {
+  emits(CLICK_EVENT, event as Event)
 }
 
 const isImage = computed(() => {
@@ -53,8 +53,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <image v-if="isImage" :class="classes" :style="getStyle" :src="name" @click="(handleClick as any)" />
-  <text v-else :class="classes" :style="[getStyle, customStyle]" @click="(handleClick as any)" />
+  <image v-if="isImage" :class="classes" :style="getStyle" :src="name" @click="handleClick" />
+  <text v-else :class="classes" :style="getStyle" @click="handleClick" />
 </template>
 
 <style lang="scss">

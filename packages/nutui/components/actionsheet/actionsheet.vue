@@ -23,7 +23,7 @@ function cancelActionSheet() {
   emit(UPDATE_VISIBLE_EVENT, false)
 }
 
-function chooseItem(item: ActionSheetOption, index: any) {
+function chooseItem(item: ActionSheetOption, index: number) {
   if (!item.disable && !item.loading) {
     emit(CHOOSE_EVENT, item, index)
     emit(UPDATE_VISIBLE_EVENT, false)

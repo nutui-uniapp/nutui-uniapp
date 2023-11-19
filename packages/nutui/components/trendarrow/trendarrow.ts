@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 
 export const trendarrowProps = {
+  ...commonProps,
   /**
    * @description 数值，大于0时箭头向上，小于0时箭头向下
    * - 类型为 `number`

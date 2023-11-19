@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, isNumber, isString } from '../_utils'
+import { commonProps, isBoolean, isNumber, isString } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const switchProps = {
+  ...commonProps,
   /**
    * @description 开关状态
    */

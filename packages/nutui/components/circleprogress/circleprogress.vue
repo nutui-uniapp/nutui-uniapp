@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX, refRandomId } from '../_constants'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { circleprogressProps } from './circleprogress'
 
 interface Item {
@@ -10,7 +11,15 @@ interface Item {
 const props = defineProps(circleprogressProps)
 const isIos = uni.getSystemInfoSync().platform === 'ios'
 const currentRate = ref(props.progress)
-
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
+const getStyle = computed(() => {
+  return getMainStyle(props, {
+    height: `${pxCheck(Number(props.radius) * 2)}`,
+    width: `${pxCheck(Number(props.radius) * 2)}`,
+  })
+})
 const isObject = (val: unknown): val is Record<any, any> => val !== null && typeof val === 'object'
 
 function transColor(color: string | undefined) {
@@ -91,7 +100,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-circle-progress" :style="{ height: `${Number(radius) * 2}px`, width: `${Number(radius) * 2}px` }">
+  <div :class="classes" :style="getStyle">
     <div :style="style" />
     <div class="nut-circle-progress__text">
       <slot>

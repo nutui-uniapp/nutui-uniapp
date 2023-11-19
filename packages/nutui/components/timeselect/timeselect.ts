@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const timeselectProps = {
+  ...commonProps,
   /**
    * @description 是否显示弹层
    */

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { clientHeight, listEmits, listProps } from './list'
 
 const props = defineProps(listProps)
@@ -10,6 +11,15 @@ const state = reactive({
   startOffset: 0,
   start: 0,
   list: props.listData.slice(),
+})
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
+
+const styles = computed(() => {
+  return getMainStyle(props, {
+    height: `${pxCheck(props.containerHeight)}`,
+  })
 })
 
 const getContainerHeight = computed(() => {
@@ -69,9 +79,9 @@ export default defineComponent({
 
 <template>
   <scroll-view
-    :class="componentName"
+    :class="classes"
     :scroll-y="true"
-    :style="{ height: `${props.containerHeight}px` }"
+    :style="styles"
     scroll-top="0"
     @scroll="handleScrollEvent"
   >

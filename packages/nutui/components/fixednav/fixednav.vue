@@ -4,18 +4,23 @@ import { PREFIX, SELECTED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutOverlay from '../overlay/overlay.vue'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass, getMainStyle } from '../_utils'
 import { fixednavEmits, fixednavProps } from './fixednav'
 
 const props = defineProps(fixednavProps)
 const emit = defineEmits(fixednavEmits)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     active: props.visible,
     [props.type]: true,
-  }
+  })
+})
+
+const styles = computed(() => {
+  return getMainStyle(props, {
+    ...props.position,
+  })
 })
 
 const current = ref(-1)
@@ -47,7 +52,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="position">
+  <view :class="classes" :style="styles">
     <NutOverlay v-if="overlay" :visible="visible" :z-index="200" @click="updateValue(false)" />
     <slot name="list">
       <view class="nut-fixed-nav__list">

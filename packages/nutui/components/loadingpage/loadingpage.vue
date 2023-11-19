@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass } from '../_utils'
 import { loadingpageProps } from './loadingpage'
 
-defineProps(loadingpageProps)
+const props = defineProps(loadingpageProps)
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 </script>
 
 <script lang="ts">
@@ -35,7 +39,7 @@ export default defineComponent({
       zIndex,
     }"
   >
-    <view class="nut-loading-page">
+    <view :class="classes" :style="customStyle">
       <view class="nut-loading-page__warpper">
         <view class="nut-loading-page__warpper__loading-icon">
           <image

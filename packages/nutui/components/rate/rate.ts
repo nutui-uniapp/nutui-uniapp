@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, makeNumericProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const rateProps = {
+  ...commonProps,
   /**
    * @description 当前 `star` 数，可使用 `v-model` 双向绑定数据
    */

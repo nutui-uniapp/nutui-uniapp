@@ -1,10 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeStringProp } from '../_utils'
+import { commonProps, makeStringProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 
 export type TagType = 'primary' | 'success' | 'danger' | 'warning' | 'default'
 
 export const tagProps = {
+  ...commonProps,
   /**
    * @description 标签颜色
    */

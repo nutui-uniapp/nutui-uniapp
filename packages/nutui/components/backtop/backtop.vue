@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
+import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass, getMainStyle } from '../_utils'
 import { backtopEmits, backtopProps } from './backtop'
 
 const props = defineProps(backtopProps)
@@ -11,28 +13,26 @@ const emit = defineEmits(backtopEmits)
 const backTop = ref(false)
 const scrollTop = ref(1)
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     show: backTop.value,
-  }
+  })
 })
 const style = computed(() => {
-  return {
+  return getMainStyle(props, {
     right: `${props.right}px`,
     bottom: `${props.bottom}px`,
     zIndex: props.zIndex,
-  }
+  })
 })
 
-function scroll(e: any) {
+function scroll(e: ScrollViewOnScrollEvent) {
   scrollTop.value = 2
   backTop.value = e.detail.scrollTop >= props.distance
 }
 
-function click(e: MouseEvent) {
+function click(e: unknown) {
   scrollTop.value = 1
-  emit(CLICK_EVENT, e)
+  emit(CLICK_EVENT, e as MouseEvent)
 }
 </script>
 
@@ -60,7 +60,7 @@ export default defineComponent({
     >
       <slot name="content" />
     </scroll-view>
-    <view :class="classes" :style="style" @click.stop="(click as any)">
+    <view :class="classes" :style="style" @click.stop="click">
       <slot name="icon">
         <NutIcon :custom-color="customColor" name="top" :size="19" custom-class="nut-backtop-main" />
       </slot>

@@ -3,6 +3,7 @@ import { computed, defineComponent, ref, toRefs } from 'vue'
 import { PREFIX } from '../_constants'
 import { AVATAR_KEY, type AvatarGroupProps } from '../avatargroup'
 import { useInject } from '../_hooks'
+import { getMainClass, getMainStyle } from '../_utils'
 import { avatarProps } from './avatar'
 
 const props = defineProps(avatarProps)
@@ -14,22 +15,20 @@ const avatarRef = ref(null)
 const { parent } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_KEY)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     [`nut-avatar-${size.value || parent?.props?.size || 'normal'}`]: true,
     [`nut-avatar-${shape.value || parent?.props?.shape || 'normal'}`]: true,
-  }
+  })
 })
 
-const styles = computed(() => {
-  return {
+const getStyles = computed(() => {
+  return getMainStyle(props, {
     width: sizeValue.includes(size.value as string) ? '' : `${size.value}px`,
     height: sizeValue.includes(size.value as string) ? '' : `${size.value}px`,
     backgroundColor: `${bgColor.value}`,
     color: `${customColor.value}`,
     marginLeft: (parent?.props?.span ? `${parent?.props?.span}px` : ''),
-  }
+  })
 })
 </script>
 
@@ -47,7 +46,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="avatarRef" :style="[styles, props.customStyle]" :class="[classes, props.customClass]">
+  <view ref="avatarRef" :style="getStyles" :class="classes">
     <slot />
   </view>
 </template>

@@ -1,7 +1,8 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { makeNumericProp, makeRequiredProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumericProp, makeRequiredProp, makeStringProp, truthProp } from '../_utils'
 
 export const collapseitemProps = {
+  ...commonProps,
   /**
    * @description 折叠面板的引用对象
    */

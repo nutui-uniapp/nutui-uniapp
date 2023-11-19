@@ -1,5 +1,5 @@
 import { type CSSProperties, type SetupContext, computed, onMounted, ref, watch } from 'vue'
-import { funInterceptor } from '../_utils'
+import { funInterceptor, getMainClass } from '../_utils'
 import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { DialogEmits, DialogProps } from './dialog'
 import type { DialogOptions } from './type'
@@ -60,10 +60,7 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
   )
 
   const classes = computed(() => {
-    return {
-      [componentName]: true,
-      [props.customClass]: true,
-    }
+    return getMainClass(props, componentName)
   })
 
   function update(val: boolean) {

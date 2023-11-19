@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, makeNumericProp, makeStringProp } from '../_utils'
 
 export const stepsProps = {
+  ...commonProps,
   /**
    * @description 显示方向，`horizontal`,`vertical`
    */

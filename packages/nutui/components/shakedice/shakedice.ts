@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp } from '../_utils'
+import { commonProps, makeNumberProp } from '../_utils'
 
 export const shakediceProps = {
+  ...commonProps,
   /**
    * @description 旋转时间，秒
    */

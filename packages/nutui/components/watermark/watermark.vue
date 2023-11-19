@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, toRefs, watch } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass, getMainStyle } from '../_utils'
 import { watermarkEmits, watermarkProps } from './watermark'
 
 const props = defineProps(watermarkProps)
@@ -152,11 +153,16 @@ watch(
   },
 )
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}-full-page`]: props.fullPage,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}-full-page`]: props.fullPage,
+  })
+})
+const styles = computed(() => {
+  return getMainStyle(props, {
+    zIndex: props.zIndex,
+    backgroundSize: `${props.gapX + props.width}px`,
+    backgroundImage: `url('${state.base64Url}')`,
+  })
 })
 </script>
 
@@ -176,11 +182,7 @@ export default defineComponent({
 <template>
   <view
     :class="classes"
-    :style="{
-      zIndex,
-      backgroundSize: `${gapX + width}px`,
-      backgroundImage: `url('${state.base64Url}')`,
-    }"
+    :style="styles"
   />
 </template>
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { elevatorEmits, elevatorProps } from './elevator'
 import type { ElevatorData } from './type'
 
@@ -34,10 +35,7 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 const fixedStyle = computed(() => {
@@ -181,7 +179,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <scroll-view
       id="listview"
       class="nut-elevator__list nut-elevator__list--mini"

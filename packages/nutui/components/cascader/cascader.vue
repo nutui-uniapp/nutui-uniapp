@@ -59,6 +59,8 @@ export default defineComponent({
       :z-index="zIndex"
       pop-class="nut-cascader__popup"
       round
+      :custom-class="customClass"
+      :custom-style="customStyle"
       :closeable="closeable"
       :close-icon="closeIcon"
       :destroy-on-close="false"

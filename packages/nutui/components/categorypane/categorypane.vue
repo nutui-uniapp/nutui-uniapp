@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { categorypaneEmits, categorypaneProps } from './categorypane'
 
-defineProps(categorypaneProps)
+const props = defineProps(categorypaneProps)
 const emit = defineEmits(categorypaneEmits)
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function onChange(sku: string) {
   emit('onChange', sku)
 }
@@ -24,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-category-pane">
+  <div :class="classes">
     <div v-if="type === 'classify'" class="nut-category-pane__cateListRight">
       <div v-for="(item, index) in categoryChild" :key="index">
         <div class="nut-category-pane__childTitle">

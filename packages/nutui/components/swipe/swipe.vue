@@ -2,6 +2,7 @@
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, watch } from 'vue'
 import { CLICK_EVENT, PREFIX, refRandomId } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
+import { getMainClass, getMainStyle } from '../_utils'
 import { type SwipePosition, swipeEmits, swipeProps } from './swipe'
 
 const props = defineProps(swipeProps)
@@ -10,7 +11,9 @@ const emit = defineEmits(swipeEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 
 const lockClick = ref(false)
-
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 async function getRefWidth(elementId: string) {
   const rect = await useRect(elementId, instance)
   return rect.width || 0
@@ -85,9 +88,9 @@ function onClick(e: Event, position: string, lock: boolean) {
 }
 
 const touchStyle = computed(() => {
-  return {
+  return getMainStyle(props, {
     transform: `translate3d(${state.offset}px, 0, 0)`,
-  }
+  })
 })
 
 function setoffset(deltaX: number) {
@@ -188,7 +191,7 @@ export default defineComponent({
 
 <template>
   <view
-    class="nut-swipe" :style="touchStyle" @touchstart="touchMethods.onTouchStart" @touchmove="touchMethods.onTouchMove" @touchend="touchMethods.onTouchEnd"
+    :class="classes" :style="touchStyle" @touchstart="touchMethods.onTouchStart" @touchmove="touchMethods.onTouchMove" @touchend="touchMethods.onTouchEnd"
     @touchcancel="touchMethods.onTouchEnd"
   >
     <view :id="leftRefId" class="nut-swipe__left" @click="onClick($event as any, 'left', true)">

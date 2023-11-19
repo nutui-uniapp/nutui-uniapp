@@ -35,7 +35,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes">
+  <div :class="classes" :style="customStyle">
     <div class="nut-signature-inner spcanvas_WEAPP">
       <canvas
         :id="canvasSetId" ref="spcanvas" class="spcanvas" :canvasId="canvasSetId" :disable-scroll="true"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
-import { compareDate, date2Str, formatResultDate, getDay, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
+import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
 import { CHOOSE_EVENT, PREFIX, SELECT_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
@@ -24,6 +24,12 @@ defineExpose({
 })
 const componentName = `${PREFIX}-calendar-item`
 const { translate } = useTranslate(componentName)
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    'nut-calendar--nopop': !props.poppable,
+    'nut-calendar--nofooter': props.isAutoBackFill,
+  })
+})
 // 新增：自定义周起始日
 const weekdays = (translate('weekdays') as any).map((day: string, index: number) => ({
   day,
@@ -696,10 +702,8 @@ export default defineComponent({
 <template>
   <view
     class="nut-calendar"
-    :class="{
-      'nut-calendar--nopop': !poppable,
-      'nut-calendar--nofooter': isAutoBackFill,
-    }"
+    :class="classes"
+    :style="customStyle"
   >
     <!-- header -->
     <view class="nut-calendar__header">

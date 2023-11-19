@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import { computed, defineComponent, provide, reactive, watch } from 'vue'
-import { getPropByPath, isObject, isPromise } from '../_utils'
+import { getMainClass, getPropByPath, isObject, isPromise } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemRule } from '../formitem/types'
@@ -19,6 +19,10 @@ const { internalChildren } = useProvide(
   'nut-form-item',
 )({ props, formErrorTip })
 provide('formErrorTip', formErrorTip)
+
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function clearErrorTips() {
   Object.keys(formErrorTip.value).forEach((item) => {
     formErrorTip.value[item] = ''
@@ -183,7 +187,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <form class="nut-form" action="#" @submit.prevent="() => false">
+  <form :class="classes" :style="customStyle" action="#" @submit.prevent="() => false">
     <NutCellGroup>
       <slot />
     </NutCellGroup>

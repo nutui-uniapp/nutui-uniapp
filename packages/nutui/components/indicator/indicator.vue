@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { padZero } from '../_utils'
+import { getMainClass, padZero } from '../_utils'
 import { PREFIX } from '../_constants'
 import { indicatorProps } from './indicator'
 
 const props = defineProps(indicatorProps)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--block`]: props.block,
-    [`${prefixCls}--align__${props.align}`]: props.block && props.align,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}--block`]: props.block,
+    [`${componentName}--align__${props.align}`]: props.block && props.align,
+  })
 })
 </script>
 
@@ -30,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <template v-for="item in size" :key="item">
       <view v-if="item === current" :class="`${componentName}--number`">
         {{ (fillZero && padZero(item)) || item }}

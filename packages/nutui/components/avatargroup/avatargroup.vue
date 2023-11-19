@@ -3,6 +3,7 @@ import { computed, defineComponent, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import NutAvatar from '../avatar/avatar.vue'
+import { getMainClass, getMainStyle } from '../_utils'
 import { AVATAR_KEY, avatargroupProps } from './avatargroup'
 
 const props = defineProps(avatargroupProps)
@@ -12,18 +13,14 @@ const avatarGroupRef = ref(null)
 const index = ref(0)
 
 const foldCount = ref(99)
-const observer = ref<MutationObserver>()
 const styles = computed(() => {
-  return {
+  return getMainStyle(props, {
     marginLeft: `${-1 * Number(props.span)}px`,
-  }
+  })
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props, avatarGroupRef, index })
@@ -43,7 +40,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="avatarGroupRef" :class="classes">
+  <view ref="avatarGroupRef" :class="classes" :style="styles">
     <slot />
     <NutAvatar
       v-if="foldCount > 0"

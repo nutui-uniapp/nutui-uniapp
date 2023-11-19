@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { getDay, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, getDay, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { CHOOSE_EVENT, SELECT_EVENT } from '../_constants'
 
 export const calendaritemProps = {
+  ...commonProps,
   /**
    * @description 是否可见
    */

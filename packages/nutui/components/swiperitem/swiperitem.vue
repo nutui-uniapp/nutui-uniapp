@@ -5,7 +5,10 @@ import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import type { SwiperProps } from '../swiper/swiper'
 import { SWIPER_KEY } from '../swiper/swiper'
+import { getMainClass, getMainStyle } from '../_utils'
+import { swiperItemProps } from './swiperitem'
 
+const props = defineProps(swiperItemProps)
 const { parent } = useInject<{ size: ComputedRef<number>;props: Required<SwiperProps> }>(SWIPER_KEY)
 
 const state = reactive({
@@ -13,13 +16,10 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
-const style = computed<CSSProperties>(() => {
+const style = computed<string>(() => {
   const style = {} as CSSProperties
   const direction = parent?.props.direction
   if (parent?.size.value)
@@ -28,7 +28,7 @@ const style = computed<CSSProperties>(() => {
   if (state.offset)
     style.transform = `translate${direction === 'horizontal' ? 'X' : 'Y'}(${state.offset}px)`
 
-  return style
+  return getMainStyle(props, style)
 })
 
 function setOffset(offset: number) {

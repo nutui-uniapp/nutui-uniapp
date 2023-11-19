@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeArrayProp, makeNumberProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumberProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
 export const dollmachineProps = {
+  ...commonProps,
   /**
    * @description 初始化爪子的图片链接
    */

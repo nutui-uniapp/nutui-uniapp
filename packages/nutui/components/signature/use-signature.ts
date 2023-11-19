@@ -1,6 +1,7 @@
 import { type ComponentInternalInstance, type SetupContext, computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { CLEAR_EVENT, CONFIRM_EVENT, PREFIX } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass } from '../_utils'
 import type { SignatureEmits, SignatureProps } from './signature'
 
 export const componentName = `${PREFIX}-signature`
@@ -11,11 +12,7 @@ export function useSignature(props: SignatureProps, emit: SetupContext<Signature
   let points = reactive<any[]>([]) // 路径点集合
 
   const classes = computed(() => {
-    const prefixCls = componentName
-    return {
-      [prefixCls]: true,
-      [`${props.customClass}`]: props.customClass,
-    }
+    return getMainClass(props, componentName)
   })
   const spcanvas: any = ref<HTMLElement | null>(null)
   const canvasSetId: any = `spcanvas${new Date().getTime()}`

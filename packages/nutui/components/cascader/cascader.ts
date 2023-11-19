@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { popupProps } from '../popup/popup'
 import type { TabsSize } from '../tabs/tabs'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
@@ -7,6 +7,7 @@ import type { CascaderOption, CascaderValue } from './types'
 
 export const cascaderProps = {
   ...popupProps,
+  ...commonProps,
   /**
    * @description 选中值，双向绑定
    */

@@ -3,17 +3,24 @@ import { type CSSProperties, type ComputedRef, computed, defineComponent } from 
 import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import { TAB_KEY } from '../tabs'
+import { getMainClass, getMainStyle } from '../_utils'
 import { tabpaneEmits, tabpaneProps } from './tabpane'
 
 const props = defineProps(tabpaneProps)
-const emit = defineEmits(tabpaneEmits)
+defineEmits(tabpaneEmits)
 const { parent } = useInject<{ activeKey: ComputedRef<string>; autoHeight: ComputedRef<boolean>; animatedTime: ComputedRef<string | number> }>(TAB_KEY)
 
 const paneStyle = computed(() => {
-  return {
+  const style: CSSProperties = {
     display:
-          parent?.animatedTime.value === 0 && props.paneKey !== parent.activeKey.value ? 'none' : undefined,
-  } as CSSProperties
+      parent?.animatedTime.value === 0 && props.paneKey !== parent.activeKey.value ? 'none' : undefined,
+  }
+  return getMainStyle(props, style)
+})
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    inactive: String(props.paneKey) !== parent?.activeKey.value && parent?.autoHeight.value,
+  })
 })
 </script>
 
@@ -30,7 +37,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-tab-pane" :style="[paneStyle, customStyle]" :class="[{ inactive: String(paneKey) !== parent?.activeKey.value && parent?.autoHeight.value }, customClass]">
+  <view :style="paneStyle" :class="classes">
     <slot />
   </view>
 </template>

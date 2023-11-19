@@ -3,6 +3,7 @@ import { type ComponentInternalInstance, computed, defineComponent, getCurrentIn
 import { PREFIX, refRandomId } from '../_constants'
 import requestAniFrame from '../_utils/raf'
 import { useRect } from '../_hooks'
+import { getMainStyle } from '../_utils'
 import { dragProps } from './drag'
 
 const props = defineProps(dragProps)
@@ -199,11 +200,11 @@ onDeactivated(() => {
 })
 
 const getStyle = computed(() => {
-  return {
-    transform: ` translate(${`${state.left}px`}, ${`${state.top}px`})`,
+  return getMainStyle(props, {
+    transform: `translate(${`${state.left}px`}, ${`${state.top}px`})`,
     top: `${state.top}px`,
     left: `${state.left}px`,
-  }
+  })
 })
 </script>
 
@@ -223,8 +224,8 @@ export default defineComponent({
   <view
     :id="myDragID"
     ref="myDrag"
-    :class="[classes, myDragID]"
-    :style="[getStyle, customStyle]"
+    :class="classes"
+    :style="getStyle"
     :catchtouchmove="true"
     @touchstart="(touchStart as any)"
     @touchmove="(touchMove as any)"

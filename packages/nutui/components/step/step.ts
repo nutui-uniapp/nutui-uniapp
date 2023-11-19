@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber } from '../_utils'
+import { commonProps, isNumber } from '../_utils'
 
 export const stepProps = {
+  ...commonProps,
   /**
    * @description 流程步骤的标题
    */

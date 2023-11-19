@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import type { ProgressSize, ProgressStatus } from './types'
 
 export const progressProps = {
+  ...commonProps,
   /**
    * @description 百分比
    */

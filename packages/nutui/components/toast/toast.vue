@@ -16,7 +16,7 @@ const {
   toastBodyClass,
   onAfterLeave,
   isShowToast,
-  Style,
+  styles,
   showToast,
   hideToast,
   toastStatus,
@@ -37,11 +37,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutTransition :custom-class="toastBodyClass" :custom-style="[Style, props.customStyle]" :show="isShowToast" name="fade" @after-leave="onAfterLeave">
+  <NutTransition :custom-class="toastBodyClass" :custom-style="styles" :show="isShowToast" name="fade" @after-leave="onAfterLeave">
     <view
       v-show="isShowToast"
       :class="toastBodyClass"
-      :style="Style"
+      :style="styles"
       @click="clickCover"
     >
       <template v-if="$slots.default">

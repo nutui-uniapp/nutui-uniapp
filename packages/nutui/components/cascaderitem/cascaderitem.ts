@@ -1,10 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
 import type { CascaderOption, CascaderValue } from '../cascader/types'
 import type { TabsSize } from '../tabs/tabs'
-import { makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const cascaderitemProps = {
+  ...commonProps,
   /**
    * @description 选中值，双向绑定
    */

@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
+import { getMainClass } from '../_utils'
 import { cardProps } from './card'
 
-defineProps(cardProps)
+const props = defineProps(cardProps)
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 </script>
 
 <script lang="ts">
@@ -22,7 +26,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-card">
+  <div :class="classes" :style="customStyle">
     <div class="nut-card__left">
       <image :src="imgUrl" alt="" />
     </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, ref, watch } from 'vue'
+import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
 import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
@@ -163,7 +164,7 @@ function changeRegionTab(item: AddressRegionData, index: number) {
   }
 }
 
-function scrollChange(e: any) {
+function scrollChange(e: ScrollViewOnScrollEvent) {
   scrollDis.value[tabIndex.value] = e.detail.scrollTop
 }
 

@@ -10,7 +10,7 @@ import { addresslistEmits, addresslistProps } from './addresslist'
 const props = defineProps(addresslistProps)
 const emit = defineEmits(addresslistEmits)
 
-const dataArray = ref([]) as any
+const dataArray = ref<any[]>([])
 const dataInfo = reactive({
   id: 2,
   addressName: '姓名',

@@ -1,10 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
 const { theme } = uni.getSystemInfoSync()
 
 export const backtopProps = {
+  ...commonProps,
   /**
    * @description 滚动区域的高度
    */

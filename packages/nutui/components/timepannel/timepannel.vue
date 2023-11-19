@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, inject, reactive } from 'vue'
 import { CHANGE_EVENT, PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { timepannelEmits, timepannelProps } from './timepannel'
 
 const props = defineProps(timepannelProps)
@@ -14,11 +15,9 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     'nut-time-pannel--curr': state.currentKey == props.pannelKey,
-  }
+  })
 })
 
 function handlePannel(pannelKey: number | string) {
@@ -40,7 +39,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" @click="handlePannel(pannelKey)">
+  <view :class="classes" :style="customStyle" @click="handlePannel(pannelKey)">
     {{ name }}
   </view>
 </template>

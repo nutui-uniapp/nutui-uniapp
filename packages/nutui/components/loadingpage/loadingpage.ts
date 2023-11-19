@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 
 export const loadingpageProps = {
+  ...commonProps,
   /**
    * @description 提示内容
    */

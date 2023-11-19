@@ -9,12 +9,18 @@ import { useTranslate } from '../../locale'
 import NutTabs from '../tabs/tabs.vue'
 import NutTabPane from '../tabpane/tabpane.vue'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass } from '../_utils'
 import { cascaderitemEmits, cascaderitemProps } from './cascaderitem'
 
 const props = defineProps(cascaderitemProps)
 const emit = defineEmits(cascaderitemEmits)
 const componentName = `${PREFIX}-calendar-item`
 const { translate } = useTranslate(componentName)
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    'nut-cascader': true,
+  })
+})
 const configs = computed(() => ({
   lazy: props.lazy,
   lazyLoad: props.lazyLoad,
@@ -269,7 +275,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutTabs v-model="tabsCursor" :type="props.titleType" :ellipsis="props.titleEllipsis" :title-gutter="props.titleGutter" :size="props.titleSize" custom-class="nut-cascader" title-scroll @click="methods.handleTabClick">
+  <NutTabs v-model="tabsCursor" :custom-class="classes" :custom-style="customStyle" :type="props.titleType" :ellipsis="props.titleEllipsis" :title-gutter="props.titleGutter" :size="props.titleSize" title-scroll @click="methods.handleTabClick">
     <template v-if="!initLoading && panes.length">
       <NutTabPane v-for="(pane, index) in panes" :key="index" :title="formatTabTitle(pane)">
         <view role="menu" class="nut-cascader-pane">

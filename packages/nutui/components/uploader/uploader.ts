@@ -1,9 +1,10 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { type Interceptor, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { type Interceptor, commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import type { AcceptType, FileItem, MediaType, SizeType, SourceType } from './type'
 import type { UploadOptions } from './use-uploader'
 
 export const uploaderProps = {
+  ...commonProps,
   /**
    * @description 发到后台的文件参数名
    * - 类型为 `string`

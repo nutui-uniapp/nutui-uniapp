@@ -3,7 +3,6 @@ import { commonProps, makeStringProp } from '../_utils'
 
 export const dragProps = {
   ...commonProps,
-
   /**
    * @description 是否开启自动吸边（根据 screenWidth 进行吸边）
    */
