@@ -54,8 +54,8 @@ export const switchProps = {
 export type SwitchProps = ExtractPropTypes<typeof switchProps>
 
 export const switchEmits = {
-  [UPDATE_MODEL_EVENT]: (val: string | number | boolean) => isBoolean(val) || isNumber(val) || isString(val),
-  [CHANGE_EVENT]: (val: string | number | boolean, evt?: Event) => (isBoolean(val) || isNumber(val) || isString(val)) && (evt instanceof Object),
+  [UPDATE_MODEL_EVENT]: (val: any) => isBoolean(val) || isNumber(val) || isString(val),
+  [CHANGE_EVENT]: (val: any, evt?: Event) => (isBoolean(val) || isNumber(val) || isString(val)) && (evt instanceof Object),
 }
 
 export type SwitchEmits = typeof switchEmits

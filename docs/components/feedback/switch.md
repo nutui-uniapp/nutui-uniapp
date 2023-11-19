@@ -80,29 +80,37 @@
 
 ### 异步控制
 
-``` html
-<template>
-  <nut-switch :model-value="checkedAsync" @change="changeAsync" />
-</template>
+需要异步控制开关时，可以使用 `modelValue` 属性和 `update:model-value` 事件代替 `v-model`，并在事件回调函数中手动处理开关状态。
+
+``` vue
 <script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const checkedAsync = ref(true);
-      const changeAsync = (value: boolean, event: Event) => {
-        console.log(`2秒后异步触发 ${value}`);
-        setTimeout(() => {
-          checkedAsync.value = value;
-        }, 2000);
-      };
-      
-      return {
-        checkedAsync,
-        changeAsync
-      };
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    const checkedAsync = ref(true)
+    const changeAsync = (value: boolean) => {
+      uni.showModal({
+        title: '提示',
+        content: '是否切换开关？',
+        success: ({ confirm }) => {
+          if (confirm)
+            checkedAsync.value = value
+        },
+      })
     }
-  };
+
+    return {
+      checkedAsync,
+      changeAsync
+    }
+  }
+}
 </script>
+
+<template>
+  <nut-switch :model-value="checkedAsync" @update:model-value="changeAsync" />
+</template>
 ```
 
 ### 自定义颜色

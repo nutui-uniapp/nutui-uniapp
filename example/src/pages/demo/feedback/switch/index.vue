@@ -1,11 +1,10 @@
 <script lang="ts">
-import { getCurrentInstance, reactive, ref, toRefs } from 'vue'
+import { reactive, ref, toRefs } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
 
 const activeColor = ref('red')
 export default {
   setup() {
-    const { proxy } = getCurrentInstance() as any
     const data = reactive({
       checked1: true,
       checked2: true,
@@ -18,17 +17,18 @@ export default {
     const checkedAsync = ref(true)
     const loadingAsync = ref(false)
 
-    const change = (value: boolean, event?: Event) => {
+    const change = (value: boolean) => {
       uni.showToast({ title: `value：${value}` })
     }
-    const changeAsync = (value: boolean, event?: Event) => {
-      uni.showToast({ title: `2秒后异步触发 ${value}` })
-
-      loadingAsync.value = true
-      setTimeout(() => {
-        checkedAsync.value = value
-        loadingAsync.value = false
-      }, 2000)
+    const changeAsync = (value: boolean) => {
+      uni.showModal({
+        title: '提示',
+        content: '是否切换开关？',
+        success: ({ confirm }) => {
+          if (confirm)
+            checkedAsync.value = value
+        },
+      })
     }
 
     return {
@@ -78,7 +78,7 @@ export default {
       异步控制
     </h2>
     <nut-cell>
-      <nut-switch :model-value="checkedAsync" :loading="loadingAsync" @change="changeAsync" />
+      <nut-switch :model-value="checkedAsync" @update:model-value="changeAsync" />
     </nut-cell>
 
     <h2 class="title">
