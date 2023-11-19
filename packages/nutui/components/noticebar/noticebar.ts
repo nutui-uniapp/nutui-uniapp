@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 
 export interface stateProps {
@@ -20,6 +20,7 @@ export interface stateProps {
 }
 
 export const noticebarProps = {
+  ...commonProps,
   /**
    * @description 滚动的方向，可选 `across`、`vertical`
    */

@@ -53,7 +53,7 @@ const { translate } = useTranslate(componentName)
     @click-overlay="onClickOverlay"
     @click-close-icon="closed"
   >
-    <view :class="classes">
+    <view :class="classes" :style="customStyle">
       <view v-if="$slots.header || dialogStatus.title" class="nut-dialog__header">
         <slot v-if="$slots.header" name="header" />
         <template v-else>

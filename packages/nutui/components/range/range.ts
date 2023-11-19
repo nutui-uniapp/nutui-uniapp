@@ -1,10 +1,11 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { isNumber, makeNumericProp, makeObjectProp } from '../_utils'
+import { commonProps, isNumber, makeNumericProp, makeObjectProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export type SliderValue = number | number[]
 
 export const rangeProps = {
+  ...commonProps,
   /**
    * @description 当前进度百分比
    */

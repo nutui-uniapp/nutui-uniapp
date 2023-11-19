@@ -1,6 +1,7 @@
 import { type ComputedRef, type SetupContext, computed, reactive, toRefs, watch, watchEffect } from 'vue'
 import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { animationName } from '../_constants/types'
+import { getMainClass, getMainStyle } from '../_utils'
 import type { PopupEmits, PopupProps } from './popup'
 
 const initIndex = 500
@@ -14,22 +15,20 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   })
 
   const classes = computed(() => {
-    const prefixCls = componentName
-    return {
-      [prefixCls]: true,
+    return getMainClass(props, componentName, {
       round: props.round,
       [`nut-popup--${props.position}`]: true,
       [`nut-popup--${props.position}--safebottom`]: props.position === 'bottom' && props.safeAreaInsetBottom,
       [`nut-popup--${props.position}--safetop`]: props.position === 'top' && props.safeAreaInsetTop,
       [props.popClass]: true,
-    }
+    })
   })
 
   const popStyle: ComputedRef = computed(() => {
-    return {
+    return getMainStyle(props, {
       zIndex: state.zIndex,
       transitionDuration: `${props.duration}ms`,
-    }
+    })
   })
 
   const transitionName: ComputedRef = computed(() => {

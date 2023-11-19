@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp } from '../_utils'
+import { commonProps, makeNumericProp } from '../_utils'
 
 export const marqueeProps = {
+  ...commonProps,
   /**
    * @description 抽奖样式
    */

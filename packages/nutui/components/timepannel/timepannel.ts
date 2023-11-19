@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeNumericProp } from '../_utils'
+import { commonProps, isNumber, isString, makeNumericProp } from '../_utils'
 import { CHANGE_EVENT } from '../_constants'
 
 export const timepannelProps = {
+  ...commonProps,
   /**
    * @description 显示的名称
    */

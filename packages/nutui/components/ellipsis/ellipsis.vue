@@ -230,7 +230,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view>
+  <view :class="customClass" :style="customStyle">
     <view :id="rootId" :class="classes" @click="handleClick">
       <view v-if="!state.exceeded" class="nut-ellipsis__wordbreak">
         {{ content }}

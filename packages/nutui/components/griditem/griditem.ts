@@ -1,7 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps } from '../_utils'
 
 export const gridItemProps = {
+  ...commonProps,
   /**
    * @description 文字
    */
@@ -23,7 +25,7 @@ export const gridItemProps = {
 export type GridItemProps = ExtractPropTypes<typeof gridItemProps>
 
 export const gridItemEmits = {
-  [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
+  [CLICK_EVENT]: (evt: MouseEvent) => evt instanceof Object,
 }
 
 export type GridItemEmits = typeof gridItemEmits

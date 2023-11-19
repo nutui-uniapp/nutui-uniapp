@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { hiteggsEmits, hiteggsProps } from './hiteggs'
 
 const props = defineProps(hiteggsProps)
@@ -10,10 +11,7 @@ const hitIndex = ref()
 const hitClick = ref(false)
 const arr = reactive<any>([])
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 function hitEggs(index: number) {
   if (hitClick.value)
@@ -43,7 +41,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes">
+  <div :class="classes" :style="customStyle">
     <div v-for="(item, index) in num" :key="index" class="nut-eggs-item" :style="{ width, height }">
       <image v-if="!(arr.indexOf(index) > -1)" class="intactImg" :src="intactImg" alt="" @click="hitEggs(index)" />
       <image v-if="arr.indexOf(index) > -1" class="splitImg" :src="splitImg" alt="" />

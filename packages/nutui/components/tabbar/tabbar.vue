@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { tabbarEmits, tabbarProps } from './tabbar'
 
 const props = defineProps(tabbarProps)
@@ -9,12 +10,18 @@ const emit = defineEmits(tabbarEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
-const { bottom, placeholder } = toRefs(props)
+const { bottom, placeholder, safeAreaInsetBottom } = toRefs(props)
 const mdValue = reactive({
   val: props.modelValue,
   children: [],
 })
 const height = ref()
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    'nut-tabbar-bottom': bottom.value,
+    'nut-tabbar-safebottom': safeAreaInsetBottom.value,
+  })
+})
 function changeIndex(index: number, active: number | string) {
   emit(UPDATE_MODEL_EVENT, active)
   parentData.modelValue = active
@@ -62,8 +69,8 @@ export default defineComponent({
 <template>
   <div :class="{ 'nut-tabbar__placeholder': bottom && placeholder }" :style="{ height: `${height}px` }">
     <view
-      class="nut-tabbar"
-      :class="{ 'nut-tabbar-bottom': bottom, 'nut-tabbar-safebottom': safeAreaInsetBottom }"
+      :class="classes"
+      :style="customStyle"
     >
       <slot />
     </view>

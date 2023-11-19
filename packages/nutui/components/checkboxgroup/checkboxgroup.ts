@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isArray, makeArrayProp, makeNumberProp } from '../_utils'
+import { commonProps, isArray, makeArrayProp, makeNumberProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const checkboxgroupProps = {
+  ...commonProps,
   /**
    * @description 当前选中项的标识符，和 `label` 相对应
    */

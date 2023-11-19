@@ -1,9 +1,10 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
-import { makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const pickerProps = {
+  ...commonProps,
   /**
    * @description 默认选中项
    */

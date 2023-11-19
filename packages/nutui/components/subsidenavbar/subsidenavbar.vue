@@ -4,16 +4,14 @@ import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
 import { useInject } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { subsidenavbarEmits, subsidenavbarProps } from './subsidenavbar'
 
 const props = defineProps(subsidenavbarProps)
 const emit = defineEmits(subsidenavbarEmits)
 const direction = ref('')
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 const Parent = useInject<{ props: Required<SidenavbarProps> }>(SIDEN_NAVBAR_KEY)
 
@@ -50,7 +48,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :ikey="ikey">
+  <view :class="classes" :style="customStyle" :ikey="ikey">
     <view class="nut-sub-side-navbar__title" :style="[paddingStyle]" @click.stop="handleClick">
       <text class="nut-sub-side-navbar__title__text">
         {{ title }}

@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { CHANGE_EVENT, PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { categoryEmits, categoryProps } from './category'
 
-defineProps(categoryProps)
+const props = defineProps(categoryProps)
 const emit = defineEmits(categoryEmits)
 const checkIndex = ref(0)
-
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function getChildList(index: any) {
   checkIndex.value = index
   emit(CHANGE_EVENT, index)
@@ -27,7 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-category">
+  <div :class="classes" :style="customStyle">
     <div class="nut-category__cateList">
       <div v-if="type === 'classify' || type === 'text'">
         <div v-for="(item, index) in category" :key="index" class="nut-category__cateListLeft">

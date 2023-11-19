@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, isNumber, isString, makeStringProp } from '../_utils'
+import { commonProps, isBoolean, isNumber, isString, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const radiogroupProps = {
+  ...commonProps,
   /**
    * @description 当前选中项的标识符，与 `label` 值一致时呈选中状态
    */

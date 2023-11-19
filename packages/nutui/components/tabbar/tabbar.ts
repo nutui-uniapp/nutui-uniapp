@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, isString, makeNumericProp, makeStringProp } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
 
 export const tabbarProps = {
+  ...commonProps,
   /**
    * @description 选中标签的索引值或者名称
    */

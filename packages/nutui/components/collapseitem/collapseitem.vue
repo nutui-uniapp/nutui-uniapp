@@ -3,6 +3,7 @@ import { type ComponentInternalInstance, computed, defineComponent, getCurrentIn
 import { PREFIX, refRandomId } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { collapseitemProps } from './collapseitem'
 
 const props = defineProps(collapseitemProps)
@@ -19,11 +20,9 @@ const timeoutId = ref<any>('')
 const collapse: any = inject('collapseParent')
 const parent: any = reactive(collapse)
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}__border`]: props.border,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}__border`]: props.border,
+  })
 })
 
 onMounted(() => {
@@ -124,7 +123,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view
       class="nut-collapse-item__title" :class="[{ 'nut-collapse-item__title--disabled': disabled }]"
       @click="handleClick"

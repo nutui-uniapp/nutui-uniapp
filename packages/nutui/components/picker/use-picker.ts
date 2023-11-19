@@ -1,6 +1,7 @@
 import { computed, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 
 const DEFAULT_FILED_NAMES = {
   text: 'text',
@@ -102,10 +103,7 @@ export function usePicker(props: any, emit: any) {
   }
 
   const classes = computed(() => {
-    const prefixCls = componentName
-    return {
-      [prefixCls]: true,
-    }
+    return getMainClass(props, componentName)
   })
 
   const selectedOptions = computed(() => {

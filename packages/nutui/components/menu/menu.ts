@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeStringProp, truthProp } from '../_utils'
 
 export const menuProps = {
+  ...commonProps,
   /**
    * @description 选项的选中态图标颜色
    */

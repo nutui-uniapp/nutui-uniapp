@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { marqueeEmits, marqueeProps } from './marquee'
 
 const props = defineProps(marqueeProps)
@@ -9,10 +10,7 @@ const emit = defineEmits(marqueeEmits)
 let { prizeList, styleOpt } = reactive(props)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 onMounted(() => {
@@ -106,7 +104,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="marqueeDom" :class="classes">
+  <view ref="marqueeDom" :class="classes" :style="customStyle">
     <view class="bgContent" />
     <view class="marqueeBg" :style="bgContentStyle" />
     <view class="start" :class="[{ disabledDraw: lock }]" :style="cursorStyle" @click="startDraw" />

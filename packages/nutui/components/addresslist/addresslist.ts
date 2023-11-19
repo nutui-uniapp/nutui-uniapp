@@ -1,10 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber, isString, makeArrayProp, makeObjectProp, truthProp } from '../_utils'
+import { commonProps, isNumber, isString, makeArrayProp, makeObjectProp, truthProp } from '../_utils'
 
 interface OptionsType {
   [key: string]: string
 }
 export const addresslistProps = {
+  ...commonProps,
   /**
    * @description 地址数组
    */

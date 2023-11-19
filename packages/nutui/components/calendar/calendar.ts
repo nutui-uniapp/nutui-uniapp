@@ -1,11 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
-import { getDay, isBoolean, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, getDay, isBoolean, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { popupProps } from '../popup/popup'
 import { CHOOSE_EVENT, CLOSE_EVENT, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const calendarProps = {
   ...popupProps,
-
+  ...commonProps,
   /**
    * @description 是否可见
    */

@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp } from '../_utils'
+import { commonProps, makeNumberProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
 export const turntableProps = {
+  ...commonProps,
   /**
    * @description 转盘的宽度
    */

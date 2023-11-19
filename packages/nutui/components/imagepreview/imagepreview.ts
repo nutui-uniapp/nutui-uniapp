@@ -1,9 +1,10 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { type Interceptor, isNumber, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { type Interceptor, commonProps, isNumber, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLOSE_EVENT } from '../_constants'
 import type { ImageInterface } from './types'
 
 export const imagepreviewProps = {
+  ...commonProps,
   /**
    * @description 是否展示预览图片
    */

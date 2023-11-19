@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
+import { getMainClass, getMainStyle } from '../_utils'
 import { sidenavbaritemEmits, sidenavbaritemProps } from './sidenavbaritem'
 
-defineProps(sidenavbaritemProps)
+const props = defineProps(sidenavbaritemProps)
 
 const emit = defineEmits(sidenavbaritemEmits)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 const Parent = useInject<{ props: Required<SidenavbarProps> }>(SIDEN_NAVBAR_KEY)
 
-const style = computed(() => {
-  return {
+const styles = computed(() => {
+  return getMainStyle(props, {
     paddingLeft: `${Number(Parent.parent?.props?.offset) * 2}px`,
-  } as CSSProperties
+  })
 })
 
 function handleClick() {
@@ -42,7 +40,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="[style]" :ikey="ikey" @click.stop="handleClick">
+  <view :class="classes" :style="styles" :ikey="ikey" @click.stop="handleClick">
     <text class="nut-side-navbar-item__title">
       {{ title }}
     </text>

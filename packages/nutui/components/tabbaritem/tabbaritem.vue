@@ -4,6 +4,7 @@ import { PREFIX } from '../_constants'
 import NutBadge from '../badge/badge.vue'
 import NutIcon from '../icon/icon.vue'
 import type { provideData } from '../tabbar/type'
+import { getMainClass, getMainStyle } from '../_utils'
 import { tabbaritemProps } from './tabbaritem'
 
 const props = defineProps(tabbaritemProps)
@@ -38,6 +39,17 @@ function change() {
   }
   parent?.changeIndex(indexValue !== null ? +indexValue! : +key, state.index)
 }
+
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    'nut-tabbar-item__icon--unactive': !active.value,
+  })
+})
+const styles = computed(() => {
+  return getMainStyle(props, {
+    color: active.value ? state.activeColor : state.unactiveColor,
+  })
+})
 </script>
 
 <script lang="ts">
@@ -55,11 +67,8 @@ export default defineComponent({
 
 <template>
   <div
-    class="nut-tabbar-item"
-    :class="{ 'nut-tabbar-item__icon--unactive': !active }"
-    :style="{
-      color: active ? state.activeColor : state.unactiveColor,
-    }"
+    :class="classes"
+    :style="styles"
     @click="change()"
   >
     <NutBadge v-bind="props">

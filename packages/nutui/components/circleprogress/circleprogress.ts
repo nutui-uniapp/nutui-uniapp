@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export type CircleProgressStrokeLinecap = 'butt' | 'round' | 'square'
 
 export const circleprogressProps = {
+  ...commonProps,
   /**
    * @description 进度百分比
    */

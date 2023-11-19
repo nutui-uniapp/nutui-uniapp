@@ -3,6 +3,7 @@ import { type CSSProperties, defineComponent } from 'vue'
 import { computed, toRefs } from 'vue'
 import Icon from '../icon/icon.vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass, getMainStyle } from '../_utils'
 import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)
@@ -11,14 +12,13 @@ const emits = defineEmits(buttonEmits)
 
 const { type, size, shape, disabled, loading, customColor, plain, block } = toRefs(props)
 
-function handleClick(event: MouseEvent) {
+function handleClick(event: unknown) {
   if (!loading.value && !disabled.value)
-    emits(CLICK_EVENT, event)
+    emits(CLICK_EVENT, event as MouseEvent)
 }
 
 const classes = computed(() => {
-  return {
-    [componentName]: true,
+  const obj = {
     [`${componentName}--${type.value}`]: type.value,
     [`${componentName}--${size.value}`]: size.value,
     [`${componentName}--${shape.value}`]: shape.value,
@@ -27,6 +27,7 @@ const classes = computed(() => {
     [`${componentName}--disabled`]: disabled.value,
     [`${componentName}--loading`]: loading.value,
   }
+  return getMainClass(props, componentName, obj)
 })
 
 const getStyle = computed(() => {
@@ -43,8 +44,7 @@ const getStyle = computed(() => {
       style.background = customColor.value
     }
   }
-
-  return style
+  return getMainStyle(props, style)
 })
 </script>
 
@@ -65,8 +65,8 @@ export default defineComponent({
 
 <template>
   <button
-    :class="[classes, customClass]"
-    :style="[getStyle, customStyle]"
+    :class="classes"
+    :style="getStyle"
     :form-type="props.formType === 'button' ? undefined : props.formType"
     :open-type="props.openType"
     :hover-start-time="10000000"
@@ -85,7 +85,7 @@ export default defineComponent({
     :data-goods-id="props.dataGoodsId"
     :data-order-id="props.dataOrderId"
     :data-biz-line="props.dataBizLine"
-    @click="(handleClick as any)"
+    @click="handleClick"
     @getphonenumber="emits('getphonenumber', $event)"
     @getuserinfo="emits('getuserinfo', $event)"
     @error="emits('error', $event)"

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { priceProps } from './price'
 
 const props = defineProps(priceProps)
 
 const classes = computed(() => {
-  return {
-    [componentName]: true,
+  return getMainClass(props, componentName, {
     [`${componentName}--strike`]: props.strikeThrough,
-  }
+  })
 })
 function replaceSpecialChar(url: string) {
   url = url.replace(/&quot;/g, '"')
@@ -76,7 +76,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes, customClass]" :style="customStyle">
+  <view :class="classes" :style="customStyle">
     <rich-text
       v-if="needSymbol && position === 'before'"
       class="nut-price--symbol"

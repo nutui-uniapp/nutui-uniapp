@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type Ref, defineComponent, ref, watch } from 'vue'
+import { type Ref, computed, defineComponent, ref, watch } from 'vue'
 import type { InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
+import { getMainClass } from '../_utils'
 import { ecardEmits, ecardProps } from './ecard'
 
 const props = defineProps(ecardProps)
@@ -14,6 +15,9 @@ const currentValue: Ref<number | null | string> = ref(null)
 const inputValue: Ref<string | undefined | number> = ref()
 const stepValue: Ref<number> = ref(props.cardAmountMin)
 const money: Ref<number | string | undefined> = ref(props.modelValue)
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function handleClick(item: { price: number | string }, index: number) {
   currentIndex.value = index
   inputValue.value = ''
@@ -70,7 +74,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-ecard">
+  <view :class="classes" :style="customStyle">
     <view class="nut-ecard__title">
       {{ chooseText || translate('chooseText') }}
     </view>

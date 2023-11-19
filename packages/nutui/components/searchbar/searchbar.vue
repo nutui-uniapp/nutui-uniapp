@@ -4,6 +4,7 @@ import { computed, defineComponent, reactive, ref } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
+import { getMainClass, getMainStyle } from '../_utils'
 import { type InputTextAlign, searchbarEmits, searchbarProps } from './searchbar'
 
 const props = defineProps(searchbarProps)
@@ -12,10 +13,14 @@ const state = reactive({
   active: false,
 })
 
+const classes = computed(() => {
+  return getMainClass(props, componentName, { 'safe-area-inset-bottom': props.safeAreaInsetBottom })
+})
+
 const searchbarStyle = computed(() => {
-  return {
+  return getMainStyle(props, {
     background: props.background,
-  }
+  })
 })
 const inputSearchbarStyle = computed(() => {
   return {
@@ -103,7 +108,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[customClass, { 'safe-area-inset-bottom': safeAreaInsetBottom }]" class="nut-searchbar" :style="[searchbarStyle, customStyle]">
+  <view :class="classes" :style="searchbarStyle">
     <view v-if="$slots.leftout" class="nut-searchbar__search-icon nut-searchbar__left-search-icon" @click="(leftIconClick as any)">
       <slot name="leftout" />
     </view>

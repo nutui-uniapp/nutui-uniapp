@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
 import type { AvatarShape } from '../avatar/avatar'
-import { makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeStringProp, truthProp } from '../_utils'
 
 export const skeletonProps = {
+  ...commonProps,
   /**
    * @description 是否显示骨架屏
    */

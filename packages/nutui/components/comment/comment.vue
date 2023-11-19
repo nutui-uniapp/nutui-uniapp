@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import { commentEmits, commentProps } from './comment'
 import CommentHeader from './components/CmtHeader.vue'
@@ -10,10 +11,7 @@ import ComentBottom from './components/CmtBottom.vue'
 const props = defineProps(commentProps)
 const emit = defineEmits(commentEmits)
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 const conEllipsis = computed(() => {
@@ -49,7 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-if="info && Object.keys(info)" :class="classes">
+  <view v-if="info && Object.keys(info)" :class="classes" :style="customStyle">
     <!-- 根据展示信息的多少，分为3种展示风格：simple，base，complex -->
     <CommentHeader :type="headerType" :info="info" :labels="labels" @handleClick="handleClick">
       <template #labels>

@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp } from '../_utils'
+import { commonProps, makeNumericProp } from '../_utils'
 
 export const colProps = {
+  ...commonProps,
   /**
    * @description 列元素宽度（共分为 24 份，例如设置一行3个，那么 `span` 值为 8）
    */

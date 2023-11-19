@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import { isBoolean, isNumber, isString } from '../_utils'
+import { commonProps, isBoolean, isNumber, isString } from '../_utils'
 
 export const collapseProps = {
+  ...commonProps,
   /**
    * @description 当前展开面板的 `name`
    */

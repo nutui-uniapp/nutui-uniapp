@@ -2,12 +2,15 @@
 import { computed, defineComponent, toRefs, watchEffect } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
+import { getMainClass } from '../_utils'
 import { paginationEmits, paginationProps } from './pagination'
 
 const props = defineProps(paginationProps)
 const emit = defineEmits(paginationEmits)
 const { modelValue, mode, showPageSize, forceEllipses } = toRefs(props)
-
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 // 计算页面的数量
 const countRef = computed(() => {
   const { pageCount, totalItems, itemsPerPage } = toRefs(props)
@@ -88,7 +91,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-pagination">
+  <view :class="classes" :style="customStyle">
     <view
       class="nut-pagination-prev" :class="[mode === 'multi' ? '' : 'simple-border', modelValue === 1 ? 'disabled' : '']"
       @click="select(modelValue - 1, true)"

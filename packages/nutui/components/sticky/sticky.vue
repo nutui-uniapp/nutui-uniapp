@@ -2,7 +2,7 @@
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import type { ComponentInternalInstance, StyleValue } from 'vue'
 import { PREFIX, refRandomId } from '../_constants'
-import { addStyle, getPx, pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, getPx, pxCheck } from '../_utils'
 import { useRect } from '../_hooks'
 import { stickyProps } from './sticky'
 
@@ -16,7 +16,10 @@ const width = ref('auto')
 const height = ref('auto')
 const fixed = ref(false)
 const observerList = ref<UniApp.IntersectionObserver[]>([])
-const style = computed(() => {
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
+const styles = computed(() => {
   const style: StyleValue = {}
   if (!props.disabled) {
     if (cssSticky.value) {
@@ -39,7 +42,7 @@ const style = computed(() => {
   }
   style.backgroundColor = props.bgColor
 
-  return { ...addStyle(props.customStyle), ...style }
+  return getMainStyle(props, style)
 })
 const uZindex = computed(() => {
   return props.zIndex ? +props.zIndex : 970
@@ -192,8 +195,8 @@ export default defineComponent({
 <template>
   <view
     :id="rootId"
-    class="nut-sticky"
-    :style="[style]"
+    :class="classes"
+    :style="[styles]"
   >
     <view
       :style="[stickyContent]"

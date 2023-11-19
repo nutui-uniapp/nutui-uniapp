@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isString, makeArrayProp, makeStringProp } from '../_utils'
+import { commonProps, isString, makeArrayProp, makeStringProp } from '../_utils'
 
 export interface ChildType {
   catName?: string
@@ -11,6 +11,7 @@ export interface CustomType {
   [key: string]: any
 }
 export const categorypaneProps = {
+  ...commonProps,
   /**
    * @description 分类模式：`classify`，`text`，`custom`
    */

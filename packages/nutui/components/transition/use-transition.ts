@@ -1,6 +1,7 @@
 import type { SetupContext } from 'vue'
 import { computed, nextTick, ref, watch } from 'vue'
-import { CLICK_EVENT } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass, getMainStyle } from '../_utils'
 import type { TransitionEmits, TransitionProps } from './transition'
 import type { NutAnimations } from './types'
 
@@ -47,6 +48,7 @@ export const defaultAnimations: NutAnimations = {
   },
 
 }
+const componentName = `${PREFIX}-transition`
 
 export function isKeyOfAnimations(value: string) {
   const keys = Object.keys(defaultAnimations)
@@ -166,9 +168,21 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
     emit(CLICK_EVENT, evt)
   }
 
+  const classes = computed(() => {
+    return getMainClass(props, componentName, {
+      [animationClass.value]: true,
+    })
+  })
+  const styles = computed(() => {
+    return getMainStyle(props, {
+      'animation-duration': isKeyOfAnimations(props.name) ? `${props.duration}ms` : '',
+      'animation-timing-function': isKeyOfAnimations(props.name) ? props.timingFunction : '',
+    })
+  })
   return {
     display,
-    animationClass,
+    classes,
+    styles,
     clickHandler,
   }
 }

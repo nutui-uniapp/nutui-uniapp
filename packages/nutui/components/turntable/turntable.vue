@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { isH5, isMpWeixin } from '../_utils'
+import { getMainClass, getMainStyle, isH5, isMpWeixin } from '../_utils'
 import { PREFIX } from '../_constants'
 import { turntableEmits, turntableProps } from './turntable'
 import type { TPrizeItem } from './type'
@@ -24,11 +24,13 @@ const {
 let prizeList: TPrizeItem[] = reactive(props?.prizeList)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
+
+const styles = computed(() => {
+  return getMainStyle(props, { width, height })
+})
+
 // const getRandomColor = function () {
 //   const r = Math.floor(Math.random() * 256);
 //   const g = Math.floor(Math.random() * 256);
@@ -214,7 +216,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="turntableDom" :class="classes" :style="{ width, height }">
+  <view ref="turntableDom" :class="classes" :style="styles">
     <view class="turntable" :style="{ transform: rotateAngle, transition: rotateTransition }">
       <canvas
         id="canvasWx" ref="canvasDom" type="2d" :class="isMpWeixin ? '' : 'mlcanvas'" canvas-id="canvasWx"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, inject } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { radioProps } from './radio'
@@ -11,7 +11,10 @@ const parent: any = inject('parent', null)
 const reverseState = computed(() => parent.position.value === 'left')
 
 const classes = computed(() => {
-  return `${componentName} ${componentName}--${props.shape} ${reverseState.value ? `${componentName}--reverse` : ''}`
+  return getMainClass(props, componentName, {
+    [`${componentName}--reverse`]: reverseState.value,
+    [`${componentName}--${props.shape}`]: true,
+  })
 })
 function handleClick() {
   if (isCurValue.value || props.disabled)
@@ -55,7 +58,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" @click="handleClick">
+  <view :class="classes" :style="customStyle" @click="handleClick">
     <view v-if="shape === 'button'" :class="getButtonClass">
       <slot />
     </view>

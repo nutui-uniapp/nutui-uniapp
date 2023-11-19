@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { popupProps } from '../popup/popup'
-import { isBoolean, isNumber, makeArrayProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, isNumber, makeArrayProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHOOSE_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export interface ActionSheetOption {
@@ -12,6 +12,7 @@ export interface ActionSheetOption {
 }
 export const actionsheetProps = {
   ...popupProps,
+  ...commonProps,
   /**
    * @description 取消文案
    */

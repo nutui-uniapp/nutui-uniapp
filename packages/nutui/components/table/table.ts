@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeArrayProp, makeObjectProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, makeObjectProp, truthProp } from '../_utils'
 import type { TableColumnProps } from './types'
 
 export const tableProps = {
+  ...commonProps,
   /**
    * @description 是否显示边框
    */

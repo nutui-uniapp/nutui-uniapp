@@ -4,7 +4,7 @@ import type { CSSProperties } from 'vue'
 import type * as CSS from 'csstype'
 import { computed, defineComponent, ref } from 'vue'
 import type { TextareaConfirmType, TextareaOnConfirmEvent } from '@uni-helper/uni-app-types'
-import { isH5, isMpAlipay, pxCheck } from '../_utils'
+import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { textareaEmits, textareaProps } from './textarea'
@@ -17,11 +17,9 @@ const props = defineProps(textareaProps)
 const emit = defineEmits(textareaEmits)
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--disabled`]: props.disabled,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}--disabled`]: props.disabled,
+  })
 })
 
 const styles = computed<CSSProperties>(() => {
@@ -124,7 +122,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <textarea v-if="props.readonly" id="nut-textarea__textarea" v-model="modelValue" :disabled="true" class="nut-textarea__textarea nut-textarea__textarea__readonly" />
     <textarea
       v-else

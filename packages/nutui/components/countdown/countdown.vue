@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
-import { getTimeStamp, isH5, padZero } from '../_utils'
+import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'
 import { INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import requestAniFrame from '../_utils/raf'
 import { countdownEmits, countdownProps } from './countdown'
@@ -18,10 +18,7 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 // 将倒计时剩余时间格式化   参数： t  时间戳  type custom 自定义类型
@@ -227,7 +224,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <template v-if="$slots.default">
       <slot />
     </template>

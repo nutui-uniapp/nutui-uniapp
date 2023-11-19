@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { shakediceEmits, shakediceProps } from './shakedice'
 
 const props = defineProps(shakediceProps)
@@ -16,10 +17,7 @@ const transformStyle = ref({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 watch(
   () => isShake.value,
@@ -78,7 +76,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes" :style="[animationStyle, transformStyle]">
+  <div :class="classes" :style="[animationStyle, transformStyle, customStyle]">
     <div v-for="(item, index) in new Array(dice)" :key="index" class="page" :class="[`page${index + 1}`]">
       <text v-for="(item2, index2) in new Array(index + 1)" :key="index2" />
     </div>

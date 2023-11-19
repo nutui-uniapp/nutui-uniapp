@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, type ComputedRef, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useRect } from '../_hooks'
@@ -14,15 +14,14 @@ const { border, fixed, safeAreaInsetTop, placeholder, zIndex } = toRefs(props)
 const { statusBarHeight } = uni.getSystemInfoSync()
 const navHeight = ref<string | 'auto'>('auto')
 const classes = computed(() => {
-  return {
-    [componentName]: true,
+  return getMainClass(props, componentName, {
     [`${componentName}--border`]: border.value,
     [`${componentName}--safe-area-inset-top`]: safeAreaInsetTop.value,
     [`${componentName}--fixed`]: fixed.value,
-  }
+  })
 })
 
-const rootStyle: ComputedRef = computed(() => {
+const styles: ComputedRef = computed(() => {
   const style: CSSProperties = {
 
   }
@@ -33,7 +32,7 @@ const rootStyle: ComputedRef = computed(() => {
   }
   // #endif
 
-  return style
+  return getMainStyle(props, style)
 })
 
 const colorStyle = computed(() => {
@@ -122,7 +121,7 @@ export default defineComponent({
 
 <template>
   <view class="nut-navbar--placeholder" :style="{ height: navHeight, zIndex }">
-    <view id="navBarHtml" :class="[classes, customClass]" :style="[rootStyle, customStyle]">
+    <view id="navBarHtml" :class="classes" :style="styles">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="leftShow">
           <NutIcon custom-class="right-icon" name="left" height="12px" :size="size" :custom-color="customColor" @click="handleBack" />

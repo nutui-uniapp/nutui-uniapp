@@ -2,11 +2,15 @@
 import { computed, defineComponent, toRefs } from 'vue'
 import { PREFIX } from '../_constants'
 import NutAvatar from '../avatar/avatar.vue'
+import { getMainClass } from '../_utils'
 import { skeletonProps } from './skeleton'
 
 const props = defineProps(skeletonProps)
 const { avatarShape, round, avatarSize } = toRefs(props)
 
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 const avatarClass = computed(() => {
   const prefixCls = 'avatarClass'
   return {
@@ -53,7 +57,7 @@ export default defineComponent({
   <view v-if="!loading">
     <slot />
   </view>
-  <view v-else class="nut-skeleton">
+  <view v-else :class="classes" :style="customStyle">
     <view v-if="animated" class="nut-skeleton-animation" />
     <view class="nut-skeleton-content">
       <NutAvatar v-if="avatar" :custom-class="avatarClass" :shape="avatarShape" :custom-style="getStyle()" />

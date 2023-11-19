@@ -5,6 +5,7 @@ import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } fr
 import NutIcon from '../icon/icon.vue'
 import NutPopover from '../popover/popover.vue'
 import { useRect } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { tourEmits, tourProps } from './tour'
 
 const props = defineProps(tourProps)
@@ -24,8 +25,7 @@ const maskRect: any[] = []
 const maskStyles = ref<any[]>([])
 
 const classes = computed(() => {
-  const prefixCls = 'nut-tour'
-  return `${prefixCls}`
+  return getMainClass(props, componentName)
 })
 
 function maskStyle(index: number) {
@@ -124,22 +124,20 @@ watch(
 </script>
 
 <script lang="ts">
-const componentName = `${PREFIX}-tag`
+const componentName = `${PREFIX}-tour`
 
 export default defineComponent({
   name: componentName,
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    // #ifndef H5
     styleIsolation: 'shared',
-    // #endif
   },
 })
 </script>
 
 <template>
-  <view :class="[classes, customClass]" :style="[customStyle]">
+  <view :class="classes" :style="customStyle">
     <view v-if="state.showTour" class="nut-tour-masked" @click="handleClickMask" />
 
     <view v-for="(step, i) in steps" :key="i" style="height: 0;">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, provide, useSlots } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
 import { FORM_KEY } from '../form/form'
@@ -14,7 +14,9 @@ const Parent = useInject<{ formErrorTip: Required<any> }>(FORM_KEY)
 provide('form', {
   props,
 })
-
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 const labelStyle = computed(() => {
   return {
     width: pxCheck(props.labelWidth),
@@ -52,8 +54,8 @@ export default defineComponent({
 
 <template>
   <NutCell
-    :custom-class="[{ error: formErrorTip[prop], line: showErrorLine }, $attrs.class, 'nut-form-item']"
-    :style="$attrs.style"
+    :custom-class="[{ error: formErrorTip[prop], line: showErrorLine }, classes]"
+    :custom-style="customStyle"
   >
     <view
       v-if="label || getSlots('label')"

@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isString } from '../_utils'
+import { commonProps, isString } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
 export const swipeProps = {
+  ...commonProps,
   /**
    * @description 唯一标识
    */

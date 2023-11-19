@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, inject, onBeforeUnmount, onMounted, reactive, useSlots, watch } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { checkboxEmits, checkboxProps } from './checkbox'
@@ -39,7 +39,9 @@ const color = computed(() => {
 })
 
 const classes = computed(() => {
-  return `${componentName} ${props.textPosition === 'left' ? `${componentName}--reverse` : ''}`
+  return getMainClass(props, componentName, {
+    [`${componentName}--reverse`]: props.textPosition === 'left',
+  })
 })
 
 const getLabelClass = computed(() => {
@@ -47,9 +49,8 @@ const getLabelClass = computed(() => {
 })
 
 const getButtonClass = computed(() => {
-  return `${componentName}__button ${pValue.value && `${componentName}__button--active`} ${
-              pDisabled.value ? `${componentName}__button--disabled` : ''
-            }`
+  return `${componentName}__button ${pValue.value && `${componentName}__button--active`} ${pDisabled.value ? `${componentName}__button--disabled` : ''
+    }`
 })
 
 let updateType = ''
@@ -71,7 +72,7 @@ watch(
   },
 )
 
-function handleClick(e: MouseEvent | TouchEvent) {
+function handleClick() {
   if (pDisabled.value)
     return
   if (checked.value && state.partialSelect) {
@@ -138,7 +139,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" @click="(handleClick as any)">
+  <view :class="classes" :style="customStyle" @click="handleClick">
     <view v-if="shape === 'button'" :class="getButtonClass">
       <slot />
     </view>
@@ -146,28 +147,19 @@ export default defineComponent({
     <template v-else>
       <slot v-if="state.partialSelect" name="indeterminate">
         <NutIcon
-          name="check-disabled"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
+          name="check-disabled" :size="pxCheck(iconSize)" :width="pxCheck(iconSize)" :height="pxCheck(iconSize)"
           :pop-class="color"
         />
       </slot>
       <slot v-else-if="!pValue" name="icon">
         <NutIcon
-          name="check-normal"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
+          name="check-normal" :size="pxCheck(iconSize)" :width="pxCheck(iconSize)" :height="pxCheck(iconSize)"
           :pop-class="color"
         />
       </slot>
       <slot v-else name="checkedIcon">
         <NutIcon
-          name="checked"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
+          name="checked" :size="pxCheck(iconSize)" :width="pxCheck(iconSize)" :height="pxCheck(iconSize)"
           :pop-class="color"
         />
       </slot>

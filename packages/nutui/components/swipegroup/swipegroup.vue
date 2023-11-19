@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { defineComponent, provide, ref } from 'vue'
+import { computed, defineComponent, provide, ref } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { swipegroupProps } from './swipegroup'
 
 const props = defineProps(swipegroupProps)
 const name = ref('')
+
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function update(n: string) {
   name.value = n
 }
@@ -29,7 +34,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-swipe-group">
+  <div :class="classes" :style="customStyle">
     <slot />
   </div>
 </template>

@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { cellgroupProps } from './cellgroup'
 
 const props = defineProps(cellgroupProps)
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 </script>
 
@@ -28,7 +26,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <slot v-if="$slots.title" name="title" />
     <view v-else-if="title" class="nut-cell-group__title">
       {{ title }}

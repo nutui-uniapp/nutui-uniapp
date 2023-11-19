@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
-import { isH5 } from '../_utils'
+import { getMainClass, isH5 } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
@@ -24,14 +24,12 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--disabled`]: props.disabled,
-    [`${prefixCls}--required`]: props.required,
-    [`${prefixCls}--error`]: props.error,
-    [`${prefixCls}--border`]: props.border,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}--disabled`]: props.disabled,
+    [`${componentName}--required`]: props.required,
+    [`${componentName}--error`]: props.error,
+    [`${componentName}--border`]: props.border,
+  })
 })
 
 const styles: ComputedRef = computed(() => {
@@ -108,8 +106,8 @@ function handleClickInput(event: MouseEvent) {
   emit('clickInput', event)
 }
 
-function handleClick(event: MouseEvent) {
-  emit(CLICK_EVENT, event)
+function handleClick(event: unknown) {
+  emit(CLICK_EVENT, event as MouseEvent)
 }
 
 function startComposing({ target }: Event) {
@@ -189,7 +187,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes, customClass]" @click="(handleClick as any)">
+  <view :class="classes" :style="customStyle" @click="handleClick">
     <view class="nut-input-value">
       <view class="nut-input-inner">
         <view v-if="$slots.left" class="nut-input-left-box">

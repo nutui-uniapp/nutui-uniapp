@@ -2,6 +2,7 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import requestAniFrame from '../_utils/raf'
+import { getMainClass, getMainStyle } from '../_utils'
 import { animateEmits, animateProps } from './animate'
 
 const props = defineProps(animateProps)
@@ -9,12 +10,17 @@ const emit = defineEmits(animateEmits)
 
 const animated = ref(props.action === 'initial' || props.show === true || props.loop)
 const classes = computed(() => {
-  const prefixCls = 'nut-animate'
-  return {
-    'nut-animate__container': true,
-    [`${prefixCls}-${props.type}`]: animated.value,
-    'loop': props.loop,
+  const obj = {
+    [`${componentName}__container`]: true,
+    [`${componentName}-${props.type}`]: animated.value,
+    loop: props.loop,
   }
+  return getMainClass(props, componentName, obj)
+})
+const getStyle = computed(() => {
+  return getMainStyle(props, {
+    animationDuration: props.duration ? `${props.duration}ms` : undefined,
+  })
 })
 
 function animate() {
@@ -27,10 +33,10 @@ function animate() {
   })
 }
 
-function handleClick(event: Event) {
+function handleClick(event: unknown) {
   if (props.action === 'click') {
     animate()
-    emit(CLICK_EVENT, event)
+    emit(CLICK_EVENT, event as MouseEvent)
     emit('animate')
   }
 }
@@ -63,10 +69,8 @@ export default defineComponent({
   <view class="nut-animate">
     <view
       :class="classes"
-      :style="{
-        animationDuration: duration ? `${duration}ms` : undefined,
-      }"
-      @click="(handleClick as any)"
+      :style="getStyle"
+      @click="handleClick"
     >
       <slot />
     </view>

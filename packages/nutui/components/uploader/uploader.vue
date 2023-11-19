@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { defineComponent, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutProgress from '../progress/progress.vue'
 import NutIcon from '../icon/icon.vue'
 import NutButton from '../button/button.vue'
+import { getMainClass } from '../_utils'
 import { uploaderEmits, uploaderProps } from './uploader'
 import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
 import type { FileItem } from './type'
@@ -198,6 +199,10 @@ function chooseImage(event: InputEvent) {
     emit('change', { fileList: fileList.value, event })
   })
 }
+
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 </script>
 
 <script lang="ts">
@@ -214,7 +219,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-uploader">
+  <view :class="classes" :style="customStyle">
     <view v-if="$slots.default" class="nut-uploader__slot">
       <slot />
       <template v-if="Number(maximum) - fileList.length">

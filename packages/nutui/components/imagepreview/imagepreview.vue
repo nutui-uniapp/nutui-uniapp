@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
-import { funInterceptor } from '../_utils'
+import { funInterceptor, getMainClass } from '../_utils'
 import { CLOSE_EVENT, PREFIX } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 
@@ -44,6 +44,10 @@ const styles = computed(() => {
     style.left = '10px'
 
   return style
+})
+
+const classes = computed(() => {
+  return getMainClass(props, componentName)
 })
 
 // 设置当前选中第几个
@@ -219,7 +223,7 @@ export default defineComponent({
 
 <template>
   <NutPopup v-model:visible="state.showPop" :lock-scroll="true" pop-class="nut-image-preview-custom-pop">
-    <view class="nut-image-preview" @touchstart.capture="(onTouchStart as any)">
+    <view :class="classes" :style="customStyle" @touchstart.capture="(onTouchStart as any)">
       <NutSwiper
         v-if="state.showPop"
         :auto-play="autoplay"

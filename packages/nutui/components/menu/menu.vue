@@ -4,6 +4,7 @@ import { onPageScroll } from '@dcloudio/uni-app'
 import { PREFIX, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import Icon from '../icon/icon.vue'
+import { getMainClass } from '../_utils'
 import { menuProps } from './menu'
 
 const componentName = `${PREFIX}-menu`
@@ -71,11 +72,9 @@ export default defineComponent({
     const opened = computed(() => children.some(item => item?.state?.showWrapper))
 
     const classes = computed(() => {
-      const prefixCls = componentName
-      return {
-        [prefixCls]: true,
+      return getMainClass(props, componentName, {
         'scroll-fixed': isScrollFixed.value,
-      }
+      })
     })
 
     function updateOffset(children: any) {
@@ -143,7 +142,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view :id="barId" class="nut-menu__bar" :class="{ opened }">
       <template v-for="(item, index) in children" :key="index">
         <view

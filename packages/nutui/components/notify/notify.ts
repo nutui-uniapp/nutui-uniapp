@@ -1,10 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, isBoolean, makeNumberProp, makeStringProp } from '../_utils'
 import type { Position } from '../_constants/types'
 import { UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { NotifyType } from './type'
 
 export const notifyProps = {
+  ...commonProps,
   /**
    * @description 字体颜色
    */

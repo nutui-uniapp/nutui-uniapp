@@ -2,6 +2,7 @@
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { PREFIX, refRandomId } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { guessgiftEmits, guessgiftProps } from './guessgift'
 
 const props = defineProps(guessgiftProps)
@@ -34,12 +35,10 @@ watch(
 )
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
+  return getMainClass(props, componentName, {
     'guess-gift': true,
     'disabledClick': bowlLock.value,
-  }
+  })
 })
 
 // 打乱数组顺序
@@ -205,7 +204,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="bowlBox" :class="classes">
+  <view ref="bowlBox" :class="classes" :style="customStyle">
     <view
       v-for="(item, idx) of bowlList" :id="`${refRandomId}-${idx}`" :key="`bowl${item}`" class="bowl-item"
       :style="{ top: bowlRaiseIndex === idx ? bowlRaiseIndexTop : '0' }" @click="raise(idx)"

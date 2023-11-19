@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import NutButton from '../button/button.vue'
-import { floatData } from '../_utils'
+import { floatData, getMainClass } from '../_utils'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import GeneralShell from './compoents/generalshell.vue'
@@ -10,7 +10,7 @@ import { addresslistEmits, addresslistProps } from './addresslist'
 const props = defineProps(addresslistProps)
 const emit = defineEmits(addresslistEmits)
 
-const dataArray = ref([]) as any
+const dataArray = ref<any[]>([])
 const dataInfo = reactive({
   id: 2,
   addressName: '姓名',
@@ -19,10 +19,7 @@ const dataInfo = reactive({
   fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
 })
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 // 磨平参数差异
 function trowelData() {
@@ -92,7 +89,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes">
+  <div :class="classes" :style="customStyle">
     <GeneralShell
       v-for="(item, index) in dataArray"
       :key="index"

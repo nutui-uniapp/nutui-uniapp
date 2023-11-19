@@ -1,9 +1,10 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp } from '../_utils'
+import { commonProps, makeNumericProp } from '../_utils'
 
 export const SIDEN_NAVBAR_KEY = Symbol('sidennavbar')
 
 export const sidenavbarProps = {
+  ...commonProps,
   /**
    * @description 导航缩进宽度
    */

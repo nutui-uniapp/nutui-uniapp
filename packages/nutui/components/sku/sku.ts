@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isBoolean, isNumber, isString, makeArrayProp, makeNumericProp } from '../_utils'
+import { commonProps, isBoolean, isNumber, isString, makeArrayProp, makeNumericProp } from '../_utils'
 import { CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const skuProps = {
+  ...commonProps,
   /**
    * @description 是否显示商品规格弹框
    */

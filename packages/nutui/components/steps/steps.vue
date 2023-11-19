@@ -2,6 +2,7 @@
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, provide, reactive } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { stepsEmits, stepsProps } from './steps'
 
 const props = defineProps(stepsProps)
@@ -12,12 +13,10 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}-${props.direction}`]: true,
-    [`${prefixCls}-dot`]: !!props.progressDot,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}-${props.direction}`]: true,
+    [`${componentName}-dot`]: !!props.progressDot,
+  })
 })
 
 function relation(child: ComponentInternalInstance) {
@@ -50,7 +49,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[classes]">
+  <view :class="classes" :style="customStyle">
     <slot />
   </view>
 </template>

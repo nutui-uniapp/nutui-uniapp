@@ -1,12 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { isString, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, isString, makeNumberProp, makeStringProp } from '../_utils'
 import { CLEAR_EVENT, CONFIRM_EVENT } from '../_constants'
 
 export const signatureProps = {
-  /**
-   * @description 自定义 `class`
-   */
-  customClass: String,
+  ...commonProps,
   /**
    * @description 线条的宽度
    */

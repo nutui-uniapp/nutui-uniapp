@@ -286,7 +286,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="containerClasses">
+  <view :class="[containerClasses, customClass]" :style="customStyle">
     <view v-if="!hiddenRange" class="nut-range-min">
       {{ +min }}
     </view>

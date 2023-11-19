@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
-import { isArray } from '../_utils'
+import { getMainClass, getMainStyle, isArray } from '../_utils'
 import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
@@ -26,7 +26,11 @@ let conentRootRect: {
   height: number
   width: number
 }
-
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    [`nut-popover--${props.theme}`]: true,
+  })
+})
 const popoverArrow = computed(() => {
   const prefixCls = 'nut-popover-arrow'
   const loca = props.location
@@ -127,12 +131,12 @@ function getRootPosition() {
   }
 }
 
-const customStyle = computed(() => {
+const styles = computed(() => {
   const styles: CSSProperties = {}
   if (props.bgColor)
     styles.background = props.bgColor
 
-  return styles
+  return getMainStyle(props, styles)
 })
 // 获取宽度
 async function getContentWidth() {
@@ -254,11 +258,11 @@ export default defineComponent({
   >
     <slot name="reference" />
   </view>
-  <view ref="popoverbox" class="nut-popover" :class="[`nut-popover--${theme}`, `${customClass}`]" :style="[popoverstyles, customStyle]">
+  <view ref="popoverbox" :class="classes" :style="[popoverstyles, styles]">
     <NutPopup
       v-model:visible="showPopup"
       :pop-class="`nut-popover-content nut-popover-content--${location}`"
-      :custom-style="customStyle"
+      :custom-style="styles"
       :position="`` as any"
       :transition="`nut-popover` as any"
       :overlay="overlay"

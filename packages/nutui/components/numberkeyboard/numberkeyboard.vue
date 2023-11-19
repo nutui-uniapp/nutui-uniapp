@@ -5,6 +5,7 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import { CLOSE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
+import { getMainClass } from '../_utils'
 import { numberkeyboardEmits, numberkeyboardProps } from './numberkeyboard'
 
 export interface keys {
@@ -16,6 +17,9 @@ const emit = defineEmits(numberkeyboardEmits)
 const clickKeyIndex: Ref<string | undefined | number> = ref(undefined)
 const show = ref(props.visible)
 const root = ref<HTMLElement>()
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 function defaultKey() {
   const { customKey } = props
   let object = {
@@ -134,7 +138,7 @@ export default defineComponent({
     overlay-class="nut-number-keyboard-overlay"
     @click-overlay="closeBoard()"
   >
-    <div ref="root" class="nut-number-keyboard">
+    <div ref="root" :class="classes" :style="customStyle">
       <div v-if="title" class="nut-number-keyboard__header">
         <h3 class="nut-number-keyboard__title">
           {{ title }}

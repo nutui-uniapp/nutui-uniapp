@@ -7,6 +7,7 @@ import NutRadio from '../radio/radio.vue'
 import NutRadioGroup from '../radiogroup/radiogroup.vue'
 import NutButton from '../button/button.vue'
 import type { FormInst } from '../form'
+import { getMainClass } from '../_utils'
 import { invoiceEmits, invoiceProps } from './invoice'
 
 const props = defineProps(invoiceProps)
@@ -17,10 +18,7 @@ const formRef = ref<FormInst>()
 const list: any = ref([])
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 onMounted(() => {
@@ -58,7 +56,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <NutForm ref="formRef" :model-value="formValue">
       <NutFormItem
         v-for="(item, index) of list"

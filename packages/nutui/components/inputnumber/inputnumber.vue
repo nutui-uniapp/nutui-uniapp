@@ -1,7 +1,7 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
@@ -9,11 +9,9 @@ import { inputnumberEmits, inputnumberProps } from './inputnumber'
 const props = defineProps(inputnumberProps)
 const emit = defineEmits(inputnumberEmits)
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--disabled`]: props.disabled,
-  }
+  return getMainClass(props, componentName, {
+    [`${componentName}--disabled`]: props.disabled,
+  })
 })
 function fixedDecimalPlaces(v: string | number): string {
   return Number(v).toFixed(Number(props.decimalPlaces))
@@ -98,7 +96,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view
       class="nut-input-number__icon nut-input-number__left"
       :class="{ 'nut-input-number__icon--disabled': !reduceAllow() }"

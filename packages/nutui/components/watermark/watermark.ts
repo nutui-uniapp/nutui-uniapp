@@ -1,8 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
 export const watermarkProps = {
+  ...commonProps,
   /**
    * @description 水印的名称
    */
@@ -70,7 +71,7 @@ export const watermarkProps = {
   /**
    * @description 是否覆盖整个页面
    */
-  fullPage: Boolean,
+  fullPage: truthProp,
 }
 
 export type WaterMarkProps = ExtractPropTypes<typeof watermarkProps>

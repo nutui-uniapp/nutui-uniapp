@@ -3,6 +3,7 @@ import { computed, defineComponent, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass } from '../_utils'
 import { tableEmits, tableProps } from './table'
 import type { TableColumnProps } from './types'
 import RenderColumn from './renderColumn'
@@ -13,10 +14,7 @@ const state = reactive({
   curData: props.data,
 })
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 function cellClasses(item: TableColumnProps) {
@@ -81,7 +79,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <view class="nut-table__main" :class="{ 'nut-table__main--striped': striped }">
       <view class="nut-table__main__head">
         <view class="nut-table__main__head__tr">

@@ -1,7 +1,9 @@
 import type { ExtractPropTypes } from 'vue'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps } from '../_utils'
 
 export const sidenavbaritemProps = {
+  ...commonProps,
   /**
    * @description 导航标题
    */

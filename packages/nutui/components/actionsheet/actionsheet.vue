@@ -3,6 +3,7 @@ import { computed, defineComponent, useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
 import { CANCEL_EVENT, CHOOSE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { type ActionSheetOption, actionsheetEmits, actionsheetProps } from './actionsheet'
 
 const props = defineProps(actionsheetProps)
@@ -10,10 +11,7 @@ const emit = defineEmits(actionsheetEmits)
 
 const slotDefault = !!useSlots().default
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 
 function isHighlight(item: ActionSheetOption) {
@@ -25,7 +23,7 @@ function cancelActionSheet() {
   emit(UPDATE_VISIBLE_EVENT, false)
 }
 
-function chooseItem(item: ActionSheetOption, index: any) {
+function chooseItem(item: ActionSheetOption, index: number) {
   if (!item.disable && !item.loading) {
     emit(CHOOSE_EVENT, item, index)
     emit(UPDATE_VISIBLE_EVENT, false)
@@ -55,7 +53,7 @@ export default defineComponent({
 
 <template>
   <NutPopup v-bind="props" :visible="visible" position="bottom" round :close-on-click-overlay="closeAbled" @click-overlay="close">
-    <view :class="classes">
+    <view :class="classes" :style="customStyle">
       <view v-if="title" class="nut-action-sheet__title">
         {{ title }}
       </view>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive } from 'vue'
-import { myFixed } from '../_utils'
+import { getMainClass, myFixed } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { trendarrowProps } from './trendarrow'
@@ -11,10 +11,7 @@ const state = reactive({
   rateTrend: props.rate > 0,
 })
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, componentName)
 })
 const calcRate = computed(() => {
   const { rate, digits, showSign, showZero } = props
@@ -54,7 +51,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes">
+  <view :class="classes" :style="customStyle">
     <span v-if="!arrowLeft" class="nut-trend-arrow-icon-before nut-trend-arrow-rate" :style="calcStyle">{{
       calcRate
     }}</span>

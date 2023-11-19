@@ -1,10 +1,13 @@
 import { type SetupContext, computed, onUnmounted, ref, watch } from 'vue'
-import { CLOSED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CLOSED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { getMainClass, getMainStyle } from '../_utils'
 import type { ToastEmits, ToastProps } from './toast'
 import type { ToastOptions, ToastType } from './types'
 
 export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit']) {
   let timer: any = null
+  const componentName = `${PREFIX}-toast`
+
   const isShowToast = ref<boolean>(false)
   const typeIcons: Record<ToastType, string> = {
     text: '',
@@ -90,22 +93,20 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
       return typeIcons[toastStatus.value.type!]
   })
   const toastBodyClass = computed(() => {
-    return [
-      'nut-toast',
+    return getMainClass(props, componentName, [
       { 'nut-toast-center': props.center },
       { 'nut-toast-has-icon': hasIcon.value },
       { 'nut-toast-cover': props.cover },
       { 'nut-toast-loading': toastStatus.value.type === 'loading' },
-      props.customClass,
       `nut-toast-${toastStatus.value.size}`,
-    ]
+    ])
   })
 
-  const Style = computed(() => {
-    return {
+  const styles = computed(() => {
+    return getMainStyle(props, {
       'bottom': props.center ? 'auto' : toastStatus.value.bottom,
       'background-color': props.coverColor,
-    }
+    })
   })
 
   const onAfterLeave = () => {
@@ -143,7 +144,7 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
     hasIcon,
     iconName,
     toastBodyClass,
-    Style,
+    styles,
     onAfterLeave,
     toastStatus,
     isShowToast,

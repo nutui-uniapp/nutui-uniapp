@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { truthProp } from '../_utils'
+import { commonProps, truthProp } from '../_utils'
 
 export const subsidenavbarProps = {
+  ...commonProps,
   /**
    * @description 导航标题
    */

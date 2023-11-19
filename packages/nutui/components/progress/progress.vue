@@ -2,11 +2,15 @@
 import { computed, defineComponent, useSlots } from 'vue'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass } from '../_utils'
 import { progressProps } from './progress'
 
 const props = defineProps(progressProps)
 
 const slotDefault = !!useSlots().default
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 const height = computed(() => {
   if (props.strokeWidth)
     return `${props.strokeWidth}px`
@@ -43,7 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-progress">
+  <div :class="classes" :style="customStyle">
     <div
       class="nut-progress-outer"
       :class="[showText && !textInside ? 'nut-progress-outer-part' : '', size ? `nut-progress-${size}` : '']"

@@ -4,6 +4,7 @@ import { PREFIX } from '../_constants'
 import PopUp from '../popup/popup.vue'
 import Icon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass, getMainStyle } from '../_utils'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
 
 let _zIndex = 2000
@@ -57,10 +58,10 @@ export default defineComponent({
     const { parent } = useParent()
 
     const classes = computed(() => {
-      const prefixCls = componentName
-      return {
-        [prefixCls]: true,
-      }
+      return getMainClass(props, componentName)
+    })
+    const styles = computed(() => {
+      return getMainStyle(props, { zIndex: state.zIndex })
     })
 
     const placeholderElementStyle = computed(() => {
@@ -130,6 +131,7 @@ export default defineComponent({
 
     return {
       classes,
+      styles,
       placeholderElementStyle,
       renderTitle,
       state,
@@ -146,7 +148,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-show="state.showWrapper" :class="classes" :style="{ zIndex: state.zIndex }">
+  <view v-show="state.showWrapper" :class="classes" :style="styles">
     <div
       v-show="state.isShowPlaceholderElement"
       class="nut-menu-item-placeholder-element"

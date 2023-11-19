@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
-import { pxCheck } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import { GRID_KEY, gridProps } from './grid'
@@ -11,21 +12,18 @@ const componentName = `${PREFIX}-grid`
 
 useProvide(GRID_KEY, `${componentName}-item`)({ props })
 
-const rootClass = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-    [`${prefixCls}--border`]: props.border && !props.gutter,
-  }
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    [`${componentName}--border`]: props.border && !props.gutter,
+  })
 })
 
-const rootStyle = computed(() => {
-  const style: import('vue').CSSProperties = {}
-
+const styles = computed(() => {
+  const style: CSSProperties = {}
   if (props.gutter)
     style.paddingLeft = pxCheck(props.gutter)
 
-  return style
+  return getMainStyle(props, style)
 })
 </script>
 
@@ -41,7 +39,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="rootClass" :style="rootStyle">
+  <view :class="classes" :style="styles">
     <slot />
   </view>
 </template>

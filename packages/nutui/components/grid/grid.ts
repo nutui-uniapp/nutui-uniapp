@@ -1,11 +1,12 @@
 import type { ExtractPropTypes } from 'vue'
-import { makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export const GRID_KEY = Symbol('grid')
 
 export type GridDirection = 'horizontal' | 'vertical'
 
 export const gridProps = {
+  ...commonProps,
   /**
    * @description 列数
    */

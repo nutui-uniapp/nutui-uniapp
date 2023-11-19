@@ -90,6 +90,8 @@ export default defineComponent({
       :type="type"
       :is-auto-back-fill="isAutoBackFill"
       :poppable="poppable"
+      :custom-class="customClass"
+      :custom-style="customStyle"
       :title="title"
       :default-value="defaultValue"
       :start-date="startDate"

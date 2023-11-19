@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
-import { defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { dollmachineEmits, dollmachineProps } from './dollmachine'
 
 const props = defineProps(dollmachineProps)
@@ -11,6 +12,9 @@ const instance = getCurrentInstance() as ComponentInternalInstance
 const giftPrize = ref()
 const machineBoxDom = ref()
 const machineToolsDom = ref()
+const classes = computed(() => {
+  return getMainClass(props, componentName)
+})
 const toolsStyle = reactive({
   left: '50%',
   marginLeft: '0',
@@ -173,7 +177,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-doll-machine">
+  <div :class="classes" :style="customClass">
     <div class="machine-box">
       <div class="machine-tools" :style="toolsStyle">
         <div

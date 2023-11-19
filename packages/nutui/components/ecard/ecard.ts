@@ -1,11 +1,12 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNull, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, isNull, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
 
 interface dataList {
   price: string | number
 }
 export const ecardProps = {
+  ...commonProps,
   /**
    * @description 购买电子卡所需价钱
    */
