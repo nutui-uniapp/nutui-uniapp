@@ -203,11 +203,11 @@ export default defineComponent({
             >
               <!-- #ifndef MP-WEIXIN -->
               <slot name="icon">
-                <Icon name="Check" :color="parent.props.activeColor" />
+                <Icon name="Check" :custom-color="parent.props.activeColor" />
               </slot>
               <!-- #endif -->
               <!-- #ifdef MP-WEIXIN -->
-              <Icon :name="optionIcon" :color="parent.props.activeColor" />
+              <Icon :name="optionIcon" :custom-color="parent.props.activeColor" />
               <!-- #endif -->
             </view>
             <view

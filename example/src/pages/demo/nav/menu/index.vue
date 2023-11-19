@@ -98,7 +98,7 @@ export default {
     <h2 class="title">
       自定义选中态颜色
     </h2>
-    <nut-menu active-color="green">
+    <nut-menu active-color="rgba(74, 222, 128, 1)">
       <nut-menu-item v-model="state.value1" :options="state.options1" />
       <nut-menu-item v-model="state.value2" :options="state.options2" @change="handleChange" />
     </nut-menu>
