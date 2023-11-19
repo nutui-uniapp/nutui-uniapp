@@ -128,25 +128,43 @@
 </script>
 ```
 
-<!-- ### 自定义滚动内容
+### 自定义滚动内容
+传递`field-name`属性自定义显示文字字段名，以此可以携带更多数据
 
-```html
-<template>
-    <nut-noticebar direction='vertical' :height='50' :speed='10' :standTime='1000' :list="[]" >
-      <div class="custom-item" :data-index='index' v-for="(item,index) in horseLamp3" :key="index">{{item}}</div>
-    </nut-noticebar>
-</template>
+``` vue
+<script lang="ts">
+import { ref } from 'vue'
 
-<script>
-  import { ref } from 'vue';
-  export default {
-    setup(props) {
-      const horseLamp3 = ref(['Noticebar 公告栏', 'Cascader 级联选择', 'DatePicker 日期选择器', 'CheckBox 复选按钮']);
-      return { horseLamp3 };
+export default {
+  setup(props) {
+    const data1 = ref([
+      { id: 1, text: 'Noticebar 公告栏' },
+      { id: 2, text: 'Cascader 级联选择' },
+      { id: 3, text: 'DatePicker 日期选择器' },
+      { id: 4, text: 'CheckBox 复选按钮' },
+    ])
+    const go = (item: any) => {
+      console.log(item)
     }
+    return { data1, go }
   }
+}
 </script>
-``` -->
+
+<template>
+  <nut-noticebar
+    direction="vertical"
+    :height="50"
+    :speed="10"
+    :stand-time="1000"
+    :list="data1"
+    field-name="text"
+    background="rgba(251, 248, 220, 1)"
+    @close="go"
+    @click="go"
+  />
+</template>
+```
 
 ### 纵向自定义右侧图标
 
@@ -195,8 +213,9 @@
 | speed        | 滚动的速度                         | number | `50`               |
 | stand-time         | 停留时间(毫秒) | number | `1000`                |
 | complex-am | 稍复杂的动画，耗能会高     | boolean | `false` |
-| height          | 每一个滚动列的高度(px)，注意：在使用 slot 插槽定义滚动单元时，按照实际高度修改此值                 | number | `40`              |
-| close-mode  | 是否启用右侧关闭图标，可以通过 `slot[name=right-icon]`自定义图标                                   | boolean      | `false`  |
+| height          | 每一个滚动列的高度(px)                 | number | `40`              |
+| close-mode  | 是否启用右侧关闭图标，可以通过 `slot[name=rightIcon]`自定义图标                                   | boolean      | `false`  |
+| field-name `1.5.2`  | 如果传递数组对象，显示文字的字段名                                   | string      | -  |
 
 ### Slots
 

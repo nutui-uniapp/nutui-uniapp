@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, useSlots, watch } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import { getMainClass, isObject, pxCheck } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
@@ -10,7 +10,6 @@ import { noticebarEmits, noticebarProps } from './noticebar'
 const props = defineProps(noticebarProps)
 
 const emit = defineEmits(noticebarEmits)
-const slots = useSlots()
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
@@ -205,21 +204,12 @@ function handleClickIcon() {
   if (props.closeMode)
     state.showNoticebar = !props.closeMode
 
-  emit(CLOSE_EVENT, state.scrollList[0])
+  emit(CLOSE_EVENT, state.scrollList[0] as any)
 }
 
 onMounted(() => {
   if (props.direction === 'vertical') {
-    if (slots.default) {
-
-      // // #ifdef H5
-      // updateSlotChild()
-      // watchSlots()
-      // // #endif
-    }
-    else {
-      state.scrollList = [].concat(props.list as any)
-    }
+    state.scrollList = [].concat(props.list as any)
 
     setTimeout(() => {
       props.complexAm ? startRoll() : startRollEasy()
@@ -301,30 +291,17 @@ export default defineComponent({
       class="nut-noticebar__vertical"
       :style="barStyle"
     >
-      <template v-if="slots.default">
-        <view class="horseLamp_list" :style="horseLampStyle">
-          <view
-            v-for="(item, index) in state.scrollList"
-            :key="index"
-            :style="{ 'height': `${height}px`, 'line-height': `${height}px` }"
-          >
-            {{ item }}
-          </view>
+      <view class="nut-noticebar__vertical-list" :style="horseLampStyle">
+        <view
+          v-for="(item, index) in state.scrollList"
+          :key="index"
+          class="nut-noticebar__vertical-item"
+          :style="{ height: pxCheck(height), lineHeight: pxCheck(height) }"
+          @click="go(item)"
+        >
+          {{ props.fieldName && isObject(item) ? item[props.fieldName] : item }}
         </view>
-      </template>
-      <template v-else>
-        <ul class="nut-noticebar__vertical-list" :style="horseLampStyle">
-          <li
-            v-for="(item, index) in state.scrollList"
-            :key="index"
-            class="nut-noticebar__vertical-item"
-            :style="{ height: pxCheck(height), lineHeight: pxCheck(height) }"
-            @click="go(item)"
-          >
-            {{ item }}
-          </li>
-        </ul>
-      </template>
+      </view>
 
       <view class="go" @click="handleClickIcon()">
         <slot name="rightIcon">
