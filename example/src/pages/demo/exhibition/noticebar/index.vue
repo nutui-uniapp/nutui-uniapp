@@ -27,10 +27,20 @@ export default {
         'NutUI 是京东风格的移动端组件库，使用 Vue 语言来编写可以在 H5，小程序平台上的应用，帮助研发人员提升开发效率，改善开发体验。',
     })
 
-    const data1 = ref(['Noticebar 公告栏', 'Cascader 级联选择', 'DatePicker 日期选择器', 'CheckBox 复选按钮'])
+    const data1 = ref([
+      { id: 1, text: 'Noticebar 公告栏' },
+      { id: 2, text: 'Cascader 级联选择' },
+      { id: 3, text: 'DatePicker 日期选择器' },
+      { id: 4, text: 'CheckBox 复选按钮' },
+    ])
 
     setTimeout(() => {
-      data1.value = ['公告栏 Noticebar', '级联选择 Cascader', '日期选择器 DatePicker', '复选按钮 CheckBox']
+      data1.value = [
+        { id: 1, text: '公告栏' },
+        { id: 2, text: '级联选择' },
+        { id: 3, text: '日期选择器' },
+        { id: 4, text: '复选按钮' },
+      ]
     }, 2000)
     /* eslint-disable no-console */
 
@@ -145,7 +155,7 @@ export default {
         :custom-color="color1"
       />
     </div>
-    <!-- <h2 class="title">
+    <h2 class="title">
       纵向自定义滚动内容
     </h2>
     <div class="interstroll-list">
@@ -154,22 +164,14 @@ export default {
         :height="50"
         :speed="10"
         :stand-time="1000"
-        :list="[]"
+        :list="data1"
+        field-name="text"
         background="rgba(251, 248, 220, 1)"
-        :color="color1"
+        :custom-color="color1"
         @close="go"
-      >
-        <div
-          v-for="(item, index) in data1"
-          :key="index"
-          class="custom-item"
-          :data-index="index"
-          style="height: 50px; line-height: 50px;"
-        >
-          {{ item }}
-        </div>
-      </nut-noticebar>
-    </div> -->
+        @click="go"
+      />
+    </div>
 
     <h2 class="title">
       纵向自定义右侧图标

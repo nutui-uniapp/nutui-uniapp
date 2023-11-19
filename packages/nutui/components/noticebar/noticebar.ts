@@ -10,7 +10,7 @@ export interface stateProps {
   showNoticebar: boolean
   animationClass: string
   animate: boolean
-  scrollList: never[]
+  scrollList: any[]
   distance: number
   timer: null
   keepAlive: boolean
@@ -28,7 +28,7 @@ export const noticebarProps = {
   /**
    * @description 纵向滚动数据列表, `vertical`方向
    */
-  list: makeArrayProp([]),
+  list: makeArrayProp<string | object>([]),
   /**
    * @description 停留时间(毫秒),`vertical`方向
    */
@@ -77,12 +77,16 @@ export const noticebarProps = {
    * @description 是否开启文本换行,`scrollable` 会设置为 `false`
    */
   wrapable: Boolean,
+  /**
+   * @description `vertical`方向时`list`属性如果传入数组对象，显示文本的字段名
+   */
+  fieldName: String,
 }
 
 export type NoticeBarProps = ExtractPropTypes<typeof noticebarProps>
 
 export const noticebarEmits = {
-  [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
+  [CLICK_EVENT]: (value: Event | string) => value instanceof Object || isString(value),
   [CLOSE_EVENT]: (evt: Event | string) => evt instanceof Object || isString(evt),
   acrossEnd: (evt: Event) => evt instanceof Object,
 
