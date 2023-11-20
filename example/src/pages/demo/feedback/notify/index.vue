@@ -31,7 +31,7 @@ export default {
       typeRef.value?.showNotify({
         type,
         msg: desc,
-        duration: 500,
+        duration: 1500,
       })
     }
 
@@ -165,7 +165,7 @@ export default {
       <nut-cell is-link @click="showNotify1">
         留出顶部安全距离
       </nut-cell>
-      <nut-notify v-model:visible="show1" :duration="500000" safe-area-inset-top>
+      <nut-notify v-model:visible="show1" :duration="5000" safe-area-inset-top>
         <span>Content</span>
       </nut-notify>
     </nut-cell-group>

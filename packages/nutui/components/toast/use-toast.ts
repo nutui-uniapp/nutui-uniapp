@@ -36,7 +36,6 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
     closeOnClickOverlay: props.closeOnClickOverlay,
   })
   const clearTimer = () => {
-    isShowToast.value = false
     if (timer) {
       clearTimeout(timer)
       timer = null
@@ -44,6 +43,7 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
   }
 
   const hide = () => {
+    isShowToast.value = false
     emit(UPDATE_VISIBLE_EVENT, false)
     emit(CLOSED_EVENT)
   }

@@ -7,11 +7,13 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
   const clickCover = () => {
     props.onClick && props.onClick()
   }
-  // timer
-  let timer: null | any = null
+  let timer: NodeJS.Timeout | null | undefined
+
   const clearTimer = () => {
-    timer && clearTimeout(timer)
-    timer = null
+    if (timer) {
+      timer && clearTimeout(timer)
+      timer = null
+    }
   }
   // watch show popup
   const isShowPopup = ref<boolean>(false)
@@ -34,14 +36,9 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
     }
   }
 
-  // hide popup
-  const hide = () => {
-    emit(UPDATE_VISIBLE_EVENT, false)
-  }
-
   const hideNotify = () => {
     isShowPopup.value = false
-    hide()
+    emit(UPDATE_VISIBLE_EVENT, false)
   }
 
   const showNotify = (option: NotifyOptions) => {
@@ -56,22 +53,21 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
       safeAreaInsetTop: option.safeAreaInsetTop || props.safeAreaInsetTop,
 
     }
+
+    clearTimer()
     isShowPopup.value = true
-
-    if (timer)
-      clearTimeout(timer)
-
-    timer = setTimeout(hideNotify, notifyStatus.value.duration)
+    if (notifyStatus.value.duration && notifyStatus.value.duration > 0)
+      timer = setTimeout(hideNotify, notifyStatus.value.duration)
   }
 
   watch(
     () => props.visible,
     (newVal: boolean) => {
-      isShowPopup.value = props.visible
+      isShowPopup.value = newVal
       const DURATION: number = notifyStatus.value.duration!
       if (newVal && DURATION) {
         timer = setTimeout(() => {
-          hide()
+          hideNotify()
         }, DURATION)
       }
     },

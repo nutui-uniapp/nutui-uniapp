@@ -43,7 +43,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutPopUp v-model:visible="isShowPopup" :custom-style="notifyStatus.safeAreaInsetTop ? `top:${safeHeight}px` : ''" safe-area-inset-bottom safe-area-inset-top :z-index="99999999" :position="notifyStatus.position || props.position" :overlay="false">
+  <NutPopUp v-model:visible="isShowPopup" :custom-style="notifyStatus.safeAreaInsetTop ? `top:${safeHeight}px` : ''" safe-area-inset-bottom safe-area-inset-top :z-index="99999999" :position="notifyStatus.position" :overlay="false">
     <div
       :class="classes"
       :style="styles"
@@ -53,7 +53,7 @@ export default defineComponent({
         <slot />
       </template>
       <template v-else>
-        {{ notifyStatus.msg || props.msg }}
+        {{ notifyStatus.msg }}
       </template>
     </div>
   </NutPopUp>
