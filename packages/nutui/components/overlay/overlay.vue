@@ -18,7 +18,7 @@ const classes = computed(() => {
 const styles: ComputedRef<string> = computed(() => {
   return getMainStyle(props, {
     transitionDuration: `${props.duration}ms`,
-    zIndex: props.zIndex,
+    zIndex: +props.zIndex,
     ...props.overlayStyle,
   })
 })

@@ -26,7 +26,7 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
 
   const popStyle: ComputedRef = computed(() => {
     return getMainStyle(props, {
-      zIndex: state.zIndex,
+      zIndex: +state.zIndex,
       transitionDuration: `${props.duration}ms`,
     })
   })

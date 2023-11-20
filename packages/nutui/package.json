@@ -79,8 +79,8 @@
     "type-check": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "@uni-helper/uni-app-types": "^0.5.10",
-    "vue": "^3.2.0"
+    "@uni-helper/uni-app-types": "^0.5.12",
+    "vue": "3.2.47"
   },
   "publishConfig": {
     "main": "./dist/index.cjs",
