@@ -5,7 +5,7 @@ import type { ToastEmits, ToastProps } from './toast'
 import type { ToastOptions, ToastType } from './types'
 
 export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit']) {
-  let timer: any = null
+  let timer: NodeJS.Timeout | null | undefined
   const componentName = `${PREFIX}-toast`
 
   const isShowToast = ref<boolean>(false)
@@ -27,55 +27,73 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
     bgColor: props.bgColor,
     size: props.size,
     bottom: props.bottom,
+    center: props.center,
+    textAlignCenter: props.textAlignCenter,
+    loadingRotate: props.loadingRotate,
+    onClose: props.onClose ? props.onClose : () => {},
+    cover: props.cover,
+    coverColor: props.coverColor ? props.coverColor : '',
+    closeOnClickOverlay: props.closeOnClickOverlay,
   })
   const clearTimer = () => {
-    timer && clearTimeout(timer)
-    timer = null
+    isShowToast.value = false
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
   }
+
   const hide = () => {
     emit(UPDATE_VISIBLE_EVENT, false)
     emit(CLOSED_EVENT)
   }
 
   const hideToast = () => {
-    isShowToast.value = false
+    clearTimer()
     hide()
   }
 
   const openToast = (type: ToastType, options: ToastOptions, msg: string) => {
     toastStatus.value = { ...toastStatus.value, ...options, type, msg }
+
+    clearTimer()
     isShowToast.value = true
 
-    if (toastStatus.value.duration === 0)
-      return
+    if (toastStatus.value.duration && toastStatus.value.duration > 0)
+      timer = setTimeout(hideToast, toastStatus.value.duration)
+  }
 
-    if (timer)
-      clearTimeout(timer)
-
-    timer = setTimeout(hideToast, toastStatus.value.duration)
+  const errorMsg = (msg: string) => {
+    if (!msg)
+      console.warn('[NutUI Toast]: msg不能为空')
   }
 
   const showToast = {
+
     text(msg: string, options: ToastOptions = { icon: '' }) {
+      errorMsg(msg)
       return openToast('text', options, msg)
     },
     success(msg: string, options: ToastOptions = { type: 'success' }) {
+      errorMsg(msg)
       return openToast('success', options, msg)
     },
     fail(msg: string, options: ToastOptions = { type: 'fail' }) {
+      errorMsg(msg)
       return openToast('fail', options, msg)
     },
     warn(msg: string, options: ToastOptions = { type: 'warn' }) {
+      errorMsg(msg)
       return openToast('warn', options, msg)
     },
-    loading(msg: string, options: ToastOptions = { type: 'loading' }) {
+    loading(msg: string, options: ToastOptions = { type: 'loading', duration: 0 }) {
       return openToast('loading', options, msg)
     },
   }
 
   const clickCover = () => {
     if (props.closeOnClickOverlay)
-      hide()
+      hideToast()
   }
 
   const hasIcon = computed(() => {
@@ -94,9 +112,9 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
   })
   const toastBodyClass = computed(() => {
     return getMainClass(props, componentName, [
-      { 'nut-toast-center': props.center },
+      { 'nut-toast-center': toastStatus.value.center },
       { 'nut-toast-has-icon': hasIcon.value },
-      { 'nut-toast-cover': props.cover },
+      { 'nut-toast-cover': toastStatus.value.cover },
       { 'nut-toast-loading': toastStatus.value.type === 'loading' },
       `nut-toast-${toastStatus.value.size}`,
     ])
@@ -104,34 +122,22 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
 
   const styles = computed(() => {
     return getMainStyle(props, {
-      'bottom': props.center ? 'auto' : toastStatus.value.bottom,
-      'background-color': props.coverColor,
+      'bottom': toastStatus.value.center ? 'auto' : toastStatus.value.bottom,
+      'background-color': toastStatus.value.coverColor,
     })
   })
 
   const onAfterLeave = () => {
-    if (props.visible) {
-      clearTimer()
-      props.onClose && props.onClose()
-    }
+    if (isShowToast.value)
+      hideToast()
   }
 
   watch(
     () => props.visible,
     (newVal) => {
-      if (newVal) {
-        toastStatus.value = { ...props }
-        isShowToast.value = props.visible
-        const DURATION: number = toastStatus.value.duration!
-        if (newVal && DURATION) {
-          timer = setTimeout(() => {
-            hideToast()
-          }, DURATION)
-        }
-      }
-    },
-    {
-      immediate: true,
+      isShowToast.value = newVal
+      if (newVal)
+        openToast(props.type!, { ...props }, props.msg!)
     },
   )
 

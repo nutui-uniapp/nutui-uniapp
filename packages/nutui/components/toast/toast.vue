@@ -52,16 +52,16 @@ export default defineComponent({
           class="nut-toast-inner"
           :style="{
             'text-align': textAlignCenter ? 'center' : 'left',
-            'background-color': (toastStatus.bgColor || bgColor),
+            'background-color': toastStatus.bgColor,
           }"
         >
           <view v-if="hasIcon" class="nut-toast-icon-wrapper">
-            <NutIcon :size="toastStatus.iconSize || props.iconSize" :name="iconName" custom-color="#ffffff" />
+            <NutIcon :size="toastStatus.iconSize" :name="iconName" custom-color="#ffffff" />
           </view>
-          <div v-if="toastStatus.title || title" class="nut-toast-title">
-            {{ toastStatus.title || title }}
+          <div v-if="toastStatus.title" class="nut-toast-title">
+            {{ toastStatus.title }}
           </div>
-          <rich-text class="nut-toast-text" :nodes="toastStatus.msg || msg" />
+          <rich-text class="nut-toast-text" :nodes="toastStatus.msg" />
         </view>
       </template>
     </view>
