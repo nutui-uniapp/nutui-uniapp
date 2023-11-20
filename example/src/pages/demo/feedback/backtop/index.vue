@@ -17,7 +17,7 @@ export default {
 
 <template>
   <view class="demo">
-    <nut-backtop @click="click">
+    <nut-backtop custom-color="skyblue" @click="click">
       <template #content>
         <div class="text-data n-bg-2">
           我是测试数据1

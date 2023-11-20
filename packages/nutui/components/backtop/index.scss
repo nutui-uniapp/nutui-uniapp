@@ -5,6 +5,10 @@
       background: $dark-background;
       border: 1px solid $dark-background;
     }
+
+    &-main {
+      color:'#ffffff';
+    }
   }
 }
 
@@ -28,7 +32,8 @@
   }
 
   &-main {
-    transition: all 0.2s ease-in-out;
+    color:'#000000';
+    transition: all 0.2s ease-in-out
   }
 }
 

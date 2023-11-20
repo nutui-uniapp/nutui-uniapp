@@ -2,8 +2,6 @@ import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
-const { theme } = uni.getSystemInfoSync()
-
 export const backtopProps = {
   ...commonProps,
   /**
@@ -34,7 +32,7 @@ export const backtopProps = {
   /**
    * @description 自定义图标颜色
    */
-  customColor: makeStringProp(theme === 'dark' ? '#fff' : '#000'),
+  customColor: String,
 }
 
 export type BacktopProps = ExtractPropTypes<typeof backtopProps>
