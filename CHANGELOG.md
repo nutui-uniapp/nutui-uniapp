@@ -1,3 +1,19 @@
+## [1.5.2](https://github.com/yang1206/uniapp-nutui/compare/v1.5.1...v1.5.2) (2023-11-20)
+
+### Bug Fixes
+
+* **menu:** 修复自定义选中颜色失效 ([b441e89](https://github.com/yang1206/uniapp-nutui/commit/b441e89113c25f62eb3a42f75c822eaee6d0a149))
+* **notify:** 修复重复点击偶尔无法触发 ([d044ac9](https://github.com/yang1206/uniapp-nutui/commit/d044ac9592e27dc25ca7453e9579593a188e8337))
+* **rate:** 修复无法自定义图标大小 ([1d38d71](https://github.com/yang1206/uniapp-nutui/commit/1d38d712fa92bd9181f6d4302df547bd090af896)), closes [#111](https://github.com/yang1206/uniapp-nutui/issues/111)
+* **tabs:** 修复h5端滑动切换卡顿 ([a17e35e](https://github.com/yang1206/uniapp-nutui/commit/a17e35edf132488b0b1c8098f87e23d89e30120a))
+* **toast:** 修复重复点击造成卡死 ([4847ae9](https://github.com/yang1206/uniapp-nutui/commit/4847ae964ecd50fd466b336ec92a0121fd589bc9))
+
+### Features
+
+* 全部组件均已支持自定义类名与style ([5a29a83](https://github.com/yang1206/uniapp-nutui/commit/5a29a837a6ba3b7b1ca04edcbf76027877839a8c))
+* **noticebar:** 新增`field-name`属性,支持传入数组对象 ([3f95345](https://github.com/yang1206/uniapp-nutui/commit/3f95345f2d97d9ce9dbb2e2004e269b1cf986d05)), closes [#109](https://github.com/yang1206/uniapp-nutui/issues/109)
+* **wip:** address ~ addresslist ([c79e091](https://github.com/yang1206/uniapp-nutui/commit/c79e0917d85169e8e126cbc4294e077232415b1a))
+
 ## [1.5.1](https://github.com/yang1206/uniapp-nutui/compare/v1.5.0...v1.5.1) (2023-11-17)
 
 ### Bug Fixes
