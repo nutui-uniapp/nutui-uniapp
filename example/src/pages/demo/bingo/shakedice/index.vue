@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <div class="demo1">
       <nut-shakedice :id="id" ref="dice" />
       <div class="demoBtn" @click="jump">

@@ -30,7 +30,7 @@ export const numberkeyboardProps = {
    * @description 自定义键盘额外的键
    * - 数组形式最多支持添加2个,超出默认取前2项
    */
-  customKey: makeArrayProp([]),
+  customKey: makeArrayProp<any>([]),
   /**
    * @description 是否显示遮罩
    */

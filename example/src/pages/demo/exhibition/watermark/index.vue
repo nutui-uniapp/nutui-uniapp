@@ -20,7 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="demo watermark-demo">
+  <div class="demo watermark-demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

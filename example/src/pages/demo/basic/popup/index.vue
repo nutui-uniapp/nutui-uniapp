@@ -1,6 +1,5 @@
 <script lang="ts">
 import { reactive, toRefs } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 
 export default {
   setup() {
@@ -19,13 +18,13 @@ export default {
       showPop2: false,
       showTeleport: false,
     })
-    return { ...toRefs(state), isH5 }
+    return { ...toRefs(state) }
   },
 }
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

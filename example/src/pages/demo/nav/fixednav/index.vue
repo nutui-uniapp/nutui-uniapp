@@ -4,7 +4,6 @@ import { onMounted, reactive, ref } from 'vue'
 const visible = ref(false)
 const visible1 = ref(false)
 const visible2 = ref(false)
-const visible3 = ref(false)
 const myActive = ref(false)
 
 onMounted(() => {
@@ -42,7 +41,7 @@ function selected(res: any) {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <nut-fixed-nav
       v-model:visible="visible"
       active-text="基础用法"

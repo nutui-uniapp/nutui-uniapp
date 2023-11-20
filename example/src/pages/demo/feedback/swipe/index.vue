@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo full">
+  <div class="demo full h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

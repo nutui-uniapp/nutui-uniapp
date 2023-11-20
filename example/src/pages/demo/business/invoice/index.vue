@@ -82,7 +82,7 @@ export default {
       },
     ])
 
-    const submit = (valid: boolean, errors: []) => {
+    const submit = (valid: boolean | object, errors: any[]) => {
       if (valid)
         console.log('success', formValue)
       else
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo full">
+  <div class="demo full h-100vh!">
     <h2 class="title">
       默认用法  (仅为组件示例，不会收集任何信息)
     </h2>

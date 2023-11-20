@@ -15,8 +15,6 @@ export default {
     const visible6 = ref(false)
     const closeContent = ref('')
     const content = ref('<p style=\'color:red\'>html</p><img src=\'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif\' />')
-    const sleep = () => new Promise(resolve => setTimeout(resolve, 1000))
-    const countDown = (second: number) => `倒计时 ${second} 秒`
 
     const onCancel = () => {
       uni.showToast({ title: 'event cancel' })
@@ -53,10 +51,6 @@ export default {
         content: '使用ref调用可以只写一个dialog组件',
         noFooter: true,
       })
-
-      setTimeout(() => {
-        dialogRef.value?.onOk()
-      }, 2000)
     }
 
     return {
@@ -86,7 +80,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh! w-100vh!">
     <nut-cell title="基础弹框" @click="baseClick" />
     <nut-dialog v-model:visible="visible1" title="基础弹框" content="这是基础弹框。" @cancel="onCancel" @ok="onOk" />
 
@@ -109,7 +103,6 @@ export default {
     <nut-dialog
       v-model:visible="visible5"
       footer-direction="vertical"
-      teleport="#app"
       title="温馨提示"
       content="这是提示弹框。"
     />

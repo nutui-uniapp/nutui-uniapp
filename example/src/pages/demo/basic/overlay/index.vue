@@ -13,7 +13,7 @@ const overlayStyle = ref({
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

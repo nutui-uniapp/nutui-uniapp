@@ -10,7 +10,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="trendarrow-demo demo">
+  <div class="trendarrow-demo demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo barrage-demo">
+  <div class="demo barrage-demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

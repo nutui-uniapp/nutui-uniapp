@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <nut-cell title="基础用法" is-link @click="state.visible1 = true" />
     <nut-short-password
       v-model="state.value1"

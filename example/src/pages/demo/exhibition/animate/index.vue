@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       点击触发
     </h2>

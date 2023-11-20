@@ -247,7 +247,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       选择自定义地址
     </h2>

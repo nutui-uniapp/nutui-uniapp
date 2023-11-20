@@ -48,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <nut-cell :is-link="true" title="默认键盘" @click="showKeyBoard(1)" />
     <nut-number-keyboard v-model:visible="visible1" overlay @input="input" @delete="onDelete" @close="close(1)" />
     <nut-cell :is-link="true" title="带右侧栏键盘" @click="showKeyBoard(2)" />

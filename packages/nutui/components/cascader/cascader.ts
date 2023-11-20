@@ -21,7 +21,7 @@ export const cascaderProps = {
   /**
    * @description 级联数据
    */
-  options: makeArrayProp([]),
+  options: makeArrayProp<any>([]),
 
   /**
    * @description 是否开启动态加载

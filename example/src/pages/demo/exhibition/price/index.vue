@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <nut-cell-group title="支持三种尺寸：small、normal、large">
       <nut-cell>
         <nut-price :price="0" size="small" :need-symbol="false" />

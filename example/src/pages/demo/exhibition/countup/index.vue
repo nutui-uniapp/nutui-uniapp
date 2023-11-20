@@ -22,8 +22,7 @@ export default {
       }, 300)
     }
     const run = () => {
-      let timer = null
-      timer = setInterval(() => {
+      setInterval(() => {
         data.customNumber = Math.floor(Math.random() * (700 - 100 + 1) + 100)
       }, 5000)
     }
@@ -60,7 +59,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo countup-demo">
+  <div class="demo countup-demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

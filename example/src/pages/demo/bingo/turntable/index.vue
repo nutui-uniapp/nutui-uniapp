@@ -113,7 +113,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2>基础用法</h2>
     <nut-turntable
       ref="turntable"

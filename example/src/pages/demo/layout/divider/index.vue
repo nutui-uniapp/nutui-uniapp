@@ -1,16 +1,9 @@
-<script lang="ts">
-import { isH5 } from '@uni-helper/uni-env'
+<script lang="ts" setup>
 
-export default {
-  props: {},
-  setup() {
-    return { isH5 }
-  },
-}
 </script>
 
 <template>
-  <div class="demo full bg-w">
+  <div class="demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

@@ -1,18 +1,9 @@
-<script lang="ts">
-import { isH5 } from '@uni-helper/uni-env'
+<script lang="ts" setup>
 
-export default {
-
-  setup(props) {
-    return {
-      isH5,
-    }
-  },
-}
 </script>
 
 <template>
-  <div class="demo full layout-demo">
+  <div class="demo h-100vh! full layout-demo">
     <h2 class="title">
       基础布局
     </h2>
@@ -119,7 +110,7 @@ export default {
           </div>
         </nut-col>
       </nut-row>
-      <nut-row type="flex" :justify="`center` as any">
+      <nut-row type="flex" justify="center">
         <nut-col :span="6">
           <div class="flex-content">
             span:6
@@ -136,7 +127,7 @@ export default {
           </div>
         </nut-col>
       </nut-row>
-      <nut-row type="flex" :justify="`end` as any">
+      <nut-row type="flex" justify="end">
         <nut-col :span="6">
           <div class="flex-content">
             span:6

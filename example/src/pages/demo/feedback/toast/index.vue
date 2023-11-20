@@ -1,6 +1,5 @@
 <script lang="ts">
 import { reactive } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 import type { ToastInst, ToastType } from 'nutui-uniapp'
 
 export default {
@@ -51,7 +50,6 @@ export default {
     }
     return {
       page,
-      isH5,
       toastRef,
       refClick,
     }
@@ -60,7 +58,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

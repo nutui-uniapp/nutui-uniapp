@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <view class="demo">
+  <view class="demo h-100vh!">
     <nut-cell-group title="基础用法">
       <nut-cell title="primary 类型">
         <template #link>

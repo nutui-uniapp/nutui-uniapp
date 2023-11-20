@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <view class="demo badge-demo">
+  <view class="demo badge-demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>

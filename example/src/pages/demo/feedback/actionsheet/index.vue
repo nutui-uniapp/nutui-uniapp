@@ -98,7 +98,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo actionsheet">
+  <div class="demo actionsheet h-100vh!">
     <h2 class="title">
       基础用法
     </h2>
