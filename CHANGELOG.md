@@ -12,7 +12,6 @@
 
 * 全部组件均已支持自定义类名与style ([5a29a83](https://github.com/yang1206/uniapp-nutui/commit/5a29a837a6ba3b7b1ca04edcbf76027877839a8c))
 * **noticebar:** 新增`field-name`属性,支持传入数组对象 ([3f95345](https://github.com/yang1206/uniapp-nutui/commit/3f95345f2d97d9ce9dbb2e2004e269b1cf986d05)), closes [#109](https://github.com/yang1206/uniapp-nutui/issues/109)
-* **wip:** address ~ addresslist ([c79e091](https://github.com/yang1206/uniapp-nutui/commit/c79e0917d85169e8e126cbc4294e077232415b1a))
 
 ## [1.5.1](https://github.com/yang1206/uniapp-nutui/compare/v1.5.0...v1.5.1) (2023-11-17)
 
