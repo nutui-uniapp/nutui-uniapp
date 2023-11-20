@@ -13,4 +13,4 @@ jobs:
         uses: jgehrcke/github-repo-stats@RELEASE
         with:
           repository: nutui-uniapp/nutui-uniapp
-          ghtoken: ${{ secrets.GITHUB_TOKEN }}
+          ghtoken: ${{ secrets.GHRS_GITHUB_API_TOKEN }}

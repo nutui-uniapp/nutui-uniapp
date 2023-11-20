@@ -45,5 +45,6 @@ jobs:
       - name: upload
         run: |
           npm i uni-mini-ci -g
-          yarn install
-          yarn upload:mp-alipay
+          npm i pnpm -g
+          pnpm install
+          pnpm upload:mp-alipay
