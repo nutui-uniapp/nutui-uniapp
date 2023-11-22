@@ -76,13 +76,6 @@
       }
     }
 
-    .nut-elevator__list__fixed__wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
-
     &__fixed {
       position: absolute;
       top: 0;
@@ -98,15 +91,6 @@
       color: $elevator-list-fixed-color;
       background-color: $elevator-list-fixed-bg-color;
       box-shadow: $elevator-list-fixed-box-shadow;
-
-      &--mini {
-        position: sticky;
-        top: -1px;
-      }
-    }
-
-    &--mini {
-      position: static;
     }
   }
 
@@ -117,7 +101,6 @@
     width: $elevator-list-item-code-current-width;
     height: $elevator-list-item-code-current-height;
     line-height: $elevator-list-item-code-current-line-height;
-    color: $elevator-list-item-font-color;
     text-align: $elevator-list-item-code-current-text-align;
     background: $elevator-list-item-code-current-bg-color;
     border-radius: $elevator-list-item-code-current-border-radius;
@@ -149,3 +132,4 @@
     }
   }
 }
+
