@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should render sure actionsheet when use custom props 1`] = `
+"<div class=\\"nut-overlay nut-transition nutFadeIn\\" style=\\"transition-duration: 300ms; z-index: 300; animation-duration: 300ms; animation-timing-function: ease;\\" canceltxt=\\"\\" optiontag=\\"name\\" optionsubtag=\\"subname\\" choosetagvalue=\\"\\" title=\\"\\" customcolor=\\"#ee0a24\\" description=\\"\\" menuitems=\\"[object Object]\\" closeabled=\\"true\\"></div>
+<div class=\\"nut-popup round nut-popup--bottom nut-transition nutSlideUpIn\\" style=\\"z-index: 300; transition-duration: 300ms; animation-duration: 300ms; animation-timing-function: ease;\\">
+  <view class=\\"nut-action-sheet\\" style=\\"\\">
+    <!--v-if-->
+    <view>
+      <!--v-if-->
+      <view class=\\"nut-action-sheet__menu\\">
+        <view class=\\"nut-action-sheet__item\\">
+          <view>选项一</view>
+          <view class=\\"nut-action-sheet__subdesc\\">描述信息</view>
+        </view>
+      </view>
+      <!--v-if-->
+    </view>
+  </view>
+  <!--v-if-->
+</div>"
+`;

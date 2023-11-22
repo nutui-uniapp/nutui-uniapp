@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`address: choose address item 1`] = `
+"<div class=\\"nut-overlay nut-transition nutFadeIn\\" style=\\"transition-duration: 300ms; z-index: 300; animation-duration: 300ms; animation-timing-function: ease;\\"></div>
+<div class=\\"nut-popup nut-popup--bottom nut-transition nutSlideUpIn\\" style=\\"z-index: 300; transition-duration: 300ms; animation-duration: 300ms; animation-timing-function: ease;\\">
+  <view class=\\"nut-address\\" style=\\"\\">
+    <view class=\\"nut-address__header\\">
+      <view class=\\"nut-address__header-back\\">
+        <!--v-if-->
+      </view>
+      <view class=\\"nut-address__header__title\\">请选择所在地区</view>
+      <view class=\\"nut-address__header-close\\"><text class=\\"nut-icon nutui-iconfont nut-icon-close\\" style=\\"color: rgb(204, 204, 204); font-size: 14px;\\"></text></view>
+    </view><!-- 请选择 -->
+    <view class=\\"nut-address__custom\\">
+      <view class=\\"nut-address__region\\">
+        <view class=\\"active nut-address__region-item\\">
+          <view>请选择</view>
+          <view class=\\"nut-address__region-line--mini active\\"></view>
+        </view>
+      </view>
+      <view class=\\"nut-address__detail\\">
+        <div class=\\"nut-address__detail-list\\">
+          <scroll-view scroll-y=\\"true\\" style=\\"height: 100%;\\" scroll-top=\\"0\\">
+            <div class=\\"nut-address__detail-item\\">
+              <view>
+                <!--v-if-->北京
+              </view>
+            </div>
+            <div class=\\"nut-address__detail-item\\">
+              <view>
+                <!--v-if-->广西
+              </view>
+            </div>
+            <div class=\\"nut-address__detail-item\\">
+              <view>
+                <!--v-if-->江西
+              </view>
+            </div>
+            <div class=\\"nut-address__detail-item\\">
+              <view>
+                <!--v-if-->四川
+              </view>
+            </div>
+            <div class=\\"nut-address__detail-item\\">
+              <view>
+                <!--v-if-->浙江
+              </view>
+            </div>
+          </scroll-view>
+        </div>
+      </view>
+    </view>
+  </view>
+  <!--v-if-->
+</div>"
+`;

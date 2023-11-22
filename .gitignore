@@ -11,6 +11,8 @@ stats.html
 node_modules
 uni_modules/dist
 dist
+html
+coverage
 dev-dist
 locale
 cache

@@ -1,11 +1,34 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
+  "baseUrl": "./",
+  "rootDir": ".",
+  "target": "esnext",
+  "module": "esnext",
+  "strict": true,
+  "jsx": "preserve",
+  "lib": [
+    "esnext",
+    "dom"
+  ],
   "compilerOptions": {
+    "paths": {
+      "@/*": [
+        "./"
+      ]
+    },
     "types": [
       "node",
+      "jsdom",
       "vite/client",
       "@dcloudio/types",
-      "@uni-helper/uni-app-types"
+      "@uni-helper/uni-app-types",
+      "vitest/globals"
     ]
-  }
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue"
+  ]
 }

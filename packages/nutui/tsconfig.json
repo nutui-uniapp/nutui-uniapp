@@ -3,7 +3,9 @@
   "compilerOptions": {
     "types": [
       "@dcloudio/types",
-      "@uni-helper/uni-app-types"
+      "@uni-helper/uni-app-types",
+      "vitest/globals",
+      "vite/client"
     ]
   },
   "include": [

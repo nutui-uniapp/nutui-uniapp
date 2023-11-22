@@ -39,6 +39,7 @@ const regionList = computed(() => {
   }
 })
 
+defineExpose({ initCustomSelected })
 function transformData(data: AddressRegionData[]) {
   if (!Array.isArray(data))
     throw new TypeError('params muse be array.')
