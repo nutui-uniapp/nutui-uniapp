@@ -368,6 +368,12 @@ export default {
 | change      | 选中值改变时触发 | `(value, pathNodes)` |
 | path-change | 选中项改变时触发 | `(pathNodes)`       |
 
+### Slots
+
+| 名称  | 说明     |
+|-------|----------|
+| title `v1.5.4` | 自定义顶部标题部分 |
+
 ## 主题定制
 
 ### 样式变量

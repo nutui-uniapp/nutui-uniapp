@@ -207,7 +207,13 @@ export default {
       :options="demo1.options"
       @change="events.change"
       @pathChange="events.pathChange"
-    />
+    >
+      <template #title>
+        <view class="p-20px text-center fw-700">
+          地址选择
+        </view>
+      </template>
+    </nut-cascader>
 
     <h2 class="title">
       自定义属性名称
