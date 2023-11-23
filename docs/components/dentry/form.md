@@ -114,96 +114,110 @@ export default {
 
 ### 表单校验
 
-```html
-<template>
-<nut-form :model-value="formData" :rules="{name: [{
-            message: 'name 至少两个字符',
-            validator: nameLengthValidator
-          }]}" ref="ruleForm">
-  <nut-form-item label="姓名" prop="name" required :rules="[{ required: true, message: '请填写姓名' }]">
-    <nut-input class="nut-input-text" @blur="customBlurValidate('name')" v-model="formData.name"
-      placeholder="请输入姓名，blur 事件校验" type="text" />
-  </nut-form-item>
-  <nut-form-item label="年龄" prop="age" required :rules="[
-      { required: true, message: '请填写年龄' },
-      { validator: customValidator, message: '必须输入数字' },
-      { validator: customRulePropValidator, message: '必须输入数字', reg: /^\d+$/ },
-      { regex: /^(\d{1,2}|1\d{2}|200)$/, message: '必须输入0-200区间' }
-    ]">
-    <nut-input class="nut-input-text" v-model="formData.age" placeholder="请输入年龄，必须数字且0-200区间" type="text" />
-  </nut-form-item>
-  <nut-form-item label="联系电话" prop="tel" required :rules="[
-      { required: true, message: '请填写联系电话' },
-      { validator: asyncValidator, message: '电话格式不正确' }
-    ]">
-    <nut-input class="nut-input-text" v-model="formData.tel" placeholder="请输入联系电话，异步校验电话格式" type="text" />
-  </nut-form-item>
-  <nut-form-item label="地址" prop="address" required :rules="[{ required: true, message: '请填写地址' }]">
-    <nut-input class="nut-input-text" v-model="formData.address" placeholder="请输入地址" type="text" />
-  </nut-form-item>
-  <nut-cell>
-    <nut-button type="primary" size="small" style="margin-right: 10px" @click="submit">提交</nut-button>
-    <nut-button size="small" @click="reset">重置提示状态</nut-button>
-  </nut-cell>
-</nut-form>
-</template>
+```vue
 <script lang="ts">
-import { ref,reactive } from 'vue';
+import { reactive, ref } from 'vue'
+
 export default {
-setup(){
+  setup() {
     const formData = reactive({
-        name: '',
-        age: '',
-        tel: '',
-        address: ''
-    });
+      name: '',
+      age: '',
+      tel: '',
+      address: ''
+    })
     const validate = (item: any) => {
-        console.log(item);
-    };
-    const ruleForm = ref<any>(null);
+      console.log(item)
+    }
+    const ruleForm = ref<any>(null)
 
     const submit = () => {
       ruleForm.value.validate().then(({ valid, errors }: any) => {
-        if (valid) {
-          console.log('success', formData);
-        } else {
-          console.log('error submit!!', errors);
-        }
-      });
-    };
+        if (valid)
+          console.log('success', formData)
+        else
+          console.log('error submit!!', errors)
+      })
+    }
     const reset = () => {
-      ruleForm.value.reset();
-    };
+      ruleForm.value.reset()
+    }
     // 失去焦点校验
     const customBlurValidate = (prop: string) => {
       ruleForm.value.validate(prop).then(({ valid, errors }: any) => {
-        if (valid) {
-          console.log('success', formData);
-        } else {
-          console.log('error submit!!', errors);
-        }
-      });
-    };
+        if (valid)
+          console.log('success', formData)
+        else
+          console.log('error submit!!', errors)
+      })
+    }
     // 函数校验
-    const customValidator = (val: string) => /^\d+$/.test(val);
+    const customValidator = (val: string) => /^\d+$/.test(val)
     const customRulePropValidator = (val: string, rule: FormItemRuleWithoutValidator) => {
-      return (rule?.reg as RegExp).test(val);
-    };
-    const nameLengthValidator = (val: string) => val?.length >= 2;
+      return (rule?.reg as RegExp).test(val)
+    }
+    const nameLengthValidator = (val: string) => val?.length >= 2
     // Promise 异步校验
     const asyncValidator = (val: string) => {
       return new Promise((resolve) => {
-        console.log('模拟异步验证中...');
+        console.log('模拟异步验证中...')
         setTimeout(() => {
-          console.log('验证完成');
-          resolve(/^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/.test(val));
-        }, 1000);
-      });
-    };
-    return { ruleForm, formData, validate, customValidator, customRulePropValidator, nameLengthValidator, asyncValidator, customBlurValidate, submit, reset };
-}
+          console.log('验证完成')
+          resolve(/^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/.test(val))
+        }, 1000)
+      })
+    }
+    return { ruleForm, formData, validate, customValidator, customRulePropValidator, nameLengthValidator, asyncValidator, customBlurValidate, submit, reset }
+  }
 }
 </script>
+
+<template>
+  <nut-form
+    ref="ruleForm" :model-value="formData" :rules="{ name: [
+      { required: true, message: '请填写姓名' },
+      {
+        message: 'name 至少两个字符',
+        validator: nameLengthValidator,
+      }] }"
+  >
+    <nut-form-item label="姓名" prop="name">
+      <nut-input
+        v-model="formData.name" class="nut-input-text" placeholder="请输入姓名，blur 事件校验"
+        type="text" @blur="customBlurValidate('name')"
+      />
+    </nut-form-item>
+    <nut-form-item
+      label="年龄" prop="age" required :rules="[
+        { required: true, message: '请填写年龄' },
+        { validator: customValidator, message: '必须输入数字' },
+        { validator: customRulePropValidator, message: '必须输入数字', reg: /^\d+$/ },
+        { regex: /^(\d{1,2}|1\d{2}|200)$/, message: '必须输入0-200区间' },
+      ]"
+    >
+      <nut-input v-model="formData.age" class="nut-input-text" placeholder="请输入年龄，必须数字且0-200区间" type="text" />
+    </nut-form-item>
+    <nut-form-item
+      label="联系电话" prop="tel" required :rules="[
+        { required: true, message: '请填写联系电话' },
+        { validator: asyncValidator, message: '电话格式不正确' },
+      ]"
+    >
+      <nut-input v-model="formData.tel" class="nut-input-text" placeholder="请输入联系电话，异步校验电话格式" type="text" />
+    </nut-form-item>
+    <nut-form-item label="地址" prop="address" required :rules="[{ required: true, message: '请填写地址' }]">
+      <nut-input v-model="formData.address" class="nut-input-text" placeholder="请输入地址" type="text" />
+    </nut-form-item>
+    <nut-cell>
+      <nut-button type="primary" size="small" style="margin-right: 10px" @click="submit">
+        提交
+      </nut-button>
+      <nut-button size="small" @click="reset">
+        重置提示状态
+      </nut-button>
+    </nut-cell>
+  </nut-form>
+</template>
 ```
 
 ### 表单类型
