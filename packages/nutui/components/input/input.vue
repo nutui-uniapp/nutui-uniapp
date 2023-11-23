@@ -206,7 +206,7 @@ export default defineComponent({
             :readonly="readonly"
             :focus="autofocus"
             :maxlength="maxLength ? +maxLength : -1"
-            :value="modelValue"
+            :value="modelValue.toString()"
             :format-trigger="formatTrigger"
             :auto-blur="autofocus ? true : undefined"
             :confirm-type="confirmType"
@@ -232,13 +232,13 @@ export default defineComponent({
           <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
-              {{ modelValue ? modelValue.length : 0 }}
+              {{ getModelValue() ? getModelValue().length : 0 }}
             </text>/{{ maxLength }}
           </view>
         </view>
         <view
           v-if="clearable && !readonly"
-          v-show="(active || showClearIcon) && modelValue.length > 0"
+          v-show="(active || showClearIcon) && getModelValue().length > 0"
           class="nut-input-clear-box"
           @click="(handleClear as any)"
         >
