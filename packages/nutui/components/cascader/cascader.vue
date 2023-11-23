@@ -67,9 +67,11 @@ export default defineComponent({
       :close-icon-position="closeIconPosition"
       :lock-scroll="lockScroll"
     >
-      <template v-if="title">
-        <rich-text class="nut-cascader__bar" :nodes="title" />
-      </template>
+      <slot name="title">
+        <template v-if="title">
+          <rich-text class="nut-cascader__bar" :nodes="title" />
+        </template>
+      </slot>
 
       <NutCascaderItem
         :model-value="innerValue"
