@@ -45,14 +45,14 @@ export default defineComponent({
 
 <template>
   <view :class="classes">
-    <view v-if="!hidden && !dot && $slots.icon" class="nut-badge__icon" :style="getStyle">
+    <view v-if="!props.hidden && !props.dot && $slots.icon" class="nut-badge__icon" :style="getStyle">
       <slot name="icon" />
     </view>
     <slot />
     <view
-      v-if="!hidden && (content || dot)"
+      v-if="!props.hidden && (content || props.dot)"
       class="nut-badge__content nut-badge__content--sup"
-      :class="{ 'nut-badge__content--dot': dot, 'nut-badge__content--bubble': !dot && bubble }"
+      :class="{ 'nut-badge__content--dot': props.dot, 'nut-badge__content--bubble': !props.dot && props.bubble }"
       :style="getStyle"
     >
       {{ content }}
