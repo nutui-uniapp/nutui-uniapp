@@ -1,3 +1,18 @@
+## [1.5.4](https://github.com/yang1206/uniapp-nutui/compare/v1.5.3...v1.5.4) (2023-11-23)
+
+### Bug Fixes
+
+* **address:** 选择最后一级时 onChange 缺少 value 字段 ([04d9262](https://github.com/yang1206/uniapp-nutui/commit/04d92627b6b08e9f439208a24c627c8975f91906))
+* **badge:** 修复微信小程序 props编译丢失 ([e95ff0d](https://github.com/yang1206/uniapp-nutui/commit/e95ff0df44abe6cc1a99db1b21b6696135d0c9d6))
+* **elevator:** 修复滚动后无法点击问题 ([6956662](https://github.com/yang1206/uniapp-nutui/commit/695666260596b9b5e5925451de74bd23556b0af0))
+* **picker:** 调整 columns 类型定义 ([42f1b9c](https://github.com/yang1206/uniapp-nutui/commit/42f1b9c3b7fc4f6d434c63791b20b84b09d0bcb0))
+
+### Features
+
+* **cascader:** 新增title插槽 ([80b2f29](https://github.com/yang1206/uniapp-nutui/commit/80b2f291d66920d990dc15a21752400b35fdd4e4)), closes [#119](https://github.com/yang1206/uniapp-nutui/issues/119)
+* **form:** formItem的required的星号支持从rules中自动判断是否显示 ([1ddda92](https://github.com/yang1206/uniapp-nutui/commit/1ddda92b4a6c4e312a502be9d10d6db64da80e31))
+* **input:** modelValue的类型支持number ([2e308e7](https://github.com/yang1206/uniapp-nutui/commit/2e308e741f7c888b5bb96d19b8d2fd02f627db5a))
+
 ## [1.5.3](https://github.com/yang1206/uniapp-nutui/compare/v1.5.2...v1.5.3) (2023-11-22)
 
 ### Bug Fixes
