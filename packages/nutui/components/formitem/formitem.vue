@@ -18,6 +18,8 @@ provide('form', {
 })
 
 const isRequired = computed(() => {
+  if (props.required === false)
+    return false
   const rules = Parent.parent?.props?.rules
   let formRequired = false
   for (const key in rules) {

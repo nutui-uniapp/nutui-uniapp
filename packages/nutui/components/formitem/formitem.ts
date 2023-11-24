@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, nullableBooleanProp, truthProp } from '../_utils'
 import type { FormItemRule } from './types'
 
 export const formitemProps = {
@@ -7,7 +7,7 @@ export const formitemProps = {
   /**
    * @description 是否显示必填字段的标签旁边的红色星号
    */
-  required: Boolean,
+  required: nullableBooleanProp,
 
   /**
    * @description 表单域 `v-model` 字段，在使用表单校验功能的情况下，该属性是必填的
