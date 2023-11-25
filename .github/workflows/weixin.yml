@@ -51,4 +51,5 @@ jobs:
           npm i uni-mini-ci -g
           npm i pnpm -g
           pnpm install
+          pnpm build
           pnpm upload:mp-weixin
