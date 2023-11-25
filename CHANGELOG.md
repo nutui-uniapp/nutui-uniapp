@@ -1,3 +1,11 @@
+## [1.5.5](https://github.com/yang1206/uniapp-nutui/compare/v1.5.4...v1.5.5) (2023-11-25)
+
+### Bug Fixes
+
+* **formitem:** 提高传入 required 的优先级 ([300ef79](https://github.com/yang1206/uniapp-nutui/commit/300ef797e05c2cacbe2e144bafd1e7402116fc83))
+* **inputnumber:** 修复步进按钮禁用功能无效 ([75fc3cc](https://github.com/yang1206/uniapp-nutui/commit/75fc3cc78a7dd6154b5418db0306f4ce1dcfc25b))
+* **swiper:** 修复 swiper-item 宽高错误问题 ([0840982](https://github.com/yang1206/uniapp-nutui/commit/084098288d3511f43db2f4db0b4c723ddc53c3a5))
+
 ## [1.5.4](https://github.com/yang1206/uniapp-nutui/compare/v1.5.3...v1.5.4) (2023-11-23)
 
 ### Bug Fixes
