@@ -33,6 +33,8 @@ function reduceAllow(value = Number(props.modelValue)): boolean {
   return value > Number(props.min) && !props.disabled
 }
 function reduce(event: Event) {
+  if (props.disabled)
+    return
   emit('reduce', event)
   const output_value = Number(props.modelValue) - Number(props.step)
   if (reduceAllow() && output_value >= Number(props.min)) {
@@ -44,6 +46,8 @@ function reduce(event: Event) {
   }
 }
 function add(event: Event) {
+  if (props.disabled)
+    return
   emit('add', event)
   const output_value = Number(props.modelValue) + Number(props.step)
   if (addAllow() && output_value <= Number(props.max)) {
