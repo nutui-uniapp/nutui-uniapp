@@ -3,6 +3,7 @@ import { configDefaults, defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
+// import uni from '@dcloudio/vite-plugin-uni'
 const resolve = path.resolve
 // https://vitejs.dev/config/
 export default defineConfig({
