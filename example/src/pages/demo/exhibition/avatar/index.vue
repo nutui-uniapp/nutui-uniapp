@@ -156,7 +156,7 @@ export default {
     </h2>
     <nut-cell>
       <nut-cell>
-        <nut-avatar-group max-count="4" z-index="right">
+        <nut-avatar-group :max-count="4" z-index="right">
           <nut-avatar v-for="i in avatarCount" :key="i">
             <nut-icon v-if="i % 2 === 0" name="my" />
             <image

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import NutAvatar from '../avatar/avatar.vue'
@@ -23,7 +23,15 @@ const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props, avatarGroupRef, index })
+const { internalChildren } = useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props, avatarGroupRef, index })
+
+watch(() => internalChildren, (value) => {
+  if (props.maxCount)
+    foldCount.value = value.length - (+props.maxCount)
+}, {
+  immediate: true,
+  deep: true,
+})
 </script>
 
 <script lang="ts">
@@ -44,14 +52,14 @@ export default defineComponent({
     <slot />
     <NutAvatar
       v-if="foldCount > 0"
-      class="avater-fold"
-      :color="maxColor"
+      custom-class="avater-fold"
+      :custom-color="maxColor"
       :bg-color="maxBgColor"
       :size="size"
       :shape="shape"
       :style="{ magrinLeft: `${span}px` }"
     >
-      {{ maxContent || foldCount }}
+      {{ maxContent || (foldCount === 99 ? foldCount : (foldCount - 1)) }}
     </NutAvatar>
   </view>
 </template>
