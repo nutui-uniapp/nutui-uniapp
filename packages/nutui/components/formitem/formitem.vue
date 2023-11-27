@@ -6,14 +6,29 @@ import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
 import { FORM_KEY } from '../form/form'
 import { useInject } from '../_hooks'
+import type { FormItemRule } from './types'
+import type { FormItemProps } from './formitem'
 import { formitemProps } from './formitem'
 
 const props = defineProps(formitemProps)
 const slots = useSlots()
-const Parent = useInject<{ formErrorTip: Required<any> }>(FORM_KEY)
+const Parent = useInject<{ formErrorTip: Required<any>; props: Required<FormItemProps> }>(FORM_KEY)
 provide('form', {
   props,
 })
+
+const isRequired = computed(() => {
+  if (props.required === false)
+    return false
+  const rules = Parent.parent?.props?.rules
+  let formRequired = false
+  for (const key in rules) {
+    if (Object.prototype.hasOwnProperty.call(rules, key) && key === props.prop && Array.isArray(rules[key as any]))
+      formRequired = rules[key as any].some((rule: FormItemRule) => rule.required)
+  }
+  return props.required || props.rules.some(rule => rule.required) || formRequired
+})
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
@@ -61,7 +76,7 @@ export default defineComponent({
       v-if="label || getSlots('label')"
       class="nut-cell__title nut-form-item__label"
       :style="labelStyle"
-      :class="{ required }"
+      :class="{ required: isRequired }"
     >
       <slot name="label">
         {{ label }}

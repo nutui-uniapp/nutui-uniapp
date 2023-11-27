@@ -13,7 +13,7 @@ export const inputProps = {
   /**
    * @description 输入值，双向绑定
    */
-  modelValue: makeStringProp(''),
+  modelValue: makeNumericProp(''),
   /**
    * @description 输入框为空时占位符
    */

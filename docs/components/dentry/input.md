@@ -363,7 +363,7 @@
 
 | 参数         | 说明                                   | 类型           | 默认值  |
 |--------------|----------------------------------------|----------------|---------|
-| v-model      | 输入值，双向绑定                       | string         | -       |
+| v-model | 输入值，双向绑定 | string \| number | - |
 | type         | 输入框类型，支持原生 `input` 标签的所有 `type` 属性，另外还支持 `number` `digit`     | string         | `text`  |
 | placeholder  | 输入框为空时占位符                      | string         | -       |
 | placeholder-style | 指定 placeholder 的样式 | string | - |

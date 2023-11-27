@@ -14,6 +14,11 @@ export const truthProp = {
   default: true as const,
 }
 
+export const nullableBooleanProp = {
+  type: Boolean as PropType<boolean | undefined>,
+  default: undefined,
+}
+
 export function makeRequiredProp<T>(type: T) {
   return {
     type,

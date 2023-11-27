@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import { elevatorEmits, elevatorProps } from './elevator'
@@ -38,12 +38,12 @@ const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-const fixedStyle = computed(() => {
-  return {
-    pointerEvents: 'none',
-    height: `${state.listHeight[state.listGroup.length - 1]}px`,
-  } as CSSProperties
-})
+// const fixedStyle = computed(() => {
+//   return {
+//     pointerEvents: 'none',
+//     height: `${state.listHeight[state.listGroup.length - 1]}px`,
+//   } as CSSProperties
+// })
 
 function getData(el: HTMLElement): string | void {
   if (!el.dataset.index)
@@ -190,13 +190,6 @@ export default defineComponent({
       :style="{ height: isNaN(+height) ? height : `${height}px` }"
       @scroll="listViewScroll"
     >
-      <view v-show="scrollY > 0 && isSticky" :style="fixedStyle" class="nut-elevator__list__fixed__wrapper">
-        <view v-if="isSticky" class="nut-elevator__list__fixed nut-elevator__list__fixed--mini">
-          <view class="nut-elevator__fixed-title">
-            {{ indexList[currentIndex]?.[acceptKey] }}
-          </view>
-        </view>
-      </view>
       <view id="elevator__item-wrap">
         <view
           v-for="(item, index) in indexList"
@@ -222,6 +215,11 @@ export default defineComponent({
         </view>
       </view>
     </scroll-view>
+    <view v-show="scrollY > 2 && isSticky" class="nut-elevator__list__fixed">
+      <view class="nut-elevator__list__fixed-title">
+        {{ indexList[currentIndex][acceptKey] }}
+      </view>
+    </view>
     <view v-show="scrollStart" v-if="indexList.length > 0" class="nut-elevator__code--current">
       {{ indexList[codeIndex][acceptKey] }}
     </view>

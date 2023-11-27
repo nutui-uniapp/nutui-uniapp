@@ -7,11 +7,11 @@ export const swiperProps = {
   /**
    * @description 轮播卡片的宽度
    */
-  width: makeNumericProp(uni.getSystemInfoSync().windowWidth),
+  width: makeNumericProp(''),
   /**
    * @description 轮播卡片的高度
    */
-  height: makeNumericProp(0),
+  height: makeNumericProp(''),
   /**
    * @description 轮播方向,可选值 `horizontal`, `vertical`
    */

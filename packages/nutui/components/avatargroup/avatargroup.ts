@@ -8,7 +8,7 @@ export const avatargroupProps = {
   /**
    * @description 显示的最大头像个数
    */
-  maxCount: makeNumericProp(''),
+  maxCount: [Number, String],
 
   /**
    * @description 头像数量超出时，会出现一个头像折叠元素，该元素内容可为`...`、`more`、`+N`
