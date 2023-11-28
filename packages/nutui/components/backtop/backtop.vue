@@ -50,21 +50,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <view>
-    <scroll-view
-      :scroll-y="true"
-      :style="{ height }"
-      :scroll-top="scrollTop"
-      :scroll-with-animation="true"
-      @scroll="scroll"
-    >
-      <slot name="content" />
-    </scroll-view>
-    <view :class="classes" :style="style" @click.stop="click">
-      <slot name="icon">
-        <NutIcon :custom-color="customColor" name="top" :size="19" custom-class="nut-backtop-main" />
-      </slot>
-    </view>
+  <scroll-view
+    :scroll-y="true"
+    :style="{ height }"
+    :scroll-top="scrollTop"
+    :scroll-with-animation="true"
+    @scroll="scroll"
+  >
+    <slot name="content" />
+  </scroll-view>
+  <view :class="classes" :style="style" @click.stop="click">
+    <slot name="icon">
+      <NutIcon :custom-color="customColor" name="top" :size="19" custom-class="nut-backtop-main" />
+    </slot>
   </view>
 </template>
 

@@ -7,7 +7,7 @@ exports[`avatar: avatar group render 1`] = `
   <view style=\\"background-color: rgb(238, 238, 238); color: rgb(102, 102, 102); margin-left: -8px;\\" class=\\"nut-avatar nut-avatar-normal nut-avatar-round\\">3</view>
   <view style=\\"background-color: rgb(238, 238, 238); color: rgb(102, 102, 102); margin-left: -8px;\\" class=\\"nut-avatar nut-avatar-normal nut-avatar-round\\">4</view>
   <view style=\\"background-color: rgb(238, 238, 238); color: rgb(102, 102, 102); margin-left: -8px;\\" class=\\"nut-avatar nut-avatar-normal nut-avatar-round\\">5</view>
-  <view style=\\"background-color: rgb(238, 238, 238); color: rgb(102, 102, 102); margin-left: -8px;\\" class=\\"nut-avatar nut-avatar-normal nut-avatar-round avater-fold\\" color=\\"#666\\">99</view>
+  <view style=\\"background-color: rgb(238, 238, 238); color: rgb(102, 102, 102); margin-left: -8px;\\" class=\\"avater-fold nut-avatar nut-avatar-normal nut-avatar-round\\">99</view>
 </view>"
 `;
 

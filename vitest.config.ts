@@ -4,8 +4,10 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // import uni from '@dcloudio/vite-plugin-uni'
-const resolve = path.resolve
+
 // https://vitejs.dev/config/
+const resolve = path.resolve
+
 export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, './packages') }],
@@ -18,11 +20,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    // uni({
-    //   vueOptions: {
-    //     include: [/\.vue$/],
-    //   },
-    // }),
+    // uni(),
     vue({
       include: [/\.vue$/],
     }),
