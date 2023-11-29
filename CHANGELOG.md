@@ -1,3 +1,11 @@
+## [1.5.6](https://github.com/yang1206/uniapp-nutui/compare/v1.5.5...v1.5.6) (2023-11-29)
+
+### Bug Fixes
+
+* **avatar:** 修复maxCount属性无效 ([341f488](https://github.com/yang1206/uniapp-nutui/commit/341f48806545f1f7f84cd208d6790f73858d749e))
+* **numberkeyboard:** 类名错误 ([6a15803](https://github.com/yang1206/uniapp-nutui/commit/6a15803a4e8875fadf9172b2d388a732f2fc3e71))
+* **utils:** isPromise 判断错误 ([42820e2](https://github.com/yang1206/uniapp-nutui/commit/42820e2ad20c571ea00afc588254ae4dbe5df1b7))
+
 ## [1.5.5](https://github.com/yang1206/uniapp-nutui/compare/v1.5.4...v1.5.5) (2023-11-25)
 
 ### Bug Fixes
