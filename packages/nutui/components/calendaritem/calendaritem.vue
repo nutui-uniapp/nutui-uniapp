@@ -44,9 +44,6 @@ const compConthsData = computed(() => {
   return state.monthsData.slice(state.defaultRange[0], state.defaultRange[1])
 })
 const scrollWithAnimation = ref(false)
-const showTopBtn = computed(() => {
-  return slots.btn
-})
 const topInfo = computed(() => {
   return slots.topInfo
 })
@@ -710,7 +707,7 @@ export default defineComponent({
       <view v-if="showTitle" class="nut-calendar__header-title">
         {{ title || translate('title') }}
       </view>
-      <view v-if="showTopBtn" class="nut-calendar__header-slot">
+      <view v-if="btnSlot" class="nut-calendar__header-slot">
         <slot name="btn" />
       </view>
       <view v-if="showSubTitle" class="nut-calendar__header-subtitle">

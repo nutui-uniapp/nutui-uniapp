@@ -94,9 +94,13 @@ export const calendarProps = {
   disabledDate: Function,
 
   /**
-   * @description 是否使用 footer 插槽，如果使用此值必须为 true
+   * @description 是否使用 footer 插槽，如果使用,此值必须为 true
    */
   footerSlot: Boolean,
+  /**
+   * @description 是否使用 btn 插槽，如果使用,此值必须为 true
+   */
+  btnSlot: Boolean,
 }
 
 export type CalendarProps = ExtractPropTypes<typeof calendarProps>

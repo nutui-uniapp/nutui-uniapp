@@ -360,6 +360,7 @@ export default {
     type="range"
     :start-date="null"
     :end-date="null"
+    :btn-slot="true"
     @close="closeSwitch('isVisible')"
     @choose="setChooseValue"
   >
@@ -802,7 +803,9 @@ export default {
 | to-date-animation          | 是否启动滚动动画              | boolean          | `true` |
 | first-day-of-week          | 设置周起始日              | 0-6          | `0` |
 | disabled-date `v1.4.0` | 一个用来判断该日期是否被禁用的函数，接受一个`年-月-日`作为参数。 应该返回一个 Boolean 值。 | function | `-` |
-| footer-slot `v1.4.0` | 是否使用footer插槽，如果使用此值必须为 true | Boolean | `false` |
+| footer-slot `v1.4.0` | 是否使用footer插槽，如果使用，此值必须为 true | Boolean | `false` |
+| btn-slot `v1.5.7` | 是否使用btn插槽，如果使用，此值必须为 true | Boolean | `false` |
+
 ### Events
 
 | 事件名 | 说明                         | 回调参数                     |

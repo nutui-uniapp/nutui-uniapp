@@ -68,7 +68,7 @@ export default {
       state[`${param as 'isVisible1'}`] = false
     }
 
-    const setChooseValue = (param: string) => {
+    const setChooseValue = (param: any) => {
       state.date = param[3]
       state.dateWeek = param[4]
     }
@@ -80,25 +80,25 @@ export default {
     const select = (param: string) => {
       uni.showToast({ title: JSON.stringify(param) })
     }
-    const setChooseValue1 = (param: string) => {
+    const setChooseValue1 = (param: any) => {
       state.date1 = [...[param[0][3], param[1][3]]]
     }
 
-    const setChooseValue2 = (param: string) => {
+    const setChooseValue2 = (param: any) => {
       state.date2 = param[3]
     }
 
-    const setChooseValue3 = (param: string) => {
+    const setChooseValue3 = (param: any) => {
       state.date3 = param[3]
     }
-    const setChooseValue4 = (param: string) => {
+    const setChooseValue4 = (param: any) => {
       state.date4 = [...[param[0][3], param[1][3]]]
     }
 
-    const setChooseValue5 = (param: string) => {
+    const setChooseValue5 = (param: any) => {
       state.date5 = [...[param[0][3], param[1][3]]]
     }
-    const setChooseValue6 = (param: string) => {
+    const setChooseValue6 = (param: any) => {
       state.date6 = [...[param[0][3], param[1][3]]]
     }
     const setChooseValue7 = (chooseData: any) => {
@@ -107,7 +107,7 @@ export default {
       })
       state.date7 = [...dateArr]
     }
-    const setChooseValue8 = (param: string) => {
+    const setChooseValue8 = (param: any) => {
       state.date8 = param[3]
     }
     const setChooseValue9 = (param: any) => {
@@ -311,6 +311,7 @@ export default {
         v-model:visible="isVisible5"
         :default-value="date5"
         safe-area-inset-bottom
+        :btn-slot="true"
         type="range"
         @close="closeSwitch('isVisible5')"
         @choose="setChooseValue5"
