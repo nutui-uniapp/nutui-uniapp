@@ -3,7 +3,7 @@
 > nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。
 > 为了能够获得良好的开发体验，推荐使用[vite cli](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
 
-## npm安装 (cli)
+## npm 安装 (cli)
 
  ::: code-group
 
@@ -40,9 +40,9 @@
 }
 ```
 
-### 组件TS类型支持
+### 组件 TS 类型支持
 
-想要获取全局组件类型， 需要使用 vscode与[volar插件](https://cn.vuejs.org/guide/typescript/overview.html#volar-takeover-mode)
+想要获取全局组件类型，需要使用 vscode 与[volar 插件](https://cn.vuejs.org/guide/typescript/overview.html#volar-takeover-mode)
 
 请在 tsconfig.json 中通过 compilerOptions.type 指定全局组件类型。
 
@@ -72,7 +72,7 @@ export default defineConfig({
     Components({
       resolvers: [NutResolver()],
     }),
-    // uni插件一定要放到后面
+    // uni 插件一定要放到后面
     uni()
   ],
 })
@@ -91,14 +91,14 @@ see more in [unplugin-vue-components](https://github.com/antfu/unplugin-vue-comp
 
 ### 样式引入
 
-<!-- 组件库与uniapp都依赖sass，请先安装sass -->
+<!-- 组件库与 uniapp 都依赖 sass，请先安装 sass -->
 
 在项目文件 `app.vue` 文件中添加如下代码：
 
 ```scss
 <style lang="scss">
 @import 'nutui-uniapp/styles/index';
-</style
+</style>
 ```
 
 导入样式变量
@@ -132,9 +132,9 @@ export default defineConfig({
 
 ## HBuilderX 导入
 
-前往 uniapp插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
+前往 uniapp 插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
 
-> nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了uni_modules，但是组件库在 hbuilder中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts支持与开发体验
+> nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了 uni_modules，但是组件库在 hbuilder 中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts 支持与开发体验
 
 ### 按需导入
 
@@ -155,7 +155,7 @@ export default defineConfig({
 
 ### 样式引入
 
-<!-- 组件库与uniapp都依赖sass，请先安装sass -->
+<!-- 组件库与 uniapp 都依赖 sass，请先安装 sass -->
 
 在项目文件 `app.vue` 文件中添加如下代码：
 
