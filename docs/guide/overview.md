@@ -1,4 +1,4 @@
-# NutUi-uniapp
+# nutui-uniapp
 
 ## 介绍
 
@@ -19,7 +19,7 @@ nutui-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com) 4.x版本�
 
 ## 预览
 
-<p align="center">
+<p align="center" class="flex justify-center gap-10px">
    <img src="https://s2.loli.net/2023/07/05/eJwPvqCY8EcZ7Vi.png" width="164" alt="NutUI" />
   &nbsp;
   <img src="https://s2.loli.net/2023/07/05/QyW2RHcmnuvIFwp.jpg" width="166" title="请用微信扫码">

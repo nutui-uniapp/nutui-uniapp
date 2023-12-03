@@ -16,6 +16,41 @@ const iframeUrl = computed(() => {
     : `/ui/#/pages/demo${path}/index`
 })
 
+function enableTransitions() {
+  return 'startViewTransition' in document
+    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+}
+
+provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
+  if (!enableTransitions()) {
+    isDark.value = !isDark.value
+    return
+  }
+
+  const clipPath = [
+    `circle(0px at ${x}px ${y}px)`,
+    `circle(${Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    )}px at ${x}px ${y}px)`,
+  ]
+
+  // @ts-expect-error no types
+  await document.startViewTransition(async () => {
+    isDark.value = !isDark.value
+    await nextTick()
+  }).ready
+
+  document.documentElement.animate(
+    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
+    {
+      duration: 300,
+      easing: 'ease-in',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+    },
+  )
+})
+
 onMounted(() => {
   if (typeof window !== 'undefined') {
     watch(isDark, (val) => {
@@ -63,3 +98,31 @@ onMounted(() => {
     <iframe class="border-none rounded-xl transition-all scrollbar-width-0 block w-375px h-675px" :src="iframeUrl" />
   </div>
 </template>
+
+<style>
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: none;
+}
+
+::view-transition-old(root),
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root),
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.VPSwitchAppearance {
+  width: 22px !important;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.VPSwitchAppearance .check {
+  transform: none !important;
+}
+</style>

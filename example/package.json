@@ -76,14 +76,14 @@
     "@uni-helper/vite-plugin-uni-pages": "^0.2.12",
     "@unocss/eslint-config": "^0.57.7",
     "@unocss/preset-rem-to-px": "^0.57.7",
-    "@vue/runtime-core": "^3.3.7",
+    "@vue/runtime-core": "^3.2.47",
     "@vue/tsconfig": "^0.4.0",
     "sass": "^1.69.5",
     "typescript": "^5.3.2",
     "unocss": "^0.57.7",
-    "unocss-applet": "^0.5.3",
-    "unplugin-auto-import": "^0.16.7",
+    "unocss-applet": "^0.7.8",
+    "unplugin-auto-import": "^0.17.1",
     "vite": "4.5.0",
-    "vue-tsc": "1.8.22"
+    "vue-tsc": "1.8.24"
   }
 }

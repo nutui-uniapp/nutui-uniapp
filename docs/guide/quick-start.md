@@ -78,7 +78,9 @@ export default defineConfig({
 })
 ```
 
+::: tip
 如果你使用 `pnpm` ，请在根目录下创建一个 `.npmrc` 文件，参见[issue](https://github.com/antfu/unplugin-vue-components/issues/389)。
+:::
 
 ```bash
 // .npmrc
@@ -134,8 +136,9 @@ export default defineConfig({
 
 前往 uniapp 插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
 
-> nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了 uni_modules，但是组件库在 hbuilder 中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts 支持与开发体验
-
+::: tip
+nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了 uni_modules，但是组件库在 hbuilder 中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts 支持与开发体验
+:::
 ### 按需导入
 
 像下面这样更新 `pages.json` 文件：

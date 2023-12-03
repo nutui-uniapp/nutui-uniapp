@@ -14,9 +14,10 @@
     "serve": "vitepress serve --port 6173"
   },
   "dependencies": {
-    "nutui-uniapp": "workspace:^"
+    "nutui-uniapp": "workspace:^",
+    "vue": "3.3.9"
   },
   "devDependencies": {
-    "@vite-pwa/vitepress": "^0.3.0"
+    "@vite-pwa/vitepress": "^0.3.1"
   }
 }
