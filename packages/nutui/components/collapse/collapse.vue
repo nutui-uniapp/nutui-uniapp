@@ -13,7 +13,7 @@ const classes = computed(() => {
 })
 
 watch(() => props.modelValue, (val) => {
-  innerValue.value = val
+  innerValue.value = val!
 })
 
 function changeVal(val: string | number | Array<string | number>, name: string | number, status = true) {
