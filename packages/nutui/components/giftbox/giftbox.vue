@@ -53,7 +53,7 @@ export default defineComponent({
 <template>
   <view class="giftbox-wraper">
     <view :class="classes" @click="handleClick">
-      <view id="giftAnimate" class="gBox gift-box-1" :class="{ 'gift-box-1-open': openActive }" @transitionEnd="gift" @webkitTransitionEnd="gift" />
+      <view id="giftAnimate" class="gBox gift-box-1" :class="{ 'gift-box-1-open': openActive }" @transition-end="gift" @webkit-transition-end="gift" />
       <view class="gBox gift-box-2" />
       <view class="gBox gift-box-3" :class="{ 'gift-box-3-open': openActive }" />
     </view>

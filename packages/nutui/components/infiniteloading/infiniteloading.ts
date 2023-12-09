@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { isNumber } from '../_utils'
+import { isFunction, isNumber } from '../_utils'
 
 export const infiniteloadingProps = {
   hasMore: {
@@ -56,8 +56,8 @@ export type InfiniteLoadingProps = ExtractPropTypes<typeof infiniteloadingProps>
 
 export const infiniteloadingEmits = {
   scrollChange: (val: number) => isNumber(val),
-  loadMore: (val: () => void) => true,
-  refresh: (val: () => void) => true,
+  loadMore: (fun: () => void) => isFunction(fun),
+  refresh: (fun: () => void) => isFunction(fun),
 }
 
 export type InfiniteLoadingEmits = typeof infiniteloadingEmits

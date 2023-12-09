@@ -57,21 +57,21 @@ export default {
       经典分类模式
     </h2>
     <nut-category :category="category" @change="change">
-      <nut-category-pane :category-child="categoryChild1" @onChange="onChange" />
+      <nut-category-pane :category-child="categoryChild1" @on-change="onChange" />
     </nut-category>
 
     <h2 class="title">
       只显示文字
     </h2>
     <nut-category :category="category" @change="changeText">
-      <nut-category-pane type="text" :category-child="categoryChild2" @onChange="onChange" />
+      <nut-category-pane type="text" :category-child="categoryChild2" @on-change="onChange" />
     </nut-category>
 
     <h2 class="title">
       自定义分类
     </h2>
     <nut-category>
-      <nut-category-pane type="custom" :custom-category="customCategory" @onChange="changeCustom" />
+      <nut-category-pane type="custom" :custom-category="customCategory" @on-change="changeCustom" />
     </nut-category>
   </div>
 </template>

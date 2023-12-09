@@ -206,7 +206,7 @@ export default {
       title="地址选择"
       :options="demo1.options"
       @change="events.change"
-      @pathChange="events.pathChange"
+      @path-change="events.pathChange"
     >
       <template #title>
         <view class="p-20px text-center fw-700">
@@ -229,7 +229,7 @@ export default {
       children-key="items"
       :options="demo2.options"
       @change="events.change"
-      @pathChange="events.pathChange"
+      @path-change="events.pathChange"
     />
 
     <h2 class="title">
@@ -243,7 +243,7 @@ export default {
       lazy
       :lazy-load="demo3.lazyLoad"
       @change="events.change"
-      @pathChange="events.pathChange"
+      @path-change="events.pathChange"
     />
 
     <h2 class="title">
@@ -259,7 +259,7 @@ export default {
       lazy
       :lazy-load="demo4.lazyLoad"
       @change="events.change"
-      @pathChange="events.pathChange"
+      @path-change="events.pathChange"
     />
 
     <h2 class="title">
@@ -273,7 +273,7 @@ export default {
       :options="demo5.options"
       :convert-config="demo5.convertConfig"
       @change="events.change"
-      @pathChange="events.pathChange"
+      @path-change="events.pathChange"
     />
   </div>
 </template>

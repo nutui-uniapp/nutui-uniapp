@@ -70,7 +70,6 @@ export default {
     }
 
     const confirm = ({
-      selectedValue,
       selectedOptions,
     }: {
       selectedValue: (string | number)[]
@@ -79,7 +78,7 @@ export default {
       showToast.value = true
       msg.value = selectedOptions.map((val: any) => val.text).join('-')
     }
-    const popupConfirm = ({ selectedValue, selectedOptions }: { selectedValue: string[]; selectedOptions: any }) => {
+    const popupConfirm = ({ selectedOptions }: { selectedValue: string[], selectedOptions: any }) => {
       popupDesc.value = selectedOptions.map((val: any) => val.text).join('')
       show.value = false
     }

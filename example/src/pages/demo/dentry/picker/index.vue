@@ -158,7 +158,7 @@ export default {
       }, 1000)
     })
 
-    const confirm = ({ selectedValue, selectedOptions }: { selectedValue: (string | number)[]; selectedOptions: any }) => {
+    const confirm = ({ selectedOptions }: { selectedValue: (string | number)[], selectedOptions: any }) => {
       showToast.value = true
       msg.value = selectedOptions.map((val: any) => val.text).join(',')
     }
@@ -168,12 +168,12 @@ export default {
       console.log(selectedValue)
     }
 
-    const popupConfirm = ({ selectedValue, selectedOptions }: { selectedValue: (string | number)[]; selectedOptions: any }) => {
+    const popupConfirm = ({ selectedOptions }: { selectedValue: (string | number)[], selectedOptions: any }) => {
       popupDesc.value = selectedOptions.map((val: any) => val.text).join(',')
       show.value = false
     }
 
-    const customCloumnConfirm = ({ selectedOptions }: { selectedValue: (string | number)[]; selectedOptions: any }) => {
+    const customCloumnConfirm = ({ selectedOptions }: { selectedValue: (string | number)[], selectedOptions: any }) => {
       showToast.value = true
       msg.value = selectedOptions.map((val: any) => val.name).join(',')
     }

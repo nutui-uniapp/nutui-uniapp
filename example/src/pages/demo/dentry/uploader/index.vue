@@ -57,10 +57,10 @@ const defaultFileList1 = ref([
 function onOversize(files: File[]) {
   console.log('oversize 触发 文件大小不能超过 50kb', files)
 }
-function onDelete(res: { file: any; fileList: any[]; index: number }) {
+function onDelete(res: { file: any, fileList: any[], index: number }) {
   console.log('delete 事件触发', res.file, res.fileList)
 }
-function onProgress({ event, options, percentage }: any) {
+function onProgress({ percentage }: any) {
   progressPercentage.value = percentage
   console.log('progress 事件触发', percentage)
 }
@@ -72,11 +72,11 @@ function clearUpload() {
   uploadRef.value.clearUploadQueue()
 }
 
-function beforeXhrUpload(taroUploadFile: any, options: any) {
-  console.log(taroUploadFile, options)
+function beforeXhrUpload(UploadFile: any, options: any) {
+  console.log(UploadFile, options)
 
-  // taroUploadFile  是 uni.uploadFile ， 你也可以自定义设置其它函数
-  const uploadTask = taroUploadFile({
+  // UploadFile  是 uni.uploadFile ， 你也可以自定义设置其它函数
+  const uploadTask = UploadFile({
     url: options.url,
     filePath: options.taroFilePath,
     fileType: options.fileType,
@@ -86,7 +86,7 @@ function beforeXhrUpload(taroUploadFile: any, options: any) {
     }, //
     formData: options.formData,
     name: options.name,
-    success(response: { errMsg: any; statusCode: number; data: string }) {
+    success(response: { errMsg: any, statusCode: number, data: string }) {
       if (options.xhrState === response.statusCode)
         options.onSuccess?.(response, options)
       else
@@ -96,6 +96,7 @@ function beforeXhrUpload(taroUploadFile: any, options: any) {
       options.onFailure?.(e, options)
     },
   })
+  uploadTask()
   options.onStart?.(options)
 }
 </script>

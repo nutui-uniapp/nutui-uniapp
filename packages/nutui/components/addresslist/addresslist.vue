@@ -96,13 +96,13 @@ export default defineComponent({
       :address="item"
       :long-press="longPress"
       :swipe-edition="swipeEdition"
-      @delIcon="clickDelIcon($event, item, index)"
-      @editIcon="clickEditIcon($event, item, index)"
-      @clickItem="clickContentItem($event, item, index)"
-      @swipeDel="clickSwipeDel($event, item, index)"
-      @longCopy="clickLongCopy($event, item, index)"
-      @longSet="clickLongSet($event, item, index)"
-      @longDel="clickLongDel($event, item, index)"
+      @del-icon="clickDelIcon($event, item, index)"
+      @edit-icon="clickEditIcon($event, item, index)"
+      @click-item="clickContentItem($event, item, index)"
+      @swipe-del="clickSwipeDel($event, item, index)"
+      @long-copy="clickLongCopy($event, item, index)"
+      @long-set="clickLongSet($event, item, index)"
+      @long-del="clickLongDel($event, item, index)"
     >
       <template #content-info>
         <slot name="itemInfos" :item="item" />

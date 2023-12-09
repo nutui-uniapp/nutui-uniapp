@@ -125,13 +125,13 @@ export default defineComponent({
         <slot name="skuSelectTop" />
 
         <slot name="skuSelect" />
-        <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @selectSku="selectSku" />
+        <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @select-sku="selectSku" />
 
         <slot name="skuStepper">
           <SkuStepper
             :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
             :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
-            @reduce="reduce" @changeStepper="changeStepper" @overLimit="stepperOverLimit"
+            @reduce="reduce" @change-stepper="changeStepper" @over-limit="stepperOverLimit"
           />
         </slot>
 
@@ -141,7 +141,7 @@ export default defineComponent({
       <SkuOperate
         :btn-extra-text="btnExtraText" :btn-options="btnOptions" :buy-text="buyText || translate('buyNow')"
         :add-cart-text="addCartText || translate('addToCart')" :confirm-text="confirmText || translate('confirm')"
-        @clickBtnOperate="clickBtnOperate"
+        @click-btn-operate="clickBtnOperate"
       >
         <template #operateBtn>
           <slot name="skuOperate" />

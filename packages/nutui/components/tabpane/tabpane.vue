@@ -8,7 +8,7 @@ import { tabpaneEmits, tabpaneProps } from './tabpane'
 
 const props = defineProps(tabpaneProps)
 defineEmits(tabpaneEmits)
-const { parent } = useInject<{ activeKey: ComputedRef<string>; autoHeight: ComputedRef<boolean>; animatedTime: ComputedRef<string | number> }>(TAB_KEY)
+const { parent } = useInject<{ activeKey: ComputedRef<string>, autoHeight: ComputedRef<boolean>, animatedTime: ComputedRef<string | number> }>(TAB_KEY)
 
 const paneStyle = computed(() => {
   const style: CSSProperties = {

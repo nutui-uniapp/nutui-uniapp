@@ -61,30 +61,30 @@ async function getSymbolInfo() {
 
 async function getReference() {
   query.select(rootId)
-        && query
-          .select(`#${rootId}`)
-          .fields(
-            {
-              computedStyle: ['width', 'height', 'lineHeight', 'paddingTop', 'paddingBottom', 'fontSize'],
-            },
-            (res: any) => {
-              lineHeight = pxToNumber(res.lineHeight === 'normal' ? props.lineHeight : res.lineHeight)
-              maxHeight = Math.floor(
-                lineHeight * (Number(props.rows) + 0.5) + pxToNumber(res.paddingTop) + pxToNumber(res.paddingBottom),
-              )
+  && query
+    .select(`#${rootId}`)
+    .fields(
+      {
+        computedStyle: ['width', 'height', 'lineHeight', 'paddingTop', 'paddingBottom', 'fontSize'],
+      },
+      (res: any) => {
+        lineHeight = pxToNumber(res.lineHeight === 'normal' ? props.lineHeight : res.lineHeight)
+        maxHeight = Math.floor(
+          lineHeight * (Number(props.rows) + 0.5) + pxToNumber(res.paddingTop) + pxToNumber(res.paddingBottom),
+        )
 
-              originHeight = pxToNumber(res.height)
+        originHeight = pxToNumber(res.height)
 
-              widthRef.value = res.width
+        widthRef.value = res.width
 
-              // 设置基础字符
-              const bsize = pxToNumber(res.fontSize)
-              widthBase = [bsize, bsize * 0.72, bsize * 0.53, bsize * 0.4, bsize * 0.75]
+        // 设置基础字符
+        const bsize = pxToNumber(res.fontSize)
+        widthBase = [bsize, bsize * 0.72, bsize * 0.53, bsize * 0.4, bsize * 0.75]
 
-              calcEllipse()
-            },
-          )
-          .exec()
+        calcEllipse()
+      },
+    )
+    .exec()
 }
 
 // 计算省略号的位置

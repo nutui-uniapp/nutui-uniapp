@@ -31,8 +31,7 @@ interface ImagesType {
   bigImgUrl: string
   imgUrl: string
 }
-const isShowImage = ref(false)
-const initIndex = ref(1)
+
 const totalImages = ref<(VideosType | ImagesType)[]>([])
 
 watch(
@@ -118,8 +117,7 @@ export default defineComponent({
   &-images {
     display: flex;
     margin: 10px 0 12px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: auto hidden;
 
     &__item {
       position: relative;

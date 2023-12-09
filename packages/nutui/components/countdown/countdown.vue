@@ -48,7 +48,7 @@ function formatRemainTime(t: number, type?: string) {
   return type === 'custom' ? rest : parseFormat({ ...rest })
 }
 
-function parseFormat(time: { d: number; h: number; m: number; s: number; ms: number }) {
+function parseFormat(time: { d: number, h: number, m: number, s: number, ms: number }) {
   let { d, h, m, s, ms } = time
   let format = props.format
 

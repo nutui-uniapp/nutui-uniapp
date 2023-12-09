@@ -16,7 +16,7 @@ export default {
       step: 1.1,
     })
 
-    const onChange = (value: number | string, val2: any) => {
+    const onChange = (value: number | string) => {
       /* eslint-disable no-console */
       console.log('异步演示 2 秒后更改')
       setTimeout(() => {

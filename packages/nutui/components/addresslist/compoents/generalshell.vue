@@ -108,7 +108,7 @@ export default defineComponent({
 <template>
   <div v-if="!swipeEdition" class="nut-address-list-general">
     <ItemContents
-      :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem"
+      :item="address" @del-icon="delClick" @edit-icon="editClick" @click-item="clickItem"
       @touchstart="holddownstart" @touchend="holddownend" @touchmove="holddownmove"
     >
       <template #content-top>
@@ -139,7 +139,7 @@ export default defineComponent({
   <NutSwipe v-else>
     <div class="nut-address-list-swipe">
       <ItemContents
-        :item="address" @delIcon="delClick" @editIcon="editClick" @clickItem="clickItem"
+        :item="address" @del-icon="delClick" @edit-icon="editClick" @click-item="clickItem"
         @touchmove="swipemove" @touchstart="swipestart"
       >
         <template #content-top>

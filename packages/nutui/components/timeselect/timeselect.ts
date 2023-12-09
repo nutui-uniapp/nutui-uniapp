@@ -23,7 +23,7 @@ export const timeselectProps = {
   /**
    * @description 当前选择的时间，数组元素包含:key: string; list: string[]
    */
-  currentTime: makeArrayProp<{ key: string; list: string[] }>([]),
+  currentTime: makeArrayProp<{ key: string, list: string[] }>([]),
   /**
    * @description 背景是否锁定
    */

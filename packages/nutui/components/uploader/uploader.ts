@@ -133,13 +133,13 @@ export type UploaderProps = ExtractPropTypes<typeof uploaderProps>
 
 export const uploaderEmits = {
   'start': (option: UploadOptions) => option instanceof Object,
-  'progress': (val: { event: any; option: UploadOptions; percentage: string | number }) => val instanceof Object,
+  'progress': (val: { event: any, option: UploadOptions, percentage: string | number }) => val instanceof Object,
   'update:fileList': (val: FileItem[]) => val instanceof Object,
   'oversize': (val: any[]) => val instanceof Object,
   'success': (val: any) => val instanceof Object,
   'failure': (err: any) => err instanceof Object,
-  'change': (val: { fileList: FileItem[]; event?: any }) => val instanceof Object,
-  'delete': (val: { file: FileItem; fileList: FileItem[]; index: number }) => val instanceof Object,
+  'change': (val: { fileList: FileItem[], event?: any }) => val instanceof Object,
+  'delete': (val: { file: FileItem, fileList: FileItem[], index: number }) => val instanceof Object,
   'fileItemClick': (val: any) => val instanceof Object,
 }
 

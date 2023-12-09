@@ -104,7 +104,7 @@ export default {
     <h2 class="title">
       默认用法  (仅为组件示例，不会收集任何信息)
     </h2>
-    <nut-invoice :data="data" :form-value="formValue" @onSubmit="submit" />
+    <nut-invoice :data="data" :form-value="formValue" @on-submit="submit" />
   </div>
 </template>
 

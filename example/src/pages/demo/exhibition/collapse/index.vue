@@ -2,7 +2,7 @@
 import { reactive, toRefs } from 'vue'
 
 export default {
-  setup(props, context) {
+  setup() {
     const data = reactive({
       active1: [1, '2'],
       active2: 1,

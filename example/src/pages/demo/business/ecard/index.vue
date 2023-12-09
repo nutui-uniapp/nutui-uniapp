@@ -48,9 +48,9 @@ export default defineComponent({
       <nut-ecard
         v-model="money"
         :list="dataList"
-        @inputChange="inputChange"
+        @input-change="inputChange"
         @change="change"
-        @changeStep="changeStep"
+        @change-step="changeStep"
       />
     </nut-cell>
   </div>

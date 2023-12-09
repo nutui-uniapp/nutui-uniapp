@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import { PREFIX } from '../../_constants'
 import NutRate from '../../rate/rate.vue'
 
-const props = defineProps({
+defineProps({
   type: {
     type: String,
     default: 'default', // default，complex

@@ -57,7 +57,7 @@ export type FixednavProps = ExtractPropTypes<typeof fixednavProps>
 
 export const fixednavEmits = {
   [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
-  [SELECTED_EVENT]: (val: { item: any; event: Event }) => val instanceof Object,
+  [SELECTED_EVENT]: (val: { item: any, event: Event }) => val instanceof Object,
 }
 
 export type FixednavEmits = typeof fixednavEmits

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-function testClick(event: Event) {
+function testClick() {
   // console.log('点击事件');
 }
 const switchChecked = ref(true)

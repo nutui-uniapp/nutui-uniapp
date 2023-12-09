@@ -6,4 +6,7 @@ export default antfu({
       'vue/component-name-in-template-casing': ['off'],
     },
   },
+  ignores: [
+    'packages/nutui/styles/**/*',
+  ],
 })

@@ -27,8 +27,8 @@ export type SwipeProps = ExtractPropTypes<typeof swipeProps>
 export type SwipePosition = 'left' | 'right' | ''
 
 export const swipeEmits = {
-  open: (info: { name: string; position: SwipePosition }) => info instanceof Object,
-  close: (info: { name: string; position: SwipePosition }) => info instanceof Object,
+  open: (info: { name: string, position: SwipePosition }) => info instanceof Object,
+  close: (info: { name: string, position: SwipePosition }) => info instanceof Object,
   [CLICK_EVENT]: (val: string) => isString(val),
 }
 

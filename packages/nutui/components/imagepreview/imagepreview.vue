@@ -78,7 +78,7 @@ function closeDone() {
 }
 
 // 计算两个点的距离
-function getDistance(first: { x: number; y: number }, second: { x: number; y: number }) {
+function getDistance(first: { x: number, y: number }, second: { x: number, y: number }) {
   return Math.hypot(Math.abs(second.x - first.x), Math.abs(second.y - first.y))
 }
 
@@ -243,8 +243,8 @@ export default defineComponent({
                 mode="aspectFit"
                 :src="item.src"
                 class="nut-image-preview-img"
-                @longPress="longPress(item)"
-                @longTap="longPress(item)"
+                @long-press="longPress(item)"
+                @long-tap="longPress(item)"
                 @click.stop="closeOnImg"
               />
             </movable-view>

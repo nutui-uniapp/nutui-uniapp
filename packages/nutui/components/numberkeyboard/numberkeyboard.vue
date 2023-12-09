@@ -86,7 +86,7 @@ watch(
   },
 )
 
-function onTouchstart(item: { id: string | number; type: string }, event: TouchEvent) {
+function onTouchstart(item: { id: string | number, type: string }, event: TouchEvent) {
   event.stopPropagation()
   clickKeyIndex.value = item.id
   if (item.type === 'number' || item.type === 'custom') {

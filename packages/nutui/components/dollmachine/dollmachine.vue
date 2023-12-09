@@ -40,7 +40,7 @@ function leftRightMove(flag: string) {
       const max = boxDomW - toolDomW
       if (
         (flag === 'left' && toolDomLeft === 0)
-            || (flag === 'right' && toolDomLeft === max)
+        || (flag === 'right' && toolDomLeft === max)
       )
         return false
 

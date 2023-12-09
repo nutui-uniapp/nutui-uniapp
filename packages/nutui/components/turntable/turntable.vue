@@ -60,7 +60,7 @@ function getRotateAngle(index: number, flag?: string) {
   const angle = (360 / prizeList.length) * index + 180 / prizeList.length
   return {
     transform: `rotate(${angle}deg)${flag === 'canvas'
-        && isH5
+    && isH5
         ? ' scale(2)'
         : ''
       }`,

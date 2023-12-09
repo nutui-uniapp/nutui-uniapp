@@ -9,7 +9,7 @@ import { getMainClass, getMainStyle } from '../_utils'
 import { swiperItemProps } from './swiperitem'
 
 const props = defineProps(swiperItemProps)
-const { parent } = useInject<{ size: ComputedRef<number>;props: Required<SwiperProps> }>(SWIPER_KEY)
+const { parent } = useInject<{ size: ComputedRef<number>, props: Required<SwiperProps> }>(SWIPER_KEY)
 
 const state = reactive({
   offset: 0,

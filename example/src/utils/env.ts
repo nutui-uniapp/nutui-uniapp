@@ -100,11 +100,11 @@ export const isQuickappWebviewUnion = platform === EPlatform.QuickappWebviewUnio
 export const isQuickappWebviewHuawei = platform === EPlatform.QuickappWebviewHuawei
 
 // utils
-function toBoolean(val: any) {
+export function toBoolean(val: any) {
   return val ? val !== 'false' : false
 }
 
-function parseJSON<T>(val: any) {
+export function parseJSON<T>(val: any) {
   let obj: T
   try {
     obj = JSON.parse(val || '{}') as T

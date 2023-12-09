@@ -171,9 +171,9 @@ export function usePicker(props: any, emit: any) {
 
   const confirmHandler = () => {
     pickerColumn.value.length > 0
-      && pickerColumn.value.forEach((column) => {
-        column.stopMomentum()
-      })
+    && pickerColumn.value.forEach((column) => {
+      column.stopMomentum()
+    })
 
     confirm()
   }

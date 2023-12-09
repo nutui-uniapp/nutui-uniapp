@@ -52,7 +52,7 @@ export default defineComponent({
         :info="cmt?.info"
         :operation="['replay']"
         @click="handleclick"
-        @clickImages="clickImages"
+        @click-images="clickImages"
       >
         <template #commentLabels>
           <image
@@ -76,7 +76,7 @@ export default defineComponent({
         :videos="isH5 ? cmt?.videos : ''"
         :info="cmt?.info"
         ellipsis="6"
-        @clickImages="clickImages"
+        @click-images="clickImages"
       >
         <template #commentLabels>
           <image
@@ -106,7 +106,7 @@ export default defineComponent({
         :videos="isH5 ? cmt?.videos : ''"
         :info="cmt?.info"
         :follow="cmt?.follow"
-        @clickImages="clickImages"
+        @click-images="clickImages"
       />
     </nut-cell>
   </div>

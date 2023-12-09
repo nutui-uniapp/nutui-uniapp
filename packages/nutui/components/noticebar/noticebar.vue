@@ -273,7 +273,7 @@ export default defineComponent({
           :class="wrapContentClass"
           :style="contentStyle"
           @animationend="(onAnimationEnd as any)"
-          @webkitAnimationEnd="(onAnimationEnd as any)"
+          @webkit-animation-end="(onAnimationEnd as any)"
         >
           <slot>{{ text }}</slot>
         </view>

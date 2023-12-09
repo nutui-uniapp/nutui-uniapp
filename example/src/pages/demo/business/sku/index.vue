@@ -132,7 +132,7 @@ export default defineComponent({
         console.log(`最多买${val.value}件哦`)
     }
 
-    const clickBtnOperate = (value: { type: string; value: string | number }) => {
+    const clickBtnOperate = (value: { type: string, value: string | number }) => {
       console.log('点击了操作按钮', value)
     }
     // 关闭弹框
@@ -189,7 +189,7 @@ export default defineComponent({
       v-model:visible="base"
       :goods="goodsInfo"
       :sku="skuData"
-      @selectSku="selectSku"
+      @select-sku="selectSku"
       @close="close"
     >
       <template #skuHeader>
@@ -197,7 +197,7 @@ export default defineComponent({
       </template>
       <template #skuOperate>
         <nut-sku-operate
-          @clickBtnOperate="clickBtnOperate"
+          @click-btn-operate="clickBtnOperate"
         />
       </template>
     </nut-sku>
@@ -207,8 +207,8 @@ export default defineComponent({
       :sku="skuData"
       :btn-extra-text="btnExtraText"
       :btn-options="['buy', 'cart']"
-      @changeStepper="changeStepper"
-      @selectSku="selectSku"
+      @change-stepper="changeStepper"
+      @select-sku="selectSku"
       @close="close"
     >
       <template #skuHeader>
@@ -234,10 +234,10 @@ export default defineComponent({
       :stepper-min="2"
       :stepper-extra-text="stepperExtraText"
       :btn-options="['buy', 'cart']"
-      @changeStepper="changeStepper"
-      @overLimit="overLimit"
-      @selectSku="selectSku"
-      @clickBtnOperate="clickBtnOperate"
+      @change-stepper="changeStepper"
+      @over-limit="overLimit"
+      @select-sku="selectSku"
+      @click-btn-operate="clickBtnOperate"
       @close="close"
     >
       <template #skuHeader>
@@ -246,7 +246,7 @@ export default defineComponent({
       <template #skuOperate>
         <nut-sku-operate
           :btn-options="['buy', 'cart']"
-          @clickBtnOperate="clickBtnOperate"
+          @click-btn-operate="clickBtnOperate"
         />
       </template>
     </nut-sku>
@@ -256,8 +256,8 @@ export default defineComponent({
       :sku="skuData"
       :goods="goodsInfo"
       :btn-options="['buy', 'cart']"
-      @selectSku="selectSku"
-      @clickBtnOperate="clickBtnOperate"
+      @select-sku="selectSku"
+      @click-btn-operate="clickBtnOperate"
       @close="close()"
     >
       <template #skuHeader>
