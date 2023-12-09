@@ -12,7 +12,7 @@ import { formitemProps } from './formitem'
 
 const props = defineProps(formitemProps)
 const slots = useSlots()
-const Parent = useInject<{ formErrorTip: Required<any>; props: Required<FormItemProps> }>(FORM_KEY)
+const Parent = useInject<{ formErrorTip: Required<any>, props: Required<FormItemProps> }>(FORM_KEY)
 provide('form', {
   props,
 })
@@ -27,6 +27,19 @@ const isRequired = computed(() => {
       formRequired = rules[key as any].some((rule: FormItemRule) => rule.required)
   }
   return props.required || props.rules.some(rule => rule.required) || formRequired
+})
+
+const labelPositionClass = computed(() => {
+  const labelPosition = Parent.parent?.props.labelPosition
+  const position = props.labelPosition ? props.labelPosition : labelPosition
+
+  return `nut-form-item__${position}`
+})
+
+const starPositionClass = computed(() => {
+  const starPosition = Parent.parent?.props.starPosition
+  const position = props.starPosition ? props.starPosition : starPosition
+  return `nut-form-item__star-${position}`
 })
 
 const classes = computed(() => {
@@ -69,14 +82,14 @@ export default defineComponent({
 
 <template>
   <NutCell
-    :custom-class="[{ error: formErrorTip[prop], line: showErrorLine }, classes]"
+    :custom-class="[{ error: formErrorTip[prop], line: showErrorLine }, classes, labelPositionClass]"
     :custom-style="customStyle"
   >
     <view
       v-if="label || getSlots('label')"
       class="nut-cell__title nut-form-item__label"
       :style="labelStyle"
-      :class="{ required: isRequired }"
+      :class="{ required: isRequired, [starPositionClass]: starPositionClass }"
     >
       <slot name="label">
         {{ label }}

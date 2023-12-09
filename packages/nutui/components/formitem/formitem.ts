@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, nullableBooleanProp, truthProp } from '../_utils'
-import type { FormItemRule } from './types'
+import type { FormItemLabelPosition, FormItemRule, FormItemStarPosition } from './types'
 
 export const formitemProps = {
   ...commonProps,
@@ -53,6 +53,14 @@ export const formitemProps = {
    * @default true
    */
   showErrorMessage: truthProp,
+  /**
+   * @description 表单项 label 的位置，优先级高于 form 中的 `label-position`
+   */
+  labelPosition: makeStringProp<FormItemLabelPosition | undefined>(undefined),
+  /**
+   * @description 必填表单项 label 的红色星标位置，优先级高于 form 中的 `star-position`
+   */
+  starPosition: makeStringProp<FormItemStarPosition | undefined>(undefined),
 }
 
 export type FormItemProps = ExtractPropTypes<typeof formitemProps>
