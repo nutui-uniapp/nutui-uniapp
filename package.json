@@ -29,18 +29,17 @@
     "docs:build": "npm -C docs run build",
     "docs:preview": "npm -C docs run serve",
     "commit": "git pull && git add -A && git-cz",
+    "publish:ci": "esno scripts/publish.ts",
     "lint": "eslint . --fix",
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "lint:markdownlint": "markdownlint . --fix --ignore-path=.gitignore",
     "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged",
     "clean": "npx rimraf ./node_modules ./**/**/node_modules",
-    "release": "bumpp package.json packages/*/package.json example/package.json",
+    "release": "bumpp package.json packages/nutui/package.json example/package.json docs/package.json",
     "postinstall": "npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "build:all": "pnpm build && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
-    "build:uni": "esno scripts/uni.ts",
-    "upload:mp-weixin": "npm -C example run upload:mp-weixin",
-    "upload:mp-alipay": "npm -C example run upload:mp-alipay"
+    "build:uni": "esno scripts/uni.ts"
   },
   "dependencies": {
     "vue": "3.2.47"
