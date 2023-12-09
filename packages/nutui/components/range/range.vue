@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
-import { isH5 } from '../_utils'
+import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref } from 'vue'
+import { isH5, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { type SliderValue, rangeEmits, rangeProps } from './range'
@@ -10,7 +10,10 @@ const emit = defineEmits(rangeEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 
 const RangeID = computed(() => `root-${refRandomId}`)
-
+const state = ref({
+  width: 0,
+  height: 0,
+})
 const buttonIndex = ref(0)
 let startValue: SliderValue
 let currentValue: SliderValue
@@ -176,6 +179,8 @@ async function onClick(event: any) {
 
   const { min, modelValue } = props
   const rect = await useRect(RangeID.value, instance)
+  state.value.width = rect.width!
+  state.value.height = rect.height!
   let clientX, clientY
   if (isH5) {
     clientX = event.clientX
@@ -218,13 +223,24 @@ function onTouchStart(event: TouchEvent) {
     startValue = format(currentValue)
 
   dragStatus.value = 'start'
-  event.stopPropagation()
-  event.preventDefault()
+  preventDefault(event, true)
+}
+
+// 初始化 range 宽高
+function init() {
+  useRect(RangeID.value, instance).then(
+    (rect) => {
+      state.value.width = rect.width!
+      state.value.height = rect.height!
+    },
+    () => { },
+  )
 }
 
 async function onTouchMove(event: TouchEvent) {
   if (props.disabled)
     return
+  preventDefault(event, true)
 
   if (dragStatus.value === 'start')
     emit('dragStart')
@@ -234,11 +250,11 @@ async function onTouchMove(event: TouchEvent) {
 
   const rect = await useRect(RangeID.value, instance)
   let delta = touch.deltaX.value
-  let total = rect.width!
+  let total = state.value.width
   let diff = (delta / total) * scope.value
   if (props.vertical) {
     delta = touch.deltaY.value
-    total = rect.height!
+    total = state.value.height
     diff = (delta / total) * scope.value
   }
   if (isRange(startValue))
@@ -247,8 +263,6 @@ async function onTouchMove(event: TouchEvent) {
     currentValue = startValue + diff
 
   updateValue(currentValue)
-  event.stopPropagation()
-  event.preventDefault()
 }
 
 function onTouchEnd(event: TouchEvent) {
@@ -260,8 +274,7 @@ function onTouchEnd(event: TouchEvent) {
     emit('dragEnd')
   }
   dragStatus.value = ''
-  event.stopPropagation()
-  event.preventDefault()
+  preventDefault(event, true)
 }
 function curValue(idx?: number): number {
   const value
@@ -270,6 +283,12 @@ function curValue(idx?: number): number {
           : Number(props.modelValue)
   return value
 }
+
+onMounted(() => {
+  nextTick(() => {
+    init()
+  })
+})
 </script>
 
 <script lang="ts">
@@ -302,32 +321,19 @@ export default defineComponent({
       <view class="nut-range-bar" :style="barStyle">
         <template v-if="range">
           <view
-            v-for="index of [0, 1]"
-            :key="index"
-            role="slider"
-            :class="{
+            v-for="index of [0, 1]" :key="index" role="slider" :class="{
               'nut-range-button-wrapper-left': index === 0,
               'nut-range-button-wrapper-right': index === 1,
-            }"
-            :catch-move="true"
-            :tabindex="disabled ? -1 : 0"
-            :aria-valuemin="+min"
-            :aria-valuenow="curValue(index)"
-            :aria-valuemax="+max"
-            aria-orientation="horizontal"
-            @touchstart.stop.prevent="
-              (e:any) => {
-                if (typeof index === 'number') {
-                  // 实时更新当前拖动的按钮索引
-                  buttonIndex = index;
-                }
-                onTouchStart(e);
+            }" :catch-move="true" :tabindex="disabled ? -1 : 0" :aria-valuemin="+min" :aria-valuenow="curValue(index)"
+            :aria-valuemax="+max" aria-orientation="horizontal" @touchstart.stop.prevent="(e: any) => {
+              if (typeof index === 'number') {
+                // 实时更新当前拖动的按钮索引
+                buttonIndex = index;
               }
-            "
-            @touchmove.stop.prevent="(onTouchMove as any)"
-            @touchend.stop.prevent="(onTouchEnd as any)"
-            @touchcancel.stop.prevent="(onTouchEnd as any)"
-            @click="(e:any) => e.stopPropagation()"
+              onTouchStart(e);
+            }
+            " @touchmove.stop.prevent="(onTouchMove as any)" @touchend.stop.prevent="(onTouchEnd as any)"
+            @touchcancel.stop.prevent="(onTouchEnd as any)" @click="(e: any) => e.stopPropagation()"
           >
             <slot v-if="$slots.button" name="button" />
             <view v-else class="nut-range-button" :style="buttonStyle">
@@ -339,23 +345,13 @@ export default defineComponent({
         </template>
         <template v-else>
           <view
-            role="slider"
-            class="nut-range-button-wrapper"
-            :tabindex="disabled ? -1 : 0"
-            :aria-valuemin="+min"
-            :aria-valuenow="curValue()"
-            :aria-valuemax="+max"
-            aria-orientation="horizontal"
-            :catch-move="true"
-            @touchstart.stop.prevent="
-              (e:any) => {
-                onTouchStart(e);
-              }
-            "
-            @touchmove.stop.prevent="(onTouchMove as any)"
-            @touchend.stop.prevent="(onTouchEnd as any)"
-            @touchcancel.stop.prevent="(onTouchEnd as any)"
-            @click="(e:any) => e.stopPropagation()"
+            role="slider" class="nut-range-button-wrapper" :tabindex="disabled ? -1 : 0" :aria-valuemin="+min"
+            :aria-valuenow="curValue()" :aria-valuemax="+max" aria-orientation="horizontal" :catch-move="true"
+            @touchstart.stop.prevent="(e: any) => {
+              onTouchStart(e);
+            }
+            " @touchmove.stop.prevent="(onTouchMove as any)" @touchend.stop.prevent="(onTouchEnd as any)"
+            @touchcancel.stop.prevent="(onTouchEnd as any)" @click="(e: any) => e.stopPropagation()"
           >
             <slot v-if="$slots.button" name="button" />
             <view v-else class="nut-range-button" :style="buttonStyle">
