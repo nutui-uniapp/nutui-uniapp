@@ -1,3 +1,14 @@
+## [1.5.7](https://github.com/yang1206/uniapp-nutui/compare/v1.5.6...v1.5.7) (2023-12-09)
+
+### Bug Fixes
+
+* **range:** 优化滑动事件处理逻辑 ([be20418](https://github.com/yang1206/uniapp-nutui/commit/be2041839d2c449e9cf22b0029d437eebb4c68fa))
+
+### Features
+
+* **calendar:** 新增 btn-slot属性控制是否使用btn 插槽 ([3b66919](https://github.com/yang1206/uniapp-nutui/commit/3b66919bfd86c0857ce1a8ea265ae5fa9e3f0b9f)), closes [#131](https://github.com/yang1206/uniapp-nutui/issues/131)
+* **form:** 支持配置表单布局 ([882dce4](https://github.com/yang1206/uniapp-nutui/commit/882dce417ad6799cf18f31e43a6734f5cc7cfea7))
+
 ## [1.5.6](https://github.com/yang1206/uniapp-nutui/compare/v1.5.5...v1.5.6) (2023-11-29)
 
 ### Bug Fixes
