@@ -1,4 +1,4 @@
-import type { FormItemRule } from '../formitem/types'
+import type { FormItemLabelPosition, FormItemRule, FormItemStarPosition } from '../formitem/types'
 
 export interface FormRules {
   [key: string]: FormItemRule[]
@@ -28,3 +28,6 @@ export interface FormInst {
    */
   validate: (customProp?: any) => Promise<any>
 }
+
+export type FormLabelPosition = FormItemLabelPosition
+export type FormStarPosition = FormItemStarPosition
