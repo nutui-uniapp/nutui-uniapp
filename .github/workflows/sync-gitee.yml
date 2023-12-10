@@ -6,6 +6,7 @@ on:
 
 jobs:
   deploy-site-sync-gitee:
+    if: github.repository == 'nutui-uniapp/nutui-uniapp'
     runs-on: ubuntu-latest
     steps:
       - name: Sync to Gitee
