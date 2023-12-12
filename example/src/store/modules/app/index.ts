@@ -1,4 +1,5 @@
 import { pinia } from '../../../store'
+import { isH5 } from '../../../utils/env'
 
 interface MenuButtonBoundingClientRect {
   width: number
@@ -12,7 +13,11 @@ interface MenuButtonBoundingClientRect {
 export const useAppStore = defineStore(
   'app',
   () => {
-    const darkMode = ref(false)
+    // #ifdef H5
+    const themeStorage = localStorage.getItem('vitepress-theme-appearance')
+    // #endif
+    const darkMode = ref(isH5 ? themeStorage !== 'light' : false)
+
     const statusBarHeight = ref(0)
     const menuButtonBounding = ref<MenuButtonBoundingClientRect>()
     const customBarHeight = computed(
