@@ -1,13 +1,10 @@
 <script lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, nextTick, onUnmounted, reactive, ref } from 'vue'
+import { computed, defineComponent, getCurrentInstance, inject, onUnmounted, reactive } from 'vue'
 import { PREFIX } from '../_constants'
 import PopUp from '../popup/popup.vue'
 import Icon from '../icon/icon.vue'
-import { useSelectorQuery } from '../_hooks'
 import { getMainClass, getMainStyle } from '../_utils'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
-
-let _zIndex = 2000
 
 const componentName = `${PREFIX}-menu-item`
 export default defineComponent({
@@ -25,14 +22,9 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const state = reactive({
-      zIndex: _zIndex,
       showPopup: false,
-      transition: true,
       showWrapper: false,
-      isShowPlaceholderElement: false,
     })
-    const instance = getCurrentInstance() as ComponentInternalInstance
-    const { query } = useSelectorQuery(instance)
 
     const useParent: any = () => {
       const parent = inject('menuParent', null)
@@ -61,7 +53,10 @@ export default defineComponent({
       return getMainClass(props, componentName)
     })
     const styles = computed(() => {
-      return getMainStyle(props, { zIndex: state.zIndex })
+      const obj = parent.props.direction === 'down'
+        ? { top: `${parent.offset.value}px` }
+        : { bottom: `${parent.offset.value}px` }
+      return getMainStyle(props, obj)
     })
 
     const placeholderElementStyle = computed(() => {
@@ -73,32 +68,14 @@ export default defineComponent({
       else
         return { ...heightStyle, top: 'auto' }
     })
-    const contentHeight = ref('auto')
     const toggle = (show = !state.showPopup, _options: { immediate?: boolean } = {}) => {
-      if (show) {
-        nextTick(() => {
-          setTimeout(() => {
-            query.selectAll('#nut-menu-item__content').boundingClientRect()
-            query.exec((res: any[]) => {
-              const data = res[0]
-              const _height = data.filter((item: { height: number }) => item.height > 0)
-              contentHeight.value = `${_height?.[0]?.height}px`
-            })
-          }, 500)
-        })
-      }
-
       if (show === state.showPopup)
         return
 
       state.showPopup = show
-      state.isShowPlaceholderElement = show
-      // state.transition = !options.immediate;
 
-      if (show) {
+      if (show)
         state.showWrapper = true
-        state.zIndex = ++_zIndex
-      }
     }
 
     const renderTitle = () => {
@@ -112,7 +89,6 @@ export default defineComponent({
 
     const onClick = (option: MenuItemOption) => {
       state.showPopup = false
-      state.isShowPlaceholderElement = false
 
       if (option.value !== props.modelValue) {
         emit('update:modelValue', option.value)
@@ -122,7 +98,6 @@ export default defineComponent({
 
     const handleClose = () => {
       state.showWrapper = false
-      state.isShowPlaceholderElement = false
     }
 
     const handleClickOutside = () => {
@@ -140,7 +115,6 @@ export default defineComponent({
       onClick,
       handleClose,
       handleClickOutside,
-      contentHeight,
     }
   },
 
@@ -149,8 +123,8 @@ export default defineComponent({
 
 <template>
   <view v-show="state.showWrapper" :class="classes" :style="styles">
-    <div
-      v-show="state.isShowPlaceholderElement"
+    <view
+      v-show="state.showPopup"
       class="nut-menu-item-placeholder-element"
       :class="{ 'placeholder-element-up': parent.props.direction === 'up' }"
       :style="placeholderElementStyle"
@@ -159,28 +133,13 @@ export default defineComponent({
     <PopUp
       v-bind="$attrs"
       v-model:visible="state.showPopup"
-      :z-index="state.zIndex - 2"
-      :custom-style="
-        parent.props.direction === 'down'
-          ? {
-            top: `${parent.offset.value}px`,
-            height: state.showPopup ? contentHeight : 0,
-          }
-          : {
-            bottom: `${parent.offset.value}px`,
-            height: state.showPopup ? contentHeight : 0,
-          }
-      "
-      :overlay-style="
-        parent.props.direction === 'down'
-          ? { top: `${parent.offset.value}px` }
-          : { bottom: `${parent.offset.value}px`, top: 'auto' }
-      "
-      transition="fade"
+      :custom-style="{ position: 'absolute' }"
+      :overlay-style="{ position: 'absolute' }"
       :position="parent.props.direction === 'down' ? 'top' : 'bottom'"
       :duration="parent.props.duration"
       pop-class="nut-menu__pop"
       :destroy-on-close="false"
+      :safe-area-inset-top="false"
       :overlay="parent.props.overlay"
       :lock-scroll="parent.props.lockScroll"
       :close-on-click-overlay="parent.props.closeOnClickOverlay"
