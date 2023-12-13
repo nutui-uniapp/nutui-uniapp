@@ -54,10 +54,10 @@ export default defineComponent({
     :custom-style="styles"
     :custom-class="classes"
     :duration="Number(props.duration)"
+    :destroy-on-close="props.destroyOnClose"
     @click="onClick"
   >
     <slot />
-    <!-- </view> -->
   </NutTransition>
 </template>
 

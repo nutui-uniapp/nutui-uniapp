@@ -29,7 +29,7 @@ export default {
       基础用法
     </h2>
     <nut-cell title="展示弹出层" is-link @click="showBasic = true" />
-    <nut-popup v-model:visible="showBasic" pop-class="popclass" :z-index="100">
+    <nut-popup v-model:visible="showBasic" :destroy-on-close="false" pop-class="popclass" :z-index="100">
       <div :style="{ padding: '30px 50px' }">
         正文
       </div>

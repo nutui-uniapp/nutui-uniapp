@@ -21,6 +21,7 @@ export const transitionProps = {
    * @description 动画函数
    */
   timingFunction: makeStringProp<NutAnimationtimingFunction>('ease'),
+  destroyOnClose: Boolean,
   /**
    * @description 进入动画前的类名
    */
