@@ -163,7 +163,7 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
     { immediate: true },
   )
 
-  function clickHandler(evt: MouseEvent) {
+  function clickHandler(evt: any) {
     // evt.stopPropagation()
     emit(CLICK_EVENT, evt)
   }

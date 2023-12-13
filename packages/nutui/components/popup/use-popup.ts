@@ -41,8 +41,7 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
 
     emit('update:visible', true)
     state.zIndex = ++_zIndex
-    if (props.destroyOnClose)
-      state.showSlot = true
+    state.showSlot = true
 
     emit(OPEN_EVENT)
   }
@@ -52,11 +51,6 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     //   return // 避免重复调用
     emit(UPDATE_VISIBLE_EVENT, false)
     emit(CLOSE_EVENT)
-    if (props.destroyOnClose) {
-      setTimeout(() => {
-        state.showSlot = false
-      }, +props.duration)
-    }
   }
 
   const onClick = (e: Event) => {
@@ -84,6 +78,11 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
 
   const onClosed = () => {
     emit(CLOSED_EVENT)
+    if (props.destroyOnClose)
+      state.showSlot = true
+
+    else
+      state.showSlot = false
   }
 
   watch(

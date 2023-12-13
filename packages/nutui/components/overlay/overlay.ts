@@ -32,6 +32,10 @@ export const overlayProps = {
    * @description 点击遮罩时是否关闭
    */
   closeOnClickOverlay: truthProp,
+  /**
+   * @description 是否保留遮罩关闭后的内容
+   */
+  destroyOnClose: Boolean,
 }
 
 export type OverlayProps = ExtractPropTypes<typeof overlayProps>
