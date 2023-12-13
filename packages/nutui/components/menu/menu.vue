@@ -80,9 +80,6 @@ export default defineComponent({
     function updateOffset(children: any) {
       setTimeout(() => {
         useRect(barId, instance).then((rect) => {
-          uni.showToast({
-            title: `${rect.bottom!}`,
-          })
           if (props.direction === 'down')
             offset.value = rect.bottom!
 
