@@ -6,7 +6,7 @@ execSync('npm run build:all', { stdio: 'inherit' })
 
 execSync('cd packages/nutui/', { stdio: 'inherit' })
 
-const command = 'npm publish --access public'
+const command = 'npm publish'
 
 execSync(command, { stdio: 'inherit' })
 
