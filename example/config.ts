@@ -1,73 +1,6 @@
 import { isH5 } from './src/utils/env'
 
 export default {
-  docs: {
-    name: '指南',
-    packages: [
-      {
-        name: 'intro',
-        cName: '介绍',
-        eName: 'Introduction',
-        show: true,
-      },
-      {
-        name: 'start',
-        cName: '快速上手',
-        eName: 'Quickstart',
-        show: true,
-      },
-      {
-        name: 'official-theme',
-        cName: '官方主题',
-        eName: 'Official Theme',
-        show: true,
-      },
-      {
-        name: 'theme',
-        cName: '定制主题',
-        eName: 'Customize Theme',
-        show: true,
-      },
-      {
-        name: 'version',
-        cName: '4.0 更新介绍',
-        eName: 'Version',
-        show: true,
-      },
-      {
-        name: 'migrate-from-v3',
-        cName: '从 v3 升级到 v4',
-        eName: 'Migrate-from-v3',
-        show: true,
-      },
-      {
-        name: 'international',
-        cName: '国际化',
-        eName: 'Internationalization',
-        show: true,
-      },
-      {
-        name: 'ide',
-        cName: '开发工具支持',
-        eName: 'IDE tool support',
-        show: true,
-      },
-      {
-        name: 'contributing',
-        cName: '贡献指南',
-        eName: 'Contributing',
-        path: '#/contributing',
-        show: true,
-      },
-      {
-        name: 'https://github.com/jdf2e/nutui/releases',
-        cName: '更新日志',
-        eName: 'Changelog',
-        show: true,
-        isLink: true,
-      },
-    ],
-  },
   nav: [
     {
       name: '基础组件',
@@ -220,6 +153,18 @@ export default {
           author: 'undo',
         },
         {
+          version: '1.5.8',
+          name: 'SafeArea',
+          cType: '布局组件',
+          cName: '安全区',
+          type: 'component',
+          desc: '在全面屏下提供自适应的边距调整。当网页被全屏展示时，可借助安全区实现自动适配。',
+          show: true,
+          uni: true,
+          unidoc: true,
+          author: 'Yang1206',
+        },
+        {
           version: '3.0.0',
           name: 'Sticky',
           cType: '布局组件',
@@ -228,7 +173,7 @@ export default {
           desc: '当组件在屏幕范围内时，会按照正常的布局排列，当组件滚出屏幕范围时，始终会固定在距离屏幕固定的距离处',
           show: true,
           uni: true,
-          unidoc: false,
+          unidoc: true,
           author: 'Yang1206',
         },
         {
