@@ -1,3 +1,15 @@
+## [1.5.8](https://github.com/yang1206/uniapp-nutui/compare/v1.5.7...v1.5.8) (2023-12-14)
+
+### Bug Fixes
+
+* **menu:** 去除无效输出 ([3f36ff8](https://github.com/yang1206/uniapp-nutui/commit/3f36ff8535f662bf90fa09e0d9c97c1aa1775a12))
+* **menu:** 修复menu闪屏动画错误以及位置偏移 ([48c85f5](https://github.com/yang1206/uniapp-nutui/commit/48c85f5246f1de10bcf3535e31ef202ee8e28d9f)), closes [#138](https://github.com/yang1206/uniapp-nutui/issues/138)
+* **popup:** 修复destroy-on-close无效 ([0e64ee2](https://github.com/yang1206/uniapp-nutui/commit/0e64ee2c1f89eba08d9438c5e1378d0ba49f495c)), closes [#136](https://github.com/yang1206/uniapp-nutui/issues/136)
+
+### Features
+
+* **safearea:** 新增SafeArea组件 ([e346920](https://github.com/yang1206/uniapp-nutui/commit/e346920108081d0857143d28dbfbd495351c996e))
+
 ## [1.5.7](https://github.com/yang1206/uniapp-nutui/compare/v1.5.6...v1.5.7) (2023-12-09)
 
 ### Bug Fixes
