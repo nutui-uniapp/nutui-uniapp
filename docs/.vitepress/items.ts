@@ -19,6 +19,7 @@ export const components = [
       { text: 'Divider 分割线', link: '/components/layout/divider' },
       { text: 'Grid 宫格', link: '/components/layout/grid' },
       { text: 'Layout 布局', link: '/components/layout/layout' },
+      { text: 'SafeArea 安全区', link: '/components/layout/safearea' },
       { text: 'Sticky 粘性布局', link: '/components/layout/sticky' },
     ],
   },
