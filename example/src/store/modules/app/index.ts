@@ -15,8 +15,9 @@ export const useAppStore = defineStore(
   () => {
     // #ifdef H5
     const themeStorage = localStorage.getItem('vitepress-theme-appearance')
+    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches
     // #endif
-    const darkMode = ref(isH5 ? themeStorage !== 'light' : false)
+    const darkMode = ref(isH5 ? (themeStorage === 'dark' || theme) : false)
 
     const statusBarHeight = ref(0)
     const menuButtonBounding = ref<MenuButtonBoundingClientRect>()
