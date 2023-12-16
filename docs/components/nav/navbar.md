@@ -6,131 +6,136 @@
 
 ### 基础用法
 
-```html
+```vue
 <template>
-  <nut-navbar @on-click-back="back" @on-click-title="title" title="订单详情">
+  <nut-navbar title="Title" />
+</template>
+```
+
+### 自定义左侧插槽
+
+```vue
+<template>
+  <nut-navbar title="Title">
     <template #left>
-      <div>返回</div>
-    </template>
-    <template #right>
-      <nut-icon name="share-n" share-n width="16px" />
+      <nut-icon name="left" />
     </template>
   </nut-navbar>
-
-  <nut-navbar
-    @on-click-back="back"
-    @on-click-title="title"
-    @on-click-right="rightClick"
-    title="浏览记录"
-    desc="清空"
-  ></nut-navbar>
-
-  <nut-navbar
-    :left-show="false"
-    @on-click-back="back"
-    @on-click-title="title"
-    @on-click-icon="icon"
-    @on-click-right="rightClick"
-    title="购物车"
-    :titleIcon="true"
-    desc="编辑"
-  >
-    <template #titleIcon>
-        <nut-icon name="cart2" width="16px" />
-    </template>
-    <template #right>
-        <nut-icon name="more-x" class="right" width="16px" />
+  <nut-navbar custom-class="mt-20px" title="Title">
+    <template #left>
+      <nut-icon name="left" /> Back
     </template>
   </nut-navbar>
 </template>
+```
 
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-  setup() {
-    const methods = {
-      back() {
-        alert('Click Back');
-      },
-      title() {
-        alert('Click Title');
-      },
-      rightClick() {
-        alert('Click Right');
-      }
-    };
+### 自定义右侧插槽
 
-    return {
-      ...methods,
-    };
-  }
-}
-</script>
-
+```vue
+<template>
+  <nut-navbar title="Title">
+    <template #right>
+      Share
+    </template>
+  </nut-navbar>
+  <nut-navbar title="Title">
+    <template #right>
+      <nut-icon name="share" />
+    </template>
+  </nut-navbar>
+</template>
 ```
 
 ### 自定义导航栏中间内容
 
-```html
+```vue
+<script lang="ts">
+import { ref } from 'vue'
+export default {
+  setup() {
+    const tab1value = ref(0)
+    const methods = {
+      back() {
+        alert('Click Back')
+      },
+      title() {
+        alert('Click Title')
+      },
+      rightClick() {
+        alert('Click Right')
+      },
+      changeTab(tab: any) {
+        tab1value.value = tab.paneKey as number
+      },
+    }
+
+    return {
+      tab1value,
+      ...methods
+    }
+  }
+}
+</script>
+
 <template>
-  <nut-navbar
-    @on-click-back="back"
-    @on-click-title="title"
-    @on-click-right="rightClick"
-    desc="编辑"
-  >
+  <nut-navbar desc="编辑">
     <template #content>
-      <nut-tabs v-model="tab1value" @click="changeTab">
-        <nut-tab-pane title="标题1"> </nut-tab-pane>
-        <nut-tab-pane title="标题2"> </nut-tab-pane>
-      </nut-tabs>
+      <div class="h-full">
+        <nut-tabs v-model="tab1value" @click="changeTab">
+          <nut-tab-pane title="商品" />
+          <nut-tab-pane title="店铺" />
+        </nut-tabs>
+      </div>
     </template>
 
     <template #right>
       <nut-icon name="more-x" class="right" width="16px" />
     </template>
   </nut-navbar>
+  <nut-navbar
+    :left-show="false"
+    title="购物车"
+    :title-icon="true"
+    desc="编辑"
+  >
+    <template #titleIcon>
+      <nut-icon name="cart2" width="16px" />
+    </template>
+  </nut-navbar>
 </template>
-
-<script lang="ts">
-import { ref } from 'vue';
-export default {
-  setup() {
-    const tab1value = ref(0);
-    const methods = {
-      back() {
-        alert('Click Back');
-      },
-      title() {
-        alert('Click Title');
-      },
-      rightClick() {
-        alert('Click Right');
-      },
-      changeTab(tab: any) {
-        tab1value.value = tab.paneKey as number;
-      },
-    };
-
-    return {
-      tab1value,
-      ...methods
-    };
-  }
-}
-</script>
 ```
 
 ### 多 tab 切换导航
 
-```html
+```vue
+<script lang="ts">
+import { ref } from 'vue'
+export default {
+  setup() {
+    const tab2value = ref(0)
+    const methods = {
+      back() {
+        alert('Click Back')
+      },
+      changeTabList(tab: any) {
+        tab2value.value = tab.paneKey as number
+      }
+    }
+    return {
+      tab2value,
+      ...methods
+    }
+  }
+}
+</script>
+
 <template>
-  <nut-navbar @on-click-back="back" >
+  <nut-navbar @on-click-back="back">
     <template #content>
       <nut-tabs v-model="tab2value" @click="changeTabList">
-        <nut-tab-pane title="标题1"> </nut-tab-pane>
-        <nut-tab-pane title="标题2"> </nut-tab-pane>
-        <nut-tab-pane title="标题3"> </nut-tab-pane>
+        <nut-tab-pane title="标题1" />
+        <nut-tab-pane title="标题2" />
+        <nut-tab-pane title="标题3" />
       </nut-tabs>
     </template>
 
@@ -139,28 +144,6 @@ export default {
     </template>
   </nut-navbar>
 </template>
-
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-    const tab2value = ref(0);
-    const methods = {
-      back() {
-        alert('Click Back');
-      },
-      changeTabList(tab: any) {
-        tab2value.value = tab.paneKey as number;
-      }
-    };
-    return {
-      tab2value,
-      ...methods
-    };
-  }
-}
-</script>
-
 ```
 
 ## API

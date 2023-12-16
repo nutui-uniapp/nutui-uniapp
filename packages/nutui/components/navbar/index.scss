@@ -17,7 +17,6 @@
   align-items: center;
   height: $navbar-height;
   padding: $navbar-padding;
-  margin-bottom: $navbar-margin-bottom;
   overflow: hidden;
   font-size: $navbar-title-base-font;
   line-height: $navbar-height;
@@ -84,7 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 53%;
+    min-width: 60%;
     height: 100%;
     margin: 0 auto;
     text-align: center;
@@ -136,6 +135,8 @@
   }
 
   &__left {
+    position: absolute;
+    left: 0;
     display: flex;
     align-items: center;
     padding: 0 16px;
@@ -145,19 +146,13 @@
   }
 
   &__right {
+    position: absolute;
+    right: 0;
     display: flex;
     align-items: center;
     padding: 0 16px;
     font-size: $cell-desc-font;
     color: $cell-desc-color;
     cursor: pointer;
-
-    .right-icon {
-      margin-left: 16px;
-    }
-
-    .left-icon {
-      margin-left: 16px;
-    }
   }
 }

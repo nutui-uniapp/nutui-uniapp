@@ -48,41 +48,34 @@ export default defineComponent({
     <nut-toast
       ref="toastRef"
     />
-    <nut-navbar title="订单详情" @on-click-back="back" @on-click-title="title">
+    <nut-navbar title="Title" />
+
+    <h2 class="title">
+      自定义左侧插槽
+    </h2>
+    <nut-navbar title="Title" @on-click-back="back" @on-click-title="title">
       <template #left>
-        <div>返回</div>
-      </template>
-      <template #right>
-        <nut-icon name="share-n" share-n width="16px" />
+        <nut-icon name="left" />
       </template>
     </nut-navbar>
-
-    <nut-navbar
-      title="浏览记录"
-      desc="清空"
-      @on-click-back="back"
-      @on-click-title="title"
-      @on-click-right="rightClick"
-    />
-
-    <nut-navbar
-      :left-show="false"
-      title="购物车"
-      :title-icon="true"
-      desc="编辑"
-      @on-click-back="back"
-      @on-click-title="title"
-      @on-click-icon="icon"
-      @on-click-right="rightClick"
-    >
-      <template #titleIcon>
-        <nut-icon name="cart2" width="16px" />
-      </template>
-      <template #right>
-        <nut-icon name="more-x" class="right" width="16px" />
+    <nut-navbar custom-class="mt-20px" title="Title" @on-click-back="back" @on-click-title="title">
+      <template #left>
+        <nut-icon name="left" /> Back
       </template>
     </nut-navbar>
-
+    <h2 class="title">
+      自定义右侧插槽
+    </h2>
+    <nut-navbar title="Title" @on-click-back="back" @on-click-title="title">
+      <template #right>
+        Share
+      </template>
+    </nut-navbar>
+    <nut-navbar custom-class="mt-20px" title="Title" @on-click-back="back" @on-click-title="title">
+      <template #right>
+        <nut-icon name="share" />
+      </template>
+    </nut-navbar>
     <h2 class="title">
       自定义导航栏中间内容
     </h2>
@@ -98,6 +91,20 @@ export default defineComponent({
 
       <template #right>
         <nut-icon name="more-x" class="right" width="16px" />
+      </template>
+    </nut-navbar>
+    <nut-navbar
+      custom-class="mt-20px"
+      :left-show="false"
+      title="购物车"
+      :title-icon="true"
+      desc="编辑"
+      @on-click-back="back"
+      @on-click-title="title"
+      @on-click-icon="icon"
+    >
+      <template #titleIcon>
+        <nut-icon name="cart2" width="16px" />
       </template>
     </nut-navbar>
 
