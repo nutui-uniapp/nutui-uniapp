@@ -121,7 +121,7 @@ export default defineComponent({
         </SkuHeader>
       </slot>
 
-      <view class="nut-sku-content">
+      <scroll-view scroll-y class="nut-sku-content">
         <slot name="skuSelectTop" />
 
         <slot name="skuSelect" />
@@ -136,7 +136,7 @@ export default defineComponent({
         </slot>
 
         <slot name="skuStepperBottom" />
-      </view>
+      </scroll-view>
 
       <SkuOperate
         :btn-extra-text="btnExtraText" :btn-options="btnOptions" :buy-text="buyText || translate('buyNow')"
