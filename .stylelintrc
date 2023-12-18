@@ -32,7 +32,8 @@
       {
         "ignoreTypes": [
           "page",
-          "rich-text"
+          "rich-text",
+          "scroll-view"
         ]
       }
     ],
