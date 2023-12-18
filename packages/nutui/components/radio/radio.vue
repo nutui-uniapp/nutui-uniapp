@@ -34,7 +34,7 @@ const color = computed(() => {
 })
 
 const getButtonClass = computed(() => {
-  return `${componentName}__button ${isCurValue.value && `${componentName}__button--active`} ${
+  return `${componentName}__button ${componentName}__button--${props.size} ${isCurValue.value && `${componentName}__button--active`} ${
             props.disabled ? `${componentName}__button--disabled` : ''
           }`
 })

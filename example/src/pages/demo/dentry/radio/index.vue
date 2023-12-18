@@ -98,7 +98,7 @@ export default {
       </nut-cell>
       <nut-cell>
         <nut-radio-group v-model="radioVal" direction="horizontal">
-          <nut-radio shape="button" label="1">
+          <nut-radio shape="button" size="large" label="1">
             选项1
           </nut-radio>
           <nut-radio shape="button" label="2">
