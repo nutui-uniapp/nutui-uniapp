@@ -82,6 +82,7 @@ interface NavigateToOptions {
        "pages/demo/layout/divider/index" |
        "pages/demo/layout/grid/index" |
        "pages/demo/layout/layout/index" |
+       "pages/demo/layout/safearea/index" |
        "pages/demo/layout/sticky/index" |
        "pages/demo/nav/elevator/index" |
        "pages/demo/nav/fixednav/index" |

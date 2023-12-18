@@ -82,6 +82,7 @@ declare module '@vue/runtime-core' {
     NutRange: typeof import('nutui-uniapp/components/range/range.vue')['default']
     NutRate: typeof import('nutui-uniapp/components/rate/rate.vue')['default']
     NutRow: typeof import('nutui-uniapp/components/row/row.vue')['default']
+    NutSafeArea: typeof import('nutui-uniapp/components/safearea/safearea.vue')['default']
     NutSearchbar: typeof import('nutui-uniapp/components/searchbar/searchbar.vue')['default']
     NutShakedice: typeof import('nutui-uniapp/components/shakedice/shakedice.vue')['default']
     NutShortPassword: typeof import('nutui-uniapp/components/shortpassword/shortpassword.vue')['default']

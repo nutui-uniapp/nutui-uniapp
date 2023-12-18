@@ -4,9 +4,7 @@ import { version } from '../package.json'
 
 execSync('npm run build:all', { stdio: 'inherit' })
 
-execSync('cd packages/nutui/', { stdio: 'inherit' })
-
-const command = 'npm publish'
+const command = 'cd packages/nutui && npm publish'
 
 execSync(command, { stdio: 'inherit' })
 
