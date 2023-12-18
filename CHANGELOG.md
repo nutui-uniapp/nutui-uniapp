@@ -1,3 +1,15 @@
+## [1.5.9](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.8...v1.5.9) (2023-12-18)
+
+### Bug Fixes
+
+* **navbar:** 修复标题居中等样式问题 ([b5ddff1](https://github.com/nutui-uniapp/nutui-uniapp/commit/b5ddff18ebfbc00137dc88d8993d8d6928c2d3c3))
+* **sku:** 修复小程序下选项内容的滚动问题 ([715a4db](https://github.com/nutui-uniapp/nutui-uniapp/commit/715a4db500fe303ccd5eafc8140b0adb328a3ebb))
+* **tabs:** 修复嵌套使用时的样式错乱问题 ([a8c9822](https://github.com/nutui-uniapp/nutui-uniapp/commit/a8c98229836318b50aa4c7cae83aedf31949eae3))
+
+### Features
+
+* **radio:** 组件设置 button 形状时支持改变大小 ([ff808c0](https://github.com/nutui-uniapp/nutui-uniapp/commit/ff808c06ac6713b69e0383fb4b5b9f6a0544fa3b))
+
 ## [1.5.8](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.7...v1.5.8) (2023-12-14)
 
 ### Bug Fixes
