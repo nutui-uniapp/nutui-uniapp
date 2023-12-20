@@ -40,7 +40,7 @@ export default defineComponent({
     })
 
     const stepperExtraText = () => {
-      return '<view style="width:100%;text-align:right;color:#F00">2 件起售</view>'
+      return '<span style="width:100%;text-align:right;color:#F00">2 件起售</span>'
     }
 
     const btnExtraText = ref('抱歉，此商品在所选区域暂无存货')

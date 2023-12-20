@@ -14,11 +14,14 @@ export default defineManifestConfig({
       es6: true,
       minified: true,
       postcss: true,
+
     },
+    libVersion: '3.0.0',
     usingComponents: true,
     lazyCodeLoading: 'requiredComponents',
     darkmode: true,
     themeLocation: 'theme.json',
+    // mergeVirtualHostAttributes: true,
   },
   'mp-alipay': {
     appid: 'wxd4e6c25454525507',
