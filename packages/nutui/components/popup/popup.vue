@@ -36,15 +36,15 @@ export default defineComponent({
     :duration="duration"
     :overlay-class="overlayClass"
     :overlay-style="overlayStyle"
+    :destroy-on-close="destroyOnClose"
     v-bind="$attrs"
-    :destroy-on-close="showSlot"
     @click="onClickOverlay"
   />
   <NutTransition
     :name="transitionName"
     :custom-class="classes"
     :show="visible"
-    :destroy-on-close="showSlot"
+    :destroy-on-close="destroyOnClose"
     :custom-style="popStyle"
     :duration="Number(duration)"
     @after-enter="onOpened"

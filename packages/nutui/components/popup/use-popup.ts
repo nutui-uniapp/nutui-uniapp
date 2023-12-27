@@ -78,11 +78,8 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
 
   const onClosed = () => {
     emit(CLOSED_EVENT)
-    if (props.destroyOnClose)
-      state.showSlot = true
 
-    else
-      state.showSlot = false
+    state.showSlot = !props.destroyOnClose
   }
 
   watch(
