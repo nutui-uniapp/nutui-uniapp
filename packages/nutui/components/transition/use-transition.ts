@@ -171,6 +171,7 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
   const classes = computed(() => {
     return getMainClass(props, componentName, {
       [animationClass.value]: true,
+      [`${componentName}--hidden`]: !display.value,
     })
   })
   const styles = computed(() => {
