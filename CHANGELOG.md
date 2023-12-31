@@ -1,3 +1,12 @@
+## [1.5.10](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.9...v1.5.10) (2023-12-31)
+
+### Bug Fixes
+
+* **popup:** app端show属性无效以及destroy-on-close逻辑错误 ([522f620](https://github.com/nutui-uniapp/nutui-uniapp/commit/522f6200e48cdf67ccd1767eb2aa89c697f03a49))
+* **popup:** destroy-on-close逻辑错误 ([6d9d12c](https://github.com/nutui-uniapp/nutui-uniapp/commit/6d9d12cbf5dd082806b14bb783ce690c1cafc76c))
+* **sku:** 修复SkuStepper依赖循环,样式错误 ([2575b24](https://github.com/nutui-uniapp/nutui-uniapp/commit/2575b24fb2f92d0d0ee41edbb0174f9528b2ce61))
+* textarea启用autosize时readonly样式不统一 ([d6c161b](https://github.com/nutui-uniapp/nutui-uniapp/commit/d6c161bce9e8af50dfa162faa9d4b3be8d31a82f))
+
 ## [1.5.9](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.8...v1.5.9) (2023-12-18)
 
 ### Bug Fixes
