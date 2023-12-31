@@ -123,15 +123,27 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :style="customStyle">
-    <textarea v-if="props.readonly" id="nut-textarea__textarea" v-model="modelValue" :disabled="true" class="nut-textarea__textarea nut-textarea__textarea__readonly" />
+    <textarea
+      v-if="props.readonly"
+      class="nut-textarea__textarea nut-textarea__textarea__readonly"
+      :class="{ 'nut-textarea__ali': isMpAlipay }"
+      :style="styles"
+      :value="modelValue"
+      :rows="rows"
+      :disabled="true"
+      :show-count="false"
+      :placeholder="placeholder || translate('placeholder')"
+      :auto-height="!!autosize"
+      :disable-default-padding="disableDefaultPadding"
+    />
     <textarea
       v-else
-      id="nut-textarea__textarea"
-      class="nut-textarea__textarea" :class="[isMpAlipay && 'nut-textarea__ali']"
+      class="nut-textarea__textarea"
+      :class="{ 'nut-textarea__ali': isMpAlipay }"
       :style="styles"
+      :value="modelValue"
       :rows="rows"
       :disabled="disabled || readonly"
-      :value="modelValue"
       :show-count="false"
       :maxlength="maxLength ? +maxLength : -1"
       :placeholder="placeholder || translate('placeholder')"
