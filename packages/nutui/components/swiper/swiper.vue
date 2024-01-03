@@ -364,7 +364,7 @@ export default defineComponent({
         :key="index"
         class="pagination"
         :style="{
-          backgroundColor: activePagination === index ? paginationColor : '#ddd',
+          backgroundColor: activePagination === index ? paginationColor : paginationUnselectedColor,
         }"
         :class="{ active: activePagination === index }"
       />

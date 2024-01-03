@@ -63,6 +63,10 @@ export const swiperProps = {
     type: Array,
     default: () => [],
   },
+  /**
+   * @description 分页指示器没有选中的颜色
+   */
+  paginationUnselectedColor: makeStringProp('#ddd'),
 }
 
 export type SwiperProps = ExtractPropTypes<typeof swiperProps>

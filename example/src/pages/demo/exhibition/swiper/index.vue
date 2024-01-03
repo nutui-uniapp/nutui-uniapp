@@ -62,7 +62,7 @@ export default {
       基础用法
     </h2>
     <view class="demo-box">
-      <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" auto-play="2000">
+      <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" pagination-unselected-color="#808080" auto-play="2000">
         <nut-swiper-item v-for="item in list" :key="item">
           <image :src="item" alt="" />
         </nut-swiper-item>

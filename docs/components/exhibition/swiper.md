@@ -13,7 +13,7 @@
 
 ```html
 <template>
-  <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" auto-play="3000">
+  <nut-swiper :init-page="page" :pagination-visible="true" pagination-color="#426543" pagination-unselected-color="#808080" auto-play="3000">
     <nut-swiper-item>
       <img src="https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg" alt="" />
     </nut-swiper-item>
@@ -450,6 +450,7 @@
 | direction               | 轮播方向,可选值`horizontal`,`vertical`     | string | `'horizontal'`         |
 | pagination-visible          | 分页指示器是否展示                                              | boolean         | `false`           |
 | pagination-color         | 分页指示器选中的颜色                                              | string  | `'#fff'`           |
+| pagination-unselected-color `v1.6.0` | 分页指示器没有选中的颜色 | string | `'#ddd'` |
 | loop           | 是否循环轮播                                                | boolean        | `true`       |
 | duration                | 动画时长（单位是ms）                                                | number \| string        | `500`        |
 | auto-play | 自动轮播时长，0表示不会自动轮播                                          | number \| string        | `0`        |
