@@ -48,6 +48,17 @@ export default defineComponent({
       <image :src="src" alt="" />
       <nut-watermark :full-page="false" font-color="#fa2c19" content="nut-ui" />
     </nut-cell>
+    <h2 class="title">
+      多行水印
+    </h2>
+    <nut-cell class="wrap wrap2">
+      <nut-watermark
+        :full-page="false"
+        :gap-y="24"
+        font-color="#fa2c19"
+        :content="['nut-ui', 'water-mark']"
+      />
+    </nut-cell>
   </div>
 </template>
 

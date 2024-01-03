@@ -112,7 +112,14 @@ function dealWithText(ctx: any, ratio: number, canvas: HTMLCanvasElement, markWi
   const markSize = Number(fontSize.value) * ratio
   ctx.font = `${fontStyle.value} normal ${fontWeight.value} ${markSize}px/${markHeight}px ${fontFamily.value}`
   ctx.fillStyle = fontColor.value
-  ctx.fillText(content?.value, 0, 0)
+  if (Array.isArray(content.value)) {
+    content.value?.forEach((item, index) => {
+      ctx.fillText(item, 0, (index - 1) * markSize)
+    })
+  }
+  else {
+    ctx.fillText(content.value, 0, 0)
+  }
   ctx.restore()
   state.base64Url = canvas.toDataURL()
 }

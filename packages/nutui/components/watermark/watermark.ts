@@ -47,7 +47,10 @@ export const watermarkProps = {
   /**
    * @description 水印文字内容
    */
-  content: String,
+  content: {
+    type: [String, Array<string>],
+    default: '',
+  },
   /**
    * @description 水印文字颜色
    */
