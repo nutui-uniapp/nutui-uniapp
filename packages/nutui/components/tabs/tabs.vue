@@ -321,7 +321,7 @@ export default defineComponent({
               {{ item.title }}
             </view>
           </view>
-          <view v-if="canShowLabel" class="nut-tabs__titles-placeholder" />
+          <view v-if="canShowLabel && titleScroll" class="nut-tabs__titles-placeholder" />
         </template>
       </view>
     </scroll-view>
