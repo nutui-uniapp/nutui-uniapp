@@ -3,10 +3,10 @@
 
 .nut-theme-dark {
   .nut-tabs {
-    &__titles {
+    .nut-tabs__titles {
       background: $dark-background3;
 
-      &-item {
+      .nut-tabs__titles-item {
         color: $dark-color-gray;
 
         &.nut-tabs-active {
@@ -17,7 +17,7 @@
 
     &.vertical {
       .nut-tabs__titles {
-        &-item {
+        .nut-tabs__titles-item {
           &.nut-tabs-active {
             background-color: $dark-background2;
           }
