@@ -129,7 +129,7 @@ export default {
     <h2 class="title">
       数量多，滚动操作（横向）
     </h2>
-    <nut-tabs v-model="state.tab4value" title-scroll title-gutter="10" name="tab4value">
+    <nut-tabs v-model="state.tab4value" title-scroll title-gutter="10">
       <nut-tab-pane v-for="item in state.list4" :key="item" :title="`Tab ${item}`">
         Tab {{ item }}
       </nut-tab-pane>
@@ -138,7 +138,7 @@ export default {
       数量多，滚动操作（纵向）
     </h2>
     <nut-tabs
-      v-model="state.tab4value" title-scroll name="tab4valueVertical" direction="vertical"
+      v-model="state.tab4value" title-scroll direction="vertical"
       custom-style="height: 220px;"
     >
       <nut-tab-pane v-for="item in state.list4" :key="item" :title="`Tab ${item}`">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
 import { TypeOfFun, getMainClass, pxCheck } from '../_utils'
-import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
@@ -75,13 +75,12 @@ const navRectRef = ref()
 const titleRectRef = ref<UniApp.NodeInfo[]>([])
 const canShowLabel = ref(false)
 function scrollIntoView() {
-  if (!props.name)
+  if (!props.titleScroll)
     return
-
   raf(() => {
     Promise.all([
-      getSelectorNodeInfo(`#nut-tabs__titles_${props.name}`),
-      getSelectorNodeInfos(`#nut-tabs__titles_${props.name} .nut-tabs__titles-item`),
+      getSelectorNodeInfo(`#nut-tabs__titles_${refRandomId}`),
+      getSelectorNodeInfos(`#nut-tabs__titles_${refRandomId} .nut-tabs__titles-item`),
     ]).then(([navRect, titleRects]) => {
       navRectRef.value = navRect
       titleRectRef.value = titleRects
@@ -89,7 +88,7 @@ function scrollIntoView() {
       if (navRectRef.value) {
         if (props.direction === 'vertical') {
           const titlesTotalHeight = titleRects.reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.height!, 0)
-          if (titlesTotalHeight > navRectRef.value.height)
+          if (titlesTotalHeight > navRectRef.value?.height)
             canShowLabel.value = true
 
           else
@@ -97,7 +96,7 @@ function scrollIntoView() {
         }
         else {
           const titlesTotalWidth = titleRects.reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.width!, 0)
-          if (titlesTotalWidth > navRectRef.value.width)
+          if (titlesTotalWidth > navRectRef.value?.width)
             canShowLabel.value = true
 
           else
@@ -113,14 +112,15 @@ function scrollIntoView() {
         const top = titleRects
           .slice(0, currentIndex.value)
           .reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.height! + 0, DEFAULT_PADDING)
-        to = top - (navRectRef.value.height - titleRect.height!) / 2
+        to = top - (navRectRef.value?.height - titleRect.height!) / 2
       }
       else {
         const DEFAULT_PADDING = 31
         const left = titleRects
           .slice(0, currentIndex.value)
           .reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.width! + 20, DEFAULT_PADDING)
-        to = left - (navRectRef.value.width - titleRect.width!) / 2
+        // eslint-disable-next-line  ts/no-non-null-asserted-optional-chain
+        to = left - (navRectRef.value?.width - titleRect?.width!) / 2
       }
 
       nextTick(() => {
@@ -291,7 +291,7 @@ export default defineComponent({
 <template>
   <view ref="container" :style="customStyle" :class="classes">
     <scroll-view
-      :id="`nut-tabs__titles_${name}`"
+      :id="`nut-tabs__titles_${refRandomId}`"
       :scroll-x="getScrollX"
       :scroll-y="getScrollY"
       :scroll-with-animation="scrollWithAnimation"

@@ -56,10 +56,6 @@ export const tabsProps = {
    * @description 标签间隙
    */
   titleGutter: makeNumericProp(0),
-  /**
-   * @description 在`uni`环境下，必须设置`name`以开启标题栏自动滚动功能。
-   */
-  name: String,
 }
 
 export type TabsProps = ExtractPropTypes<typeof tabsProps>
