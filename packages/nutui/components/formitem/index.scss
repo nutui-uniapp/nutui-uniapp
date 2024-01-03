@@ -4,7 +4,7 @@
   .nut-form-item {
     &__body {
       &__slots {
-        .nut-input-text {
+        :deep(.nut-input-text) {
           color: $dark-color;
         }
       }
@@ -46,7 +46,7 @@
     text-align: $form-item-label-text-align;
     word-wrap: break-word;
 
-    &.nut-cell__title {
+    &:deep(.nut-cell__title) {
       min-width: auto;
     }
     

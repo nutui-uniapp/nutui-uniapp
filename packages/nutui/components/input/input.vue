@@ -29,6 +29,7 @@ const classes = computed(() => {
     [`${componentName}--required`]: props.required,
     [`${componentName}--error`]: props.error,
     [`${componentName}--border`]: props.border,
+    [`${componentName}-text`]: true,
   })
 })
 
