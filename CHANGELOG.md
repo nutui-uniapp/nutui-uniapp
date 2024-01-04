@@ -1,3 +1,18 @@
+# [1.6.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.10...v1.6.0) (2024-01-04)
+
+### Bug Fixes
+
+* **input:** form下 input 样式错误 ([4c0f900](https://github.com/nutui-uniapp/nutui-uniapp/commit/4c0f9009a7d2543933644b209d223fab4a10217f)), closes [#148](https://github.com/nutui-uniapp/nutui-uniapp/issues/148)
+* **tabs:** 修复 placeholder 展示错误 ([754633e](https://github.com/nutui-uniapp/nutui-uniapp/commit/754633e18bef14c37c13068cda9bcb205f1164e7))
+* **tabs:** 夜间模式样式错误 ([32c679a](https://github.com/nutui-uniapp/nutui-uniapp/commit/32c679a2e716a0f82ddc09d34a4b785ae21192ee))
+
+### Features
+
+* **swiper:** 支持修改未选中时的分页指示器的颜色 ([e9c4058](https://github.com/nutui-uniapp/nutui-uniapp/commit/e9c4058baf0f5bccbfd74c3f6e905ba359109eaa))
+* **tabs:** 开启 title-scroll 时不再需要设置 name ([4085996](https://github.com/nutui-uniapp/nutui-uniapp/commit/4085996b2daf0981e72c97dda5eab1678d1dbda6))
+* **tabs:** 支持配置标题对齐方式 ([d46c8ff](https://github.com/nutui-uniapp/nutui-uniapp/commit/d46c8fffd9840405a8327abc85edfc3fe5f66b5c))
+* **watermark:** 支持多行文字水印 ([8b42b97](https://github.com/nutui-uniapp/nutui-uniapp/commit/8b42b97237f9cbc92e99fb12c807c4cdfee1e687))
+
 ## [1.5.10](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.9...v1.5.10) (2023-12-31)
 
 ### Bug Fixes
