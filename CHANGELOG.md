@@ -1,3 +1,9 @@
+## [1.6.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.0...v1.6.1) (2024-01-04)
+
+### Features
+
+* **ecard:** 支持配置是否显示自定与步进 ([584f091](https://github.com/nutui-uniapp/nutui-uniapp/commit/584f091d35e78a2ec02e72bd8578ca091628d666))
+
 # [1.6.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.5.10...v1.6.0) (2024-01-04)
 
 ### Bug Fixes
