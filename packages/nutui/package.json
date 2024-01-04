@@ -11,32 +11,11 @@
     "url": "git+https://github.com/nutui-uniapp/nutui-uniapp.git"
   },
   "bugs": "https://github.com/nutui-uniapp/nutui-uniapp/issues",
-  "dcloudext": {
-    "contact": {
-      "qq": ""
-    },
-    "declaration": {
-      "ads": "",
-      "data": "",
-      "permissions": ""
-    },
-    "npmurl": "https://www.npmjs.com/package/nutui-uniapp",
-    "sale": {
-      "regular": {
-        "price": "0.00"
-      },
-      "sourcecode": {
-        "price": "0.00"
-      }
-    },
-    "type": "component-vue"
-  },
   "keywords": [
     "uniapp",
     "nutui",
-    "nutui4",
-    "vue",
     "vue3",
+    "mini-program",
     "小程序",
     "vue3 component",
     "vite"
