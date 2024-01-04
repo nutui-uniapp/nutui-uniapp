@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNull, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, isNull, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
 
 interface dataList {
@@ -56,6 +56,14 @@ export const ecardProps = {
    * @description 符号标示
    */
   suffix: makeStringProp('¥'),
+  /**
+   * @description 是否显示其他面值
+   */
+  showOther: truthProp,
+  /**
+   * @description 是否显示步进
+   */
+  showStep: truthProp,
 }
 
 export type ECardProps = ExtractPropTypes<typeof ecardProps>

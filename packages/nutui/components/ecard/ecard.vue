@@ -87,7 +87,7 @@ export default defineComponent({
       >
         {{ item.price }}
       </view>
-      <view class="nut-ecard__list__input" :class="[currentIndex === 'input' ? 'active' : '']" @click="inputClick">
+      <view v-if="showOther" class="nut-ecard__list__input" :class="[currentIndex === 'input' ? 'active' : '']" @click="inputClick">
         <view>{{ otherValueText || translate('otherValueText') }}</view>
         <view class="nut-ecard__list__input--con">
           <input
@@ -100,7 +100,7 @@ export default defineComponent({
           {{ suffix }}
         </view>
       </view>
-      <view class="nut-ecard__list__step">
+      <view v-if="showStep" class="nut-ecard__list__step">
         <view>{{ suffix }}{{ money }}</view>
         <NutInputNumber v-model="stepValue" :min="cardBuyMin" :max="cardBuyMax" @change="(changeStep as any)" />
       </view>
