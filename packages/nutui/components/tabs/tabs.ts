@@ -56,6 +56,10 @@ export const tabsProps = {
    * @description 标签间隙
    */
   titleGutter: makeNumericProp(0),
+  /**
+   * @description 横轴方向的标题对齐方式，可选值 left、center
+   */
+  align: makeNumericProp<'left' | 'center'>('center'),
 }
 
 export type TabsProps = ExtractPropTypes<typeof tabsProps>

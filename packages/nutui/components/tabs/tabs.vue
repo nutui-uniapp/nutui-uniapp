@@ -302,7 +302,7 @@ export default defineComponent({
       :class="{ [type]: type, scrollable: titleScroll, [size]: size }"
       :style="tabsNavStyle"
     >
-      <view class="nut-tabs__list">
+      <view class="nut-tabs__list" :class="{ 'nut-tabs__titles-left': align === 'left' }">
         <slot v-if="$slots.titles" name="titles" />
         <template v-else>
           <view
@@ -310,7 +310,11 @@ export default defineComponent({
             :key="item.paneKey"
             class="nut-tabs__titles-item uni"
             :style="titleStyle"
-            :class="{ 'nut-tabs-active': item.paneKey === String(modelValue), 'disabled': item.disabled }"
+            :class="{
+              'nut-tabs-active': item.paneKey === String(modelValue),
+              'disabled': item.disabled,
+              'nut-tabs__titles-item-left': align === 'left',
+            }"
             @click="tabChange(item, index)"
           >
             <view v-if="type === 'line'" class="nut-tabs__titles-item__line" :style="tabsActiveStyle" />

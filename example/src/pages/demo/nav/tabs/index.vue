@@ -59,6 +59,21 @@ export default {
       </nut-tab-pane>
     </nut-tabs>
     <h2 class="title">
+      自定义标题对齐方式
+    </h2>
+    <nut-tabs v-model="state.tab1value" align="left">
+      <nut-tab-pane title="Tab 1">
+        Tab 1
+      </nut-tab-pane>
+      <nut-tab-pane title="Tab 2">
+        Tab 2
+      </nut-tab-pane>
+      <nut-tab-pane title="Tab 3">
+        Tab 3
+      </nut-tab-pane>
+    </nut-tabs>
+
+    <h2 class="title">
       手势滑动切换
     </h2>
     <nut-tabs v-model="state.tab1value" swipeable>

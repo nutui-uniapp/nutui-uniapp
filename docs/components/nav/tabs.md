@@ -392,6 +392,8 @@ export default {
 | size             | 标签栏字体尺寸大小 可选值  large normal small                                                      | string           | `normal`     |
 | auto-height      | 自动高度。设置为 true 时，nut-tabs 和 nut-tabs__content 会随着当前 nut-tab-pane 的高度而发生变化。 | boolean          | `false`      |
 | name `1.6.0废弃，`             | 在`uni`环境下，必须设置 name 才能开启 title-scroll 功能，版本 >=1.6.0 时不再需要。                                           | string           | ''           |
+ | string | '' |
+| align `v1.6.0` | 横轴方向的标题对齐方式，可选值 left、center | string | `center` |
 
 ### Tabs Slots
 
