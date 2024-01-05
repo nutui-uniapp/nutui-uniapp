@@ -775,9 +775,16 @@ export default defineComponent({
                       <slot name="bottomInfo" :date="day.type === 'curr' ? day : ''" />
                     </view>
                     <!-- #endif -->
+                    <!-- #ifndef MP -->
                     <view v-if="!bottomInfo && showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
                       {{ translate('today') }}
                     </view>
+                    <!-- #endif -->
+                    <!-- #ifdef MP -->
+                    <view v-if="showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
+                      {{ translate('today') }}
+                    </view>
+                    <!-- #endif -->
                     <view
                       v-if="isStartTip(day, month)"
                       class="nut-calendar__day-tip" :class="{ 'nut-calendar__day-tips--top': rangeTip() }"
