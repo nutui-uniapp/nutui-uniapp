@@ -87,6 +87,7 @@ export default defineComponent({
   >
     <NutCalendarItem
       ref="calendarRef"
+      :visible="visible"
       :type="type"
       :is-auto-back-fill="isAutoBackFill"
       :poppable="poppable"

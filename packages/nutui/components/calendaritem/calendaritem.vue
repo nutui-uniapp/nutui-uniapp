@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, nextTick, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
 import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
 import { CHOOSE_EVENT, PREFIX, SELECT_EVENT } from '../_constants'
@@ -115,7 +115,7 @@ function getClass(day: Day, month: MonthInfo, index?: number) {
   const res = []
   if (
     typeof index === 'number'
-      && ((index + 1 + props.firstDayOfWeek) % 7 === 0 || (index + props.firstDayOfWeek) % 7 === 0)
+    && ((index + 1 + props.firstDayOfWeek) % 7 === 0 || (index + props.firstDayOfWeek) % 7 === 0)
   )
     res.push('weekend')
 
@@ -683,6 +683,19 @@ watch(
     }
   },
 )
+
+// #ifdef MP-WEIXIN
+watch(
+  () => props.visible,
+  (val) => {
+    if (val && !!props.defaultValue) {
+      nextTick(() => {
+        scrollToDate(Array.isArray(props.defaultValue) ? props.defaultValue[0] as string : props.defaultValue as string)
+      })
+    }
+  },
+)
+// #endif
 </script>
 
 <script lang="ts">
@@ -762,9 +775,16 @@ export default defineComponent({
                       <slot name="bottomInfo" :date="day.type === 'curr' ? day : ''" />
                     </view>
                     <!-- #endif -->
+                    <!-- #ifndef MP -->
                     <view v-if="!bottomInfo && showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
                       {{ translate('today') }}
                     </view>
+                    <!-- #endif -->
+                    <!-- #ifdef MP -->
+                    <view v-if="showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
+                      {{ translate('today') }}
+                    </view>
+                    <!-- #endif -->
                     <view
                       v-if="isStartTip(day, month)"
                       class="nut-calendar__day-tip" :class="{ 'nut-calendar__day-tips--top': rangeTip() }"
