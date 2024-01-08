@@ -1,3 +1,9 @@
+## [1.6.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.2...v1.6.3) (2024-01-08)
+
+### Performance Improvements
+
+* **input:** 使用computed代替函数调用 ([374e24c](https://github.com/nutui-uniapp/nutui-uniapp/commit/374e24c34c667a72ca754b84a9c73b7850a57771))
+
 ## [1.6.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.1...v1.6.2) (2024-01-08)
 
 ### Bug Fixes
