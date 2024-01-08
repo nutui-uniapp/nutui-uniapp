@@ -1,26 +1,33 @@
 <script lang="ts" setup>
-import { type ComputedRef, computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
-import type { InputFormatTrigger, InputMode, InputTarget, InputType } from '.'
+import type { InputFormatTrigger, InputMode, InputTarget, InputType } from './type'
 
 const props = defineProps(inputProps)
 
 const emit = defineEmits(inputEmits)
 
-const active = ref(false)
+const innerValue = computed<string>(() => {
+  if (props.modelValue == null)
+    return ''
 
-const inputRef = ref()
-const getModelValue = () => String(props.modelValue ? props.modelValue : '')
+  return String(props.modelValue)
+})
+
+const active = ref<boolean>(false)
 
 const state = reactive({
   focused: false,
-  validateFailed: false, // 校验失败
-  validateMessage: '', // 校验信息
+  // 校验失败
+  validateFailed: false,
+  // 校验信息
+  validateMessage: '',
 })
 
 const classes = computed(() => {
@@ -33,32 +40,35 @@ const classes = computed(() => {
   })
 })
 
-const styles: ComputedRef = computed(() => {
+const styles = computed<CSSProperties>(() => {
   return {
     textAlign: props.inputAlign,
   }
 })
 
-function getInputType(type: InputType): InputType {
+const innerInputType = computed<InputType>(() => {
   // #ifdef H5
-  if (type === 'number')
+  if (props.type === 'number')
     return 'tel'
 
-  if (type === 'digit')
+  if (props.type === 'digit')
     return 'text'
   // #endif
-  return type
-}
 
-function getInputMode(type: InputType, mode: InputMode): InputMode {
+  return props.type
+})
+
+const innerInputMode = computed<InputMode>(() => {
   // #ifdef H5
-  if (type === 'digit')
+  if (props.type === 'digit')
     return 'decimal'
-  if (type === 'number')
+
+  if (props.type === 'number')
     return 'numeric'
   // #endif
-  return mode
-}
+
+  return props.inputMode
+})
 
 function handleInput(event: any) {
   if (isH5) {
@@ -69,6 +79,7 @@ function handleInput(event: any) {
     _onInput(event)
   }
 }
+
 function _onInput(event: any) {
   const input = event.detail as HTMLInputElement
   const value = input.value
@@ -124,16 +135,17 @@ function endComposing({ target }: Event) {
     }
   }
 }
+
 watch(
   () => props.modelValue,
   () => {
-    updateValue(getModelValue())
+    updateValue(innerValue.value)
     resetValidation()
   },
 )
 
 onMounted(() => {
-  updateValue(getModelValue(), props.formatTrigger)
+  updateValue(innerValue.value, props.formatTrigger)
 })
 
 function handleFocus(evt: InputOnFocusEvent) {
@@ -152,12 +164,7 @@ function handleBlur(evt: InputOnBlurEvent) {
     active.value = false
   }, 200)
 
-  const input = evt.detail as HTMLInputElement
-  let value = input.value
-  if (props.maxLength && value.length > Number(props.maxLength))
-    value = value.slice(0, Number(props.maxLength))
-
-  updateValue(getModelValue(), 'onBlur')
+  updateValue(innerValue.value, 'onBlur')
   emit(BLUR_EVENT, evt)
 }
 
@@ -196,8 +203,7 @@ export default defineComponent({
         </view>
         <view class="nut-input-box">
           <input
-            ref="inputRef"
-            :type="getInputType(props.type) as any"
+            :type="innerInputType as any"
             class="input-text"
             :style="[styles, props.customStyle]"
             :placeholder="placeholder"
@@ -207,13 +213,13 @@ export default defineComponent({
             :readonly="readonly"
             :focus="autofocus"
             :maxlength="maxLength ? +maxLength : -1"
-            :value="modelValue as string"
+            :value="innerValue"
             :format-trigger="formatTrigger"
             :auto-blur="autofocus ? true : undefined"
             :confirm-type="confirmType"
             :adjust-position="adjustPosition"
             :always-system="alwaysSystem"
-            :input-mode="getInputMode(props.type, props.inputMode)"
+            :input-mode="innerInputMode"
             :cursor-spacing="cursorSpacing"
             :always-embed="alwaysEmbed"
             :confirm-hold="confirmHold"
@@ -233,13 +239,13 @@ export default defineComponent({
           <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
-              {{ getModelValue() ? getModelValue().length : 0 }}
+              {{ innerValue.length }}
             </text>/{{ maxLength }}
           </view>
         </view>
         <view
           v-if="clearable && !readonly"
-          v-show="(active || showClearIcon) && getModelValue().length > 0"
+          v-show="(active || showClearIcon) && innerValue.length > 0"
           class="nut-input-clear-box"
           @click="(handleClear as any)"
         >
