@@ -207,7 +207,7 @@ export default defineComponent({
             :readonly="readonly"
             :focus="autofocus"
             :maxlength="maxLength ? +maxLength : -1"
-            :value="modelValue.toString()"
+            :value="modelValue as string"
             :format-trigger="formatTrigger"
             :auto-blur="autofocus ? true : undefined"
             :confirm-type="confirmType"
