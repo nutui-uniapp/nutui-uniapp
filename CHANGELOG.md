@@ -1,3 +1,18 @@
+## [1.6.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.2...v1.6.3) (2024-01-08)
+
+### Performance Improvements
+
+* **input:** 使用computed代替函数调用 ([374e24c](https://github.com/nutui-uniapp/nutui-uniapp/commit/374e24c34c667a72ca754b84a9c73b7850a57771))
+
+## [1.6.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.1...v1.6.2) (2024-01-08)
+
+### Bug Fixes
+
+* **calendar:** 日历组件在微信小程序弹窗展示时，无法滚动到默认日期 ([8f3b3aa](https://github.com/nutui-uniapp/nutui-uniapp/commit/8f3b3aa4d157db1fc842825598441ec78d2723ae))
+* **calendar:** 日历组件在微信小程序中无法显示今天标记 ([15aadca](https://github.com/nutui-uniapp/nutui-uniapp/commit/15aadcae48b112eee323b2593e616ccb935e8c77))
+* **calendar:** 优化初始滚动判断条件 ([5961f8e](https://github.com/nutui-uniapp/nutui-uniapp/commit/5961f8edee6ade9835329306a7543f3fcd29cece))
+* **input:** modelValue为空时错误调用方法 ([782676b](https://github.com/nutui-uniapp/nutui-uniapp/commit/782676bfa69c9c82b1a3483f48a5264ee5e09d8a)), closes [#155](https://github.com/nutui-uniapp/nutui-uniapp/issues/155)
+
 ## [1.6.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.0...v1.6.1) (2024-01-04)
 
 ### Features
