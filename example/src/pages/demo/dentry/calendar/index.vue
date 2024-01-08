@@ -35,7 +35,7 @@ export default {
     const calendarRef = ref<any>(null)
     const state = reactive<TestCalendarState>({
       isVisible: false,
-      date: '2022-02-01',
+      date: '2022-02-04',
       dateWeek: '',
       date1: ['2020-01-23', '2020-01-26'],
       date2: '2020-07-08',
@@ -43,7 +43,7 @@ export default {
       date4: ['2022-02-23', '2022-04-26'],
       date5: [],
       date6: [],
-      date7: [],
+      date7: ['2022-02-23', '2022-04-26'],
       date8: '',
       date9: ['2020-01-23', '2020-01-26'],
       date10: '2023-09-03',
@@ -196,6 +196,7 @@ export default {
         :default-value="date"
         start-date="2022-01-11"
         end-date="2022-11-30"
+        :is-auto-back-fill="true"
         safe-area-inset-bottom
         @close="closeSwitch('isVisible')"
         @choose="setChooseValue"
@@ -406,10 +407,10 @@ export default {
         :show-icon="true"
         title="自定义周起始日"
         :desc="date8 ? `${date8}` : '请选择'"
-        @click="openSwitch('isVisible')"
+        @click="openSwitch('isVisible8')"
       />
       <nut-calendar
-        v-model:visible="isVisible"
+        v-model:visible="isVisible8"
         safe-area-inset-bottom
         :default-value="date8"
         :first-day-of-week="2"
