@@ -56,9 +56,11 @@ export default defineComponent({
         </slot>
       </div>
       <div class="nut-card__right__shop">
-        <div class="nut-card__right__shop__name">
-          {{ shopName }}
-        </div>
+        <slot name="shopName">
+          <div class="nut-card__right__shop__name">
+            {{ shopName }}
+          </div>
+        </slot>
         <slot name="footer" />
       </div>
     </div>
