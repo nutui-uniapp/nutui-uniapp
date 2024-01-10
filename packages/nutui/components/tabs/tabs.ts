@@ -76,6 +76,7 @@ export class Title {
   title = ''
   titleSlot?: VNode<RendererNode, RendererElement, { [key: string]: any }>
   paneKey = ''
+  badge = Number
   disabled = false
   constructor() { }
 }
