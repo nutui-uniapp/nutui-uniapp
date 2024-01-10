@@ -5,6 +5,7 @@ import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } fr
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
+import NutBadge from '../badge/badge.vue'
 import { TAB_KEY, Title, tabsEmits, tabsProps } from './tabs'
 import { useTabContentTouch } from './hooks'
 
@@ -35,6 +36,7 @@ function renderTitles(vnodes: VNode[]) {
               = camelPaneKeyType === 'number' || camelPaneKeyType === 'string' ? String(vnode.props?.paneKey) : null
         title.title = vnode.props?.title
         title.paneKey = paneIndex || camelPaneIndex || String(index)
+        title.badge = vnode.props?.badge
         title.disabled = vnode.props?.disabled
       }
 
@@ -321,9 +323,11 @@ export default defineComponent({
             <view v-if="type === 'smile'" class="nut-tabs__titles-item__smile" :style="tabsActiveStyle">
               <NutIcon name="joy-smile" :custom-color="customColor" />
             </view>
-            <view class="nut-tabs__titles-item__text" :class="{ ellipsis }">
-              {{ item.title }}
-            </view>
+            <NutBadge :value="item.badge">
+              <view class="nut-tabs__titles-item__text" :class="{ ellipsis }">
+                  {{ item.title }}
+              </view>
+            </NutBadge>
           </view>
           <view v-if="canShowLabel && titleScroll" class="nut-tabs__titles-placeholder" />
         </template>
