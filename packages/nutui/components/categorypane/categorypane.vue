@@ -30,6 +30,7 @@ export default defineComponent({
 <template>
   <div :class="classes">
     <div v-if="type === 'classify'" class="nut-category-pane__cateListRight">
+      <slot />
       <div v-for="(item, index) in categoryChild" :key="index">
         <div class="nut-category-pane__childTitle">
           {{ item?.catName }}
@@ -53,6 +54,7 @@ export default defineComponent({
 
     <!-- text -->
     <div v-if="type === 'text'" class="nut-category-pane__cateListRight">
+      <slot />
       <div v-for="(item, index) in categoryChild" :key="index">
         <div class="nut-category-pane__childTitle">
           {{ item?.catName }}
@@ -76,6 +78,7 @@ export default defineComponent({
     <!-- 自定义 -->
 
     <div v-if="type === 'custom'" class="nut-category-pane__selfItemList">
+      <slot />
       <div v-for="(sku, key) in customCategory" :key="key" class="nut-category-pane__skuName" @click="onChange(sku)">
         {{ sku?.catName }}
       </div>
