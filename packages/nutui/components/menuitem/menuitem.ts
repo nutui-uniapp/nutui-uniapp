@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { CHANGE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export interface MenuItemOption {
   text: string
@@ -45,6 +45,8 @@ export type MenuItemProps = ExtractPropTypes<typeof menuitemProps>
 export const menuitemEmits = {
   [UPDATE_MODEL_EVENT]: (val: string | number) => isString(val) || isNumber(val),
   [CHANGE_EVENT]: (val: string | number) => isString(val) || isNumber(val),
+  [OPEN_EVENT]: () => true,
+  [CLOSE_EVENT]: () => true,
 }
 export type MenuitemEmits = typeof menuitemEmits
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, inject, onUnmounted, reactive } from 'vue'
-import { PREFIX } from '../_constants'
+import { CLOSE_EVENT, OPEN_EVENT, PREFIX } from '../_constants'
 import PopUp from '../popup/popup.vue'
 import Icon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
@@ -103,6 +103,13 @@ export default defineComponent({
     const handleClickOutside = () => {
       state.showPopup = false
     }
+    const handleVisible = (visible: boolean) => {
+      if (visible)
+        emit(OPEN_EVENT)
+
+      else
+        emit(CLOSE_EVENT)
+    }
 
     return {
       classes,
@@ -114,6 +121,7 @@ export default defineComponent({
       toggle,
       onClick,
       handleClose,
+      handleVisible,
       handleClickOutside,
     }
   },
@@ -144,6 +152,7 @@ export default defineComponent({
       :lock-scroll="parent.props.lockScroll"
       :close-on-click-overlay="parent.props.closeOnClickOverlay"
       @closed="handleClose"
+      @update:visible="handleVisible"
     >
       <scroll-view :scroll-y="true">
         <view id="nut-menu-item__content" class="nut-menu-item__content">
