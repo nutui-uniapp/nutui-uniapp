@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { commonProps, getDay, isBoolean, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { popupProps } from '../popup/popup'
 import { CHOOSE_EVENT, CLOSE_EVENT, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
@@ -35,7 +35,7 @@ export const calendarProps = {
    * @description 默认值，单个日期选择为 `string`，其他为 `string[]`
    */
   defaultValue: {
-    type: [String, Array],
+    type: [String, Array] as PropType<string | string[]>,
   },
   /**
    * @description 开始日期

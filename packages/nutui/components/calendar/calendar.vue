@@ -13,6 +13,15 @@ defineExpose({
   scrollToDate,
   initPosition,
 })
+
+const visible = computed({
+  get() {
+    return props.visible
+  },
+  set(val) {
+    emit('update:visible', val)
+  },
+})
 const showTopBtn = computed(() => {
   return slots.btn
 })
@@ -52,9 +61,18 @@ function choose(param: string | object) {
   emit(CHOOSE_EVENT, param)
 }
 
-function closePopup() {
-  close()
+function opened() {
+  if (props.defaultValue) {
+    if (Array.isArray(props.defaultValue)) {
+      if (props.defaultValue?.length)
+        calendarRef.value?.scrollToDate(props.defaultValue?.[0])
+    }
+    else {
+      calendarRef.value?.scrollToDate(props.defaultValue)
+    }
+  }
 }
+
 function select(param: string) {
   // close();
   emit(SELECT_EVENT, param)
@@ -77,13 +95,13 @@ export default defineComponent({
   <NutPoPUp
     v-if="poppable"
     v-bind="props"
-    :visible="visible"
+    v-model:visible="visible"
     position="bottom"
     round
     closeable
     :custom-style="{ height: '85vh' }"
-    @click-overlay="closePopup"
-    @click-close-icon="closePopup"
+    :destroy-on-close="false"
+    @opened="opened"
   >
     <NutCalendarItem
       ref="calendarRef"
