@@ -6,6 +6,7 @@
       &__slots {
         :deep(.nut-input-text) {
           color: $dark-color;
+          background: transparent;
         }
       }
     }
@@ -79,10 +80,8 @@
     &__slots {
       text-align: $form-item-body-slots-text-align;
 
-      :deep(.nut-input-text) {
+      :deep(.nut-input) {
         width: 100%;
-        padding: 0;
-        margin: 0;
         font-size: $form-item-body-font-size;
         color: $black;
         text-align: $form-item-body-input-text-align;

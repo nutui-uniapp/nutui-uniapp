@@ -88,6 +88,8 @@
     flex-grow: 1;
     width: 0;
     height: 100%;
+    cursor: grab;
+    user-select: none;
   }
 
   &__title {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, defineComponent, nextTick, onMounted, reactive, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
-import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isArray, isEqual, isH5 } from '../_utils'
+import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
 import { CHOOSE_EVENT, PREFIX, SELECT_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
@@ -685,22 +685,6 @@ watch(
     }
   },
 )
-
-// #ifdef MP-WEIXIN
-watch(
-  () => props.visible,
-  (val) => {
-    if (val && props.defaultValue) {
-      nextTick(() => {
-        if (isArray(props.defaultValue) && props.defaultValue.length > 0)
-          scrollToDate(props.defaultValue[0] as string)
-        if (!isArray(props.defaultValue))
-          scrollToDate(props.defaultValue as string)
-      })
-    }
-  },
-)
-// #endif
 </script>
 
 <script lang="ts">

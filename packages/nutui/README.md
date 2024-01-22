@@ -18,6 +18,9 @@ height="100" style="max-width: 100%;" />
 <a href="https://www.npmjs.com/package/nutui-uniapp">
   <img src="https://img.shields.io/npm/dt/nutui-uniapp?style=flat-square">
 </a>
+<a href="https://app.netlify.com/sites/nutui-uniapp/deploys">
+<img src="https://api.netlify.com/api/v1/badges/dbbf78de-0649-4b88-a06a-f3b18d053776/deploy-status" />
+</a>
 </p>
 
 <p align="center">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
+import { computed, defineComponent, nextTick, onBeforeMount, reactive, watch } from 'vue'
 import { isDate as isDateU, padZero } from '../_utils'
-import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CANCEL_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
 import { datepickerEmits, datepickerProps } from './datepicker'
@@ -56,15 +56,18 @@ function getBoundary(type: string, value: Date) {
     hour = 23
     minute = 59
   }
-  const seconds = minute
+  let seconds = minute
   if (value.getFullYear() === year) {
     month = boundary.getMonth() + 1
     if (value.getMonth() + 1 === month) {
       date = boundary.getDate()
       if (value.getDate() === date) {
         hour = boundary.getHours()
-        if (value.getHours() === hour)
+        if (value.getHours() === hour) {
           minute = boundary.getMinutes()
+          if (value.getMinutes() === minute)
+            seconds = boundary.getSeconds()
+        }
       }
     }
   }
@@ -128,33 +131,38 @@ function changeHandler({
   selectedValue: (string | number)[]
   selectedOptions: PickerOption[]
 }) {
-  if (['date', 'datetime', 'datehour', 'month-day', 'year-month'].includes(props.type)) {
-    const formatDate: (number | string)[] = []
-    selectedValue.forEach((item) => {
-      formatDate.push(item)
-    })
-    if (props.type === 'month-day' && formatDate.length < 3)
-      formatDate.unshift(new Date(state.currentDate || props.minDate || props.maxDate).getFullYear())
+  const formatDate: (number | string)[] = []
+  selectedValue.forEach((item) => {
+    formatDate.push(item)
+  })
+  if (props.type === 'month-day' && formatDate.length < 3)
+    formatDate.unshift(new Date(state.currentDate || props.minDate || props.maxDate).getFullYear())
 
-    if (props.type === 'year-month' && formatDate.length < 3)
-      formatDate.push(new Date(state.currentDate || props.minDate || props.maxDate).getDate())
+  if (props.type === 'year-month' && formatDate.length < 3)
+    formatDate.push(new Date(state.currentDate || props.minDate || props.maxDate).getDate())
 
-    const year = Number(formatDate[0])
-    const month = Number(formatDate[1]) - 1
-    const day = Math.min(Number(formatDate[2]), getMonthEndDay(Number(formatDate[0]), Number(formatDate[1])))
-    let date: Date | null = null
-    if (props.type === 'date' || props.type === 'month-day' || props.type === 'year-month')
-      date = new Date(year, month, day)
-
-    else if (props.type === 'datetime')
-      date = new Date(year, month, day, Number(formatDate[3]), Number(formatDate[4]))
-
-    else if (props.type === 'datehour')
-      date = new Date(year, month, day, Number(formatDate[3]))
-
-    state.currentDate = formatValue(date as Date)
+  const year = Number(formatDate[0])
+  const month = Number(formatDate[1]) - 1
+  const day = Math.min(Number(formatDate[2]), getMonthEndDay(Number(formatDate[0]), Number(formatDate[1])))
+  let date: Date | null = null
+  if (props.type === 'date' || props.type === 'month-day' || props.type === 'year-month') {
+    date = new Date(year, month, day)
   }
-  emit(CHANGE_EVENT, { columnIndex, selectedValue, selectedOptions })
+  else if (props.type === 'datetime') {
+    date = new Date(year, month, day, Number(formatDate[3]), Number(formatDate[4]))
+  }
+  else if (props.type === 'datehour') {
+    date = new Date(year, month, day, Number(formatDate[3]))
+  }
+  else if (props.type === 'hour-minute' || props.type === 'time') {
+    date = new Date(state.currentDate)
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const day = date.getDate()
+    date = new Date(year, month, day, Number(formatDate[0]), Number(formatDate[1]), Number(formatDate[2] || 0))
+  }
+  state.currentDate = formatValue(date as Date)
+  emit('change', { columnIndex, selectedValue, selectedOptions })
 }
 
 function formatterOption(type: string, value: string | number) {
@@ -275,8 +283,12 @@ watch(
   () => state.currentDate,
   (newValues) => {
     const isSameValue = JSON.stringify(newValues) === JSON.stringify(props.modelValue)
-    if (!isSameValue)
+    if (!isSameValue) {
       emit(UPDATE_MODEL_EVENT, newValues)
+      nextTick(() => {
+        state.selectedValue = getSelectedValue(newValues)
+      })
+    }
   },
 )
 
@@ -303,18 +315,9 @@ export default defineComponent({
 
 <template>
   <NutPicker
-    v-model="state.selectedValue"
-    :ok-text="okText"
-    :cancel-text="cancelText"
-    :columns="columns"
-    :title="title"
-    :three-dimensional="threeDimensional"
-    :swipe-duration="swipeDuration"
-    :show-toolbar="showToolbar"
-    :visible-option-num="visibleOptionNum"
-    :option-height="optionHeight"
-    @cancel="closeHandler"
-    @change="changeHandler"
+    v-model="state.selectedValue" :ok-text="okText" :cancel-text="cancelText" :columns="columns" :title="title"
+    :three-dimensional="threeDimensional" :swipe-duration="swipeDuration" :show-toolbar="showToolbar"
+    :visible-option-num="visibleOptionNum" :option-height="optionHeight" @cancel="closeHandler" @change="changeHandler"
     @confirm="confirm"
   >
     <template #top>

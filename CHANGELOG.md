@@ -1,3 +1,20 @@
+## [1.6.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.3...v1.6.4) (2024-01-15)
+
+### Bug Fixes
+
+* **calendar:** 优化初次打开默认值定位问题 ([35931ae](https://github.com/nutui-uniapp/nutui-uniapp/commit/35931ae28c60cd9c0502e3a2e65d154b5fa6c793))
+* **categorypane:** 商品分类面板组件默认插槽不生效 ([1d263e1](https://github.com/nutui-uniapp/nutui-uniapp/commit/1d263e1492e5f831a218d9f9cf57f90466b372a4))
+* **date-picker:** 修复 hour-minute 类型下选项刷新问题 ([291e721](https://github.com/nutui-uniapp/nutui-uniapp/commit/291e72151a66fb68b0e3968252620ce11d8f0209))
+* **date-picker:** 修复数据联动更新问题 ([e4d2d03](https://github.com/nutui-uniapp/nutui-uniapp/commit/e4d2d03ffb56da500d0dd2e1d573775a829512d8))
+* **dialog:** 修复 cancel 按钮的样式问题 ([bb62248](https://github.com/nutui-uniapp/nutui-uniapp/commit/bb62248bedaacc3cbcb3c92f414bcb6dacfaf59e))
+* **menuitem:** close open 事件无效 ([15b73c6](https://github.com/nutui-uniapp/nutui-uniapp/commit/15b73c6a1a2c28a3f688ea9ada38687ad905be8e)), closes [#163](https://github.com/nutui-uniapp/nutui-uniapp/issues/163)
+* **picker:** 修复 Safari 下遮罩层级样式问题 ([1d0149e](https://github.com/nutui-uniapp/nutui-uniapp/commit/1d0149e7a5b56aac62ed12a00f91c3f11e57085c))
+* **picker:** 优化 select、cursor 样式 ([a1ad4b0](https://github.com/nutui-uniapp/nutui-uniapp/commit/a1ad4b0ffd01ac92d99fa397b7ac271099af15b9))
+
+### Features
+
+* **card:** 商品卡片组件增加shopName插槽，用于店铺名称自定义 ([996726d](https://github.com/nutui-uniapp/nutui-uniapp/commit/996726ddc73d97994a394999a7484b858e9e6f00))
+
 ## [1.6.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.2...v1.6.3) (2024-01-08)
 
 ### Performance Improvements
