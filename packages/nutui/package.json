@@ -40,13 +40,21 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "web-types": "./web-types.json",
+  "vetur": {
+    "tags": "./tags.json",
+    "attributes": "./attributes.json"
+  },
   "files": [
     "README.md",
     "components",
     "dist",
     "global.d.ts",
     "locale/**",
-    "styles"
+    "styles",
+    "web-types.json",
+    "tags.json",
+    "attributes.json"
   ],
   "engines": {
     "HBuilderX": "^3.6.17"
