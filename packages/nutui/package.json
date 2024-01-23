@@ -47,14 +47,14 @@
   },
   "files": [
     "README.md",
+    "attributes.json",
     "components",
     "dist",
     "global.d.ts",
     "locale/**",
     "styles",
-    "web-types.json",
     "tags.json",
-    "attributes.json"
+    "web-types.json"
   ],
   "engines": {
     "HBuilderX": "^3.6.17"
