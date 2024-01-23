@@ -2,7 +2,7 @@
 
 ### Bug Fixes
 
-* form ([2ce7c20](https://github.com/nutui-uniapp/nutui-uniapp/commit/2ce7c20523694cb8a04dd22bd7a4c533e9ebd297)), closes [#165](https://github.com/nutui-uniapp/nutui-uniapp/issues/165) [#167](https://github.com/nutui-uniapp/nutui-uniapp/issues/167)
+* **form:** 修复搭配 input 使用时的样式问题 ([2ce7c20](https://github.com/nutui-uniapp/nutui-uniapp/commit/2ce7c20523694cb8a04dd22bd7a4c533e9ebd297)), closes [#165](https://github.com/nutui-uniapp/nutui-uniapp/issues/165) [#167](https://github.com/nutui-uniapp/nutui-uniapp/issues/167)
 
 ### Features
 
