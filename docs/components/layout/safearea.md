@@ -41,7 +41,7 @@ function generateRandomTextArray(count: number) {
 
 ### Props
 
-| 属性 | 说明 | 类型 | 默认值 |
+| 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- |-----|
 | position | 安全区的位置 | `'top' \| 'bottom'` | `-` |
 

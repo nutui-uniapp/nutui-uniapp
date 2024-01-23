@@ -289,11 +289,11 @@
 
 | 参数                   | 说明                                                             | 类型    | 默认值 |
 |------------------------|----------------------------------------------------------------|---------|------|
-| visible                 | 是否显示弹层                                                    | boolean  | `false`
-| height                 | 弹层的高度                                                    | string  | `20%`
-| title                 | 弹层标题                                                    | string  | `取件时间`
-| current-key                 | 唯一标识                                                    | string \| number  | `0`
-| current-time                 | 当前选择的时间，数组元素包含:key: string; list: string[]      | Array  | `[]`
+| visible                 | 是否显示弹层                                                    | boolean  | `false`|
+| height                 | 弹层的高度                                                    | string  | `20%`|
+| title                 | 弹层标题                                                    | string  | `取件时间`|
+| current-key                 | 唯一标识                                                    | string \| number  | `0`|
+| current-time                 | 当前选择的时间，数组元素包含:key: string; list: string[]      | Array  | `[]`|
 | lock-scroll   `H5`          | 背景是否锁定                                                | boolean        | `true`       |
 
 ### Slots
@@ -308,14 +308,14 @@
 
 | 参数                   | 说明                                                             | 类型    | 默认值 |
 |------------------------|----------------------------------------------------------------|---------|------|
-| name                 | 显示的名称                                                    | string  | ``
-| pannel-key           | 唯一标识，和 current-key一起标识当前选择的天                      | string \| number  | `0`
+| name                 | 显示的名称                                                    | string  | ``|
+| pannel-key           | 唯一标识，和 current-key一起标识当前选择的天                      | string \| number  | `0`|
 
 ### TimeDetail Props
 
 | 参数                   | 说明                                                             | 类型    | 默认值 |
 |------------------------|----------------------------------------------------------------|---------|------|
-| times                 | 可选择的时间，数组元素同 `current-time`                              | Array  | `[]`
+| times                 | 可选择的时间，数组元素同 `current-time`                              | Array  | `[]`|
 
 ### TimeSelect Event
 
