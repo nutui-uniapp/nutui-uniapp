@@ -1,3 +1,13 @@
+## [1.6.5](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.4...v1.6.5) (2024-01-23)
+
+### Bug Fixes
+
+* form ([2ce7c20](https://github.com/nutui-uniapp/nutui-uniapp/commit/2ce7c20523694cb8a04dd22bd7a4c533e9ebd297)), closes [#165](https://github.com/nutui-uniapp/nutui-uniapp/issues/165) [#167](https://github.com/nutui-uniapp/nutui-uniapp/issues/167)
+
+### Features
+
+* 添加web-types以提升WebStorm开发体验 ([18795e1](https://github.com/nutui-uniapp/nutui-uniapp/commit/18795e1ad86267cca09ff4abc28f0f9b61aaea7e))
+
 ## [1.6.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.3...v1.6.4) (2024-01-15)
 
 ### Bug Fixes
