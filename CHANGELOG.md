@@ -1,3 +1,9 @@
+## [1.6.6](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.5...v1.6.6) (2024-01-26)
+
+### Bug Fixes
+
+* **button:** disabled下 open-type 仍有效 ([af5f5ac](https://github.com/nutui-uniapp/nutui-uniapp/commit/af5f5ac34d9187ac2f0b955935e97d3f815df546)), closes [#173](https://github.com/nutui-uniapp/nutui-uniapp/issues/173)
+
 ## [1.6.5](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.4...v1.6.5) (2024-01-23)
 
 ### Bug Fixes
