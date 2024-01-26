@@ -68,7 +68,7 @@ export default defineComponent({
     :class="classes"
     :style="getStyle"
     :form-type="props.formType === 'button' ? undefined : props.formType"
-    :open-type="props.openType"
+    :open-type="props.disabled || props.loading ? undefined : props.openType"
     :hover-start-time="10000000"
     hover-stop-propagation
     :lang="props.lang"
