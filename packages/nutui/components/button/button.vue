@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type CSSProperties, defineComponent } from 'vue'
-import { computed, toRefs } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent } from 'vue'
 import Icon from '../icon/icon.vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
@@ -8,44 +8,47 @@ import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)
 
-const emits = defineEmits(buttonEmits)
-
-const { type, size, shape, disabled, loading, customColor, plain, block } = toRefs(props)
-
-function handleClick(event: unknown) {
-  if (!loading.value && !disabled.value)
-    emits(CLICK_EVENT, event as MouseEvent)
-}
+const emit = defineEmits(buttonEmits)
 
 const classes = computed(() => {
-  const obj = {
-    [`${componentName}--${type.value}`]: type.value,
-    [`${componentName}--${size.value}`]: size.value,
-    [`${componentName}--${shape.value}`]: shape.value,
-    [`${componentName}--plain`]: plain.value,
-    [`${componentName}--block`]: block.value,
-    [`${componentName}--disabled`]: disabled.value,
-    [`${componentName}--loading`]: loading.value,
-  }
-  return getMainClass(props, componentName, obj)
+  return getMainClass(props, componentName, {
+    [`${componentName}--${props.type}`]: !!props.type,
+    [`${componentName}--${props.size}`]: !!props.size,
+    [`${componentName}--${props.shape}`]: !!props.shape,
+    [`${componentName}--plain`]: props.plain,
+    [`${componentName}--block`]: props.block,
+    [`${componentName}--disabled`]: props.disabled,
+    [`${componentName}--loading`]: props.loading,
+    [`${componentName}--hovercls`]: props.hoverClass !== 'button-hover',
+  })
 })
 
-const getStyle = computed(() => {
-  const style: CSSProperties = {}
-  if (customColor?.value) {
-    if (plain.value) {
-      style.color = customColor.value
-      style.background = '#fff'
-      if (!customColor.value?.includes('gradient'))
-        style.borderColor = customColor.value
+const styles = computed(() => {
+  const value: CSSProperties = {}
+
+  if (props.customColor) {
+    if (props.plain) {
+      value.color = props.customColor
+      value.background = '#fff'
+
+      if (!props.customColor.includes('gradient'))
+        value.borderColor = props.customColor
     }
     else {
-      style.color = '#fff'
-      style.background = customColor.value
+      value.color = '#fff'
+      value.background = props.customColor
     }
   }
-  return getMainStyle(props, style)
+
+  return getMainStyle(props, value)
 })
+
+function handleClick(event: any) {
+  if (props.disabled || props.loading)
+    return
+
+  emit(CLICK_EVENT, event)
+}
 </script>
 
 <script lang="ts">
@@ -66,10 +69,12 @@ export default defineComponent({
 <template>
   <button
     :class="classes"
-    :style="getStyle"
+    :style="styles"
     :form-type="props.formType === 'button' ? undefined : props.formType"
     :open-type="props.disabled || props.loading ? undefined : props.openType"
-    :hover-start-time="10000000"
+    :hover-class="props.hoverClass"
+    :hover-start-time="props.hoverStartTime"
+    :hover-stay-time="props.hoverStayTime"
     hover-stop-propagation
     :lang="props.lang"
     :session-from="props.sessionFrom"
@@ -86,20 +91,20 @@ export default defineComponent({
     :data-order-id="props.dataOrderId"
     :data-biz-line="props.dataBizLine"
     @click="handleClick"
-    @getphonenumber="emits('getphonenumber', $event)"
-    @getuserinfo="emits('getuserinfo', $event)"
-    @error="emits('error', $event)"
-    @opensetting="emits('opensetting', $event)"
-    @addgroupapp="emits('addgroupapp', $event)"
-    @chooseaddress="emits('chooseaddress', $event)"
-    @chooseavatar="emits('chooseavatar', $event)"
-    @chooseinvoicetitle="emits('chooseinvoicetitle', $event)"
-    @launchapp="emits('launchapp', $event)"
-    @login="emits('login', $event)"
-    @subscribe="emits('subscribe', $event)"
-    @contact="emits('contact', $event)"
-    @agreeprivacyauthorization="emits('agreeprivacyauthorization', $event)"
-    @im="emits('im', $event)"
+    @getphonenumber="emit('getphonenumber', $event)"
+    @getuserinfo="emit('getuserinfo', $event)"
+    @error="emit('error', $event)"
+    @opensetting="emit('opensetting', $event)"
+    @addgroupapp="emit('addgroupapp', $event)"
+    @chooseaddress="emit('chooseaddress', $event)"
+    @chooseavatar="emit('chooseavatar', $event)"
+    @chooseinvoicetitle="emit('chooseinvoicetitle', $event)"
+    @launchapp="emit('launchapp', $event)"
+    @login="emit('login', $event)"
+    @subscribe="emit('subscribe', $event)"
+    @contact="emit('contact', $event)"
+    @agreeprivacyauthorization="emit('agreeprivacyauthorization', $event)"
+    @im="emit('im', $event)"
   >
     <view class="nut-button__wrap">
       <Icon v-if="loading" name="loading" class="nut-icon-loading" />

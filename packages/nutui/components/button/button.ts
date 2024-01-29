@@ -1,11 +1,23 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { ButtonLang, ButtonOnAddgroupappEvent, ButtonOnAgreeprivacyauthorizationEvent, ButtonOnChooseaddressEvent, ButtonOnChooseavatarEvent, ButtonOnChooseinvoicetitleEvent, ButtonOnErrorEvent, ButtonOnGetphonenumberEvent, ButtonOnLaunchappEvent, ButtonOnLoginEvent, ButtonOnOpensettingEvent, ButtonOnSubscribeEvent, ButtonOpenType } from '@uni-helper/uni-app-types'
-import { commonProps, makeStringProp } from '../_utils'
+import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 import type { ButtonFormType, ButtonShape, ButtonSize, ButtonType } from './type'
 
 export const buttonProps = {
   ...commonProps,
+  /**
+   * @description 指定按钮按下去的样式类
+   */
+  hoverClass: makeStringProp('button-hover'),
+  /**
+   * @description 按住后多久出现点击态，单位毫秒
+   */
+  hoverStartTime: makeNumberProp(20),
+  /**
+   * @description 手指松开后点击态保留时间，单位毫秒
+   */
+  hoverStayTime: makeNumberProp(70),
   /**
    * @description 按钮颜色，支持传入 `linear-gradient` 渐变色
    */
@@ -77,10 +89,7 @@ export const buttonProps = {
   /**
    * @description 打开频道页面时，传递的频道号 openType="openGuildProfile"时有效
    */
-  guildId: {
-    type: String,
-    default: '',
-  },
+  guildId: makeStringProp(''),
   /**
    * @description 打开公众号资料卡时，传递的号码 openType="openPublicProfile"时有效
    */
@@ -105,7 +114,6 @@ export const buttonProps = {
    * @description 商品类型，“1”代表生活服务，“2”代表泛知识。openType="im"时有效
    */
   dataBizLine: String,
-
 }
 
 export const buttonEmits = {
