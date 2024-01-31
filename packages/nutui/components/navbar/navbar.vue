@@ -25,6 +25,11 @@ const styles: ComputedRef = computed(() => {
   const style: CSSProperties = {
 
   }
+
+  if (zIndex.value) {
+    style.zIndex = Number(zIndex.value)
+  }
+
   // #ifdef MP
   if (placeholder.value && fixed.value) {
     style.height = navHeight.value
@@ -120,7 +125,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view class="nut-navbar--placeholder" :style="{ height: navHeight, zIndex }">
+  <view class="nut-navbar--placeholder" :style="{ height: navHeight }">
     <view id="navBarHtml" :class="classes" :style="styles">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="leftShow">
