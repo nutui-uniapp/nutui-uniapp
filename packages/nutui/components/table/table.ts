@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeArrayProp, makeObjectProp, truthProp } from '../_utils'
+import { commonProps, makeArrayProp, truthProp } from '../_utils'
 import type { TableColumnProps } from './types'
 
 export const tableProps = {
@@ -15,7 +15,7 @@ export const tableProps = {
   /**
    * @description 表格数据
    */
-  data: makeObjectProp<any>({}),
+  data: makeArrayProp<any>([]),
   /**
    * @description 是否显示简介
    */
