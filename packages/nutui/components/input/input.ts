@@ -30,6 +30,9 @@ export const inputProps = {
    * @description 输入框内容对齐方式，可选值 `left`、`center`、`right`
    */
   inputAlign: makeStringProp<InputAlignType>('left'),
+  /**
+   * @description 是否显示必填字段的标签旁边的红色星号
+   */
   required: Boolean,
   /**
    * @description 是否禁用
@@ -40,7 +43,6 @@ export const inputProps = {
    */
   readonly: Boolean,
   /**
-   * 是否标红
    * @description 是否标红
    */
   error: Boolean,
