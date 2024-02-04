@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
+import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
-import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
@@ -70,7 +70,7 @@ const innerInputMode = computed<InputMode>(() => {
   return props.inputMode
 })
 
-function handleInput(event: any) {
+function handleInput(event: InputOnInputEvent) {
   if (isH5) {
     if (!(event.detail as InputTarget)!.composing)
       _onInput(event)
@@ -80,14 +80,14 @@ function handleInput(event: any) {
   }
 }
 
-function _onInput(event: any) {
-  const input = event.detail as HTMLInputElement
-  const value = input.value
-  updateValue(value)
+function _onInput(event: InputOnInputEvent) {
+  updateValue(event.detail.value)
+  emit(INPUT_EVENT, innerValue.value, event)
 }
 
 function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   emit(UPDATE_MODEL_EVENT, value)
+
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.slice(0, Number(props.maxLength))
 

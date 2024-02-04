@@ -397,13 +397,14 @@
 
 | 事件名   | 说明           | 回调参数    |
 |--------|----------------|-------------|
-| update:model-value | 输入框内容变化时触发 | `val`  |
-| focus  | 输入框聚焦时触发     | `event` |
-| blur   | 输入框失焦时触发     | `event`  |
+| update:model-value | 输入框内容变化时触发 | `(value: string, event?: Event)`  |
+| focus  | 输入框聚焦时触发     | `(event: InputOnFocusEvent)` |
+| blur   | 输入框失焦时触发     | `(event: InputOnBlurEvent)`  |
 | clear  | 点击清除按钮时触发   | ``  |
-| click  | 点击组件时触发      | `event`  |
-| click-input      | 点击输入区域时触发      | `event`  |
-| confirm | 点击完成按钮时触发 | `event` |
+| click  | 点击组件时触发      | `(event: Event)`  |
+| click-input      | 点击输入区域时触发      | `(event: Event)`  |
+| confirm | 点击完成按钮时触发 | `(event: InputOnConfirmEvent)` |
+| input | 键盘输入时触发 | `(value: string, event: InputOnInputEvent)` |
 
 ### Slots
 
