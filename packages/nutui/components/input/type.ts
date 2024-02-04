@@ -27,7 +27,7 @@ export type InputType =
   | 'datetime-local'
   | 'idcard'
   | 'safe-password'
-  | 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'
+  | 'nickname'
 
 export type UniInputType = 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'
 export interface InputRule {
