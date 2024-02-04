@@ -27,7 +27,7 @@ export interface TableColumnProps {
    * @param row2
    * @returns
    */
-  sorter?: (row1: any, row2: any) => boolean
+  sorter?: (row1: any, row2: any) => number
   /**
    * @description 自定义渲染列数据，优先级高,仅支持`H5`
    * @param rowData
