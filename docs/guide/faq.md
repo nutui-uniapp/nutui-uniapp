@@ -8,7 +8,9 @@
 :::
 
 ::: details 无法自定义组件的class和 style
-uniapp在小程序环境组件的 class 和 style 不会被成功编译，如果你想自定义某些组件的 class 或 style，请传递props customClass和customStyle
+默认情况下，uniapp在小程序环境组件的 class 和 style 不会被成功编译，如果你想自定义某些组件的 class 或 style，请传递props customClass和customStyle
+
+另外，也可以在manifest.json的mp-weixin字段下添加 `"mergeVirtualHostAttributes": true` 配置，用于合并组件虚拟节点外层属性，之后大部分单根节点的组件即可支持 class 及 style 属性
 :::
 
 ::: details cli样式引入无效

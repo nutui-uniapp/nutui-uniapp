@@ -56,7 +56,7 @@
 }
 ```
 
-<Badge type="tip">推荐</Badge> 或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件
+<Badge type="tip">推荐</Badge> 或者使用 [@uni-helper/vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) 自动导入组件（注意：此方案与 `easycom` 不能同时使用）
 
 ```ts
 // vite.config.ts
