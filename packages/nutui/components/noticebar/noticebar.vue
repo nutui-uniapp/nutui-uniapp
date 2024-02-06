@@ -262,9 +262,9 @@ export default defineComponent({
       :style="barStyle"
       @click="(handleClick as any)"
     >
-      <view class="nut-noticebar__page-lefticon">
+      <view v-if="leftIcon" class="nut-noticebar__page-lefticon">
         <slot name="leftIcon">
-          <NutIcon v-if="leftIcon" name="notice" size="16px" />
+          <NutIcon name="notice" size="16px" />
         </slot>
       </view>
       <view ref="wrap" :class="`nut-noticebar__page-wrap wrap${state.id}`">
