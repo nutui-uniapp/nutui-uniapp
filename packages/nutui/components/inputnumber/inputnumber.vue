@@ -19,6 +19,7 @@ function fixedDecimalPlaces(v: string | number): string {
 function change(event: any) {
   const value = event.detail.value
   emit(UPDATE_MODEL_EVENT, value, event)
+  emit(CHANGE_EVENT, value, event)
 }
 function emitChange(value: string | number, event: Event) {
   const output_value: number | string = fixedDecimalPlaces(value)
