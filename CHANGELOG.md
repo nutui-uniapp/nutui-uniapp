@@ -1,3 +1,18 @@
+## [1.6.7](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.6...v1.6.7) (2024-02-06)
+
+### Bug Fixes
+
+* **input:** 移除InputType重复类型 ([15ac2cd](https://github.com/nutui-uniapp/nutui-uniapp/commit/15ac2cd1dd9955feec57df21e8c3b33126e1ab94))
+* **inputnumber:** 组件输入内容不会触发change事件 ([9d97d4e](https://github.com/nutui-uniapp/nutui-uniapp/commit/9d97d4e6b90d1cd35815328f2b6b66be94b6a806))
+* **navbar:** 修复zIndex无效问题 ([ecfbd16](https://github.com/nutui-uniapp/nutui-uniapp/commit/ecfbd168a7d392604739e6db6bf811e96c7b3dff))
+* **noticebar:** remove blank element of left-icon ([160bc37](https://github.com/nutui-uniapp/nutui-uniapp/commit/160bc3763eb0a1b193c914b967814a0b2a728bed))
+* **table:** data属性ts类型问题 ([91c434c](https://github.com/nutui-uniapp/nutui-uniapp/commit/91c434c669a9a2fed5762150c3aa641c4a61db0a))
+
+### Features
+
+* **button:** 新增hover-class相关属性 ([987185c](https://github.com/nutui-uniapp/nutui-uniapp/commit/987185cf8d93f474de5a0df4a34b908575ef2dc7))
+* **input:** 新增input事件 ([494f10a](https://github.com/nutui-uniapp/nutui-uniapp/commit/494f10ada6143930e421f1a773599cb0fe1f8761))
+
 ## [1.6.6](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.5...v1.6.6) (2024-01-26)
 
 ### Bug Fixes
