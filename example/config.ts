@@ -987,7 +987,7 @@ export default {
           cName: '气泡弹出框',
           desc: '气泡弹出框',
           sort: 19,
-          show: false,
+          show: true,
           uni: true,
           author: 'liqiong',
         },

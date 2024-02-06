@@ -161,7 +161,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>
@@ -171,7 +171,6 @@ export default {
           v-model:visible="lightTheme"
           :list="iconItemList"
           location="bottom-start"
-          custom-class="popover-demo-custom"
           @choose="chooseItem"
         >
           <template #reference>
@@ -182,7 +181,7 @@ export default {
         </nut-popover>
       </nut-col>
       <nut-col :span="8">
-        <nut-popover v-model:visible="darkTheme" theme="dark" :list="iconItemList" custom-class="popover-demo-custom">
+        <nut-popover v-model:visible="darkTheme" theme="dark" :list="iconItemList">
           <template #reference>
             <nut-button type="primary" shape="square">
               暗黑风格
@@ -249,18 +248,16 @@ export default {
     </h2>
     <nut-cell title="点击查看更多方向" @click="handlePicker" />
 
-    <nut-popup v-model:visible="showPicker" position="bottom" custom-class="popover-demo-custom">
+    <nut-popup v-model:visible="showPicker" :destroy-on-close="false" position="bottom" custom-class="popover-demo-custom">
       <nut-picker
-        :columns="columns"
-        title=""
-        :swipe-duration="500"
+        :columns="columns as any"
         @change="change"
         @confirm="closePicker"
         @close="closePicker"
       >
         <template #top>
-          <div class="brickBox">
-            <div id="pickerTarget" class="brick" />
+          <div class="brick-box">
+            <div id="picker-target" class="brick" />
           </div>
         </template>
       </nut-picker>
@@ -268,11 +265,10 @@ export default {
 
     <nut-popover
       v-model:visible="customPositon"
-      target-id="pickerTarget"
+      target-id="picker-target"
       :location="curPostion"
       theme="dark"
       :list="positionList"
-      custom-class="popover-demo-custom"
     />
 
     <h2 class="title">
@@ -311,25 +307,20 @@ export default {
 </template>
 
 <style lang="scss">
-.demo > .title {
-  padding: 0;
+.nut-popover-content {
+  width: 100px;
 }
-.brickBox {
+
+.brick-box {
   margin: 80px 0;
   display: flex;
   justify-content: center;
-  .brick {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #fa2c19 0%, #fa6419 100%);
-    border-radius: 10px;
-  }
 }
-
-.popover-demo-custom {
-  .nut-popover-content {
-    width: 120px;
-  }
+.brick {
+  width: 60px;
+  height: 60px;
+  background: #fa2c19;
+  border-radius: 10px;
 }
 
 .customClass {
