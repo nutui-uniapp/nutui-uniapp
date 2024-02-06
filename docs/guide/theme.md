@@ -44,4 +44,8 @@ export default defineConfig({
 
 ### 自定义组件的 style 或 class
 
-在微信小程序环境组件的 class 和 style 不会被成功编译，如果你想自定义某些组件的 class 或 style，请传递props `customClass`和`customStyle`，目前不是每个组件都支持，后续会考虑支持到每个组件
+默认情况下，在微信小程序环境组件的 class 和 style 不会被成功编译，如果你想自定义某些组件的 `class` 或 `style`，请传递props `customClass`和`customStyle`，目前不是每个组件都支持，后续会考虑支持到每个组件
+
+::: info
+另外，也可以在 [manifest.json](https://uniapp.dcloud.net.cn/collocation/manifest.html) 的 [mp-weixin](https://uniapp.dcloud.net.cn/collocation/manifest.html#mp-weixin) 字段下添加 `"mergeVirtualHostAttributes": true` 配置，用于合并组件虚拟节点外层属性，之后大部分单根节点的组件即可支持 `class` 及 `style` 属性
+:::
