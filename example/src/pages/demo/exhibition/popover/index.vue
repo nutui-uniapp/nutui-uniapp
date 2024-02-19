@@ -223,7 +223,7 @@ export default {
     <h2 class="title">
       自定义内容
     </h2>
-    <nut-popover v-model:visible="Customized" location="top-start" custom-class="customClass">
+    <nut-popover v-model:visible="Customized" location="right" custom-class="customClass">
       <template #reference>
         <nut-button type="primary" shape="square">
           自定义内容
@@ -231,14 +231,9 @@ export default {
       </template>
 
       <template #content>
-        <div class="self-content">
-          <div v-for="(item, index) in selfContent" :key="index" class="self-content-item">
-            <!-- <component :is="renderIcon(item.name)"></component> -->
-            <nut-icon name="service" />
-            <div class="self-content-desc">
-              {{ item.desc }}
-            </div>
-          </div>
+        <div class="p-10px">
+          <div> Custom Content Custom Content </div>
+          <div> Custom Content Custom Content </div>
         </div>
       </template>
     </nut-popover>
@@ -269,20 +264,6 @@ export default {
       :location="curPostion"
       theme="dark"
       :list="positionList"
-    />
-
-    <h2 class="title">
-      自定义目标元素
-    </h2>
-    <nut-button id="popid" type="primary" shape="square" @click="clickCustomHandle">
-      自定义对象
-    </nut-button>
-    <nut-popover
-      v-model:visible="customTarget"
-      target-id="popid"
-      :list="iconItemList"
-      location="top-start"
-      custom-class="popover-demo-custom"
     />
 
     <h2 class="title">
@@ -321,31 +302,6 @@ export default {
   height: 60px;
   background: #fa2c19;
   border-radius: 10px;
-}
-
-.customClass {
-  .nut-popover-content {
-    width: auto;
-  }
-  .self-content {
-    width: 195px;
-    display: flex;
-    flex-wrap: wrap;
-    &-item {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    &-desc {
-      margin-top: 5px;
-      width: 60px;
-      font-size: 10px;
-      text-align: center;
-    }
-  }
 }
 </style>
 

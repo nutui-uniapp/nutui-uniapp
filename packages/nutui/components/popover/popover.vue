@@ -13,9 +13,8 @@ import { popoverEmits, popoverProps } from './popover'
 const props = defineProps(popoverProps)
 const emit = defineEmits(popoverEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-
-const popoverID = `popoverRef${refRandomId}`
-const popoverContentID = `popoverContentRef${refRandomId}`
+const popoverID = `popoverRef${refRandomId()}`
+const popoverContentID = `popoverContentRef${refRandomId()}`
 const showPopup = ref(props.visible)
 const rootPosition = ref<PopoverRootPosition>()
 

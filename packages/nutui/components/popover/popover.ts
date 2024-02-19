@@ -66,7 +66,8 @@ export const popoverProps = {
    */
   bgColor: makeStringProp(''),
   /**
-   * @description 自定义目标元素 id
+   * @description 自定义目标元素 id, 暂不支持该属性
+   * @deprecated
    */
   targetId: makeStringProp(''),
 }

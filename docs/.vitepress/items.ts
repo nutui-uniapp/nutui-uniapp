@@ -95,7 +95,7 @@ export const components = [
       { text: 'List 虚拟列表', link: '/components/exhibition/list' },
       { text: 'LoadingPage 加载页', link: '/components/exhibition/loadingpage' },
       { text: 'Noticebar 公告栏', link: '/components/exhibition/noticebar' },
-      // { text: 'Popover 气泡弹出框', link: '/components/exhibition/popover' },
+      { text: 'Popover 气泡弹出框', link: '/components/exhibition/popover' },
       { text: 'Price 价格', link: '/components/exhibition/price' },
       { text: 'Progress 进度条', link: '/components/exhibition/progress' },
       { text: 'Skeleton 骨架屏', link: '/components/exhibition/skeleton' },

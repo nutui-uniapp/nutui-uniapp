@@ -1,4 +1,4 @@
-# Popover 气泡弹出框 <Badge type="warning">H5</Badge>
+# Popover 气泡弹出框 <Badge type="tip">1.6.7</Badge>
 
 ### 介绍
 
@@ -351,52 +351,6 @@ export default {
 </style>
 ```
 
-### 自定义目标元素
-
-Popover 提供了 `targetId` 属性，用于匹配目标元素，在目标元素上添加对应的 id 值即可
-
-```html
-<template>
-  <nut-button type="primary" shape="square" id="popid" @click="clickCustomHandle">自定义目标元素</nut-button>
-    <nut-popover v-model:visible="visible.customTarget" targetId="popid" :list="itemList" location="top-start"></nut-popover>
-</template>
-
-<script>
-import { reactive, ref } from 'vue';
-export default {
-  setup() {
-    const visible = reactive({
-      customTarget:false
-    });
-
-    const itemList = reactive([
-      {name: 'option1'},
-      {name: 'option2'},
-      {name: 'option3'}
-    ]);
-
-    const clickCustomHandle = () => {
-      visible.customTarget = !visible.customTarget;
-    };
-
-    return {
-        itemList,
-        visible,
-        clickCustomHandle,
-      };
-    }
-}
-</script>
-<style>
-#popid{
-  margin-top:300px
-}
-.nut-popover-content {
-  width: 120px;
-}
-</style>
-```
-
 ### 自定义颜色
 
 Popopver 提供了 2 种主题色，同样可以通过 `bgColor` 属性改变背景色
@@ -463,7 +417,6 @@ page,#app{
 | close-on-click-action        | 是否在点击选项后关闭  | boolean  | `true` |
 | close-on-click-outside        | 是否在点击外部元素后关闭菜单 | boolean  | `true`  |
 | bg-color        | 自定义背景色 | string  | `-`  |
-| target-id        | 自定义目标元素 id | string  | `-`  |
 | arrow-offset        | 小箭头的偏移量 | number  | `0`  |
 
 ### List 数据结构  
