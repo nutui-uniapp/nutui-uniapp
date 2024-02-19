@@ -1,4 +1,4 @@
-# Popover 气泡弹出框 <Badge type="tip">1.6.7</Badge>
+# Popover 气泡弹出框 <Badge type="tip">1.6.8</Badge>
 
 ### 介绍
 

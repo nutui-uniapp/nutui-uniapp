@@ -38,7 +38,7 @@ export const ellipsisProps = {
   /**
    * @description 省略的符号
    */
-  symbol: makeStringProp(''),
+  symbol: makeStringProp('...'),
 
   /**
    * @description 容器的行高
