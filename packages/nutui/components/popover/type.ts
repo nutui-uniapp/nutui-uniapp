@@ -1,5 +1,12 @@
 export type PopoverTheme = 'light' | 'dark'
 
+export interface PopoverRootPosition {
+  width: number
+  height: number
+  left: number
+  top: number
+  right: number
+}
 export type PopoverLocation =
   | 'bottom'
   | 'top'

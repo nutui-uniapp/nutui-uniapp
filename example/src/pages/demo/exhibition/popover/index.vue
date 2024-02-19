@@ -161,7 +161,7 @@ export default {
 </script>
 
 <template>
-  <div class="demo">
+  <div class="demo h-100vh!">
     <h2 class="title">
       基础用法
     </h2>
@@ -171,7 +171,6 @@ export default {
           v-model:visible="lightTheme"
           :list="iconItemList"
           location="bottom-start"
-          custom-class="popover-demo-custom"
           @choose="chooseItem"
         >
           <template #reference>
@@ -182,7 +181,7 @@ export default {
         </nut-popover>
       </nut-col>
       <nut-col :span="8">
-        <nut-popover v-model:visible="darkTheme" theme="dark" :list="iconItemList" custom-class="popover-demo-custom">
+        <nut-popover v-model:visible="darkTheme" theme="dark" :list="iconItemList">
           <template #reference>
             <nut-button type="primary" shape="square">
               暗黑风格
@@ -224,7 +223,7 @@ export default {
     <h2 class="title">
       自定义内容
     </h2>
-    <nut-popover v-model:visible="Customized" location="top-start" custom-class="customClass">
+    <nut-popover v-model:visible="Customized" location="right" custom-class="customClass">
       <template #reference>
         <nut-button type="primary" shape="square">
           自定义内容
@@ -232,14 +231,9 @@ export default {
       </template>
 
       <template #content>
-        <div class="self-content">
-          <div v-for="(item, index) in selfContent" :key="index" class="self-content-item">
-            <!-- <component :is="renderIcon(item.name)"></component> -->
-            <nut-icon name="service" />
-            <div class="self-content-desc">
-              {{ item.desc }}
-            </div>
-          </div>
+        <div class="p-10px">
+          <div> Custom Content Custom Content </div>
+          <div> Custom Content Custom Content </div>
         </div>
       </template>
     </nut-popover>
@@ -249,18 +243,16 @@ export default {
     </h2>
     <nut-cell title="点击查看更多方向" @click="handlePicker" />
 
-    <nut-popup v-model:visible="showPicker" position="bottom" custom-class="popover-demo-custom">
+    <nut-popup v-model:visible="showPicker" :destroy-on-close="false" position="bottom" custom-class="popover-demo-custom">
       <nut-picker
-        :columns="columns"
-        title=""
-        :swipe-duration="500"
+        :columns="columns as any"
         @change="change"
         @confirm="closePicker"
         @close="closePicker"
       >
         <template #top>
-          <div class="brickBox">
-            <div id="pickerTarget" class="brick" />
+          <div class="brick-box">
+            <div id="picker-target" class="brick" />
           </div>
         </template>
       </nut-picker>
@@ -268,25 +260,10 @@ export default {
 
     <nut-popover
       v-model:visible="customPositon"
-      target-id="pickerTarget"
+      target-id="picker-target"
       :location="curPostion"
       theme="dark"
       :list="positionList"
-      custom-class="popover-demo-custom"
-    />
-
-    <h2 class="title">
-      自定义目标元素
-    </h2>
-    <nut-button id="popid" type="primary" shape="square" @click="clickCustomHandle">
-      自定义对象
-    </nut-button>
-    <nut-popover
-      v-model:visible="customTarget"
-      target-id="popid"
-      :list="iconItemList"
-      location="top-start"
-      custom-class="popover-demo-custom"
     />
 
     <h2 class="title">
@@ -311,50 +288,20 @@ export default {
 </template>
 
 <style lang="scss">
-.demo > .title {
-  padding: 0;
+.nut-popover-content {
+  width: 100px;
 }
-.brickBox {
+
+.brick-box {
   margin: 80px 0;
   display: flex;
   justify-content: center;
-  .brick {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #fa2c19 0%, #fa6419 100%);
-    border-radius: 10px;
-  }
 }
-
-.popover-demo-custom {
-  .nut-popover-content {
-    width: 120px;
-  }
-}
-
-.customClass {
-  .nut-popover-content {
-    width: auto;
-  }
-  .self-content {
-    width: 195px;
-    display: flex;
-    flex-wrap: wrap;
-    &-item {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    &-desc {
-      margin-top: 5px;
-      width: 60px;
-      font-size: 10px;
-      text-align: center;
-    }
-  }
+.brick {
+  width: 60px;
+  height: 60px;
+  background: #fa2c19;
+  border-radius: 10px;
 }
 </style>
 

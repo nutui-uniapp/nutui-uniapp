@@ -1,31 +1,27 @@
 <script setup lang="ts">
-import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
-import { getMainClass, getMainStyle, isArray } from '../_utils'
+import { getMainClass, getMainStyle } from '../_utils'
 import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT, refRandomId } from '../_constants'
 import { useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
+import type { PopoverRootPosition } from './type'
 
 import { popoverEmits, popoverProps } from './popover'
 
 const props = defineProps(popoverProps)
 const emit = defineEmits(popoverEmits)
-
 const instance = getCurrentInstance() as ComponentInternalInstance
-const popoverID = `popoverRef${refRandomId}`
-const popoverContentID = `popoverContentRef${refRandomId}`
-const popoverContentCopyID = `popoverContentRefCopy${refRandomId}`
-const popoverbox = ref()
+const popoverID = `popoverRef${refRandomId()}`
+const popoverContentID = `popoverContentRef${refRandomId()}`
 const showPopup = ref(props.visible)
-const popoverstyles = ref<any>({})
+const rootPosition = ref<PopoverRootPosition>()
 
-const rootRect = ref<any>()
-
-let conentRootRect: {
-  height: number
-  width: number
-}
+const elRect = ref({
+  width: 0,
+  height: 0,
+})
 const classes = computed(() => {
   return getMainClass(props, componentName, {
     [`nut-popover--${props.theme}`]: true,
@@ -74,62 +70,65 @@ const popoverArrowStyle = computed(() => {
 })
 
 function upperCaseFirst(str: string) {
-  str = str.toLowerCase().replace(/\b\w+\b/g, word => word.substring(0, 1).toUpperCase() + word.substring(1))
+  str = str.toLowerCase()
+  str = str.replace(/\b\w+\b/g, word => word.substring(0, 1).toUpperCase() + word.substring(1))
   return str
 }
 
-function getRootPosition() {
-  if (!rootRect.value || !conentRootRect)
-    return {}
+const getRootPosition = computed(() => {
+  const styles: CSSProperties = {}
+  if (!rootPosition.value) {
+    styles.visibility = 'hidden'
+    return styles
+  }
 
-  const conentWidth = conentRootRect.width
-  const conentHeight = conentRootRect.height
-  const { width, height, left, top } = rootRect.value
-
+  const contentWidth = elRect.value.width
+  const contentHeight = elRect.value.height
+  const { width, height, left, top, right } = rootPosition.value
   const { location, offset } = props
-  const direction = location.split('-')[0]
-  const skew = location.split('-')[1]
+  const direction = location?.split('-')[0]
+  const skew = location?.split('-')[1]
   let cross = 0
   let parallel = 0
-  if (isArray(offset) && offset.length === 2) {
-    cross += +offset[1]
-    parallel += +offset[0]
+  if (Array.isArray(offset) && offset?.length === 2) {
+    cross += Number(offset[1])
+    parallel += Number(offset[0])
   }
-
   if (width) {
     if (['bottom', 'top'].includes(direction)) {
-      let h
-      // #ifdef H5
-      h = 0
-      // #endif
-      // #ifndef H5
-      h = direction === 'bottom' ? height + cross : -(conentHeight + cross)
-      // #endif
+      const h = direction === 'bottom' ? height + cross : -(contentHeight + cross)
+      styles.top = `${top + h}px`
 
-      popoverstyles.value.top = `${top + h}px`
       if (!skew)
-        popoverstyles.value.left = `${-(conentWidth - width) / 2 + left + parallel}px`
+        styles.left = `${-(contentWidth - width) / 2 + left + parallel}px`
 
       if (skew === 'start')
-        popoverstyles.value.left = `${left + parallel}px`
+        styles.left = `${left + parallel}px`
 
       if (skew === 'end')
-        popoverstyles.value.left = `${rootRect.value.right + parallel}px`
+        styles.left = `${right + parallel}px`
     }
     if (['left', 'right'].includes(direction)) {
-      const contentW = direction === 'left' ? -(conentWidth + cross) : width + cross
-      popoverstyles.value.left = `${left + contentW}px`
+      const contentW = direction === 'left' ? -(contentWidth + cross) : width + cross
+      styles.left = `${left + contentW}px`
       if (!skew)
-        popoverstyles.value.top = `${top - conentHeight / 2 + height / 2 - 4 + parallel}px`
+        styles.top = `${top - contentHeight / 2 + height / 2 - 4 + parallel}px`
 
       if (skew === 'start')
-        popoverstyles.value.top = `${top + parallel}px`
+        styles.top = `${top + parallel}px`
 
       if (skew === 'end')
-        popoverstyles.value.top = `${top + height + parallel}px`
+        styles.top = `${top + height + parallel}px`
     }
   }
-}
+
+  if (elRect.value.width === 0)
+    styles.visibility = 'hidden'
+  else
+    styles.visibility = 'initial'
+
+  return styles
+})
 
 const styles = computed(() => {
   const styles: CSSProperties = {}
@@ -138,63 +137,57 @@ const styles = computed(() => {
 
   return getMainStyle(props, styles)
 })
+
 // 获取宽度
 async function getContentWidth() {
-  let rect
-  if (props.targetId) {
-    // #ifdef MP-WEIXIN
-    // TODO 联动 tour  uniapp微信小程序无法实现，获取不到组件外节点的信息
-    // 父节点可以拿到，根节点拿不动
-    rect = await useRect(props.targetId, instance.parent!)
+  uni.createSelectorQuery().selectViewport().scrollOffset((res: any) => {
+    const distance = res.scrollTop
 
-    if (rect.left! < 0)
-      rect.left = 200
+    if (props.targetId) {
+      useRect(props.targetId, instance.root).then((rect) => {
+        rootPosition.value = {
+          width: rect.width!,
+          height: rect.height!,
+          left: rect.left!,
+          top: rect.top! + distance!,
+          right: rect.right!,
+        }
+      })
+    }
+    else {
+      useRect(popoverID, instance).then((rect) => {
+        rootPosition.value = {
+          width: rect.width!,
+          height: rect.height!,
+          left: rect.left!,
+          top: rect.top! + distance!,
+          right: rect.right!,
+        }
+      })
+    }
+  }).exec()
 
-    if (rect.top! < 0)
-      rect.top = 200
-
-    // #endif
-    // #ifndef MP-WEIXIN
-    rect = await useRect(props.targetId)
-    // #endif
-  }
-
-  else {
-    rect = await useRect(popoverID, instance)
-  }
-
-  if (!(rootRect.value && rect.top === rootRect.value.top && rect.width === rootRect.value.width)) {
-    setTimeout(() => {
-      getContentWidth()
-    }, 100)
-  }
-  rootRect.value = rect
-
-  getRootPosition()
+  setTimeout(() => {
+    getPopoverContentW()
+  }, 300)
 }
 
-async function getPopoverContentW(type = 1) {
-  const el = type === 1 ? popoverContentID : popoverContentCopyID
-
-  const rectContent = await useRect(el, instance)
-
-  conentRootRect = {
-    height: rectContent.height!,
-    width: rectContent.width!,
-  }
-
-  getRootPosition()
+async function getPopoverContentW() {
+  useRect(popoverContentID, instance).then((rect) => {
+    elRect.value = {
+      width: rect.width!,
+      height: rect.height!,
+    }
+  })
 }
 watch(
   () => props.visible,
   (value) => {
     showPopup.value = value
     if (value) {
-      getContentWidth()
-
-      setTimeout(() => {
-        getPopoverContentW()
-      }, 300)
+      nextTick(() => {
+        getContentWidth()
+      })
     }
   },
 )
@@ -202,7 +195,7 @@ watch(
 watch(
   () => props.location,
   (value) => {
-    getRootPosition()
+    getContentWidth()
   },
 )
 function update(val: boolean) {
@@ -218,7 +211,7 @@ function closePopover() {
   emit(CLOSE_EVENT)
 }
 function chooseItem(item: any, index: number) {
-  emit(CHOOSE_EVENT, item, index)
+  !item.disabled && emit(CHOOSE_EVENT, item, index)
   if (props.closeOnClickAction)
     closePopover()
 }
@@ -229,8 +222,7 @@ function clickAway() {
 onMounted(() => {
   setTimeout(() => {
     getContentWidth()
-    getPopoverContentW(0)
-  }, 600)
+  }, 300)
 })
 </script>
 
@@ -239,7 +231,6 @@ const componentName = `${PREFIX}-popover`
 
 export default defineComponent({
   name: componentName,
-  inheritAttrs: false,
   options: {
     virtualHost: true,
     addGlobalClass: true,
@@ -249,40 +240,23 @@ export default defineComponent({
 </script>
 
 <template>
-  <view
-    v-if="!targetId"
-    :id="popoverID"
-    :class="customClass"
-    class="nut-popover-wrapper"
-    @click="openPopover"
-  >
+  <view v-if="!targetId" :id="popoverID" class="nut-popover-wrapper" @click="openPopover">
     <slot name="reference" />
   </view>
-  <view ref="popoverbox" :class="classes" :style="[popoverstyles, styles]">
+  <view :class="classes" :style="getRootPosition">
     <NutPopup
       v-model:visible="showPopup"
-      :pop-class="`nut-popover-content nut-popover-content--${location}`"
-      :custom-style="styles"
-      :position="`` as any"
-      :transition="`nut-popover` as any"
-      :overlay="overlay"
-      :duration="+duration"
-      :overlay-style="overlayStyle"
-      :overlay-class="overlayClass"
+      :destroy-on-close="false" :pop-class="`nut-popover-content nut-popover-content--${location}`"
+      :custom-style="styles" :position="`` as any" :transition="`nut-popover` as any" :overlay="overlay"
+      :duration="+duration" :overlay-style="overlayStyle" :overlay-class="overlayClass"
       :close-on-click-overlay="closeOnClickOverlay"
-      lock-scroll
-      z-index="5000"
     >
       <view :id="popoverContentID" class="nut-popover-content-group">
         <view v-if="showArrow" :class="popoverArrow" :style="popoverArrowStyle" />
         <slot name="content" />
         <view
-          v-for="(item, index) in list"
-          :key="index"
-          class="nut-popover-menu-item nut-popover-menu-taroitem" :class="[
-            item.className,
-            item.disabled && 'nut-popover-menu-disabled',
-          ]"
+          v-for="(item, index) in list" :key="index"
+          class="nut-popover-menu-item" :class="[item.className, item.disabled && 'nut-popover-menu-disabled']"
           @click.stop="chooseItem(item, index)"
         >
           <NutIcon v-if="item.icon" :name="item.icon" custom-class="nut-popover-item-img" />
@@ -293,28 +267,7 @@ export default defineComponent({
       </view>
     </NutPopup>
 
-    <view v-if="showPopup" class="nut-popover-content-bg" @touchmove="clickAway" @click="clickAway" />
-  </view>
-  <!-- 用于计算大小 -->
-  <!-- TODO -->
-  <view class="nut-popover-content nut-popover-content-copy">
-    <view :id="popoverContentCopyID" class="nut-popover-content-group">
-      <view v-if="showArrow" :class="popoverArrow" :style="popoverArrowStyle" />
-      <slot name="content" />
-      <view
-        v-for="(item, index) in list"
-        :key="index"
-        class="nut-popover-menu-item nut-popover-menu-taroitem" :class="[
-          item.className,
-          item.disabled && 'nut-popover-menu-disabled',
-        ]"
-      >
-        <NutIcon v-if="item.icon" :name="item.icon" custom-class="nut-popover-item-img" />
-        <view class="nut-popover-menu-item-name">
-          {{ item.name }}
-        </view>
-      </view>
-    </view>
+    <view v-show="showPopup" class="nut-popover-content-bg" @touchmove="clickAway" @click="clickAway" />
   </view>
 </template>
 

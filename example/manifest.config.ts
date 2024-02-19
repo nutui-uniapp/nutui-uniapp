@@ -46,7 +46,7 @@ export default defineManifestConfig({
   'vueVersion': '3',
   'app-plus': {
     darkmode: true,
-
+    themeLocation: 'theme.json',
     distribute: {
       ios: {
         dSYMs: false,
