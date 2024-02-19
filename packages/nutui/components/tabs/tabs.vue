@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
-import { TypeOfFun, getMainClass, pxCheck } from '../_utils'
-import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
+import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
+import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
@@ -12,7 +12,7 @@ const props = defineProps(tabsProps)
 const emit = defineEmits(tabsEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { getSelectorNodeInfo, getSelectorNodeInfos } = useSelectorQuery(instance)
-
+const refRandomId = getRandomId()
 const container = ref(null)
 const { internalChildren } = useProvide(TAB_KEY, `${PREFIX}-tabs`)({
   activeKey: computed(() => props.modelValue || 0),

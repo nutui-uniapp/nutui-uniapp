@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { CLICK_EVENT, PREFIX, refRandomId } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
+import { getRandomId } from '../_utils'
 import type { EllipsisedValue } from './ellipsis'
 import { ellipsisEmits, ellipsisProps } from './ellipsis'
 
@@ -10,7 +11,7 @@ const props = defineProps(ellipsisProps)
 const emit = defineEmits(ellipsisEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { query } = useSelectorQuery(instance)
-
+const refRandomId = getRandomId()
 const rootId = `root${refRandomId}`
 const symbolContainId = `symbolContain${refRandomId}`
 const rootContainId = `rootContain${refRandomId}`
@@ -137,9 +138,8 @@ async function verifyEllipsis() {
 }
 
 function assignContent() {
-  contantCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${
-        ellipsis.tailing ? props.symbol : ''
-      }${ellipsis.tailing || ''}`
+  contantCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''
+    }${ellipsis.tailing || ''}`
 }
 // 计算省略号
 function tailorContent(left: number, right: number, type = '') {
@@ -238,7 +238,8 @@ export default defineComponent({
 
       <view v-if="state.exceeded && !state.expanded" class="nut-ellipsis__wordbreak">
         {{ ellipsis.leading }}{{ ellipsis.leading && symbol
-        }}<view v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(1)">
+        }}
+        <view v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(1)">
           {{ expandText }}
         </view>{{ ellipsis.tailing && symbol }}{{ ellipsis.tailing }}
       </view>

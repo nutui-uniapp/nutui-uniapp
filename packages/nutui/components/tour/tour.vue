@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
+import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import NutPopover from '../popover/popover.vue'
 import { useRect } from '../_hooks'
-import { getMainClass } from '../_utils'
+import { getMainClass, getRandomId } from '../_utils'
 import { tourEmits, tourProps } from './tour'
 
 const props = defineProps(tourProps)
 
 const emit = defineEmits(tourEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-
+const refRandomId = getRandomId()
 const state = reactive({
   showTour: props.modelValue,
   active: 0,

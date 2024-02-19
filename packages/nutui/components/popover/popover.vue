@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
-import { getMainClass, getMainStyle } from '../_utils'
-import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT, refRandomId } from '../_constants'
+import { getMainClass, getMainStyle, getRandomId } from '../_utils'
+import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
@@ -13,8 +13,8 @@ import { popoverEmits, popoverProps } from './popover'
 const props = defineProps(popoverProps)
 const emit = defineEmits(popoverEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
-const popoverID = `popoverRef${refRandomId()}`
-const popoverContentID = `popoverContentRef${refRandomId()}`
+const popoverID = `popoverRef${getRandomId()}`
+const popoverContentID = `popoverContentRef${getRandomId()}`
 const showPopup = ref(props.visible)
 const rootPosition = ref<PopoverRootPosition>()
 

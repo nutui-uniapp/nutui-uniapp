@@ -1,10 +1,10 @@
 <script lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, provide, reactive, ref } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
-import { PREFIX, refRandomId } from '../_constants'
+import { PREFIX } from '../_constants'
 import { useRect } from '../_hooks'
 import Icon from '../icon/icon.vue'
-import { getMainClass } from '../_utils'
+import { getMainClass, getRandomId } from '../_utils'
 import { menuProps } from './menu'
 
 const componentName = `${PREFIX}-menu`
@@ -18,7 +18,7 @@ export default defineComponent({
     styleIsolation: 'shared',
   },
   setup(props) {
-    const barId = `nut-menu__bar${refRandomId}`
+    const barId = `nut-menu__bar${getRandomId()}`
     const offset = ref(0)
     const isScrollFixed = ref(false)
     const instance = getCurrentInstance() as ComponentInternalInstance
@@ -134,7 +134,6 @@ export default defineComponent({
       children,
       opened,
       classes,
-      refRandomId,
       getClasses,
     }
   },

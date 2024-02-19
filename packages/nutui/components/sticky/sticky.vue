@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import type { ComponentInternalInstance, StyleValue } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
-import { getMainClass, getMainStyle, getPx, pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
+import { getMainClass, getMainStyle, getPx, getRandomId, pxCheck } from '../_utils'
 import { useRect } from '../_hooks'
 import { stickyProps } from './sticky'
 
 const props = defineProps(stickyProps)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const refRandomId = getRandomId()
 const rootId = `rootRef-${refRandomId}`
 const cssSticky = ref(false)
 const stickyTop = ref(0)

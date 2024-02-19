@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
+import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
-import { getMainClass } from '../_utils'
+import { getMainClass, getRandomId } from '../_utils'
 import { collapseitemProps } from './collapseitem'
 
 const props = defineProps(collapseitemProps)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
-
+const refRandomId = getRandomId()
 const slots = useSlots()
 
 const target = `#nut-collapse__item-${refRandomId}`

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import { PREFIX } from '../_constants'
+import { getMainClass, getMainStyle, getRandomId, pxCheck } from '../_utils'
 import { circleprogressProps } from './circleprogress'
 
 interface Item {
@@ -61,9 +61,9 @@ const style = computed(() => {
   const progress = +currentRate.value!
   const offset = (perimeter * Number(format(Number.parseFloat(progress.toFixed(1))))) / 100
   const isWise = props.clockwise ? 1 : 0
-  const color = isObject(props.customColor) ? `url(%23${refRandomId})` : transColor(props.customColor)
+  const color = isObject(props.customColor) ? `url(%23${getRandomId()})` : transColor(props.customColor)
   const d = `M 50 50 m 0 -45 a 45 45 0 1 ${isWise} 0 90 a 45 45 0 1, ${isWise} 0 -90`
-  const pa = `%3Cdefs%3E%3ClinearGradient id='${refRandomId}' x1='100%25' y1='0%25' x2='0%25' y2='0%25'%3E${stopDom}%3C/linearGradient%3E%3C/defs%3E`
+  const pa = `%3Cdefs%3E%3ClinearGradient id='${getRandomId()}' x1='100%25' y1='0%25' x2='0%25' y2='0%25'%3E${stopDom}%3C/linearGradient%3E%3C/defs%3E`
   const path = `%3Cpath d='${d}' stroke-width='${strokeWidth}' stroke='${transColor(
         props.pathColor,
       )}' fill='none'/%3E`

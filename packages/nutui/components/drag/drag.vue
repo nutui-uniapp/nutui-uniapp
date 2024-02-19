@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, reactive, ref } from 'vue'
-import { PREFIX, refRandomId } from '../_constants'
+import { PREFIX } from '../_constants'
 import requestAniFrame from '../_utils/raf'
 import { useRect } from '../_hooks'
-import { getMainStyle } from '../_utils'
+import { getMainStyle, getRandomId } from '../_utils'
 import { dragProps } from './drag'
 
 const props = defineProps(dragProps)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const myDrag = ref()
 
-const myDragID = `myDrag${refRandomId}`
+const myDragID = `myDrag${getRandomId()}`
 const state: any = reactive({
   keepAlive: false,
   elWidth: 0,

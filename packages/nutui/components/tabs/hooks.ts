@@ -1,11 +1,11 @@
 import { type ComponentInternalInstance, onMounted, reactive, ref } from 'vue'
 import { useTouch } from '../_hooks'
-import { refRandomId } from '../_constants'
+import { getRandomId } from '../_utils'
 
 type TouchPosition = 'left' | 'right' | 'top' | 'bottom' | ''
 export function useTabContentTouch(props: any, tabMethods: any, uni?: ComponentInternalInstance, useRect?: any) {
   const tabsContentRef = ref<HTMLElement>()
-  const tabsContentID = `tabsContentRef-${refRandomId}`
+  const tabsContentID = `tabsContentRef-${getRandomId()}`
   const tabsContentRefRect = ref({ width: 0, height: 0 })
   const initUniWidth = async () => {
     if (uni) {

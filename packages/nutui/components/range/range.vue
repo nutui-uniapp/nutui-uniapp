@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref } from 'vue'
-import { isH5, preventDefault } from '../_utils'
-import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
+import { getRandomId, isH5, preventDefault } from '../_utils'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { type SliderValue, rangeEmits, rangeProps } from './range'
 
@@ -9,7 +9,7 @@ const props = defineProps(rangeProps)
 const emit = defineEmits(rangeEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 
-const RangeID = computed(() => `root-${refRandomId}`)
+const RangeID = computed(() => `root-${getRandomId()}`)
 const state = ref({
   width: 0,
   height: 0,

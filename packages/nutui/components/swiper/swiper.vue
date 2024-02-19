@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, type VNode, nextTick } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onDeactivated, reactive, watch } from 'vue'
-import { clamp } from '../_utils'
-import { PREFIX, refRandomId } from '../_constants'
+import { clamp, getRandomId } from '../_utils'
+import { PREFIX } from '../_constants'
 import { useProvide, useRect, useTouch } from '../_hooks'
 import requestAniFrame from '../_utils/raf'
 import { SWIPER_KEY, swiperEmits, swiperProps } from './swiper'
@@ -11,7 +11,7 @@ const props = defineProps(swiperProps)
 const emit = defineEmits(swiperEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 
-const containerId = `container-${refRandomId}`
+const containerId = `container-${getRandomId()}`
 const state = reactive({
   active: 0,
   num: 0,

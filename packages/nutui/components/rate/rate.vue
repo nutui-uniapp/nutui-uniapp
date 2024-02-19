@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
-import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, refRandomId } from '../_constants'
+import { getMainClass, getRandomId, pxCheck } from '../_utils'
+import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { rateEmits, rateProps } from './rate'
 
 const props = defineProps(rateProps)
 const emit = defineEmits(rateEmits)
-
+const refRandomId = getRandomId()
 const rateRefs = ref<HTMLElement[]>([])
 const classes = computed(() => {
   return getMainClass(props, componentName)
@@ -52,13 +52,13 @@ export default defineComponent({
       :style="n < Number(count) ? { marginRight: pxCheck(spacing!) } : {}"
     >
       <view class="nut-rate-item__icon--full" @click="onClick(1, n)">
-        <NutIcon :size="size" :custom-class="`nut-rate-item__icon ${disabled || n > +modelValue ? 'nut-rate-item__icon--disabled' : ''}`" :name="customIcon" :custom-color="n <= +modelValue ? activeColor : voidColor" />
+        <NutIcon :size="props.size" :custom-class="`nut-rate-item__icon ${disabled || n > +modelValue ? 'nut-rate-item__icon--disabled' : ''}`" :name="customIcon" :custom-color="n <= +modelValue ? activeColor : voidColor" />
       </view>
       <view v-if="allowHalf && Number(modelValue) + 1 > n" class="nut-rate-item__icon--half" @click="onClick(2, n)">
-        <NutIcon :size="size" custom-class="nut-rate-item__icon" :name="customIcon" :custom-color="n <= Number(modelValue) + 1 ? activeColor : voidColor" @click="onClick(2, n)" />
+        <NutIcon :size="props.size" custom-class="nut-rate-item__icon" :name="customIcon" :custom-color="n <= Number(modelValue) + 1 ? activeColor : voidColor" @click="onClick(2, n)" />
       </view>
       <view v-else-if="allowHalf && Number(modelValue) + 1 < n" class="nut-rate-item__icon--half" @click="onClick(2, n)">
-        <NutIcon :size="size" :name="customIcon" custom-class="nut-rate-item__icon nut-rate-item__icon--disabled" :custom-color="voidColor" />
+        <NutIcon :size="props.size" :name="customIcon" custom-class="nut-rate-item__icon nut-rate-item__icon--disabled" :custom-color="voidColor" />
       </view>
     </view>
   </view>

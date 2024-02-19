@@ -1266,7 +1266,7 @@ export default {
     {
       name: '抽奖组件',
       enName: 'bingo',
-      show: !!isH5,
+      show: true,
       packages: [
         {
           version: '1.0.0',

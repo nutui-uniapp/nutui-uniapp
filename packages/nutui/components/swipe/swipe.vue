@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, watch } from 'vue'
-import { CLICK_EVENT, PREFIX, refRandomId } from '../_constants'
+import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
-import { getMainClass, getMainStyle } from '../_utils'
+import { getMainClass, getMainStyle, getRandomId } from '../_utils'
 import { type SwipePosition, swipeEmits, swipeProps } from './swipe'
 
 const props = defineProps(swipeProps)
@@ -18,7 +18,7 @@ async function getRefWidth(elementId: string) {
   const rect = await useRect(elementId, instance)
   return rect.width || 0
 }
-
+const refRandomId = getRandomId()
 const leftRefId = `leftRef-${refRandomId}`
 const leftRefWidth = ref(0)
 const rightRefId = `rightRef-${refRandomId}`

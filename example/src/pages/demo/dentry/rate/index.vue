@@ -90,7 +90,7 @@ export default {
       自定义尺寸 35px
     </h2>
     <nut-cell class="cell">
-      <nut-rate v-model="state.val8" size="35" />
+      <nut-rate v-model="state.val8" :size="35" />
     </nut-cell>
   </div>
 </template>
