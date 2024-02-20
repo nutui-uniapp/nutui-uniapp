@@ -417,7 +417,7 @@ function confirm({ selectedValue, selectedOptions }) {
 |--------------|----------------------------------|--------|------------------|
 | v-model:value         | 默认选中项               | Array | `[]`              |
 | columns         | 对象数组，配置每一列显示的数据               | PickerOption[] \| PickerOption[][] | -                |
-| field-names`v0.3.0` | 自定义 columns 中的字段        | object                             | `{ text: 'text', value: 'value', children: 'children' }` |
+| field-names`v0.3.0` | 自定义 columns 中的字段        | object                             | `{ text: 'text', value: 'value', children: 'children', className: 'className' }` |
 | title                  | 设置标题                   | string  | -      |
 | cancel-text            | 取消按钮文案               | string  | `取消`  |
 | ok-text                | 确定按钮文案               | string  | `确定`   |
