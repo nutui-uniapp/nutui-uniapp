@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed, defineComponent, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, toRef, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutProgress from '../progress/progress.vue'
 import NutIcon from '../icon/icon.vue'
 import NutButton from '../button/button.vue'
 import { getMainClass } from '../_utils'
+import { useFormDisabled } from '../form/form'
 import { uploaderEmits, uploaderProps } from './uploader'
 import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
 import type { FileItem } from './type'
@@ -15,6 +16,7 @@ const emit = defineEmits(uploaderEmits)
 defineExpose({ submit, chooseImage, clearUploadQueue })
 const fileList = ref(props.fileList as Array<FileItem>)
 const uploadQueue = ref<Promise<any>[]>([])
+const disabled = useFormDisabled(toRef(props, 'disabled'))
 
 watch(
   () => props.fileList,
@@ -176,7 +178,7 @@ function onDelete(file: FileItem, index: number) {
 }
 
 function chooseImage(event: InputEvent) {
-  if (props.disabled)
+  if (disabled.value)
     return
 
   const maximum = (props.maximum as number) * 1

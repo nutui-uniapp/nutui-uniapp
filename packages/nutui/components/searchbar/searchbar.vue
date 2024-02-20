@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import type { CSSProperties, Ref } from 'vue'
-import { computed, defineComponent, reactive, ref } from 'vue'
+import { computed, defineComponent, reactive, ref, toRef } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useFormDisabled } from '../form/form'
 import { searchbarEmits, searchbarProps } from './searchbar'
 
 const props = defineProps(searchbarProps)
+
 const emit = defineEmits(searchbarEmits)
+
+const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+
 const state = reactive({
   active: false,
 })
@@ -127,7 +132,7 @@ export default defineComponent({
             :value="String(modelValue)"
             :auto-focus="autofocus"
             :confirm-type="confirmType"
-            :disabled="disabled"
+            :disabled="formDisabled"
             :readonly="readonly"
             :style="styleSearchbar"
             :cursor-spacing="cursorSpacing"

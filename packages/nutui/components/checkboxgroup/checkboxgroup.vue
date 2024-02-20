@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
-import { computed, defineComponent, provide, reactive, watch } from 'vue'
+import { computed, defineComponent, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
+import { useProvide } from '../_hooks'
+import { CHECKBOX_KEY } from '../checkbox'
 import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 
 const props = defineProps(checkboxgroupProps)
@@ -14,17 +15,6 @@ defineExpose({
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
-const state = reactive({
-  children: [] as ComponentPublicInstance[],
-})
-
-function link(child: ComponentInternalInstance) {
-  child.proxy && state.children.push(child.proxy)
-}
-
-function unlink(child: ComponentInternalInstance) {
-  child.proxy && (state.children = state.children.filter(p => p !== child.proxy))
-}
 
 function updateValue(value: string[]) {
   emit(UPDATE_MODEL_EVENT, value)
@@ -34,7 +24,7 @@ function updateValue(value: string[]) {
 function toggleAll(checked: boolean) {
   const values: string[] = []
   if (checked) {
-    state.children.forEach((item: any) => {
+    children.forEach((item: any) => {
       if (!item?.disabled)
         values.push(item?.label)
     })
@@ -43,7 +33,7 @@ function toggleAll(checked: boolean) {
 }
 
 function toggleReverse() {
-  const value = state.children
+  const value = children
     .filter((item: any) => {
       if (item?.disabled)
         return false
@@ -54,13 +44,11 @@ function toggleReverse() {
   emit(UPDATE_MODEL_EVENT, value)
 }
 
-provide('parent', {
+const { children } = useProvide(CHECKBOX_KEY)({
   value: computed(() => props.modelValue),
   disabled: computed(() => props.disabled),
   max: computed(() => props.max),
   updateValue,
-  link,
-  unlink,
 })
 
 watch(

@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref } from 'vue'
+import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef } from 'vue'
 import { getRandomId, isH5, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
+import { useFormDisabled } from '../form/form'
 import { type SliderValue, rangeEmits, rangeProps } from './range'
 
 const props = defineProps(rangeProps)
 const emit = defineEmits(rangeEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
+const disabled = useFormDisabled(toRef(props, 'disabled'))
 
 const RangeID = computed(() => `root-${getRandomId()}`)
 const state = ref({
@@ -36,7 +38,7 @@ const classes = computed(() => {
   const prefixCls = componentName
   return {
     [prefixCls]: true,
-    [`${prefixCls}-disabled`]: props.disabled,
+    [`${prefixCls}-disabled`]: disabled.value,
     [`${prefixCls}-vertical`]: props.vertical,
     [`${prefixCls}-show-number`]: !props.hiddenRange,
   }
@@ -174,7 +176,7 @@ function updateValue(value: SliderValue, end?: boolean) {
 }
 
 async function onClick(event: any) {
-  if (props.disabled)
+  if (disabled.value)
     return
 
   const { min, modelValue } = props
@@ -211,7 +213,7 @@ async function onClick(event: any) {
 }
 
 function onTouchStart(event: TouchEvent) {
-  if (props.disabled)
+  if (disabled.value)
     return
 
   touch.start(event)
@@ -238,7 +240,7 @@ function init() {
 }
 
 async function onTouchMove(event: TouchEvent) {
-  if (props.disabled)
+  if (disabled.value)
     return
   preventDefault(event, true)
 
@@ -266,7 +268,7 @@ async function onTouchMove(event: TouchEvent) {
 }
 
 function onTouchEnd(event: TouchEvent) {
-  if (props.disabled)
+  if (disabled.value)
     return
 
   if (dragStatus.value === 'draging') {

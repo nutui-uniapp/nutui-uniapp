@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, toRef } from 'vue'
 import { getMainClass, getRandomId, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { useFormDisabled } from '../form/form'
 import { rateEmits, rateProps } from './rate'
 
 const props = defineProps(rateProps)
 const emit = defineEmits(rateEmits)
+const disabled = useFormDisabled(toRef(props, 'disabled'))
+
 const refRandomId = getRandomId()
 const rateRefs = ref<HTMLElement[]>([])
 const classes = computed(() => {
@@ -17,7 +20,7 @@ function updateVal(value: number) {
   emit(CHANGE_EVENT, value)
 }
 function onClick(e: number, index: number) {
-  if (props.disabled || props.readonly)
+  if (disabled.value || props.readonly)
     return
   let value = 0
   if (index === 1 && props.modelValue === index) {

@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed, defineComponent, provide, readonly, watch } from 'vue'
+import { computed, defineComponent, readonly, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
+import { useProvide } from '../_hooks'
+import { RADIO_KEY } from '../radio'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
 
 const props = defineProps(radiogroupProps)
 const emit = defineEmits(radiogroupEmits)
 const updateValue = (value: string | boolean | number) => emit(UPDATE_MODEL_EVENT, value)
 
-provide('parent', {
+useProvide(RADIO_KEY)({
   label: readonly(computed(() => props.modelValue)),
   position: readonly(computed(() => props.textPosition)),
   updateValue,

@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { computed, defineComponent, getCurrentInstance, inject, onBeforeUnmount, onMounted, reactive, useSlots, watch } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, reactive, toRef, useSlots, watch } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
-import { checkboxEmits, checkboxProps } from './checkbox'
+import { useInject } from '../_hooks'
+import { useFormDisabled } from '../form/form'
+import { CHECKBOX_KEY, checkboxEmits, checkboxProps } from './checkbox'
 
 const props = defineProps(checkboxProps)
 const emit = defineEmits(checkboxEmits)
 const slots = useSlots()
-const parent: any = inject('parent', null)
+const disabled = useFormDisabled(toRef(props, 'disabled'))
+const { parent } = useInject<{
+  value: ComputedRef<any[]>
+  disabled: ComputedRef<boolean>
+  max: ComputedRef<number>
+  updateValue: (value: string[]) => void
+}>(CHECKBOX_KEY)
 const state = reactive({
   partialSelect: props.indeterminate,
 })
@@ -17,13 +26,13 @@ const hasParent = computed(() => !!parent)
 
 const pValue = computed(() => {
   if (hasParent.value)
-    return parent.value.value.includes(props.label)
+    return parent?.value.value.includes(props.label)
 
   else
     return props.modelValue
 })
 const pDisabled = computed(() => {
-  return hasParent.value ? (parent.disabled.value ? parent.disabled.value : props.disabled) : props.disabled
+  return hasParent.value ? (parent?.disabled.value ? parent.disabled.value : disabled.value) : disabled.value
 })
 
 const checked = computed(() => !!props.modelValue)
@@ -96,25 +105,25 @@ function handleClick() {
   // #endif
 
   if (hasParent.value) {
-    const value = parent.value.value
-    const max = parent.max.value
+    const value = parent?.value.value
+    const max = parent?.max.value
     const { label } = props
-    const index = value.indexOf(label)
+    const index = value!.indexOf(label)
     if (index > -1)
-      value.splice(index, 1)
-    else if (index <= -1 && (value.length < max || !max))
-      value.push(label)
+      value?.splice(index, 1)
+    else if (index <= -1 && (value!.length < max! || !max))
+      value?.push(label)
 
-    parent.updateValue(value)
+    parent?.updateValue(value!)
   }
 }
 
 onMounted(() => {
-  hasParent.value && parent.link(getCurrentInstance())
+  hasParent.value && parent?.add(getCurrentInstance()!)
 })
 
 onBeforeUnmount(() => {
-  hasParent.value && parent.unlink(getCurrentInstance())
+  hasParent.value && parent?.remove(getCurrentInstance()!)
 })
 
 watch(

@@ -369,6 +369,7 @@ const basicData = reactive({
 |-------------|--------------------------------------|--------------------------|--------|
 | model-value | 表单数据对象(使用表单校验时，_必填_) | object                   |        |
 | rules       | 统一配置每个 `FormItem` 的 `rules`       | `{ prop: FormItemRule[] }` | `{}`     |
+| disabled `v1.6.8` | 禁用表单下的所有数据录入组件 | boolean | `false` |
 | label-position`v1.5.7` | 表单项 label 的位置 | `top` \| `left` \| `right` | `left` |
 | star-position`v1.5.7` | 必填表单项 label 的红色星标位置 | `left` \| `right` | `left` |
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
-import { computed, defineComponent, provide, reactive, watch } from 'vue'
+import { computed, defineComponent, reactive, watch } from 'vue'
 import { getMainClass, getPropByPath, isObject, isPromise } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
@@ -18,7 +18,6 @@ const { internalChildren } = useProvide(
   FORM_KEY,
   'nut-form-item',
 )({ props, formErrorTip })
-provide('formErrorTip', formErrorTip)
 
 const classes = computed(() => {
   return getMainClass(props, componentName)
