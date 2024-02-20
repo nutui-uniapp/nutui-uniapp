@@ -1,11 +1,11 @@
 <script lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, provide, reactive, ref } from 'vue'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
 import { PREFIX } from '../_constants'
-import { useRect } from '../_hooks'
+import { useChildren, useRect } from '../_hooks'
 import Icon from '../icon/icon.vue'
 import { getMainClass, getRandomId } from '../_utils'
-import { menuProps } from './menu'
+import { MENU_KEY, menuProps } from './menu'
 
 const componentName = `${PREFIX}-menu`
 export default defineComponent({
@@ -23,51 +23,7 @@ export default defineComponent({
     const isScrollFixed = ref(false)
     const instance = getCurrentInstance() as ComponentInternalInstance
 
-    function useChildren() {
-      const publicChildren: any[] = reactive([])
-      const internalChildren: any[] = reactive([])
-
-      const linkChildren = (value?: any) => {
-        const link = (child: any) => {
-          if (child.proxy) {
-            internalChildren.push(child)
-            publicChildren.push(child.proxy as any)
-          }
-        }
-
-        const removeLink = (child: any) => {
-          if (child.proxy) {
-            const internalIndex = internalChildren.indexOf(child)
-            if (internalIndex > -1)
-              internalChildren.splice(internalIndex, 1)
-
-            const publicIndex = publicChildren.indexOf(child.proxy)
-            if (internalIndex > -1)
-              publicChildren.splice(publicIndex, 1)
-          }
-        }
-
-        provide(
-          'menuParent',
-          Object.assign(
-            {
-              removeLink,
-              link,
-              children: publicChildren,
-              internalChildren,
-            },
-            value,
-          ),
-        )
-      }
-
-      return {
-        children: publicChildren,
-        linkChildren,
-      }
-    }
-
-    const { children, linkChildren } = useChildren()
+    const { children, linkChildren } = useChildren(MENU_KEY)
 
     const opened = computed(() => children.some(item => item?.state?.showWrapper))
 

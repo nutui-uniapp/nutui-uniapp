@@ -1,6 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeStringProp, truthProp } from '../_utils'
 
+export const MENU_KEY = Symbol('nut-menu')
+
 export const menuProps = {
   ...commonProps,
   /**

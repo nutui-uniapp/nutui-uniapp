@@ -1,9 +1,11 @@
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, inject, onUnmounted, reactive } from 'vue'
+import { computed, defineComponent, reactive } from 'vue'
 import { CLOSE_EVENT, OPEN_EVENT, PREFIX } from '../_constants'
 import PopUp from '../popup/popup.vue'
 import Icon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useParent } from '../_hooks'
+import { MENU_KEY } from '../menu/menu'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
 
 const componentName = `${PREFIX}-menu-item`
@@ -26,28 +28,7 @@ export default defineComponent({
       showWrapper: false,
     })
 
-    const useParent: any = () => {
-      const parent = inject('menuParent', null)
-
-      if (parent) {
-        // 获取子组件自己的实例
-        const instance = getCurrentInstance()!
-
-        const { link, removeLink } = parent as any
-
-        link(instance)
-
-        onUnmounted(() => {
-          removeLink(instance)
-        })
-
-        return {
-          parent,
-        }
-      }
-    }
-
-    const { parent } = useParent()
+    const { parent } = useParent(MENU_KEY)
 
     const classes = computed(() => {
       return getMainClass(props, componentName)
