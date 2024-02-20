@@ -82,6 +82,9 @@ function getPrize() {
 }
 
 function startDraw() {
+  emit('click')
+  if (props.disabled)
+    return
   if (!lock.value) {
     lock.value = true
     emit('startTurns')
@@ -107,7 +110,7 @@ export default defineComponent({
   <view ref="marqueeDom" :class="classes" :style="customStyle">
     <view class="bgContent" />
     <view class="marqueeBg" :style="bgContentStyle" />
-    <view class="start" :class="[{ disabledDraw: lock }]" :style="cursorStyle" @click="startDraw" />
+    <view class="start" :class="[{ disabledDraw: lock || props.disabled }]" :style="cursorStyle" @click="startDraw" />
     <ul class="gift-list">
       <li
         v-for="(item, i) in prizeList"
