@@ -114,7 +114,7 @@ export const buttonProps = {
    * @description 商品类型，“1”代表生活服务，“2”代表泛知识。openType="im"时有效
    */
   dataBizLine: String,
-}
+} as const
 
 export const buttonEmits = {
   [CLICK_EVENT]: (evt: MouseEvent) => evt instanceof Object,

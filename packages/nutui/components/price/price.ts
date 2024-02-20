@@ -1,9 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
-export type PriceSize = 'small' | 'normal' | 'large'
-export type PricePosition = 'before' | 'after'
-
 export const priceProps = {
   ...commonProps,
   /**
@@ -29,11 +26,11 @@ export const priceProps = {
   /**
    * @description 符号显示在价格前或者后，`before`、`after`
    */
-  position: makeStringProp<PricePosition>('before'),
+  position: makeStringProp<'before' | 'after'>('before'),
   /**
    * @description 价格尺寸，`small`、`normal`、`large`
    */
-  size: makeStringProp<PriceSize>('normal'),
+  size: makeStringProp<'small' | 'normal' | 'large'>('normal'),
   /**
    * @description 是否展示划线价
    */

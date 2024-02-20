@@ -2,10 +2,6 @@ import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
-export type InputTextAlign = 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent'
-export type confirmTextType = 'send' | 'search' | 'next' | 'go' | 'done'
-type InputType = 'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'
-
 export const searchbarProps = {
   ...commonProps,
   /**
@@ -15,7 +11,7 @@ export const searchbarProps = {
   /**
    * @description 输入框类型
    */
-  inputType: makeStringProp<InputType>('text'),
+  inputType: makeStringProp<'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'>('text'),
   /**
    * @description 搜索框形状，可选值为 `square` `round`
    */
@@ -70,7 +66,7 @@ export const searchbarProps = {
   /**
    * @description 键盘右下角按钮的文字，仅在`type='text'`时生效，可选值 `send`：发送、`search`：搜索、`next`：下一个、`go`：前往、`done`：完成
    */
-  confirmType: makeStringProp<confirmTextType>('done'),
+  confirmType: makeStringProp<'send' | 'search' | 'next' | 'go' | 'done'>('done'),
   /**
    * @description 是否开启 iphone 系列全面屏底部安全区适配
    */

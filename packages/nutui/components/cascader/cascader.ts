@@ -1,7 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { popupProps } from '../popup/popup'
-import type { TabsSize } from '../tabs/tabs'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { CascaderOption, CascaderValue } from './types'
 
@@ -81,7 +80,7 @@ export const cascaderProps = {
   /**
    * @description 标签栏字体尺寸大小 可选值: 'large', 'normal', 'small'
    */
-  titleSize: makeStringProp<TabsSize>('normal'),
+  titleSize: makeStringProp<'large' | 'normal' | 'small'>('normal'),
 
   /**
    * @description 是否省略过长的标题文字

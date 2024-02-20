@@ -3,8 +3,6 @@ import { commonProps, makeNumericProp, makeStringProp, truthProp } from '../_uti
 
 export const GRID_KEY = Symbol('grid')
 
-export type GridDirection = 'horizontal' | 'vertical'
-
 export const gridProps = {
   ...commonProps,
   /**
@@ -40,7 +38,7 @@ export const gridProps = {
   /**
    * @description 格子内容排列的方向，可选值为 `horizontal`
    */
-  direction: makeStringProp<GridDirection>('vertical'),
+  direction: makeStringProp<'horizontal' | 'vertical'>('vertical'),
 
   /**
    * @description 是否开启格子点击反馈

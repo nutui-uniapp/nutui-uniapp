@@ -5,7 +5,7 @@ import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVEN
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
 import { getMainClass, getMainStyle } from '../_utils'
-import { type InputTextAlign, searchbarEmits, searchbarProps } from './searchbar'
+import { searchbarEmits, searchbarProps } from './searchbar'
 
 const props = defineProps(searchbarProps)
 const emit = defineEmits(searchbarEmits)
@@ -87,7 +87,7 @@ function rightIconClick(event: Event) {
 
 const styleSearchbar = computed(() => {
   const style: CSSProperties = {
-    textAlign: props.inputAlign as InputTextAlign,
+    textAlign: props.inputAlign,
   }
   return style
 })

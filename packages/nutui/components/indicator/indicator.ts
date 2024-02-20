@@ -1,8 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 
-export type IndicatorAlign = 'left' | 'center' | 'right'
-
 export const indicatorProps = {
   ...commonProps,
   /**
@@ -20,7 +18,7 @@ export const indicatorProps = {
   /**
    * @description 对齐方式，仅在 `block` 为 `true` 时生效, 可选值 `left`, `right`, `center`
    */
-  align: makeStringProp<IndicatorAlign>('left'),
+  align: makeStringProp<'left' | 'center' | 'right'>('left'),
   /**
    * @description 单数前面是否补 0
    */

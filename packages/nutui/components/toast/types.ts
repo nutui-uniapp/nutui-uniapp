@@ -1,5 +1,5 @@
-export type ToastType = 'success' | 'loading' | 'fail' | 'warn' | 'text'
-
+export const toastType = ['success', 'loading', 'fail', 'warn', 'text'] as const
+export type ToastType = (typeof toastType)[number]
 export interface ToastOptions {
   /**
    * @description 消息文本内容,支持传入HTML

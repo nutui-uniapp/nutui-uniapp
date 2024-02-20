@@ -2,8 +2,6 @@ import type { ExtractPropTypes, RendererElement, RendererNode, VNode } from 'vue
 import { commonProps, isString, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, CLICK_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
-export type TabsSize = 'large' | 'normal' | 'small'
-
 export const TAB_KEY = Symbol('tabs')
 
 export const tabsProps = {
@@ -23,7 +21,7 @@ export const tabsProps = {
   /**
    * @description 标签栏字体尺寸大小,可选值`large` `normal` `small`
    */
-  size: makeStringProp<TabsSize>('normal'),
+  size: makeStringProp<'large' | 'normal' | 'small'>('normal'),
   /**
    * @description 选中底部展示样式,可选值 `line`、`smile`
    */

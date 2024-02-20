@@ -27,7 +27,6 @@ const style = computed(() => {
   }
   return {}
 })
-
 const isHttpUrl
       = props.image.startsWith('https://') || props.image.startsWith('http://') || props.image.startsWith('//')
 const src = isHttpUrl ? props.image : defaultStatus[props.image]

@@ -1,6 +1,9 @@
 import type { NutAnimationName } from '../transition'
-import type { FooterDirection, TextAlign } from './dialog'
 
+export const textAlign = ['left', 'center', 'right', 'top'] as const
+export type TextAlign = (typeof textAlign)[number]
+export const footerDirection = ['horizontal', 'vertical'] as const
+export type FooterDirection = (typeof footerDirection)[number]
 export interface DialogOptions {
   /**
    * @description 标题

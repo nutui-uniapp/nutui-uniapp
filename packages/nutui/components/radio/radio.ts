@@ -1,7 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 
-export type RadioButtonSize = 'large' | 'normal' | 'small' | 'mini'
 export const radioProps = {
   ...commonProps,
   /**
@@ -26,7 +25,7 @@ export const radioProps = {
   /**
    * @description 尺寸，可选值为 `large` `small` `mini` `normal`，仅在 shape 为 `button` 时生效
    */
-  size: makeStringProp<RadioButtonSize>('normal'),
+  size: makeStringProp<'large' | 'normal' | 'small' | 'mini'>('normal'),
 }
 
 export type RadioProps = ExtractPropTypes<typeof radioProps>

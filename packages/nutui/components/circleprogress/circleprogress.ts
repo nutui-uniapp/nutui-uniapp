@@ -1,8 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
-export type CircleProgressStrokeLinecap = 'butt' | 'round' | 'square'
-
 export const circleprogressProps = {
   ...commonProps,
   /**
@@ -20,7 +18,7 @@ export const circleprogressProps = {
   /**
    * @description 圆环进度条端点形状，可选值为 `square`、`round`、`butt`
    */
-  strokeLinecap: makeStringProp<CircleProgressStrokeLinecap>('round'),
+  strokeLinecap: makeStringProp<'butt' | 'round' | 'square'>('round'),
   /**
    * @description 圆环进度条颜色
    */

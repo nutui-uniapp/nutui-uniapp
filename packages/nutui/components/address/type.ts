@@ -19,4 +19,5 @@ export interface AddressExistRegionData {
   [key: string]: any
 }
 
-export type AddressType = 'exist' | 'custom' | 'custom2'
+export const addressType = ['exist', 'custom', 'custom2'] as const
+export type AddressType = (typeof addressType)[number]

@@ -2,8 +2,6 @@ import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 
-export type Direction = 'start' | 'end' | 'middle'
-
 export interface EllipsisedValue {
   leading?: string
   tailing?: string
@@ -18,7 +16,7 @@ export const ellipsisProps = {
   /**
    * @description 省略位置，可选值 `start` \| `end` \| `middle`
    */
-  direction: makeStringProp<Direction>('end'),
+  direction: makeStringProp<'start' | 'end' | 'middle'>('end'),
 
   /**
    * @description 展示几行
