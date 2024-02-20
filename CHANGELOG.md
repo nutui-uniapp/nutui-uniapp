@@ -1,3 +1,16 @@
+## [1.6.8](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.7...v1.6.8) (2024-02-20)
+
+### Bug Fixes
+
+* **ellipsis:** symbol属性默认值丢失 ([b685f40](https://github.com/nutui-uniapp/nutui-uniapp/commit/b685f40a7192d80e279f91c2784dc76cd0c5327f))
+* **picker:** className option ([60caafb](https://github.com/nutui-uniapp/nutui-uniapp/commit/60caafb83ee9194cdae85333ae80d4b8864c1c87))
+* randomid生成错误 ([2556b99](https://github.com/nutui-uniapp/nutui-uniapp/commit/2556b998452bc75597e5fe5d7b1d3ed870ad1cf3))
+
+### Features
+
+* **form:** 新增 disabled 属性,支持禁用 form 下全部数据录入组件 ([#184](https://github.com/nutui-uniapp/nutui-uniapp/issues/184)) ([ecd03a3](https://github.com/nutui-uniapp/nutui-uniapp/commit/ecd03a3f3d75aa8281d926d270fa5612d02e360e))
+* **marquee:** 新增disabled属性 ([#183](https://github.com/nutui-uniapp/nutui-uniapp/issues/183)) ([d64eca2](https://github.com/nutui-uniapp/nutui-uniapp/commit/d64eca23c4124138ccc8a7dc36fe5439a5e8458c))
+
 ## [1.6.7](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.6...v1.6.7) (2024-02-06)
 
 ### Bug Fixes
