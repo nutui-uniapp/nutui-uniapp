@@ -1,11 +1,13 @@
 <script lang="ts">
+import type { Ref } from 'vue'
 import { computed, defineComponent, reactive } from 'vue'
 import { CLOSE_EVENT, OPEN_EVENT, PREFIX } from '../_constants'
 import PopUp from '../popup/popup.vue'
 import Icon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
-import { useParent } from '../_hooks'
+import { useInject } from '../_hooks'
 import { MENU_KEY } from '../menu/menu'
+import type { MenuProps } from '../menu'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
 
 const componentName = `${PREFIX}-menu-item`
@@ -28,22 +30,25 @@ export default defineComponent({
       showWrapper: false,
     })
 
-    const { parent } = useParent(MENU_KEY)
+    const { parent } = useInject<{
+      props: MenuProps
+      offset: Ref<number>
+    }>(MENU_KEY)
 
     const classes = computed(() => {
       return getMainClass(props, componentName)
     })
     const styles = computed(() => {
-      const obj = parent.props.direction === 'down'
-        ? { top: `${parent.offset.value}px` }
-        : { bottom: `${parent.offset.value}px` }
+      const obj = parent?.props.direction === 'down'
+        ? { top: `${parent?.offset.value}px` }
+        : { bottom: `${parent?.offset.value}px` }
       return getMainStyle(props, obj)
     })
 
     const placeholderElementStyle = computed(() => {
-      const heightStyle = { height: `${parent.offset.value}px` }
+      const heightStyle = { height: `${parent?.offset.value}px` }
 
-      if (parent.props.direction === 'down')
+      if (parent?.props.direction === 'down')
         return { ...heightStyle, top: 0 }
 
       else
@@ -115,7 +120,7 @@ export default defineComponent({
     <view
       v-show="state.showPopup"
       class="nut-menu-item-placeholder-element"
-      :class="{ 'placeholder-element-up': parent.props.direction === 'up' }"
+      :class="{ 'placeholder-element-up': parent?.props.direction === 'up' }"
       :style="placeholderElementStyle"
       @click="handleClickOutside"
     />
@@ -124,14 +129,14 @@ export default defineComponent({
       v-model:visible="state.showPopup"
       :custom-style="{ position: 'absolute' }"
       :overlay-style="{ position: 'absolute' }"
-      :position="parent.props.direction === 'down' ? 'top' : 'bottom'"
-      :duration="parent.props.duration"
+      :position="parent?.props.direction === 'down' ? 'top' : 'bottom'"
+      :duration="parent?.props.duration"
       pop-class="nut-menu__pop"
       :destroy-on-close="false"
       :safe-area-inset-top="false"
-      :overlay="parent.props.overlay"
-      :lock-scroll="parent.props.lockScroll"
-      :close-on-click-overlay="parent.props.closeOnClickOverlay"
+      :overlay="parent?.props.overlay"
+      :lock-scroll="parent?.props.lockScroll"
+      :close-on-click-overlay="parent?.props.closeOnClickOverlay"
       @closed="handleClose"
       @update:visible="handleVisible"
     >
@@ -152,16 +157,16 @@ export default defineComponent({
             >
               <!-- #ifndef MP-WEIXIN -->
               <slot name="icon">
-                <Icon name="Check" :custom-color="parent.props.activeColor" />
+                <Icon name="Check" :custom-color="parent?.props.activeColor" />
               </slot>
               <!-- #endif -->
               <!-- #ifdef MP-WEIXIN -->
-              <Icon :name="optionIcon" :custom-color="parent.props.activeColor" />
+              <Icon :name="optionIcon" :custom-color="parent?.props.activeColor" />
               <!-- #endif -->
             </view>
             <view
               :class="[option.value === modelValue ? activeTitleClass : inactiveTitleClass]"
-              :style="{ color: option.value === modelValue ? parent.props.activeColor : '' }"
+              :style="{ color: option.value === modelValue ? parent?.props.activeColor : '' }"
             >
               {{ option.text }}
             </view>

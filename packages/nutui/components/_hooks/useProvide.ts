@@ -59,17 +59,22 @@ export function sortChildren(
 // 如果指定组件名称，则只查找此组件并且查到后结束。也就是不关心此组件下的内容，在大部分场景下节省查找消耗。
 export function useProvide<ProvideValue>(key: InjectionKey<ProvideValue>, childName?: string) {
   const internalChildren: ComponentInternalInstance[] = shallowReactive([])
+  const publicChildren = shallowReactive<any[]>([])
   const parent = getCurrentInstance()!
 
   const add = (child: ComponentInternalInstance) => {
     if (!child.proxy)
       return
     internalChildren.push(markRaw(child))
+    publicChildren.push(markRaw(child.proxy))
     sortChildren(parent, internalChildren, childName)
   }
 
   const remove = (child: ComponentInternalInstance) => {
-    internalChildren.splice(internalChildren.indexOf(markRaw(child)), 1)
+    if (child.proxy) {
+      internalChildren.splice(internalChildren.indexOf(markRaw(child)), 1)
+      publicChildren.splice(publicChildren.indexOf(markRaw(child.proxy)), 1)
+    }
   }
 
   return (value?: ProvideValue) => {
@@ -82,6 +87,7 @@ export function useProvide<ProvideValue>(key: InjectionKey<ProvideValue>, childN
 
     return {
       internalChildren,
+      children: publicChildren,
     }
   }
 }

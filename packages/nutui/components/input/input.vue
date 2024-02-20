@@ -1,17 +1,20 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, toRef, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { useFormDisabled } from '../form/form'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
+
 import type { InputFormatTrigger, InputMode, InputTarget, InputType } from './type'
 
 const props = defineProps(inputProps)
 
 const emit = defineEmits(inputEmits)
+const formDisabled = useFormDisabled(toRef(props, 'disabled'))
 
 const innerValue = computed<string>(() => {
   if (props.modelValue == null)
@@ -32,7 +35,7 @@ const state = reactive({
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    [`${componentName}--disabled`]: props.disabled,
+    [`${componentName}--disabled`]: formDisabled.value,
     [`${componentName}--required`]: props.required,
     [`${componentName}--error`]: props.error,
     [`${componentName}--border`]: props.border,
@@ -112,7 +115,7 @@ function resetValidation() {
 }
 
 function handleClickInput(event: MouseEvent) {
-  if (props.disabled)
+  if (formDisabled.value)
     return
 
   emit('clickInput', event)
@@ -149,7 +152,7 @@ onMounted(() => {
 })
 
 function handleFocus(evt: InputOnFocusEvent) {
-  if (props.disabled || props.readonly)
+  if (formDisabled.value || props.readonly)
     return
 
   active.value = true
@@ -157,7 +160,7 @@ function handleFocus(evt: InputOnFocusEvent) {
 }
 
 function handleBlur(evt: InputOnBlurEvent) {
-  if (props.disabled || props.readonly)
+  if (formDisabled.value || props.readonly)
     return
 
   setTimeout(() => {
@@ -170,7 +173,7 @@ function handleBlur(evt: InputOnBlurEvent) {
 
 function handleClear(event: Event) {
   event.stopPropagation()
-  if (props.disabled)
+  if (formDisabled.value)
     return
   emit(UPDATE_MODEL_EVENT, '', event)
   emit(CLEAR_EVENT)
@@ -209,7 +212,7 @@ export default defineComponent({
             :placeholder="placeholder"
             :placeholder-style="placeholderStyle"
             :placeholder-class="placeholderClass"
-            :disabled="disabled"
+            :disabled="formDisabled"
             :readonly="readonly"
             :focus="autofocus"
             :maxlength="maxLength ? +maxLength : -1"
@@ -236,7 +239,7 @@ export default defineComponent({
             @compositionstart="(startComposing as any)"
             @confirm="handleConfirm"
           >
-          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
+          <view v-if="props.readonly" class="nut-input-formDisabled-mask" @click="(handleClickInput as any)" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
               {{ innerValue.length }}

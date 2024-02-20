@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, provide, useSlots } from 'vue'
+import { computed, defineComponent, useSlots } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
@@ -13,9 +13,6 @@ import { formitemProps } from './formitem'
 const props = defineProps(formitemProps)
 const slots = useSlots()
 const Parent = useInject<{ formErrorTip: Required<any>, props: Required<FormItemProps> }>(FORM_KEY)
-provide('form', {
-  props,
-})
 
 const isRequired = computed(() => {
   if (props.required === false)

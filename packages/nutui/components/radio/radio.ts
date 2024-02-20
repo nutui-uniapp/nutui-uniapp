@@ -29,3 +29,4 @@ export const radioProps = {
 }
 
 export type RadioProps = ExtractPropTypes<typeof radioProps>
+export const RADIO_KEY = Symbol('nut-radio')

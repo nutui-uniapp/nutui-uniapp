@@ -1,16 +1,19 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, toRef } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
+import { useFormDisabled } from '../form/form'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
 
 const props = defineProps(inputnumberProps)
 const emit = defineEmits(inputnumberEmits)
+const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    [`${componentName}--disabled`]: props.disabled,
+    [`${componentName}--disabled`]: formDisabled.value,
   })
 })
 function fixedDecimalPlaces(v: string | number): string {
@@ -28,13 +31,13 @@ function emitChange(value: string | number, event: Event) {
     emit(CHANGE_EVENT, output_value, event)
 }
 function addAllow(value = Number(props.modelValue)): boolean {
-  return value < Number(props.max) && !props.disabled
+  return value < Number(props.max) && !formDisabled.value
 }
 function reduceAllow(value = Number(props.modelValue)): boolean {
-  return value > Number(props.min) && !props.disabled
+  return value > Number(props.min) && !formDisabled.value
 }
 function reduce(event: Event) {
-  if (props.disabled)
+  if (formDisabled.value)
     return
   emit('reduce', event)
   const output_value = Number(props.modelValue) - Number(props.step)
@@ -47,7 +50,7 @@ function reduce(event: Event) {
   }
 }
 function add(event: Event) {
-  if (props.disabled)
+  if (formDisabled.value)
     return
   emit('add', event)
   const output_value = Number(props.modelValue) + Number(props.step)
@@ -60,7 +63,7 @@ function add(event: Event) {
   }
 }
 function blur(event: Event) {
-  if (props.disabled)
+  if (formDisabled.value)
     return
   if (props.readonly)
     return
@@ -77,7 +80,7 @@ function blur(event: Event) {
   emit(BLUR_EVENT, event)
 }
 function focus(event: Event) {
-  if (props.disabled)
+  if (formDisabled.value)
     return
   if (props.readonly) {
     blur(event)
@@ -121,7 +124,7 @@ export default defineComponent({
       :min="min"
       :max="max"
       :style="{ width: pxCheck(inputWidth), height: pxCheck(buttonSize) }"
-      :disabled="disabled"
+      :disabled="formDisabled"
       :readonly="readonly"
       :value="String(modelValue)"
       @input="(change as any)"

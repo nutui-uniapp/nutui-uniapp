@@ -2,7 +2,7 @@
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
 import { PREFIX } from '../_constants'
-import { useChildren, useRect } from '../_hooks'
+import { useProvide, useRect } from '../_hooks'
 import Icon from '../icon/icon.vue'
 import { getMainClass, getRandomId } from '../_utils'
 import { MENU_KEY, menuProps } from './menu'
@@ -23,7 +23,7 @@ export default defineComponent({
     const isScrollFixed = ref(false)
     const instance = getCurrentInstance() as ComponentInternalInstance
 
-    const { children, linkChildren } = useChildren(MENU_KEY)
+    const { children } = useProvide(MENU_KEY)({ props, offset })
 
     const opened = computed(() => children.some(item => item?.state?.showWrapper))
 
@@ -45,8 +45,6 @@ export default defineComponent({
         })
       }, 100)
     }
-
-    linkChildren({ props, offset })
 
     function toggleItem(active: number) {
       children.forEach((item, index) => {

@@ -2,11 +2,12 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import type * as CSS from 'csstype'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, toRef } from 'vue'
 import type { TextareaConfirmType, TextareaOnConfirmEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
+import { useFormDisabled } from '../form/form'
 import { textareaEmits, textareaProps } from './textarea'
 
 export interface InputTarget extends HTMLInputElement {
@@ -15,10 +16,11 @@ export interface InputTarget extends HTMLInputElement {
 
 const props = defineProps(textareaProps)
 const emit = defineEmits(textareaEmits)
+const disabled = useFormDisabled(toRef(props, 'disabled'))
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    [`${componentName}--disabled`]: props.disabled,
+    [`${componentName}--disabled`]: disabled.value,
   })
 })
 
@@ -68,7 +70,7 @@ function _onInput(event: any) {
 }
 
 function focus(event: any) {
-  if (props.disabled)
+  if (disabled.value)
     return
   if (props.readonly)
     return
@@ -76,7 +78,7 @@ function focus(event: any) {
 }
 
 function blur(event: any) {
-  if (props.disabled)
+  if (disabled.value)
     return
   if (props.readonly)
     return

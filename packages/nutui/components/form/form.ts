@@ -1,5 +1,7 @@
-import type { ExtractPropTypes } from 'vue'
+import { computed } from 'vue'
+import type { ComputedRef, ExtractPropTypes, Ref } from 'vue'
 import { commonProps, makeObjectProp, makeStringProp } from '../_utils'
+import { useInject } from '../_hooks'
 import type { ErrorMessage, FormLabelPosition, FormRules, FormStarPosition } from './types'
 
 export const FORM_KEY = Symbol('Form')
@@ -15,6 +17,10 @@ export const formProps = {
    * @description 统一配置每个 `FormItem` 的 `rules`
    */
   rules: makeObjectProp<FormRules>({}),
+  /**
+   * @description 禁用表单下的所有数据录入组件
+   */
+  disabled: Boolean,
   /**
    * @description 表单项 label 的位置
    */
@@ -32,3 +38,8 @@ export const formEmits = {
 }
 
 export type FormEmits = typeof formEmits
+
+export function useFormDisabled(disabled: Ref<boolean>): ComputedRef<boolean> {
+  const { parent } = useInject<{ props: { disabled: boolean } }>(FORM_KEY)
+  return computed(() => disabled.value || parent?.props?.disabled || false)
+}

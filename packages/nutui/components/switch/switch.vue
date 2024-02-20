@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, watch } from 'vue'
+import { type CSSProperties, computed, defineComponent, toRef, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useFormDisabled } from '../form/form'
 import { switchEmits, switchProps } from './switch'
 
 const props = defineProps(switchProps)
+
 const emit = defineEmits(switchEmits)
+
+const disabled = useFormDisabled(toRef(props, 'disable'))
+
 const isActive = computed(() => props.modelValue === props.activeValue)
 const classes = computed(() => {
   return getMainClass(props, componentName, {
     [isActive.value ? 'nut-switch-open' : 'nut-switch-close']: true,
-    [`${componentName}-disable`]: props.disable,
+    [`${componentName}-disable`]: disabled.value,
     [`${componentName}-base`]: true,
   })
 })
