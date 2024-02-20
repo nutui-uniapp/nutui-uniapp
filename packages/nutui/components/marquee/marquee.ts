@@ -26,6 +26,10 @@ export const marqueeProps = {
     required: true,
   },
   /**
+   * @description 是否禁用开始抽奖点击
+   */
+  disabled: Boolean,
+  /**
    * @description 中奖奖品的index
    */
   prizeIndex: makeNumericProp(-1),

@@ -113,6 +113,7 @@
 | prize-index | 中奖奖品在列表的索引位置                                                                | Number | -1                                          |
 | speed       | 转动速度                                                                                | Number | 150                                         |
 | circle      | 转动圈数                                                                                | Number | 30                                          |
+| disabled      | 是否禁用开始抽奖点击数                                                                                | Boolean | false                                          |
 | style-opt   | 跑马灯中的样式：bgStyle-整个容器样式，itemStyle-每个奖品样式，startStyle-中间按钮样式 | Object | `{bgStyle: {},itemStyle: {},startStyle:{}}` |
 
 ### Events
