@@ -59,7 +59,7 @@ function getNavHeight() {
 
   // #ifndef MP
   useRect('navBarHtml', instance).then((res) => {
-    navHeight.value = pxCheck(res.height! + statusBarHeight!)
+    navHeight.value = pxCheck(res.height!)
   })
   // #endif
 }
