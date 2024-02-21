@@ -37,7 +37,7 @@ async function copy() {
       filter: src => ![...excludedDir, ...excludedDir2].some(d => src.includes(d)),
     }).then(() => {
       return Promise.all([
-        fs.copy(sourceDir, `${destDir}/components/nutui-uni`, {
+        fs.copy(sourceDir, `${destDir}`, {
           filter: src => ![...excludedDir, ...excludedDir3].some(d => src.includes(d)),
         }),
       ])
