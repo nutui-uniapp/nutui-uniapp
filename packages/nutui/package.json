@@ -1,24 +1,20 @@
 {
   "name": "nutui-uniapp",
-  "displayName": "nutui-uniapp",
+  "displayName": "nutui-uniapp 京东风格的轻量级移动端 Uniapp、Vue3 组件库",
   "version": "1.6.8",
   "description": "京东风格的轻量级移动端 Uniapp、Vue3 组件库（支持小程序开发）",
   "author": "yang1206 <y1149221897@outlook.com>",
   "license": "MIT",
   "homepage": "https://github.com/nutui-uniapp/nutui-uniapp#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nutui-uniapp/nutui-uniapp.git"
-  },
+  "repository": "https://github.com/nutui-uniapp/nutui-uniapp.git",
   "bugs": "https://github.com/nutui-uniapp/nutui-uniapp/issues",
   "keywords": [
-    "uniapp",
     "nutui",
-    "vue3",
-    "mini-program",
     "小程序",
-    "vue3 component",
-    "vite"
+    "vue3",
+    "暗黑模式",
+    "mini-program",
+    "vue3 component"
   ],
   "sideEffects": [
     "*.scss",
@@ -53,10 +49,6 @@
     "tags.json",
     "web-types.json"
   ],
-  "engines": {
-    "HBuilderX": "^3.6.17"
-  },
-  "id": "nutui-uni",
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
@@ -65,58 +57,5 @@
   "peerDependencies": {
     "@uni-helper/uni-app-types": "^0.5.12",
     "vue": "3.2.47"
-  },
-  "publishConfig": {
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
-  },
-  "uni_modules": {
-    "dependencies": [],
-    "encrypt": [],
-    "platforms": {
-      "client": {
-        "App": {
-          "app-nvue": "u",
-          "app-vue": "u"
-        },
-        "H5-mobile": {
-          "Android Browser": "y",
-          "QQ浏览器(Android)": "y",
-          "Safari": "y",
-          "微信浏览器(Android)": "y"
-        },
-        "H5-pc": {
-          "Chrome": "y",
-          "Edge": "y",
-          "Firefox": "y",
-          "IE": "n",
-          "Safari": "y"
-        },
-        "Vue": {
-          "vue2": "n",
-          "vue3": "y"
-        },
-        "小程序": {
-          "QQ": "u",
-          "京东": "u",
-          "字节跳动": "u",
-          "微信": "y",
-          "快手": "u",
-          "百度": "u",
-          "钉钉": "u",
-          "阿里": "y",
-          "飞书": "u"
-        },
-        "快应用": {
-          "华为": "u",
-          "联盟": "u"
-        }
-      },
-      "cloud": {
-        "aliyun": "y",
-        "tcb": "y"
-      }
-    }
   }
 }

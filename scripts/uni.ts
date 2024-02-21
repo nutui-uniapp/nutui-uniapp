@@ -3,49 +3,23 @@ import consloa from 'consola'
 
 async function copy() {
   const sourceDir = 'packages/nutui'
-  const destDir = 'packages/uni_modules/dist/nutui-uni'
+  const destDir = 'example/uni_modules/nutui-uni'
 
-  await Promise.all([
-    fs.remove('packages/uni_modules/dist'),
-    fs.ensureDir(`${destDir}`),
-  ])
+  try {
+    await Promise.all([
+      fs.remove(destDir),
+      fs.ensureDir(destDir),
+    ])
 
-  const excludedDir = [
-    '_locale',
-    'src',
-    'node_modules',
-    'build.config.ts',
-    'env.d.ts',
-    'tsconfig.json',
-  ]
-
-  const excludedDir2 = [
-    'components',
-    'locale',
-    'dist',
-    'styles',
-    'global.d.ts',
-  ]
-
-  const excludedDir3 = [
-    'README.md',
-    'LICENSE',
-  ]
-
-  await Promise.all([
-    fs.copy(sourceDir, destDir, {
-      filter: src => ![...excludedDir, ...excludedDir2].some(d => src.includes(d)),
-    }).then(() => {
-      return Promise.all([
-        fs.copy(sourceDir, `${destDir}`, {
-          filter: src => ![...excludedDir, ...excludedDir3].some(d => src.includes(d)),
-        }),
-      ])
-    }),
-
-  ]).then(() => {
+    await fs.copy(sourceDir, destDir)
+    await fs.copyFile('CHANGELOG.md', `${destDir}/changelog.md`)
+    await fs.copyFile('scripts/package.json', `${destDir}/package.json`)
     consloa.success('copy success !!!')
-  })
+    fs.createFileSync(`${destDir}/components/nutui-uni/nutui-uni.vue`)
+  }
+  catch (error) {
+    consloa.error('Copy failed:', error)
+  }
 }
 
 copy()
