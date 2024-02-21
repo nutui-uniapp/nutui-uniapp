@@ -31,10 +31,7 @@
       "require": "./dist/index.cjs"
     },
     "./*": "./*",
-    "./locale": {
-      "types": "./locale/index.d.ts",
-      "import": "./locale/index.mjs"
-    },
+    "./locale": "./locale/index.ts",
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",

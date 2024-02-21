@@ -7,11 +7,6 @@ export default defineBuildConfig({
       input: './src/index',
       outDir: './dist',
     },
-    {
-      builder: 'mkdist',
-      input: './_locale',
-      outDir: './locale',
-    },
   ],
   declaration: true,
   clean: true,
