@@ -12,7 +12,6 @@ node_modules
 uni_modules/dist
 dist
 dev-dist
-locale
 cache
 *.local
 dist.zip
