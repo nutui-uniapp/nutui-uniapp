@@ -54,6 +54,8 @@ export default {
 |-------------|--------------------------------------------------|----------------|----------------|
 | v-model     | 输入值，支持双向绑定                             | string         | - |
 | placeholder | 设置占位提示文字                                 | string         | `请输入内容` |
+| placeholder-style `1.6.9` | 指定 placeholder 的样式 | string | - |
+| placeholder-class `1.6.9` | 指定 placeholder 的样式类 | string | `textarea-placeholder` |
 | max-length  | 限制最长输入字符                                 | string \| number | -              |
 | rows | textarea的高度，优先级高于autosize属性 `仅支持 H5`         | string \| number | `2`            |
 | limit-show  | textarea是否展示输入字符。须配合`max-length`使用 | boolean        | `false`        |

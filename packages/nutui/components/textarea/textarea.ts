@@ -31,6 +31,14 @@ export const textareaProps = {
    */
   placeholder: String,
   /**
+   * @description 指定 placeholder 的样式
+   */
+  placeholderStyle: makeStringProp(''),
+  /**
+   * @description 指定 placeholder 的样式类
+   */
+  placeholderClass: makeStringProp('textarea-placeholder'),
+  /**
    * @description 只读属性
    */
   readonly: Boolean,

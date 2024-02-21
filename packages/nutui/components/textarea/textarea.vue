@@ -149,6 +149,8 @@ export default defineComponent({
       :show-count="false"
       :maxlength="maxLength ? +maxLength : -1"
       :placeholder="placeholder || translate('placeholder')"
+      :placeholder-style="placeholderStyle"
+      :placeholder-class="placeholderClass"
       :auto-focus="autofocus"
       :auto-height="!!autosize"
       :cursor-spacing="cursorSpacing"
