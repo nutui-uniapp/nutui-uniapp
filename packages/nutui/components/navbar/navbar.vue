@@ -26,9 +26,8 @@ const styles: ComputedRef = computed(() => {
 
   }
 
-  if (zIndex.value) {
+  if (zIndex.value)
     style.zIndex = Number(zIndex.value)
-  }
 
   // #ifdef MP
   if (placeholder.value && fixed.value) {
@@ -60,7 +59,7 @@ function getNavHeight() {
 
   // #ifndef MP
   useRect('navBarHtml', instance).then((res) => {
-    navHeight.value = pxCheck(res.height!)
+    navHeight.value = pxCheck(res.height! + statusBarHeight!)
   })
   // #endif
 }

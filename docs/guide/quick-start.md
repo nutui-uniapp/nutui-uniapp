@@ -149,8 +149,8 @@ nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽�
   "easycom": {
     "autoscan": true,
     "custom": {
-      "nut-(.*)?-(.*)": "@/uni_modules/nutui-uni/components/nutui-uni/components/$1$2/$1$2.vue",
-      "nut-(.*)": "@/uni_modules/nutui-uni/components/nutui-uni/components/$1/$1.vue"
+      "nut-(.*)?-(.*)": "@/uni_modules/nutui-uni/components/$1$2/$1$2.vue",
+      "nut-(.*)": "@/uni_modules/nutui-uni/components/$1/$1.vue"
     }
   }
 }
@@ -164,7 +164,7 @@ nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽�
 
 ```scss
 <style lang="scss">
-@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/index.scss';
+@import '@/uni_modules/nutui-uni/styles/index.scss';
 </style>
 ```
 
@@ -173,7 +173,7 @@ nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽�
 在项目文件 `uni.scss` 文件中添加如下代码：
 
 ```scss
-@import '@/uni_modules/nutui-uni/components/nutui-uni/styles/variables.scss';
+@import '@/uni_modules/nutui-uni/styles/variables.scss';
 ```
 
 然后就可以使用组件了
