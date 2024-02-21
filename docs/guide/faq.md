@@ -2,9 +2,13 @@
 
 这里列举了一些已知问题和暂时的解决方案
 
-::: details 使用hbx创建的项目，无法正常使用 popup组件
-临时的解决方案是同时在模板中引入 overlay组件，即可正常使用popup组件。
-建议使用 vite cli创建项目，不会有这些奇怪的问题
+::: details 支持的平台
+目前只有微信小程序与 H5是经过我们测试的，支付宝小程序目前存在一些问题，其他小程序平台后续也会逐步适配
+:::
+
+::: details 使用hbx创建的项目，无法正常使用 popup等组件
+当一个组件依赖组件库中另一个组件时，hbuilderx编译组件时会生成错误的文件，例如 popup组件依赖overlay组件，所以你需要同时使用overlay 组件，即可正常使用popup组件。
+我们强烈建议使用 vite cli创建项目，不会有这些问题，还可以使用[uni-helper](https://github.com/uni-helper)团队带来的一系列优秀的库和 vite 生态中的部分插件，你可以通过[官方cli](https://uniapp.dcloud.net.cn/quickstart-cli.html)或是[create-uni](https://github.com/uni-helper/create-uni)创建项目，如果你需要一个功能丰富的起始模板，可以使用我的[uniapp-template](https://github.com/yang1206/uniapp-template)
 :::
 
 ::: details 无法自定义组件的class和 style

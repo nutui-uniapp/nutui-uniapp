@@ -1,7 +1,9 @@
 # 快速开始
 
 > nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。
-> 为了能够获得良好的开发体验，推荐使用[vite cli](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
+::: warning
+为了能够获得良好的开发体验，强烈建议使用[cli](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
+:::
 
 ## npm 安装 (cli)
 
@@ -136,8 +138,8 @@ export default defineConfig({
 
 前往 uniapp 插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
 
-::: tip
-nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了 uni_modules，但是组件库在 hbuilder 中编译存在一些奇奇怪怪的问题，因此仅推荐使用 vite cli，并且能够提供更好的 ts 支持与开发体验
+::: warning
+nutui-uniapp 提供了 npm 包和 uni_modules 包两种方式使用组件。虽然提供了 uni_modules，但是组件库在 hbuilder 中编译存在许多的问题；我们强烈建议使用 vite cli创建项目，它经过了我们测试，还可以使用[uni-helper](https://github.com/uni-helper)团队带来的一系列优秀的库和 vite 生态中的部分插件，你可以通过[官方cli](https://uniapp.dcloud.net.cn/quickstart-cli.html)或是[create-uni](https://github.com/uni-helper/create-uni)创建项目，如果你需要一个功能丰富的起始模板，可以使用我的[uniapp-template](https://github.com/yang1206/uniapp-template)
 :::
 ### 按需导入
 
