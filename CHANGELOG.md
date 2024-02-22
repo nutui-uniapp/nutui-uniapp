@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.9...v1.7.0) (2024-02-22)
+
+### Bug Fixes
+
+* **input:** 修复readonly无效 ([f1547bd](https://github.com/nutui-uniapp/nutui-uniapp/commit/f1547bdb455771926c5384979ab5132d4d6df5ab))
+* **tabs:** align属性类型错误 ([f9b0eb4](https://github.com/nutui-uniapp/nutui-uniapp/commit/f9b0eb453dc7ce7114c784bb2cc69b5a29eb5d12))
+
 ## [1.6.9](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.8...v1.6.9) (2024-02-22)
 
 ### Bug Fixes
