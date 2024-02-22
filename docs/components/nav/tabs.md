@@ -384,16 +384,15 @@ export default {
 | background       | 标签栏背景颜色                                                                                     | string           | `#f5f5f5`    |
 | direction        | 使用横纵方向 可选值 horizontal、vertical                                                           | string           | `horizontal` |
 | type             | 选中底部展示样式 可选值 line、smile                                                                | string           | `line`       |
-| swipeable`4.0.3` | 是否开启手势左右滑动切换                                                                           | boolean          | `false`      |
+| swipeable | 是否开启手势左右滑动切换                                                                           | boolean          | `false`      |
 | title-scroll     | 标签栏是否可以滚动                                                                                 | boolean          | `false`      |
 | ellipsis         | 是否省略过长的标题文字                                                                             | boolean          | `true`       |
 | animated-time    | 切换动画时长，单位 ms。0 代表无动画，此时必须设置 `pane-key`(_小程序场景数据过大建议设置0，解决切换卡顿问题_)                 | number \| string | `300`        |
 | title-gutter     | 标签间隙                                                                                           | number \| string | `0`          |
 | size             | 标签栏字体尺寸大小 可选值  large normal small                                                      | string           | `normal`     |
 | auto-height      | 自动高度。设置为 true 时，nut-tabs 和 nut-tabs__content 会随着当前 nut-tab-pane 的高度而发生变化。 | boolean          | `false`      |
-| name `1.6.0废弃，`             | 在`uni`环境下，必须设置 name 才能开启 title-scroll 功能，版本 >=1.6.0 时不再需要。                                           | string           | ''           |
- | string | '' |
-| align `v1.6.0` | 横轴方向的标题对齐方式，可选值 left、center | string | `center` |
+| name `1.6.0废弃`             | 在`uni`环境下，必须设置 name 才能开启 title-scroll 功能，版本 >=1.6.0 时不再需要。                                           | string           | ''           |
+| align `1.6.0` | 横轴方向的标题对齐方式，可选值 left、center | string | `center` |
 
 ### Tabs Slots
 
