@@ -57,7 +57,7 @@ export const tabsProps = {
   /**
    * @description 横轴方向的标题对齐方式，可选值 left、center
    */
-  align: makeNumericProp<'left' | 'center'>('center'),
+  align: makeStringProp<'left' | 'center'>('center'),
 }
 
 export type TabsProps = ExtractPropTypes<typeof tabsProps>
