@@ -235,7 +235,7 @@ export default {
 | 参数                   | 说明             | 类型           | 默认值 |
 | ---------------------- | ---------------- | -------------- | ------ |
 | v-model:visible        | 控制遮罩的显示/隐藏 | boolean        | `false`  |
-| z-index                | 自定义遮罩层级         | string \| number | `2000`   |
+| z-index                | 自定义遮罩层级         | string \| number | `300`   |
 | duration               | 显示/隐藏的动画时长，单位毫秒 | string \| number | `300`    |
 | overlay-class          | 自定义遮罩类名   | string         | -      |
 | overlay-style          | 自定义遮罩样式   | CSSProperties  | -      |
