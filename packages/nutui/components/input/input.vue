@@ -8,7 +8,6 @@ import NutIcon from '../icon/icon.vue'
 import { useFormDisabled } from '../form/form'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
-
 import type { InputFormatTrigger, InputMode, InputTarget, InputType } from './type'
 
 const props = defineProps(inputProps)
@@ -239,7 +238,7 @@ export default defineComponent({
             @compositionstart="(startComposing as any)"
             @confirm="handleConfirm"
           >
-          <view v-if="props.readonly" class="nut-input-formDisabled-mask" @click="(handleClickInput as any)" />
+          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
           <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
               {{ innerValue.length }}
