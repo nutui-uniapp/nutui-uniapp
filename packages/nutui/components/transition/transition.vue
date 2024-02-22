@@ -22,6 +22,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- #ifdef H5 || MP-WEIXIN -->
   <template v-if="props.destroyOnClose">
     <view
       v-if="display"
@@ -41,6 +42,16 @@ export default defineComponent({
       <slot />
     </view>
   </template>
+  <!-- #endif -->
+  <!-- #ifndef H5 || MP-WEIXIN -->
+  <div
+    v-show="display" :class="[classes, props.customClass]"
+    :style="styles"
+    @click="clickHandler"
+  >
+    <slot />
+  </div>
+  <!-- #endif -->
 </template>
 
 <style lang="scss">
