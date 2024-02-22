@@ -36,7 +36,7 @@
     "lint:markdownlint": "markdownlint . --fix --ignore-path=.gitignore",
     "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged",
     "clean": "npx rimraf ./node_modules ./**/**/node_modules",
-    "release": "bumpp package.json packages/nutui/package.json example/package.json docs/package.json",
+    "release": "bumpp package.json scripts/package.json packages/nutui/package.json example/package.json docs/package.json",
     "postinstall": "pnpm build && npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "build:web-types": "esno scripts/web-types.ts",
