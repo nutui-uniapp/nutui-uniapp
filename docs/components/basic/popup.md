@@ -161,7 +161,7 @@
 | closeable              | 是否显示关闭按钮                                            | boolean        | `false`        |
 | close-icon-position    | 关闭按钮位置（top-left,top-right,bottom-left,bottom-right） | string         | `"top-right"` |
 | close-icon             | [图标名称](/components/basic/icon) 或图片链接                                                  | string         | `"close"`     |
-| destroy-on-close       | 弹层关闭后 `slot`内容会不会清空                                          | boolean        | `true`        |
+| destroy-on-close       | 弹层关闭后 `slot`内容会不会清空, 该属性仅支持 H5与微信小程序平台                                        | boolean        | `true`        |
 | round                  | 是否显示圆角                                                |boolean        | `false`       |
 | overlay-class       | 自定义遮罩层类名 | string  | ''  |
 | overlay-style       | 自定义遮罩层样式  | string  | ''  |
