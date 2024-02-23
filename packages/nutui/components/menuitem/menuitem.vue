@@ -36,7 +36,9 @@ export default defineComponent({
     }>(MENU_KEY)
 
     const classes = computed(() => {
-      return getMainClass(props, componentName)
+      return getMainClass(props, componentName, {
+        'nut-menu-item-hidden': !state.showWrapper,
+      })
     })
     const styles = computed(() => {
       const obj = parent?.props.direction === 'down'

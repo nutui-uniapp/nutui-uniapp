@@ -37,7 +37,7 @@ export default defineComponent({
       setTimeout(() => {
         useRect(barId, instance).then((rect) => {
           if (props.direction === 'down')
-            offset.value = rect.bottom!
+            offset.value = rect.bottom! + uni.getSystemInfoSync().windowTop!
 
           else offset.value = uni.getSystemInfoSync().windowHeight - rect.top!
 
