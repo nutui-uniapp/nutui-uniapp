@@ -111,13 +111,14 @@ export function useToast(props: ToastProps, emit: SetupContext<ToastEmits>['emit
       return typeIcons[toastStatus.value.type!]
   })
   const toastBodyClass = computed(() => {
-    return getMainClass(props, componentName, [
-      { 'nut-toast-center': toastStatus.value.center },
-      { 'nut-toast-has-icon': hasIcon.value },
-      { 'nut-toast-cover': toastStatus.value.cover },
-      { 'nut-toast-loading': toastStatus.value.type === 'loading' },
-      `nut-toast-${toastStatus.value.size}`,
-    ])
+    return getMainClass(props, componentName, {
+      'nut-toast-center': toastStatus.value.center,
+      'nut-toast-has-icon': hasIcon.value,
+      'nut-toast-cover': toastStatus.value.cover,
+      'nut-toast-loading': toastStatus.value.type === 'loading',
+      [`nut-toast-${toastStatus.value.size}`]: toastStatus.value.size,
+      'nut-hidden': !isShowToast.value,
+    })
   })
 
   const styles = computed(() => {
