@@ -215,12 +215,12 @@ export default defineComponent({
         </view>
       </view>
     </scroll-view>
-    <view v-show="scrollY > 2 && isSticky" class="nut-elevator__list__fixed">
+    <view class="nut-elevator__list__fixed" :class="{ 'nut-hidden': !(scrollY > 2 && isSticky) }">
       <view class="nut-elevator__list__fixed-title">
         {{ indexList[currentIndex][acceptKey] }}
       </view>
     </view>
-    <view v-show="scrollStart" v-if="indexList.length > 0" class="nut-elevator__code--current">
+    <view v-if="indexList.length > 0" class="nut-elevator__code--current" :class="{ 'nut-hidden': !scrollStart }">
       {{ indexList[codeIndex][acceptKey] }}
     </view>
     <view class="nut-elevator__bars" @touchstart="(touchStart as any)" @touchmove.stop.prevent="(touchMove as any)" @touchend="touchEnd">
