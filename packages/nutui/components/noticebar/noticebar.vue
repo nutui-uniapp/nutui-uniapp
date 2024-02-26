@@ -251,13 +251,13 @@ export default defineComponent({
 <template>
   <view :class="classes" :style="customStyle">
     <view
-      v-show="state.showNoticebar"
       v-if="direction === 'across'"
       class="nut-noticebar__page"
       :class="{
         'nut-noticebar__page--withicon': closeMode,
         'nut-noticebar__page--close': closeMode,
         'nut-noticebar__page--wrapable': wrapable,
+        'nut-hidden': !state.showNoticebar,
       }"
       :style="barStyle"
       @click="(handleClick as any)"
