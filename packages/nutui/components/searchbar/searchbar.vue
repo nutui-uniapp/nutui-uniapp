@@ -147,8 +147,8 @@ export default defineComponent({
       <view class="nut-searchbar__input-inner-icon" :class="[$slots.rightin && 'nut-searchbar__input-inner-icon-absolute']">
         <view
           v-if="clearable"
-          v-show="String(modelValue).length > 0"
           class="nut-searchbar__search-icon nut-searchbar__input-clear"
+          :class="{ 'nut-hidden': String(modelValue).length <= 0 }"
           @click="(handleClear as any)"
         >
           <template v-if="$slots['clear-icon']">

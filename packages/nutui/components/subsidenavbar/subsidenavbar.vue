@@ -59,9 +59,8 @@ export default defineComponent({
       </view>
     </view>
     <view
-      v-show="!direction"
       class="nut-sub-side-navbar__list"
-      :class="!direction ? 'nutFadeIn' : 'nutFadeOut'"
+      :class="[{ 'nut-hidden': direction }, direction ? 'nutFadeOut' : 'nutFadeIn']"
       :style="[style]"
     >
       <slot />

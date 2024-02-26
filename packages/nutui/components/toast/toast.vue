@@ -39,7 +39,6 @@ export default defineComponent({
 <template>
   <NutTransition :custom-class="toastBodyClass" :custom-style="styles" :show="isShowToast" name="fade" @after-leave="onAfterLeave">
     <view
-      v-show="isShowToast"
       :class="toastBodyClass"
       :style="styles"
       @click="clickCover"

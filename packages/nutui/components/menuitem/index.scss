@@ -48,17 +48,10 @@
   }
 }
 
-
-
 .nut-menu-item-placeholder-element {
   position: fixed;
   right: 0;
   left: 0;
   z-index: $menu-bar-opened-z-index;
   background-color: transparent;
-}
-
-
-.nut-menu-item-hidden {
-  display: none !important;
 }

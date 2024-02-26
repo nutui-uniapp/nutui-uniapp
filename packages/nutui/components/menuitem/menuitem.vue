@@ -37,7 +37,7 @@ export default defineComponent({
 
     const classes = computed(() => {
       return getMainClass(props, componentName, {
-        'nut-menu-item-hidden': !state.showWrapper,
+        'nut-hidden': !state.showWrapper,
       })
     })
     const styles = computed(() => {
@@ -118,11 +118,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-show="state.showWrapper" :class="classes" :style="styles">
+  <view :class="classes" :style="styles">
     <view
-      v-show="state.showPopup"
       class="nut-menu-item-placeholder-element"
-      :class="{ 'placeholder-element-up': parent?.props.direction === 'up' }"
+      :class="{ 'nut-hidden': !state.showPopup, 'placeholder-element-up': parent?.props.direction === 'up' }"
       :style="placeholderElementStyle"
       @click="handleClickOutside"
     />
