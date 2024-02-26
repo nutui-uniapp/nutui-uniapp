@@ -267,7 +267,12 @@ export default defineComponent({
       </view>
     </NutPopup>
 
-    <view v-show="showPopup" class="nut-popover-content-bg" @touchmove="clickAway" @click="clickAway" />
+    <view
+      class="nut-popover-content-bg"
+      :class="{ 'nut-hidden': !showPopup }"
+      @touchmove="clickAway"
+      @click="clickAway"
+    />
   </view>
 </template>
 
