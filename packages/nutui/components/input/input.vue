@@ -247,8 +247,8 @@ export default defineComponent({
         </view>
         <view
           v-if="clearable && !readonly"
-          v-show="(active || showClearIcon) && innerValue.length > 0"
           class="nut-input-clear-box"
+          :class="{ 'nut-hidden': !((active || showClearIcon) && innerValue.length > 0) }"
           @click="(handleClear as any)"
         >
           <slot name="clear">
