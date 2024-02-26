@@ -46,7 +46,10 @@ export default defineComponent({
       <image v-if="!(arr.indexOf(index) > -1)" class="intactImg" :src="intactImg" alt="" @click="hitEggs(index)" />
       <image v-if="arr.indexOf(index) > -1" class="splitImg" :src="splitImg" alt="" />
       <image
-        v-show="index === hitIndex" class="hammer" style="animation: shake-rotate 0.5s linear 0s infinite" :src="hammer"
+        class="hammer"
+        :class="{ 'nut-hidden': index !== hitIndex }"
+        style="animation: shake-rotate 0.5s linear 0s infinite"
+        :src="hammer"
         alt=""
       />
     </div>
