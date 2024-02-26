@@ -70,10 +70,10 @@ export default defineComponent({
         <NutIcon name="loading1" :custom-color="activeColor" />
       </slot>
       <template v-if="activeText">
-        <view v-show="isActive" class="nut-switch-label open">
+        <view class="nut-switch-label open" :class="{ 'nut-hidden': !isActive }">
           {{ activeText }}
         </view>
-        <view v-show="!isActive" class="nut-switch-label close">
+        <view class="nut-switch-label close" :class="{ 'nut-hidden': isActive }">
           {{ inactiveText }}
         </view>
       </template>
