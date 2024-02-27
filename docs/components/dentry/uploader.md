@@ -258,9 +258,11 @@ setup() {
 | 名称       | 说明                                                  | 默认值                            |
 |------------|-------------------------------------------------------|-----------------------------------|
 | status     | 文件状态值，可选`ready`,`uploading`,`success`,`error` | `ready`                           |
+| message    | 提示语, 上传失败时显示 | - |
 | uid        | 文件的唯一标识                                        | `new Date().getTime().toString()` |
 | name       | 文件名称                                              | -                                 |
 | url        | 文件路径                                              | -                                 |
+| type       | 文件类型,可选`image`,`video`,`audio` | - |
 | formData   | 上传所需的data                                        | `{}`                              |
 | percentage | 上传百分比                                            | `0`                               |
 
