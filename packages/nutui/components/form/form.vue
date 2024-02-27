@@ -106,8 +106,13 @@ async function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
     const { required, regex, message } = ruleWithoutValidator
     const errorMsg = { prop, message }
     if (required) {
-      if (!value && value !== 0)
+      if (Array.isArray(value)) {
+        if (!value.length)
+          return _Promise(errorMsg)
+      }
+      else if (!value && value !== 0) {
         return _Promise(errorMsg)
+      }
     }
     if (regex && !regex.test(String(value)))
       return _Promise(errorMsg)
