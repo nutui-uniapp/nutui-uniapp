@@ -2,7 +2,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import { commonProps, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
-import type { AdjustKeyboardTo, ConfirmTextType } from './type'
+import type { TextareaAdjustKeyboardTo, TextareaConfirmType } from './type'
 
 export const textareaProps = {
   ...commonProps,
@@ -92,7 +92,7 @@ export const textareaProps = {
   /**
    * @description 设置键盘右下角按钮的文字，可选值 `send` `search` `next` `go` `done` `return`
    */
-  confirmType: makeStringProp<ConfirmTextType>('done'),
+  confirmType: makeStringProp<TextareaConfirmType>('return'),
   /**
    * @description 点击键盘右下角按钮时是否保持键盘不收起
    */
@@ -100,7 +100,7 @@ export const textareaProps = {
   /**
    * @description 键盘对齐位置，可选值 `cursor` `bottom`
    */
-  adjustKeyboardTo: makeStringProp<AdjustKeyboardTo>('cursor'),
+  adjustKeyboardTo: makeStringProp<TextareaAdjustKeyboardTo>('cursor'),
 }
 
 export type TextareaProps = ExtractPropTypes<typeof textareaProps>
