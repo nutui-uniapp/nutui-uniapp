@@ -2,7 +2,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import type { ConfirmTextType, InputAlignType, InputFormatTrigger, InputMode, InputType } from './type'
+import type { InputAlignType, InputConfirmType, InputFormatTrigger, InputMode, InputType } from './type'
 
 export const inputProps = {
   ...commonProps,
@@ -84,7 +84,7 @@ export const inputProps = {
   /**
    * @description 键盘右下角按钮的文字，仅在`type='text'`时生效,可选值 `send`：发送、`search`：搜索、`next`：下一个、`go`：前往、`done`：完成
    */
-  confirmType: makeStringProp<ConfirmTextType>('done'),
+  confirmType: makeStringProp<InputConfirmType>('done'),
   /**
    * @description  键盘弹起时，是否自动上推页面
    */
