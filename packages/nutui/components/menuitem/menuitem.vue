@@ -139,7 +139,8 @@ export default defineComponent({
       :lock-scroll="parent?.props.lockScroll"
       :close-on-click-overlay="parent?.props.closeOnClickOverlay"
       @closed="handleClose"
-      @update:visible="handleVisible"
+      @open="handleVisible(true)"
+      @close="handleVisible(false)"
     >
       <scroll-view :scroll-y="true">
         <view id="nut-menu-item__content" class="nut-menu-item__content">

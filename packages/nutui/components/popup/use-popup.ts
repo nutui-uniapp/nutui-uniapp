@@ -8,6 +8,7 @@ const initIndex = 500
 let _zIndex = initIndex
 const componentName = `${PREFIX}-popup`
 export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit']) {
+  let opened: boolean
   const state = reactive({
     zIndex: props.zIndex,
     showSlot: true,
@@ -36,21 +37,25 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   })
 
   const open = () => {
-    if (props.zIndex !== initIndex)
-      _zIndex = Number(props.zIndex)
+    if (!opened) {
+      opened = true
+      if (props.zIndex !== initIndex)
+        _zIndex = Number(props.zIndex)
 
-    emit('update:visible', true)
-    state.zIndex = ++_zIndex
-    state.showSlot = true
+      emit(UPDATE_VISIBLE_EVENT, true)
+      state.zIndex = ++_zIndex
+      state.showSlot = true
 
-    emit(OPEN_EVENT)
+      emit(OPEN_EVENT)
+    }
   }
 
   const close = () => {
-    // if (props.visible)
-    //   return // 避免重复调用
-    emit(UPDATE_VISIBLE_EVENT, false)
-    emit(CLOSE_EVENT)
+    if (opened) {
+      opened = false
+      emit(UPDATE_VISIBLE_EVENT, false)
+      emit(CLOSE_EVENT)
+    }
   }
 
   const onClick = (e: Event) => {
@@ -60,15 +65,13 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   const onClickCloseIcon = (e: Event) => {
     e.stopPropagation()
     emit('click-close-icon')
-    emit(UPDATE_VISIBLE_EVENT, false)
-    // close();
+    close()
   }
 
   const onClickOverlay = () => {
     emit('click-overlay')
     if (props.closeOnClickOverlay)
-      emit(UPDATE_VISIBLE_EVENT, false)
-      // close();
+      close()
   }
 
   const onOpened = () => {
@@ -85,7 +88,13 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   watch(
     () => props.visible,
     (val) => {
-      val ? open() : close()
+      if (val && !opened)
+        open()
+
+      if (!val && opened) {
+        opened = false
+        emit('close')
+      }
     },
   )
   watchEffect(() => {
