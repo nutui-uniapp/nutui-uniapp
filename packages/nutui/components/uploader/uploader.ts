@@ -105,9 +105,7 @@ export const uploaderProps = {
    */
   beforeDelete: {
     type: Function as PropType<Interceptor>,
-    default: (_file: FileItem, _files: FileItem[]) => {
-      return true
-    },
+    default: null,
   },
   /**
    * @description 当accept为video时生效，是否压缩视频，默认为true（默认 true ）
