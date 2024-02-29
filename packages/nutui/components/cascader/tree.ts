@@ -3,6 +3,7 @@ import { eachTree, formatTree } from './helper'
 
 class Tree {
   nodes: CascaderOption[]
+  maxLevel: number
   readonly config: CascaderConfig
 
   constructor(nodes: CascaderOption[], config?: CascaderConfig) {
@@ -12,15 +13,17 @@ class Tree {
       children: 'children',
       ...(config || {}),
     }
-    this.nodes = formatTree(nodes, null, this.config)
+    const { nodes: newNodes, maxLevel } = formatTree(nodes, null, this.config)
+    this.nodes = newNodes
+    this.maxLevel = maxLevel
   }
 
   updateChildren(nodes: CascaderOption[], parent: CascaderOption | null): void {
     if (!parent)
-      this.nodes = formatTree(nodes, null, this.config)
+      this.nodes = formatTree(nodes, null, this.config).nodes
 
     else
-      parent.children = formatTree(nodes, parent, this.config)
+      parent.children = formatTree(nodes, parent, this.config).nodes
   }
 
   // for test

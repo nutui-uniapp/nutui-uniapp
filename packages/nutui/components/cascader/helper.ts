@@ -1,26 +1,35 @@
 import type { CascaderConfig, CascaderOption, convertConfig } from './types'
 
-export function formatTree(tree: CascaderOption[], parent: CascaderOption | null, config: CascaderConfig): CascaderOption[] {
-  return tree.map((node: CascaderOption) => {
+export function formatTree(tree: CascaderOption[], parent: CascaderOption | null, config: CascaderConfig, maxLevel = 0): { nodes: CascaderOption[], maxLevel: number } {
+  const nodes = tree.map((node: CascaderOption) => {
     const { value: valueKey = 'value', text: textKey = 'text', children: childrenKey = 'children' } = config
 
     const { [valueKey]: value, [textKey]: text, [childrenKey]: children, ...others } = node
 
+    const level = parent ? ((parent && parent.level) || 0) + 1 : 0
+
+    maxLevel = Math.max(maxLevel, level)
+
     const newNode: CascaderOption = {
       loading: false,
       ...others,
-      level: parent ? ((parent && parent.level) || 0) + 1 : 0,
+      level,
       value,
       text,
       children,
       _parent: parent,
     }
 
-    if (newNode.children && newNode.children.length)
-      newNode.children = formatTree(newNode.children, newNode, config)
+    if (newNode.children && newNode.children.length) {
+      const { nodes, maxLevel: level } = formatTree(newNode.children, newNode, config, maxLevel)
+      newNode.children = nodes
+      maxLevel = Math.max(maxLevel, level)
+    }
 
     return newNode
   })
+
+  return { nodes, maxLevel }
 }
 
 export function eachTree(tree: CascaderOption[], cb: (node: CascaderOption) => any): void {
