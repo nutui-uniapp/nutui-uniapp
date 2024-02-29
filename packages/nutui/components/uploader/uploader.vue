@@ -162,9 +162,9 @@ function filterFiles(files: ChooseFile[]) {
   return files
 }
 
-function onDelete(file: FileItem, index: number) {
+async function onDelete(file: FileItem, index: number) {
   clearUploadQueue(index)
-  if (props.beforeDelete(file, fileList)) {
+  if (props.beforeDelete == null || await props.beforeDelete(file, fileList)) {
     fileList.value.splice(index, 1)
     emit('delete', {
       file,
