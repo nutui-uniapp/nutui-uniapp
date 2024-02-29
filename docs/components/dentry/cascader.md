@@ -361,6 +361,7 @@ export default {
 | title-size `v1.1.7`            | 标签栏字体尺寸大小 可选值  large normal small                                                      | string           | `normal`     |
 | title-ellipsis `v1.1.7`        | 是否省略过长的标题文字                                                                             | boolean          | `true`       |
 | title-type `v1.1.7`           | 选中底部展示样式 可选值 line、smile                                                                | string           | `line`       |
+| min-level | 指定至少需要选中多少层数据, `lazy`等于`true`时无效 | number | 默认为`options`的最大层级 |
 ### Events
 
 | 事件名      | 说明             | 回调参数           |
