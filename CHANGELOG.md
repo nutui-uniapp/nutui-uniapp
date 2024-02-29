@@ -1,3 +1,17 @@
+## [1.7.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.0...v1.7.1) (2024-02-29)
+
+### Bug Fixes
+
+* **form:** 修复prop类型为数组时required校验无效的问题 ([00453d6](https://github.com/nutui-uniapp/nutui-uniapp/commit/00453d68c21973215b57e5248050da4dc19647a2))
+* **menu:** 偏移位置错误, app 端v-show 无效 ([#197](https://github.com/nutui-uniapp/nutui-uniapp/issues/197)) ([2fba3fe](https://github.com/nutui-uniapp/nutui-uniapp/commit/2fba3fe91b751d63b0aa007442d1ffb94516fd93))
+* **popup,menu:** 修复 popup组件update:visible事件重复调用与menu 组件close 事件在小程序中无法触发 ([#205](https://github.com/nutui-uniapp/nutui-uniapp/issues/205)) ([0ce7d69](https://github.com/nutui-uniapp/nutui-uniapp/commit/0ce7d690b6a401428ab083eba81887e7e4767178)), closes [#196](https://github.com/nutui-uniapp/nutui-uniapp/issues/196)
+* **textarea:** 修复ConfirmType导出类型名称重复以及默认值错误 ([748a849](https://github.com/nutui-uniapp/nutui-uniapp/commit/748a8498df99a543d28b37307f877ececa0fe1b4))
+* **transition:** app端destroyOnClose属性无效 ([1238ef6](https://github.com/nutui-uniapp/nutui-uniapp/commit/1238ef6cd4dd7fe59250d47752e00349f56292a0))
+
+### Features
+
+* 新增辅助样式 ([ae3775b](https://github.com/nutui-uniapp/nutui-uniapp/commit/ae3775b501b78ed8af955aa6a3b57c444d49356c))
+
 # [1.7.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.6.9...v1.7.0) (2024-02-22)
 
 ### Bug Fixes
