@@ -56,21 +56,16 @@ class Tree {
     return pathNodes
   }
 
-  isLeaf(node: CascaderOption, lazy: boolean): boolean {
-    const { leaf, children } = node
-    const hasChildren = Array.isArray(children) && Boolean(children.length)
-
-    return leaf || (!hasChildren && !lazy)
+  isLeaf(node: CascaderOption, lazy: boolean, maxLevel: number): boolean {
+    const { leaf } = node
+    return leaf == null ? (!lazy && maxLevel === node.level) : leaf
   }
 
-  hasChildren(node: CascaderOption, lazy: boolean): boolean {
-    const isLeaf = this.isLeaf(node, lazy)
-
-    if (isLeaf)
-      return false
-
-    const { children } = node
-    return Array.isArray(children) && Boolean(children.length)
+  hasChildren(node: CascaderOption, lazy: boolean, maxLevel: number): boolean {
+    const isLeaf = this.isLeaf(node, lazy, maxLevel)
+    if (lazy)
+      return Array.isArray(node.children) && Boolean(node.children.length)
+    return !isLeaf
   }
 }
 

@@ -7,7 +7,7 @@ export default {
     // 基础用法
     const demo1 = reactive({
       visible: false,
-      value: ['湖南'],
+      value: [],
       options: [
         {
           value: '浙江',
@@ -44,10 +44,7 @@ export default {
             {
               value: '福州',
               text: '福州',
-              children: [
-                { value: '鼓楼区', text: '鼓楼区' },
-                { value: '台江区', text: '台江区' },
-              ],
+              children: [],
             },
           ],
         },

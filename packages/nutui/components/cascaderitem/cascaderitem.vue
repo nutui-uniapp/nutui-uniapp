@@ -37,6 +37,7 @@ const tree: Ref<Tree> = ref(new Tree([], {}))
 const panes: Ref<CascaderPane[]> = ref([])
 const isLazy = computed(() => configs.value.lazy && Boolean(configs.value.lazyLoad))
 
+const maxLevel = ref(0)
 const lazyLoadMap = new Map()
 let currentProcessNode: CascaderOption | null
 async function init() {
@@ -50,6 +51,9 @@ async function init() {
 
   if (configs.value.convertConfig)
     options = convertListToOptions(options as CascaderOption[], configs.value.convertConfig as convertConfig)
+
+  if (!isLazy.value)
+    maxLevel.value = getMaxLevel(options)
 
   tree.value = new Tree(options as CascaderOption[], {
     value: configs.value.valueKey,
@@ -68,6 +72,23 @@ async function init() {
 
   panes.value = [{ nodes: tree.value.nodes, selectedNode: null }]
   syncValue()
+}
+
+function getMaxLevel(options: CascaderOption[]) {
+  let level = 0
+  const travel = (arr: CascaderOption[], l: number) => {
+    ++l
+    level = Math.max(l, level)
+    for (let i = 0; i < arr.length; i++) {
+      const option = arr[i]
+      if (option[configs.value.childrenKey] && option[configs.value.childrenKey].length)
+        travel(option[configs.value.childrenKey], l)
+      else
+        delete option[configs.value.childrenKey]
+    }
+  }
+  travel(options, 0)
+  return level - 1
 }
 
 async function syncValue() {
@@ -128,7 +149,7 @@ async function invokeLazyLoad(node?: CascaderOption | void) {
     return
   }
 
-  if (tree.value.isLeaf(node, isLazy.value) || tree.value.hasChildren(node, isLazy.value))
+  if (tree.value.isLeaf(node, isLazy.value, maxLevel.value))
     return
 
   node.loading = true
@@ -178,7 +199,7 @@ const methods = {
     if ((!silent && disabled) || !panes.value[tabsCursor.value])
       return
 
-    if (tree.value.isLeaf(node, isLazy.value)) {
+    if (tree.value.isLeaf(node, isLazy.value, maxLevel.value)) {
       node.leaf = true
       panes.value[tabsCursor.value].selectedNode = node
       panes.value = panes.value.slice(0, (node.level as number) + 1)
@@ -192,7 +213,7 @@ const methods = {
       return
     }
 
-    if (tree.value.hasChildren(node, isLazy.value)) {
+    if (tree.value.hasChildren(node, isLazy.value, maxLevel.value)) {
       const level = (node.level as number) + 1
 
       panes.value[tabsCursor.value].selectedNode = node
