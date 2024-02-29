@@ -55,6 +55,7 @@ async function init() {
     value: configs.value.valueKey,
     text: configs.value.textKey,
     children: configs.value.childrenKey,
+    minLevel: props.minLevel,
   })
 
   if (isLazy.value && !tree.value.nodes.length) {

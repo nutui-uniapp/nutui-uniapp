@@ -91,6 +91,11 @@ export const cascaderProps = {
    * @description 选中底部展示样式 可选值: 'line', 'smile'
    */
   titleType: makeStringProp<'line' | 'card' | 'smile'>('line'),
+
+  /**
+   * @description 最小层级
+   */
+  minLevel: Number,
 }
 
 export type CascaderProps = ExtractPropTypes<typeof cascaderProps>

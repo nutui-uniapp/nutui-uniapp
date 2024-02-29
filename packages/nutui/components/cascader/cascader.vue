@@ -87,6 +87,7 @@ export default defineComponent({
         :title-gutter="titleGutter"
         :title-size="titleSize"
         :title-type="titleType"
+        :min-level="minLevel"
         @change="onChange"
         @path-change="onPathChange"
       />

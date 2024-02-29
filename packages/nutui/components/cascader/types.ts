@@ -7,6 +7,7 @@ export interface CascaderConfig {
   value?: string
   text?: string
   children?: string
+  minLevel?: number
 }
 export interface CascaderTabs {
   title: string

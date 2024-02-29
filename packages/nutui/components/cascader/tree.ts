@@ -61,7 +61,19 @@ class Tree {
 
   isLeaf(node: CascaderOption, lazy: boolean, maxLevel: number): boolean {
     const { leaf } = node
-    return leaf == null ? (!lazy && maxLevel === node.level) : leaf
+    if (leaf != null)
+      return leaf
+
+    const { minLevel } = this.config
+    if (minLevel != null && !lazy) {
+      const hasChildren = Array.isArray(node.children) && Boolean(node.children.length)
+      if (node.level! < minLevel - 1)
+        return false
+      else if (node.level! >= minLevel - 1 && !hasChildren)
+        return true
+    }
+
+    return !lazy && maxLevel === node.level
   }
 
   hasChildren(node: CascaderOption, lazy: boolean, maxLevel: number): boolean {
