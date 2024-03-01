@@ -60,17 +60,13 @@ class Tree {
     const { leaf, children } = node
     const hasChildren = Array.isArray(children) && Boolean(children.length)
 
-    return leaf || (!hasChildren && !lazy)
+    return leaf == null ? !hasChildren && !lazy : leaf
   }
 
   hasChildren(node: CascaderOption, lazy: boolean): boolean {
-    const isLeaf = this.isLeaf(node, lazy)
-
-    if (isLeaf)
-      return false
-
-    const { children } = node
-    return Array.isArray(children) && Boolean(children.length)
+    if (lazy)
+      return Array.isArray(node.children) && Boolean(node.children.length)
+    return !this.isLeaf(node, lazy)
   }
 }
 
