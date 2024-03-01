@@ -384,7 +384,7 @@ export default {
 | value | 唯一标识,可以通过`value-key`更改键名 | `string` `number` | - |
 | children | 子级选项,可以通过`children-key`更改键名 | `array` | - |
 | disabled | 是否禁用 | `boolean` | false |
-| leaf | 是否叶子节点 | `boolean` | false |
+| leaf | 是否叶子节点 | `boolean` | `children`为空时`leaf`等于`true`,不为空时`leaf`等于`false` |
 | loading | 加载状态 | `boolean` | false |
 
 ## 主题定制
