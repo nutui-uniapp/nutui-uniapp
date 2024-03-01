@@ -7,12 +7,11 @@ export const avatarProps = {
   /**
    * @description 头像的大小，可选值为：`large`、`normal`、`small`，支持直接输入数字
    */
-  // eslint-disable-next-line ts/ban-types
-  size: makeNumericProp<AvatarSize | (string & {}) | (number & {})>('normal'),
+  size: makeNumericProp<AvatarSize | string | number | undefined>(undefined),
   /**
    * @description 头像的形状，可选值为：`square`、`round`
    */
-  shape: makeStringProp<AvatarShape>('round'),
+  shape: makeStringProp<AvatarShape | undefined>(undefined),
   /**
    * @description 背景色
    */

@@ -1,51 +1,84 @@
 <script setup lang="ts">
-import { computed, defineComponent, getCurrentInstance, ref, toRefs, watch } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, getCurrentInstance, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
-import { AVATAR_KEY, type AvatarGroupProps } from '../avatargroup'
+import type { AvatarGroupProps } from '../avatargroup'
+import { AVATAR_KEY } from '../avatargroup'
 import { useInject } from '../_hooks'
-import { getMainClass, getMainStyle } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { avatarProps } from './avatar'
+import type { AvatarFinalSize, AvatarShape, AvatarSize } from './type'
+import { avatarSize } from './type'
 
 const props = defineProps(avatarProps)
+
 const instance = getCurrentInstance()
-const { size, shape, bgColor, customColor } = toRefs(props)
-const sizeValue = ['large', 'normal', 'small']
-const avatarRef = ref(null)
-const show = ref(true)
+
 const { parent } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_KEY)
 
-watch(() => parent?.props.maxCount, (val) => {
-  if (val) {
-    parent?.internalChildren?.forEach((item, index) => {
-      if (item.uid === instance?.uid) {
-        if (index + 1 > +val) {
-          if ((item.props.customClass as string).includes('avater-fold'))
-            return
-          show.value = false
-        }
-      }
-    })
+const show = ref<boolean>(true)
+
+watch(() => ({
+  maxCount: parent?.props?.maxCount,
+  children: parent?.internalChildren,
+}), ({ maxCount, children }) => {
+  if (maxCount == null || Number(maxCount) <= 0 || children == null || instance == null) {
+    show.value = true
+    return
   }
+
+  const index = children.findIndex((item) => {
+    return item.uid === instance.uid && !(item.props.customClass as string)?.includes('avatar-fold')
+  })
+
+  show.value = !(index >= 0 && index + 1 > Number(maxCount))
 }, {
   immediate: true,
   deep: true,
 })
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`nut-avatar-${size.value || parent?.props?.size || 'normal'}`]: true,
-    [`nut-avatar-${shape.value || parent?.props?.shape || 'normal'}`]: true,
-  })
+
+const finalSize = computed<AvatarFinalSize>(() => {
+  const size: string | number = props.size ?? parent?.props?.size ?? 'normal'
+
+  const preset: boolean = avatarSize.includes(size as AvatarSize)
+
+  return {
+    preset,
+    value: preset ? (size as AvatarSize) : pxCheck(size),
+  }
 })
 
-const getStyles = computed(() => {
-  return getMainStyle(props, {
-    width: sizeValue.includes(size.value as string) ? '' : `${size.value}px`,
-    height: sizeValue.includes(size.value as string) ? '' : `${size.value}px`,
-    backgroundColor: `${bgColor.value}`,
-    color: `${customColor.value}`,
-    marginLeft: (parent?.props?.span ? `${parent?.props?.span}px` : ''),
-    display: show.value ? '' : 'none',
-  })
+const finalShape = computed<AvatarShape>(() => {
+  return props.shape ?? parent?.props?.shape ?? 'round'
+})
+
+const classes = computed(() => {
+  const value: Record<string, boolean> = {
+    [`nut-avatar-${finalShape.value}`]: true,
+    'nut-hidden': !show.value,
+  }
+
+  if (finalSize.value.preset)
+    value[`nut-avatar-${finalSize.value.value}`] = true
+
+  return getMainClass(props, componentName, value)
+})
+
+const styles = computed(() => {
+  const value: CSSProperties = {
+    backgroundColor: props.bgColor,
+    color: props.customColor,
+  }
+
+  if (!finalSize.value.preset) {
+    value.width = finalSize.value.value
+    value.height = finalSize.value.value
+  }
+
+  if (parent?.props?.span)
+    value.marginLeft = pxCheck(parent?.props?.span)
+
+  return getMainStyle(props, value)
 })
 </script>
 
@@ -63,7 +96,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="avatarRef" :style="getStyles" :class="classes">
+  <view :style="styles" :class="classes">
     <slot />
   </view>
 </template>
