@@ -18,12 +18,15 @@ const { parent } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_KEY)
 
 const show = ref<boolean>(true)
 
+const innerZIndex = ref<number | undefined>(undefined)
+
 watch(() => ({
   maxCount: parent?.props?.maxCount,
   children: parent?.internalChildren,
 }), ({ maxCount, children }) => {
   if (maxCount == null || Number(maxCount) <= 0 || children == null || instance == null) {
     show.value = true
+    innerZIndex.value = undefined
     return
   }
 
@@ -31,7 +34,18 @@ watch(() => ({
     return item.uid === instance.uid && !(item.props.customClass as string)?.includes('avatar-fold')
   })
 
-  show.value = !(index >= 0 && index + 1 > Number(maxCount))
+  if (index < 0) {
+    show.value = true
+    innerZIndex.value = undefined
+    return
+  }
+
+  show.value = index < Number(maxCount)
+
+  if (parent?.props?.zIndex === 'right')
+    innerZIndex.value = children.length - index
+  else
+    innerZIndex.value = undefined
 }, {
   immediate: true,
   deep: true,
@@ -77,6 +91,9 @@ const styles = computed(() => {
 
   if (parent?.props?.span)
     value.marginLeft = pxCheck(parent?.props?.span)
+
+  if (innerZIndex.value !== undefined)
+    value.zIndex = innerZIndex.value
 
   return getMainStyle(props, value)
 })
