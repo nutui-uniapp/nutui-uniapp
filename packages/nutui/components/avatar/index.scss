@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
-  
+
   image {
     display: block;
     width: 100%;
@@ -29,24 +29,27 @@
   line-height: $avatar-large-height;
 }
 
-.nut-avatar-small {
-  width: $avatar-small-width;
-  height: $avatar-small-height;
-  line-height: $avatar-small-height;
-}
-
 .nut-avatar-normal {
   width: $avatar-normal-width;
   height: $avatar-normal-height;
   line-height: $avatar-normal-height;
 }
 
-.nut-avatar-round {
-  border-radius: 50%;
-
-  // overflow: hidden;
+.nut-avatar-small {
+  width: $avatar-small-width;
+  height: $avatar-small-height;
+  line-height: $avatar-small-height;
 }
 
 .nut-avatar-square {
   border-radius: $avatar-square;
+}
+
+.nut-avatar-round {
+  border-radius: 50%;
+}
+
+.nut-avatar-square,
+.nut-avatar-round {
+  overflow: hidden;
 }

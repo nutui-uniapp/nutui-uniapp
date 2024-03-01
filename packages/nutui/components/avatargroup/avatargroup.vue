@@ -1,36 +1,49 @@
 <script setup lang="ts">
+import type { CSSProperties } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import NutAvatar from '../avatar/avatar.vue'
-import { getMainClass, getMainStyle } from '../_utils'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { AVATAR_KEY, avatargroupProps } from './avatargroup'
 
 const props = defineProps(avatargroupProps)
 
-const avatarGroupRef = ref(null)
+const { internalChildren } = useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props })
 
-const index = ref(0)
+const innerMaxCount = computed<number>(() => {
+  return Number(props.maxCount)
+})
 
-const foldCount = ref(99)
-const styles = computed(() => {
-  return getMainStyle(props, {
-    marginLeft: `${-1 * Number(props.span)}px`,
-  })
+const foldCount = ref(0)
+
+watch(() => ({
+  maxCount: props.maxCount,
+  children: internalChildren,
+}), ({ children }) => {
+  if (innerMaxCount.value > 0)
+    foldCount.value = Math.min(99, children.length - innerMaxCount.value)
+  else
+    foldCount.value = 0
+}, {
+  immediate: true,
+  deep: true,
 })
 
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-const { internalChildren } = useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props, avatarGroupRef, index })
+const styles = computed(() => {
+  return getMainStyle(props, {
+    marginLeft: `calc(0px - ${pxCheck(props.span)})`,
+  })
+})
 
-watch(() => internalChildren, (value) => {
-  if (props.maxCount)
-    foldCount.value = value.length - (+props.maxCount)
-}, {
-  immediate: true,
-  deep: true,
+const foldStyles = computed<CSSProperties>(() => {
+  return {
+    marginLeft: pxCheck(props.span),
+  }
 })
 </script>
 
@@ -48,18 +61,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <view ref="avatarGroupRef" :class="classes" :style="styles">
+  <view :class="classes" :style="styles">
     <slot />
     <NutAvatar
       v-if="foldCount > 0"
-      custom-class="avater-fold"
-      :custom-color="maxColor"
-      :bg-color="maxBgColor"
-      :size="size"
-      :shape="shape"
-      :style="{ magrinLeft: `${span}px` }"
+      custom-class="avatar-fold"
+      :custom-style="foldStyles"
+      :size="props.size"
+      :shape="props.shape"
+      :bg-color="props.maxBgColor"
+      :custom-color="props.maxColor"
     >
-      {{ maxContent || (foldCount === 99 ? foldCount : (foldCount - 1)) }}
+      {{ props.maxContent || foldCount }}
     </NutAvatar>
   </view>
 </template>

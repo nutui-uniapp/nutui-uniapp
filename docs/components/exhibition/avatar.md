@@ -11,13 +11,13 @@
 ```html
 <template>
   <nut-avatar size="large">
-    <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+    <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
   </nut-avatar>
   <nut-avatar size="normal">
-    <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+    <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
   </nut-avatar>
   <nut-avatar size="small">
-    <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+    <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
   </nut-avatar>
 </template>
 ```
@@ -31,11 +31,6 @@
   <nut-avatar shape="square"><nut-icon name="my" /></nut-avatar>
   <nut-avatar shape="round"><nut-icon name="my" /></nut-avatar>
 </template>
-<script lang="ts">
-  export default {
-    
-  }
-</script>
 ```
 
 ### 头像类型
@@ -45,17 +40,11 @@
 ```html
 <template>
   <nut-avatar>
-    <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+    <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
   </nut-avatar>
   <nut-avatar><nut-icon name="my" /></nut-avatar>
   <nut-avatar>王</nut-avatar>
 </template>
-<script lang="ts">
-  
-  export default {
-    
-  }
-</script>
 ```
 
 ### 自定义颜色及背景色
@@ -67,12 +56,6 @@ Icon 和字符型可以自定义颜色及背景色
   <nut-avatar class="demo-avatar" bg-color="#FA2C19"><My color="#fff"/></nut-avatar>
   <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
 </template>
-<script lang="ts">
-  
-  export default {
-    
-  }
-</script>
 ```
 
 ### 带徽标的头像
@@ -86,12 +69,6 @@ Icon 和字符型可以自定义颜色及背景色
     <nut-avatar shape="square"><nut-icon name="my" /></nut-avatar>
   </nut-badge>
 </template>
-<script lang="ts">
-  
-  export default {
-    
-  }
-</script>
 ```
 
 ### 头像组合展现
@@ -100,7 +77,7 @@ Icon 和字符型可以自定义颜色及背景色
 <template>
   <nut-avatar-group span="-4">
     <nut-avatar>
-      <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+      <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
     </nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
     <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
@@ -111,19 +88,13 @@ Icon 和字符型可以自定义颜色及背景色
     max-bgColor="#498ff2"
   >
     <nut-avatar>
-      <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+      <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
     </nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
-    <nut-avatar custom-ccolor="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
+    <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">小明</nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
   </nut-avatar-group>
 </template>
-<script lang="ts">
-  
-  export default {
-    
-  }
-</script>
 ```
 
 ### 组合头像可控制层级方向
@@ -136,44 +107,13 @@ Icon 和字符型可以自定义颜色及背景色
     max-content="..."
   >
     <nut-avatar>
-      <img src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
+      <image src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
     </nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
     <nut-avatar custom-color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">U</nut-avatar>
     <nut-avatar><nut-icon name="my" /></nut-avatar>
   </nut-avatar-group>
 </template>
-<script lang="ts">
-  
-  export default {
-    
-  }
-</script>
-```
-
-### 点击头像触发事件
-
-```html
-<template>
-  <nut-cell>
-    <nut-avatar @click="handleClick"><nut-icon name="my" /></nut-avatar>
-  </nut-cell>
-</template>
-<script lang="ts">
-  import { reactive } from 'vue';
-  
-  export default {
-    ,
-    setup() {
-      const handleClick = () => {
-        console.log('触发点击头像');
-      };
-      return {
-        handleClick
-      };
-    }
-  }
-</script>
 ```
 
 ## API
@@ -192,13 +132,13 @@ Icon 和字符型可以自定义颜色及背景色
 | 参数     | 说明                                                             | 类型   | 默认值 |
 | -------- | ---------------------------------------------------------------- | ------ | ------ |
 | max-count    | 显示的最大头像个数   | string \| number | - |
-| max-content  | 头像数量超出时，会出现一个头像折叠元素，该元素内容可为`...`、`more`、`+N` | string | `+N` |
+| max-content  | 头像数量超出时，会出现一个头像折叠元素，该元素内容可为`...`、`more`、`N` | string | `N` |
 | size         | 头像的大小，可选值为：`large`、`normal`、`small`，支持直接输入数字   | string \| number | `normal` |
 | shape        | 头像的形状，可选值为：`square`、`round`        | string | `round`  |
 | max-color    | 头像折叠元素的字体颜色                   | string | `#666` |
 | max-bg-color  | 头像折叠元素的背景色                    | string | `#eee`   |
 | span         | 头像之间的间距               | string | `-8`   |
-| zIndex       | 组合头像之间的层级方向，可选值为：`left`、`right`  | string | `left`     |
+| z-index       | 组合头像之间的层级方向，可选值为：`left`、`right`  | string | `left`     |
 
 ### Avatar Slots
 
