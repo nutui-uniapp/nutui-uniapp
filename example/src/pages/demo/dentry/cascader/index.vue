@@ -44,10 +44,12 @@ export default {
             {
               value: '福州',
               text: '福州',
-              children: [
-                { value: '鼓楼区', text: '鼓楼区' },
-                { value: '台江区', text: '台江区' },
-              ],
+              leaf: false,
+              children: [],
+            },
+            {
+              value: '厦门',
+              text: '厦门',
             },
           ],
         },
