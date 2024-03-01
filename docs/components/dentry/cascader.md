@@ -64,11 +64,13 @@ export default {
             {
               value: '福州',
               text: '福州',
-              children: [
-                { value: '鼓楼区', text: '鼓楼区' },
-                { value: '台江区', text: '台江区' }
-              ]
+              leaf: false,
+              children: []
             }
+            {
+              value: '厦门',
+              text: '厦门',
+            },
           ]
         }
       ]
@@ -373,6 +375,17 @@ export default {
 | 名称  | 说明     |
 |-------|----------|
 | title `v1.5.4` | 自定义顶部标题部分 |
+
+### options数据结构
+
+| 键名 | 说明 | 类型 | 默认值 |
+|-------|----------|--------|--------|
+| text | 显示名称,可以通过`text-key`更改键名 | `string` | - |
+| value | 唯一标识,可以通过`value-key`更改键名 | `string` `number` | - |
+| children | 子级选项,可以通过`children-key`更改键名 | `array` | - |
+| disabled | 是否禁用 | `boolean` | false |
+| leaf | 是否叶子节点 | `boolean` | false |
+| loading | 加载状态 | `boolean` | false |
 
 ## 主题定制
 
