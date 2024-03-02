@@ -194,6 +194,10 @@ function beforeXhrUpload(UploadFile: any, options: any) {
       文件类型 - 视频
     </h2>
     <nut-uploader :url="uploadUrl" accept="video" />
+    <h2 class="title">
+      文件类型 - 全部
+    </h2>
+    <nut-uploader :url="uploadUrl" accept="all" />
   </div>
 </template>
 

@@ -176,6 +176,20 @@ export function chooseFile({
         fail: reject,
       })
     }
+    else if (accept === 'all') {
+      uni.chooseFile({
+        type: 'all',
+        // 选择数量
+        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+        // 可以指定是原图还是压缩图，默认二者都有
+        sizeType,
+        sourceType: props.sourceType,
+        success: (res) => {
+          resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
+        },
+        fail: reject,
+      })
+    }
 
     // #endif
   })
