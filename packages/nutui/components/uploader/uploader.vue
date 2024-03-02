@@ -134,7 +134,7 @@ function readFile(files: ChooseFile[]) {
     fileItem.type = fileType!
     fileItem.formData = props.data
     if (props.isPreview)
-      fileItem.url = fileType === 'video' ? file.thumbTempFilePath : filepath
+      fileItem.url = fileType === 'video' ? file.url : filepath
 
     fileList.value.push(fileItem)
     executeUpload(fileItem, index)

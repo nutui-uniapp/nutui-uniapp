@@ -3,6 +3,7 @@ import type { ProgressStatus } from 'nutui-uniapp'
 import { ref } from 'vue'
 
 const uploadUrl = 'https://my-json-server.typicode.com/linrufeng/demo/posts'
+
 const progressPercentage = ref<string | number>(0)
 const formData = {
   custom: 'test',
@@ -189,6 +190,14 @@ function beforeXhrUpload(UploadFile: any, options: any) {
       禁用状态
     </h2>
     <nut-uploader disabled />
+    <h2 class="title">
+      文件类型 - 视频
+    </h2>
+    <nut-uploader :url="uploadUrl" accept="video" />
+    <h2 class="title">
+      文件类型 - 全部
+    </h2>
+    <nut-uploader :url="uploadUrl" accept="all" />
   </div>
 </template>
 
