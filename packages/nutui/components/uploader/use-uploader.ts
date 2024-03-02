@@ -18,6 +18,46 @@ interface UniChooseFileSuccessCallbackResult {
   } & File)[]
 }
 
+interface UniChooseImageSuccessCallbackResult extends UniChooseFileSuccessCallbackResult {
+
+}
+
+interface UniChooseVideoSuccessCallbackResult {
+  /**
+   * 本地文件路径
+   */
+  tempFilePath?: string
+  /**
+   * 本地文件，一个 File 对象
+   */
+  tempFile: ({
+    path: string
+    size: number
+    name: string
+    type: string
+  } & File)
+  /**
+   * 选定视频的时间长度，单位为s
+   */
+  duration: number
+  /**
+   * 选定视频的数据量大小
+   */
+  size: number
+  /**
+   * 返回选定视频的高
+   */
+  height: number
+  /**
+   * 返回选定视频的宽
+   */
+  width: number
+  /**
+   * 包含扩展名的文件名称
+   */
+  name: string
+}
+
 export interface ChooseFile {
   size: number
   type?: FileType
@@ -39,7 +79,7 @@ function omitProps<T>(obj: T, keys: string[]) {
   return omit(obj as unknown as Record<string, unknown>, keys)
 }
 
-function formatImage(res: UniChooseFileSuccessCallbackResult): ChooseFile[] {
+function formatImage(res: UniChooseImageSuccessCallbackResult): ChooseFile[] {
   return res.tempFiles.map(item => ({
     ...omitProps(item, ['path']),
     type: 'image',
@@ -48,6 +88,17 @@ function formatImage(res: UniChooseFileSuccessCallbackResult): ChooseFile[] {
     size: item.size,
     name: item.name || 'image',
   }))
+}
+
+function formatVideo(res: UniChooseVideoSuccessCallbackResult): ChooseFile[] {
+  return [{
+    ...omitProps(res.tempFile, ['path']),
+    type: 'video',
+    url: res.tempFilePath,
+    thumb: res.tempFilePath,
+    size: res.tempFile.size,
+    name: res.tempFile.name || 'video',
+  }]
 }
 
 function formatMedia(res: UniApp.ChooseMediaSuccessCallbackResult & { name?: string }): ChooseFile[] {
@@ -72,11 +123,12 @@ export interface ChooseFileOptions {
 }
 
 export function chooseFile({
+  accept,
   multiple,
   maxDuration,
   sizeType,
   camera,
-}: ChooseFileOptions, props: UploaderProps, fileList: any[]): Promise<ChooseFile[]> {
+}: ChooseFileOptions, props: UploaderProps, fileList: any[]): Promise<ChooseFile[] | ChooseFile> {
   return new Promise((resolve, reject) => {
     // chooseMedia 目前只支持微信小程序原生，其余端全部使用 chooseImage API
     // #ifdef MP-WEIXIN
@@ -102,15 +154,29 @@ export function chooseFile({
     // #endif
 
     // #ifndef MP-WEIXIN
-    uni.chooseImage({
-      // 选择数量
-      count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
-      // 可以指定是原图还是压缩图，默认二者都有
-      sizeType,
-      sourceType: props.sourceType,
-      success: res => resolve(formatImage(res as UniChooseFileSuccessCallbackResult)),
-      fail: reject,
-    })
+    if (accept === 'image') {
+      uni.chooseImage({
+        // 选择数量
+        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+        // 可以指定是原图还是压缩图，默认二者都有
+        sizeType,
+        sourceType: props.sourceType,
+        success: (res) => {
+          resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
+        },
+        fail: reject,
+      })
+    }
+    else if (accept === 'video') {
+      uni.chooseVideo({
+        sourceType: props.sourceType,
+        success: (res) => {
+          resolve(formatVideo(res as UniChooseVideoSuccessCallbackResult))
+        },
+        fail: reject,
+      })
+    }
+
     // #endif
   })
 }
