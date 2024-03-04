@@ -84,6 +84,7 @@ export default {
 | focus  | 聚焦时触发     | `event`       |
 | blur   | 失焦时触发     | `value,event` |
 | confirm | 点击完成按钮时触发 | `event` |
+| input   | 键盘输入时触发     | `value,event` |
 
 ## 主题定制
 
