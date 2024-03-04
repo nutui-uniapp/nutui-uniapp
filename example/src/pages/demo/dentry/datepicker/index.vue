@@ -16,7 +16,9 @@ export default {
       currentDate4: new Date(2022, 4, 10, 10, 10),
       currentDate5: new Date(2022, 4, 10, 10, 10),
       currentDate6: new Date(2022, 4, 10, 10, 10),
-      currentDate7: new Date(2022, 4, 10, 0, 0),
+      currentDate7: new Date(2022, 4, 10, 10, 10),
+      currentDate8: new Date(2022, 4, 10, 10, 10),
+      currentDate9: new Date(2022, 4, 10, 0, 0),
     })
 
     const formatter = (type: string, option: any) => {
@@ -119,10 +121,10 @@ export default {
       :is-show-chinese="true"
       @confirm="confirm"
     />
-
     <h2 class="title">
       配合 Popup 使用
     </h2>
+    <!-- 配合popup使用 -->
     <nut-cell title="选择日期" :desc="popupDesc" @click="show = true" />
     <nut-popup v-model:visible="show" safe-area-inset-bottom position="bottom">
       <nut-date-picker
@@ -141,11 +143,23 @@ export default {
     </nut-popup>
 
     <h2 class="title">
-      选择月日
+      选择年月
     </h2>
     <!-- 选择月日 -->
     <nut-date-picker
       v-model="currentDate2"
+      type="year-month"
+      title="日期选择"
+      :min-date="new Date(2022, 0, 1)"
+      @confirm="confirm"
+    />
+
+    <h2 class="title">
+      选择月日
+    </h2>
+    <!-- 选择月日 -->
+    <nut-date-picker
+      v-model="currentDate3"
       type="month-day"
       title="日期选择"
       :min-date="new Date(2022, 0, 1)"
@@ -158,7 +172,7 @@ export default {
 
     <!-- 选择年月日时分 -->
     <nut-date-picker
-      v-model="currentDate3"
+      v-model="currentDate4"
       title="日期时间选择"
       type="datetime"
       :min-date="minDate"
@@ -170,7 +184,7 @@ export default {
     </h2>
     <!-- 选择时分秒 -->
     <nut-date-picker
-      v-model="currentDate4"
+      v-model="currentDate5"
       title="时间选择"
       type="time"
       :min-date="minDate"
@@ -182,7 +196,7 @@ export default {
     </h2>
     <!-- 选择时分 -->
     <nut-date-picker
-      v-model="currentDate4"
+      v-model="currentDate6"
       title="时间选择"
       type="hour-minute"
       :min-date="minDate"
@@ -194,7 +208,7 @@ export default {
     </h2>
     <!-- 格式化选项 -->
     <nut-date-picker
-      v-model="currentDate5"
+      v-model="currentDate7"
       title="日期选择"
       type="datetime"
       :min-date="new Date(2022, 0, 1)"
@@ -207,7 +221,7 @@ export default {
     </h2>
     <!-- 分钟数递增步长设置 -->
     <nut-date-picker
-      v-model="currentDate6"
+      v-model="currentDate8"
       title="时间选择"
       type="time"
       :min-date="minDate"
@@ -221,7 +235,7 @@ export default {
 
     <!-- 过滤选项 -->
     <nut-date-picker
-      v-model="currentDate7"
+      v-model="currentDate9"
       title="时间选择"
       type="datehour"
       :min-date="minDate"
