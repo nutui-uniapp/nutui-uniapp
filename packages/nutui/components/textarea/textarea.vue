@@ -1,4 +1,3 @@
-<!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import type * as CSS from 'csstype'
@@ -8,11 +7,8 @@ import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { useFormDisabled } from '../form/form'
+import type { InputTarget } from '../input/type'
 import { textareaEmits, textareaProps } from './textarea'
-
-export interface InputTarget extends HTMLInputElement {
-  composing?: boolean
-}
 
 const props = defineProps(textareaProps)
 const emit = defineEmits(textareaEmits)
