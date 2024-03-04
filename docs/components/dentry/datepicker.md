@@ -13,6 +13,7 @@
       :min-date="minDate"
       :max-date="maxDate"
       :is-show-chinese="true"
+      :three-dimensional="false"
       @confirm="confirm"
   ></nut-date-picker> 
 </template>
@@ -53,10 +54,14 @@
       v-model="currentDate"
       :min-date="minDate"
       :max-date="maxDate"
-      @confirm="popupConfirm"
       :is-show-chinese="true"
+      :three-dimensional="false"
+      @confirm="popupConfirm"
+      @cancel="show = false"
     >
-      <nut-button block type="primary" @click="alwaysFun">永远有效</nut-button>
+      <nut-button block type="primary" @click="alwaysFun">
+        永远有效
+      </nut-button>
     </nut-date-picker>
   </nut-popup>
 </template>
@@ -93,9 +98,45 @@
 
 ```
 
-### 选择月日
+### 选择年月
+将 `type` 设置为 `year-month` 即可选择年份和月份
 
-DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `type` 设置为 year-month 即可选择年份和月份，设置为 month-day 即可选择月份和日期。
+````html
+<template>
+  <nut-date-picker
+      v-model="currentDate"
+      type="year-month"
+      title="日期选择"
+      :min-date="new Date(2022, 0, 1)"
+      :max-date="new Date(2022, 7, 1)"
+      :three-dimensional="false"
+      @confirm="confirm"
+  ></nut-date-picker> 
+</template>
+
+<script lang="ts">
+  import { ref } from 'vue';
+  
+  export default {
+    setup(props) {
+      const currentDate = new Date(2022, 4, 10, 10, 10);
+      const confirm = ( { selectedValue, selectedOptions } )=>{
+        uni.showToast({
+          title:selectedOptions.map((val: any) => val.text).join('-'),
+          icon:'none'
+        });
+      }
+      return {
+        currentDate,
+        confirm
+      };
+    }
+  };
+</script>
+````
+
+### 选择月日
+将 `type` 设置为 `month-day` 即可选择月份和日期。
 
 ```html
 <template>
@@ -105,6 +146,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
       title="日期选择"
       :min-date="new Date(2022, 0, 1)"
       :max-date="new Date(2022, 7, 1)"
+      :three-dimensional="false"
       @confirm="confirm"
   ></nut-date-picker> 
 </template>
@@ -132,7 +174,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 
 ### 选择年月日时分
 
-将 `type` 设置为 datetime 即可选择完整的时间。
+将 `type` 设置为 `datetime` 即可选择完整的时间。
 
 ```html
 <template>
@@ -142,6 +184,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
       type="datetime"
       :min-date="minDate"
       :max-date="maxDate"
+      :three-dimensional="false"
       @confirm="confirm"
   ></nut-date-picker> 
 </template>
@@ -172,6 +215,8 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 
 ### 选择时分秒
 
+将 `type` 设置为 `time` 即可选择时分秒。
+
 ```html
 <template>
   <nut-date-picker
@@ -180,6 +225,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
       type="time"
       :min-date="minDate"
       :max-date="maxDate"
+      :three-dimensional="false"
       @confirm="confirm"
   ></nut-date-picker>
 </template>
@@ -208,6 +254,8 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 
 ### 选择时分 v4.0.5
 
+将 `type` 设置为 `hour-minute` 即可选择时分。
+
 ```html
 <template>
   <nut-date-picker
@@ -216,6 +264,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
     type="hour-minute"
     :min-date="minDate"
     :max-date="maxDate"
+    :three-dimensional="false"
     @confirm="confirm"
   ></nut-date-picker>
 </template>
@@ -254,6 +303,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
       type="datetime"
       :min-date="new Date(2022, 0, 1)"
       :max-date="new Date(2022, 10, 1)"
+      :three-dimensional="false"
       :formatter="formatter"
       @confirm="confirm"
   ></nut-date-picker>
@@ -311,9 +361,10 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
   <nut-date-picker
       v-model="currentDate"
       type="time"
-      :minute-step="5"
       :min-date="minDate"
       :max-date="maxDate"
+      :minute-step="5"
+      :three-dimensional="false"
       @confirm="confirm"
   ></nut-date-picker>
 </template>
@@ -352,6 +403,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
       type="datehour"
       :min-date="minDate"
       :max-date="maxDate"
+      :three-dimensional="false"
       :filter="filter"
       :formatter="formatter"
       @confirm="confirm"
@@ -425,6 +477,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 | title           | 设置标题                                          | string  | `null`   |
 | ok-text           | 确定按钮文案                                          | string  | `确定`   |
 | cancel-text           | 取消按钮文案                                          | string  | `取消`   |
+| three-dimensional     | 是否开启3D效果                                        | boolean   | `true`    |
 | swipe-duration     | 惯性滚动时长               | number \| string  | `1000`    |
 | visible-option-num          |可见的选项个数              | number \| string | `7`               |
 | option-height         | 选项高度             | number \| string | `36`     |
