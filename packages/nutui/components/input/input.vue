@@ -13,6 +13,7 @@ import type { InputFormatTrigger, InputMode, InputTarget, InputType } from './ty
 const props = defineProps(inputProps)
 
 const emit = defineEmits(inputEmits)
+
 const formDisabled = useFormDisabled(toRef(props, 'disabled'))
 
 const innerValue = computed<string>(() => {
@@ -20,16 +21,6 @@ const innerValue = computed<string>(() => {
     return ''
 
   return String(props.modelValue)
-})
-
-const active = ref<boolean>(false)
-
-const state = reactive({
-  focused: false,
-  // 校验失败
-  validateFailed: false,
-  // 校验信息
-  validateMessage: '',
 })
 
 const classes = computed(() => {
@@ -72,20 +63,9 @@ const innerInputMode = computed<InputMode>(() => {
   return props.inputMode
 })
 
-function handleInput(event: InputOnInputEvent) {
-  if (isH5) {
-    if (!(event.detail as InputTarget)!.composing)
-      _onInput(event)
-  }
-  else {
-    _onInput(event)
-  }
-}
-
-function _onInput(event: InputOnInputEvent) {
-  updateValue(event.detail.value)
-  emit(INPUT_EVENT, innerValue.value, event)
-}
+const innerMaxLength = computed<number>(() => {
+  return props.maxLength ? Number(props.maxLength) : -1
+})
 
 function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   emit(UPDATE_MODEL_EVENT, value)
@@ -106,55 +86,41 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
     emit(UPDATE_MODEL_EVENT, value)
 }
 
-function resetValidation() {
-  if (state.validateFailed) {
-    state.validateFailed = false
-    state.validateMessage = ''
+function _onInput(evt: InputOnInputEvent) {
+  updateValue(evt.detail.value)
+
+  emit(INPUT_EVENT, innerValue.value, evt)
+}
+
+function handleInput(evt: InputOnInputEvent) {
+  if (isH5) {
+    if (!(evt.detail as InputTarget).composing)
+      _onInput(evt)
+  }
+  else {
+    _onInput(evt)
   }
 }
 
-function handleClickInput(event: MouseEvent) {
+function handleClick(evt: any) {
+  emit(CLICK_EVENT, evt)
+}
+
+function handleClickInput(evt: any) {
   if (formDisabled.value)
     return
 
-  emit('clickInput', event)
+  emit('clickInput', evt)
 }
 
-function handleClick(event: unknown) {
-  emit(CLICK_EVENT, event as MouseEvent)
-}
-
-function startComposing({ target }: Event) {
-  if (isH5)
-    (target as InputTarget)!.composing = true
-}
-
-function endComposing({ target }: Event) {
-  if (isH5) {
-    if ((target as InputTarget)!.composing) {
-      (target as InputTarget)!.composing = false;
-      (target as InputTarget)!.dispatchEvent(new Event('input'))
-    }
-  }
-}
-
-watch(
-  () => props.modelValue,
-  () => {
-    updateValue(innerValue.value)
-    resetValidation()
-  },
-)
-
-onMounted(() => {
-  updateValue(innerValue.value, props.formatTrigger)
-})
+const active = ref<boolean>(false)
 
 function handleFocus(evt: InputOnFocusEvent) {
   if (formDisabled.value || props.readonly)
     return
 
   active.value = true
+
   emit(FOCUS_EVENT, evt)
 }
 
@@ -167,20 +133,65 @@ function handleBlur(evt: InputOnBlurEvent) {
   }, 200)
 
   updateValue(innerValue.value, 'onBlur')
+
   emit(BLUR_EVENT, evt)
 }
 
-function handleClear(event: Event) {
-  event.stopPropagation()
+function handleConfirm(evt: InputOnConfirmEvent) {
+  emit(CONFIRM_EVENT, evt)
+}
+
+function handleClear(evt: any) {
   if (formDisabled.value)
     return
-  emit(UPDATE_MODEL_EVENT, '', event)
+
+  emit(UPDATE_MODEL_EVENT, '', evt)
   emit(CLEAR_EVENT)
 }
 
-function handleConfirm(event: InputOnConfirmEvent) {
-  emit(CONFIRM_EVENT, event)
+function startComposing(evt: any) {
+  if (isH5) {
+    const target = evt.target as InputTarget
+
+    target.composing = true
+  }
 }
+
+function endComposing(evt: any) {
+  if (isH5) {
+    const target = evt.target as InputTarget
+
+    if (target.composing) {
+      target.composing = false
+      target.dispatchEvent(new Event('input'))
+    }
+  }
+}
+
+const state = reactive({
+  validateFailed: false,
+  validateMessage: '',
+})
+
+function resetValidation() {
+  if (state.validateFailed) {
+    state.validateFailed = false
+    state.validateMessage = ''
+  }
+}
+
+watch(
+  () => props.modelValue,
+  () => {
+    updateValue(innerValue.value)
+
+    resetValidation()
+  },
+)
+
+onMounted(() => {
+  updateValue(innerValue.value, props.formatTrigger)
+})
 </script>
 
 <script lang="ts">
@@ -197,7 +208,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle" @click="handleClick">
+  <view :class="classes" :style="props.customStyle" @click="handleClick">
     <view class="nut-input-value">
       <view class="nut-input-inner">
         <view v-if="$slots.left" class="nut-input-left-box">
@@ -205,54 +216,60 @@ export default defineComponent({
         </view>
         <view class="nut-input-box">
           <input
-            :type="innerInputType as any"
             class="input-text"
             :style="[styles, props.customStyle]"
-            :placeholder="placeholder"
-            :placeholder-style="placeholderStyle"
-            :placeholder-class="placeholderClass"
-            :disabled="formDisabled"
-            :readonly="readonly"
-            :focus="autofocus"
-            :maxlength="maxLength ? +maxLength : -1"
             :value="innerValue"
-            :format-trigger="formatTrigger"
-            :auto-blur="autofocus ? true : undefined"
-            :confirm-type="confirmType"
-            :adjust-position="adjustPosition"
-            :always-system="alwaysSystem"
+            :type="innerInputType as any"
+            :placeholder="props.placeholder"
+            :placeholder-style="props.placeholderStyle"
+            :placeholder-class="props.placeholderClass"
+            :disabled="formDisabled"
+            :readonly="props.readonly"
+            :focus="props.autofocus"
+            :maxlength="innerMaxLength"
+            :format-trigger="props.formatTrigger"
+            :auto-blur="props.autofocus ? true : undefined"
+            :confirm-type="props.confirmType"
+            :adjust-position="props.adjustPosition"
+            :always-system="props.alwaysSystem"
             :input-mode="innerInputMode"
-            :cursor-spacing="cursorSpacing"
-            :always-embed="alwaysEmbed"
-            :confirm-hold="confirmHold"
-            :cursor="cursor"
-            :selection-start="selectionStart"
-            :selection-end="selectionEnd"
-            :hold-keyboard="holdKeyboard"
+            :cursor-spacing="props.cursorSpacing"
+            :always-embed="props.alwaysEmbed"
+            :confirm-hold="props.confirmHold"
+            :cursor="props.cursor"
+            :selection-start="props.selectionStart"
+            :selection-end="props.selectionEnd"
+            :hold-keyboard="props.holdKeyboard"
             @input="handleInput"
             @focus="handleFocus"
             @blur="handleBlur"
-            @click="(handleClickInput as any)"
-            @change="(endComposing as any)"
-            @compositionend="(endComposing as any)"
-            @compositionstart="(startComposing as any)"
+            @click="handleClickInput"
+            @change="endComposing"
+            @compositionstart="startComposing"
+            @compositionend="endComposing"
             @confirm="handleConfirm"
           >
-          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="(handleClickInput as any)" />
-          <view v-if="showWordLimit && maxLength" class="nut-input-word-limit">
+          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="handleClickInput" />
+          <view v-if="props.showWordLimit && props.maxLength" class="nut-input-word-limit">
             <text class="nut-input-word-num">
               {{ innerValue.length }}
-            </text>/{{ maxLength }}
+            </text>/{{ props.maxLength }}
           </view>
         </view>
         <view
-          v-if="clearable && !readonly"
+          v-if="props.clearable && !props.readonly"
           class="nut-input-clear-box"
-          :class="{ 'nut-hidden': !((active || showClearIcon) && innerValue.length > 0) }"
-          @click="(handleClear as any)"
+          :class="{ 'nut-hidden': !((active || props.showClearIcon) && innerValue.length > 0) }"
+          @click.stop="handleClear"
         >
           <slot name="clear">
-            <NutIcon name="mask-close" custom-class="nut-input-clear" :size="clearSize" :width="clearSize" :height="clearSize" />
+            <NutIcon
+              name="mask-close"
+              custom-class="nut-input-clear"
+              :size="props.clearSize"
+              :width="props.clearSize"
+              :height="props.clearSize"
+            />
           </slot>
         </view>
         <view class="nut-input-right-box">
