@@ -1,3 +1,24 @@
+## [1.7.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.1...v1.7.2) (2024-03-04)
+
+### Bug Fixes
+
+* **avatar-group:** 修复z-index无效 ([#215](https://github.com/nutui-uniapp/nutui-uniapp/issues/215)) ([1b64ffc](https://github.com/nutui-uniapp/nutui-uniapp/commit/1b64ffc8be7923ed742cf7e0a7225738657dd81c))
+* **avatar:** 修复size、shape无效以及无法正确从group继承 ([13ce31a](https://github.com/nutui-uniapp/nutui-uniapp/commit/13ce31a8a80bd6895919d2313869c2dcf2491be7))
+* **cascader:** 修复leaf等于false并且children为空时可以选择成功的问题 ([#212](https://github.com/nutui-uniapp/nutui-uniapp/issues/212)) ([a3f27f6](https://github.com/nutui-uniapp/nutui-uniapp/commit/a3f27f6cebf36cd549f4ddab4c155efba2a8533a))
+* **input,textarea:** 修复input事件返回值错误 ([745a19c](https://github.com/nutui-uniapp/nutui-uniapp/commit/745a19c51359d827cc28307f942b6425e02e275f))
+* **textarea:** 修复类型导出缺失 ([1fa9f29](https://github.com/nutui-uniapp/nutui-uniapp/commit/1fa9f2942256bbb975e2dbf276c7c17d2aa096cb))
+* **textarea:** 修复autosize类型错误 ([7c2d56a](https://github.com/nutui-uniapp/nutui-uniapp/commit/7c2d56a3a4c962e5b2b6024e1ab68a75032af240))
+* **uploader:** 修复beforeDelete默认值无效以及不支持promise ([54a9b0a](https://github.com/nutui-uniapp/nutui-uniapp/commit/54a9b0acde8590996729fbf2d750ec6271eb10a6))
+
+### Features
+
+* **textarea:** 新增input事件 ([2a8a898](https://github.com/nutui-uniapp/nutui-uniapp/commit/2a8a8984318c71bcd24ab1a06ca5dd134a8afe2c))
+* **uploader:**  新增accept配置 ([#217](https://github.com/nutui-uniapp/nutui-uniapp/issues/217)) ([a6ba625](https://github.com/nutui-uniapp/nutui-uniapp/commit/a6ba625f0638fdcba1cdd9a34ac0c61dbdb5e095))
+
+### Reverts
+
+* **textarea:** 修复autosize类型错误 ([bc02ceb](https://github.com/nutui-uniapp/nutui-uniapp/commit/bc02ceb8a7882ea363b655cec06aba3268e01b45))
+
 ## [1.7.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.0...v1.7.1) (2024-02-29)
 
 ### Bug Fixes
