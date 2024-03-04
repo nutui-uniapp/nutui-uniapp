@@ -82,7 +82,7 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   if (props.formatter && trigger === props.formatTrigger)
     value = props.formatter(value)
 
-  if (value !== props.modelValue)
+  if (value !== innerValue.value)
     emit(UPDATE_MODEL_EVENT, value)
 }
 
@@ -94,7 +94,9 @@ function _onInput(evt: InputOnInputEvent) {
 
 function handleInput(evt: InputOnInputEvent) {
   if (isH5) {
-    if (!(evt.detail as InputTarget).composing)
+    const target = evt.target as InputTarget
+
+    if (!target.composing)
       _onInput(evt)
   }
   else {
@@ -132,7 +134,7 @@ function handleBlur(evt: InputOnBlurEvent) {
     active.value = false
   }, 200)
 
-  updateValue(innerValue.value, 'onBlur')
+  updateValue(evt.detail.value, 'onBlur')
 
   emit(BLUR_EVENT, evt)
 }

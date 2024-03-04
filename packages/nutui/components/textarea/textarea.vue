@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import type * as CSS from 'csstype'
-import { computed, defineComponent, ref, toRef } from 'vue'
-import type { TextareaConfirmType, TextareaOnConfirmEvent } from '@uni-helper/uni-app-types'
+import { computed, defineComponent, toRef } from 'vue'
+import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
@@ -11,94 +10,109 @@ import type { InputTarget } from '../input/type'
 import { textareaEmits, textareaProps } from './textarea'
 
 const props = defineProps(textareaProps)
+
 const emit = defineEmits(textareaEmits)
-const disabled = useFormDisabled(toRef(props, 'disabled'))
+
+const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+
+const innerValue = computed<string>(() => {
+  if (props.modelValue == null)
+    return ''
+
+  return String(props.modelValue)
+})
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    [`${componentName}--disabled`]: disabled.value,
+    [`${componentName}--disabled`]: formDisabled.value,
   })
 })
 
 const styles = computed<CSSProperties>(() => {
-  const styleObj: CSSProperties = {
-    textAlign: props.textAlign as CSS.TextAlignProperty,
+  const value: CSSProperties = {
+    textAlign: props.textAlign,
   }
 
   if (typeof props.autosize === 'object') {
     const { minHeight, maxHeight } = props.autosize
 
     if (minHeight != null)
-      styleObj.minHeight = pxCheck(minHeight)
+      value.minHeight = pxCheck(minHeight)
 
     if (maxHeight != null)
-      styleObj.maxHeight = pxCheck(maxHeight)
+      value.maxHeight = pxCheck(maxHeight)
   }
 
-  return styleObj
+  return value
 })
 
-function emitChange(value: string, event: Event) {
+const innerMaxLength = computed<number>(() => {
+  return props.maxLength ? Number(props.maxLength) : -1
+})
+
+function updateValue(value: string, evt: any) {
+  emit(UPDATE_MODEL_EVENT, value, evt)
+
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.substring(0, Number(props.maxLength))
 
-  emit(UPDATE_MODEL_EVENT, value, event)
-  emit(CHANGE_EVENT, value, event)
+  if (value !== innerValue.value)
+    emit(UPDATE_MODEL_EVENT, value, evt)
+
+  emit(CHANGE_EVENT, value, evt)
 }
 
-function change(event: any) {
+function _onInput(evt: TextareaOnInputEvent) {
+  updateValue(evt.detail.value, evt)
+}
+
+function handleInput(evt: any) {
   if (isH5) {
-    if (!composing.value)
-      _onInput(event)
+    const target = evt.target as InputTarget
+
+    if (!target.composing)
+      _onInput(evt)
   }
   else {
-    _onInput(event)
+    _onInput(evt)
   }
 }
 
-function _onInput(event: any) {
-  const input = event.detail as HTMLInputElement
-  let value = input.value
-  if (props.maxLength && value.length > Number(props.maxLength))
-    value = value.slice(0, Number(props.maxLength))
-
-  emitChange(value, event)
-}
-
-function focus(event: any) {
-  if (disabled.value)
+function handleFocus(evt: TextareaOnFocusEvent) {
+  if (formDisabled.value || props.readonly)
     return
-  if (props.readonly)
+
+  emit(FOCUS_EVENT, evt)
+}
+
+function handleBlur(evt: TextareaOnBlurEvent) {
+  if (formDisabled.value || props.readonly)
     return
-  emit(FOCUS_EVENT, event)
+
+  updateValue(evt.detail.value, evt)
+
+  emit(BLUR_EVENT, evt)
 }
 
-function blur(event: any) {
-  if (disabled.value)
-    return
-  if (props.readonly)
-    return
-  const input = event.detail as HTMLInputElement
-  const value = input.value
-  emitChange(value, event)
-  emit(BLUR_EVENT, event)
+function handleConfirm(evt: TextareaOnConfirmEvent) {
+  emit(CONFIRM_EVENT, evt)
 }
 
-function confirm(event: TextareaOnConfirmEvent) {
-  emit(CONFIRM_EVENT, event)
-}
-
-const composing = ref(false)
-function startComposing(event: Event) {
-  if (isH5)
-    composing.value = true
-}
-
-function endComposing({ target }: Event) {
+function startComposing(evt: any) {
   if (isH5) {
-    if (composing.value) {
-      composing.value = false;
-      (target as InputTarget).dispatchEvent(new Event('input'))
+    const target = evt.target as InputTarget
+
+    target.composing = true
+  }
+}
+
+function endComposing(evt: any) {
+  if (isH5) {
+    const target = evt.target as InputTarget
+
+    if (target.composing) {
+      target.composing = false
+      target.dispatchEvent(new Event('input'))
     }
   }
 }
@@ -120,60 +134,60 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <textarea
       v-if="props.readonly"
       class="nut-textarea__textarea nut-textarea__textarea__readonly"
       :class="{ 'nut-textarea__ali': isMpAlipay }"
       :style="styles"
-      :value="modelValue"
-      :rows="rows"
+      :value="innerValue"
+      :rows="props.rows"
       :disabled="true"
       :show-count="false"
-      :placeholder="placeholder || translate('placeholder')"
-      :auto-height="!!autosize"
-      :disable-default-padding="disableDefaultPadding"
+      :placeholder="props.placeholder || translate('placeholder')"
+      :auto-height="!!props.autosize"
+      :disable-default-padding="props.disableDefaultPadding"
     />
     <textarea
       v-else
       class="nut-textarea__textarea"
       :class="{ 'nut-textarea__ali': isMpAlipay }"
       :style="styles"
-      :value="modelValue"
-      :rows="rows"
-      :disabled="disabled || readonly"
+      :value="innerValue"
+      :rows="props.rows"
+      :disabled="formDisabled || props.readonly"
       :show-count="false"
-      :maxlength="maxLength ? +maxLength : -1"
-      :placeholder="placeholder || translate('placeholder')"
-      :placeholder-style="placeholderStyle"
-      :placeholder-class="placeholderClass"
-      :auto-focus="autofocus"
-      :auto-height="!!autosize"
-      :cursor-spacing="cursorSpacing"
-      :cursor="cursor"
-      :show-confirm-bar="showConfirmBar"
-      :selection-start="selectionStart"
-      :selection-end="selectionEnd"
-      :adjust-position="adjustPosition"
-      :hold-keyboard="holdKeyboard"
-      :disable-default-padding="disableDefaultPadding"
-      :confirm-type="confirmType as TextareaConfirmType"
-      :confirm-hold="confirmHold"
-      :adjust-keyboard-to="adjustKeyboardTo"
-      @confirm="confirm"
-      @input="change"
-      @blur="blur"
-      @focus="focus"
-      @change="(endComposing as any)"
-      @compositionend="(endComposing as any)"
-      @compositionstart="(startComposing as any)"
+      :maxlength="innerMaxLength"
+      :placeholder="props.placeholder || translate('placeholder')"
+      :placeholder-style="props.placeholderStyle"
+      :placeholder-class="props.placeholderClass"
+      :auto-focus="props.autofocus"
+      :auto-height="!!props.autosize"
+      :cursor-spacing="props.cursorSpacing"
+      :cursor="props.cursor"
+      :show-confirm-bar="props.showConfirmBar"
+      :selection-start="props.selectionStart"
+      :selection-end="props.selectionEnd"
+      :adjust-position="props.adjustPosition"
+      :hold-keyboard="props.holdKeyboard"
+      :disable-default-padding="props.disableDefaultPadding"
+      :confirm-type="props.confirmType as TextareaConfirmType"
+      :confirm-hold="props.confirmHold"
+      :adjust-keyboard-to="props.adjustKeyboardTo"
+      @input="handleInput"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      @change="endComposing"
+      @compositionstart="startComposing"
+      @compositionend="endComposing"
+      @confirm="handleConfirm"
     />
-    <view v-if="limitShow" class="nut-textarea__limit">
-      {{ modelValue ? modelValue.length : 0 }}/{{ maxLength }}
+    <view v-if="props.limitShow" class="nut-textarea__limit">
+      {{ innerValue.length }}/{{ props.maxLength }}
     </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

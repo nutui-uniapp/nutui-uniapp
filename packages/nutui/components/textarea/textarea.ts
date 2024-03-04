@@ -1,4 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent } from '@uni-helper/uni-app-types'
 import { commonProps, isString, makeNumberProp, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
@@ -103,11 +104,11 @@ export const textareaProps = {
 export type TextareaProps = ExtractPropTypes<typeof textareaProps>
 
 export const textareaEmits = {
-  [BLUR_EVENT]: (evt: Event) => evt instanceof Object,
-  [FOCUS_EVENT]: (evt: Event) => evt instanceof Object,
+  [BLUR_EVENT]: (evt: TextareaOnBlurEvent) => evt instanceof Object,
+  [FOCUS_EVENT]: (evt: TextareaOnFocusEvent) => evt instanceof Object,
   [CHANGE_EVENT]: (val1?: string, val2?: string | Event) => isString(val1) && (isString(val2) || (val2 instanceof Object)),
   [UPDATE_MODEL_EVENT]: (val1?: string, val2?: string | Event) => isString(val1) && (isString(val2) || (val2 instanceof Object)),
-  [CONFIRM_EVENT]: (evt: any) => evt instanceof Object,
+  [CONFIRM_EVENT]: (evt: TextareaOnConfirmEvent) => evt instanceof Object,
 }
 
 export type TextareaEmits = typeof textareaEmits
