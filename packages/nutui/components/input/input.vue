@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onMounted, reactive, ref, toRef, watch } from 'vue'
+import { computed, defineComponent, nextTick, onMounted, ref, toRef, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
@@ -16,11 +16,15 @@ const emit = defineEmits(inputEmits)
 
 const formDisabled = useFormDisabled(toRef(props, 'disabled'))
 
-const innerValue = computed<string>(() => {
+function stringModelValue() {
   if (props.modelValue == null)
     return ''
 
   return String(props.modelValue)
+}
+
+const innerValue = computed<string>(() => {
+  return stringModelValue()
 })
 
 const classes = computed(() => {
@@ -68,8 +72,6 @@ const innerMaxLength = computed<number>(() => {
 })
 
 function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
-  emit(UPDATE_MODEL_EVENT, value)
-
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.slice(0, Number(props.maxLength))
 
@@ -82,14 +84,15 @@ function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
   if (props.formatter && trigger === props.formatTrigger)
     value = props.formatter(value)
 
-  if (value !== innerValue.value)
-    emit(UPDATE_MODEL_EVENT, value)
+  emit(UPDATE_MODEL_EVENT, value)
 }
 
 function _onInput(evt: InputOnInputEvent) {
   updateValue(evt.detail.value)
 
-  emit(INPUT_EVENT, innerValue.value, evt)
+  nextTick(() => {
+    emit(INPUT_EVENT, innerValue.value, evt)
+  })
 }
 
 function handleInput(evt: InputOnInputEvent) {
@@ -170,29 +173,18 @@ function endComposing(evt: any) {
   }
 }
 
-const state = reactive({
-  validateFailed: false,
-  validateMessage: '',
-})
-
-function resetValidation() {
-  if (state.validateFailed) {
-    state.validateFailed = false
-    state.validateMessage = ''
-  }
-}
-
 watch(
   () => props.modelValue,
-  () => {
-    updateValue(innerValue.value)
+  (value) => {
+    if (value === innerValue.value)
+      return
 
-    resetValidation()
+    updateValue(stringModelValue())
   },
 )
 
 onMounted(() => {
-  updateValue(innerValue.value, props.formatTrigger)
+  updateValue(stringModelValue(), props.formatTrigger)
 })
 </script>
 
