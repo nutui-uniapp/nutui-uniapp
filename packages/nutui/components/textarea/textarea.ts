@@ -2,7 +2,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import { commonProps, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
-import type { TextareaAdjustKeyboardTo, TextareaConfirmType } from './type'
+import type { TextareaAdjustKeyboardTo, TextareaAutosizeObject, TextareaConfirmType } from './type'
 
 export const textareaProps = {
   ...commonProps,
@@ -50,7 +50,7 @@ export const textareaProps = {
    * @description 是否自适应内容高度，也可传入对象
    */
   autosize: {
-    type: [Boolean, Object],
+    type: [Boolean, Object as PropType<TextareaAutosizeObject>],
     default: false,
   },
   /**
