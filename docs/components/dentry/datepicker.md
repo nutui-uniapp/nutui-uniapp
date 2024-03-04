@@ -98,9 +98,45 @@
 
 ```
 
-### 选择月日
+### 选择年月
+将 `type` 设置为 `year-month` 即可选择年份和月份
 
-DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `type` 设置为 year-month 即可选择年份和月份，设置为 month-day 即可选择月份和日期。
+````html
+<template>
+  <nut-date-picker
+      v-model="currentDate"
+      type="year-month"
+      title="日期选择"
+      :min-date="new Date(2022, 0, 1)"
+      :max-date="new Date(2022, 7, 1)"
+      :three-dimensional="false"
+      @confirm="confirm"
+  ></nut-date-picker> 
+</template>
+
+<script lang="ts">
+  import { ref } from 'vue';
+  
+  export default {
+    setup(props) {
+      const currentDate = new Date(2022, 4, 10, 10, 10);
+      const confirm = ( { selectedValue, selectedOptions } )=>{
+        uni.showToast({
+          title:selectedOptions.map((val: any) => val.text).join('-'),
+          icon:'none'
+        });
+      }
+      return {
+        currentDate,
+        confirm
+      };
+    }
+  };
+</script>
+````
+
+### 选择月日
+将 `type` 设置为 `month-day` 即可选择月份和日期。
 
 ```html
 <template>
@@ -138,7 +174,7 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 
 ### 选择年月日时分
 
-将 `type` 设置为 datetime 即可选择完整的时间。
+将 `type` 设置为 `datetime` 即可选择完整的时间。
 
 ```html
 <template>
@@ -179,6 +215,8 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 
 ### 选择时分秒
 
+将 `type` 设置为 `time` 即可选择时分秒。
+
 ```html
 <template>
   <nut-date-picker
@@ -215,6 +253,8 @@ DatetimePicker 通过 `type` 属性来定义需要选择的时间类型。将 `t
 ```
 
 ### 选择时分 v4.0.5
+
+将 `type` 设置为 `hour-minute` 即可选择时分。
 
 ```html
 <template>
