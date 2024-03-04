@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 import { computed, defineComponent, toRef } from 'vue'
 import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
-import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { useFormDisabled } from '../form/form'
 import type { InputTarget } from '../input/type'
@@ -64,6 +64,8 @@ function updateValue(value: string, evt: any) {
 
 function _onInput(evt: TextareaOnInputEvent) {
   updateValue(evt.detail.value, evt)
+
+  emit(INPUT_EVENT, innerValue.value, evt)
 }
 
 function handleInput(evt: any) {
