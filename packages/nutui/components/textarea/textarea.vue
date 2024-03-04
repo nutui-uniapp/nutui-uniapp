@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, toRef } from 'vue'
+import { computed, defineComponent, nextTick, toRef } from 'vue'
 import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
@@ -15,11 +15,15 @@ const emit = defineEmits(textareaEmits)
 
 const formDisabled = useFormDisabled(toRef(props, 'disabled'))
 
-const innerValue = computed<string>(() => {
+function stringModelValue() {
   if (props.modelValue == null)
     return ''
 
   return String(props.modelValue)
+}
+
+const innerValue = computed<string>(() => {
+  return stringModelValue()
 })
 
 const classes = computed(() => {
@@ -51,21 +55,19 @@ const innerMaxLength = computed<number>(() => {
 })
 
 function updateValue(value: string, evt: any) {
-  emit(UPDATE_MODEL_EVENT, value, evt)
-
   if (props.maxLength && value.length > Number(props.maxLength))
     value = value.substring(0, Number(props.maxLength))
 
-  if (value !== innerValue.value)
-    emit(UPDATE_MODEL_EVENT, value, evt)
-
+  emit(UPDATE_MODEL_EVENT, value, evt)
   emit(CHANGE_EVENT, value, evt)
 }
 
 function _onInput(evt: TextareaOnInputEvent) {
   updateValue(evt.detail.value, evt)
 
-  emit(INPUT_EVENT, innerValue.value, evt)
+  nextTick(() => {
+    emit(INPUT_EVENT, innerValue.value, evt)
+  })
 }
 
 function handleInput(evt: any) {
