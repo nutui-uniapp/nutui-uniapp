@@ -177,6 +177,7 @@ export function chooseFile({
       })
     }
     else if (accept === 'all') {
+      // #ifdef H5
       uni.chooseFile({
         type: 'all',
         // 选择数量
@@ -184,11 +185,30 @@ export function chooseFile({
         // 可以指定是原图还是压缩图，默认二者都有
         sizeType,
         sourceType: props.sourceType,
+        extension: props.extension,
         success: (res) => {
           resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
         },
         fail: reject,
       })
+      // #endif
+      // #ifndef H5
+      if (props.chooseFile) {
+        props.chooseFile({
+          type: 'all',
+          extension: props.extension,
+          // 选择数量
+          count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+          // 可以指定是原图还是压缩图，默认二者都有
+          sizeType,
+          sourceType: props.sourceType,
+          success: (res: UniChooseFileSuccessCallbackResult) => {
+            resolve(formatImage(res))
+          },
+          fail: reject,
+        })
+      }
+      // #endif
     }
 
     // #endif

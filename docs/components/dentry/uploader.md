@@ -243,13 +243,15 @@ setup() {
 | size-type                 | [是否压缩所选文件](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html) | Array                             | `['original','compressed']` |
 | media-type`仅支持WEAPP`   | [选择文件类型](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)     | Array                             | `['image', 'video', 'mix']`        |
 | max-duration`仅支持WEAPP` | 拍摄视频最长拍摄时间，单位秒。时间范围为 3s 至 60s 之间。不限制相册。                                    | Number                            | 10                          |
-| accept                    | 允许上传的文件类型                                                                                       |String                            | `['image','media','video','all']`
+| accept                    | 允许上传的文件类型                                                                                       |String                            | `['image','media','video','all']`|
 | headers                   | 设置上传的请求头部                                                                                       | object                            | `{}`                        |
 | data                      | 附加上传的信息 formData                                                                                  | object                            | `{}`                        |
+| extension | 根据文件拓展名过滤，accept='all'时生效 | Array | `[]` |
 | xhr-state                 | 接口响应的成功状态（status）值                                                                           | Number                            | `200`                       |
 | disabled                  | 是否禁用文件上传                                                                                         | Boolean                           | `false`                     |
 | multiple                  | 是否支持文件多选                                                                                         | Boolean                           | `true`                      |
 | timeout                   | 超时时间，单位为毫秒                                                                                     | Number \| String                  | `1000 * 30`                 |
+| choose-file    | 执行 `uni.chooseFile` 上传时，自定义方法                                                                  | 参数同uni.chooseFile | `null`         |
 | before-upload         | 执行 `uni.uploadFile` 上传时，自定义方法                                                                | Function(uni.uploadFile，option) | `null`                      |
 | before-delete         | 除文件时的回调，返回值为 false 时不移除。支持返回一个 `Promise` 对象，`Promise` 对象 resolve(false) 或 reject 时不移除                                                                | Function(file): boolean 丨 Promise | -                      |
 | mode | 预览图片的 mode 属性                                                                                     | 查阅 uniapp[文档](https://uniapp.dcloud.net.cn/component/image.html)                           | `aspectFit`                 |

@@ -94,6 +94,17 @@ export const uploaderProps = {
    */
   autoUpload: truthProp,
   /**
+   * @description 文件后缀名,type='all'时生效
+   */
+  extension: makeArrayProp<string>([]),
+  /**
+   * @description 执行 `uni.chooseFile` 选择文件时，自定义方法
+   */
+  chooseFile: {
+    type: Function,
+    default: null,
+  },
+  /**
    * @description 执行 `uni.uploadFile` 上传时，自定义方法
    */
   beforeUpload: {
