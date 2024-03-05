@@ -9,7 +9,7 @@ import './styles/app.scss'
 import '@nutui/touch-emulator'
 
 Locale.merge({
-  confirm: '确实',
+  confirm: '已确认',
 })
 
 export function createApp() {
