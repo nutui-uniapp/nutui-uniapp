@@ -16,14 +16,14 @@ export const inputProps = {
    */
   modelValue: makeNumericProp(''),
   /**
-   * @description 自定义类名
+   * @description 输入框自定义类名
    */
   inputClass: {
     type: [String, Object, Array] as PropType<ClassType>,
     default: '',
   },
   /**
-   * @description 自定义样式
+   * @description 输入框自定义样式
    */
   inputStyle: {
     type: [String, Object, Array] as PropType<StyleValue>,
