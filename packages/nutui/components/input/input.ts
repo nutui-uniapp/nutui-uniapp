@@ -1,5 +1,6 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
+import type { ClassType } from '../_utils'
 import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType, InputConfirmType, InputFormatTrigger, InputMode, InputType } from './type'
@@ -14,6 +15,20 @@ export const inputProps = {
    * @description 输入值，双向绑定
    */
   modelValue: makeNumericProp(''),
+  /**
+   * @description 自定义类名
+   */
+  inputClass: {
+    type: [String, Object, Array] as PropType<ClassType>,
+    default: '',
+  },
+  /**
+   * @description 自定义样式
+   */
+  inputStyle: {
+    type: [String, Object, Array] as PropType<StyleValue>,
+    default: '',
+  },
   /**
    * @description 输入框为空时占位符
    */
