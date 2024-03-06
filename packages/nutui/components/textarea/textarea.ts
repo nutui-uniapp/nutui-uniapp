@@ -1,9 +1,10 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
 import type { TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
+import type { ClassType } from '../_utils'
 import { commonProps, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
-import type { TextareaAdjustKeyboardTo, TextareaConfirmType } from './type'
+import type { TextareaAdjustKeyboardTo, TextareaAutosizeObject, TextareaConfirmType } from './type'
 
 export const textareaProps = {
   ...commonProps,
@@ -28,6 +29,20 @@ export const textareaProps = {
    */
   rows: [String, Number],
   /**
+   * @description 文本域自定义类名
+   */
+  textareaClass: {
+    type: [String, Object, Array] as PropType<ClassType>,
+    default: '',
+  },
+  /**
+   * @description 文本域自定义样式
+   */
+  textareaStyle: {
+    type: [String, Object, Array] as PropType<StyleValue>,
+    default: '',
+  },
+  /**
    * @description 设置占位提示文字
    */
   placeholder: String,
@@ -51,7 +66,7 @@ export const textareaProps = {
    * @description 是否自适应内容高度，也可传入对象
    */
   autosize: {
-    type: [Boolean, Object],
+    type: [Boolean, Object] as PropType<boolean | TextareaAutosizeObject>,
     default: false,
   },
   /**

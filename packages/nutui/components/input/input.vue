@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent, nextTick, onMounted, ref, toRef, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
@@ -37,10 +36,10 @@ const classes = computed(() => {
   })
 })
 
-const styles = computed<CSSProperties>(() => {
-  return {
+const inputStyles = computed(() => {
+  return [props.inputStyle, {
     textAlign: props.inputAlign,
-  }
+  }]
 })
 
 const innerInputType = computed<InputType>(() => {
@@ -211,7 +210,8 @@ export default defineComponent({
         <view class="nut-input-box">
           <input
             class="input-text"
-            :style="[styles, props.customStyle]"
+            :class="props.inputClass"
+            :style="inputStyles"
             :value="innerValue"
             :type="innerInputType as any"
             :placeholder="props.placeholder"
