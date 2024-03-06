@@ -154,63 +154,60 @@ export function chooseFile({
     // #endif
 
     // #ifndef MP-WEIXIN
-    if (accept === 'image') {
-      uni.chooseImage({
-        // 选择数量
-        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
-        // 可以指定是原图还是压缩图，默认二者都有
-        sizeType,
-        sourceType: props.sourceType,
-        success: (res) => {
-          resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
-        },
-        fail: reject,
-      })
-    }
-    else if (accept === 'video') {
-      uni.chooseVideo({
-        sourceType: props.sourceType,
-        success: (res) => {
-          resolve(formatVideo(res as UniChooseVideoSuccessCallbackResult))
-        },
-        fail: reject,
-      })
-    }
-    else if (accept === 'all') {
-      // #ifdef H5
-      uni.chooseFile({
-        type: 'all',
-        // 选择数量
-        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
-        // 可以指定是原图还是压缩图，默认二者都有
-        sizeType,
-        sourceType: props.sourceType,
+    if (props.chooseFile) {
+      props.chooseFile({
+        type: props.accept,
         extension: props.extension,
-        success: (res) => {
-          resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
+        // 选择数量
+        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+        // 可以指定是原图还是压缩图，默认二者都有
+        sizeType,
+        sourceType: props.sourceType,
+        success: (res: UniChooseFileSuccessCallbackResult) => {
+          resolve(formatImage(res))
         },
         fail: reject,
       })
-      // #endif
-      // #ifndef H5
-      if (props.chooseFile) {
-        props.chooseFile({
+    }
+    else {
+      if (accept === 'image') {
+        uni.chooseImage({
+        // 选择数量
+          count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+          // 可以指定是原图还是压缩图，默认二者都有
+          sizeType,
+          sourceType: props.sourceType,
+          success: (res) => {
+            resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
+          },
+          fail: reject,
+        })
+      }
+      else if (accept === 'video') {
+        uni.chooseVideo({
+          sourceType: props.sourceType,
+          success: (res) => {
+            resolve(formatVideo(res as UniChooseVideoSuccessCallbackResult))
+          },
+          fail: reject,
+        })
+      }
+      else if (accept === 'all') {
+        uni.chooseFile({
           type: 'all',
-          extension: props.extension,
           // 选择数量
           count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
           // 可以指定是原图还是压缩图，默认二者都有
           sizeType,
           sourceType: props.sourceType,
-          success: (res: UniChooseFileSuccessCallbackResult) => {
-            resolve(formatImage(res))
+          extension: props.extension,
+          success: (res) => {
+            resolve(formatImage(res as UniChooseFileSuccessCallbackResult))
           },
           fail: reject,
         })
       }
-      // #endif
     }
-
     // #endif
   })
 }

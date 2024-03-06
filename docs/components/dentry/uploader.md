@@ -246,7 +246,7 @@ setup() {
 | accept                    | 允许上传的文件类型                                                                                       |String                            | `['image','media','video','all']`|
 | headers                   | 设置上传的请求头部                                                                                       | object                            | `{}`                        |
 | data                      | 附加上传的信息 formData                                                                                  | object                            | `{}`                        |
-| extension | 根据文件拓展名过滤，accept='all'时生效 | Array | `[]` |
+| extension | 根据文件拓展名过滤，传入`choose-file`时生效 | Array | `[]` |
 | xhr-state                 | 接口响应的成功状态（status）值                                                                           | Number                            | `200`                       |
 | disabled                  | 是否禁用文件上传                                                                                         | Boolean                           | `false`                     |
 | multiple                  | 是否支持文件多选                                                                                         | Boolean                           | `true`                      |
