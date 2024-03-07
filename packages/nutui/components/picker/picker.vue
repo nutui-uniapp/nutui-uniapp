@@ -195,6 +195,7 @@ export default defineComponent({
       :value="defaultIndexes"
       :style="pickerViewStyles"
       :immediate-change="true"
+      mask-class="nut-picker__mask"
       @change="tileChange"
       @pickstart="handlePickstart"
       @pickend="handlePickend"
