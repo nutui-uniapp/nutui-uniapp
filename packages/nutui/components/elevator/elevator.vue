@@ -75,15 +75,21 @@ async function calculateHeight() {
   state.listHeight = []
   let height = 0
   state.listHeight.push(height)
-  const nodeList: any = await Promise.all(
-    state.listGroup.map(async (_, index) => {
-      return await queryItemHeight(index)
-    }),
-  )
-  nodeList.forEach((_: any, index: number) => {
-    height += Math.floor((nodeList[index][0] as any).height)
-    state.listHeight.push(height)
-  })
+  try {
+    const nodeList: any = await Promise.all(
+      state.listGroup.map(async (_, index) => {
+        return await queryItemHeight(index)
+      }),
+    )
+    nodeList.forEach((_: any, index: number) => {
+      height += Math.floor((nodeList[index][0] as any).height)
+      state.listHeight.push(height)
+    })
+  }
+  catch (err) {
+    state.listHeight = [0]
+    throw err
+  }
 }
 
 function scrollTo(index: number) {
@@ -163,13 +169,19 @@ function queryItemHeightFields(index: number) {
 }
 
 onMounted(async () => {
-  await Promise.all(
-    props.indexList.map(async (_, index) => {
-      const data = await queryItemHeightFields(index)
-      setListGroup(data)
-    }),
-  )
-  calculateHeight()
+  try {
+    await Promise.all(
+      props.indexList.map(async (_, index) => {
+        const data = await queryItemHeightFields(index)
+        setListGroup(data)
+      }),
+    )
+    calculateHeight()
+  }
+  catch (err) {
+    calculateHeight()
+    throw err
+  }
 })
 
 watch(
