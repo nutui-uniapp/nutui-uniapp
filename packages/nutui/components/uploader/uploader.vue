@@ -191,8 +191,6 @@ function chooseImage(event: InputEvent) {
       readFile(filteredFiles)
 
       emit('change', { fileList: fileList.value, event })
-    }).catch((error) => {
-      throw error
     })
   }
   else {
