@@ -7,6 +7,7 @@ const DEFAULT_FILED_NAMES = {
   text: 'text',
   value: 'value',
   children: 'children',
+  className: '',
 }
 
 export const componentName = `${PREFIX}-picker`

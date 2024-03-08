@@ -8,7 +8,7 @@ export const pickerProps = {
   /**
    * @description 默认选中项
    */
-  modelValue: makeArrayProp<(string | number)[]>([]),
+  modelValue: makeArrayProp<(string | number)>([]),
   /**
    * @description 设置标题
    */
@@ -24,7 +24,7 @@ export const pickerProps = {
   /**
    * @description 对象数组，配置每一列显示的数据
    */
-  columns: makeArrayProp<(PickerOption | PickerOption[])[]>([]),
+  columns: makeArrayProp<(PickerOption | PickerOption[])>([]),
   /**
    * @description 是否开启3D效果
    */
