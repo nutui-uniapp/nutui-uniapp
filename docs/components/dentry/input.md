@@ -365,18 +365,20 @@
 |--------------|----------------------------------------|----------------|---------|
 | v-model | 输入值，双向绑定 | string \| number | - |
 | type         | 输入框类型，支持原生 `input` 标签的所有 `type` 属性，另外还支持 `number` `digit`     | string         | `text`  |
+| input-style `1.7.3` | 输入框自定义样式 | `StyleValue` | - |
+| input-class `1.7.3` | 输入框自定义类名 | `ClassType` | - |
 | placeholder  | 输入框为空时占位符                      | string         | -       |
 | placeholder-style | 指定 placeholder 的样式 | string | - |
 | placeholder-class | 指定 placeholder 的样式类 | string | `input-placeholder` |
 | input-align  | 输入框内容对齐方式，可选值 `left`、`center`、`right` | string | `left` |
-| custom-style  | 自定义的样式，对象形式。 | Object | {} |
+| required  | 是否显示必填字段的标签旁边的红色星号 | boolean | `false` |
 | border       | 是否显示下边框                         | boolean        | `true` |
 | disabled     | 是否禁用                              | boolean        | `false` |
 | readonly     | 是否只读                              | boolean        | `false` |
 | autofocus    | 是否自动获得焦点，`iOS` 系统不支持该属性     | boolean        | `false` |
 | max-length      | 限制最长输入字符                       | string ｜ number | - |
 | clearable    | 展示清除 `Icon`                         | boolean        | `false`  |
-| showClearIcon `4.0.2` | 是否在失去焦点后，继续展示清除按钮，在设置 `clearable` 时生效 | boolean        | `false`  |
+| show-clear-icon | 是否在失去焦点后，继续展示清除按钮，在设置 `clearable` 时生效 | boolean        | `false`  |
 | clear-size   | 清除图标的 `font-size` 大小           | string        | `14`  |
 | show-word-limit | 是否显示限制最长输入字符，需要设置 `max-length` 属性 | boolean | `false`  |
 | error         | 是否标红                                | boolean | `false`  |

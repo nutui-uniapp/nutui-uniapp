@@ -32,8 +32,14 @@ const classes = computed(() => {
   })
 })
 
-const styles = computed<CSSProperties>(() => {
-  const value: CSSProperties = {
+const textareaClasses = computed(() => {
+  return [props.textareaClass, {
+    'nut-textarea__ali': isMpAlipay,
+  }]
+})
+
+const textareaStyles = computed(() => {
+  const style: CSSProperties = {
     textAlign: props.textAlign,
   }
 
@@ -41,13 +47,13 @@ const styles = computed<CSSProperties>(() => {
     const { minHeight, maxHeight } = props.autosize
 
     if (minHeight != null)
-      value.minHeight = pxCheck(minHeight)
+      style.minHeight = pxCheck(minHeight)
 
     if (maxHeight != null)
-      value.maxHeight = pxCheck(maxHeight)
+      style.maxHeight = pxCheck(maxHeight)
   }
 
-  return value
+  return [props.textareaStyle, style]
 })
 
 const innerMaxLength = computed<number>(() => {
@@ -142,21 +148,23 @@ export default defineComponent({
     <textarea
       v-if="props.readonly"
       class="nut-textarea__textarea nut-textarea__textarea__readonly"
-      :class="{ 'nut-textarea__ali': isMpAlipay }"
-      :style="styles"
+      :class="textareaClasses"
+      :style="textareaStyles"
       :value="innerValue"
       :rows="props.rows"
       :disabled="true"
       :show-count="false"
       :placeholder="props.placeholder || translate('placeholder')"
+      :placeholder-style="props.placeholderStyle"
+      :placeholder-class="props.placeholderClass"
       :auto-height="!!props.autosize"
       :disable-default-padding="props.disableDefaultPadding"
     />
     <textarea
       v-else
       class="nut-textarea__textarea"
-      :class="{ 'nut-textarea__ali': isMpAlipay }"
-      :style="styles"
+      :class="textareaClasses"
+      :style="textareaStyles"
       :value="innerValue"
       :rows="props.rows"
       :disabled="formDisabled || props.readonly"
@@ -193,5 +201,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import "./index";
+@import './index';
 </style>
