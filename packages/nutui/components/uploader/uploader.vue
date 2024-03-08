@@ -5,7 +5,7 @@ import { useTranslate } from '../../locale'
 import NutProgress from '../progress/progress.vue'
 import NutIcon from '../icon/icon.vue'
 import NutButton from '../button/button.vue'
-import { getMainClass } from '../_utils'
+import { getMainClass, isPromise } from '../_utils'
 import { useFormDisabled } from '../form/form'
 import { uploaderEmits, uploaderProps } from './uploader'
 import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
@@ -183,23 +183,37 @@ function chooseImage(event: InputEvent) {
 
   const maximum = (props.maximum as number) * 1
 
-  chooseFile({
-    accept: props.accept,
-    multiple: props.multiple,
-    capture: props.capture,
-    maxDuration: +props.maxDuration,
-    sizeType: props.sizeType,
-    camera: props.camera,
-    maxCount: maximum - fileList.value.length,
-  }, props, fileList.value).then((files) => {
-    const filteredFiles: ChooseFile[] = filterFiles(
-      new Array<ChooseFile>().slice.call(files),
-    )
+  if (props.chooseFile && isPromise(props.chooseFile)) {
+    props.chooseFile(props).then((files) => {
+      const filteredFiles: ChooseFile[] = filterFiles(
+        new Array<ChooseFile>().slice.call(files),
+      )
+      readFile(filteredFiles)
 
-    readFile(filteredFiles)
+      emit('change', { fileList: fileList.value, event })
+    }).catch((error) => {
+      throw error
+    })
+  }
+  else {
+    chooseFile({
+      accept: props.accept,
+      multiple: props.multiple,
+      capture: props.capture,
+      maxDuration: +props.maxDuration,
+      sizeType: props.sizeType,
+      camera: props.camera,
+      maxCount: maximum - fileList.value.length,
+    }, props, fileList.value).then((files) => {
+      const filteredFiles: ChooseFile[] = filterFiles(
+        new Array<ChooseFile>().slice.call(files),
+      )
 
-    emit('change', { fileList: fileList.value, event })
-  })
+      readFile(filteredFiles)
+
+      emit('change', { fileList: fileList.value, event })
+    })
+  }
 }
 
 const classes = computed(() => {

@@ -1,7 +1,7 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { type Interceptor, commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import type { AcceptType, FileItem, MediaType, SizeType, SourceType } from './type'
-import type { UploadOptions } from './use-uploader'
+import type { ChooseFile, UploadOptions } from './use-uploader'
 
 export const uploaderProps = {
   ...commonProps,
@@ -101,7 +101,7 @@ export const uploaderProps = {
    * @description 执行 `uni.chooseFile` 选择文件时，自定义方法
    */
   chooseFile: {
-    type: Function,
+    type: Function as PropType<(...args: any) => Promise<ChooseFile | ChooseFile[]>>,
     default: null,
   },
   /**
