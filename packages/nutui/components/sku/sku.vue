@@ -86,6 +86,8 @@ function close() {
   emit(UPDATE_VISIBLE_EVENT, false)
 }
 const getSlots = (name: string) => slots[name]
+
+const hasSkuOperateSlot = getSlots('skuOperate') != null
 </script>
 
 <script lang="ts">
@@ -141,6 +143,7 @@ export default defineComponent({
       <SkuOperate
         :btn-extra-text="btnExtraText" :btn-options="btnOptions" :buy-text="buyText || translate('buyNow')"
         :add-cart-text="addCartText || translate('addToCart')" :confirm-text="confirmText || translate('confirm')"
+        :show-default-operate="!hasSkuOperateSlot"
         @click-btn-operate="clickBtnOperate"
       >
         <template #operateBtn>

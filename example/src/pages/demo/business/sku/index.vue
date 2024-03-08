@@ -189,16 +189,12 @@ export default defineComponent({
       v-model:visible="base"
       :goods="goodsInfo"
       :sku="skuData"
+      :btn-options="['cart', 'buy']"
       @select-sku="selectSku"
       @close="close"
     >
       <template #skuHeader>
         <nut-sku-header :goods="goodsInfo" />
-      </template>
-      <template #skuOperate>
-        <nut-sku-operate
-          @click-btn-operate="clickBtnOperate"
-        />
       </template>
     </nut-sku>
 
