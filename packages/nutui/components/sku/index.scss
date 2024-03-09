@@ -17,10 +17,14 @@
 
   &-content {
     flex: 1;
-    padding: 0 18px;
     margin-top: 24px;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
+
+    &-wrapper {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 18px;
+    }
 
     &::-webkit-scrollbar {
       display: none;

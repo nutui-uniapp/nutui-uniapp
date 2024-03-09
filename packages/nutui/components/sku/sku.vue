@@ -124,20 +124,22 @@ export default defineComponent({
       </slot>
 
       <scroll-view scroll-y class="nut-sku-content">
-        <slot name="skuSelectTop" />
+        <view class="nut-sku-content-wrapper">
+          <slot name="skuSelectTop" />
 
-        <slot name="skuSelect" />
-        <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @select-sku="selectSku" />
+          <slot name="skuSelect" />
+          <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @select-sku="selectSku" />
 
-        <slot name="skuStepper">
-          <SkuStepper
-            :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
-            :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
-            @reduce="reduce" @change-stepper="changeStepper" @over-limit="stepperOverLimit"
-          />
-        </slot>
+          <slot name="skuStepper">
+            <SkuStepper
+              :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
+              :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
+              @reduce="reduce" @change-stepper="changeStepper" @over-limit="stepperOverLimit"
+            />
+          </slot>
 
-        <slot name="skuStepperBottom" />
+          <slot name="skuStepperBottom" />
+        </view>
       </scroll-view>
 
       <SkuOperate
