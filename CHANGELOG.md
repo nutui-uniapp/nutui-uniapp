@@ -1,3 +1,18 @@
+## [1.7.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.2...v1.7.3) (2024-03-09)
+
+### Bug Fixes
+
+* **elevator:** 修复app端点击索引无效，并且滚动页面索引无法跟随切换问题 ([#237](https://github.com/nutui-uniapp/nutui-uniapp/issues/237)) ([e149974](https://github.com/nutui-uniapp/nutui-uniapp/commit/e1499747ae9997bda7a5679259c211935e4d1713))
+* **picker:** 修复微信小程序暗黑模式picker背景颜色显示错误的问题 ([#236](https://github.com/nutui-uniapp/nutui-uniapp/issues/236)) ([fa425f7](https://github.com/nutui-uniapp/nutui-uniapp/commit/fa425f72584ff515b4b0a2f5810ca21f4f5760f6))
+* **picker:** 修复ts类型错误 ([#241](https://github.com/nutui-uniapp/nutui-uniapp/issues/241)) ([1e83035](https://github.com/nutui-uniapp/nutui-uniapp/commit/1e83035dab748c311ae2d207950bf219da2bcb11))
+* **sku:** 修复默认底部按钮不显示的问题 ([#238](https://github.com/nutui-uniapp/nutui-uniapp/issues/238)) ([6e2c296](https://github.com/nutui-uniapp/nutui-uniapp/commit/6e2c296ad8c2e77a84f504aa5ffe756002f98061))
+* **sku:** 修复组件内容超出,出现横向滚动条的问题 ([#240](https://github.com/nutui-uniapp/nutui-uniapp/issues/240)) ([c0bf4ab](https://github.com/nutui-uniapp/nutui-uniapp/commit/c0bf4ab341a4adbb142da6d282146825af14601d))
+* **uploader:** 修复禁用时能删除文件的问题 ([#234](https://github.com/nutui-uniapp/nutui-uniapp/issues/234)) ([834f9bc](https://github.com/nutui-uniapp/nutui-uniapp/commit/834f9bc7b00eaa0e9ebde33d9c56e1c9ed990d54))
+
+### Features
+
+* **input,textarea:** 新增输入框单独控制样式属性 ([#233](https://github.com/nutui-uniapp/nutui-uniapp/issues/233)) ([e9749b0](https://github.com/nutui-uniapp/nutui-uniapp/commit/e9749b0faa64d026c4c53e1faf349e1c42154a28))
+
 ## [1.7.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.1...v1.7.2) (2024-03-04)
 
 ### Bug Fixes
