@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { defineComponent, useSlots } from 'vue'
+import { defineComponent } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 
 const props = defineProps({
@@ -29,10 +29,14 @@ const props = defineProps({
     type: String,
     default: '确定',
   },
+
+  showDefaultOperate: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const emit = defineEmits([CLICK_EVENT, 'changeSku', 'changeBuyCount', 'clickBtnOperate'])
-const slots = useSlots()
 
 function getBtnDesc(type: string) {
   const mapD: { [props: string]: string } = {
@@ -43,8 +47,6 @@ function getBtnDesc(type: string) {
 
   return mapD[type]
 }
-
-const getSlots = (name: string) => slots[name]
 
 function clickBtnOperate(btn: string) {
   emit('clickBtnOperate', btn)
@@ -72,7 +74,7 @@ export default defineComponent ({
 
     <slot name="operateBtn" />
 
-    <view v-if="!getSlots('operateBtn')" class="nut-sku-operate-btn">
+    <view v-if="showDefaultOperate" class="nut-sku-operate-btn">
       <view
         v-for="(btn, i) in btnOptions" :key="i" class="nut-sku-operate-btn-item" :class="[`nut-sku-operate-btn-${btn}`]"
         @click="clickBtnOperate(btn)"
