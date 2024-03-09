@@ -59,16 +59,36 @@ function setListGroup(el: any) {
   })
 }
 
-function calculateHeight() {
+function queryItemHeight(index: number) {
+  return new Promise((resolve) => {
+    uni.createSelectorQuery()
+      .in(instance)
+      .selectAll(`#elevator__item__${index}`)
+      .boundingClientRect((res: any) => {
+        resolve(res)
+      })
+      .exec()
+  })
+}
+
+async function calculateHeight() {
   state.listHeight = []
   let height = 0
   state.listHeight.push(height)
-  for (let i = 0; i < state.listGroup.length; i++) {
-    state.query.in(instance).selectAll(`#elevator__item__${i}`).boundingClientRect()
-    state.query.exec((res: { height: number }[][]) => {
-      height += Math.floor(res[i][0].height)
+  try {
+    const nodeList: any = await Promise.all(
+      state.listGroup.map(async (_, index) => {
+        return await queryItemHeight(index)
+      }),
+    )
+    nodeList.forEach((_: any, index: number) => {
+      height += Math.floor((nodeList[index][0] as any).height)
       state.listHeight.push(height)
     })
+  }
+  catch (err) {
+    state.listHeight = [0]
+    throw err
   }
 }
 
@@ -132,8 +152,8 @@ function listViewScroll(e: any) {
   }
 }
 
-onMounted(() => {
-  props.indexList.forEach((item, index) => {
+function queryItemHeightFields(index: number) {
+  return new Promise((resolve) => {
     const query = uni.createSelectorQuery()
       .in(instance)
       .select(`#elevator__item__${index}`)
@@ -143,17 +163,26 @@ onMounted(() => {
       rect: true,
       id: true,
     }, (data) => {
-      setListGroup(data)
+      resolve(data)
     }).exec()
   })
-})
+}
 
-watch(
-  () => state.listGroup.length,
-  (val) => {
-    nextTick(calculateHeight)
-  },
-)
+onMounted(async () => {
+  try {
+    await Promise.all(
+      props.indexList.map(async (_, index) => {
+        const data = await queryItemHeightFields(index)
+        setListGroup(data)
+      }),
+    )
+    calculateHeight()
+  }
+  catch (err) {
+    calculateHeight()
+    throw err
+  }
+})
 
 watch(
   () => state.currentIndex,
