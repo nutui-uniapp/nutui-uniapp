@@ -1,7 +1,7 @@
 import { computed, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import { getMainClass } from '../_utils'
+import { cloneDeep, getMainClass } from '../_utils'
 
 const DEFAULT_FILED_NAMES = {
   text: 'text',
@@ -183,7 +183,7 @@ export function usePicker(props: any, emit: any) {
     () => props.modelValue,
     (newValues) => {
       if (!isSameValue(newValues, defaultValues.value))
-        defaultValues.value = newValues
+        defaultValues.value = cloneDeep(newValues)
     },
     { deep: true, immediate: true },
   )
