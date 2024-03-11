@@ -1,4 +1,4 @@
-import { isDef, isObject } from './is'
+import { isArray, isDef, isObject } from './is'
 
 // 变量类型判断
 export function TypeOfFun(value: any) {
@@ -196,4 +196,81 @@ export function noop() { }
 
 export function getRandomId() {
   return Math.random().toString(36).slice(-8)
+}
+
+export function isLooseEqual(a: any, b: any): boolean {
+  if (a === b)
+    return true
+
+  const isObjectA = isObject(a)
+  const isObjectB = isObject(b)
+
+  if (isObjectA && isObjectB)
+    return JSON.stringify(a) === JSON.stringify(b)
+  else if (!isObjectA && !isObjectB)
+    return String(a) === String(b)
+  else
+    return false
+}
+
+export function isEqualArray(a: any, b: any): boolean {
+  if (a === b)
+    return true
+
+  if (!isArray(a) || !isArray(b))
+    return false
+
+  if (a.length !== b.length)
+    return false
+
+  for (let i = 0; i < a.length; i++) {
+    if (!isLooseEqual(a[i], b[i]))
+      return false
+  }
+
+  return true
+}
+
+export function isEqualValue(a: any, b: any): boolean {
+  if (a === b)
+    return true
+
+  if (isArray(a) && isArray(b))
+    return isEqualArray(a, b)
+
+  return isLooseEqual(a, b)
+}
+
+export function cloneDeep<T = any>(obj: T, cache = new WeakMap()): T {
+  if (obj === null || typeof obj !== 'object')
+    return obj
+  if (cache.has(obj))
+    return cache.get(obj)
+  let clone
+  if (obj instanceof Date) {
+    clone = new Date(obj.getTime())
+  }
+  else if (obj instanceof RegExp) {
+    clone = new RegExp(obj)
+  }
+  else if (obj instanceof Map) {
+    clone = new Map(Array.from(obj, ([key, value]) => [key, cloneDeep(value, cache)]))
+  }
+  else if (obj instanceof Set) {
+    clone = new Set(Array.from(obj, value => cloneDeep(value, cache)))
+  }
+  else if (Array.isArray(obj)) {
+    clone = obj.map(value => cloneDeep(value, cache))
+  }
+  else if (Object.prototype.toString.call(obj) === '[object Object]') {
+    clone = Object.create(Object.getPrototypeOf(obj))
+    cache.set(obj, clone)
+    for (const [key, value] of Object.entries(obj))
+      clone[key] = cloneDeep(value, cache)
+  }
+  else {
+    clone = Object.assign({}, obj)
+  }
+  cache.set(obj, clone)
+  return clone
 }

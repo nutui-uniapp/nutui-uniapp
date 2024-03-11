@@ -2,7 +2,7 @@
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
-import { getMainClass, getRandomId } from '../_utils'
+import { cloneDeep, getMainClass, getRandomId } from '../_utils'
 import { guessgiftEmits, guessgiftProps } from './guessgift'
 
 const props = defineProps(guessgiftProps)
@@ -43,9 +43,9 @@ const classes = computed(() => {
 })
 
 // 打乱数组顺序
-const shuffleNewary = ref([])
+const shuffleNewary = ref<any[]>([])
 function shuffle(ary: Array<any>) {
-  const array = JSON.parse(JSON.stringify(ary))
+  const array = cloneDeep(ary)
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]]

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef } from 'vue'
-import { getRandomId, isH5, preventDefault } from '../_utils'
+import { getRandomId, isEqualValue, isH5, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { useFormDisabled } from '../form/form'
@@ -151,10 +151,6 @@ function format(value: number) {
   return Math.round(value / +step) * +step
 }
 
-function isSameValue(newValue: SliderValue, oldValue: SliderValue) {
-  return JSON.stringify(newValue) === JSON.stringify(oldValue)
-}
-
 function handleOverlap(value: number[]) {
   if (value[0] > value[1])
     return value.slice(0).reverse()
@@ -168,10 +164,10 @@ function updateValue(value: SliderValue, end?: boolean) {
   else
     value = format(value)
 
-  if (!isSameValue(value, props.modelValue))
+  if (!isEqualValue(value, props.modelValue))
     emit(UPDATE_MODEL_EVENT, value)
 
-  if (end && !isSameValue(value, startValue))
+  if (end && !isEqualValue(value, startValue))
     emit(CHANGE_EVENT, value)
 }
 

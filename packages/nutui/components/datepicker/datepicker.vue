@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, nextTick, onBeforeMount, reactive, watch } from 'vue'
-import { isDate as isDateU, padZero } from '../_utils'
+import { isDate as isDateU, isEqualValue, padZero } from '../_utils'
 import { CANCEL_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
@@ -271,8 +271,7 @@ watch(
   () => props.modelValue,
   (value) => {
     const newValues = formatValue(value as Date)
-    const isSameValue = JSON.stringify(newValues) === JSON.stringify(state.currentDate)
-    if (!isSameValue) {
+    if (!isEqualValue(newValues, state.currentDate)) {
       state.currentDate = newValues
       state.selectedValue = getSelectedValue(newValues)
     }
@@ -282,8 +281,7 @@ watch(
 watch(
   () => state.currentDate,
   (newValues) => {
-    const isSameValue = JSON.stringify(newValues) === JSON.stringify(props.modelValue)
-    if (!isSameValue) {
+    if (!isEqualValue(newValues, props.modelValue)) {
       emit(UPDATE_MODEL_EVENT, newValues)
       nextTick(() => {
         state.selectedValue = getSelectedValue(newValues)
