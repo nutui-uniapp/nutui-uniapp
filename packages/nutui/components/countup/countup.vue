@@ -2,7 +2,7 @@
 import { computed, defineComponent, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useExtend } from '../_hooks'
-import { getMainClass } from '../_utils'
+import { cloneDeep, getMainClass } from '../_utils'
 import { type IData, countupEmits, countupProps } from './countup'
 
 const props = defineProps(countupProps)
@@ -408,7 +408,7 @@ function scrollTime(index: number, total: number, num: number) {
       if (data.finshMachine === props.machineNum) {
         const distance = props.numHeight * props.machinePrizeNum
         data.prizeYPrev = []
-        const prevAry = JSON.parse(JSON.stringify(data.prizeY))
+        const prevAry = cloneDeep(data.prizeY)
         prevAry.forEach((item: any) => {
           let n = item
           while (n > distance)

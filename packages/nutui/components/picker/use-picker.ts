@@ -1,7 +1,7 @@
 import { computed, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerFieldNames, PickerOption } from '../pickercolumn/types'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import { cloneDeep, getMainClass } from '../_utils'
+import { cloneDeep, getMainClass, isEqualValue } from '../_utils'
 
 const DEFAULT_FILED_NAMES = {
   text: 'text',
@@ -168,8 +168,6 @@ export function usePicker(props: any, emit: any) {
     })
   }
 
-  const isSameValue = (valA: any, valB: any) => JSON.stringify(valA) === JSON.stringify(valB)
-
   const confirmHandler = () => {
     pickerColumn.value.length > 0
     && pickerColumn.value.forEach((column) => {
@@ -182,7 +180,7 @@ export function usePicker(props: any, emit: any) {
   watch(
     () => props.modelValue,
     (newValues) => {
-      if (!isSameValue(newValues, defaultValues.value))
+      if (!isEqualValue(newValues, defaultValues.value))
         defaultValues.value = cloneDeep(newValues)
     },
     { deep: true, immediate: true },
@@ -191,7 +189,7 @@ export function usePicker(props: any, emit: any) {
   watch(
     defaultValues,
     (newValues) => {
-      if (!isSameValue(newValues, props.modelValue))
+      if (!isEqualValue(newValues, props.modelValue))
         emit(UPDATE_MODEL_EVENT, newValues)
     },
     { deep: true },
@@ -219,6 +217,5 @@ export function usePicker(props: any, emit: any) {
     pickerColumn,
     swipeRef,
     selectedOptions,
-    isSameValue,
   }
 }
