@@ -45,9 +45,9 @@ nutui-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 - 🍭 支持暗黑模式
 - 🌍 支持国际化
 
-## 快速开始
+## 快速上手
 
-请参考[快速开始](https://uniapp-nutui.tech/guide/quick-start.html)。
+请参考[快速上手](https://uniapp-nutui.tech/guide/quick-start.html)。
 
 ## 链接
 
