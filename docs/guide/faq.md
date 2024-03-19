@@ -18,7 +18,7 @@
 :::
 
 ::: details cli样式引入无效
-请详细参考文档  [快速开始](/guide/quick-start)
+请详细参考文档  [快速上手](/guide/quick-start)
 :::
 
 ::: details 某些组件在小程序有一些问题，仅支持 H5
