@@ -6,42 +6,45 @@
 
 ### ref调用
 
-```html
-
+```vue
 <template>
-  <nut-toast
-      ref="toastRef"
-      @closed="page.methods.onClosed"
-    />
-    <nut-cell title="Success 成功提示" is-link @click="refClick('success', '成功提示')" />
-    <nut-cell title="Error 失败提示" is-link @click="refClick('fail', '失败提示')" />
-    <nut-cell title="Warning 警告提示" is-link @click="refClick('warn', '警告提示')" />
-    <nut-cell title="Loading 加载提示" is-link @click="refClick('loading', '加载中')" />
+  <nut-toast ref="toastRef" />
+
+  <nut-cell title="Success 成功提示" is-link @click="refClick('success', '成功提示')" />
+  <nut-cell title="Error 失败提示" is-link @click="refClick('fail', '失败提示')" />
+  <nut-cell title="Warning 警告提示" is-link @click="refClick('warn', '警告提示')" />
+  <nut-cell title="Loading 加载提示" is-link @click="refClick('loading', '加载中')" />
 </template>
 
 <script lang="ts" setup>
 import type { ToastInst } from 'nutui-uniapp'
-const toastRef = ref<ToastInst>()
-const refClick = (type: string, msg: string) => {
-      toastRef.value?.showToast[type as 'fail' | 'success' | 'warn' | 'loading'](msg,
-        {
-          title: '使用ref调用更加方便与灵活',
-          duration: 0,
-        },
-      )
 
-      setTimeout(() => {
-        toastRef.value?.hideToast()
-      }, 1000)
+const toastRef = ref<ToastInst | null>(null)
+
+const refClick = (type: string, msg: string) => {
+  toastRef.value?.showToast[type as keyof ToastInst['showToast']](msg,
+    {
+      title: '使用ref调用更加方便与灵活',
+      duration: 0,
+    },
+  )
+
+  setTimeout(() => {
+    toastRef.value?.hideToast()
+  }, 1000)
 }
 </script>
-
 ```
+
+::: warning 关于全局调用
+因为uniapp中无法通过JavaScript代码创建节点，所以组件层面无法实现类似于`uni.showToast`之类的全局调用，若有类似需求可参考[这篇回答](https://github.com/nutui-uniapp/nutui-uniapp/issues/251#issuecomment-2005638878)实现
+:::
 
 ### 基础用法
 
 ``` html
 <nut-toast :msg="page.state.msg" v-model:visible="page.state.show" :type="page.state.type" @closed="page.methods.onClosed" :cover="page.state.cover" />
+
 <nut-cell title="Text 文字提示" is-link @click="page.methods.openToast('text','网络失败，请稍后再试~')"></nut-cell>
 <nut-cell title="Title 标题文字" is-link @click="page.methods.openToast('text', '网络失败，请稍后再试~',false,'标题文字')" ></nut-cell>
 <nut-cell title="Text 自定义位置" is-link @click="page.methods.openToast('text', '自定义位置',false,'','20%',false)"></nut-cell>
@@ -54,6 +57,7 @@ const refClick = (type: string, msg: string) => {
 
 ``` javascript
 import { reactive } from 'vue';
+
 export default {
   setup() {
     const page = {
@@ -113,7 +117,7 @@ export default {
 
 ### Methods
 
-通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Form 实例并调用实例方法
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Toast 实例并调用实例方法
 
 | 方法名   | 说明                                                               | 参数                                      | 返回值 |
 |----------|--------------------------------------------------------------------|-------------------------------------------|--------|
