@@ -318,8 +318,6 @@ $switch-inside-open-transform: var(--nut-switch-inside-open-transform, translate
 $switch-inside-close-transform: var(--nut-switch-inside-close-transform, translateX(30%)) !default;
 
 // toast
-$toast-title-font-size: var(--nut-toast-title-font-size, 16px) !default;
-$toast-text-font-size: var(--nut-toast-text-font-size, 14px) !default;
 $toast-font-color: var(--nut-toast-font-color, $white) !default;
 $toast-inner-padding: var(--nut-toast-inner-padding, 24px 30px) !default;
 $toast-inner-bg-color: var(--nut-toast-inner-bg-color, rgb(0 0 0 / 80%)) !default;
