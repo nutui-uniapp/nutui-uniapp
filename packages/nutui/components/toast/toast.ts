@@ -36,7 +36,7 @@ export const toastProps = {
    */
   selector: String,
   /**
-   * @description 弹框类型,可选值（text、success、error、warning、loading）
+   * @description 弹框类型，可选值（text、success、error、warning、loading）
    */
   type: makeStringProp<ToastType>(toastDefaultOptions.type),
   /**
@@ -44,16 +44,17 @@ export const toastProps = {
    */
   title: String,
   /**
-   * @description 消息文本内容,支持传入HTML
+   * @description 消息文本内容，支持传入HTML
    */
   msg: makeStringProp(toastDefaultOptions.msg),
   /**
-   * @description 展示时长（毫秒）
-   * - 值为 0 时，toast 不会自动消失（loading类型默认为0）
+   * @description 展示时长（单位：ms）
+   * - 值为0时toast不会自动关闭
+   * - 组合式函数用法/Ref用法中，loading类型默认为0
    */
   duration: makeNumberProp(toastDefaultOptions.duration),
   /**
-   * @description 文案尺寸，`small` `base` `large` 三选一
+   * @description 文案尺寸，可选值（small、base、large）
    */
   size: makeStringProp<ToastSize>(toastDefaultOptions.size),
   /**
@@ -73,7 +74,8 @@ export const toastProps = {
    */
   bgColor: String,
   /**
-   * @description 是否显示遮罩层，loading类型默认显示
+   * @description 是否显示遮罩层
+   * - 组合式函数用法/Ref用法中，loading类型默认为true
    */
   cover: Boolean,
   /**
@@ -88,18 +90,18 @@ export const toastProps = {
     default: toastDefaultOptions.center,
   },
   /**
-   * @description 距页面底部的距离（像素或者百分比），center为false时生效
+   * @description 距页面底部的距离（center为false时生效）
    */
   bottom: makeNumericProp(toastDefaultOptions.bottom),
   /**
-   * @description 多行文案是否居中
+   * @description 文案是否居中
    */
   textAlignCenter: {
     type: Boolean,
     default: toastDefaultOptions.textAlignCenter,
   },
   /**
-   * @description loading图标是否旋转，仅对loading类型生效
+   * @description loading图标是否旋转（仅对loading类型生效）
    */
   loadingRotate: {
     type: Boolean,

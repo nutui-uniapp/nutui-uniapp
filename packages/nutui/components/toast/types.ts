@@ -10,7 +10,7 @@ export interface ToastOptions {
    */
   visible?: boolean
   /**
-   * @description 弹框类型,可选值（text、success、error、warning、loading）
+   * @description 弹框类型，可选值（text、success、error、warning、loading）
    */
   type?: ToastType
   /**
@@ -18,16 +18,17 @@ export interface ToastOptions {
    */
   title?: string
   /**
-   * @description 消息文本内容,支持传入HTML
+   * @description 消息文本内容，支持传入HTML
    */
   msg?: string
   /**
-   * @description 展示时长（毫秒）
-   * - 值为 0 时，toast 不会自动消失（loading类型默认为0）
+   * @description 展示时长（单位：ms）
+   * - 值为0时toast不会自动关闭
+   * - 组合式函数用法/Ref用法中，loading类型默认为0
    */
   duration?: number
   /**
-   * @description 文案尺寸，`small` `base` `large` 三选一
+   * @description 文案尺寸，可选值（small、base、large）
    */
   size?: ToastSize
   /**
@@ -47,7 +48,8 @@ export interface ToastOptions {
    */
   bgColor?: string
   /**
-   * @description 是否显示遮罩层，loading类型默认显示
+   * @description 是否显示遮罩层
+   * - 组合式函数用法/Ref用法中，loading类型默认为true
    */
   cover?: boolean
   /**
@@ -59,15 +61,15 @@ export interface ToastOptions {
    */
   center?: boolean
   /**
-   * @description 距页面底部的距离（像素或者百分比），center为false时生效
+   * @description 距页面底部的距离（center为false时生效）
    */
   bottom?: string | number
   /**
-   * @description 多行文案是否居中
+   * @description 文案是否居中
    */
   textAlignCenter?: boolean
   /**
-   * @description loading图标是否旋转，仅对loading类型生效
+   * @description loading图标是否旋转（仅对loading类型生效）
    */
   loadingRotate?: boolean
   /**

@@ -36,13 +36,14 @@ export function useToast(selector: string = ''): ToastInst {
   function showLoading(msg: string, options?: ToastOptions) {
     show('loading', msg, Object.assign({
       duration: 0,
+      cover: true,
     }, options))
   }
 
   function hide() {
-    toastOptions.value = {
+    toastOptions.value = Object.assign(cloneDeep(toastOptions.value), {
       visible: false,
-    }
+    })
   }
 
   return {

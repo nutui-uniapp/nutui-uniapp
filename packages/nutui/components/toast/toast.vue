@@ -77,6 +77,7 @@ function showWarning(msg: string, options?: ToastOptions) {
 function showLoading(msg: string, options?: ToastOptions) {
   show('loading', msg, Object.assign({
     duration: 0,
+    cover: true,
   }, options))
 }
 
@@ -162,11 +163,11 @@ const innerStyles = computed<CSSProperties>(() => {
 })
 
 watch(() => props, (value) => {
-  Object.assign(toastOptions.value, value)
+  toastOptions.value = Object.assign(cloneDeep(toastDefaultOptions), value)
 }, { deep: true })
 
 watch(injectToastOptions, (value) => {
-  Object.assign(toastOptions.value, value)
+  toastOptions.value = Object.assign(cloneDeep(toastDefaultOptions), value)
 })
 
 watch(
