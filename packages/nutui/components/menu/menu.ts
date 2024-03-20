@@ -55,6 +55,20 @@ export const menuProps = {
    * @description 展开时的图标
    */
   downIcon: makeStringProp('rect-down'),
+  /**
+   * @description 打开前的判断
+   */
+  beforeOpen: {
+    type: Function,
+    default: (item) => true as void | boolean | Promise<boolean | undefined>,
+  },
+  /**
+   * @description 关闭前的判断
+   */
+  beforeClose: {
+    type: Function,
+    default: (item, index) => true as void | boolean | Promise<boolean | undefined>,
+  },
 }
 
 export type MenuProps = ExtractPropTypes<typeof menuProps>
