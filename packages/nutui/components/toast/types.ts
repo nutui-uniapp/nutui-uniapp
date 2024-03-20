@@ -1,17 +1,16 @@
-export const toastType = ['success', 'loading', 'fail', 'warn', 'text'] as const
+export const toastType = ['text', 'success', 'error', 'warning', 'loading'] as const
 export type ToastType = (typeof toastType)[number]
+
+export const toastSize = ['small', 'base', 'large'] as const
+export type ToastSize = (typeof toastSize)[number]
+
 export interface ToastOptions {
   /**
-   * @description 消息文本内容,支持传入HTML
+   * @description 是否显示
    */
-  msg?: string
+  visible?: boolean
   /**
-   * @description 展示时长（毫秒）
-   * - 值为 0 时，toast 不会自动消失（loading类型默认为0）
-   */
-  duration?: number
-  /**
-   * @description 弹框类型,可选值（text、success、fail、warn、loading）
+   * @description 弹框类型，可选值（text、success、error、warning、loading）
    */
   type?: ToastType
   /**
@@ -19,43 +18,38 @@ export interface ToastOptions {
    */
   title?: string
   /**
-   * @description 图标大小
+   * @description 消息文本内容，支持传入HTML
    */
-  iconSize?: string | number
+  msg?: string
+  /**
+   * @description 展示时长（单位：ms）
+   * - 值为0时toast不会自动关闭
+   * - 组合式函数用法/Ref用法中，loading类型默认为0
+   */
+  duration?: number
+  /**
+   * @description 文案尺寸，可选值（small、base、large）
+   */
+  size?: ToastSize
+  /**
+   * @description 组件z-index
+   */
+  zIndex?: number
   /**
    * @description 自定义图标
    */
   icon?: string
   /**
-   * @description 背景颜色（透明度）
+   * @description 图标大小
+   */
+  iconSize?: string | number
+  /**
+   * @description 背景颜色
    */
   bgColor?: string
   /**
-   * @description 文案尺寸，`small` `base` `large` 三选一
-   */
-  size?: string | number
-  /**
-   * @description 距页面底部的距离（像素或者百分比），option.center为false时生效
-   */
-  bottom?: string
-  /**
-   * @description 是否展示在页面中部（为false时展示在底部）
-   */
-  center?: boolean
-  /**
-   * @description 多行文案是否居中
-   */
-  textAlignCenter?: boolean
-  /**
-   * @description loading图标是否旋转，仅对loading类型生效
-   */
-  loadingRotate?: boolean
-  /**
-   * @description 关闭时触发的事件
-   */
-  onClose?: Function
-  /**
-   * @description 是否显示遮罩层，loading类型默认显示
+   * @description 是否显示遮罩层
+   * - 组合式函数用法/Ref用法中，loading类型默认为true
    */
   cover?: boolean
   /**
@@ -63,12 +57,40 @@ export interface ToastOptions {
    */
   coverColor?: string
   /**
+   * @description 是否展示在页面中部（为false时展示在底部）
+   */
+  center?: boolean
+  /**
+   * @description 距页面底部的距离（center为false时生效）
+   */
+  bottom?: string | number
+  /**
+   * @description 文案是否居中
+   */
+  textAlignCenter?: boolean
+  /**
+   * @description loading图标是否旋转（仅对loading类型生效）
+   */
+  loadingRotate?: boolean
+  /**
    * @description 是否在点击遮罩层后关闭提示
    */
   closeOnClickOverlay?: boolean
+  /**
+   * @description 关闭时触发的事件
+   */
+  onClose?: Function
+  /**
+   * @description 关闭动画完成时触发的事件
+   */
+  onClosed?: Function
 }
 
 export interface ToastInst {
+  /**
+   * @deprecated 使用`text`、`success`、`error`、`warning`、`loading`代替
+   * @description 显示提示
+   */
   showToast: {
     text(msg: string, options?: ToastOptions): void
     success(msg: string, options?: ToastOptions): void
@@ -76,5 +98,34 @@ export interface ToastInst {
     warn(msg: string, options?: ToastOptions): void
     loading(msg: string, options?: ToastOptions): void
   }
+  /**
+   * @deprecated 使用`hide`代替
+   * @description 隐藏提示
+   */
   hideToast: () => void
+
+  /**
+   * @description 文字提示
+   */
+  text(msg: string, options?: ToastOptions): void
+  /**
+   * @description 成功提示
+   */
+  success(msg: string, options?: ToastOptions): void
+  /**
+   * @description 错误提示
+   */
+  error(msg: string, options?: ToastOptions): void
+  /**
+   * @description 警告提示
+   */
+  warning(msg: string, options?: ToastOptions): void
+  /**
+   * @description 加载提示
+   */
+  loading(msg: string, options?: ToastOptions): void
+  /**
+   * @description 隐藏提示
+   */
+  hide(): void
 }

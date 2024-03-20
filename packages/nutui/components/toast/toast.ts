@@ -1,35 +1,66 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import { commonProps, isBoolean, makeNumberProp, makeStringProp, truthProp } from '../_utils'
-import { CLOSED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import type { ToastType } from './types'
+import type { ExtractPropTypes } from 'vue'
+import { commonProps, isBoolean, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
+import { CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import type { ToastOptions, ToastSize, ToastType } from './types'
+
+export const toastDefaultOptionsKey = '__TOAST_OPTIONS__'
+
+export const toastDefaultOptions: Required<Pick<
+  ToastOptions,
+  'visible' | 'type' | 'msg' | 'duration' | 'size' | 'zIndex' | 'iconSize' | 'center' | 'bottom' | 'textAlignCenter' | 'loadingRotate'
+>> = {
+  visible: false,
+  type: 'text',
+  msg: '',
+  duration: 2000,
+  size: 'base',
+  zIndex: 50,
+  iconSize: '20px',
+  center: true,
+  bottom: '30px',
+  textAlignCenter: true,
+  loadingRotate: true,
+} as const
 
 export const toastProps = {
   ...commonProps,
   /**
-   * @description 消息文本内容,支持传入HTML
+   * @description 是否显示
    */
-  msg: String,
+  visible: {
+    type: Boolean,
+    default: toastDefaultOptions.visible,
+  },
   /**
-   * @description 展示时长（毫秒）
-   * - 值为 0 时，toast 不会自动消失（loading类型默认为0）
+   * @description 配置注入的key
    */
-  duration: makeNumberProp(2000),
+  selector: String,
   /**
-   * @description 是否展示在页面中部（为false时展示在底部）
+   * @description 弹框类型，可选值（text、success、error、warning、loading）
    */
-  center: truthProp,
+  type: makeStringProp<ToastType>(toastDefaultOptions.type),
   /**
-   * @description 弹框类型,可选值（text、success、fail、warn、loading）
+   * @description 标题
    */
-  type: String as PropType<ToastType>,
+  title: String,
   /**
-   * @description 距页面底部的距离（像素或者百分比），option.center为false时生效
+   * @description 消息文本内容，支持传入HTML
    */
-  bottom: makeStringProp('30px'),
+  msg: makeStringProp(toastDefaultOptions.msg),
   /**
-   * @description 文案尺寸，`small` `base` `large` 三选一
+   * @description 展示时长（单位：ms）
+   * - 值为0时toast不会自动关闭
+   * - 组合式函数用法/Ref用法中，loading类型默认为0
    */
-  size: String as PropType<'small' | 'base' | 'large'>,
+  duration: makeNumberProp(toastDefaultOptions.duration),
+  /**
+   * @description 文案尺寸，可选值（small、base、large）
+   */
+  size: makeStringProp<ToastSize>(toastDefaultOptions.size),
+  /**
+   * @description 组件z-index
+   */
+  zIndex: makeNumberProp(toastDefaultOptions.zIndex),
   /**
    * @description 自定义图标
    */
@@ -37,25 +68,14 @@ export const toastProps = {
   /**
    * @description 图标大小
    */
-  iconSize: makeStringProp('20'),
+  iconSize: makeNumericProp(toastDefaultOptions.iconSize),
   /**
-   * @description 多行文案是否居中
-   */
-  textAlignCenter: truthProp,
-  /**
-   * @description loading图标是否旋转，仅对loading类型生效
-   */
-  loadingRotate: truthProp,
-  /**
-   * @description 背景颜色（透明度）
+   * @description 背景颜色
    */
   bgColor: String,
   /**
-   * @description 关闭时触发的事件
-   */
-  onClose: Function,
-  /**
-   * @description 是否显示遮罩层，loading类型默认显示
+   * @description 是否显示遮罩层
+   * - 组合式函数用法/Ref用法中，loading类型默认为true
    */
   cover: Boolean,
   /**
@@ -63,23 +83,49 @@ export const toastProps = {
    */
   coverColor: String,
   /**
-   * @description 标题
+   * @description 是否展示在页面中部（为false时展示在底部）
    */
-  title: String,
+  center: {
+    type: Boolean,
+    default: toastDefaultOptions.center,
+  },
+  /**
+   * @description 距页面底部的距离（center为false时生效）
+   */
+  bottom: makeNumericProp(toastDefaultOptions.bottom),
+  /**
+   * @description 文案是否居中
+   */
+  textAlignCenter: {
+    type: Boolean,
+    default: toastDefaultOptions.textAlignCenter,
+  },
+  /**
+   * @description loading图标是否旋转（仅对loading类型生效）
+   */
+  loadingRotate: {
+    type: Boolean,
+    default: toastDefaultOptions.loadingRotate,
+  },
   /**
    * @description 是否在点击遮罩层后关闭提示
    */
   closeOnClickOverlay: Boolean,
   /**
-   * @description 是否显示
+   * @description 关闭时触发的事件
    */
-  visible: Boolean,
+  onClose: Function,
+  /**
+   * @description 关闭动画完成时触发的事件
+   */
+  onClosed: Function,
 }
 
 export type ToastProps = ExtractPropTypes<typeof toastProps>
 
 export const toastEmits = {
   [UPDATE_VISIBLE_EVENT]: (visible: boolean) => isBoolean(visible),
+  [CLOSE_EVENT]: () => true,
   [CLOSED_EVENT]: () => true,
 }
 
