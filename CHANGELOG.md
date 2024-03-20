@@ -1,3 +1,13 @@
+## [1.7.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.3...v1.7.4) (2024-03-20)
+
+### Bug Fixes
+
+* **picker:** 修复model-value值污染问题 ([ce2e865](https://github.com/nutui-uniapp/nutui-uniapp/commit/ce2e86546b4c2a03f2f5235899071b00dff98d7f))
+
+### Features
+
+* 新增clone、equal工具方法 ([ef1611c](https://github.com/nutui-uniapp/nutui-uniapp/commit/ef1611c44e7382f5a58fbc154de513c15f1a1e59))
+
 ## [1.7.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.2...v1.7.3) (2024-03-09)
 
 ### Bug Fixes
