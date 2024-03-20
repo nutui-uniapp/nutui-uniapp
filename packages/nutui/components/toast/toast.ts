@@ -1,12 +1,15 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isBoolean, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, isBoolean, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 import { CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { ToastOptions, ToastSize, ToastType } from './types'
 
+export const toastDefaultOptionsKey = '__TOAST_OPTIONS__'
+
 export const toastDefaultOptions: Required<Pick<
   ToastOptions,
-  'type' | 'msg' | 'duration' | 'size' | 'zIndex' | 'iconSize' | 'center' | 'bottom' | 'textAlignCenter' | 'loadingRotate'
+  'visible' | 'type' | 'msg' | 'duration' | 'size' | 'zIndex' | 'iconSize' | 'center' | 'bottom' | 'textAlignCenter' | 'loadingRotate'
 >> = {
+  visible: false,
   type: 'text',
   msg: '',
   duration: 2000,
@@ -24,7 +27,14 @@ export const toastProps = {
   /**
    * @description 是否显示
    */
-  visible: Boolean,
+  visible: {
+    type: Boolean,
+    default: toastDefaultOptions.visible,
+  },
+  /**
+   * @description 配置注入的key
+   */
+  selector: String,
   /**
    * @description 弹框类型,可选值（text、success、error、warning、loading）
    */
@@ -73,7 +83,10 @@ export const toastProps = {
   /**
    * @description 是否展示在页面中部（为false时展示在底部）
    */
-  center: truthProp,
+  center: {
+    type: Boolean,
+    default: toastDefaultOptions.center,
+  },
   /**
    * @description 距页面底部的距离（像素或者百分比），center为false时生效
    */
@@ -81,11 +94,17 @@ export const toastProps = {
   /**
    * @description 多行文案是否居中
    */
-  textAlignCenter: truthProp,
+  textAlignCenter: {
+    type: Boolean,
+    default: toastDefaultOptions.textAlignCenter,
+  },
   /**
    * @description loading图标是否旋转，仅对loading类型生效
    */
-  loadingRotate: truthProp,
+  loadingRotate: {
+    type: Boolean,
+    default: toastDefaultOptions.loadingRotate,
+  },
   /**
    * @description 是否在点击遮罩层后关闭提示
    */

@@ -6,6 +6,10 @@ export type ToastSize = (typeof toastSize)[number]
 
 export interface ToastOptions {
   /**
+   * @description 是否显示
+   */
+  visible?: boolean
+  /**
    * @description 弹框类型,可选值（text、success、error、warning、loading）
    */
   type?: ToastType

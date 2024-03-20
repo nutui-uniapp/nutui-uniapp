@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onUnmounted, ref, watch } from 'vue'
+import type { CSSProperties, Ref } from 'vue'
+import { computed, defineComponent, inject, onUnmounted, ref, watch } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
 import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLOSED_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { toastDefaultOptions, toastEmits, toastProps } from './toast'
+import { toastDefaultOptions, toastDefaultOptionsKey, toastEmits, toastProps } from './toast'
 import type { ToastOptions, ToastType } from './types'
 
 const props = defineProps(toastProps)
@@ -22,25 +22,10 @@ const typeIcons: Record<ToastType, string> = {
   loading: 'loading',
 }
 
-const toastOptions = ref<ToastOptions>({
-  type: props.type,
-  title: props.title,
-  msg: props.msg,
-  duration: props.duration,
-  size: props.size,
-  icon: props.icon,
-  iconSize: props.iconSize,
-  bgColor: props.bgColor,
-  cover: props.cover,
-  coverColor: props.coverColor,
-  center: props.center,
-  bottom: props.bottom,
-  textAlignCenter: props.textAlignCenter,
-  loadingRotate: props.loadingRotate,
-  closeOnClickOverlay: props.closeOnClickOverlay,
-  onClose: props.onClose,
-  onClosed: props.onClosed,
-})
+const toastOptionsKey: string = `${toastDefaultOptionsKey}${props.selector || ''}`
+const injectToastOptions: Ref<ToastOptions> = inject(toastOptionsKey, ref(cloneDeep(toastDefaultOptions)))
+
+const toastOptions = ref<ToastOptions>(cloneDeep(props))
 
 let timer: NodeJS.Timeout | null = null
 
@@ -62,6 +47,7 @@ function show(type: ToastType, msg: string, options?: ToastOptions) {
   destroyTimer()
 
   toastOptions.value = Object.assign(cloneDeep(toastDefaultOptions), {
+    visible: true,
     type,
     msg,
   }, options)
@@ -98,6 +84,7 @@ function hide() {
   destroyTimer()
 
   innerVisible.value = false
+  toastOptions.value.visible = false
 
   emit(UPDATE_VISIBLE_EVENT, false)
   emit(CLOSE_EVENT)
@@ -174,12 +161,19 @@ const innerStyles = computed<CSSProperties>(() => {
   return value
 })
 
+watch(() => props, (value) => {
+  Object.assign(toastOptions.value, value)
+}, { deep: true })
+
+watch(injectToastOptions, (value) => {
+  Object.assign(toastOptions.value, value)
+})
+
 watch(
-  () => props.visible,
+  () => toastOptions.value.visible,
   (value) => {
-    console.log('visibale', value)
     if (value)
-      show(props.type, props.msg, props)
+      show(toastOptions.value.type!, toastOptions.value.msg!, toastOptions.value)
     else
       hide()
   },

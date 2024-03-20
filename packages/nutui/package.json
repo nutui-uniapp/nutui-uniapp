@@ -27,6 +27,7 @@
       "require": "./dist/index.cjs"
     },
     "./*": "./*",
+    "./composables": "./components/composables.ts",
     "./locale": "./locale/index.ts",
     "./package.json": "./package.json"
   },
@@ -42,6 +43,7 @@
     "README.md",
     "attributes.json",
     "components",
+    "components/composables.ts",
     "dist",
     "global.d.ts",
     "locale/**",
