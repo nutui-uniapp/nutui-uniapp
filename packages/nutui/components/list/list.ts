@@ -12,7 +12,7 @@ export const listProps = {
   /**
    * @description 列表数据
    */
-  listData: makeArrayProp([]),
+  listData: makeArrayProp<any>([]),
   /**
    * @description 容器高度(最大值不能超过可视区)
    */
