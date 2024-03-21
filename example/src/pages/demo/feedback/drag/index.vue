@@ -7,7 +7,7 @@ export default {
       return uni.getSystemInfoSync().windowWidth - 300
     }
     function bottom() {
-      return uni.getSystemInfoSync().screenHeight - 300 - 320
+      return uni.getSystemInfoSync().screenHeight - 420 - 200
     }
     return {
       isH5,
@@ -44,18 +44,26 @@ export default {
         X轴移动
       </nut-button>
     </nut-drag>
-    <!-- <h2 class="title">
+    <h2 class="title">
+      贴边
+    </h2>
+    <nut-drag class="dragDemo" :attract="true">
+      <nut-button type="primary">
+        贴边
+      </nut-button>
+    </nut-drag>
+    <h2 class="title">
       限制拖拽边界
     </h2>
     <div class="drag-boundary" />
     <nut-drag
-      :boundary="{ top: 330, left: 0, bottom: bottom(), right: right() }"
+      :boundary="{ top: 420, left: 0, bottom: bottom(), right: right() }"
       :style="{ top: '330px', left: '50px' }"
     >
       <nut-button type="primary">
         限制拖拽边界
       </nut-button>
-    </nut-drag> -->
+    </nut-drag>
   </div>
 </template>
 
@@ -74,7 +82,7 @@ export default {
 
 .drag-boundary {
   position: absolute;
-  top: 330px;
+  top: 420px;
   left: 0;
   width: 300px;
   height: 200px;

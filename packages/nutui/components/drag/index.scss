@@ -1,19 +1,4 @@
-.nut-drag {
-  position: fixed;
-  z-index: 9997 !important;
-  display: inline-block;
-  width: fit-content;
-  height: fit-content;
-
-  .nut-fixed-nav {
-    position: relative !important;
-  }
-}
-
 .nut-uni-drag {
-  z-index: 9997 !important;
-
-  // position: fixed;
   display: inline-block;
   width: fit-content;
   height: fit-content;
