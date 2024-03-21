@@ -231,6 +231,7 @@ npm install nutui-uniapp
             "pinia",
             {
               "nutui-uniapp/composables": [
+                // 在这里添加需要自动导入的API
                 "useToast"
               ]
             }
