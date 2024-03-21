@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { ToastInst, ToastProps } from 'nutui-uniapp'
-import { useToast } from 'nutui-uniapp/composables'
 
 const toast = useToast()
 

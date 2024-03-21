@@ -8,144 +8,162 @@
 因为uniapp中无法通过JavaScript代码创建节点，所以组件层面无法实现类似于`uni.showToast`之类的全局调用，若有类似需求可参考[这篇回答](https://github.com/nutui-uniapp/nutui-uniapp/issues/251#issuecomment-2005638878)实现
 :::
 
+### 最简单的用法
+
+> 自 `1.7.5` 开始支持组合式函数用法，`useToast` 的自动按需导入请参考 [快速上手-API导入](/guide/quick-start#api导入) 部分
+
+```typescript
+const toast = useToast();
+
+function showText() {
+  toast.text("文字提示");
+}
+```
+
+```html
+<template>
+  <nut-toast></nut-toast>
+
+  <nut-cell title="Text 文字提示" is-link @click="showText"></nut-cell>
+</template>
+```
+
 ### 组合式函数用法
 
-> 自 `1.7.5` 开始支持组合式函数用法
+```typescript
+import { useToast } from "nutui-uniapp/composables";
 
-```vue
-<script lang="ts" setup>
-  import { useToast } from "nutui-uniapp/composables";
+const toast = useToast();
 
-  const toast = useToast();
+function showText() {
+  toast.text("文字提示");
+}
 
-  function showText() {
-    toast.text("文字提示");
-  }
+function showSuccess() {
+  toast.success("成功提示");
+}
 
-  function showSuccess() {
-    toast.success("成功提示");
-  }
+function showError() {
+  toast.error("错误提示");
+}
 
-  function showError() {
-    toast.error("错误提示");
-  }
+function showWarning() {
+  toast.warning("警告提示");
+}
 
-  function showWarning() {
-    toast.warning("警告提示");
-  }
+function showLoading() {
+  toast.loading("加载提示", {
+    duration: 5000
+  });
+}
 
-  function showLoading() {
-    toast.loading("加载提示", {
-      duration: 5000
-    });
-  }
+function hideLoading() {
+  toast.hide();
+}
+```
 
-  function hideLoading() {
-    toast.hide();
-  }
-</script>
-
+```html
 <template>
-  <nut-toast />
+  <nut-toast></nut-toast>
 
-  <nut-cell title="Text 文字提示" is-link @click="showText" />
-  <nut-cell title="Success 成功提示" is-link @click="showSuccess" />
-  <nut-cell title="Error 错误提示" is-link @click="showError" />
-  <nut-cell title="Warning 警告提示" is-link @click="showWarning" />
-  <nut-cell title="Loading 加载提示" is-link @click="showLoading" />
-  <nut-cell title="手动关闭提示" is-link @click="hideLoading" />
+  <nut-cell title="Text 文字提示" is-link @click="showText"></nut-cell>
+  <nut-cell title="Success 成功提示" is-link @click="showSuccess"></nut-cell>
+  <nut-cell title="Error 错误提示" is-link @click="showError"></nut-cell>
+  <nut-cell title="Warning 警告提示" is-link @click="showWarning"></nut-cell>
+  <nut-cell title="Loading 加载提示" is-link @click="showLoading"></nut-cell>
+  <nut-cell title="手动关闭提示" is-link @click="hideLoading"></nut-cell>
 </template>
 ```
 
 若页面中存在多个`toast`实例，可以使用`selector`改变配置注入的key，以防止同时控制多个实例（注意，`selector`不支持动态修改）
 
-```vue
-<script lang="ts" setup>
-  import { useToast } from "nutui-uniapp/composables";
+```typescript
+const toast = useToast();
+const toast2 = useToast("toast2");
+```
 
-  const toast = useToast();
-  const toast2 = useToast("toast2");
-</script>
-
+```html
 <template>
-  <nut-toast />
-  <nut-toast selector="toast2" />
+  <nut-toast></nut-toast>
+  <nut-toast selector="toast2"></nut-toast>
 </template>
 ```
 
 ### Ref用法
 
-```vue
-<script lang="ts" setup>
-  import type { ToastInst } from "nutui-uniapp";
+```typescript
+import type { ToastInst } from "nutui-uniapp";
 
-  const toast = ref<ToastInst | null>(null);
+const toast = ref<ToastInst | null>(null);
 
-  function showSuccess() {
-    toast.value?.success("成功提示");
-  }
+function showSuccess() {
+  toast.value?.success("成功提示");
+}
 
-  function showError() {
-    toast.value?.error("错误提示");
-  }
+function showError() {
+  toast.value?.error("错误提示");
+}
 
-  function showWarning() {
-    toast.value?.warning("警告提示");
-  }
-</script>
+function showWarning() {
+  toast.value?.warning("警告提示");
+}
+```
 
+```html
 <template>
-  <nut-toast ref="toast" />
+  <nut-toast ref="toast"></nut-toast>
 
-  <nut-cell title="Success 成功提示" is-link @click="showSuccess" />
-  <nut-cell title="Error 错误提示" is-link @click="showError" />
-  <nut-cell title="Warning 警告提示" is-link @click="showWarning" />
+  <nut-cell title="Success 成功提示" is-link @click="showSuccess"></nut-cell>
+  <nut-cell title="Error 错误提示" is-link @click="showError"></nut-cell>
+  <nut-cell title="Warning 警告提示" is-link @click="showWarning"></nut-cell>
 </template>
 ```
 
 ### Props用法
 
-```vue
-<script lang="ts" setup>
-  import type { ToastProps } from "nutui-uniapp";
+```typescript
+import type { ToastProps } from "nutui-uniapp";
 
-  const toastState = ref<Pick<ToastProps, "visible" | "type" | "msg">>({
-    visible: false,
-    type: "text",
-    msg: ""
-  });
+const toastState = ref<Pick<ToastProps, "visible" | "type" | "msg">>({
+  visible: false,
+  type: "text",
+  msg: ""
+});
 
-  function showSuccess() {
-    toastState.value = {
-      visible: true,
-      type: "success",
-      msg: "成功提示"
-    };
-  }
+function showSuccess() {
+  toastState.value = {
+    visible: true,
+    type: "success",
+    msg: "成功提示"
+  };
+}
 
-  function showError() {
-    toastState.value = {
-      visible: true,
-      type: "error",
-      msg: "错误提示"
-    };
-  }
+function showError() {
+  toastState.value = {
+    visible: true,
+    type: "error",
+    msg: "错误提示"
+  };
+}
 
-  function showWarning() {
-    toastState.value = {
-      visible: true,
-      type: "warning",
-      msg: "警告提示"
-    };
-  }
-</script>
+function showWarning() {
+  toastState.value = {
+    visible: true,
+    type: "warning",
+    msg: "警告提示"
+  };
+}
+```
 
+```html
 <template>
-  <nut-toast v-model:visible="toastState.visible" :type="toastState.type" :msg="toastState.msg" />
+  <nut-toast v-model:visible="toastState.visible"
+             :type="toastState.type"
+             :msg="toastState.msg"></nut-toast>
 
-  <nut-cell title="Success 成功提示" is-link @click="showSuccess" />
-  <nut-cell title="Error 错误提示" is-link @click="showError" />
-  <nut-cell title="Warning 警告提示" is-link @click="showWarning" />
+  <nut-cell title="Success 成功提示" is-link @click="showSuccess"></nut-cell>
+  <nut-cell title="Error 错误提示" is-link @click="showError"></nut-cell>
+  <nut-cell title="Warning 警告提示" is-link @click="showWarning"></nut-cell>
 </template>
 ```
 
