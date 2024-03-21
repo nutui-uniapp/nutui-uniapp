@@ -33,7 +33,16 @@ export default defineConfig({
     }),
     UniManifest({ minify: true }),
     AutoImport({
-      imports: ['vue', 'pinia', 'uni-app'],
+      imports: [
+        'vue',
+        'pinia',
+        'uni-app',
+        {
+          'nutui-uniapp/composables': [
+            'useToast'
+          ],
+        }
+      ],
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/composables', 'src/stores'],
       vueTemplate: true,
