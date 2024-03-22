@@ -22,13 +22,32 @@ function showText() {
 
 ```html
 <template>
+  <!-- 注意，需要手动在页面中插入一个toast节点 -->
   <nut-toast></nut-toast>
 
   <nut-cell title="Text 文字提示" is-link @click="showText"></nut-cell>
 </template>
 ```
 
+::: details 进一步简化使用
+配合 [@uni-helper/vite-plugin-uni-layouts](https://github.com/uni-helper/vite-plugin-uni-layouts) 插件，将 `nut-toast` 节点置于 `layout` 中，可以更进一步简化使用
+
+> layouts/default.vue
+
+```html
+<template>
+  <slot></slot>
+
+  <nut-toast></nut-toast>
+</template>
+```
+:::
+
 ### 组合式函数用法
+
+::: warning 注意
+目前 `useToast` 只能在 `setup` 作用域下使用
+:::
 
 ```typescript
 import { useToast } from "nutui-uniapp/composables";
