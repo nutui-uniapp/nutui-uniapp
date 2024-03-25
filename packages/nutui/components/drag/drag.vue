@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, reactive, ref } from 'vue'
+import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { PREFIX } from '../_constants'
-import requestAniFrame from '../_utils/raf'
 import { useRect } from '../_hooks'
 import { getMainStyle, getRandomId } from '../_utils'
 import { dragProps } from './drag'
@@ -12,7 +11,6 @@ const myDrag = ref()
 
 const myDragID = `myDrag${getRandomId()}`
 const state: any = reactive({
-  keepAlive: false,
   elWidth: 0,
   elHeight: 0,
   screenWidth: 0,
@@ -21,13 +19,9 @@ const state: any = reactive({
   startLeft: 0,
   initTop: 0,
   initLeft: 0,
-  nx: 0,
-  ny: 0,
-  xPum: 0,
-  yPum: 0,
   top: 0,
   left: 0,
-  position: { x: 0, y: 0 },
+  attractTransition: false,
   boundary: {
     top: 0,
     left: 0,
@@ -54,132 +48,57 @@ async function getInfo() {
 
   state.screenWidth = domElem.screenWidth
   state.screenHeight = domElem.screenHeight
+
+  attractFn()
 }
 
-function goLeft() {
-  if (state.boundary.left) {
-    if (+state.left.split('px')[0] > state.boundary.left) {
-      state.left = `${+state.left.split('px')[0] - 10}px`
-      requestAniFrame(() => {
-        goLeft()
-      })
-    }
-    else {
-      state.left = `${state.boundary.left}px`
-    }
-  }
-  else {
-    if (+state.left.split('px')[0] > 10) {
-      state.left = `${+state.left.split('px')[0] - 10}px`
-      requestAniFrame(() => {
-        goLeft()
-      })
-    }
-    else {
-      state.left = '0px'
-    }
-  }
-}
-function goRight(rightLocation: number) {
-  if (rightLocation - Number.parseInt(state.left.split('px')[0]) > 10) {
-    state.left = `${Number.parseInt(state.left.split('px')[0]) + 10}px`
-    requestAniFrame(() => {
-      goRight(rightLocation)
-    })
-  }
-  else {
-    state.left = `${rightLocation}px`
-  }
-}
 function touchMove(e: TouchEvent) {
   e.preventDefault()
-  // const target = e.currentTarget as HTMLElement;
-  if (e.touches.length === 1) {
-    // const touch = e.targetTouches[0];
-    const touch = e.touches[0]
-    state.nx = touch.clientX - state.position.x
-    state.ny = touch.clientY - state.position.y
-    state.xPum = state.startLeft + state.nx
-    state.yPum = state.startTop + state.ny
+  const touch = e.touches[0]
 
-    const rightLocation = state.screenWidth - state.elWidth - state.boundary.right
-    if (Math.abs(state.xPum + state.initLeft) > rightLocation)
-      state.xPum = rightLocation - state.initLeft
+  let left = touch.clientX - state.startLeft
+  let top = touch.clientY - state.startTop
 
-    else if (state.xPum + state.initLeft <= state.boundary.left)
-      state.xPum = state.boundary.left - state.initLeft
-
-    if (state.yPum + state.initTop < state.boundary.top)
-      state.yPum = state.boundary.top - state.initTop
-
-    else if (state.yPum + state.initTop > state.screenHeight - state.elHeight - state.boundary.bottom)
-      state.yPum = state.screenHeight - state.elHeight - state.boundary.bottom - state.initTop
-
-    if (props.direction !== 'y')
-      state.left = state.xPum
-
-    if (props.direction !== 'x')
-      state.top = state.yPum
-  }
-}
-function _touchEnd(e: TouchEvent) {
-  // const target = e.currentTarget as HTMLElement;
-
-  const touch = e.changedTouches[0]
-  let currX = touch.clientX
   const rightLocation = state.screenWidth - state.elWidth - state.boundary.right
-  if (currX > rightLocation)
-    currX = rightLocation
+  if (Math.abs(left + state.initLeft) > rightLocation)
+    left = rightLocation - state.initLeft
+  else if (left + state.initLeft <= state.boundary.left)
+    left = state.boundary.left - state.initLeft
 
-  else if (currX < state.boundary.left)
-    currX = state.boundary.left
+  if (top + state.initTop < state.boundary.top)
+    top = state.boundary.top - state.initTop
+  else if (top + state.initTop > state.screenHeight - state.elHeight - state.boundary.bottom)
+    top = state.screenHeight - state.elHeight - state.boundary.bottom - state.initTop
 
-  else
-    currX = currX < state.screenWidth / 2 ? state.boundary.left : rightLocation
-
-  if (props.direction !== 'y' && props.attract) {
-    if (currX < state.screenWidth / 2) {
-      requestAniFrame(() => {
-        goLeft()
-      })
-    }
-    else {
-      requestAniFrame(() => {
-        goRight(rightLocation)
-      })
-    }
-  }
+  if (props.direction !== 'y')
+    state.left = left
   if (props.direction !== 'x')
-    state.top = state.yPum
+    state.top = top
+}
+
+function attractFn() {
+  if (!props.attract || props.direction === 'y')
+    return
+  const screenCenterX = (state.screenWidth - state.boundary.right - state.boundary.left) / 2
+  const centerX = screenCenterX - state.initLeft - state.elWidth / 2
+  if (state.left < centerX)
+    state.left = state.boundary.left - state.initLeft
+  else
+    state.left = state.screenWidth - state.elWidth - state.boundary.right - state.initLeft
+  state.attractTransition = true
+  setTimeout(() => {
+    state.attractTransition = false
+  }, 400)
+}
+
+function touchEnd() {
+  attractFn()
 }
 function touchStart(e: TouchEvent) {
-  const query = uni.createSelectorQuery().in(instance)
-  const id = (e as any)?.mpEvent?.currentTarget.id
-  const offsetTop = (e as any)?.currentTarget?.offsetTop
-  const offsetLeft = (e as any)?.currentTarget?.offsetLeft
-  const touches = e.touches[0]
-  const mobileTop = (e.touches[0]?.target as any)?.parentNode?.style.top
-  const mobileLeft = (e.touches[0]?.target as any)?.parentNode?.style.left
-  query
-    .selectAll(myDragID)
-    .boundingClientRect((rec: any) => {
-      // 判断当前是要拖拽哪个元素
-      rec.forEach((element: any) => {
-        // 微信环境
-        if (id && id === element.id) {
-          state.startTop = element.top - offsetTop
-          state.startLeft = element.left - offsetLeft
-        }
-        else if (mobileTop) {
-          // h5环境
-          state.startTop = Number(mobileTop.slice(0, -2))
-          state.startLeft = Number(mobileLeft.slice(0, -2))
-        }
-      })
-    })
-    .exec()
-  state.position.x = touches.clientX
-  state.position.y = touches.clientY
+  const touch = e.touches[0]
+  state.startLeft = touch.clientX - state.left
+  state.startTop = touch.clientY - state.top
+  state.attractTransition = false
 }
 onMounted(() => {
   setTimeout(() => {
@@ -188,22 +107,11 @@ onMounted(() => {
 
   state.boundary = props.boundary
 })
-onActivated(() => {
-  if (state.keepAlive)
-    state.keepAlive = false
-})
-onDeactivated(() => {
-  state.keepAlive = true
-  // (myDrag as any).value.removeEventListener('touchstart', touchStart);
-  // (myDrag as any).value.removeEventListener('touchmove', touchMove);
-  // (myDrag as any).value.removeEventListener('touchend', touchEnd)
-})
 
 const getStyle = computed(() => {
   return getMainStyle(props, {
     transform: `translate(${`${state.left}px`}, ${`${state.top}px`})`,
-    top: `${state.top}px`,
-    left: `${state.left}px`,
+    transition: state.attractTransition ? 'all ease 0.3s' : 'none',
   })
 })
 </script>
@@ -226,9 +134,9 @@ export default defineComponent({
     ref="myDrag"
     :class="classes"
     :style="getStyle"
-    :catchtouchmove="true"
     @touchstart="(touchStart as any)"
-    @touchmove="(touchMove as any)"
+    @touchmove.stop.prevent="(touchMove as any)"
+    @touchend="(touchEnd as any)"
   >
     <slot />
   </view>
