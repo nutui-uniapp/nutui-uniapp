@@ -134,9 +134,8 @@ export default defineComponent({
     ref="myDrag"
     :class="classes"
     :style="getStyle"
-    :catchtouchmove="true"
     @touchstart="(touchStart as any)"
-    @touchmove="(touchMove as any)"
+    @touchmove.stop.prevent="(touchMove as any)"
     @touchend="(touchEnd as any)"
   >
     <slot />
