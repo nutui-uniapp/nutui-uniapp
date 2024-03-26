@@ -118,14 +118,6 @@ function handleClick() {
   }
 }
 
-onMounted(() => {
-  hasParent.value && parent?.add(getCurrentInstance()!)
-})
-
-onBeforeUnmount(() => {
-  hasParent.value && parent?.remove(getCurrentInstance()!)
-})
-
 watch(
   () => props.indeterminate,
   (newVal) => {
