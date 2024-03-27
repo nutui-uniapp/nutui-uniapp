@@ -49,6 +49,24 @@ function handleChange(val: any) {
     title: JSON.stringify(val),
   })
 }
+  
+function beforeOpen(index) {
+  /* 返回以下情况将不会打开 */
+  if(index === 0) {
+    return false
+  } else if (index === 1) {
+    return Promise.reject()
+  } else if (index === 2) {
+    return Promise.resolve(false)
+  }
+
+  /* 返回 undefined | Promise.resolve() | true | Boolean<T>===ture 的值都默认打开 */
+  return Promise.resolve()
+}
+
+function beforeClose(index) {
+  /* 情况与beforeOpen一样 */
+}
 </script>
 
 <template>
@@ -129,23 +147,6 @@ function handleChange(val: any) {
 </template>
 
 <style lang="scss" scoped>
-function beforeOpen(index) {
-  /* 返回以下情况将不会打开 */
-  if(index === 0) {
-    return false
-  } else if (index === 1) {
-    return Promise.reject()
-  } else if (index === 2) {
-    return Promise.resolve(false)
-  }
-
-  /* 返回 undefined | Promise.resolve() | true | Boolean<T>===ture 的值都默认打开 */
-  return Promise.resolve()
-}
-
-function beforeClose(index) {
-  /* 情况与beforeOpen一样 */
-}
 </style>
 
 <route lang="json">
