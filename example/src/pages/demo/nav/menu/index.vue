@@ -52,11 +52,11 @@ function handleChange(val: any) {
   
 function beforeOpen(index) {
   /* 返回以下情况将不会打开 */
-  if(index === 0) {
+  if(index === 1) {
     return false
-  } else if (index === 1) {
-    return Promise.reject()
   } else if (index === 2) {
+    return Promise.reject()
+  } else if (index === 3) {
     return Promise.resolve(false)
   }
 
