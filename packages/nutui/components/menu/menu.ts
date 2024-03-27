@@ -60,14 +60,14 @@ export const menuProps = {
    */
   beforeOpen: {
     type: Function,
-    default: (item) => true as void | boolean | Promise<boolean | undefined>,
+    default: (index: number) => true as void | boolean | Promise<boolean | undefined>,
   },
   /**
    * @description 关闭前的判断
    */
   beforeClose: {
     type: Function,
-    default: (item, index) => true as void | boolean | Promise<boolean | undefined>,
+    default: (index: number, item: any) => true as void | boolean | Promise<boolean | undefined>,
   },
 }
 
