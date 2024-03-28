@@ -51,6 +51,7 @@ function handleChange(val: any) {
 }
   
 function beforeOpen(index) {
+  console.log("打开前：", index)
   /* 返回以下情况将不会打开 */
   if(index === 1) {
     return false
@@ -66,6 +67,7 @@ function beforeOpen(index) {
 
 function beforeClose(index) {
   /* 情况与beforeOpen一样 */
+  console.log("关闭前：", index)
 }
 </script>
 
@@ -139,7 +141,7 @@ function beforeClose(index) {
     <h2 class="title">
       beforeOpen、beforeClose
     </h2>
-    <nut-menu :before-open="beforeOpen" :before-close="beforeClose">
+    <nut-menu direction="up" :before-open="beforeOpen" :before-close="beforeClose">
       <nut-menu-item v-model="state.value1" :options="state.options1" />
       <nut-menu-item v-model="state.value2" :options="state.options2" @change="handleChange" />
     </nut-menu>
