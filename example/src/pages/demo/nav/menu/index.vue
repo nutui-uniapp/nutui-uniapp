@@ -49,6 +49,26 @@ function handleChange(val: any) {
     title: JSON.stringify(val),
   })
 }
+  
+function beforeOpen(index) {
+  console.log("打开前：", index)
+  /* 返回以下情况将不会打开 */
+  if(index === 1) {
+    return false
+  } else if (index === 2) {
+    return Promise.reject()
+  } else if (index === 3) {
+    return Promise.resolve(false)
+  }
+
+  /* 返回 undefined | Promise.resolve() | true | Boolean<T>===ture 的值都默认打开 */
+  return Promise.resolve()
+}
+
+function beforeClose(index) {
+  /* 情况与beforeOpen一样 */
+  console.log("关闭前：", index)
+}
 </script>
 
 <template>
@@ -118,10 +138,18 @@ function handleChange(val: any) {
       <nut-menu-item v-model="state.value1" disabled :options="state.options1" />
       <nut-menu-item v-model="state.value2" disabled :options="state.options2" @change="handleChange" />
     </nut-menu>
+    <h2 class="title">
+      beforeOpen、beforeClose
+    </h2>
+    <nut-menu direction="up" :before-open="beforeOpen" :before-close="beforeClose">
+      <nut-menu-item v-model="state.value1" :options="state.options1" />
+      <nut-menu-item v-model="state.value2" :options="state.options2" @change="handleChange" />
+    </nut-menu>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
 
 <route lang="json">
 {
