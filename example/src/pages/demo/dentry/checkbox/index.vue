@@ -295,11 +295,15 @@ export default {
     <nut-cell-group title="自定义组件">
       <nut-cell>
         <nut-checkbox-group v-model="checkboxgroup7">
-          <nut-checkbox v-slot="{ checked }" label="1" shape="custom">
-            <nut-button type="primary"> 按钮 - {{ checked }} </nut-button>
+          <nut-checkbox label="1" shape="custom">
+            <template v-slot="{ checked }">
+              <nut-button type="primary"> 按钮 - {{ checked }} </nut-button>
+            </template>
           </nut-checkbox>
-          <nut-checkbox v-slot="{ checked }" label="2" shape="custom">
-            <nut-button type="primary"> 按钮 - {{ checked }} </nut-button>
+          <nut-checkbox label="2" shape="custom">
+            <template v-slot="{ checked }">
+              <nut-button type="primary"> 按钮 - {{ checked }} </nut-button>
+            </template>
           </nut-checkbox>
         </nut-checkbox-group>
       </nut-cell>
