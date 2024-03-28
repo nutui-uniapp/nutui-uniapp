@@ -23,7 +23,6 @@ export default {
       checkboxgroup4: ['2'],
       checkboxgroup5: [],
       checkboxgroup6: [],
-      checkboxgroup7: [],
       checkboxsource: [
         { label: '1', value: '组合复选框' },
         { label: '2', value: '组合复选框' },
@@ -288,22 +287,6 @@ export default {
           </nut-checkbox>
           <nut-checkbox label="2" shape="button">
             按钮形状
-          </nut-checkbox>
-        </nut-checkbox-group>
-      </nut-cell>
-    </nut-cell-group>
-    <nut-cell-group title="自定义组件">
-      <nut-cell>
-        <nut-checkbox-group v-model="checkboxgroup7">
-          <nut-checkbox label="1" shape="custom">
-            <template v-slot="{ checked }">
-              <nut-button type="primary"> 按钮 - {{ checked }} </nut-button>
-            </template>
-          </nut-checkbox>
-          <nut-checkbox label="2" shape="custom">
-            <template v-slot="{ checked }">
-              <nut-button type="primary"> 按钮 - {{ checked }} </nut-button>
-            </template>
           </nut-checkbox>
         </nut-checkbox-group>
       </nut-cell>

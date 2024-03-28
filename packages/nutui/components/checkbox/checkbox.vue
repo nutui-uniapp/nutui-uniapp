@@ -145,8 +145,6 @@ export default defineComponent({
       <slot />
     </view>
 
-    <slot v-else-if="shape === 'custom'" :checked="pValue" />
-
     <template v-else>
       <slot v-if="state.partialSelect" name="indeterminate">
         <NutIcon
