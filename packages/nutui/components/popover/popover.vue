@@ -212,6 +212,8 @@ function closePopover() {
 }
 function chooseItem(item: any, index: number) {
   !item.disabled && emit(CHOOSE_EVENT, item, index)
+}
+function clickContent() {
   if (props.closeOnClickAction)
     closePopover()
 }
@@ -251,13 +253,13 @@ export default defineComponent({
       :duration="+duration" :overlay-style="overlayStyle" :overlay-class="overlayClass"
       :close-on-click-overlay="closeOnClickOverlay"
     >
-      <view :id="popoverContentID" class="nut-popover-content-group">
+      <view :id="popoverContentID" class="nut-popover-content-group" @click.stop="clickContent">
         <view v-if="showArrow" :class="popoverArrow" :style="popoverArrowStyle" />
         <slot name="content" />
         <view
           v-for="(item, index) in list" :key="index"
           class="nut-popover-menu-item" :class="[item.className, item.disabled && 'nut-popover-menu-disabled']"
-          @click.stop="chooseItem(item, index)"
+          @click="chooseItem(item, index)"
         >
           <NutIcon v-if="item.icon" :name="item.icon" custom-class="nut-popover-item-img" />
           <view class="nut-popover-menu-item-name">
