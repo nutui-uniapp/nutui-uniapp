@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ComputedRef } from 'vue'
-import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, reactive, toRef, useSlots, watch } from 'vue'
+import { computed, defineComponent, reactive, toRef, useSlots, watch } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'

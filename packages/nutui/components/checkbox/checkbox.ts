@@ -31,7 +31,7 @@ export const checkboxProps = {
   /**
    * @description 形状，可选值：`button`、`round`
    */
-  shape: makeStringProp<'button' | 'round'>('round'),
+  shape: makeStringProp<'button' | 'round' | 'custom'>('round'),
 }
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
