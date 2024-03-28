@@ -33,41 +33,26 @@ export default defineComponent({
       })
     })
 
-    function updateOffset(index: number, children: any) {
+    function updateOffset(children: any) {
       setTimeout(() => {
-        useRect(barId, instance).then(async (rect) => {
+        useRect(barId, instance).then((rect) => {
           if (props.direction === 'down')
             offset.value = rect.bottom! + uni.getSystemInfoSync().windowTop!
 
           else offset.value = uni.getSystemInfoSync().windowHeight - rect.top!
 
-          try {
-            const res = await props.beforeOpen(index, children)
-            if (res === void(0) || res){
-              children.toggle()
-            }
-          } catch (error) {
-            // 不执行打开
-          }
+          children.toggle()
         })
       }, 100)
     }
 
     function toggleItem(active: number) {
-      children.forEach(async (item, index) => {
+      children.forEach((item, index) => {
         if (index === active)
-          updateOffset(index, item)
+          updateOffset(item)
 
-        else if (item.state.showPopup) {
-          try {
-            const res = await props.beforeClose(index, item)
-            if (res === void(0) || res) { 
-              item.toggle(false, { immediate: true })
-            }
-          } catch (error) {
-            // 不执行关闭
-          }
-        }
+        else if (item.state.showPopup)
+          item.toggle(false, { immediate: true })
       })
     }
 
