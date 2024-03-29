@@ -4,7 +4,6 @@
     "uni-helper.uni-highlight-vscode",
     "uni-helper.uni-helper-vscode",
     "stylelint.vscode-stylelint",
-    "vue.vscode-typescript-vue-plugin",
     "vue.volar"
   ]
 }
