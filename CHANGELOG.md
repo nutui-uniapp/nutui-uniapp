@@ -2,19 +2,18 @@
 
 ### Bug Fixes
 
-* :bug: 修复Popover 气泡弹出框功能问题 ([#269](https://github.com/nutui-uniapp/nutui-uniapp/issues/269)) ([bbf03e5](https://github.com/nutui-uniapp/nutui-uniapp/commit/bbf03e5a973b95d66f76edeb59114872afc606a6))
-* :bug: List 虚拟列表 listData 类型错误 ([8cba423](https://github.com/nutui-uniapp/nutui-uniapp/commit/8cba4236b178c2def23ccfd07ee1528f7530c007))
+* **popover:** 修复Popover 气泡弹出框功能问题 ([#269](https://github.com/nutui-uniapp/nutui-uniapp/issues/269)) ([bbf03e5](https://github.com/nutui-uniapp/nutui-uniapp/commit/bbf03e5a973b95d66f76edeb59114872afc606a6))
+* **list:** List 虚拟列表 listData 类型错误 ([8cba423](https://github.com/nutui-uniapp/nutui-uniapp/commit/8cba4236b178c2def23ccfd07ee1528f7530c007))
 * **checkbox:** 修复checkbox重复添加至checkboxgroup.children的问题 ([#266](https://github.com/nutui-uniapp/nutui-uniapp/issues/266)) ([3f2c2b3](https://github.com/nutui-uniapp/nutui-uniapp/commit/3f2c2b3afa0348032eadff9ef5aa8415843ecac8))
 * **dialog:** 修复dialog title响应式失效的问题 ([#267](https://github.com/nutui-uniapp/nutui-uniapp/issues/267)) ([1a0c7cf](https://github.com/nutui-uniapp/nutui-uniapp/commit/1a0c7cf72c448e6e5ff6d7890dd7739e5bbd13b0))
 
 ### Features
 
-* **menu, checkbox:** 增强menu、checkbox组件 ([#257](https://github.com/nutui-uniapp/nutui-uniapp/issues/257)) ([c8665b4](https://github.com/nutui-uniapp/nutui-uniapp/commit/c8665b43f4c17bc0e49f3e1954b91aaffcacd794))
 * **toast:** 新增useToast控制方式 ([#260](https://github.com/nutui-uniapp/nutui-uniapp/issues/260)) ([c014e7a](https://github.com/nutui-uniapp/nutui-uniapp/commit/c014e7a8ed31b9ad4d6bdbf11942528abea1bb26))
 
-### Reverts
+### Refactors
 
-* Revert "feat(menu, checkbox): 增强menu、checkbox组件" (#270) ([da35664](https://github.com/nutui-uniapp/nutui-uniapp/commit/da356641e22415cbbb1bd01f9a6fee04ffcd1408)), closes [#270](https://github.com/nutui-uniapp/nutui-uniapp/issues/270)
+* **drag**: 重构 drag组件，修复drag组件多次拖动时位置瞬移到起始点的问题 ([5989869](<https://github.com/nutui-uniapp/nutui-uniapp/commit/5989869>))
 
 ## [1.7.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.3...v1.7.4) (2024-03-20)
 
