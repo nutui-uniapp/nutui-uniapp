@@ -813,8 +813,8 @@ export default {
 | choose | 选择之后或是点击确认按钮触发,日期数组（包含年月日和星期） | `(string \| string[])[]` |
 | close  | 关闭时触发                   | -                            |
 | select  | 点击/选择后触发              |  `(string \| string[])[]`                          |
-| clickCloseIcon  | 点击关闭图标后触发              |  -                          |
-| clickOverlay  | 点击遮罩关闭后触发              |  -                          |
+| click-close-icon  | 点击关闭图标后触发              |  -                          |
+| click-overlay  | 点击遮罩关闭后触发              |  -                          |
 
 ### Slots
 
