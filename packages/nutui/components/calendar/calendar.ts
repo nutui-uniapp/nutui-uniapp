@@ -110,6 +110,8 @@ export const calendarEmits = {
   [CLOSE_EVENT]: () => true,
   [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
   [SELECT_EVENT]: (val: any) => val,
+  clickCloseIcon: () => true,
+  clickOverlay: () => true,
 }
 
 export type CalendarEmits = typeof calendarEmits
