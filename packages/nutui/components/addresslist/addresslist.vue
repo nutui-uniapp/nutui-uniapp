@@ -141,11 +141,11 @@ export default defineComponent({
         <slot name="item-addr" :item="item" />
         <slot name="itemAddr" :item="item" />
       </template>
-      <template v-if="longPress" #longpress-all>
+      <template v-if="props.longPress" #longpress-all>
         <slot name="longpress-btns" :item="item" />
         <slot name="longpressBtns" :item="item" />
       </template>
-      <template v-if="swipeEdition" #swipe-right-btn>
+      <template v-if="props.swipeEdition" #swipe-right-btn>
         <slot name="swipe-right" :item="item" />
         <slot name="swipeRight" :item="item" />
       </template>
@@ -153,7 +153,7 @@ export default defineComponent({
 
     <view v-if="props.showBottomButton" class="nut-address-list__bottom" @click="handleAddressAdd">
       <NutButton type="danger" block>
-        {{ translate('handleAddressAdd') }}
+        {{ translate('addAddress') }}
       </NutButton>
     </view>
   </view>
