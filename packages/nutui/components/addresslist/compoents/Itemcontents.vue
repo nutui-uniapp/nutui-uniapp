@@ -7,22 +7,31 @@ import NutIcon from '../../icon/icon.vue'
 const props = defineProps({
   item: {
     type: Object,
-    default: () => { },
+    default: () => ({}),
   },
+  useContentTopSlot: Boolean,
+  useContentIconSlot: Boolean,
+  useContentAddrSlot: Boolean,
 })
+
 const emit = defineEmits(['delIcon', 'editIcon', 'clickItem'])
 
-function delClick(event: Event) {
+function handleDelIconClick(event: any) {
+  event.stopPropagation()
+
   emit('delIcon', event, props.item)
-  event.stopPropagation()
 }
-function editClick(event: Event) {
+
+function handleEditIconClick(event: any) {
+  event.stopPropagation()
+
   emit('editIcon', event, props.item)
-  event.stopPropagation()
 }
-function contentsClick(event: Event) {
-  emit('clickItem', event, props.item)
+
+function handleContentsClick(event: any) {
   event.stopPropagation()
+
+  emit('clickItem', event, props.item)
 }
 </script>
 
@@ -42,36 +51,42 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="nut-address-list-item" @click="contentsClick">
-    <div class="nut-address-list-item__info">
-      <div class="nut-address-list-item__info-contact">
-        <slot name="content-top">
-          <div class="nut-address-list-item__info-contact-name">
-            {{ item.addressName }}
-          </div>
-          <div class="nut-address-list-item__info-contact-tel">
-            {{ item.phone }}
-          </div>
-          <div v-if="item.defaultAddress" class="nut-address-list-item__info-contact-default">
-            {{
-              translate('default')
-            }}
-          </div>
-        </slot>
-      </div>
-      <div class="nut-address-list-item__info-handle">
-        <slot name="content-icon">
-          <NutIcon name="del" custom-class="nut-address-list-item__info-handle-del" @tap.stop="delClick" />
-          <NutIcon name="edit" custom-class="nut-address-list-item__info-handle-edit" @tap.stop="editClick" />
-        </slot>
-      </div>
-    </div>
-    <div class="nut-address-list-item__addr">
-      <slot name="content-addr">
-        {{ item.fullAddress }}
-      </slot>
-    </div>
-  </div>
+  <view class="nut-address-list-item" @click="handleContentsClick">
+    <view class="nut-address-list-item__info">
+      <view class="nut-address-list-item__info-contact">
+        <slot v-if="props.useContentTopSlot" name="content-top" />
+
+        <template v-else>
+          <view class="nut-address-list-item__info-contact-name">
+            {{ props.item.addressName }}
+          </view>
+          <view class="nut-address-list-item__info-contact-tel">
+            {{ props.item.phone }}
+          </view>
+          <view v-if="props.item.defaultAddress" class="nut-address-list-item__info-contact-default">
+            {{ translate('default') }}
+          </view>
+        </template>
+      </view>
+
+      <view class="nut-address-list-item__info-handle">
+        <slot v-if="props.useContentIconSlot" name="content-icon" />
+
+        <template v-else>
+          <NutIcon name="del" custom-class="nut-address-list-item__info-handle-del" @tap.stop="handleDelIconClick" />
+          <NutIcon name="edit" custom-class="nut-address-list-item__info-handle-edit" @tap.stop="handleEditIconClick" />
+        </template>
+      </view>
+    </view>
+
+    <view class="nut-address-list-item__addr">
+      <slot v-if="props.useContentAddrSlot" name="content-addr" />
+
+      <template v-else>
+        {{ props.item.fullAddress }}
+      </template>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
@@ -82,7 +97,6 @@ export default defineComponent({
         color: $dark-color-gray;
       }
     }
-
   }
 }
 
