@@ -191,18 +191,18 @@ function onAddressAddClick() {
 
 ### Props
 
-| 参数                              | 说明                  | 类型      | 默认值     |
-|---------------------------------|---------------------|---------|---------|
-| data                            | 地址数组                | Array   | -       |
-| long-press                      | 长按功能                | boolean | `false` |
-| swipe-edition                   | 右滑功能                | boolean | `false` |
-| show-bottom-button              | 是否展示底部按钮            | boolean | `true`  |
-| options                         | 自定义 `key` 值时，设置映射关系 | Object  | -       |
-| use-item-infos-slot `1.7.6`     | 是否使用itemInfos插槽     | boolean | `false` |
-| use-item-icon-slot `1.7.6`      | 是否使用itemIcon插槽      | boolean | `false` |
-| use-item-addr-slot `1.7.6`      | 是否使用itemAddr插槽      | boolean | `false` |
-| use-longpress-btns-slot `1.7.6` | 是否使用longpressBtns插槽 | boolean | `false` |
-| use-swipe-right-slot `1.7.6`    | 是否使用swipeRight插槽    | boolean | `false` |
+| 参数                                   | 说明                  | 类型      | 默认值     |
+|--------------------------------------|---------------------|---------|---------|
+| data                                 | 地址数组                | Array   | -       |
+| long-press                           | 长按功能                | boolean | `false` |
+| swipe-edition                        | 右滑功能                | boolean | `false` |
+| show-bottom-button                   | 是否展示底部按钮            | boolean | `true`  |
+| options                              | 自定义 `key` 值时，设置映射关系 | Object  | -       |
+| use-item-infos-slot `1.7.6`          | 是否使用itemInfos插槽     | boolean | `false` |
+| use-item-icon-slot `1.7.6`           | 是否使用itemIcon插槽      | boolean | `false` |
+| use-item-addr-slot `1.7.6`           | 是否使用itemAddr插槽      | boolean | `false` |
+| use-longpress-btns-slot `1.7.6` `H5` | 是否使用longpressBtns插槽 | boolean | `false` |
+| use-swipe-right-slot `1.7.6` `H5`    | 是否使用swipeRight插槽    | boolean | `false` |
 
 ### Events
 
