@@ -6,7 +6,7 @@ import NutIcon from '../icon/icon.vue'
 import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLOSED_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { toastDefaultOptions, toastDefaultOptionsKey, toastEmits, toastProps } from './toast'
-import type { ToastOptions, ToastType } from './types'
+import type { ToastOptions, ToastType } from './type'
 
 const props = defineProps(toastProps)
 

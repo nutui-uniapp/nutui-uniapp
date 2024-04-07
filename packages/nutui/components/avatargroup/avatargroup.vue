@@ -5,11 +5,11 @@ import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import NutAvatar from '../avatar/avatar.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
-import { AVATAR_KEY, avatargroupProps } from './avatargroup'
+import { AVATAR_GROUP_KEY, avatargroupProps } from './avatargroup'
 
 const props = defineProps(avatargroupProps)
 
-const { internalChildren } = useProvide(AVATAR_KEY, `${PREFIX}-avatar`)({ props })
+const { internalChildren } = useProvide(AVATAR_GROUP_KEY, `${PREFIX}-avatar`)({ props })
 
 const innerMaxCount = computed<number>(() => {
   return Number(props.maxCount)
