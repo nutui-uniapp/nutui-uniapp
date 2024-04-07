@@ -23,39 +23,48 @@ const dataOptions = reactive({
 })
 
 function onItemClick() {
-  console.log('Click To Address')
+  // eslint-disable-next-line no-console
+  console.log('item clicked')
 }
 
 function onItemDelClick() {
-  console.log('Click To Delete')
+  // eslint-disable-next-line no-console
+  console.log('item delete clicked')
 }
 
 function onItemEditClick() {
-  console.log('Click To Edit')
+  // eslint-disable-next-line no-console
+  console.log('item edit clicked')
 }
 
 function onItemLongCopyClick() {
-  console.log('Click To Copy')
+  // eslint-disable-next-line no-console
+  console.log('item copy clicked')
 }
 
 function onItemLongSetClick() {
-  console.log('Click On Settings')
+  // eslint-disable-next-line no-console
+  console.log('item set clicked')
 }
 
 function onItemLongDelClick() {
-  console.log('Click On DelClickLong')
+  // eslint-disable-next-line no-console
+  console.log('item delete clicked (longpress)')
 }
 
 function onItemSwipeDelClick() {
-  console.log('Click On DelClickSwipe')
+  // eslint-disable-next-line no-console
+  console.log('item delete clicked (swipe)')
 }
 
 function onAddressAddClick() {
-  console.log('Click To Add')
+  // eslint-disable-next-line no-console
+  console.log('address add clicked')
 }
 
 function onItemRefreshClick(item: any) {
-  console.log('Click To Refresh', item)
+  // eslint-disable-next-line no-console
+  console.log('item refresh clicked', item)
 }
 </script>
 
@@ -107,7 +116,6 @@ function onItemRefreshClick(item: any) {
     <nut-address-list
       :data="data"
       :options="dataOptions"
-      use-item-icon-slot
     >
       <template #itemIcon="{ item }">
         <nut-icon name="refresh" @click="onItemRefreshClick(item)"></nut-icon>
