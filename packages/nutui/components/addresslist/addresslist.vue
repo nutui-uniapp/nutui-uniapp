@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import NutButton from '../button/button.vue'
 import { floatData, getMainClass } from '../_utils'
 import { PREFIX } from '../_constants'
@@ -10,6 +10,12 @@ import { addresslistEmits, addresslistProps } from './addresslist'
 const props = defineProps(addresslistProps)
 
 const emit = defineEmits(addresslistEmits)
+
+const slots = useSlots()
+
+function hasSlot(name: string) {
+  return Boolean(slots[name])
+}
 
 const dataArray = ref<any[]>([])
 const dataInfo = reactive({
@@ -116,11 +122,11 @@ export default defineComponent({
       :address="item"
       :long-press="props.longPress"
       :swipe-edition="props.swipeEdition"
-      :use-content-info-slot="props.useItemInfosSlot"
-      :use-content-icons-slot="props.useItemIconSlot"
-      :use-content-addrs-slot="props.useItemAddrSlot"
-      :use-longpress-all-slot="props.useLongpressBtnsSlot"
-      :use-swipe-right-btn-slot="props.useSwipeRightSlot"
+      :use-content-info-slot="hasSlot('itemInfos')"
+      :use-content-icons-slot="hasSlot('itemIcon')"
+      :use-content-addrs-slot="hasSlot('itemAddr')"
+      :use-longpress-all-slot="hasSlot('longpressBtns')"
+      :use-swipe-right-btn-slot="hasSlot('swipeRight')"
       @del-icon="handleDelIconClick($event, item, index)"
       @edit-icon="handleEditIconClick($event, item, index)"
       @click-item="handleContentItemClick($event, item, index)"
@@ -130,23 +136,18 @@ export default defineComponent({
       @long-del="handleLongDelClick($event, item, index)"
     >
       <template #content-info>
-        <slot name="item-infos" :item="item" />
         <slot name="itemInfos" :item="item" />
       </template>
       <template #content-icons>
-        <slot name="item-icon" :item="item" />
         <slot name="itemIcon" :item="item" />
       </template>
       <template #content-addrs>
-        <slot name="item-addr" :item="item" />
         <slot name="itemAddr" :item="item" />
       </template>
       <template v-if="props.longPress" #longpress-all>
-        <slot name="longpress-btns" :item="item" />
         <slot name="longpressBtns" :item="item" />
       </template>
       <template v-if="props.swipeEdition" #swipe-right-btn>
-        <slot name="swipe-right" :item="item" />
         <slot name="swipeRight" :item="item" />
       </template>
     </GeneralShell>
