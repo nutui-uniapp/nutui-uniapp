@@ -17,75 +17,115 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  useContentInfoSlot: Boolean,
+  useContentIconsSlot: Boolean,
+  useContentAddrsSlot: Boolean,
+  useLongpressAllSlot: Boolean,
+  useSwipeRightBtnSlot: Boolean,
 })
+
 const emit = defineEmits(['delIcon', 'editIcon', 'clickItem', 'longDown', 'longCopy', 'longSet', 'longDel', 'swipeDel'])
-let loop: any = null
-const moveRef = ref(false)
-const showMaskRef = ref(false)
-function delClick(event: Event) {
+
+const moveRef = ref<boolean>(false)
+const showMaskRef = ref<boolean>(false)
+
+function handleDelIconClick(event: any) {
+  event.stopPropagation()
+
   emit('delIcon', event, props.address)
-  event.stopPropagation()
 }
-function editClick(event: Event) {
+
+function handleEditIconClick(event: any) {
+  event.stopPropagation()
+
   emit('editIcon', event, props.address)
-  event.stopPropagation()
 }
-function clickItem(event: Event) {
+
+function handleItemClick(event: any) {
+  event.stopPropagation()
+
   if (moveRef.value)
     return
+
   emit('clickItem', event, props.address)
-  event.stopPropagation()
 }
-function delLongClick(event: Event) {
+
+function handleLongDelClick(event: any) {
+  event.stopPropagation()
+
   emit('longDel', event, props.address)
-  event.stopPropagation()
 }
-function holdingFunc(event: Event) {
-  loop = 0
-  showMaskRef.value = true
-  emit('longDown', event, props.address)
+
+let timer: NodeJS.Timeout | null = null
+
+function destroyTimer() {
+  if (timer == null)
+    return
+
+  clearTimeout(timer)
+  timer = null
 }
-// 长按功能实现
-function holddownstart(event: Event) {
-  loop = setTimeout(() => {
-    holdingFunc(event)
+
+function startTimer(event: any) {
+  timer = setTimeout(() => {
+    showMaskRef.value = true
+
+    emit('longDown', event, props.address)
   }, 300)
 }
-function holddownmove() {
+
+// 长按功能实现
+function handleTouchStart(event: any) {
+  startTimer(event)
+}
+
+function handleTouchMove() {
   // 滑动不触发长按
-  clearTimeout(loop)
+  destroyTimer()
 }
-function holddownend() {
+
+function handleTouchEnd() {
   // 删除定时器，防止重复注册
-  clearTimeout(loop)
+  destroyTimer()
 }
-function hideMaskClick() {
+
+function handleHideMaskClick() {
   showMaskRef.value = false
 }
-function copyCLick(event: Event) {
+
+function handleLongCopyClick(event: any) {
+  event.stopPropagation()
+
   emit('longCopy', event, props.address)
-  event.stopPropagation()
 }
-function setDefault(event: Event) {
+
+function handleLongSetClick(event: any) {
+  event.stopPropagation()
+
   emit('longSet', event, props.address)
-  event.stopPropagation()
 }
-function maskClick(event: Event) {
-  if (loop !== 0) {
+
+function handleMaskClick(event: any) {
+  event.stopPropagation()
+  event.preventDefault()
+
+  if (timer != null) {
     // 排除长按时触发点击的情况
     showMaskRef.value = false
   }
-  event.stopPropagation()
-  event.preventDefault()
 }
-function swipeDelClick(event: Event) {
+
+function handleSwipeDelClick(event: any) {
+  event.stopPropagation()
+
   emit('swipeDel', event, props.address)
-  event.stopPropagation()
 }
-function swipestart() {
+
+function handleSwipeStart() {
   moveRef.value = false
 }
-function swipemove() {
+
+function handleSwipeMove() {
   moveRef.value = true
 }
 </script>
@@ -106,10 +146,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-if="!swipeEdition" class="nut-address-list-general">
+  <view v-if="!props.swipeEdition" class="nut-address-list-general">
     <ItemContents
-      :item="address" @del-icon="delClick" @edit-icon="editClick" @click-item="clickItem"
-      @touchstart="holddownstart" @touchend="holddownend" @touchmove="holddownmove"
+      :item="props.address"
+      :use-content-top-slot="props.useContentInfoSlot"
+      :use-content-icon-slot="props.useContentIconsSlot"
+      :use-content-addr-slot="props.useContentAddrsSlot"
+      @del-icon="handleDelIconClick"
+      @edit-icon="handleEditIconClick"
+      @click-item="handleItemClick"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
     >
       <template #content-top>
         <slot name="content-info" />
@@ -121,26 +169,38 @@ export default defineComponent({
         <slot name="content-addrs" />
       </template>
     </ItemContents>
-    <div v-if="longPress && showMaskRef" class="nut-address-list-general__mask" @click="maskClick">
-      <slot name="longpress-all">
-        <div class="nut-address-list-general__mask-copy" @click="copyCLick">
+
+    <view v-if="props.longPress && showMaskRef" class="nut-address-list-general__mask" @click="handleMaskClick">
+      <slot v-if="props.useLongpressAllSlot" name="longpress-all" />
+
+      <template v-else>
+        <view class="nut-address-list-general__mask-copy" @click="handleLongCopyClick">
           复制地址
-        </div>
-        <div class="nut-address-list-general__mask-set" @click="setDefault">
+        </view>
+        <view class="nut-address-list-general__mask-set" @click="handleLongSetClick">
           设置默认
-        </div>
-        <div class="nut-address-list-general__mask-del" @click="delLongClick">
+        </view>
+        <view class="nut-address-list-general__mask-del" @click="handleLongDelClick">
           删除地址
-        </div>
-      </slot>
-    </div>
-    <div v-if="showMaskRef" class="nut-address-list__mask-bottom" @click="hideMaskClick" />
-  </div>
+        </view>
+      </template>
+    </view>
+
+    <view v-if="showMaskRef" class="nut-address-list__mask-bottom" @click="handleHideMaskClick" />
+  </view>
+
   <NutSwipe v-else>
-    <div class="nut-address-list-swipe">
+    <view class="nut-address-list-swipe">
       <ItemContents
-        :item="address" @del-icon="delClick" @edit-icon="editClick" @click-item="clickItem"
-        @touchmove="swipemove" @touchstart="swipestart"
+        :item="props.address"
+        :use-content-top-slot="props.useContentInfoSlot"
+        :use-content-icon-slot="props.useContentIconsSlot"
+        :use-content-addr-slot="props.useContentAddrsSlot"
+        @del-icon="handleDelIconClick"
+        @edit-icon="handleEditIconClick"
+        @click-item="handleItemClick"
+        @touchstart="handleSwipeStart"
+        @touchmove="handleSwipeMove"
       >
         <template #content-top>
           <slot name="content-info" />
@@ -152,14 +212,17 @@ export default defineComponent({
           <slot name="content-addrs" />
         </template>
       </ItemContents>
-    </div>
+    </view>
+
     <template #right>
       <view style="height: 100%;">
-        <slot name="swipe-right-btn">
-          <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="swipeDelClick">
+        <slot v-if="props.useSwipeRightBtnSlot" name="swipe-right-btn" />
+
+        <template v-else>
+          <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="handleSwipeDelClick">
             删除
           </NutButton>
-        </slot>
+        </template>
       </view>
     </template>
   </NutSwipe>
@@ -184,7 +247,6 @@ export default defineComponent({
       }
     }
   }
-
 }
 
 .nut-address-list {

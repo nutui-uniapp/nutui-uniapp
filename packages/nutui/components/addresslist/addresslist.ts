@@ -10,26 +10,42 @@ export const addresslistProps = {
    * @description 地址数组
    */
   data: makeArrayProp<unknown>([]),
-
   /**
    * @description 长按功能
    */
   longPress: Boolean,
-
   /**
    * @description 右滑功能
    */
   swipeEdition: Boolean,
-
   /**
    * @description 是否展示底部按钮
    */
   showBottomButton: truthProp,
-
   /**
    * @description 自定义 `key` 值时，设置映射关系
    */
   options: makeObjectProp<OptionsType>({}),
+  /**
+   * @description 是否使用itemInfos插槽
+   */
+  useItemInfosSlot: Boolean,
+  /**
+   * @description 是否使用itemIcon插槽
+   */
+  useItemIconSlot: Boolean,
+  /**
+   * @description 是否使用itemAddr插槽
+   */
+  useItemAddrSlot: Boolean,
+  /**
+   * @description 是否使用longpressBtns插槽
+   */
+  useLongpressBtnsSlot: Boolean,
+  /**
+   * @description 是否使用swipeRight插槽
+   */
+  useSwipeRightSlot: Boolean,
 }
 
 export type AddressListProps = ExtractPropTypes<typeof addresslistProps>
