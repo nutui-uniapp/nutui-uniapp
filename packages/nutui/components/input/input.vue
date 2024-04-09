@@ -7,7 +7,7 @@ import NutIcon from '../icon/icon.vue'
 import { useFormDisabled } from '../form/form'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
-import type { InputFormatTrigger, InputMode, InputTarget, InputType } from './type'
+import type { InputFormatTrigger, InputTarget } from './type'
 
 const props = defineProps(inputProps)
 
@@ -40,30 +40,6 @@ const inputStyles = computed(() => {
   return [props.inputStyle, {
     textAlign: props.inputAlign,
   }]
-})
-
-const innerInputType = computed<InputType>(() => {
-  // #ifdef H5
-  if (props.type === 'number')
-    return 'tel'
-
-  if (props.type === 'digit')
-    return 'text'
-  // #endif
-
-  return props.type
-})
-
-const innerInputMode = computed<InputMode>(() => {
-  // #ifdef H5
-  if (props.type === 'digit')
-    return 'decimal'
-
-  if (props.type === 'number')
-    return 'numeric'
-  // #endif
-
-  return props.inputMode
 })
 
 const innerMaxLength = computed<number>(() => {
@@ -213,7 +189,7 @@ export default defineComponent({
             :class="props.inputClass"
             :style="inputStyles"
             :value="innerValue"
-            :type="innerInputType as any"
+            :type="props.type as any"
             :placeholder="props.placeholder"
             :placeholder-style="props.placeholderStyle"
             :placeholder-class="props.placeholderClass"
@@ -226,7 +202,7 @@ export default defineComponent({
             :confirm-type="props.confirmType"
             :adjust-position="props.adjustPosition"
             :always-system="props.alwaysSystem"
-            :input-mode="innerInputMode"
+            :inputmode="props.inputMode"
             :cursor-spacing="props.cursorSpacing"
             :always-embed="props.alwaysEmbed"
             :confirm-hold="props.confirmHold"
