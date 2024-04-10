@@ -352,14 +352,14 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                               | 默认值                     |
-| ---------------------------------- | -------------------------- |
-| --nut-tabbar-active-color          | _var(--nut-primary-color)_ |
-| --nut-tabbar-unactive-color        | _var(--nut-primary-color)_ |
-| --nut-tabbar-border-top            | _1px solid #eee_           |
-| --nut-tabbar-border-bottom         | _1px solid #eee_           |
-| --nut-tabbar-box-shadow            | _none_                     |
-| --nut-tabbar-item-text-font-size   | _var(--nut-font-size-0)_   |
-| --nut-tabbar-item-text-line-height | _initial_                  |
-| --nut-tabbar-height                | _50px_                     |
-| --nut-tabbar-word-margin-top       | _auto_                     |
+| 名称                               | 默认值                   |
+| ---------------------------------- | ------------------------ |
+| --nut-tabbar-active-color          | var(--nut-primary-color) |
+| --nut-tabbar-unactive-color        | var(--nut-primary-color) |
+| --nut-tabbar-border-top            | 1px solid #eee           |
+| --nut-tabbar-border-bottom         | 1px solid #eee           |
+| --nut-tabbar-box-shadow            | none                     |
+| --nut-tabbar-item-text-font-size   | var(--nut-font-size-0)   |
+| --nut-tabbar-item-text-line-height | initial                  |
+| --nut-tabbar-height                | 50px                     |
+| --nut-tabbar-word-margin-top       | auto                     |

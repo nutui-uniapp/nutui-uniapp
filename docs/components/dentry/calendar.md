@@ -838,20 +838,20 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                     |
-| --------------------------------------- | -------------------------- |
-| --nut-calendar-primary-color            | _var(--nut-primary-color)_ |
-| --nut-calendar-choose-color             | _var(--nut-primary-color)_ |
-| --nut-calendar-choose-font-color        | _var(--nut-primary-color)_ |
-| --nut-calendar-base-color               | _#333333_                  |
-| --nut-calendar-disable-color            | _#d1d0d0_                  |
-| --nut-calendar-base-font                | _var(--nut-font-size-3)_   |
-| --nut-calendar-title-font               | _var(--nut-font-size-4)_   |
-| --nut-calendar-title-font-weight        | _500_                      |
-| --nut-calendar-sub-title-font           | _var(--nut-font-size-2)_   |
-| --nut-calendar-text-font                | _var(--nut-font-size-1)_   |
-| --nut-calendar-day-font                 | _16px_                     |
-| --nut-calendar-day-active-border-radius | _0px_                      |
-| --nut-calendar-day-font-weight          | _500_                      |
-| --nut-calendar-day67-font-color         | _var(--nut-primary-color)_ |
-| --nut-calendar-month-title-font-size    | _inherit_                  |
+| 名称                                    | 默认值                    |
+| --------------------------------------- | ------------------------- |
+| --nut-calendar-primary-color            | var(--nut-primary-color)  |
+| --nut-calendar-choose-color             | var(--nut-primary-color)  |
+| --nut-calendar-choose-font-color        | var(--nut-primary-color)  |
+| --nut-calendar-base-color               | #333333                   |
+| --nut-calendar-disable-color            | #d1d0d0                   |
+| --nut-calendar-base-font                | var(--nut-font-size-3)    |
+| --nut-calendar-title-font               | var(--nut-font-size-4)    |
+| --nut-calendar-title-font-weight        | 500                       |
+| --nut-calendar-sub-title-font           | var(--nut-font-size-2)    |
+| --nut-calendar-text-font                | var(--nut-font-size-1)    |
+| --nut-calendar-day-font                 | 16px                      |
+| --nut-calendar-day-active-border-radius | 0px                       |
+| --nut-calendar-day-font-weight          | 500                       |
+| --nut-calendar-day67-font-color         | var(--nut-primary-color)_ |
+| --nut-calendar-month-title-font-size    | inherit                   |

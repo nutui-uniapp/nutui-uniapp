@@ -153,20 +153,20 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                        | 默认值                       | 描述 |
-| ------------------------------------------- | ---------------------------- | ---- |
-| --nut-sidenavbar-content-bg-color           | _var(--nut-white)_           | -    |
-| --nut-sidenavbar-sub-title-border-color     | _#f6f6f6_                    | -    |
-| --nut-sidenavbar-sub-title-bg-color         | _#f6f6f6_                    | -    |
-| --nut-sidenavbar-sub-title-font-size        | _var(--nut-font-size-large)_ | -    |
-| --nut-sidenavbar-sub-title-radius           | _0_                          | -    |
-| --nut-sidenavbar-sub-title-border           | _0_                          | -    |
-| --nut-sidenavbar-sub-title-width            | _100%_                       | -    |
-| --nut-sidenavbar-sub-title-height           | _40px_                       | -    |
-| --nut-sidenavbar-sub-title-text-line-height | _40px_                       | -    |
-| --nut-sidenavbar-sub-title-text-color       | _var(--nut-title-color)_     | -    |
-| --nut-sidenavbar-item-title-color           | _#333_                       | -    |
-| --nut-sidenavbar-item-title-bg-color        | _var(--nut-white)_           | -    |
-| --nut-sidenavbar-item-height                | _40px_                       | -    |
-| --nut-sidenavbar-item-line-height           | _40px_                       | -    |
-| --nut-sidenavbar-item-font-size             | _16px_                       | -    |
+| 名称                                        | 默认值                     | 描述 |
+| ------------------------------------------- | -------------------------- | ---- |
+| --nut-sidenavbar-content-bg-color           | var(--nut-white)           | -    |
+| --nut-sidenavbar-sub-title-border-color     | #f6f6f6                    | -    |
+| --nut-sidenavbar-sub-title-bg-color         | #f6f6f6                    | -    |
+| --nut-sidenavbar-sub-title-font-size        | var(--nut-font-size-large) | -    |
+| --nut-sidenavbar-sub-title-radius           | 0                          | -    |
+| --nut-sidenavbar-sub-title-border           | 0                          | -    |
+| --nut-sidenavbar-sub-title-width            | 100%                       | -    |
+| --nut-sidenavbar-sub-title-height           | 40px                       | -    |
+| --nut-sidenavbar-sub-title-text-line-height | 40px                       | -    |
+| --nut-sidenavbar-sub-title-text-color       | var(--nut-title-color)     | -    |
+| --nut-sidenavbar-item-title-color           | #333                       | -    |
+| --nut-sidenavbar-item-title-bg-color        | var(--nut-white)           | -    |
+| --nut-sidenavbar-item-height                | 40px                       | -    |
+| --nut-sidenavbar-item-line-height           | 40px                       | -    |
+| --nut-sidenavbar-item-font-size             | 16px                       | -    |

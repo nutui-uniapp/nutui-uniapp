@@ -194,5 +194,5 @@
 
 | 名称                          | 默认值 |
 | ----------------------------- | ------ |
-| --nut-popup-close-icon-margin | _16px_ |
-| --nut-popup-border-radius     | _20px_ |
+| --nut-popup-close-icon-margin | 16px   |
+| --nut-popup-border-radius     | 20px   |

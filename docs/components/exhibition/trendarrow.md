@@ -136,5 +136,5 @@
 
 | 名称                                | 默认值 |
 | ----------------------------------- | ------ |
-| --nut-trendarrow-font-size          | _14px_ |
-| --nut-trendarrow-before-icon-margin | _4px_  |
+| --nut-trendarrow-font-size          | 14px   |
+| --nut-trendarrow-before-icon-margin | 4px    |

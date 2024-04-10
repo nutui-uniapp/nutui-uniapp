@@ -202,30 +202,30 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                               | 默认值                                   |
-| ---------------------------------- | ---------------------------------------- |
-| --nut-cell-color                   | _var(--nut-title-color2)_                |
-| --nut-cell-title-font              | _var(--nut-font-size-2)_                 |
-| --nut-cell-title-desc-font         | _var(--nut-font-size-1)_                 |
-| --nut-cell-desc-font               | _var(--nut-font-size-2)_                 |
-| --nut-cell-desc-color              | _var(--nut-disable-color)_               |
-| --nut-cell-border-radius           | _6px_                                    |
-| --nut-cell-padding                 | _13px 16px_                              |
-| --nut-cell-line-height             | _20px_                                   |
-| --nut-cell-after-right             | _16px_                                   |
-| --nut-cell-after-border-bottom     | _1px solid #f5f6f7_                      |
-| --nut-cell-default-icon-margin     | _0 4px 0 0px_                            |
-| --nut-cell-large-title-font        | _var(--nut-font-size-large)_             |
-| --nut-cell-large-title-desc-font   | _var(--nut-font-size-base)_              |
-| --nut-cell-large-padding           | _15px 16px_                              |
-| --nut-cell-background              | _var(--nut-white)_                       |
-| --nut-cell-box-shadow              | _0px 1px 7px 0px rgba(237, 238, 241, 1)_ |
-| --nut-cell-group-title-padding     | _0 10px_                                 |
-| --nut-cell-group-title-color       | _#909ca4_                                |
-| --nut-cell-group-title-font-size   | _var(--nut-font-size-2)_                 |
-| --nut-cell-group-title-line-height | _20px_                                   |
-| --nut-cell-group-desc-padding      | _0 10px_                                 |
-| --nut-cell-group-desc-color        | _#909ca4_                                |
-| --nut-cell-group-desc-font-size    | _var(--nut-font-size-1)_                 |
-| --nut-cell-group-desc-line-height  | _16px_                                   |
-| --nut-cell-group-background-color  | _var(--nut-white)_                       |
+| 名称                               | 默认值                                 |
+| ---------------------------------- | -------------------------------------- |
+| --nut-cell-color                   | var(--nut-title-color2)                |
+| --nut-cell-title-font              | var(--nut-font-size-2)                 |
+| --nut-cell-title-desc-font         | var(--nut-font-size-1)                 |
+| --nut-cell-desc-font               | var(--nut-font-size-2)                 |
+| --nut-cell-desc-color              | var(--nut-disable-color)               |
+| --nut-cell-border-radius           | 6px                                    |
+| --nut-cell-padding                 | 13px 16px                              |
+| --nut-cell-line-height             | 20px                                   |
+| --nut-cell-after-right             | 16px                                   |
+| --nut-cell-after-border-bottom     | 1px solid #f5f6f7                      |
+| --nut-cell-default-icon-margin     | 0 4px 0 0px                            |
+| --nut-cell-large-title-font        | var(--nut-font-size-large)             |
+| --nut-cell-large-title-desc-font   | var(--nut-font-size-base)              |
+| --nut-cell-large-padding           | 15px 16px                              |
+| --nut-cell-background              | var(--nut-white)                       |
+| --nut-cell-box-shadow              | 0px 1px 7px 0px rgba(237, 238, 241, 1) |
+| --nut-cell-group-title-padding     | 0 10px                                 |
+| --nut-cell-group-title-color       | #909ca4                                |
+| --nut-cell-group-title-font-size   | var(--nut-font-size-2)                 |
+| --nut-cell-group-title-line-height | 20px                                   |
+| --nut-cell-group-desc-padding      | 0 10px                                 |
+| --nut-cell-group-desc-color        | #909ca4                                |
+| --nut-cell-group-desc-font-size    | var(--nut-font-size-1)                 |
+| --nut-cell-group-desc-line-height  | 16px                                   |
+| --nut-cell-group-background-color  | var(--nut-white)                       |

@@ -436,18 +436,18 @@ const basicData = reactive({
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                  | 默认值                      |
-| ------------------------------------- | --------------------------- |
-| --nut-form-item-error-line-color      | _var(--nut-required-color)_ |
-| --nut-form-item-required-color        | _var(--nut-required-color)_ |
-| --nut-form-item-error-message-color   | _var(--nut-required-color)_ |
-| --nut-form-item-label-font-size       | _14px_                      |
-| --nut-form-item-label-width           | _90px_                      |
-| --nut-form-item-label-margin-right    | _10px_                      |
-| --nut-form-item-label-text-align      | _left_                      |
-| --nut-form-item-required-margin-right | _4px_                       |
-| --nut-form-item-body-font-size        | _14px_                      |
-| --nut-form-item-body-slots-text-align | _left_                      |
-| --nut-form-item-body-input-text-align | _left_                      |
-| --nut-form-item-tip-font-size         | _10px_                      |
-| --nut-form-item-tip-text-align        | _left_                      |
+| 名称                                  | 默认值                    |
+| ------------------------------------- | ------------------------- |
+| --nut-form-item-error-line-color      | var(--nut-required-color) |
+| --nut-form-item-required-color        | var(--nut-required-color) |
+| --nut-form-item-error-message-color   | var(--nut-required-color) |
+| --nut-form-item-label-font-size       | 14px                      |
+| --nut-form-item-label-width           | 90px                      |
+| --nut-form-item-label-margin-right    | 10px                      |
+| --nut-form-item-label-text-align      | left                      |
+| --nut-form-item-required-margin-right | 4px                       |
+| --nut-form-item-body-font-size        | 14px                      |
+| --nut-form-item-body-slots-text-align | left                      |
+| --nut-form-item-body-input-text-align | left                      |
+| --nut-form-item-tip-font-size         | 10px                      |
+| --nut-form-item-tip-text-align        | left                      |

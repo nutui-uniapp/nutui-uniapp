@@ -487,7 +487,7 @@
 
 | 名称                                       | 默认值 |
 | ------------------------------------------ | ------ |
-| --nut-swiper-pagination-item-width         | _8px_  |
-| --nut-swiper-pagination-item-height        | _3px_  |
-| --nut-swiper-pagination-item-margin-right  | _7px_  |
-| --nut-swiper-pagination-item-border-radius | _2px_  |
+| --nut-swiper-pagination-item-width         | 8px    |
+| --nut-swiper-pagination-item-height        | 3px    |
+| --nut-swiper-pagination-item-margin-right  | 7px    |
+| --nut-swiper-pagination-item-border-radius | 2px    |

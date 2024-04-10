@@ -198,46 +198,46 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                   | 默认值                                                                                                                            |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| --nut-button-border-radius             | _25px_                                                                                                                            |
-| --nut-button-border-width              | _1px_                                                                                                                             |
-| --nut-button-icon-width                | _16px_                                                                                                                            |
-| --nut-button-default-bg-color          | _var(--nut-white)_                                                                                                                |
-| --nut-button-default-border-color      | _rgba(204, 204, 204, 1)_                                                                                                          |
-| --nut-button-default-color             | _rgba(102, 102, 102, 1)_                                                                                                          |
-| --nut-button-default-padding           | _0 18px_                                                                                                                          |
-| --nut-button-mini-padding              | _0 12px_                                                                                                                          |
-| --nut-button-small-padding             | _0 12px_                                                                                                                          |
-| --nut-button-small-height              | _28px_                                                                                                                            |
-| --nut-button-mini-height               | _24px_                                                                                                                            |
-| --nut-button-default-height            | _38px_                                                                                                                            |
-| --nut-button-large-height              | _48px_                                                                                                                            |
-| --nut-button-large-line-height         | _46px_                                                                                                                            |
-| --nut-button-small-line-height         | _26px_                                                                                                                            |
-| --nut-button-block-height              | _48px_                                                                                                                            |
-| --nut-button-default-line-height       | _36px_                                                                                                                            |
-| --nut-button-block-line-height         | _46px_                                                                                                                            |
-| --nut-button-default-font-size         | _var(--nut-font-size-2)_                                                                                                          |
-| --nut-button-large-font-size           | _var(--nut-button-default-font-size)_                                                                                             |
-| --nut-button-small-font-size           | _var(--nut-font-size-1)_                                                                                                          |
-| --nut-button-mini-font-size            | _var(--nut-font-size-1)_                                                                                                          |
-| --nut-button-mini-line-height          | _1.2_                                                                                                                             |
-| --nut-button-disabled-opacity          | _0.68_                                                                                                                            |
-| --nut-button-primary-color             | _var(--nut-white)_                                                                                                                |
-| --nut-button-primary-border-color      | _var(--nut-primary-color)_                                                                                                        |
-| --nut-button-primary-background-color  | _linear-gradient(135deg,var(--nut-primary-color) 0%,var(--nut-primary-color-end) 100%)_                                           |
-| --nut-button-info-color                | _var(--nut-white)_                                                                                                                |
-| --nut-button-info-border-color         | _rgba(73, 106, 242, 1)_                                                                                                           |
-| --nut-button-info-background-color     | _linear-gradient(315deg, rgba(73, 143, 242, 1) 0%, rgba(73, 101, 242, 1) 100%)_                                                   |
-| --nut-button-success-color             | _var(--nut-white)_                                                                                                                |
-| --nut-button-success-border-color      | _rgba(38, 191, 38, 1)_                                                                                                            |
-| --nut-button-success-background-color  | _linear-gradient(135deg,rgba(38, 191, 38, 1) 0%,rgba(39, 197, 48, 1) 45%,rgba(40, 207, 63, 1) 83%,rgba(41, 212, 70, 1) 100%)_     |
-| --nut-button-danger-color              | _var(--nut-white)_                                                                                                                |
-| --nut-button-danger-border-color       | _rgba(250, 44, 25, 1)_                                                                                                            |
-| --nut-button-danger-background-color   | _rgba(250, 44, 25, 1)_                                                                                                            |
-| --nut-button-warning-color             | _var(--nut-white)_                                                                                                                |
-| --nut-button-warning-border-color      | _rgba(255, 158, 13, 1)_                                                                                                           |
-| --nut-button-warning-background-color  | _linear-gradient(135deg,rgba(255, 158, 13, 1) 0%,rgba(255, 167, 13, 1) 45%,rgba(255, 182, 13, 1) 83%,rgba(255, 190, 13, 1) 100%)_ |
-| --nut-button-plain-background-color    | _var(--nut-white)_                                                                                                                |
-| --nut-button-small-round-border-radius | _var(--nut-button-border-radius)_                                                                                                 |
+| 名称                                   | 默认值                                                                                                                          |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| --nut-button-border-radius             | 25px                                                                                                                            |
+| --nut-button-border-width              | 1px                                                                                                                             |
+| --nut-button-icon-width                | 16px                                                                                                                            |
+| --nut-button-default-bg-color          | var(--nut-white)                                                                                                                |
+| --nut-button-default-border-color      | rgba(204, 204, 204, 1)                                                                                                          |
+| --nut-button-default-color             | rgba(102, 102, 102, 1)                                                                                                          |
+| --nut-button-default-padding           | 0 18px                                                                                                                          |
+| --nut-button-mini-padding              | 0 12px                                                                                                                          |
+| --nut-button-small-padding             | 0 12px                                                                                                                          |
+| --nut-button-small-height              | 28px                                                                                                                            |
+| --nut-button-mini-height               | 24px                                                                                                                            |
+| --nut-button-default-height            | 38px                                                                                                                            |
+| --nut-button-large-height              | 48px                                                                                                                            |
+| --nut-button-large-line-height         | 46px                                                                                                                            |
+| --nut-button-small-line-height         | 26px                                                                                                                            |
+| --nut-button-block-height              | 48px                                                                                                                            |
+| --nut-button-default-line-height       | 36px                                                                                                                            |
+| --nut-button-block-line-height         | 46px                                                                                                                            |
+| --nut-button-default-font-size         | var(--nut-font-size-2)                                                                                                          |
+| --nut-button-large-font-size           | var(--nut-button-default-font-size)                                                                                             |
+| --nut-button-small-font-size           | var(--nut-font-size-1)                                                                                                          |
+| --nut-button-mini-font-size            | var(--nut-font-size-1)                                                                                                          |
+| --nut-button-mini-line-height          | 1.2                                                                                                                             |
+| --nut-button-disabled-opacity          | 0.68                                                                                                                            |
+| --nut-button-primary-color             | var(--nut-white)                                                                                                                |
+| --nut-button-primary-border-color      | var(--nut-primary-color)                                                                                                        |
+| --nut-button-primary-background-color  | linear-gradient(135deg,var(--nut-primary-color) 0%,var(--nut-primary-color-end) 100%)                                           |
+| --nut-button-info-color                | var(--nut-white)                                                                                                                |
+| --nut-button-info-border-color         | rgba(73, 106, 242, 1)                                                                                                           |
+| --nut-button-info-background-color     | linear-gradient(315deg, rgba(73, 143, 242, 1) 0%, rgba(73, 101, 242, 1) 100%)                                                   |
+| --nut-button-success-color             | var(--nut-white)                                                                                                                |
+| --nut-button-success-border-color      | rgba(38, 191, 38, 1)                                                                                                            |
+| --nut-button-success-background-color  | linear-gradient(135deg,rgba(38, 191, 38, 1) 0%,rgba(39, 197, 48, 1) 45%,rgba(40, 207, 63, 1) 83%,rgba(41, 212, 70, 1) 100%)     |
+| --nut-button-danger-color              | var(--nut-white)                                                                                                                |
+| --nut-button-danger-border-color       | rgba(250, 44, 25, 1)                                                                                                            |
+| --nut-button-danger-background-color   | rgba(250, 44, 25, 1)                                                                                                            |
+| --nut-button-warning-color             | var(--nut-white)                                                                                                                |
+| --nut-button-warning-border-color      | rgba(255, 158, 13, 1)                                                                                                           |
+| --nut-button-warning-background-color  | linear-gradient(135deg,rgba(255, 158, 13, 1) 0%,rgba(255, 167, 13, 1) 45%,rgba(255, 182, 13, 1) 83%,rgba(255, 190, 13, 1) 100%) |
+| --nut-button-plain-background-color    | var(--nut-white)                                                                                                                |
+| --nut-button-small-round-border-radius | var(--nut-button-border-radius)                                                                                                 |

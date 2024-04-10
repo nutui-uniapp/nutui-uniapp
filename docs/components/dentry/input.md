@@ -422,9 +422,9 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                       | 默认值                      |
-| -------------------------- | --------------------------- |
-| --nut-input-border-bottom  | _#eaf0fb_                   |
-| --nut-input-disabled-color | _#c8c9cc_                   |
-| --nut-input-required-color | _var(--nut-required-color)_ |
-| --nut-input-font-size      | _var(--nut-font-size-2)_    |
+| 名称                       | 默认值                    |
+| -------------------------- | ------------------------- |
+| --nut-input-border-bottom  | #eaf0fb                   |
+| --nut-input-disabled-color | #c8c9cc                   |
+| --nut-input-required-color | var(--nut-required-color) |
+| --nut-input-font-size      | var(--nut-font-size-2)    |

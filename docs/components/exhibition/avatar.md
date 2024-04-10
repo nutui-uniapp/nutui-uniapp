@@ -152,13 +152,13 @@ Icon 和字符型可以自定义颜色及背景色
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                          | 默认值    |
-| ----------------------------- | --------- |
-| --nut-actionsheet-light-color | _#f6f6f6_ |
-| --nut-avatar-square           | _5px_     |
-| --nut-avatar-large-width      | _60px_    |
-| --nut-avatar-large-height     | _60px_    |
-| --nut-avatar-small-width      | _32px_    |
-| --nut-avatar-small-height     | _32px_    |
-| --nut-avatar-normal-width     | _40px_    |
-| --nut-avatar-normal-height    | _40px_    |
+| 名称                          | 默认值  |
+| ----------------------------- | ------- |
+| --nut-actionsheet-light-color | #f6f6f6 |
+| --nut-avatar-square           | 5px     |
+| --nut-avatar-large-width      | 60px    |
+| --nut-avatar-large-height     | 60px    |
+| --nut-avatar-small-width      | 32px    |
+| --nut-avatar-small-height     | 32px    |
+| --nut-avatar-normal-width     | 40px    |
+| --nut-avatar-normal-height    | 40px    |

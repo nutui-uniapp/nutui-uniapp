@@ -96,6 +96,6 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                 | 默认值    | 描述 |
-| -------------------- | --------- | ---- |
-| --nut-ecard-bg-color | _#f0f2f5_ | -    |
+| 名称                 | 默认值  | 描述 |
+| -------------------- | ------- | ---- |
+| --nut-ecard-bg-color | #f0f2f5 | -    |

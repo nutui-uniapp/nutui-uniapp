@@ -238,14 +238,14 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                               | 默认值                   |
-| ---------------------------------- | ------------------------ |
-| --nut-noticebar-background         | _rgba(251, 248, 220, 1)_ |
-| --nut-noticebar-color              | _#d9500b_                |
-| --nut-noticebar-font-size          | _14px_                   |
-| --nut-noticebar-across-height      | _40px_                   |
-| --nut-noticebar-across-line-height | _24px_                   |
-| --nut-noticebar-box-padding        | _0 16px_                 |
-| --nut-noticebar-wrapable-padding   | _16px_                   |
-| --nut-noticebar-lefticon-margin    | _0px 10px_               |
-| --nut-noticebar-righticon-margin   | _0px 10px_               |
+| 名称                               | 默认值                 |
+| ---------------------------------- | ---------------------- |
+| --nut-noticebar-background         | rgba(251, 248, 220, 1) |
+| --nut-noticebar-color              | #d9500b                |
+| --nut-noticebar-font-size          | 14px                   |
+| --nut-noticebar-across-height      | 40px                   |
+| --nut-noticebar-across-line-height | 24px                   |
+| --nut-noticebar-box-padding        | 0 16px                 |
+| --nut-noticebar-wrapable-padding   | 16px                   |
+| --nut-noticebar-lefticon-margin    | 0px 10px               |
+| --nut-noticebar-righticon-margin   | 0px 10px               |

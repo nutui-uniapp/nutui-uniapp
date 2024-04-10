@@ -370,22 +370,22 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                      | 默认值                     | 描述 |
-| ----------------------------------------- | -------------------------- | ---- |
-| --nut-checkbox-label-color                | _#1d1e1e_                  | -    |
-| --nut-checkbox-label-disable-color        | _#999_                     | -    |
-| --nut-checkbox-icon-disable-color         | _#d6d6d6_                  | -    |
-| --nut-checkbox-label-margin-left          | _15px_                     | -    |
-| --nut-checkbox-label-font-size            | _14px_                     | -    |
-| --nut-checkbox-icon-font-size             | _18px_                     | -    |
-| --nut-checkbox-icon-disable-color2        | _var(--nut-help-color)_    | -    |
-| --nut-checkbox-button-padding             | _5px 18px_                 | -    |
-| --nut-checkbox-button-font-size           | _12px_                     | -    |
-| --nut-checkbox-button-border-radius       | _15px_                     | -    |
-| --nut-checkbox-button-border-color        | _#f6f7f9_                  | -    |
-| --nut-checkbox-button-background          | _#f6f7f9_                  | -    |
-| --nut-checkbox-button-font-color-active   | _var(--nut-primary-color)_ | -    |
-| --nut-checkbox-button-border-color-active | _var(--nut-primary-color)_ | -    |
-| --nut-checkbox-button-background-active   | _var(--nut-primary-color)_ | -    |
-| --nut-checkbox-display                    | _inline-flex_              | -    |
-| --nut-checkbox-margin-right               | _20px_                     | -    |
+| 名称                                      | 默认值                   | 描述 |
+| ----------------------------------------- | ------------------------ | ---- |
+| --nut-checkbox-label-color                | #1d1e1e                  | -    |
+| --nut-checkbox-label-disable-color        | #999                     | -    |
+| --nut-checkbox-icon-disable-color         | #d6d6d6                  | -    |
+| --nut-checkbox-label-margin-left          | 15px                     | -    |
+| --nut-checkbox-label-font-size            | 14px                     | -    |
+| --nut-checkbox-icon-font-size             | 18px                     | -    |
+| --nut-checkbox-icon-disable-color2        | var(--nut-help-color)_   | -    |
+| --nut-checkbox-button-padding             | 5px 18px                 | -    |
+| --nut-checkbox-button-font-size           | 12px                     | -    |
+| --nut-checkbox-button-border-radius       | 15px                     | -    |
+| --nut-checkbox-button-border-color        | #f6f7f9                  | -    |
+| --nut-checkbox-button-background          | #f6f7f9                  | -    |
+| --nut-checkbox-button-font-color-active   | var(--nut-primary-color) | -    |
+| --nut-checkbox-button-border-color-active | var(--nut-primary-color) | -    |
+| --nut-checkbox-button-background-active   | var(--nut-primary-color) | -    |
+| --nut-checkbox-display                    | inline-flex              | -    |
+| --nut-checkbox-margin-right               | 20px                     | -    |

@@ -203,18 +203,18 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| Name                                            | Default Value            |
-| ----------------------------------------------- | ------------------------ |
-| --nut-collapse-item-padding                     | _13px 36px 13px 26px_    |
-| --nut-collapse-item-color                       | _#666666_                |
-| --nut-collapse-item-disabled-color              | _#c8c9cc_                |
-| --nut-collapse-item-icon-color                  | _#666666_                |
-| --nut-collapse-item-font-size                   | _var(--nut-font-size-2)_ |
-| --nut-collapse-item-line-height                 | _24px_                   |
-| --nut-collapse-item-sub-title-color             | _#666666_                |
-| --nut-collapse-wrapper-content-padding          | _12px 26px_              |
-| --nut-collapse-wrapper-empty-content-padding    | _0 26px_                 |
-| --nut-collapse-wrapper-content-color            | _#666666_                |
-| --nut-collapse-wrapper-content-font-size        | _var(--nut-font-size-2)_ |
-| --nut-collapse-wrapper-content-line-height      | _1.5_                    |
-| --nut-collapse-wrapper-content-background-color | _var(--nut-white)_       |
+| Name                                            | Default Value          |
+| ----------------------------------------------- | ---------------------- |
+| --nut-collapse-item-padding                     | 13px 36px 13px 26px    |
+| --nut-collapse-item-color                       | #666666                |
+| --nut-collapse-item-disabled-color              | #c8c9cc                |
+| --nut-collapse-item-icon-color                  | #666666                |
+| --nut-collapse-item-font-size                   | var(--nut-font-size-2) |
+| --nut-collapse-item-line-height                 | 24px                   |
+| --nut-collapse-item-sub-title-color             | #666666                |
+| --nut-collapse-wrapper-content-padding          | 12px 26px              |
+| --nut-collapse-wrapper-empty-content-padding    | 0 26px                 |
+| --nut-collapse-wrapper-content-color            | #666666                |
+| --nut-collapse-wrapper-content-font-size        | var(--nut-font-size-2) |
+| --nut-collapse-wrapper-content-line-height      | 1.5                    |
+| --nut-collapse-wrapper-content-background-color | var(--nut-white)       |

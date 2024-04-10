@@ -213,17 +213,17 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                          | 默认值                                                                                    |
-| ----------------------------- | ----------------------------------------------------------------------------------------- |
-| --nut-badge-background-color  | _linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%)_ |
-| --nut-badge-color             | _#fff_                                                                                    |
-| --nut-badge-font-size         | _var(--nut-font-size-1)_                                                                  |
-| --nut-badge-border-radius     | _14px_                                                                                    |
-| --nut-badge-icon-padding      | _4px_                                                                                     |
-| --nut-badge-padding           | _0 5px_                                                                                   |
-| --nut-badge-content-transform | _translate(50%, -50%)_                                                                    |
-| --nut-badge-z-index           | _1_                                                                                       |
-| --nut-badge-dot-width         | _7px_                                                                                     |
-| --nut-badge-dot-height        | _7px_                                                                                     |
-| --nut-badge-dot-border-radius | _7px_                                                                                     |
-| --nut-badge-dot-padding       | _0px_                                                                                     |
+| 名称                          | 默认值                                                                                  |
+| ----------------------------- | --------------------------------------------------------------------------------------- |
+| --nut-badge-background-color  | linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%) |
+| --nut-badge-color             | #fff                                                                                    |
+| --nut-badge-font-size         | var(--nut-font-size-1)                                                                  |
+| --nut-badge-border-radius     | 14px                                                                                    |
+| --nut-badge-icon-padding      | 4px                                                                                     |
+| --nut-badge-padding           | 0 5px                                                                                   |
+| --nut-badge-content-transform | translate(50%, -50%)                                                                    |
+| --nut-badge-z-index           | 1                                                                                       |
+| --nut-badge-dot-width         | 7px                                                                                     |
+| --nut-badge-dot-height        | 7px                                                                                     |
+| --nut-badge-dot-border-radius | 7px                                                                                     |
+| --nut-badge-dot-padding       | 0px                                                                                     |

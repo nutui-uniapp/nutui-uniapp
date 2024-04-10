@@ -239,9 +239,9 @@ const follow = {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                 | 默认值                     |
-| ------------------------------------ | -------------------------- |
-| --nut-comment-header-user-name-color | _rgba(51, 51, 51, 1)_      |
-| --nut-comment-header-time-color      | _rgba(153, 153, 153, 1)_   |
-| --nut-comment-bottom-label-color     | _rgba(153, 153, 153, 1)_   |
-| --nut-comment-shop-color             | _var(--nut-primary-color)_ |
+| 名称                                 | 默认值                   |
+| ------------------------------------ | ------------------------ |
+| --nut-comment-header-user-name-color | rgba(51, 51, 51, 1)      |
+| --nut-comment-header-time-color      | rgba(153, 153, 153, 1)   |
+| --nut-comment-bottom-label-color     | rgba(153, 153, 153, 1)   |
+| --nut-comment-shop-color             | var(--nut-primary-color) |

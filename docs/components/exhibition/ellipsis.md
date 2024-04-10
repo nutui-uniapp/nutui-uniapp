@@ -78,6 +78,6 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                 | 默认值    |
-| ------------------------------------ | --------- |
-| --nut-ellipsis-expand-collapse-color | _#3460fa_ |
+| 名称                                 | 默认值  |
+| ------------------------------------ | ------- |
+| --nut-ellipsis-expand-collapse-color | #3460fa |

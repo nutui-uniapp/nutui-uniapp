@@ -464,46 +464,46 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                                  | 默认值                                 |
-| ----------------------------------------------------- | -------------------------------------- |
-| --nut-elevator-list-item-highcolor                    | _var(--nut-primary-color)_             |
-| --nut-elevator-list-item-font-size                    | _12px_                                 |
-| --nut-elevator-list-item-font-color                   | _#333333_                              |
-| --nut-elevator-list-item-name-padding                 | _0 20px_                               |
-| --nut-elevator-list-item-name-height                  | _30px_                                 |
-| --nut-elevator-list-item-name-line-height             | _30px_                                 |
-| --nut-elevator-list-item-code-font-size               | _14px_                                 |
-| --nut-elevator-list-item-code-font-color              | _#1a1a1a_                              |
-| --nut-elevator-list-item-code-font-weight             | _500_                                  |
-| --nut-elevator-list-item-code-padding                 | _0 20px_                               |
-| --nut-elevator-list-item-code-height                  | _35px_                                 |
-| --nut-elevator-list-item-code-line-height             | _35px_                                 |
-| --nut-elevator-list-item-code-after-width             | _100%_                                 |
-| --nut-elevator-list-item-code-after-height            | _1px_                                  |
-| --nut-elevator-list-item-code-after-bg-color          | _#f5f5f5_                              |
-| --nut-elevator-list-item-code-current-box-shadow      | _0 3px 3px 1px rgba(240, 240, 240, 1)_ |
-| --nut-elevator-list-item-code-current-bg-color        | _#fff_                                 |
-| --nut-elevator-list-item-code-current-border-radius   | _50%_                                  |
-| --nut-elevator-list-item-code-current-width           | _45px_                                 |
-| --nut-elevator-list-item-code-current-height          | _45px_                                 |
-| --nut-elevator-list-item-code-current-line-height     | _45px_                                 |
-| --nut-elevator-list-item-code-current-position        | _absolute_                             |
-| --nut-elevator-list-item-code-current-right           | _60px_                                 |
-| --nut-elevator-list-item-code-current-top             | _50%_                                  |
-| --nut-elevator-list-item-code-current-transform       | _translateY(-50%)_                     |
-| --nut-elevator-list-item-code-current-text-align      | _center_                               |
-| --nut-elevator-list-item-bars-position                | _absolute_                             |
-| --nut-elevator-list-item-bars-right                   | _8px_                                  |
-| --nut-elevator-list-item-bars-top                     | _50%_                                  |
-| --nut-elevator-list-item-bars-transform               | _translateY(-50%)_                     |
-| --nut-elevator-list-item-bars-padding                 | _15px 0_                               |
-| --nut-elevator-list-item-bars-background-color        | _#eeeff2_                              |
-| --nut-elevator-list-item-bars-border-radius           | _6px_                                  |
-| --nut-elevator-list-item-bars-text-align              | _center_                               |
-| --nut-elevator-list-item-bars-z-index                 | _1_                                    |
-| --nut-elevator-list-item-bars-inner-item-padding      | _3px_                                  |
-| --nut-elevator-list-item-bars-inner-item-font-size    | _10px_                                 |
-| --nut-elevator-list-fixed-color                       | _var(--nut-primary-color)_             |
-| --nut-elevator-list-fixed-bg-color                    | _var(--nut-white)_                     |
-| --nut-elevator-list-fixed-box-shadow                  | _0 0 10px #eee_                        |
-| --nut-elevator-list-item-bars-inner-item-active-color | _var(--nut-primary-color)_             |
+| 名称                                                  | 默认值                               |
+| ----------------------------------------------------- | ------------------------------------ |
+| --nut-elevator-list-item-highcolor                    | var(--nut-primary-color)             |
+| --nut-elevator-list-item-font-size                    | 12px                                 |
+| --nut-elevator-list-item-font-color                   | #333333                              |
+| --nut-elevator-list-item-name-padding                 | 0 20px                               |
+| --nut-elevator-list-item-name-height                  | 30px                                 |
+| --nut-elevator-list-item-name-line-height             | 30px                                 |
+| --nut-elevator-list-item-code-font-size               | 14px                                 |
+| --nut-elevator-list-item-code-font-color              | #1a1a1a                              |
+| --nut-elevator-list-item-code-font-weight             | 500                                  |
+| --nut-elevator-list-item-code-padding                 | 0 20px                               |
+| --nut-elevator-list-item-code-height                  | 35px                                 |
+| --nut-elevator-list-item-code-line-height             | 35px                                 |
+| --nut-elevator-list-item-code-after-width             | 100%                                 |
+| --nut-elevator-list-item-code-after-height            | 1px                                  |
+| --nut-elevator-list-item-code-after-bg-color          | #f5f5f5                              |
+| --nut-elevator-list-item-code-current-box-shadow      | 0 3px 3px 1px rgba(240, 240, 240, 1) |
+| --nut-elevator-list-item-code-current-bg-color        | #fff                                 |
+| --nut-elevator-list-item-code-current-border-radius   | 50%                                  |
+| --nut-elevator-list-item-code-current-width           | 45px                                 |
+| --nut-elevator-list-item-code-current-height          | 45px                                 |
+| --nut-elevator-list-item-code-current-line-height     | 45px                                 |
+| --nut-elevator-list-item-code-current-position        | absolute                             |
+| --nut-elevator-list-item-code-current-right           | 60px                                 |
+| --nut-elevator-list-item-code-current-top             | 50%                                  |
+| --nut-elevator-list-item-code-current-transform       | translateY(-50%)                     |
+| --nut-elevator-list-item-code-current-text-align      | center                               |
+| --nut-elevator-list-item-bars-position                | absolute                             |
+| --nut-elevator-list-item-bars-right                   | 8px                                  |
+| --nut-elevator-list-item-bars-top                     | 50%                                  |
+| --nut-elevator-list-item-bars-transform               | translateY(-50%)                     |
+| --nut-elevator-list-item-bars-padding                 | 15px 0                               |
+| --nut-elevator-list-item-bars-background-color        | #eeeff2                              |
+| --nut-elevator-list-item-bars-border-radius           | 6px                                  |
+| --nut-elevator-list-item-bars-text-align              | center                               |
+| --nut-elevator-list-item-bars-z-index                 | 1                                    |
+| --nut-elevator-list-item-bars-inner-item-padding      | 3px                                  |
+| --nut-elevator-list-item-bars-inner-item-font-size    | 10px                                 |
+| --nut-elevator-list-fixed-color                       | var(--nut-primary-color)             |
+| --nut-elevator-list-fixed-bg-color                    | var(--nut-white)                     |
+| --nut-elevator-list-fixed-box-shadow                  | 0 0 10px #eee                        |
+| --nut-elevator-list-item-bars-inner-item-active-color | var(--nut-primary-color)             |

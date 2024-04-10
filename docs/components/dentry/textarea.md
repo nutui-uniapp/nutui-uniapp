@@ -94,9 +94,9 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                          | 默认值                     |
-| ----------------------------- | -------------------------- |
-| --nut-textarea-font           | _var(--nut-font-size-2)_   |
-| --nut-textarea-limit-color    | _var(--nut-text-color)_    |
-| --nut-textarea-text-color     | _var(--nut-title-color)_   |
-| --nut-textarea-disabled-color | _var(--nut-disable-color)_ |
+| 名称                          | 默认值                   |
+| ----------------------------- | ------------------------ |
+| --nut-textarea-font           | var(--nut-font-size-2)   |
+| --nut-textarea-limit-color    | var(--nut-text-color)    |
+| --nut-textarea-text-color     | var(--nut-title-color)   |
+| --nut-textarea-disabled-color | var(--nut-disable-color) |

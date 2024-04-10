@@ -207,7 +207,7 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                       | 默认值                     |
-| -------------------------- | -------------------------- |
-| --nut-rate-icon-color      | _var(--nut-primary-color)_ |
-| --nut-rate-icon-void-color | _var(--nut-disable-color)_ |
+| 名称                       | 默认值                   |
+| -------------------------- | ------------------------ |
+| --nut-rate-icon-color      | var(--nut-primary-color) |
+| --nut-rate-icon-void-color | var(--nut-disable-color) |

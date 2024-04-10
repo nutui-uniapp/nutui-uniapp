@@ -451,13 +451,13 @@ List 属性是一个由对象构成的数组，数组中的每个对象配置一
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                 | 默认值                   |
-| ------------------------------------ | ------------------------ |
-| --nut-popover-white-background-color | _rgba(255, 255, 255, 1)_ |
-| --nut-popover-dark-background-color  | _rgba(75, 76, 77, 1)_    |
-| --nut-popover-border-bottom-color    | _rgba(229, 229, 229, 1)_ |
-| --nut-popover-primary-text-color     | _rgba(51, 51, 51, 1)_    |
-| --nut-popover-disable-color          | _rgba(154, 155, 157, 1)_ |
-| --nut-popover-menu-item-padding      | _8px 0_                  |
-| --nut-popover-menu-item-margin       | _0 8px_                  |
-| --nut-popover-menu-name-line-height  | _normal_                 |
+| 名称                                 | 默认值                 |
+| ------------------------------------ | ---------------------- |
+| --nut-popover-white-background-color | rgba(255, 255, 255, 1) |
+| --nut-popover-dark-background-color  | rgba(75, 76, 77, 1)    |
+| --nut-popover-border-bottom-color    | rgba(229, 229, 229, 1) |
+| --nut-popover-primary-text-color     | rgba(51, 51, 51, 1)    |
+| --nut-popover-disable-color          | rgba(154, 155, 157, 1) |
+| --nut-popover-menu-item-padding      | 8px 0                  |
+| --nut-popover-menu-item-margin       | 0 8px                  |
+| --nut-popover-menu-name-line-height  | normal                 |

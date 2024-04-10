@@ -324,8 +324,8 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                      | 默认值    |
-| ------------------------- | --------- |
-| --nut-countdown-display   | _flex_    |
-| --nut-countdown-color     | _inherit_ |
-| --nut-countdown-font-size | _initial_ |
+| 名称                      | 默认值  |
+| ------------------------- | ------- |
+| --nut-countdown-display   | flex    |
+| --nut-countdown-color     | inherit |
+| --nut-countdown-font-size | initial |

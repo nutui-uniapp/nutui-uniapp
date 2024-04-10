@@ -417,10 +417,10 @@ export interface ToastInst {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                            | 默认值               |
-| ------------------------------- | -------------------- |
-| --nut-toast-font-color          | _var(--nut-white)_   |
-| --nut-toast-inner-padding       | _24px 30px_          |
-| --nut-toast-inner-bg-color      | _rgba(0, 0, 0, 0.8)_ |
-| --nut-toast-inner-border-radius | _12px_               |
-| --nut-toast-cover-bg-color      | _rgba(0, 0, 0, 0)_   |
+| 名称                            | 默认值             |
+| ------------------------------- | ------------------ |
+| --nut-toast-font-color          | var(--nut-white)   |
+| --nut-toast-inner-padding       | 24px 30px          |
+| --nut-toast-inner-bg-color      | rgba(0, 0, 0, 0.8) |
+| --nut-toast-inner-border-radius | 12px               |
+| --nut-toast-cover-bg-color      | rgba(0, 0, 0, 0)   |

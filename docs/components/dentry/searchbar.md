@@ -250,17 +250,17 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                        | 默认值                          |
-| ------------------------------------------- | ------------------------------- |
-| --nut-searchbar-background                  | _var(--nut-white)_              |
-| --nut-searchbar-right-out-color             | _var(--nut-black)_              |
-| --nut-searchbar-padding                     | _9px 16px_                      |
-| --nut-searchbar-width                       | _100%_                          |
-| --nut-searchbar-input-background            | _#f7f7f7_                       |
-| --nut-searchbar-input-padding               | _0 0 0 13px_                    |
-| --nut-searchbar-input-height                | _32px_                          |
-| --nut-searchbar-input-width                 | _100%_                          |
-| --nut-searchbar-input-border-radius         | _16px_                          |
-| --nut-searchbar-input-box-shadow            | _0 0 8px 0 rgba(0, 0, 0, 0.04)_ |
-| --nut-searchbar-input-bar-color             | _inherit_                       |
-| --nut-searchbar-input-bar-placeholder-color | _inherit_                       |
+| 名称                                        | 默认值                        |
+| ------------------------------------------- | ----------------------------- |
+| --nut-searchbar-background                  | var(--nut-white)              |
+| --nut-searchbar-right-out-color             | var(--nut-black)              |
+| --nut-searchbar-padding                     | 9px 16px                      |
+| --nut-searchbar-width                       | 100%                          |
+| --nut-searchbar-input-background            | #f7f7f7                       |
+| --nut-searchbar-input-padding               | 0 0 0 13px                    |
+| --nut-searchbar-input-height                | 32px                          |
+| --nut-searchbar-input-width                 | 100%                          |
+| --nut-searchbar-input-border-radius         | 16px                          |
+| --nut-searchbar-input-box-shadow            | 0 0 8px 0 rgba(0, 0, 0, 0.04) |
+| --nut-searchbar-input-bar-color             | inherit                       |
+| --nut-searchbar-input-bar-placeholder-color | inherit                       |

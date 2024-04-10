@@ -397,23 +397,23 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                  | 默认值                              |
-| ------------------------------------- | ----------------------------------- |
-| --nut-menu-bar-line-height            | _48px_                              |
-| --nut-menu-item-font-size             | _var(--nut-font-size-2)_            |
-| --nut-menu-item-text-color            | _var(--nut-title-color)_            |
-| --nut-menu-item-active-text-color     | _var(--nut-primary-color)_          |
-| --nut-menu-bar-border-bottom-color    | _#eaf0fb_                           |
-| --nut-menu-bar-opened-z-index         | _2001_                              |
-| --nut-menu-item-disabled-color        | _#969799_                           |
-| --nut-menu-title-text-padding-left    | _8px_                               |
-| --nut-menu-title-text-padding-right   | _8px_                               |
-| --nut-menu-item-content-padding       | _12px 24px_                         |
-| --nut-menu-item-content-max-height    | _214px_                             |
-| --nut-menu-item-option-padding-top    | _12px_                              |
-| --nut-menu-item-option-padding-bottom | _12px_                              |
-| --nut-menu-item-option-i-margin-right | _6px_                               |
-| --nut-menu-bar-box-shadow             | _0 2px 12px rgba(89, 89, 89, 0.12)_ |
-| --nut-menu-scroll-fixed-top           | _0_                                 |
-| --nut-menu-scroll-fixed-z-index       | _1000_                              |
-| --nut-menu-active-item-font-weight    | _500_                               |
+| 名称                                  | 默认值                            |
+| ------------------------------------- | --------------------------------- |
+| --nut-menu-bar-line-height            | 48px                              |
+| --nut-menu-item-font-size             | var(--nut-font-size-2)            |
+| --nut-menu-item-text-color            | var(--nut-title-color)            |
+| --nut-menu-item-active-text-color     | var(--nut-primary-color)          |
+| --nut-menu-bar-border-bottom-color    | #eaf0fb                           |
+| --nut-menu-bar-opened-z-index         | 2001                              |
+| --nut-menu-item-disabled-color        | #969799                           |
+| --nut-menu-title-text-padding-left    | 8px                               |
+| --nut-menu-title-text-padding-right   | 8px                               |
+| --nut-menu-item-content-padding       | 12px 24px                         |
+| --nut-menu-item-content-max-height    | 214px                             |
+| --nut-menu-item-option-padding-top    | 12px                              |
+| --nut-menu-item-option-padding-bottom | 12px                              |
+| --nut-menu-item-option-i-margin-right | 6px                               |
+| --nut-menu-bar-box-shadow             | 0 2px 12px rgba(89, 89, 89, 0.12) |
+| --nut-menu-scroll-fixed-top           | 0                                 |
+| --nut-menu-scroll-fixed-z-index       | 1000                              |
+| --nut-menu-active-item-font-weight    | 500                               |

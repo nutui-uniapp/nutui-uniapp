@@ -246,11 +246,11 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                             | 默认值                   |
-| -------------------------------- | ------------------------ |
-| --nut-card-font-size-0           | _var(--nut-font-size-0)_ |
-| --nut-card-font-size-1           | _var(--nut-font-size-1)_ |
-| --nut-card-font-size-2           | _var(--nut-font-size-2)_ |
-| --nut-card-font-size-3           | _var(--nut-font-size-3)_ |
-| --nut-card-left-border-radius    | _0_                      |
-| --nut-card-left-background-color | _inherit_                |
+| 名称                             | 默认值                 |
+| -------------------------------- | ---------------------- |
+| --nut-card-font-size-0           | var(--nut-font-size-0) |
+| --nut-card-font-size-1           | var(--nut-font-size-1) |
+| --nut-card-font-size-2           | var(--nut-font-size-2) |
+| --nut-card-font-size-3           | var(--nut-font-size-3) |
+| --nut-card-left-border-radius    | 0                      |
+| --nut-card-left-background-color | inherit                |

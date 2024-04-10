@@ -88,12 +88,12 @@
 
 | 名称                            | 默认值 |
 | ------------------------------- | ------ |
-| --nut-price-symbol-big-size     | _18px_ |
-| --nut-price-big-size            | _24px_ |
-| --nut-price-decimal-big-size    | _18px_ |
-| --nut-price-symbol-medium-size  | _14px_ |
-| --nut-price-medium-size         | _16px_ |
-| --nut-price-decimal-medium-size | _14px_ |
-| --nut-price-symbol-small-size   | _10px_ |
-| --nut-price-small-size          | _12px_ |
-| --nut-price-decimal-small-size  | _10px_ |
+| --nut-price-symbol-big-size     | 18px   |
+| --nut-price-big-size            | 24px   |
+| --nut-price-decimal-big-size    | 18px   |
+| --nut-price-symbol-medium-size  | 14px   |
+| --nut-price-medium-size         | 16px   |
+| --nut-price-decimal-medium-size | 14px   |
+| --nut-price-symbol-small-size   | 10px   |
+| --nut-price-small-size          | 12px   |
+| --nut-price-decimal-small-size  | 10px   |

@@ -341,29 +341,29 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                            | 默认值                     |
-| ----------------------------------------------- | -------------------------- |
-| --nut-timeselect-title-font-size                | _var(--nut-font-size-2)_   |
-| --nut-timeselect-title-color                    | _var(--nut-title-color)_   |
-| --nut-timeselect-title-width                    | _100%_                     |
-| --nut-timeselect-title-height                   | _50px_                     |
-| --nut-timeselect-title-line-height              | _50px_                     |
-| --nut-timeselect-pannel-bg-color                | _#f6f7f9_                  |
-| --nut-timeselect-timepannel-text-color          | _var(--nut-title-color2)_  |
-| --nut-timeselect-timepannel-font-size           | _var(--nut-font-size-2)_   |
-| --nut-timeselect-timepannel-cur-bg-color        | _var(--nut-white)_         |
-| --nut-timeselect-timepannel-cur-text-color      | _#333333_                  |
-| --nut-timeselect-timepannel-width               | _140px_                    |
-| --nut-timeselect-timepannel-height              | _40px_                     |
-| --nut-timeselect-timepannel-padding             | _15px_                     |
-| --nut-timeselect-timedetail-padding             | _0 5px 50px 13px_          |
-| --nut-timeselect-timedetail-item-width          | _100px_                    |
-| --nut-timeselect-timedetail-item-height         | _50px_                     |
-| --nut-timeselect-timedetail-item-line-height    | _50px_                     |
-| --nut-timeselect-timedetail-item-bg-color       | _#f6f7f9_                  |
-| --nut-timeselect-timedetail-item-border-radius  | _5px_                      |
-| --nut-timeselect-timedetail-item-text-color     | _#333333_                  |
-| --nut-timeselect-timedetail-item-text-font-size | _var(--nut-font-size-2)_   |
-| --nut-timeselect-timedetail-item-cur-bg-color   | _var(--nut-primary-color)_ |
-| --nut-timeselect-timedetail-item-cur-border     | _var(--nut-primary-color)_ |
-| --nut-timeselect-timedetail-item-cur-text-color | _var(--nut-primary-color)_ |
+| 名称                                            | 默认值                   |
+| ----------------------------------------------- | ------------------------ |
+| --nut-timeselect-title-font-size                | var(--nut-font-size-2)   |
+| --nut-timeselect-title-color                    | var(--nut-title-color)   |
+| --nut-timeselect-title-width                    | 100%                     |
+| --nut-timeselect-title-height                   | 50px                     |
+| --nut-timeselect-title-line-height              | 50px                     |
+| --nut-timeselect-pannel-bg-color                | #f6f7f9                  |
+| --nut-timeselect-timepannel-text-color          | var(--nut-title-color2)  |
+| --nut-timeselect-timepannel-font-size           | var(--nut-font-size-2)   |
+| --nut-timeselect-timepannel-cur-bg-color        | var(--nut-white)         |
+| --nut-timeselect-timepannel-cur-text-color      | #333333                  |
+| --nut-timeselect-timepannel-width               | 140px                    |
+| --nut-timeselect-timepannel-height              | 40px                     |
+| --nut-timeselect-timepannel-padding             | 15px                     |
+| --nut-timeselect-timedetail-padding             | 0 5px 50px 13px          |
+| --nut-timeselect-timedetail-item-width          | 100px                    |
+| --nut-timeselect-timedetail-item-height         | 50px                     |
+| --nut-timeselect-timedetail-item-line-height    | 50px                     |
+| --nut-timeselect-timedetail-item-bg-color       | #f6f7f9                  |
+| --nut-timeselect-timedetail-item-border-radius  | 5px                      |
+| --nut-timeselect-timedetail-item-text-color     | #333333                  |
+| --nut-timeselect-timedetail-item-text-font-size | var(--nut-font-size-2)   |
+| --nut-timeselect-timedetail-item-cur-bg-color   | var(--nut-primary-color) |
+| --nut-timeselect-timedetail-item-cur-border     | var(--nut-primary-color) |
+| --nut-timeselect-timedetail-item-cur-text-color | var(--nut-primary-color) |

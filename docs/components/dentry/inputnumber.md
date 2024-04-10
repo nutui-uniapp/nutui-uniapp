@@ -226,21 +226,21 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                     | 默认值                     |
-| ---------------------------------------- | -------------------------- |
-| --nut-inputnumber-icon-color             | _var(--nut-title-color)_   |
-| --nut-inputnumber-icon-void-color        | _var(--nut-disable-color)_ |
-| --nut-inputnumber-icon-size              | _20px_                     |
-| --nut-inputnumber-input-width            | _40px_                     |
-| --nut-inputnumber-input-font-size        | _12px_                     |
-| --nut-inputnumber-input-font-color       | _var(--nut-title-color)_   |
-| --nut-inputnumber-input-background-color | _var(--nut-help-color)_    |
-| --nut-inputnumber-input-border-radius    | _4px_                      |
-| --nut-inputnumber-input-margin           | _0 6px_                    |
-| --nut-inputnumber-input-border           | _0_                        |
-| --nut-inputnumber-border                 | _0_                        |
-| --nut-inputnumber-border-radius          | _0_                        |
-| --nut-inputnumber-height                 | _auto_                     |
-| --nut-inputnumber-line-height            | _normal_                   |
-| --nut-inputnumber-border-box             | _content-box_              |
-| --nut-inputnumber-display                | _inline-flex_              |
+| 名称                                     | 默认值                   |
+| ---------------------------------------- | ------------------------ |
+| --nut-inputnumber-icon-color             | var(--nut-title-color)   |
+| --nut-inputnumber-icon-void-color        | var(--nut-disable-color) |
+| --nut-inputnumber-icon-size              | 20px                     |
+| --nut-inputnumber-input-width            | 40px                     |
+| --nut-inputnumber-input-font-size        | 12px                     |
+| --nut-inputnumber-input-font-color       | var(--nut-title-color)   |
+| --nut-inputnumber-input-background-color | var(--nut-help-color)    |
+| --nut-inputnumber-input-border-radius    | 4px                      |
+| --nut-inputnumber-input-margin           | 0 6px                    |
+| --nut-inputnumber-input-border           | 0                        |
+| --nut-inputnumber-border                 | 0                        |
+| --nut-inputnumber-border-radius          | 0                        |
+| --nut-inputnumber-height                 | auto                     |
+| --nut-inputnumber-line-height            | normal                   |
+| --nut-inputnumber-border-box             | content-box              |
+| --nut-inputnumber-display                | inline-flex              |

@@ -154,10 +154,10 @@ return {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                             | 默认值                                                                                    |
-| -------------------------------- | ----------------------------------------------------------------------------------------- |
-| --nut-fixednav-bg-color          | _var(--nut-white)_                                                                        |
-| --nut-fixednav-font-color        | _var(--nut-black)_                                                                        |
-| --nut-fixednav-index             | _201_                                                                                     |
-| --nut-fixednav-btn-bg            | _linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%)_ |
-| --nut-fixednav-item-active-color | _var(--nut-primary-color)_                                                                |
+| 名称                             | 默认值                                                                                  |
+| -------------------------------- | --------------------------------------------------------------------------------------- |
+| --nut-fixednav-bg-color          | var(--nut-white)                                                                        |
+| --nut-fixednav-font-color        | var(--nut-black)                                                                        |
+| --nut-fixednav-index             | 201                                                                                     |
+| --nut-fixednav-btn-bg            | linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%) |
+| --nut-fixednav-item-active-color | var(--nut-primary-color)                                                                |

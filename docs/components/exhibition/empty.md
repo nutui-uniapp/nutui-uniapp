@@ -89,12 +89,12 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                | 默认值    |
-| ----------------------------------- | --------- |
-| --nut-empty-padding                 | _32px 0_  |
-| --nut-empty-image-size              | _170px_   |
-| --nut-empty-description-margin-top  | _4px_     |
-| --nut-empty-description-color       | _#666666_ |
-| --nut-empty-description-font-size   | _14px_    |
-| --nut-empty-description-line-height | _20px_    |
-| --nut-empty-description-padding     | _0 40px_  |
+| 名称                                | 默认值  |
+| ----------------------------------- | ------- |
+| --nut-empty-padding                 | 32px 0  |
+| --nut-empty-image-size              | 170px   |
+| --nut-empty-description-margin-top  | 4px     |
+| --nut-empty-description-color       | #666666 |
+| --nut-empty-description-font-size   | 14px    |
+| --nut-empty-description-line-height | 20px    |
+| --nut-empty-description-padding     | 0 40px  |

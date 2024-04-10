@@ -176,11 +176,11 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                             | 默认值                    |
-| -------------------------------- | ------------------------- |
-| --nut-grid-border-color          | _#f5f6f7_                 |
-| --nut-grid-item-content-padding  | _16px 8px_                |
-| --nut-grid-item-content-bg-color | _var(--nut-white)_        |
-| --nut-grid-item-text-margin      | _8px_                     |
-| --nut-grid-item-text-color       | _var(--nut-title-color2)_ |
-| --nut-grid-item-text-font-size   | _var(--nut-font-size-1)_  |
+| 名称                             | 默认值                  |
+| -------------------------------- | ----------------------- |
+| --nut-grid-border-color          | #f5f6f7                 |
+| --nut-grid-item-content-padding  | 16px 8px                |
+| --nut-grid-item-content-bg-color | var(--nut-white)        |
+| --nut-grid-item-text-margin      | 8px                     |
+| --nut-grid-item-text-color       | var(--nut-title-color2) |
+| --nut-grid-item-text-font-size   | var(--nut-font-size-1)  |

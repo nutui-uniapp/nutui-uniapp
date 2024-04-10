@@ -393,16 +393,16 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                             | 默认值                     |
-| -------------------------------- | -------------------------- |
-| --nut-cascader-font-size         | _var(--nut-font-size-2)_   |
-| --nut-cascader-line-height       | _22px_                     |
-| --nut-cascader-tabs-item-padding | _0 10px_                   |
-| --nut-cascader-bar-padding       | _24px 20px 17px_           |
-| --nut-cascader-bar-font-size     | _var(--nut-font-size-4)_   |
-| --nut-cascader-bar-line-height   | _20px_                     |
-| --nut-cascader-bar-color         | _var(--nut-title-color)_   |
-| --nut-cascader-item-padding      | _10px 20px_                |
-| --nut-cascader-item-color        | _var(--nut-title-color)_   |
-| --nut-cascader-item-font-size    | _var(--nut-font-size-2)_   |
-| --nut-cascader-item-active-color | _var(--nut-primary-color)_ |
+| 名称                             | 默认值                   |
+| -------------------------------- | ------------------------ |
+| --nut-cascader-font-size         | var(--nut-font-size-2)   |
+| --nut-cascader-line-height       | 22px                     |
+| --nut-cascader-tabs-item-padding | 0 10px                   |
+| --nut-cascader-bar-padding       | 24px 20px 17px           |
+| --nut-cascader-bar-font-size     | var(--nut-font-size-4)   |
+| --nut-cascader-bar-line-height   | 20px                     |
+| --nut-cascader-bar-color         | var(--nut-title-color)   |
+| --nut-cascader-item-padding      | 10px 20px                |
+| --nut-cascader-item-color        | var(--nut-title-color)   |
+| --nut-cascader-item-font-size    | var(--nut-font-size-2)   |
+| --nut-cascader-item-active-color | var(--nut-primary-color) |

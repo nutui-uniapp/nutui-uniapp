@@ -179,23 +179,23 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                                                                                  |
-| --------------------------------------- | --------------------------------------------------------------------------------------- |
-| --nut-progress-inner-background-color   | _linear-gradient(135deg,var(--nut-primary-color) 0%,var(--nut-primary-color-end) 100%)_ |
-| --nut-progress-insidetext-background    | _var(--nut-progress-inner-background-color)_                                            |
-| --nut-progress-outer-background-color   | _#f3f3f3_                                                                               |
-| --nut-progress-outer-border-radius      | _12px_                                                                                  |
-| --nut-progress-insidetext-border-radius | _5px_                                                                                   |
-| --nut-progress-insidetext-padding       | _3px 5px 3px 6px_                                                                       |
-| --nut-progress-small-height             | _5px_                                                                                   |
-| --nut-progress-small-text-font-size     | _7px_                                                                                   |
-| --nut-progress-small-text-line-height   | _10px_                                                                                  |
-| --nut-progress-small-text-padding       | _2px 4px_                                                                               |
-| --nut-progress-base-height              | _10px_                                                                                  |
-| --nut-progress-base-text-font-size      | _9px_                                                                                   |
-| --nut-progress-base-text-line-height    | _13px_                                                                                  |
-| --nut-progress-base-text-padding        | _var(--nut-progress-insidetext-padding)_                                                |
-| --nut-progress-large-height             | _15px_                                                                                  |
-| --nut-progress-large-text-font-size     | _13px_                                                                                  |
-| --nut-progress-large-text-line-height   | _18px_                                                                                  |
-| --nut-progress-large-text-padding       | _var(--nut-progress-insidetext-padding)_                                                |
+| 名称                                    | 默认值                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------- |
+| --nut-progress-inner-background-color   | linear-gradient(135deg,var(--nut-primary-color) 0%,var(--nut-primary-color-end) 100%) |
+| --nut-progress-insidetext-background    | var(--nut-progress-inner-background-color)                                            |
+| --nut-progress-outer-background-color   | #f3f3f3                                                                               |
+| --nut-progress-outer-border-radius      | 12px                                                                                  |
+| --nut-progress-insidetext-border-radius | 5px                                                                                   |
+| --nut-progress-insidetext-padding       | 3px 5px 3px 6px                                                                       |
+| --nut-progress-small-height             | 5px                                                                                   |
+| --nut-progress-small-text-font-size     | 7px                                                                                   |
+| --nut-progress-small-text-line-height   | 10px                                                                                  |
+| --nut-progress-small-text-padding       | 2px 4px                                                                               |
+| --nut-progress-base-height              | 10px                                                                                  |
+| --nut-progress-base-text-font-size      | 9px                                                                                   |
+| --nut-progress-base-text-line-height    | 13px                                                                                  |
+| --nut-progress-base-text-padding        | var(--nut-progress-insidetext-padding)                                                |
+| --nut-progress-large-height             | 15px                                                                                  |
+| --nut-progress-large-text-font-size     | 13px                                                                                  |
+| --nut-progress-large-text-line-height   | 18px                                                                                  |
+| --nut-progress-large-text-padding       | var(--nut-progress-insidetext-padding)                                                |

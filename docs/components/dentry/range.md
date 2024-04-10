@@ -396,13 +396,13 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                         | 默认值                                                                                    |
-| ---------------------------- | ----------------------------------------------------------------------------------------- |
-| --nut-range-tip-font-color   | _#333333_                                                                                 |
-| --nut-range-bg-color         | _var(--nut-primary-color)_                                                                |
-| --nut-range-bg-color-tick    | _#fa958c_                                                                                 |
-| --nut-range-bar-bg-color     | _linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%)_ |
-| --nut-range-bar-btn-bg-color | _var(--nut-white)_                                                                        |
-| --nut-range-bar-btn-width    | _24px_                                                                                    |
-| --nut-range-bar-btn-height   | _24px_                                                                                    |
-| --nut-range-bar-btn-border   | _1px solid var(--nut-primary-color)_                                                      |
+| 名称                         | 默认值                                                                                  |
+| ---------------------------- | --------------------------------------------------------------------------------------- |
+| --nut-range-tip-font-color   | #333333                                                                                 |
+| --nut-range-bg-color         | var(--nut-primary-color)                                                                |
+| --nut-range-bg-color-tick    | #fa958c                                                                                 |
+| --nut-range-bar-bg-color     | linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%) |
+| --nut-range-bar-btn-bg-color | var(--nut-white)                                                                        |
+| --nut-range-bar-btn-width    | 24px                                                                                    |
+| --nut-range-bar-btn-height   | 24px                                                                                    |
+| --nut-range-bar-btn-border   | 1px solid var(--nut-primary-color)                                                      |

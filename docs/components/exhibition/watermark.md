@@ -144,4 +144,4 @@ content属性传入string数组，展示的则是多行水印
 
 | 名称                    | 默认值 |
 | ----------------------- | ------ |
-| --nut-watermark-z-index | _2000_ |
+| --nut-watermark-z-index | 2000   |

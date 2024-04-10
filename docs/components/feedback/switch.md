@@ -200,15 +200,15 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                | 默认值             |
-| ----------------------------------- | ------------------ |
-| --nut-switch-close-bg-color         | _#ebebeb_          |
-| --nut-switch-close-cline-bg-color   | _#f0f0f0_          |
-| --nut-switch-width                  | _36px_             |
-| --nut-switch-height                 | _21px_             |
-| --nut-switch-line-height            | _21px_             |
-| --nut-switch-border-radius          | _21px_             |
-| --nut-switch-inside-width           | _13px_             |
-| --nut-switch-inside-height          | _13px_             |
-| --nut-switch-inside-open-transform  | _translateX(146%)_ |
-| --nut-switch-inside-close-transform | _translateX(30%)_  |
+| 名称                                | 默认值           |
+| ----------------------------------- | ---------------- |
+| --nut-switch-close-bg-color         | #ebebeb          |
+| --nut-switch-close-cline-bg-color   | #f0f0f0          |
+| --nut-switch-width                  | 36px             |
+| --nut-switch-height                 | 21px             |
+| --nut-switch-line-height            | 21px             |
+| --nut-switch-border-radius          | 21px             |
+| --nut-switch-inside-width           | 13px             |
+| --nut-switch-inside-height          | 13px             |
+| --nut-switch-inside-open-transform  | translateX(146%) |
+| --nut-switch-inside-close-transform | translateX(30%)  |

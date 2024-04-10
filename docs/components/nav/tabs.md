@@ -428,23 +428,23 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                                | 默认值                                                                         |
-| --------------------------------------------------- | ------------------------------------------------------------------------------ |
-| --nut-tabs-tab-smile-color                          | _var(--nut-primary-color)_                                                     |
-| --nut-tabs-titles-border-radius                     | _0_                                                                            |
-| --nut-tabs-titles-item-large-font-size              | _var(--nut-font-size-3)_                                                       |
-| --nut-tabs-titles-item-font-size                    | _var(--nut-font-size-2)_                                                       |
-| --nut-tabs-titles-item-small-font-size              | _var(--nut-font-size-1)_                                                       |
-| --nut-tabs-titles-item-color                        | _var(--nut-title-color)_                                                       |
-| --nut-tabs-titles-item-active-color                 | _var(--nut-title-color)_                                                       |
-| --nut-tabs-titles-background-color                  | _var(--nut-help-color)_                                                        |
-| --nut-tabs-horizontal-tab-line-color                | _linear-gradient(90deg,var(--nut-primary-color) 0%,rgba(#fa2c19, 0.15) 100%)_  |
-| --nut-tabs-horizontal-titles-height                 | _46px_                                                                         |
-| --nut-tabs-horizontal-titles-item-min-width         | _50px_                                                                         |
-| --nut-tabs-horizontal-titles-item-active-line-width | _40px_                                                                         |
-| --nut-tabs-vertical-tab-line-color                  | _linear-gradient(180deg,var(--nut-primary-color) 0%,rgba(#fa2c19, 0.15) 100%)_ |
-| --nut-tabs-vertical-titles-item-height              | _40px_                                                                         |
-| --nut-tabs-vertical-titles-item-active-line-height  | _14px_                                                                         |
-| --nut-tabs-vertical-titles-width                    | _100px_                                                                        |
-| --nut-tabs-titles-item-line-border-radius           | _0_                                                                            |
-| --nut-tabs-titles-item-line-opacity                 | _1_                                                                            |
+| 名称                                                | 默认值                                                                       |
+| --------------------------------------------------- | ---------------------------------------------------------------------------- |
+| --nut-tabs-tab-smile-color                          | var(--nut-primary-color)                                                     |
+| --nut-tabs-titles-border-radius                     | 0                                                                            |
+| --nut-tabs-titles-item-large-font-size              | var(--nut-font-size-3)                                                       |
+| --nut-tabs-titles-item-font-size                    | var(--nut-font-size-2)                                                       |
+| --nut-tabs-titles-item-small-font-size              | var(--nut-font-size-1)                                                       |
+| --nut-tabs-titles-item-color                        | var(--nut-title-color)                                                       |
+| --nut-tabs-titles-item-active-color                 | var(--nut-title-color)                                                       |
+| --nut-tabs-titles-background-color                  | var(--nut-help-color)                                                        |
+| --nut-tabs-horizontal-tab-line-color                | linear-gradient(90deg,var(--nut-primary-color) 0%,rgba(#fa2c19, 0.15) 100%)  |
+| --nut-tabs-horizontal-titles-height                 | 46px                                                                         |
+| --nut-tabs-horizontal-titles-item-min-width         | 50px                                                                         |
+| --nut-tabs-horizontal-titles-item-active-line-width | 40px                                                                         |
+| --nut-tabs-vertical-tab-line-color                  | linear-gradient(180deg,var(--nut-primary-color) 0%,rgba(#fa2c19, 0.15) 100%) |
+| --nut-tabs-vertical-titles-item-height              | 40px                                                                         |
+| --nut-tabs-vertical-titles-item-active-line-height  | 14px                                                                         |
+| --nut-tabs-vertical-titles-width                    | 100px                                                                        |
+| --nut-tabs-titles-item-line-border-radius           | 0                                                                            |
+| --nut-tabs-titles-item-line-opacity                 | 1                                                                            |

@@ -315,12 +315,12 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                     | 默认值                                         |
-| ---------------------------------------- | ---------------------------------------------- |
-| --nut-actionsheet-light-color            | _#f6f6f6_                                      |
-| --nut-actionsheet-item-border-bottom     | _none_                                         |
-| --nut-actionsheet-item-font-size         | _var(--nut-font-size-2)_                       |
-| --nut-actionsheet-item-subdesc-font-size | _var(--nut-font-size-1)_                       |
-| --nut-actionsheet-item-cancel-border-top | _1px solid var(--nut-actionsheet-light-color)_ |
-| --nut-actionsheet-item-line-height       | _24px_                                         |
-| --nut-actionsheet-item-font-color        | _var(--nut-title-color)_                       |
+| 名称                                     | 默认值                                       |
+| ---------------------------------------- | -------------------------------------------- |
+| --nut-actionsheet-light-color            | #f6f6f6                                      |
+| --nut-actionsheet-item-border-bottom     | none                                         |
+| --nut-actionsheet-item-font-size         | var(--nut-font-size-2)                       |
+| --nut-actionsheet-item-subdesc-font-size | var(--nut-font-size-1)                       |
+| --nut-actionsheet-item-cancel-border-top | 1px solid var(--nut-actionsheet-light-color) |
+| --nut-actionsheet-item-line-height       | 24px                                         |
+| --nut-actionsheet-item-font-color        | var(--nut-title-color)                       |

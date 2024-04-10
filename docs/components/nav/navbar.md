@@ -190,17 +190,17 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                           | 默认值                                   |
-| ------------------------------ | ---------------------------------------- |
-| --nut-navbar-height            | _44px_                                   |
-| --nut-navbar-margin-bottom     | _20px_                                   |
-| --nut-navbar-padding           | _0 16px_                                 |
-| --nut-navbar-background        | _var(--nut-white)_                       |
-| --nut-navbar-box-shadow        | _0px 1px 7px 0px rgba(237, 238, 241, 1)_ |
-| --nut-navbar-color             | _var(--nut-title-color2)_                |
-| --nut-navbar-title-base-font   | _var(--nut-font-size-2)_                 |
-| --nut-navbar-title-font        | _var(--nut-font-size-2)_                 |
-| --nut-navbar-title-font-weight | _0_                                      |
-| --nut-navbar-title-font-color  | _var(--nut-navbar-color)_                |
-| --nut-navbar-title-width       | _100px_                                  |
-| --nut-navbar-title-icon-margin | _0 0 0 13px_                             |
+| 名称                           | 默认值                                 |
+| ------------------------------ | -------------------------------------- |
+| --nut-navbar-height            | 44px                                   |
+| --nut-navbar-margin-bottom     | 20px                                   |
+| --nut-navbar-padding           | 0 16px                                 |
+| --nut-navbar-background        | var(--nut-white)                       |
+| --nut-navbar-box-shadow        | 0px 1px 7px 0px rgba(237, 238, 241, 1) |
+| --nut-navbar-color             | var(--nut-title-color2)                |
+| --nut-navbar-title-base-font   | var(--nut-font-size-2)                 |
+| --nut-navbar-title-font        | var(--nut-font-size-2)                 |
+| --nut-navbar-title-font-weight | 0                                      |
+| --nut-navbar-title-font-color  | var(--nut-navbar-color)                |
+| --nut-navbar-title-width       | 100px                                  |
+| --nut-navbar-title-icon-margin | 0 0 0 13px                             |

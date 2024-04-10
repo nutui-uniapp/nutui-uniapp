@@ -213,17 +213,17 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                  | 默认值                     |
-| ------------------------------------- | -------------------------- |
-| --nut-radio-label-font-color          | _#1d1e1e_                  |
-| --nut-radio-label-font-active-color   | _var(--nut-primary-color)_ |
-| --nut-radio-label-disable-color       | _#999_                     |
-| --nut-radio-icon-disable-color        | _#d6d6d6_                  |
-| --nut-radio-label-button-border-color | _var(--nut-primary-color)_ |
-| --nut-radio-label-button-background   | _var(--nut-primary-color)_ |
-| --nut-radio-label-margin-left         | _15px_                     |
-| --nut-radio-button-border-radius      | _15px_                     |
-| --nut-radio-label-font-size           | _14px_                     |
-| --nut-radio-button-font-size          | _12px_                     |
-| --nut-radio-button-padding            | _5px 18px_                 |
-| --nut-radio-icon-disable-color2       | _var(--nut-help-color)_    |
+| 名称                                  | 默认值                   |
+| ------------------------------------- | ------------------------ |
+| --nut-radio-label-font-color          | #1d1e1e                  |
+| --nut-radio-label-font-active-color   | var(--nut-primary-color) |
+| --nut-radio-label-disable-color       | #999                     |
+| --nut-radio-icon-disable-color        | #d6d6d6                  |
+| --nut-radio-label-button-border-color | var(--nut-primary-color) |
+| --nut-radio-label-button-background   | var(--nut-primary-color) |
+| --nut-radio-label-margin-left         | 15px                     |
+| --nut-radio-button-border-radius      | 15px                     |
+| --nut-radio-label-font-size           | 14px                     |
+| --nut-radio-button-font-size          | 12px                     |
+| --nut-radio-button-padding            | 5px 18px                 |
+| --nut-radio-icon-disable-color2       | var(--nut-help-color)_   |

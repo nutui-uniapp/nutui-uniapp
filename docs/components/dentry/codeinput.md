@@ -103,10 +103,10 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                       | 默认值                                |
-| ------------------------------------------ | ------------------------------------- |
-| --nut-code-input-cursor-width              | _var(--nut-code-input-cursor-width)_  |
-| --nut-code-input-cursor-height             | _var(--nut-code-input-cursor-height)_ |
-| --nut-code-input-cursor-animation-duration | _1s_                                  |
-| --nut-code-input-cursor-animation-name     | _nut-cursor-flicker_                  |
-| --nut-code-input-content-color             | _var(--nut-code-content-color)_       |
+| 名称                                       | 默认值                              |
+| ------------------------------------------ | ----------------------------------- |
+| --nut-code-input-cursor-width              | var(--nut-code-input-cursor-width)  |
+| --nut-code-input-cursor-height             | var(--nut-code-input-cursor-height) |
+| --nut-code-input-cursor-animation-duration | 1s                                  |
+| --nut-code-input-cursor-animation-name     | nut-cursor-flicker                  |
+| --nut-code-input-content-color             | var(--nut-code-content-color)       |

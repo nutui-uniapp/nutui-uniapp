@@ -219,9 +219,9 @@ export default{
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                 | 默认值                     |
-| ------------------------------------ | -------------------------- |
-| --nut-shortpassword-background-color | _rgba(245, 245, 245, 1)_   |
-| --nut-shortpassword-border-color     | _#ddd_                     |
-| --nut-shortpassword-error            | _var(--nut-primary-color)_ |
-| --nut-shortpassword-forget           | _rgba(128, 128, 128, 1)_   |
+| 名称                                 | 默认值                   |
+| ------------------------------------ | ------------------------ |
+| --nut-shortpassword-background-color | rgba(245, 245, 245, 1)   |
+| --nut-shortpassword-border-color     | #ddd                     |
+| --nut-shortpassword-error            | var(--nut-primary-color) |
+| --nut-shortpassword-forget           | rgba(128, 128, 128, 1)   |
