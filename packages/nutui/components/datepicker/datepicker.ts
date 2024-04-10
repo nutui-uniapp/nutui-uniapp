@@ -1,18 +1,24 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { isDate, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
-import type { PickerOption } from '../pickercolumn'
-import { CANCEL_EVENT, CHANGE_EVENT, CLICK_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import type { Filter, Formatter } from './type'
-
-export const currentYear = new Date().getFullYear()
+import { makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import type { PickerBaseEvent } from '../picker'
+import type { DateLike, DatePickerChangeEvent, DatePickerFilter, DatePickerFormatter, DatePickerType } from './type'
 
 export const datepickerProps = {
   /**
    * @description 初始值
    */
   modelValue: {
-    type: [Date, String, Number],
+    type: [Number, String, Object] as PropType<DateLike>,
   },
+  /**
+   * @description 时间类型，可选值 `date`(年月日) `time`(时分秒) `year-month`(年月) `month-day`(月日) `datehour`(年月日时) `hour-minute`
+   */
+  type: makeStringProp<DatePickerType>('date'),
+  /**
+   * @description 是否显示顶部导航
+   */
+  showToolbar: truthProp,
   /**
    * @description 设置标题
    */
@@ -26,10 +32,6 @@ export const datepickerProps = {
    */
   cancelText: makeStringProp(''),
   /**
-   * @description 时间类型，可选值 `date`(年月日) `time`(时分秒) `year-month`(年月) `month-day`(月日) `datehour`(年月日时) `hour-minute`
-   */
-  type: makeStringProp<'date' | 'time' | 'year-month' | 'month-day' | 'datehour' | 'hour-minute' | 'datetime'>('date'),
-  /**
    * @description 每列是否展示中文
    */
   isShowChinese: Boolean,
@@ -41,25 +43,24 @@ export const datepickerProps = {
    * @description 开始日期
    */
   minDate: {
-    type: Date,
-    default: () => new Date(currentYear - 10, 0, 1),
-    validator: isDate,
+    type: [Number, String, Object] as PropType<DateLike>,
+    default: () => new Date(new Date().getFullYear() - 10, 0, 1),
   },
   /**
    * @description 结束日期
    */
   maxDate: {
-    type: Date,
-    default: () => new Date(currentYear + 10, 11, 31),
-    validator: isDate,
+    type: [Number, String, Object] as PropType<DateLike>,
+    default: () => new Date(new Date().getFullYear() + 10, 11, 31),
   },
   /**
    * @description 选项格式化函数
    */
-  formatter: {
-    type: Function as PropType<Formatter>,
-    default: null,
-  },
+  formatter: Function as PropType<DatePickerFormatter>,
+  /**
+   * @description 选项过滤函数
+   */
+  filter: Function as PropType<DatePickerFilter>,
   /**
    * @description 是否开启3D效果
    */
@@ -68,14 +69,6 @@ export const datepickerProps = {
    * @description 惯性滚动时长
    */
   swipeDuration: makeNumericProp(1000),
-  /**
-   * @description 选项过滤函数
-   */
-  filter: Function as PropType<Filter>,
-  /**
-   * @description 是否显示顶部导航
-   */
-  showToolbar: truthProp,
   /**
    * @description 可见的选项个数
    */
@@ -89,15 +82,10 @@ export const datepickerProps = {
 export type DatePickerProps = ExtractPropTypes<typeof datepickerProps>
 
 export const datepickerEmits = {
-  [CLICK_EVENT]: () => true,
-  [CANCEL_EVENT]: (val: any) => val instanceof Object,
-  [CONFIRM_EVENT]: (val: any) => val instanceof Object,
-  [CHANGE_EVENT]: (val: {
-    columnIndex: number
-    selectedValue: (string | number)[]
-    selectedOptions: PickerOption[]
-  }) => val instanceof Object,
-  [UPDATE_MODEL_EVENT]: (val: any) => val instanceof Object,
+  [UPDATE_MODEL_EVENT]: (val: Date) => val instanceof Object,
+  [CHANGE_EVENT]: (evt: DatePickerChangeEvent) => evt instanceof Object,
+  [CONFIRM_EVENT]: (evt: PickerBaseEvent) => evt instanceof Object,
+  [CANCEL_EVENT]: (evt: PickerBaseEvent) => evt instanceof Object,
 }
 
 export type DatePickerEmits = typeof datepickerEmits
