@@ -109,23 +109,23 @@
 
 ### Props
 
-| 参数         | 说明                             | 类型   | 默认值           |
-|--------------|----------------------------------|--------|------------------|
-| rate         | 数值，大于0时箭头向上，小于0时箭头向下    | number | - |
-| digits         | 小数位精度               | number | `2`               |
-| show-sign         | 是否显示加减号               | boolean | `false`               |
-| show-zero         | 是否显示 0               | boolean | `false`               |
-| arrow-left        | 是否在数字左侧显示箭头     | boolean | `false`               |
-| sync-text-color   | 文字颜色是否与箭头同步               | boolean | `true`   |
-| text-color        | 文字颜色               | string | `#333333`               |
-| rise-color         | 向上箭头颜色               | string | `#fa2c19`               |
-| drop-color         | 向下箭头颜色               | string | `#64b578`               |
+| 参数            | 说明                                   | 类型    | 默认值    |
+| --------------- | -------------------------------------- | ------- | --------- |
+| rate            | 数值，大于0时箭头向上，小于0时箭头向下 | number  | -         |
+| digits          | 小数位精度                             | number  | `2`       |
+| show-sign       | 是否显示加减号                         | boolean | `false`   |
+| show-zero       | 是否显示 0                             | boolean | `false`   |
+| arrow-left      | 是否在数字左侧显示箭头                 | boolean | `false`   |
+| sync-text-color | 文字颜色是否与箭头同步                 | boolean | `true`    |
+| text-color      | 文字颜色                               | string  | `#333333` |
+| rise-color      | 向上箭头颜色                           | string  | `#fa2c19` |
+| drop-color      | 向下箭头颜色                           | string  | `#64b578` |
 
 ### Slots
 
-| 名称    | 说明         |
-|---------|--------------|
-| upIcon | 自定义向上箭头图标，默认使用 `TriangleUp` |
+| 名称     | 说明                                        |
+| -------- | ------------------------------------------- |
+| upIcon   | 自定义向上箭头图标，默认使用 `TriangleUp`   |
 | downIcon | 自定义向下箭头图标，默认使用 `TriangleDown` |
 
 ## 主题定制
@@ -134,7 +134,7 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                     |
-| --------------------------------------- | -------------------------- |
-| --nut-trendarrow-font-size| _14px_   |
-| --nut-trendarrow-before-icon-margin| _4px_   |
+| 名称                                | 默认值 |
+| ----------------------------------- | ------ |
+| --nut-trendarrow-font-size          | _14px_ |
+| --nut-trendarrow-before-icon-margin | _4px_  |

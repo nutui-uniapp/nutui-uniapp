@@ -132,16 +132,16 @@ import './assets/font/iconfont.css';
 
 ### Props
 
-| 参数            | 说明                                    | 类型             | 默认值           |
-|-----------------|-----------------------------------------|------------------|------------------|
-| name            | 图标名称或图片链接                      | String           | -                |
-| custom-color           | 图标颜色                                | String           | -                |
-| size            | 图标大小，如 `20px` `2em` `2rem`        | String or Number | -                |
-| font-class-name | 自定义 icon 字体基础类名                | String           | `nutui-iconfont` |
+| 参数            | 说明                                     | 类型             | 默认值           |
+| --------------- | ---------------------------------------- | ---------------- | ---------------- |
+| name            | 图标名称或图片链接                       | String           | -                |
+| custom-color    | 图标颜色                                 | String           | -                |
+| size            | 图标大小，如 `20px` `2em` `2rem`         | String or Number | -                |
+| font-class-name | 自定义 icon 字体基础类名                 | String           | `nutui-iconfont` |
 | class-prefix    | 自定义 icon 类名前缀，用于使用自定义图标 | String           | `nut-icon`       |
 
 ### Events
 
 | 事件名 | 说明           | 回调参数     |
-|--------|----------------|--------------|
+| ------ | -------------- | ------------ |
 | click  | 点击图标时触发 | event: Event |

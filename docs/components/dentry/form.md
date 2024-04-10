@@ -365,42 +365,42 @@ const basicData = reactive({
 
 ### Form Props
 
-| 参数        | 说明                                 | 类型                     | 默认值 |
-|-------------|--------------------------------------|--------------------------|--------|
-| model-value | 表单数据对象(使用表单校验时，_必填_) | object                   |        |
-| rules       | 统一配置每个 `FormItem` 的 `rules`       | `{ prop: FormItemRule[] }` | `{}`     |
-| disabled `v1.6.8` | 禁用表单下的所有数据录入组件 | boolean | `false` |
-| label-position`v1.5.7` | 表单项 label 的位置 | `top` \| `left` \| `right` | `left` |
-| star-position`v1.5.7` | 必填表单项 label 的红色星标位置 | `left` \| `right` | `left` |
+| 参数                   | 说明                                 | 类型                       | 默认值  |
+| ---------------------- | ------------------------------------ | -------------------------- | ------- |
+| model-value            | 表单数据对象(使用表单校验时，_必填_) | object                     |         |
+| rules                  | 统一配置每个 `FormItem` 的 `rules`   | `{ prop: FormItemRule[] }` | `{}`    |
+| disabled `v1.6.8`      | 禁用表单下的所有数据录入组件         | boolean                    | `false` |
+| label-position`v1.5.7` | 表单项 label 的位置                  | `top` \| `left` \| `right` | `left`  |
+| star-position`v1.5.7`  | 必填表单项 label 的红色星标位置      | `left` \| `right`          | `left`  |
 
 ### Form Events
 
-| 事件名   | 说明                       | 回调参数                                                   |
-|----------|----------------------------|------------------------------------------------------------|
+| 事件名   | 说明                       | 回调参数                                                     |
+| -------- | -------------------------- | ------------------------------------------------------------ |
 | validate | 任一表单项被校验失败后触发 | 被校验的表单项 `prop` 值，校验是否通过，错误消息（如果存在） |
 
 ### FormItem Props
 
-| 参数                | 说明                                                             | 类型             | 默认值  |
-|---------------------|------------------------------------------------------------------|------------------|---------|
-| required            | 是否显示必填字段的标签旁边的红色星号                             | boolean          | `false` |
-| prop                | 表单域 `v-model` 字段， 在使用表单校验功能的情况下，该属性是必填的 | string           | `-`       |
-| rules               | 定义校验规则                                                     | `FormItemRule[]`  | `[]`      |
-| label-width         | 表单项 `label` 宽度，默认单位为`px`                                | number \| string | `90`  |
-| label-align         | 表单项 `label` 对齐方式，可选值为 `center` `right`                 | string           | `left`  |
-| body-align          | 右侧插槽对齐方式，可选值为 `center` `right`                      | string           | `left`  |
-| error-message-align | 错误提示文案对齐方式，可选值为 `center` `right`                  | string           | `left`  |
-| show-error-line     | 是否在校验不通过时标红输入框                                     | boolean          | `true`  |
-| show-error-message  | 是否在校验不通过时在输入框下方展示错误提示                       | boolean          | `true`  |
-| label-position`v1.5.7` | 表单项 label 的位置，优先级高于 form 中的 label-position | `top` \| `left` \| `right` | - |
-| star-position`v1.5.7` | 必填表单项 label 的红色星标位置，优先级高于 form 中的 star-position | `left` \| `right` | - |
+| 参数                   | 说明                                                                | 类型                       | 默认值  |
+| ---------------------- | ------------------------------------------------------------------- | -------------------------- | ------- |
+| required               | 是否显示必填字段的标签旁边的红色星号                                | boolean                    | `false` |
+| prop                   | 表单域 `v-model` 字段， 在使用表单校验功能的情况下，该属性是必填的  | string                     | `-`     |
+| rules                  | 定义校验规则                                                        | `FormItemRule[]`           | `[]`    |
+| label-width            | 表单项 `label` 宽度，默认单位为`px`                                 | number \| string           | `90`    |
+| label-align            | 表单项 `label` 对齐方式，可选值为 `center` `right`                  | string                     | `left`  |
+| body-align             | 右侧插槽对齐方式，可选值为 `center` `right`                         | string                     | `left`  |
+| error-message-align    | 错误提示文案对齐方式，可选值为 `center` `right`                     | string                     | `left`  |
+| show-error-line        | 是否在校验不通过时标红输入框                                        | boolean                    | `true`  |
+| show-error-message     | 是否在校验不通过时在输入框下方展示错误提示                          | boolean                    | `true`  |
+| label-position`v1.5.7` | 表单项 label 的位置，优先级高于 form 中的 label-position            | `top` \| `left` \| `right` | -       |
+| star-position`v1.5.7`  | 必填表单项 label 的红色星标位置，优先级高于 form 中的 star-position | `left` \| `right`          | -       |
 
 ### FormItemRule 数据结构
 
 使用 FormItem 的`rules`属性可以定义校验规则，可选属性如下:
 
 | 键名      | 说明                   | 类型                                                                |
-|-----------|------------------------|---------------------------------------------------------------------|
+| --------- | ---------------------- | ------------------------------------------------------------------- |
 | required  | 是否为必选字段         | boolean                                                             |
 | message   | 错误提示文案           | string                                                              |
 | validator | 通过函数进行校验       | (value:string, rule?:FormItemRule ) => boolean \| string \| Promise |
@@ -408,9 +408,9 @@ const basicData = reactive({
 
 ### FormItem Slots
 
-| 名称    | 说明              |
-|---------|-------------------|
-| default | 自定义内容        |
+| 名称    | 说明                |
+| ------- | ------------------- |
+| default | 自定义内容          |
 | label   | 自定义 `label` 区域 |
 
 ``` html
@@ -424,10 +424,10 @@ const basicData = reactive({
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Form 实例并调用实例方法
 
-| 方法名   | 说明                                                               | 参数                                      | 返回值 |
-|----------|--------------------------------------------------------------------|-------------------------------------------|--------|
-| submit   | 提交表单进行校验的方法                                             | -                                         | -      |
-| reset    | 清空校验结果                                                       | -                                         | -      |
+| 方法名   | 说明                                                                   | 参数                                          | 返回值 |
+| -------- | ---------------------------------------------------------------------- | --------------------------------------------- | ------ |
+| submit   | 提交表单进行校验的方法                                                 | -                                             | -      |
+| reset    | 清空校验结果                                                           | -                                             | -      |
 | validate | 用户主动触发校验，用于用户自定义场景时触发，例如 `blur`、`change` 事件 | 同 `FormItem prop` 值,不传值会校验全部 `Rule` | -      |
 
 ## 主题定制
@@ -437,7 +437,7 @@ const basicData = reactive({
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                  | 默认值                      |
-|---------------------------------------|-----------------------------|
+| ------------------------------------- | --------------------------- |
 | --nut-form-item-error-line-color      | _var(--nut-required-color)_ |
 | --nut-form-item-required-color        | _var(--nut-required-color)_ |
 | --nut-form-item-error-message-color   | _var(--nut-required-color)_ |
