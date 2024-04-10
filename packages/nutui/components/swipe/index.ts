@@ -1,1 +1,2 @@
-export type * from './swipe'
+export * from './type'
+export * from './swipe'

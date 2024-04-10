@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isString } from '../_utils'
+import { commonProps, isString, makeArrayProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import type { SwipePosition, SwipeToggleEvent } from './type'
 
 export const swipeProps = {
   ...commonProps,
@@ -20,28 +21,18 @@ export const swipeProps = {
    * @description 是否禁用滑动
    */
   disabled: Boolean,
+  /**
+   * @description 点击自动关闭的部分
+   */
+  closeOnClick: makeArrayProp<SwipePosition>(['left', 'content', 'right']),
 }
 
 export type SwipeProps = ExtractPropTypes<typeof swipeProps>
 
-export type SwipePosition = 'left' | 'right' | ''
-
 export const swipeEmits = {
-  open: (info: { name: string, position: SwipePosition }) => info instanceof Object,
-  close: (info: { name: string, position: SwipePosition }) => info instanceof Object,
+  open: (event: SwipeToggleEvent) => event instanceof Object,
+  close: (event: SwipeToggleEvent) => event instanceof Object,
   [CLICK_EVENT]: (val: string) => isString(val),
 }
 
 export type SwipeEmits = typeof swipeEmits
-
-export interface SwipeInts {
-  /**
-   * 滑动单元格侧边栏，left 指向左滑，right 指向右滑
-   * @param position
-   */
-  open: (position?: SwipePosition) => void
-  /**
-   * 收起单元格侧边栏，同上
-   */
-  close: () => void
-}
