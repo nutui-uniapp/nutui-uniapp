@@ -56,13 +56,16 @@ const textareaStyles = computed(() => {
   return [props.textareaStyle, style]
 })
 
-const innerMaxLength = computed<number>(() => {
-  return props.maxLength ? Number(props.maxLength) : -1
+const innerMaxLength = computed(() => {
+  if (props.maxLength == null)
+    return -1
+
+  return Number(props.maxLength)
 })
 
 function updateValue(value: string, evt: any) {
-  if (props.maxLength && value.length > Number(props.maxLength))
-    value = value.substring(0, Number(props.maxLength))
+  if (innerMaxLength.value > 0 && value.length > innerMaxLength.value)
+    value = value.slice(0, innerMaxLength.value)
 
   emit(UPDATE_MODEL_EVENT, value, evt)
   emit(CHANGE_EVENT, value, evt)
@@ -194,8 +197,8 @@ export default defineComponent({
       @compositionend="endComposing"
       @confirm="handleConfirm"
     />
-    <view v-if="props.limitShow" class="nut-textarea__limit">
-      {{ innerValue.length }}/{{ props.maxLength }}
+    <view v-if="props.limitShow && innerMaxLength > 0" class="nut-textarea__limit">
+      {{ innerValue.length }}/{{ innerMaxLength }}
     </view>
   </view>
 </template>
