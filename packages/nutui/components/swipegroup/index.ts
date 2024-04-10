@@ -1,1 +1,1 @@
-export type * from './swipegroup'
+export * from './swipegroup'

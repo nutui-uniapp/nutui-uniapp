@@ -1,8 +1,12 @@
 .nut-swipe {
-  position: relative;
   display: block;
-  cursor: grab;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+
+  &__inner {
+    position: relative;
+    cursor: grab;
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
 
   &__left,
   &__right {
@@ -19,9 +23,5 @@
   &__right {
     right: 0;
     transform: translate3d(100%, 0, 0);
-  }
-
-  &__content {
-    display: inherit;
   }
 }

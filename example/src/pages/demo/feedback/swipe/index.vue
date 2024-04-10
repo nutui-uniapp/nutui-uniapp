@@ -1,27 +1,30 @@
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
 import type { SwipeInts } from 'nutui-uniapp'
 
-export default {
-  setup() {
-    const refSwipe = ref<SwipeInts>()
-    const checked = ref(false)
-    const number = ref(0)
-    const changSwitch = (value: boolean) => {
-      if (value)
-        refSwipe.value?.open('left')
-      else
-        refSwipe.value?.close()
-    }
-    const open = (obj: any) => {
-      uni.showToast({ title: JSON.stringify(obj) })
-    }
-    const close = (obj: any) => {
-      uni.showToast({ title: JSON.stringify(obj) })
-    }
-    return { checked, number, changSwitch, refSwipe, open, close, isH5 }
-  },
+const swipe = ref<SwipeInts | null>(null)
+
+const checked = ref<boolean>(false)
+
+const number = ref<number>(0)
+
+function onSwitchChange(value: boolean) {
+  if (value)
+    swipe.value?.open('left')
+  else
+    swipe.value?.close()
+}
+
+function onOpen(obj: any) {
+  checked.value = true
+
+  uni.showToast({ title: JSON.stringify(obj) })
+}
+
+function onClose(obj: any) {
+  checked.value = false
+
+  uni.showToast({ title: JSON.stringify(obj) })
 }
 </script>
 
@@ -73,10 +76,10 @@ export default {
     <h2 class="title">
       异步控制
     </h2>
-    <nut-swipe ref="refSwipe" @open="open" @close="close">
+    <nut-swipe ref="swipe" :close-on-click="['right']" @open="onOpen" @close="onClose">
       <nut-cell title="异步打开关闭">
         <template #link>
-          <nut-switch v-model="checked" active-text="开" inactive-text="关" @change="changSwitch" />
+          <nut-switch v-model="checked" active-text="开" inactive-text="关" @change="onSwitchChange" />
         </template>
       </nut-cell>
       <template #right>
