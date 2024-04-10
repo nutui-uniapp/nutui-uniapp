@@ -1,6 +1,18 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
+import {
+  commonProps,
+  isString,
+  makeNumberProp,
+  makeNumericProp,
+  makeObjectProp,
+  makeStringProp,
+  numericProp,
+  truthProp,
+} from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import type { InputAlignType, InputConfirmType, InputType } from '../input'
+import type { SearchbarShape } from './type'
 
 export const searchbarProps = {
   ...commonProps,
@@ -11,15 +23,15 @@ export const searchbarProps = {
   /**
    * @description 输入框类型
    */
-  inputType: makeStringProp<'text' | 'number' | 'idcard' | 'digit' | 'tel' | 'safe-password' | 'nickname'>('text'),
+  inputType: makeStringProp<InputType>('text'),
   /**
    * @description 搜索框形状，可选值为 `square` `round`
    */
-  shape: makeStringProp<'square' | 'round'>('round'),
+  shape: makeStringProp<SearchbarShape>('round'),
   /**
    * @description 最大输入长度
    */
-  maxLength: makeNumericProp(9999),
+  maxLength: numericProp,
   /**
    * @description 输入框默认占位符
    */
@@ -43,10 +55,7 @@ export const searchbarProps = {
   /**
    * @description 聚焦时搜索框样式
    */
-  focusStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => ({}),
-  },
+  focusStyle: makeObjectProp<CSSProperties>({}),
   /**
    * @description 是否自动聚焦
    */
@@ -62,11 +71,11 @@ export const searchbarProps = {
   /**
    * @description 对齐方式，可选 `left` `center` `right`
    */
-  inputAlign: makeStringProp<'left' | 'center' | 'right'>('left'),
+  inputAlign: makeStringProp<InputAlignType>('left'),
   /**
    * @description 键盘右下角按钮的文字，仅在`type='text'`时生效，可选值 `send`：发送、`search`：搜索、`next`：下一个、`go`：前往、`done`：完成
    */
-  confirmType: makeStringProp<'send' | 'search' | 'next' | 'go' | 'done'>('done'),
+  confirmType: makeStringProp<InputConfirmType>('done'),
   /**
    * @description 是否开启 iphone 系列全面屏底部安全区适配
    */
@@ -80,15 +89,15 @@ export const searchbarProps = {
 export type SearchbarProps = ExtractPropTypes<typeof searchbarProps>
 
 export const searchbarEmits = {
-  [UPDATE_MODEL_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
-  [CHANGE_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
-  [BLUR_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
-  [FOCUS_EVENT]: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
-  [CLEAR_EVENT]: (val: string | number) => (isString(val) || isNumber(val) || val === undefined),
-  [SEARCH_EVENT]: (val: string | number) => (isString(val) || isNumber(val) || val === undefined),
-  clickInput: (event: Event) => event instanceof Object,
-  clickLeftIcon: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
-  clickRightIcon: (val: string | number, event: Event) => (isString(val) || isNumber(val) || val === undefined) && event instanceof Object,
+  [UPDATE_MODEL_EVENT]: (val: string, event: InputOnInputEvent) => (isString(val) || val === undefined) && event instanceof Object,
+  [CHANGE_EVENT]: (val: string, event: InputOnInputEvent) => (isString(val) || val === undefined) && event instanceof Object,
+  [BLUR_EVENT]: (val: string, event: InputOnBlurEvent) => (isString(val) || val === undefined) && event instanceof Object,
+  [FOCUS_EVENT]: (val: string, event: InputOnFocusEvent) => (isString(val) || val === undefined) && event instanceof Object,
+  [CLEAR_EVENT]: (val: string) => (isString(val) || val === undefined),
+  [SEARCH_EVENT]: (val: string) => (isString(val) || val === undefined),
+  clickInput: (val: string, event: Event) => (isString(val) || val === undefined) && event instanceof Object,
+  clickLeftIcon: (val: string, event: Event) => (isString(val) || val === undefined) && event instanceof Object,
+  clickRightIcon: (val: string, event: Event) => (isString(val) || val === undefined) && event instanceof Object,
 }
 
 export type SearchbarEmits = typeof searchbarEmits

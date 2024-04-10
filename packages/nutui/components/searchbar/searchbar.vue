@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { CSSProperties, Ref } from 'vue'
-import { computed, defineComponent, reactive, ref, toRef } from 'vue'
+import { type CSSProperties, useSlots } from 'vue'
+import { computed, defineComponent, reactive, toRef } from 'vue'
+import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
@@ -12,96 +13,124 @@ const props = defineProps(searchbarProps)
 
 const emit = defineEmits(searchbarEmits)
 
+const slots = useSlots()
+
+function hasSlot(name: string) {
+  return Boolean(slots[name])
+}
+
 const formDisabled = useFormDisabled(toRef(props, 'disabled'))
 
 const state = reactive({
   active: false,
 })
 
-const classes = computed(() => {
-  return getMainClass(props, componentName, { 'safe-area-inset-bottom': props.safeAreaInsetBottom })
+function stringModelValue() {
+  if (props.modelValue == null)
+    return ''
+
+  return String(props.modelValue)
+}
+
+const innerValue = computed<string>(() => {
+  return stringModelValue()
 })
 
-const searchbarStyle = computed(() => {
+const innerMaxLength = computed(() => {
+  if (props.maxLength == null)
+    return -1
+
+  return Number(props.maxLength)
+})
+
+const classes = computed(() => {
+  return getMainClass(props, componentName, {
+    'safe-area-inset-bottom': props.safeAreaInsetBottom,
+  })
+})
+
+const styles = computed(() => {
   return getMainStyle(props, {
     background: props.background,
   })
 })
-const inputSearchbarStyle = computed(() => {
-  return {
+
+const inputWrapperStyles = computed(() => {
+  const style: CSSProperties = {
     background: props.inputBackground,
+  }
+
+  if (state.active)
+    Object.assign(style, props.focusStyle)
+
+  return style
+})
+
+const inputStyles = computed(() => {
+  return {
+    textAlign: props.inputAlign,
   }
 })
 
-function valueChange(event: any) {
-  const input = event.detail as HTMLInputElement
-  let val = input.value
+function handleValue(value: string) {
+  if (innerMaxLength.value > 0 && value.length > innerMaxLength.value)
+    value = value.slice(0, innerMaxLength.value)
 
-  if (props.maxLength && val?.length > Number(props.maxLength))
-    val = val.slice(0, Number(props.maxLength))
-
-  emit(UPDATE_MODEL_EVENT, val, event)
-  emit(CHANGE_EVENT, val, event)
+  return value
 }
 
-const focusCss = ref({})
-function valueFocus(event: any) {
-  const input = event.detail as HTMLInputElement
-  const value = input.value
+function handleInput(event: InputOnInputEvent) {
+  const value = handleValue(event.detail.value)
+
+  emit(UPDATE_MODEL_EVENT, value, event)
+  emit(CHANGE_EVENT, value, event)
+}
+
+function handleFocus(event: InputOnFocusEvent) {
+  const value = handleValue(event.detail.value)
+
   state.active = true
-  focusCss.value = props.focusStyle
 
   emit(FOCUS_EVENT, value, event)
 }
 
-function valueBlur(event: any) {
+function handleBlur(event: InputOnBlurEvent) {
+  const value = handleValue(event.detail.value)
+
   setTimeout(() => {
     state.active = false
-  }, 0)
+  }, 200)
 
-  const input = event.detail as HTMLInputElement
-  let value = input.value
-  if (props.maxLength && value?.length > Number(props.maxLength))
-    value = value.slice(0, Number(props.maxLength))
-
-  focusCss.value = {}
   emit(BLUR_EVENT, value, event)
 }
 
-function handleClear(event: Event) {
+function handleClear(event: any) {
   emit(UPDATE_MODEL_EVENT, '', event)
   emit(CHANGE_EVENT, '', event)
   emit(CLEAR_EVENT, '')
 }
 
 function handleSubmit() {
-  emit(SEARCH_EVENT, props.modelValue)
+  emit(SEARCH_EVENT, innerValue.value)
 }
 
-function clickInput(event: Event) {
-  emit('clickInput', event)
+function handleInputClick(event: any) {
+  emit('clickInput', innerValue.value, event)
 }
 
-function leftIconClick(event: Event) {
-  emit('clickLeftIcon', props.modelValue, event)
+function handleLeftIconClick(event: any) {
+  emit('clickLeftIcon', innerValue.value, event)
 }
 
-function rightIconClick(event: Event) {
-  emit('clickRightIcon', props.modelValue, event)
+function handleRightIconClick(event: any) {
+  emit('clickRightIcon', innerValue.value, event)
 }
-
-const styleSearchbar = computed(() => {
-  const style: CSSProperties = {
-    textAlign: props.inputAlign,
-  }
-  return style
-})
-const inputsearch: Ref<HTMLElement | null> = ref(null)
 </script>
 
 <script lang="ts">
 const componentName = `${PREFIX}-searchbar`
 const { translate } = useTranslate(componentName)
+
 export default defineComponent({
   name: componentName,
   options: {
@@ -113,60 +142,71 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="searchbarStyle">
-    <view v-if="$slots.leftout" class="nut-searchbar__search-icon nut-searchbar__left-search-icon" @click="(leftIconClick as any)">
+  <view :class="classes" :style="styles">
+    <view
+      v-if="hasSlot('leftout')"
+      class="nut-searchbar__search-icon nut-searchbar__left-search-icon"
+      @click="handleLeftIconClick"
+    >
       <slot name="leftout" />
     </view>
-    <view class="nut-searchbar__search-input" :class="[shape]" :style="{ ...inputSearchbarStyle, ...focusCss }">
-      <view v-if="$slots.leftin" class="nut-searchbar__search-icon nut-searchbar__iptleft-search-icon">
+    <view class="nut-searchbar__search-input" :class="[props.shape]" :style="inputWrapperStyles">
+      <view v-if="hasSlot('leftin')" class="nut-searchbar__search-icon nut-searchbar__iptleft-search-icon">
         <slot name="leftin" />
       </view>
-      <view class="nut-searchbar__input-inner" :class="[$slots.rightin && 'nut-searchbar__input-inner-absolute']">
+      <view class="nut-searchbar__input-inner" :class="{ 'nut-searchbar__input-inner-absolute': hasSlot('rightin') }">
         <form class="nut-searchbar__input-form" action="#" onsubmit="return false" @submit.prevent="handleSubmit">
           <input
-            ref="inputsearch"
-            class="nut-searchbar__input-bar" :class="[clearable && 'nut-searchbar__input-bar_clear']"
-            :type="inputType"
-            :maxlength="maxLength ? +maxLength : -1"
-            :placeholder="placeholder || translate('placeholder')"
-            :value="String(modelValue)"
-            :auto-focus="autofocus"
-            :confirm-type="confirmType"
+            class="nut-searchbar__input-bar"
+            :class="{ 'nut-searchbar__input-bar_clear': props.clearable }"
+            :style="inputStyles"
+            :type="props.inputType as any"
+            :maxlength="innerMaxLength"
+            :placeholder="props.placeholder || translate('placeholder')"
+            :value="innerValue"
+            :focus="props.autofocus"
+            :confirm-type="props.confirmType"
             :disabled="formDisabled"
-            :readonly="readonly"
-            :style="styleSearchbar"
-            :cursor-spacing="cursorSpacing"
-            @click="(clickInput as any)"
-            @input="valueChange"
-            @focus="valueFocus"
-            @blur="valueBlur"
+            :readonly="props.readonly"
+            :cursor-spacing="props.cursorSpacing"
+            @click="handleInputClick"
+            @input="handleInput"
+            @focus="handleFocus"
+            @blur="handleBlur"
             @confirm="handleSubmit"
           >
         </form>
       </view>
-      <view class="nut-searchbar__input-inner-icon" :class="[$slots.rightin && 'nut-searchbar__input-inner-icon-absolute']">
+      <view
+        class="nut-searchbar__input-inner-icon"
+        :class="{ 'nut-searchbar__input-inner-icon-absolute': hasSlot('rightin') }"
+      >
         <view
-          v-if="clearable"
+          v-if="props.clearable"
           class="nut-searchbar__search-icon nut-searchbar__input-clear"
-          :class="{ 'nut-hidden': String(modelValue).length <= 0 }"
-          @click="(handleClear as any)"
+          :class="{ 'nut-hidden': innerValue.length <= 0 }"
+          @click="handleClear"
         >
-          <template v-if="$slots['clear-icon']">
+          <template v-if="hasSlot('clear-icon')">
             <slot name="clear-icon" />
           </template>
-          <NutIcon v-else :name="clearIcon" />
+          <NutIcon v-else :name="props.clearIcon" />
         </view>
-        <view v-if="$slots.rightin" class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon" @click="(rightIconClick as any)">
+        <view
+          v-if="hasSlot('rightin')"
+          class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon"
+          @click="handleRightIconClick"
+        >
           <slot name="rightin" />
         </view>
       </view>
     </view>
-    <view v-if="$slots.rightout" class="nut-searchbar__search-icon nut-searchbar__right-search-icon">
+    <view v-if="hasSlot('rightout')" class="nut-searchbar__search-icon nut-searchbar__right-search-icon">
       <slot name="rightout" />
     </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
