@@ -1,3 +1,16 @@
+## [1.7.6](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.5...v1.7.6) (2024-04-10)
+
+### Bug Fixes
+
+* **input:** 修复H5环境下type为number无效 ([#279](https://github.com/nutui-uniapp/nutui-uniapp/issues/279)) ([ec41815](https://github.com/nutui-uniapp/nutui-uniapp/commit/ec41815ae502f56341575706364e3a0eafeb9253))
+* **picker:** 修复非H5平台mask缺失 ([96666cf](https://github.com/nutui-uniapp/nutui-uniapp/commit/96666cf7c93c8e38c5b22c3118e2c1a7fe7a2247))
+* **searchbar:** 修复app端输入框对齐问题 ([#282](https://github.com/nutui-uniapp/nutui-uniapp/issues/282)) ([1f77dab](https://github.com/nutui-uniapp/nutui-uniapp/commit/1f77dab96d3fa0d589e383565c9a1254a309a31a))
+
+### Features
+
+* **addresslist:** 新增是否使用插槽相关属性 ([#274](https://github.com/nutui-uniapp/nutui-uniapp/issues/274)) ([1727859](https://github.com/nutui-uniapp/nutui-uniapp/commit/1727859c45d65322271e3f7121b825f10845ccac))
+* **calendar:** 添加calendar组件点击遮罩关闭事件和点击关闭图标事件 ([#273](https://github.com/nutui-uniapp/nutui-uniapp/issues/273)) ([e70e654](https://github.com/nutui-uniapp/nutui-uniapp/commit/e70e654b57a8884cc4589877f56670652160c33d))
+
 ## [1.7.5](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.4...v1.7.5) (2024-03-29)
 
 ### Bug Fixes
