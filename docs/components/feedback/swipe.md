@@ -166,7 +166,7 @@ const number = ref<number>(0);
 | disabled                    | 是否禁用滑动                                  | string   | `false`                        |
 | touch-move-prevent-default  | 是否阻止滑动事件行为                              | boolean  | `false`                        |
 | touch-move-stop-propagation | 是否阻止滑动事件冒泡                              | boolean  | `false`                        |
-| close-on-click `1.7.6`      | 点击自动关闭的部分，可选值为：`left`、`content`、`right` | string[] | `["left", "content", "right"]` |
+| close-on-click `1.7.7`      | 点击自动关闭的部分，可选值为：`left`、`content`、`right` | string[] | `["left", "content", "right"]` |
 
 ### Events
 
