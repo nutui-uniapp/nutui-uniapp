@@ -1,2 +1,2 @@
+export * from './type'
 export * from './pickercolumn'
-export * from './types'

@@ -6,7 +6,7 @@ import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
 import type { PickerBaseEvent, PickerChangeEvent } from '../picker'
 import { datepickerEmits, datepickerProps } from './datepicker'
-import type { DateLike } from './type'
+import type { DateLike, DatePickerColumnType, DatePickerRangeItem } from './type'
 
 const props = defineProps(datepickerProps)
 
@@ -25,7 +25,7 @@ const ZH_CN_LOCALES: {
 
 interface State {
   currentDate: Date
-  selectedValue: any[]
+  selectedValue: string[]
 }
 
 const state: State = reactive({
@@ -101,7 +101,7 @@ function getBoundary(type: 'min' | 'max', value: Date) {
   }
 }
 
-const ranges = computed(() => {
+const ranges = computed<DatePickerRangeItem[]>(() => {
   const { minYear, minDate, minMonth, minHour, minMinute, minSeconds } = getBoundary('min', state.currentDate)
 
   const { maxYear, maxDate, maxMonth, maxHour, maxMinute, maxSeconds } = getBoundary('max', state.currentDate)
@@ -185,7 +185,7 @@ function formatterOption(type: string, value: string | number) {
 
   const text = padZero(value, 2)
 
-  let option: any
+  let option: PickerOption
   if (formatter)
     option = formatter(type, { text, value: text })
   else
@@ -217,12 +217,12 @@ function generateValue(min: number, max: number, value: number | string, type: s
       index += 1
   }
 
-  state.selectedValue[columnIndex] = options[index]?.value
+  state.selectedValue[columnIndex] = options[index]?.value as string
 
   return props.filter ? props.filter(type, options) : options
 }
 
-function getDateIndex(type: string) {
+function getDateIndex(type: DatePickerColumnType) {
   if (type === 'year')
     return state.currentDate.getFullYear()
 
@@ -252,36 +252,22 @@ function handleConfirm(event: PickerBaseEvent) {
   emit(CONFIRM_EVENT, event)
 }
 
-function generateList(list: any[]) {
+function generateList<T>(list: T[]) {
   switch (props.type) {
-    case 'date': {
-      list = list.slice(0, 3)
-      break
-    }
-    case 'datetime': {
-      list = list.slice(0, 5)
-      break
-    }
-    case 'time': {
-      list = list.slice(3, 6)
-      break
-    }
-    case 'year-month': {
-      list = list.slice(0, 2)
-      break
-    }
-    case 'month-day': {
-      list = list.slice(1, 3)
-      break
-    }
-    case 'datehour': {
-      list = list.slice(0, 4)
-      break
-    }
-    case 'hour-minute': {
-      list = list.slice(3, 5)
-      break
-    }
+    case 'date':
+      return list.slice(0, 3)
+    case 'datetime':
+      return list.slice(0, 5)
+    case 'time':
+      return list.slice(3, 6)
+    case 'year-month':
+      return list.slice(0, 2)
+    case 'month-day':
+      return list.slice(1, 3)
+    case 'datehour':
+      return list.slice(0, 4)
+    case 'hour-minute':
+      return list.slice(3, 5)
   }
 
   return list
