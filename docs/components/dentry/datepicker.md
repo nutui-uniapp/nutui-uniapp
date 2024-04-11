@@ -41,7 +41,7 @@ function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent
                      :min-date="minDate"
                      :max-date="maxDate"
                      is-show-chinese
-                     @confirm="onConfirmPopup"
+                     @confirm="onConfirm"
                      @cancel="show = false">
       <nut-button block type="primary" @click="onButtonClick">
         永远有效
@@ -60,7 +60,7 @@ const maxDate = new Date(2025, 10, 1);
 
 const currentDate = ref<Date>(new Date(2022, 4, 10, 10, 10));
 
-function onConfirmPopup({ date, selectedValue, selectedOptions }: DatePickerBaseEvent) {
+function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent) {
   console.log(date, selectedValue, selectedOptions);
 
   popupDesc.value = selectedOptions.map(item => item.text).join("-");
@@ -224,7 +224,7 @@ function filter(type: DatePickerColumnType, options: PickerOption[]) {
 
 | 参数                 | 说明                                                                                                                     | 类型                                                                      | 默认值     |
 |--------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|---------|
-| v-model            | 初始值                                                                                                                    | Date                                                                    | -       |
+| v-model            | 选中值                                                                                                                    | Date                                                                    | -       |
 | type               | 时间类型，可选值 `date`(年月日) `time`(时分秒) `year-month`(年月) `month-day`(月日) `datehour`(年月日时) `hour-minute`(时分) `datetime`(年月日时分) | string                                                                  | `date`  |
 | show-toolbar       | 是否显示顶部导航                                                                                                               | boolean                                                                 | `true`  |
 | title              | 设置标题                                                                                                                   | string                                                                  | -       |
