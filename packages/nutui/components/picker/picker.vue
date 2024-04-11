@@ -216,7 +216,7 @@ export default defineComponent({
           :column="column"
           :value="defaultValues[columnIndex]"
           :field-names="columnFieldNames"
-          :three-dimensional="false"
+          :three-dimensional="props.threeDimensional"
           :swipe-duration="props.swipeDuration"
           :visible-option-num="innerVisibleOptionNum"
           :option-height="innerOptionHeight"

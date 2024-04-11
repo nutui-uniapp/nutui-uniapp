@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { CHANGE_EVENT } from '../_constants'
-import { makeArrayProp, makeNumericProp, truthProp } from '../_utils'
+import { makeArrayProp, makeNumericProp } from '../_utils'
 import type { PickerFieldNames, PickerOption } from './type'
 
 export const pickercolumnProps = {
@@ -15,7 +15,7 @@ export const pickercolumnProps = {
   /**
    * @description 是否开启3D效果
    */
-  threeDimensional: truthProp,
+  threeDimensional: Boolean,
   /**
    * @description 惯性滚动时长
    */

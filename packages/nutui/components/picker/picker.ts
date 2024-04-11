@@ -33,7 +33,7 @@ export const pickerProps = {
   /**
    * @description 是否开启3D效果
    */
-  threeDimensional: truthProp,
+  threeDimensional: Boolean,
   /**
    * @description 惯性滚动时长
    */
