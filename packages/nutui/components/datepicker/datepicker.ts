@@ -1,8 +1,14 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import type { PickerBaseEvent } from '../picker'
-import type { DateLike, DatePickerChangeEvent, DatePickerFilter, DatePickerFormatter, DatePickerType } from './type'
+import type {
+  DateLike,
+  DatePickerBaseEvent,
+  DatePickerChangeEvent,
+  DatePickerFilter,
+  DatePickerFormatter,
+  DatePickerType,
+} from './type'
 
 export const datepickerProps = {
   /**
@@ -84,8 +90,8 @@ export type DatePickerProps = ExtractPropTypes<typeof datepickerProps>
 export const datepickerEmits = {
   [UPDATE_MODEL_EVENT]: (val: Date) => val instanceof Object,
   [CHANGE_EVENT]: (evt: DatePickerChangeEvent) => evt instanceof Object,
-  [CONFIRM_EVENT]: (evt: PickerBaseEvent) => evt instanceof Object,
-  [CANCEL_EVENT]: (evt: PickerBaseEvent) => evt instanceof Object,
+  [CONFIRM_EVENT]: (evt: DatePickerBaseEvent) => evt instanceof Object,
+  [CANCEL_EVENT]: (evt: DatePickerBaseEvent) => evt instanceof Object,
 }
 
 export type DatePickerEmits = typeof datepickerEmits

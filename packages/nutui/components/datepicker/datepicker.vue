@@ -6,7 +6,7 @@ import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
 import type { PickerBaseEvent, PickerChangeEvent } from '../picker'
 import { datepickerEmits, datepickerProps } from './datepicker'
-import type { DateLike, DatePickerColumnType, DatePickerRangeItem } from './type'
+import type { DateLike, DatePickerBaseEvent, DatePickerColumnType, DatePickerRangeItem } from './type'
 
 const props = defineProps(datepickerProps)
 
@@ -244,12 +244,22 @@ function getDateIndex(type: DatePickerColumnType) {
   return 0
 }
 
+function convertEvent({ selectedValue, selectedOptions }: PickerBaseEvent): DatePickerBaseEvent {
+  const [year, month, day, hour, minute, seconds] = selectedValue
+
+  return {
+    date: new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(seconds)),
+    selectedValue,
+    selectedOptions,
+  }
+}
+
 function handleCancel(event: PickerBaseEvent) {
-  emit(CANCEL_EVENT, event)
+  emit(CANCEL_EVENT, convertEvent(event))
 }
 
 function handleConfirm(event: PickerBaseEvent) {
-  emit(CONFIRM_EVENT, event)
+  emit(CONFIRM_EVENT, convertEvent(event))
 }
 
 function generateList<T>(list: T[]) {

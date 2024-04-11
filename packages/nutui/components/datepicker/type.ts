@@ -1,5 +1,5 @@
 import type { PickerOption } from '../pickercolumn'
-import type { PickerChangeEvent } from '../picker'
+import type { PickerBaseEvent, PickerChangeEvent } from '../picker'
 
 export type DateLike = number | string | Date
 
@@ -9,8 +9,12 @@ export type DatePickerType = (typeof datepickerType)[number]
 export const datepickerColumnType = ['year', 'month', 'day', 'hour', 'minute', 'seconds'] as const
 export type DatePickerColumnType = (typeof datepickerColumnType)[number]
 
-export interface DatePickerChangeEvent extends PickerChangeEvent {
+export interface DatePickerBaseEvent extends PickerBaseEvent {
   date: Date
+}
+
+export interface DatePickerChangeEvent extends DatePickerBaseEvent, PickerChangeEvent {
+
 }
 
 export type DatePickerFormatter = (type: DatePickerColumnType, option: PickerOption) => PickerOption
