@@ -112,9 +112,9 @@ function onSearch(value: string) {
 
 | 参数                           | 说明                                                                                                  | 类型            | 默认值         |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------- | --------------- | -------------- |
-| v-model                        | 当前输入的值                                                                                          | number / string | `''`           |
+| v-model                        | 当前输入的值                                                                                          | number \ string | `''`           |
 | shape                          | 搜索框形状，可选值为 `square` `round`                                                                 | string          | `round`        |
-| max-length                     | 最大输入长度                                                                                          | number / string | `-`            |
+| max-length                     | 最大输入长度   
 | input-type                     | 输入框类型                                                                                            | string          | `text`         |
 | placeholder                    | 输入框默认暗纹                                                                                        | string          | `请输入`       |
 | clearable                      | 是否展示清除按钮                                                                                      | boolean         | `true`         |

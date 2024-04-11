@@ -13,7 +13,6 @@
 
     /* #endif */
 
-    // 标题
     &__bar {
       display: flex;
       align-items: center;
@@ -24,7 +23,6 @@
     &__title {
       color: $dark-color;
     }
-
 
     &-content {
       color: $dark-color;
@@ -41,7 +39,6 @@
   background: #fff;
   border-radius: 5px;
 
-  // 标题
   &__bar {
     display: flex;
     align-items: center;
