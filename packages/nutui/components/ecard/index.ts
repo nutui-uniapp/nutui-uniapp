@@ -1,1 +1,2 @@
-export type * from './ecard'
+export * from './type'
+export * from './ecard'
