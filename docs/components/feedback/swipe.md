@@ -11,9 +11,10 @@
 ```html
 <template>
   <nut-swipe>
-    <nut-cell round-radius="0" title="左滑删除" />
+    <nut-cell title="左滑删除" round-radius="0"></nut-cell>
+
     <template #right>
-      <nut-button shape="square" style="height:100%" type="danger">删除</nut-button>
+      <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
     </template>
   </nut-swipe>
 </template>
@@ -24,9 +25,10 @@
 ```html
 <template>
   <nut-swipe disabled>
-    <nut-cell round-radius="0" title="禁止滑动" />
+    <nut-cell title="禁止滑动" round-radius="0"></nut-cell>
+
     <template #right>
-      <nut-button shape="square" style="height:100%" type="danger">删除</nut-button>
+      <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
     </template>
   </nut-swipe>
 </template>
@@ -38,12 +40,14 @@
 <template>
   <nut-swipe>
     <template #left>
-      <nut-button shape="square" style="height:100%" type="success">选择</nut-button>
+      <nut-button style="height: 100%" type="success" shape="square">选择</nut-button>
     </template>
-    <nut-cell round-radius="0" title="左滑右滑都可以哦" />
+
+    <nut-cell title="左滑右滑都可以哦" round-radius="0"></nut-cell>
+
     <template #right>
-      <nut-button shape="square" style="height:100%" type="danger">删除</nut-button>
-      <nut-button shape="square" style="height:100%" type="info">收藏</nut-button>
+      <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
+      <nut-button style="height: 100%" type="info" shape="square">收藏</nut-button>
     </template>
   </nut-swipe>
 </template>
@@ -53,105 +57,101 @@
 
 ```html
 <template>
-  <nut-swipe ref="refSwipe" @open="open" @close="close">
+  <nut-swipe ref="swipe" :close-on-click="['right']" @open="onOpen" @close="onClose">
     <nut-cell title="异步打开关闭">
-    <template v-slot:link>
-      <nut-switch v-model="checked" @change="changSwitch" active-text="开" inactive-text="关" />
-    </template>
+      <template #link>
+        <nut-switch v-model="checked" active-text="开" inactive-text="关" @change="onSwitchChange"></nut-switch>
+      </template>
     </nut-cell>
+
     <template #right>
-      <nut-button shape="square" style="height:100%" type="danger">删除</nut-button>
+      <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
     </template>
   </nut-swipe>
 </template>
-<script lang="ts">
-import { ref } from 'vue';
-export default {
-  setup() {
-    const refSwipe = ref<HTMLElement>();
-    const checked = ref(false);
-    const changSwitch = (value: boolean) => {
-      if (value) {
-        refSwipe.value?.open('left');
-      } else {
-        refSwipe.value?.close();
-      }
-    };
-    const open = (obj: any) => {
-      console.log(obj);
-    };
-    const close = (obj: any) => {
-      console.log(obj);
-    };
-    return { checked, changSwitch, refSwipe, open, close };
+```
+
+```typescript
+import type { SwipeInts, SwipeToggleEvent } from "nutui-uniapp";
+
+const swipe = ref<SwipeInts | null>(null);
+
+const checked = ref<boolean>(false);
+
+function onSwitchChange(value: boolean) {
+  if (value) {
+    swipe.value?.open("left");
+  } else {
+    swipe.value?.close();
   }
 }
-</script>
+
+function onOpen(info: SwipeToggleEvent) {
+  console.log("打开了...", info);
+}
+
+function onClose(info: SwipeToggleEvent) {
+  console.log("关闭了...", info);
+}
 ```
 
 ### 自定义
 
 ```html
 <template>
-<nut-swipe>
+  <nut-swipe>
     <template #left>
-        <nut-button shape="square" style="height:100%" type="success">选择</nut-button>
+      <nut-button style="height: 100%" type="success" shape="square">选择</nut-button>
     </template>
+
     <nut-cell title="商品描述">
-    <template v-slot:link>
-        <nut-input-number v-model="number" />
-    </template>
+      <template #link>
+        <nut-input-number v-model="number"></nut-input-number>
+      </template>
     </nut-cell>
+
     <template #right>
-        <nut-button shape="square" style="height:100%" type="danger">删除</nut-button>
-        <nut-button shape="square" style="height:100%" type="info">收藏</nut-button>
+      <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
+      <nut-button style="height: 100%" type="info" shape="square">收藏</nut-button>
     </template>
-</nut-swipe>
+  </nut-swipe>
 </template>
-<script lang="ts">
-import { ref } from 'vue';
-export default {
-    setup() {
-        const number = ref(0);
-        return { number };
-    }
-}
-</script>
+```
+
+```typescript
+const number = ref<number>(0);
 ```
 
 ### 使用 SwipeGroup 控制 Swipe 之间互斥
 
 此时各个 Swipe 的 name 为必填项。
 
-```vue
+```html
 <template>
   <nut-swipe-group lock>
-    <nut-swipe name="11">
-      <nut-cell round-radius="0" title="左滑删除" />
+    <nut-swipe name="swipe1">
+      <nut-cell title="左滑删除" round-radius="0"></nut-cell>
+
       <template #right>
-        <nut-button shape="square" style="height: 100%" type="danger">
-          删除
-        </nut-button>
+        <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
       </template>
     </nut-swipe>
-    <nut-swipe name="22">
-      <nut-cell round-radius="0" title="左滑删除" />
+
+    <nut-swipe name="swipe2">
+      <nut-cell title="左滑删除" round-radius="0"></nut-cell>
+
       <template #right>
-        <nut-button shape="square" style="height: 100%" type="danger">
-          删除
-        </nut-button>
+        <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
       </template>
     </nut-swipe>
-    <div>
-      <nut-swipe name="33">
-        <nut-cell round-radius="0" title="左滑删除" />
-        <template #right>
-          <nut-button shape="square" style="height: 100%" type="danger">
-            删除
-          </nut-button>
-        </template>
-      </nut-swipe>
-    </div>
+
+    <nut-swipe name="swipe3">
+      <nut-cell title="左滑删除" round-radius="0"></nut-cell>
+
+      <template #right>
+        <nut-button style="height: 100%" type="danger" shape="square">删除</nut-button>
+      </template>
+    </nut-swipe>
   </nut-swipe-group>
 </template>
 ```
@@ -160,19 +160,20 @@ export default {
 
 ### Props
 
-| 参数                        | 说明                 | 类型    | 默认值  |
-| --------------------------- | -------------------- | ------- | ------- |
-| name                        | 唯一标识             | string  | -       |
-| disabled                    | 是否禁用滑动         | string  | `false` |
-| touch-move-prevent-default  | 是否阻止滑动事件行为 | boolean | `false` |
-| touch-move-stop-propagation | 是否阻止滑动事件冒泡 | boolean | `false` |
+| 参数                        | 说明                                                     | 类型     | 默认值                         |
+| --------------------------- | -------------------------------------------------------- | -------- | ------------------------------ |
+| name                        | 唯一标识                                                 | string   | -                              |
+| disabled                    | 是否禁用滑动                                             | string   | `false`                        |
+| touch-move-prevent-default  | 是否阻止滑动事件行为                                     | boolean  | `false`                        |
+| touch-move-stop-propagation | 是否阻止滑动事件冒泡                                     | boolean  | `false`                        |
+| close-on-click `1.7.7`      | 点击自动关闭的部分，可选值为：`left`、`content`、`right` | string[] | `["left", "content", "right"]` |
 
 ### Events
 
-| 事件名 | 说明                                      | 回调参数                             |
-| ------ | ----------------------------------------- | ------------------------------------ |
-| open   | 滑动时触发，left 指向左滑，right 指向右滑 | `name, position: 'left' \|  'right'` |
-| close  | 关闭时触发，同上                          | `name, position: 'left' \|  'right'` |
+| 事件名 | 说明                                      | 回调参数          |
+| ------ | ----------------------------------------- | ----------------- |
+| open   | 开启时触发，left 指向左滑，right 指向右滑 | `name, direction` |
+| close  | 关闭时触发，同上                          | `name, direction` |
 
 ### Slots
 
@@ -186,10 +187,10 @@ export default {
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html) 可以获取到 Swipe 实例并调用实例方法。
 
-| 方法名 | 说明                                            | 参数                                |
-| ------ | ----------------------------------------------- | ----------------------------------- |
-| open   | 滑动单元格侧边栏，left 指向左滑，right 指向右滑 | `name, position: 'left' \| 'right'` |
-| close  | 收起单元格侧边栏，同上                          | `name, position: 'left' \| 'right'` |
+| 方法名 | 说明                                            | 参数              |
+| ------ | ----------------------------------------------- | ----------------- |
+| open   | 打开单元格侧边栏，left 指向左滑，right 指向右滑 | `name, direction` |
+| close  | 收起单元格侧边栏，同上                          | `name, direction` |
 
 ## SwipeGroup
 

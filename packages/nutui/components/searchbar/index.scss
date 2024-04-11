@@ -1,25 +1,9 @@
 .nut-theme-dark {
   .nut-searchbar {
-    &__search-input {
-        // color: $dark-color;
-        background: $dark-background4;
-    }
-
     background: $dark-background;
 
-    &__search-label {
-      color: $dark-color;
-    }
-
-    .nut-searchbar__input-clear {
-      & .nut-searchbar__nut-icon-mask-close {
-        color: $dark-color;
-
-        &:hover {
-          color: $dark-color;
-          cursor: pointer;
-        }
-      }
+    &__search-input {
+      background: $dark-background4;
     }
 
     &__right-search-icon,
@@ -50,19 +34,13 @@
       width: 100%;
       height: constant(safe-area-inset-bottom);
       height: env(safe-area-inset-bottom);
-      content: '';
+      content: "";
       background: $searchbar-background;
     }
   }
 
-
   &::placeholder {
     color: $searchbar-input-bar-placeholder-color;
-  }
-
-  &__search-label {
-    padding: 0 5px;
-    color: #323233;
   }
 
   &__search-input {
@@ -70,7 +48,6 @@
     display: flex;
     flex: 1;
     align-items: center;
-    width: $searchbar-input-width;
     height: $searchbar-input-height;
     padding: $searchbar-input-padding;
     background: $searchbar-input-background;
@@ -84,28 +61,13 @@
     .nut-searchbar__input-inner {
       position: relative;
       display: flex;
-
-      // width: 100%;
       flex: 1;
       align-items: center;
       overflow: hidden;
 
-      > taro-form-core {
-        width: 100%;
-      }
-
       .nut-searchbar__input-form {
-        // display: flex;
-        // align-items: center;
-        // width: 100%;
         flex: 1;
         overflow: hidden;
-      }
-
-      input {
-        width: 100%;
-        height: 100%;
-        padding-left: 4px;
       }
     }
 
@@ -113,8 +75,6 @@
       position: relative;
       display: flex;
       align-items: center;
-
-      // overflow: hidden;
       padding: 0 7px;
     }
 
@@ -122,22 +82,12 @@
       position: relative;
       z-index: 10;
       padding: 0 5px;
-
-      & .nut-searchbar__nut-icon-mask-close {
-        color: rgb(204 204 204);
-
-        &:hover {
-          color: rgb(104 104 104);
-          cursor: pointer;
-        }
-      }
     }
 
     .nut-searchbar__input-inner-icon-absolute {
       .nut-searchbar__input-clear {
         position: absolute;
         left: -20px;
-        z-index: 10;
       }
     }
 
@@ -153,15 +103,13 @@
 
     .nut-searchbar__input-bar {
       flex: 1;
-      width: 100%;
-      height: 36px;
+      height: $searchbar-input-height;
       padding: 0;
       margin: 0;
       font-size: 14px;
+      line-height: $searchbar-input-height;
       background-color: transparent;
       border-color: transparent;
-      
-      // border-radius: 16px;
       outline: none;
     }
 

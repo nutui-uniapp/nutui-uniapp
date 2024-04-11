@@ -1,68 +1,69 @@
-<script lang="ts">
+<script lang="ts" setup>
 import { reactive, ref } from 'vue'
 
-/* eslint-disable no-console */
+const data = ref([{
+  testid: 3,
+  testaddressName: '姓名',
+  phone: '123****4567',
+  defaultAddress: false,
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
+}, {
+  testid: 4,
+  testaddressName: '姓名',
+  phone: '123****4567',
+  defaultAddress: true,
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
+}])
 
-export default {
-  setup() {
-    const data = ref([
-      {
-        testid: 3,
-        testaddressName: '姓名',
-        phone: '123****4567',
-        defaultAddress: false,
-        fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
-      },
-      {
-        testid: 4,
-        testaddressName: '姓名',
-        phone: '123****4567',
-        defaultAddress: true,
-        fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
-      },
-    ])
-    const dataOptions = reactive({
-      id: 'testid',
-      addressDetail: 'testaddressDetail',
-      addressName: 'testaddressName',
-    })
-    const clickItem = () => {
-      console.log('Click To Address')
-    }
-    const delClick = () => {
-      console.log('Click To Delete')
-    }
-    const editClick = () => {
-      console.log('Click To Edit')
-    }
-    const copyClick = () => {
-      console.log('Click To Copy')
-    }
-    const setClick = () => {
-      console.log('Click On Settings')
-    }
-    const delClickLong = () => {
-      console.log('Click On DelClickLong')
-    }
-    const delClickSwipe = () => {
-      console.log('Click On DelClickSwipe')
-    }
-    const addAddress = () => {
-      console.log('Click To Add')
-    }
-    return {
-      clickItem,
-      data,
-      delClick,
-      editClick,
-      copyClick,
-      setClick,
-      delClickLong,
-      delClickSwipe,
-      addAddress,
-      dataOptions,
-    }
-  },
+const dataOptions = reactive({
+  id: 'testid',
+  addressDetail: 'testaddressDetail',
+  addressName: 'testaddressName',
+})
+
+function onItemClick() {
+  // eslint-disable-next-line no-console
+  console.log('item clicked')
+}
+
+function onItemDelClick() {
+  // eslint-disable-next-line no-console
+  console.log('item delete clicked')
+}
+
+function onItemEditClick() {
+  // eslint-disable-next-line no-console
+  console.log('item edit clicked')
+}
+
+function onItemLongCopyClick() {
+  // eslint-disable-next-line no-console
+  console.log('item copy clicked')
+}
+
+function onItemLongSetClick() {
+  // eslint-disable-next-line no-console
+  console.log('item set clicked')
+}
+
+function onItemLongDelClick() {
+  // eslint-disable-next-line no-console
+  console.log('item delete clicked (longpress)')
+}
+
+function onItemSwipeDelClick() {
+  // eslint-disable-next-line no-console
+  console.log('item delete clicked (swipe)')
+}
+
+function onAddressAddClick() {
+  // eslint-disable-next-line no-console
+  console.log('address add clicked')
+}
+
+function onItemRefreshClick(item: any) {
+  // eslint-disable-next-line no-console
+  console.log('item refresh clicked', item)
 }
 </script>
 
@@ -75,9 +76,9 @@ export default {
       :data="data"
       :show-bottom-button="false"
       :options="dataOptions"
-      @del-icon="delClick"
-      @edit-icon="editClick"
-      @click-item="clickItem"
+      @click-item="onItemClick"
+      @del-icon="onItemDelClick"
+      @edit-icon="onItemEditClick"
     />
     <h2 class="title">
       长按功能
@@ -87,12 +88,12 @@ export default {
       long-press
       :show-bottom-button="false"
       :options="dataOptions"
-      @del-icon="delClick"
-      @edit-icon="editClick"
-      @click-item="clickItem"
-      @long-copy="copyClick"
-      @long-set="setClick"
-      @long-del="delClickLong"
+      @click-item="onItemClick"
+      @del-icon="onItemDelClick"
+      @edit-icon="onItemEditClick"
+      @long-copy="onItemLongCopyClick"
+      @long-set="onItemLongSetClick"
+      @long-del="onItemLongDelClick"
     />
     <h2 class="title">
       滑动功能
@@ -102,12 +103,23 @@ export default {
       swipe-edition
       show-bottom-button
       :options="dataOptions"
-      @del-icon="delClick"
-      @edit-icon="editClick"
-      @click-item="clickItem"
-      @swipe-del="delClickSwipe"
-      @add="addAddress"
+      @click-item="onItemClick"
+      @del-icon="onItemDelClick"
+      @edit-icon="onItemEditClick"
+      @swipe-del="onItemSwipeDelClick"
+      @add="onAddressAddClick"
     />
+    <h2 class="title">
+      使用插槽
+    </h2>
+    <nut-address-list
+      :data="data"
+      :options="dataOptions"
+    >
+      <template #itemIcon="{ item }">
+        <nut-icon name="refresh" @click="onItemRefreshClick(item)" />
+      </template>
+    </nut-address-list>
   </div>
 </template>
 

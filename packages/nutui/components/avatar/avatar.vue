@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 import { computed, defineComponent, getCurrentInstance, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import type { AvatarGroupProps } from '../avatargroup'
-import { AVATAR_KEY } from '../avatargroup'
+import { AVATAR_GROUP_KEY } from '../avatargroup'
 import { useInject } from '../_hooks'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { avatarProps } from './avatar'
@@ -14,7 +14,7 @@ const props = defineProps(avatarProps)
 
 const instance = getCurrentInstance()
 
-const { parent } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_KEY)
+const { parent } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_GROUP_KEY)
 
 const show = ref<boolean>(true)
 

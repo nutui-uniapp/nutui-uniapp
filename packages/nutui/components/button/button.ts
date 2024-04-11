@@ -116,6 +116,8 @@ export const buttonProps = {
   dataBizLine: String,
 } as const
 
+export type ButtonProps = ExtractPropTypes<typeof buttonProps>
+
 export const buttonEmits = {
   [CLICK_EVENT]: (evt: MouseEvent) => evt instanceof Object,
   getphonenumber: (evt: ButtonOnGetphonenumberEvent) => evt instanceof Object,
@@ -135,5 +137,3 @@ export const buttonEmits = {
 }
 
 export type ButtonEmits = typeof buttonEmits
-
-export type ButtonProps = ExtractPropTypes<typeof buttonProps>

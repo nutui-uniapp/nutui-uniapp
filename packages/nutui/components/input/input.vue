@@ -7,7 +7,7 @@ import NutIcon from '../icon/icon.vue'
 import { useFormDisabled } from '../form/form'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
-import type { InputFormatTrigger, InputMode, InputTarget, InputType } from './type'
+import type { InputFormatTrigger, InputTarget } from './type'
 
 const props = defineProps(inputProps)
 
@@ -42,37 +42,16 @@ const inputStyles = computed(() => {
   }]
 })
 
-const innerInputType = computed<InputType>(() => {
-  // #ifdef H5
-  if (props.type === 'number')
-    return 'tel'
+const innerMaxLength = computed(() => {
+  if (props.maxLength == null)
+    return -1
 
-  if (props.type === 'digit')
-    return 'text'
-  // #endif
-
-  return props.type
-})
-
-const innerInputMode = computed<InputMode>(() => {
-  // #ifdef H5
-  if (props.type === 'digit')
-    return 'decimal'
-
-  if (props.type === 'number')
-    return 'numeric'
-  // #endif
-
-  return props.inputMode
-})
-
-const innerMaxLength = computed<number>(() => {
-  return props.maxLength ? Number(props.maxLength) : -1
+  return Number(props.maxLength)
 })
 
 function updateValue(value: string, trigger: InputFormatTrigger = 'onChange') {
-  if (props.maxLength && value.length > Number(props.maxLength))
-    value = value.slice(0, Number(props.maxLength))
+  if (innerMaxLength.value > 0 && value.length > innerMaxLength.value)
+    value = value.slice(0, innerMaxLength.value)
 
   if (props.type === 'number')
     value = formatNumber(value, false, false)
@@ -213,7 +192,7 @@ export default defineComponent({
             :class="props.inputClass"
             :style="inputStyles"
             :value="innerValue"
-            :type="innerInputType as any"
+            :type="props.type as any"
             :placeholder="props.placeholder"
             :placeholder-style="props.placeholderStyle"
             :placeholder-class="props.placeholderClass"
@@ -226,7 +205,7 @@ export default defineComponent({
             :confirm-type="props.confirmType"
             :adjust-position="props.adjustPosition"
             :always-system="props.alwaysSystem"
-            :input-mode="innerInputMode"
+            :inputmode="props.inputMode"
             :cursor-spacing="props.cursorSpacing"
             :always-embed="props.alwaysEmbed"
             :confirm-hold="props.confirmHold"
@@ -244,10 +223,10 @@ export default defineComponent({
             @confirm="handleConfirm"
           >
           <view v-if="props.readonly" class="nut-input-disabled-mask" @click="handleClickInput" />
-          <view v-if="props.showWordLimit && props.maxLength" class="nut-input-word-limit">
+          <view v-if="props.showWordLimit && innerMaxLength > 0" class="nut-input-word-limit">
             <text class="nut-input-word-num">
               {{ innerValue.length }}
-            </text>/{{ props.maxLength }}
+            </text>/{{ innerMaxLength }}
           </view>
         </view>
         <view

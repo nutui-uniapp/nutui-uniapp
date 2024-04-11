@@ -23,6 +23,8 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
     okAutoClose: props.okAutoClose,
   })
 
+  watch(() => props.title, title => dialogStatus.value.title = title)
+
   const showDialog = (options: DialogOptions) => {
     dialogStatus.value = {
       title: options.title || props.title,

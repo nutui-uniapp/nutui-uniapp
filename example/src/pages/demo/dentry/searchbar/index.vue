@@ -1,40 +1,15 @@
-<script lang="ts">
-import { reactive, toRefs } from 'vue'
+<script lang="ts" setup>
+const searchValue = ref<string>('')
+const searchValue1 = ref<string>('')
+const searchValue2 = ref<string>('')
+const searchValue3 = ref<string>('')
+const searchValue4 = ref<string>('')
+const searchValue5 = ref<string>('')
+const searchValue6 = ref<string>('')
 
-export default {
-  props: {},
-
-  setup() {
-    const icon
-      = 'https://img10.360buyimg.com/imagetools/jfs/t1/170133/30/22902/10546/61833626E32d7ccde/a7c373ba30de9a89.png'
-
-    const state = reactive({
-      searchValue: '',
-      searchValue1: '',
-      searchValue2: '',
-      searchValue3: '',
-      searchValue4: '',
-      searchValue5: '',
-      searchValue6: '',
-      confirmType: 'search',
-    })
-
-    const search = function () {
-    /* eslint-disable no-console */
-      console.log('搜索触发')
-    }
-
-    const clickLeft = function () {
-      console.log('点击回退按钮')
-    }
-
-    return {
-      icon,
-      clickLeft,
-      search,
-      ...toRefs(state),
-    }
-  },
+function onSearch(value: string | number) {
+  // eslint-disable-next-line no-console
+  console.log('搜索触发', value)
 }
 </script>
 
@@ -53,7 +28,7 @@ export default {
     <h2 class="title">
       搜索事件监听
     </h2>
-    <nut-searchbar v-model="searchValue1" @search="search" />
+    <nut-searchbar v-model="searchValue1" @search="onSearch" />
 
     <h2 class="title">
       显示搜索 icon
@@ -67,7 +42,7 @@ export default {
     <h2 class="title">
       右侧添加搜索文字
     </h2>
-    <nut-searchbar v-model="searchValue3" :confirm-type="confirmType as any">
+    <nut-searchbar v-model="searchValue3" confirm-type="search">
       <template #rightout>
         搜索
       </template>
@@ -87,7 +62,10 @@ export default {
     </h2>
     <nut-searchbar v-model="searchValue6">
       <template #clear-icon>
-        <image :src="icon" style="width: 20px; height: 20px;" />
+        <image
+          style="width: 20px; height: 20px;"
+          src="https://img10.360buyimg.com/imagetools/jfs/t1/170133/30/22902/10546/61833626E32d7ccde/a7c373ba30de9a89.png"
+        />
       </template>
     </nut-searchbar>
 

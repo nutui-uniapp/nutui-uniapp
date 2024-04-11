@@ -1,3 +1,33 @@
+## [1.7.6](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.5...v1.7.6) (2024-04-10)
+
+### Bug Fixes
+
+* **input:** 修复H5环境下type为number无效 ([#279](https://github.com/nutui-uniapp/nutui-uniapp/issues/279)) ([ec41815](https://github.com/nutui-uniapp/nutui-uniapp/commit/ec41815ae502f56341575706364e3a0eafeb9253))
+* **picker:** 修复非H5平台mask缺失 ([96666cf](https://github.com/nutui-uniapp/nutui-uniapp/commit/96666cf7c93c8e38c5b22c3118e2c1a7fe7a2247))
+* **searchbar:** 修复app端输入框对齐问题 ([#282](https://github.com/nutui-uniapp/nutui-uniapp/issues/282)) ([1f77dab](https://github.com/nutui-uniapp/nutui-uniapp/commit/1f77dab96d3fa0d589e383565c9a1254a309a31a))
+
+### Features
+
+* **addresslist:** 新增是否使用插槽相关属性 ([#274](https://github.com/nutui-uniapp/nutui-uniapp/issues/274)) ([1727859](https://github.com/nutui-uniapp/nutui-uniapp/commit/1727859c45d65322271e3f7121b825f10845ccac))
+* **calendar:** 添加calendar组件点击遮罩关闭事件和点击关闭图标事件 ([#273](https://github.com/nutui-uniapp/nutui-uniapp/issues/273)) ([e70e654](https://github.com/nutui-uniapp/nutui-uniapp/commit/e70e654b57a8884cc4589877f56670652160c33d))
+
+## [1.7.5](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.4...v1.7.5) (2024-03-29)
+
+### Bug Fixes
+
+* **popover:** 修复Popover 气泡弹出框功能问题 ([#269](https://github.com/nutui-uniapp/nutui-uniapp/issues/269)) ([bbf03e5](https://github.com/nutui-uniapp/nutui-uniapp/commit/bbf03e5a973b95d66f76edeb59114872afc606a6))
+* **list:** List 虚拟列表 listData 类型错误 ([8cba423](https://github.com/nutui-uniapp/nutui-uniapp/commit/8cba4236b178c2def23ccfd07ee1528f7530c007))
+* **checkbox:** 修复checkbox重复添加至checkboxgroup.children的问题 ([#266](https://github.com/nutui-uniapp/nutui-uniapp/issues/266)) ([3f2c2b3](https://github.com/nutui-uniapp/nutui-uniapp/commit/3f2c2b3afa0348032eadff9ef5aa8415843ecac8))
+* **dialog:** 修复dialog title响应式失效的问题 ([#267](https://github.com/nutui-uniapp/nutui-uniapp/issues/267)) ([1a0c7cf](https://github.com/nutui-uniapp/nutui-uniapp/commit/1a0c7cf72c448e6e5ff6d7890dd7739e5bbd13b0))
+
+### Features
+
+* **toast:** 新增useToast控制方式 ([#260](https://github.com/nutui-uniapp/nutui-uniapp/issues/260)) ([c014e7a](https://github.com/nutui-uniapp/nutui-uniapp/commit/c014e7a8ed31b9ad4d6bdbf11942528abea1bb26))
+
+### Refactors
+
+* **drag**: 重构 drag组件，修复drag组件多次拖动时位置瞬移到起始点的问题 ([5989869](<https://github.com/nutui-uniapp/nutui-uniapp/commit/5989869>))
+
 ## [1.7.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.3...v1.7.4) (2024-03-20)
 
 ### Bug Fixes

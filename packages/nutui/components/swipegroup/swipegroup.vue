@@ -1,21 +1,24 @@
 <script setup lang="ts">
-import { computed, defineComponent, provide, ref } from 'vue'
+import { computed, defineComponent, provide, ref, toRef } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import { swipegroupProps } from './swipegroup'
 
 const props = defineProps(swipegroupProps)
-const name = ref('')
 
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
-function update(n: string) {
-  name.value = n
+
+const name = ref<string>('')
+
+function update(value: string) {
+  name.value = value
 }
+
 provide('swipeGroup', {
   update,
-  lock: props.lock,
+  lock: toRef(props, 'lock'),
   name,
 })
 </script>
@@ -34,9 +37,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <slot />
-  </div>
+  </view>
 </template>
 
 <style lang="scss">

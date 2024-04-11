@@ -10,20 +10,10 @@
 <template>
   <nut-searchbar v-model="searchValue"></nut-searchbar>
 </template>
-<script lang="ts">
-  import { reactive, toRefs } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        searchValue: ""
-      });
+```
 
-      return {
-        ...toRefs(state),
-      };
-    }
-  };
-</script>
+```typescript
+const searchValue = ref<string>("");
 ```
 
 ### 设置搜索框形状
@@ -38,27 +28,16 @@
 
 ```html
 <template>
-  <nut-searchbar v-model="searchValue" @search="search"></nut-searchbar>
+  <nut-searchbar v-model="searchValue" @search="onSearch"></nut-searchbar>
 </template>
-<script lang="ts">
-  import { toRefs, reactive } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        searchValue: ""
-      });
+```
 
-      const search = function () {
-        console.log('搜索触发');
-      };
+```typescript
+const searchValue = ref<string>("");
 
-      return {
-        ...toRefs(state),
-        search,
-      };
-    }
-  };
-</script>
+function onSearch(value: string) {
+  console.log("搜索触发", value);
+}
 ```
 
 ### 显示搜索 icon
@@ -66,25 +45,11 @@
 ```html
 <template>
   <nut-searchbar v-model="searchValue">
-    <template v-slot:leftin>
-      <nut-icon  name="search2"  />
+    <template #leftin>
+      <nut-icon name="search2" />
     </template>
   </nut-searchbar>
 </template>
-<script lang="ts">
-  import { toRefs, reactive } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        searchValue: ""
-      });
-
-      return {
-        ...toRefs(state),
-      };
-    }
-  };
-</script>
 ```
 
 ### 右侧添加搜索文字
@@ -92,47 +57,19 @@
 ```html
 <template>
   <nut-searchbar v-model="searchValue">
-    <template v-slot:rightout>
-      搜索
-    </template>
+    <template #rightout>搜索</template>
   </nut-searchbar>
 </template>
-<script lang="ts">
-  import { toRefs, reactive } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        searchValue: ""
-      });
-
-      return {
-        ...toRefs(state),
-      };
-    }
-  };
-</script>
 ```
 
 ### 更改输入框内部及外部的背景样式
 
 ```html
 <template>
-  <nut-searchbar v-model="searchValue" background="linear-gradient(to right, #9866F0, #EB4D50)" input-background="#fff"> </nut-searchbar>
+  <nut-searchbar v-model="searchValue"
+                 background="linear-gradient(to right, #9866f0, #eb4d50)"
+                 input-background="#fff"></nut-searchbar>
 </template>
-<script lang="ts">
-  import { toRefs, reactive } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        searchValue: ""
-      });
-
-      return {
-        ...toRefs(state),
-      };
-    }
-  };
-</script>
 ```
 
 ### 自定义清除按钮 icon
@@ -140,27 +77,12 @@
 ```html
 <template>
   <nut-searchbar v-model="searchValue">
-    <template v-slot:clear-icon>
-      <img :src="icon" style="width: 10px; height: 10px" />
+    <template #clear-icon>
+      <image style="width: 10px; height: 10px"
+             src="https://img10.360buyimg.com/imagetools/jfs/t1/170133/30/22902/10546/61833626E32d7ccde/a7c373ba30de9a89.png"></image>
     </template>
   </nut-searchbar>
 </template>
-<script lang="ts">
-  import { toRefs, reactive } from 'vue';
-  export default {
-    setup() {
-      const icon = 
-      'https://img10.360buyimg.com/imagetools/jfs/t1/170133/30/22902/10546/61833626E32d7ccde/a7c373ba30de9a89.png';
-      const state = reactive({
-        searchValue: ""
-      });
-      return {
-        ...toRefs(state),
-        icon
-      };
-    }
-  };
-</script>
 ```
 
 ### 显示全部 icon
@@ -168,59 +90,45 @@
 ```html
 <template>
   <nut-searchbar v-model="searchValue">
-    <template v-slot:leftout>
-      <nut-icon  name="left"  />
+    <template #leftout>
+      <nut-icon name="left" />
     </template>
-    <template v-slot:leftin>
-      <nut-icon  name="search2"  />
+    <template #leftin>
+      <nut-icon name="search2" />
     </template>
-    <template v-slot:rightin>
-      <nut-icon  name="photograph"  />
+    <template #rightin>
+      <nut-icon name="photograph" />
     </template>
-    <template v-slot:rightout>
-      <nut-icon  name="message"  />
+    <template #rightout>
+      <nut-icon name="message" />
     </template>
-  </nut-searchbar> 
+  </nut-searchbar>
 </template>
-<script lang="ts">
-  import { toRefs, reactive } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        searchValue: ""
-      });
-
-      return {
-        ...toRefs(state),
-      };
-    }
-  };
-</script>
 ```
 
 ## API
 
 ### Props
 
-| 参数                            | 说明                                                                                                                         | 类型             | 默认值        |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------- |
-| v-model                         | 当前输入的值                                                                                                                 | number /  string | `''`          |
-| shape                           | 搜索框形状，可选值为 `square` `round`                                                                                        | string           | `round`       |
-| max-length                      | 最大输入长度                                                                                                                 | number /  string | `-`           |
-| input-type                      | 输入框类型                                                                                                                   | string           | `text`        |
-| placeholder                     | 输入框默认暗纹                                                                                                               | string           | `请输入`      |
-| clearable                       | 是否展示清除按钮                                                                                                             | boolean          | `true`        |
-| clear-icon                      | 自定义清除按钮图标（默认使用 `@nutui/nutui-icons`）                                                                          | Object           | `CircleClose` |
-| background                      | 输入框外部背景                                                                                                               | string           | `#fff`        |
-| input-background                | 输入框内部背景                                                                                                               | string           | `#f7f7f7`     |
-| confirm-type                    | 键盘右下角按钮的文字，仅在`type='text'`时生效，可选值 `send`：发送、`search`：搜索、`next`：下一个、`go`：前往、`done`：完成 | string           | `done`        |
-| autofocus                       | 是否自动聚焦                                                                                                                 | boolean          | `false`       |
-| focus-style                     | 聚焦时搜索框样式                                                                                                             | Object           | `-`           |
-| disabled                        | 是否禁用输入框                                                                                                               | boolean          | `false`       |
-| readonly                        | 输入框只读                                                                                                                   | boolean          | `false`       |
-| input-align                     | 对齐方式，可选 `left` `center` `right`                                                                                       | string           | `left`        |
-| safe-area-inset-bottom `v1.1.6` | 是否开启 iphone 系列全面屏底部安全区适配                                                                                     | boolean          | `false`       |
-| cursor-spacing`v1.2.0`          | 指定光标与键盘的距离，取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离                        | number           | `0`           |
+| 参数                           | 说明                                                                                                  | 类型            | 默认值         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------- | --------------- | -------------- |
+| v-model                        | 当前输入的值                                                                                          | number / string | `''`           |
+| shape                          | 搜索框形状，可选值为 `square` `round`                                                                 | string          | `round`        |
+| max-length                     | 最大输入长度                                                                                          | number / string | `-`            |
+| input-type                     | 输入框类型                                                                                            | string          | `text`         |
+| placeholder                    | 输入框默认暗纹                                                                                        | string          | `请输入`       |
+| clearable                      | 是否展示清除按钮                                                                                      | boolean         | `true`         |
+| clear-icon                     | 自定义清除按钮图标                                                                                    | Object          | `circle-close` |
+| background                     | 输入框外部背景                                                                                        | string          | `#fff`         |
+| input-background               | 输入框内部背景                                                                                        | string          | `#f7f7f7`      |
+| confirm-type                   | 键盘右下角按钮的文字                                                                                  | string          | `done`         |
+| autofocus                      | 是否自动聚焦                                                                                          | boolean         | `false`        |
+| focus-style                    | 聚焦时搜索框样式                                                                                      | Object          | `-`            |
+| disabled                       | 是否禁用输入框                                                                                        | boolean         | `false`        |
+| readonly                       | 输入框只读                                                                                            | boolean         | `false`        |
+| input-align                    | 对齐方式，可选 `left` `center` `right`                                                                | string          | `left`         |
+| safe-area-inset-bottom `1.1.6` | 是否开启 iphone 系列全面屏底部安全区适配                                                              | boolean         | `false`        |
+| cursor-spacing `1.2.0`         | 指定光标与键盘的距离，取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离 | number          | `0`            |
 
 ### Events
 
@@ -230,8 +138,8 @@
 | focus            | 聚焦时触发          | `val, event` |
 | blur             | 失焦时触发          | `val, event` |
 | clear            | 点击清空时触发      | `val`        |
-| search           | 按下 ENTER 键时触发 | `val, event` |
-| click-input      | 点击输入区域时触发  | `event`      |
+| search           | 按下 ENTER 键时触发 | `val`        |
+| click-input      | 点击输入区域时触发  | `val, event` |
 | click-left-icon  | 点击左侧图标时触发  | `val, event` |
 | click-right-icon | 点击右侧图标时触发  | `val, event` |
 
@@ -250,17 +158,16 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                        | 默认值                        |
-| ------------------------------------------- | ----------------------------- |
-| --nut-searchbar-background                  | var(--nut-white)              |
-| --nut-searchbar-right-out-color             | var(--nut-black)              |
-| --nut-searchbar-padding                     | 9px 16px                      |
-| --nut-searchbar-width                       | 100%                          |
-| --nut-searchbar-input-background            | #f7f7f7                       |
-| --nut-searchbar-input-padding               | 0 0 0 13px                    |
-| --nut-searchbar-input-height                | 32px                          |
-| --nut-searchbar-input-width                 | 100%                          |
-| --nut-searchbar-input-border-radius         | 16px                          |
-| --nut-searchbar-input-box-shadow            | 0 0 8px 0 rgba(0, 0, 0, 0.04) |
-| --nut-searchbar-input-bar-color             | inherit                       |
-| --nut-searchbar-input-bar-placeholder-color | inherit                       |
+| 名称                                        | 默认值                          |
+| ------------------------------------------- | ------------------------------- |
+| --nut-searchbar-background                  | _var(--nut-white)_              |
+| --nut-searchbar-right-out-color             | _var(--nut-black)_              |
+| --nut-searchbar-padding                     | _9px 16px_                      |
+| --nut-searchbar-width                       | _100%_                          |
+| --nut-searchbar-input-background            | _#f7f7f7_                       |
+| --nut-searchbar-input-padding               | _0 0 0 13px_                    |
+| --nut-searchbar-input-height                | _32px_                          |
+| --nut-searchbar-input-border-radius         | _16px_                          |
+| --nut-searchbar-input-box-shadow            | _0 0 8px 0 rgba(0, 0, 0, 0.04)_ |
+| --nut-searchbar-input-bar-color             | _inherit_                       |
+| --nut-searchbar-input-bar-placeholder-color | _inherit_                       |

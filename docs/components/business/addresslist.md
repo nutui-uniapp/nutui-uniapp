@@ -8,208 +8,188 @@
 
 ```html
 <template>
-  <nut-address-list
-    :data="data"
-    @click-item="clickItem"
-    @del-icon="delClick"
-    @edit-icon="editClick"
-    :show-bottom-button="false"
-    :options="dataOptions"
-  >
-  </nut-address-list>
+  <nut-address-list :data="data"
+                    :options="dataOptions"
+                    :show-bottom-button="false"
+                    @click-item="onItemClick"
+                    @del-icon="onItemDelClick"
+                    @edit-icon="onItemEditClick"></nut-address-list>
 </template>
-<script lang="ts">
-import { ref, reactive } from 'vue';
-export default {
-  setup() {
-    const data = ref([
-      {
-        testid:3,
-        testaddressName:'姓名',
-        phone:'123****4567',
-        defaultAddress:false,
-        fullAddress:'北京市通州区测试测试测试测试测试测试测试测试测试'
-      },
-      {
-        testid:4,
-        testaddressName:'姓名',
-        phone:'123****4567',
-        defaultAddress:true,
-        fullAddress:'北京市通州区测试测试测试测试测试测试测试测试测试'
-      },
-    ]);
-    const dataOptions = reactive({
-      id: 'testid',
-      addressDetail:'testaddressDetail',
-      addressName:'testaddressName'
-    });
-    const clickItem = ()=>{
-      console.log('Click To Address');
-    }
-    const delClick = ()=>{
-      console.log('Click To Delete');
-    }
-    const editClick = ()=>{
-      console.log('Click To Edit');
-    }
-    return {
-      data,
-      clickItem,
-      delClick,
-      editClick,
-      dataOptions
-    };
-  }
-};
-</script>
+```
+
+```typescript
+const data = ref([{
+  testid: 3,
+  testaddressName: "姓名",
+  phone: "123****4567",
+  defaultAddress: false,
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+}, {
+  testid: 4,
+  testaddressName: "姓名",
+  phone: "123****4567",
+  defaultAddress: true,
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+}]);
+
+const dataOptions = reactive({
+  id: "testid",
+  addressDetail: "testaddressDetail",
+  addressName: "testaddressName"
+});
+
+function onItemClick() {
+  console.log("Click To Address");
+}
+
+function onItemDelClick() {
+  console.log("Click To Delete");
+}
+
+function onItemEditClick() {
+  console.log("Click To Edit");
+}
 ```
 
 ### 长按功能
 
-```html
+```html {4}
 <template>
-  <nut-address-list
-    :data="data"
-    long-press
-    :show-bottom-button="false"
-    @del-icon="delClick"
-    @edit-icon="editClick"
-    @click-item="clickItem"
-    @long-copy="copyClick"
-    @long-set="setClick"
-    @long-del="delClickLong"
-    :options="dataOptions"
-  >
-  </nut-address-list>
+  <nut-address-list :data="data"
+                    :options="dataOptions"
+                    long-press
+                    :show-bottom-button="false"
+                    @click-item="onItemClick"
+                    @del-icon="onItemDelClick"
+                    @edit-icon="onItemEditClick"
+                    @long-copy="onItemLongCopyClick"
+                    @long-set="onItemLongSetClick"
+                    @long-del="onItemLongDelClick"></nut-address-list>
 </template>
-<script lang="ts">
-import { ref, reactive } from 'vue';
-export default {
-  setup() {
-    const data = ref([
-        {
-          testid:3,
-          testaddressName:'姓名',
-          phone:'123****4567',
-          defaultAddress:false,
-          fullAddress:'北京市通州区测试测试测试测试测试测试测试测试测试'
-        },
-        {
-          testid:4,
-          testaddressName:'姓名',
-          phone:'123****4567',
-          defaultAddress:true,
-          fullAddress:'北京市通州区测试测试测试测试测试测试测试测试测试'
-        },
-      ]);
-      const dataOptions = reactive({
-        id: 'testid',
-        addressDetail:'testaddressDetail',
-        addressName:'testaddressName'
-      });
-      const clickItem = ()=>{
-        console.log('Click To Address');
-      }
-      const delClick = ()=>{
-        console.log('Click To Delete');
-      }
-      const editClick = ()=>{
-        console.log('Click To Edit');
-      }
-      const copyClick = ()=>{
-        console.log('Click To Copy');
-      }
-      const setClick = ()=>{
-        console.log('Click On Settings');
-      }
-      const delClickLong = ()=>{
-        console.log('Click To Add');
-      }
-      return {
-        data,
-        clickItem,
-        delClick,
-        editClick,
-        copyClick,
-        setClick,
-        delClickLong,
-        dataOptions
-      };
-    }
-  };
-</script>
+```
+
+```typescript
+const data = ref([{
+  testid: 3,
+  testaddressName: "姓名",
+  phone: "123****4567",
+  defaultAddress: false,
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+}, {
+  testid: 4,
+  testaddressName: "姓名",
+  phone: "123****4567",
+  defaultAddress: true,
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+}]);
+
+const dataOptions = reactive({
+  id: "testid",
+  addressDetail: "testaddressDetail",
+  addressName: "testaddressName"
+});
+
+function onItemClick() {
+  console.log("Click To Address");
+}
+
+function onItemDelClick() {
+  console.log("Click To Delete");
+}
+
+function onItemEditClick() {
+  console.log("Click To Edit");
+}
+
+function onItemLongCopyClick() {
+  console.log("Click To Copy");
+}
+
+function onItemLongSetClick() {
+  console.log("Click On Settings");
+}
+
+function onItemLongDelClick() {
+  console.log("Click To Add");
+}
 ```
 
 ### 滑动功能
 
-```html
+```html {4}
 <template>
-  <nut-address-list
-    :data="data"
-    swipe-edition
-    show-bottom-button
-    @edit-icon="editClick"
-    @del-icon="delClick"
-    @click-item="clickItem"
-    @swipe-del="delClickSwipe"
-    @add="addAddress"
-    :options="dataOptions"
-  >
+  <nut-address-list :data="data"
+                    :options="dataOptions"
+                    swipe-edition
+                    show-bottom-button
+                    @click-item="onItemClick"
+                    @del-icon="onItemDelClick"
+                    @edit-icon="onItemEditClick"
+                    @swipe-del="onItemSwipeDelClick"
+                    @add="onAddressAddClick"></nut-address-list>
+</template>
+```
+
+```typescript
+const data = ref([{
+  testid: 3,
+  testaddressName: "姓名",
+  phone: "123****4567",
+  defaultAddress: false,
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+}, {
+  testid: 4,
+  testaddressName: "姓名",
+  phone: "123****4567",
+  defaultAddress: true,
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+}]);
+
+const dataOptions = reactive({
+  id: "testid",
+  addressDetail: "testaddressDetail",
+  addressName: "testaddressName"
+});
+
+function onItemClick() {
+  console.log("Click To Address");
+}
+
+function onItemDelClick() {
+  console.log("Click To Delete");
+}
+
+function onItemEditClick() {
+  console.log("Click To Edit");
+}
+
+function onItemSwipeDelClick() {
+  console.log("Click On DelClickSwipe");
+};
+
+function onAddressAddClick() {
+  console.log("Click To Add");
+}
+```
+
+### 使用插槽
+
+::: warning 注意
+由于uniapp内部缺陷，目前在小程序端使用嵌套插槽时，无论是否使用作用域参数，必须显式写出才能正常展示插槽内容
+:::
+
+```html {3,7}
+<template>
+  <nut-address-list :data="data">
+    <template #itemIcon="{ item }">
+      <nut-icon name="refresh" @click="onItemRefreshClick(item)"></nut-icon>
+    </template>
+
+    <template #itemAddr="{ item }">
+      <text>这里我不使用item参数，但是也要写出来才可以~</text>
+    </template>
   </nut-address-list>
 </template>
-<script lang="ts">
-import { ref, reactive } from 'vue';
-export default {
-  setup() {
-    const data = ref([
-        {
-          testid:3,
-          testaddressName:'姓名',
-          phone:'123****4567',
-          defaultAddress:false,
-          fullAddress:'北京市通州区测试测试测试测试测试测试测试测试测试'
-        },
-        {
-          testid:4,
-          testaddressName:'姓名',
-          phone:'123****4567',
-          defaultAddress:true,
-          fullAddress:'北京市通州区测试测试测试测试测试测试测试测试测试'
-        },
-      ]);
-      const dataOptions = reactive({
-        id: 'testid',
-        addressDetail:'testaddressDetail',
-        addressName:'testaddressName'
-      });
-      const clickItem = ()=>{
-        console.log('Click To Address');
-      }
-      const editClick = ()=>{
-        console.log('Click To Edit');
-      }
-      const delClick = ()=>{
-        console.log('Click To Delete');
-      }
-      const delClickSwipe = () => {
-        console.log('Click On DelClickSwipe');
-      };
-      const addAddress = ()=>{
-        console.log('Click To Add');
-      }
-      return {
-        data,
-        clickItem,
-        delClick,
-        editClick,
-        setClick,
-        delClickSwipe,
-        addAddress,
-        dataOptions
-      };
-    }
-  };
-</script>
 ```
 
 ## API
@@ -259,7 +239,7 @@ const dataInfo = {
   addressName: "姓名", //地址姓名
   phone: "123****4567", //联系方式
   defaultAddress: false, //是否是默认
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试", //详细地址
+  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试" //详细地址
 };
 ```
 

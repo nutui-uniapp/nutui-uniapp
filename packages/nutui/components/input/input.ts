@@ -146,6 +146,8 @@ export const inputProps = {
   holdKeyboard: Boolean,
 }
 
+export type InputProps = ExtractPropTypes<typeof inputProps>
+
 export const inputEmits = {
   [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
   clickInput: (evt: Event) => evt instanceof Object,
@@ -158,5 +160,3 @@ export const inputEmits = {
 }
 
 export type InputEmits = typeof inputEmits
-
-export type InputProps = ExtractPropTypes<typeof inputProps>

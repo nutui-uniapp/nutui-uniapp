@@ -1,35 +1,29 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isNumber, isString, makeArrayProp, makeObjectProp, truthProp } from '../_utils'
+import type { AddressListOptions } from './type'
 
-interface OptionsType {
-  [key: string]: string
-}
 export const addresslistProps = {
   ...commonProps,
   /**
    * @description 地址数组
    */
-  data: makeArrayProp<unknown>([]),
-
+  data: makeArrayProp<any>([]),
   /**
    * @description 长按功能
    */
   longPress: Boolean,
-
   /**
    * @description 右滑功能
    */
   swipeEdition: Boolean,
-
   /**
    * @description 是否展示底部按钮
    */
   showBottomButton: truthProp,
-
   /**
    * @description 自定义 `key` 值时，设置映射关系
    */
-  options: makeObjectProp<OptionsType>({}),
+  options: makeObjectProp<AddressListOptions>({}),
 }
 
 export type AddressListProps = ExtractPropTypes<typeof addresslistProps>
@@ -43,7 +37,6 @@ export const addresslistEmits = {
   longDel: (val: Event, item: unknown, index: number | string) => (val instanceof Object) && (item instanceof Object) && (isNumber(index) || isString(index)),
   swipeDel: (val: Event, item: unknown, index: number | string) => (val instanceof Object) && (item instanceof Object) && (isNumber(index) || isString(index)),
   add: (val: Event) => val instanceof Object,
-
 }
 
 export type AddressListEmits = typeof addresslistEmits

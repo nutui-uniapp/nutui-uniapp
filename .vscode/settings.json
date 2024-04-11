@@ -65,4 +65,8 @@
       "severity": "off"
     }
   ],
+  "vue.server.maxOldSpaceSize": 4096,
+  "vue.server.hybridMode": true,
+  "typescript.tsserver.maxTsServerMemory": 4096,
 }
+

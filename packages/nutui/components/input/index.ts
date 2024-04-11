@@ -1,2 +1,2 @@
-export * from './input'
 export * from './type'
+export * from './input'

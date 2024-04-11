@@ -77,6 +77,14 @@ function select(param: string) {
   // close();
   emit(SELECT_EVENT, param)
 }
+
+function onClickCloseIcon() {
+  emit('clickCloseIcon')
+}
+
+function onClickOverlay() {
+  emit('clickOverlay')
+}
 </script>
 
 <script lang="ts">
@@ -102,6 +110,8 @@ export default defineComponent({
     :custom-style="{ height: '85vh' }"
     :destroy-on-close="false"
     @opened="opened"
+    @click-close-icon="onClickCloseIcon"
+    @click-overlay="onClickOverlay"
   >
     <NutCalendarItem
       ref="calendarRef"

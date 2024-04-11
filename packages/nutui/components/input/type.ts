@@ -5,10 +5,10 @@ export const inputFormatTrigger = ['onChange', 'onBlur'] as const // onChange: å
 export type InputFormatTrigger = (typeof inputFormatTrigger)[number]
 
 export const inputType
-  = ['tel', 'url', 'date', 'file', 'text', 'time', 'week', 'color', 'digit', 'email', 'image', 'month', 'radio', 'range', 'reset', 'button', 'hidden', 'number', 'search', 'submit', 'checkbox', 'password', 'textarea', 'datetime-local', 'idcard', 'safe-password', 'nickname'] as const
+  = ['text', 'number', 'idcard', 'digit', 'tel', 'safe-password', 'nickname', 'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'time', 'url', 'week'] as const
 export type InputType = (typeof inputType)[number]
 
-export const inputMode = ['search', 'tel', 'url', 'text', 'email', 'none', 'decimal', 'numeric'] as const
+export const inputMode = ['none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url'] as const
 export type InputMode = (typeof inputMode)[number]
 
 export const inputConfirmType = ['send', 'search', 'next', 'go', 'done'] as const
