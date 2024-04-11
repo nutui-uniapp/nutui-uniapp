@@ -245,10 +245,49 @@ function getDateIndex(type: DatePickerColumnType) {
 }
 
 function convertEvent({ selectedValue, selectedOptions }: PickerBaseEvent): DatePickerBaseEvent {
-  const [year, month, day, hour, minute, seconds] = selectedValue
+  let date: Date | null = null
+
+  switch (props.type) {
+    case 'date':
+    case 'datehour':
+    case 'datetime':
+    case 'year-month': {
+      const [
+        year = 0,
+        month = 0,
+        day = 0,
+        hour = 0,
+        minute = 0,
+        seconds = 0,
+      ] = selectedValue
+      date = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(seconds))
+      break
+    }
+    case 'time':
+    case 'hour-minute': {
+      const [
+        hour = 0,
+        minute = 0,
+        seconds = 0,
+      ] = selectedValue
+      date = new Date(0, 0, 0, Number(hour), Number(minute), Number(seconds))
+      break
+    }
+    case 'month-day': {
+      const [
+        month = 0,
+        day = 0,
+      ] = selectedValue
+      date = new Date(0, Number(month) - 1, Number(day))
+      break
+    }
+  }
+
+  if (date == null)
+    date = new Date()
 
   return {
-    date: new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(seconds)),
+    date,
     selectedValue,
     selectedOptions,
   }
