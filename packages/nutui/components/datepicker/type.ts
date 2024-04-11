@@ -13,9 +13,9 @@ export interface DatePickerChangeEvent extends PickerChangeEvent {
   date: Date
 }
 
-export type DatePickerFormatter = (type: string, option: PickerOption) => PickerOption
+export type DatePickerFormatter = (type: DatePickerColumnType, option: PickerOption) => PickerOption
 
-export type DatePickerFilter = (columnType: string, options: PickerOption[]) => PickerOption[]
+export type DatePickerFilter = (type: DatePickerColumnType, options: PickerOption[]) => PickerOption[]
 
 export interface DatePickerRangeItem {
   type: DatePickerColumnType

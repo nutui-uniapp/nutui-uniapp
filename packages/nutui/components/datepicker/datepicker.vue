@@ -180,7 +180,7 @@ function handleChange({
   emit('change', { date: date!, columnIndex, selectedValue, selectedOptions })
 }
 
-function formatterOption(type: string, value: string | number) {
+function formatterOption(type: DatePickerColumnType, value: string | number) {
   const { formatter, isShowChinese } = props
 
   const text = padZero(value, 2)
@@ -198,10 +198,10 @@ function formatterOption(type: string, value: string | number) {
  * @param min 最小值
  * @param max 最大值
  * @param value 当前显示的值
- * @param type 类型（year、month、day、time）
+ * @param type 类型
  * @param columnIndex
  */
-function generateValue(min: number, max: number, value: number | string, type: string, columnIndex: number) {
+function generateValue(min: number, max: number, value: number | string, type: DatePickerColumnType, columnIndex: number) {
   const options: PickerOption[] = []
 
   let index = 0
