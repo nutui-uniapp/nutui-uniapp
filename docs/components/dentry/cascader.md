@@ -344,48 +344,48 @@ export default {
 
 ### Props
 
-| 参数                | 说明                                                  | 类型     | 默认值      |
-|---------------------|-------------------------------------------------------|----------|-------------|
-| v-model             | 选中值，双向绑定                                      | Array    | -           |
-| v-model:visible             | 显示选择层                                      | boolean    | `false`           |
-| options             | 级联数据                                              | Array    | -           |
-| lazy                | 是否开启动态加载                                      | boolean  | -           |
-| lazy-load           | 动态加载回调，开启动态加载时生效                      | Function | -           |
-| value-key           | 自定义 `options` 结构中 `value` 的字段                    | string   | -           |
-| text-key            | 自定义 `options` 结构中 `text` 的字段                     | string   | -           |
-| children-key        | 自定义 `options` 结构中 `children` 的字段                 | string   | -           |
-| convert-config      | 当 `options` 为可转换为树形结构的扁平结构时，配置转换规则 | object   | -           |
-| title               | 标题                                                  | string   | `''`          |
-| close-icon-position | 取消按钮位置，继承 `Popup` 组件                         | string   | `"top-right"` |
-| closeable           | 是否显示关闭按钮，继承 `Popup` 组件                     | boolean  | `false`        |
-| poppable            | 是否需要弹层展示（设置为 `false` 后，`title` 失效）          | boolean  | `true`        |
-| title-gutter `v1.1.7`     | 标签间隙                                                                                           | number \| string | `0`          |
-| title-size `v1.1.7`            | 标签栏字体尺寸大小 可选值  large normal small                                                      | string           | `normal`     |
-| title-ellipsis `v1.1.7`        | 是否省略过长的标题文字                                                                             | boolean          | `true`       |
-| title-type `v1.1.7`           | 选中底部展示样式 可选值 line、smile                                                                | string           | `line`       |
+| 参数                    | 说明                                                      | 类型             | 默认值        |
+| ----------------------- | --------------------------------------------------------- | ---------------- | ------------- |
+| v-model                 | 选中值，双向绑定                                          | Array            | -             |
+| v-model:visible         | 显示选择层                                                | boolean          | `false`       |
+| options                 | 级联数据                                                  | Array            | -             |
+| lazy                    | 是否开启动态加载                                          | boolean          | -             |
+| lazy-load               | 动态加载回调，开启动态加载时生效                          | Function         | -             |
+| value-key               | 自定义 `options` 结构中 `value` 的字段                    | string           | -             |
+| text-key                | 自定义 `options` 结构中 `text` 的字段                     | string           | -             |
+| children-key            | 自定义 `options` 结构中 `children` 的字段                 | string           | -             |
+| convert-config          | 当 `options` 为可转换为树形结构的扁平结构时，配置转换规则 | object           | -             |
+| title                   | 标题                                                      | string           | `''`          |
+| close-icon-position     | 取消按钮位置，继承 `Popup` 组件                           | string           | `"top-right"` |
+| closeable               | 是否显示关闭按钮，继承 `Popup` 组件                       | boolean          | `false`       |
+| poppable                | 是否需要弹层展示（设置为 `false` 后，`title` 失效）       | boolean          | `true`        |
+| title-gutter `v1.1.7`   | 标签间隙                                                  | number \| string | `0`           |
+| title-size `v1.1.7`     | 标签栏字体尺寸大小 可选值  large normal small             | string           | `normal`      |
+| title-ellipsis `v1.1.7` | 是否省略过长的标题文字                                    | boolean          | `true`        |
+| title-type `v1.1.7`     | 选中底部展示样式 可选值 line、smile                       | string           | `line`        |
 ### Events
 
-| 事件名      | 说明             | 回调参数           |
-|-------------|------------------|--------------------|
+| 事件名      | 说明             | 回调参数             |
+| ----------- | ---------------- | -------------------- |
 | change      | 选中值改变时触发 | `(value, pathNodes)` |
-| path-change | 选中项改变时触发 | `(pathNodes)`       |
+| path-change | 选中项改变时触发 | `(pathNodes)`        |
 
 ### Slots
 
-| 名称  | 说明     |
-|-------|----------|
+| 名称           | 说明               |
+| -------------- | ------------------ |
 | title `v1.5.4` | 自定义顶部标题部分 |
 
 ### options数据结构
 
-| 键名 | 说明 | 类型 | 默认值 |
-|-------|----------|--------|--------|
-| text | 显示名称,可以通过`text-key`更改键名 | `string` | - |
-| value | 唯一标识,可以通过`value-key`更改键名 | `string` `number` | - |
-| children | 子级选项,可以通过`children-key`更改键名 | `array` | - |
-| disabled | 是否禁用 | `boolean` | false |
-| leaf | 是否叶子节点 | `boolean` | `children`为空时`leaf`等于`true`,不为空时`leaf`等于`false` |
-| loading | 加载状态 | `boolean` | false |
+| 键名     | 说明                                    | 类型              | 默认值                                                     |
+| -------- | --------------------------------------- | ----------------- | ---------------------------------------------------------- |
+| text     | 显示名称,可以通过`text-key`更改键名     | `string`          | -                                                          |
+| value    | 唯一标识,可以通过`value-key`更改键名    | `string` `number` | -                                                          |
+| children | 子级选项,可以通过`children-key`更改键名 | `array`           | -                                                          |
+| disabled | 是否禁用                                | `boolean`         | false                                                      |
+| leaf     | 是否叶子节点                            | `boolean`         | `children`为空时`leaf`等于`true`,不为空时`leaf`等于`false` |
+| loading  | 加载状态                                | `boolean`         | false                                                      |
 
 ## 主题定制
 
@@ -393,16 +393,16 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                             | 默认值                     |
-|----------------------------------|----------------------------|
-| --nut-cascader-font-size         | _var(--nut-font-size-2)_   |
-| --nut-cascader-line-height       | _22px_                     |
-| --nut-cascader-tabs-item-padding | _0 10px_                   |
-| --nut-cascader-bar-padding       | _24px 20px 17px_           |
-| --nut-cascader-bar-font-size     | _var(--nut-font-size-4)_   |
-| --nut-cascader-bar-line-height   | _20px_                     |
-| --nut-cascader-bar-color         | _var(--nut-title-color)_   |
-| --nut-cascader-item-padding      | _10px 20px_                |
-| --nut-cascader-item-color        | _var(--nut-title-color)_   |
-| --nut-cascader-item-font-size    | _var(--nut-font-size-2)_   |
-| --nut-cascader-item-active-color | _var(--nut-primary-color)_ |
+| 名称                             | 默认值                   |
+| -------------------------------- | ------------------------ |
+| --nut-cascader-font-size         | var(--nut-font-size-2)   |
+| --nut-cascader-line-height       | 22px                     |
+| --nut-cascader-tabs-item-padding | 0 10px                   |
+| --nut-cascader-bar-padding       | 24px 20px 17px           |
+| --nut-cascader-bar-font-size     | var(--nut-font-size-4)   |
+| --nut-cascader-bar-line-height   | 20px                     |
+| --nut-cascader-bar-color         | var(--nut-title-color)   |
+| --nut-cascader-item-padding      | 10px 20px                |
+| --nut-cascader-item-color        | var(--nut-title-color)   |
+| --nut-cascader-item-font-size    | var(--nut-font-size-2)   |
+| --nut-cascader-item-active-color | var(--nut-primary-color) |

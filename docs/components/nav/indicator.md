@@ -54,13 +54,13 @@
 
 ### Props
 
-| 参数         | 说明                             | 类型   | 默认值           |
-|--------------|----------------------------------|--------|------------------|
-| current  | 当前步骤               | number | `1`              |
-| size       | 步骤长度                         | number | `3`               |
-| block | 是否启用块级布局     | boolean | `false` |
-| align | 对齐方式，仅在 `block` 为 `true` 时生效, 可选值 `left`, `right`, `center`| string | `left` |
-| fill-zero     | 单数前面是否补 0                      | boolean | `true`        |
+| 参数      | 说明                                                                      | 类型    | 默认值  |
+| --------- | ------------------------------------------------------------------------- | ------- | ------- |
+| current   | 当前步骤                                                                  | number  | `1`     |
+| size      | 步骤长度                                                                  | number  | `3`     |
+| block     | 是否启用块级布局                                                          | boolean | `false` |
+| align     | 对齐方式，仅在 `block` 为 `true` 时生效, 可选值 `left`, `right`, `center` | string  | `left`  |
+| fill-zero | 单数前面是否补 0                                                          | boolean | `true`  |
 
 ## 主题定制
 
@@ -68,12 +68,12 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                     |
-| --------------------------------------- | -------------------------- |
-| --nut-indicator-bg-color|  _var(--nut-primary-color)_ |
-| --nut-indicator-dot-color|  _var(--nut-disable-color)_ |
-| --nut-indicator-color|  _var(--nut-white)_ |
-| --nut-indicator-size|  _18px_ |
-| --nut-indicator-dot-size|  _calc(var(--nut-indicator-size) / 3)_ |
-| --nut-indicator-border-size|  _calc(var(--nut-indicator-size)+ 2)_ |
-| --nut-indicator-number-font-size|  _10px_ |
+| 名称                             | 默认值                               |
+| -------------------------------- | ------------------------------------ |
+| --nut-indicator-bg-color         | var(--nut-primary-color)             |
+| --nut-indicator-dot-color        | var(--nut-disable-color)             |
+| --nut-indicator-color            | var(--nut-white)                     |
+| --nut-indicator-size             | 18px                                 |
+| --nut-indicator-dot-size         | calc(var(--nut-indicator-size) / 3)_ |
+| --nut-indicator-border-size      | calc(var(--nut-indicator-size)+ 2)   |
+| --nut-indicator-number-font-size | 10px                                 |

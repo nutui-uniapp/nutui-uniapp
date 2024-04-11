@@ -2,19 +2,18 @@
 import { reactive, ref } from 'vue'
 
 const data = ref([{
-    testid: 3,
-    testaddressName: '姓名',
-    phone: '123****4567',
-    defaultAddress: false,
-    fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
-  }, {
-    testid: 4,
-    testaddressName: '姓名',
-    phone: '123****4567',
-    defaultAddress: true,
-    fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
-  },
-])
+  testid: 3,
+  testaddressName: '姓名',
+  phone: '123****4567',
+  defaultAddress: false,
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
+}, {
+  testid: 4,
+  testaddressName: '姓名',
+  phone: '123****4567',
+  defaultAddress: true,
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试',
+}])
 
 const dataOptions = reactive({
   id: 'testid',
@@ -118,7 +117,7 @@ function onItemRefreshClick(item: any) {
       :options="dataOptions"
     >
       <template #itemIcon="{ item }">
-        <nut-icon name="refresh" @click="onItemRefreshClick(item)"></nut-icon>
+        <nut-icon name="refresh" @click="onItemRefreshClick(item)" />
       </template>
     </nut-address-list>
   </div>

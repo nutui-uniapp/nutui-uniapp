@@ -73,18 +73,18 @@
 
 ### Props
 
-| 参数         | 说明                             | 类型   | 默认值           |
-|--------------|----------------------------------|--------|------------------|
-| dashed         | 是否使用虚线               | boolean | `false`                |
-| hairline        | 是否使用 `0.5px` 线                         | boolean | `true`                |
-| content-position        | 内容位置，可选值为 `left`、`right`                         | string | `center`                |
-| direction         | 水平还是垂直类型               | string | `horizontal`                |
+| 参数             | 说明                               | 类型    | 默认值       |
+| ---------------- | ---------------------------------- | ------- | ------------ |
+| dashed           | 是否使用虚线                       | boolean | `false`      |
+| hairline         | 是否使用 `0.5px` 线                | boolean | `true`       |
+| content-position | 内容位置，可选值为 `left`、`right` | string  | `center`     |
+| direction        | 水平还是垂直类型                   | string  | `horizontal` |
 
 ### Slots
 
-| 名称 | 说明           |
-|--------|----------------|
-| default  | 内容 |
+| 名称    | 说明 |
+| ------- | ---- |
+| default | 内容 |
 
 ## 主题定制
 
@@ -92,15 +92,15 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                     |
-| --------------------------------------- | -------------------------- |
-| --nut-divider-margin | _16px 0_ |
-| --nut-divider-text-font-size | _var(--nut-font-size-2)_ |
-| --nut-divider-text-color | _#909ca4_ |
-| --nut-divider-line-height | _2px_ |
-| --nut-divider-before-margin-right | _16px_ |
-| --nut-divider-after-margin-left | _16px_ |
-| --nut-divider-vertical-height | _12px_ |
-| --nut-divider-vertical-top | _2px_ |
-| --nut-divider-vertical-border-left | _rgba(0, 0, 0, 0.06)_ |
-| --nut-divider-vertical-margin | _0 8px_ |
+| 名称                               | 默认值                 |
+| ---------------------------------- | ---------------------- |
+| --nut-divider-margin               | 16px 0                 |
+| --nut-divider-text-font-size       | var(--nut-font-size-2) |
+| --nut-divider-text-color           | #909ca4                |
+| --nut-divider-line-height          | 2px                    |
+| --nut-divider-before-margin-right  | 16px                   |
+| --nut-divider-after-margin-left    | 16px                   |
+| --nut-divider-vertical-height      | 12px                   |
+| --nut-divider-vertical-top         | 2px                    |
+| --nut-divider-vertical-border-left | rgba(0, 0, 0, 0.06)    |
+| --nut-divider-vertical-margin      | 0 8px                  |

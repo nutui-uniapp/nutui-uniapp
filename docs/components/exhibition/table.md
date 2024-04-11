@@ -557,15 +557,15 @@
 
 ### TableColumnProps
 
-| 参数   | 说明                                                                                                                                                     | 类型                      | 默认值 |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ------ |
-| key    | 列的唯一标识                                                                                                                                             | string                    | ``     |
-| title  | 表头标题                                                                                                                                                 | string                    | ``     |
-| stylehead  | 表头样式                                                                                                                                                 | string                    | ``     |
-| stylecolumn  | 列样式                                                                                                                                                 | string                    | ``     |
-| align  | 列的对齐方式，可选值`left`,`center`,`right`                                                                                                              | string                    | `left` |
-| sorter | 排序，可选值有 `true`,`function`, `default`, 其中 `default`表示点击之后可能会依赖接口, `function`可以返回具体的排序函数, `default`表示采用默认的排序算法 | boolean \| Function \| string | -      |
-| render | 自定义渲染列数据，优先级高                                                                                                                               | Function(record)          | -      |
+| 参数        | 说明                                                                                                                                                     | 类型                          | 默认值 |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ------ |
+| key         | 列的唯一标识                                                                                                                                             | string                        | ``     |
+| title       | 表头标题                                                                                                                                                 | string                        | ``     |
+| stylehead   | 表头样式                                                                                                                                                 | string                        | ``     |
+| stylecolumn | 列样式                                                                                                                                                   | string                        | ``     |
+| align       | 列的对齐方式，可选值`left`,`center`,`right`                                                                                                              | string                        | `left` |
+| sorter      | 排序，可选值有 `true`,`function`, `default`, 其中 `default`表示点击之后可能会依赖接口, `function`可以返回具体的排序函数, `default`表示采用默认的排序算法 | boolean \| Function \| string | -      |
+| render      | 自定义渲染列数据，优先级高                                                                                                                               | Function(record)              | -      |
 
 ### Events
 
@@ -579,9 +579,9 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                     |
-| --------------------------------------- | -------------------------- |
-| --nut-table-border-color| _#ececec_  |
-| --nut-table-cols-padding| _10px_  |
-| --nut-table-tr-even-bg-color| _#f3f3f3_  |
-| --nut-table-tr-odd-bg-color| _var(--nut-white)_  |
+| 名称                         | 默认值           |
+| ---------------------------- | ---------------- |
+| --nut-table-border-color     | #ececec          |
+| --nut-table-cols-padding     | 10px             |
+| --nut-table-tr-even-bg-color | #f3f3f3          |
+| --nut-table-tr-odd-bg-color  | var(--nut-white) |
