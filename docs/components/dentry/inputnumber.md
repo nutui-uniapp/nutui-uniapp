@@ -191,10 +191,10 @@
 ### Props
 
 | 参数           | 说明                       | 类型             | 默认值  |
-|----------------|----------------------------|------------------|---------|
+| -------------- | -------------------------- | ---------------- | ------- |
 | v-model        | 初始值                     | string \| number | -       |
-| input-width    | 输入框宽度                 | string           | ``  |
-| button-size    | 操作符+、-尺寸             | string           | ``  |
+| input-width    | 输入框宽度                 | string           | ``      |
+| button-size    | 操作符+、-尺寸             | string           | ``      |
 | min            | 最小值限制                 | string \| number | `1`     |
 | max            | 最大值限制                 | string \| number | `9999`  |
 | step           | 步长                       | string \| number | `1`     |
@@ -205,20 +205,20 @@
 ### Slots
 
 | 名称      | 说明           |
-|-----------|----------------|
+| --------- | -------------- |
 | leftIcon  | 自定义左侧按钮 |
 | rightIcon | 自定义右侧按钮 |
 
 ### Events
 
-| 事件名    | 说明                   | 回调参数                                    |
-|-----------|------------------------|---------------------------------------------|
+| 事件名    | 说明                   | 回调参数                                      |
+| --------- | ---------------------- | --------------------------------------------- |
 | add       | 点击增加按钮时触发     | `(event: Event)`                              |
 | reduce    | 点击减少按钮时触发     | `(event: Event)`                              |
 | overlimit | 点击不可用的按钮时触发 | `(event: Event,type:string (reduce or add) )` |
 | change    | 值改变时触发           | `(value: number , event : Event)`             |
 | blur      | 输入框失去焦点时触发   | `(event: Event)`                              |
-| focus     | 输入框获得焦点时触发   | `(event: Event )`                            |
+| focus     | 输入框获得焦点时触发   | `(event: Event )`                             |
 
 ## 主题定制
 
@@ -226,21 +226,21 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                     | 默认值                     |
-|------------------------------------------|----------------------------|
-| --nut-inputnumber-icon-color             | _var(--nut-title-color)_   |
-| --nut-inputnumber-icon-void-color        | _var(--nut-disable-color)_ |
-| --nut-inputnumber-icon-size                | _20px_                     |
-| --nut-inputnumber-input-width                | _40px_                     |
-| --nut-inputnumber-input-font-size        | _12px_                     |
-| --nut-inputnumber-input-font-color       | _var(--nut-title-color)_   |
-| --nut-inputnumber-input-background-color | _var(--nut-help-color)_    |
-| --nut-inputnumber-input-border-radius    | _4px_                      |
-| --nut-inputnumber-input-margin           | _0 6px_                    |
-| --nut-inputnumber-input-border           | _0_                        |
-| --nut-inputnumber-border                 | _0_                        |
-| --nut-inputnumber-border-radius          | _0_                        |
-| --nut-inputnumber-height                 | _auto_                     |
-| --nut-inputnumber-line-height            | _normal_                   |
-| --nut-inputnumber-border-box             | _content-box_              |
-| --nut-inputnumber-display                | _inline-flex_              |                  |
+| 名称                                     | 默认值                   |
+| ---------------------------------------- | ------------------------ |
+| --nut-inputnumber-icon-color             | var(--nut-title-color)   |
+| --nut-inputnumber-icon-void-color        | var(--nut-disable-color) |
+| --nut-inputnumber-icon-size              | 20px                     |
+| --nut-inputnumber-input-width            | 40px                     |
+| --nut-inputnumber-input-font-size        | 12px                     |
+| --nut-inputnumber-input-font-color       | var(--nut-title-color)   |
+| --nut-inputnumber-input-background-color | var(--nut-help-color)    |
+| --nut-inputnumber-input-border-radius    | 4px                      |
+| --nut-inputnumber-input-margin           | 0 6px                    |
+| --nut-inputnumber-input-border           | 0                        |
+| --nut-inputnumber-border                 | 0                        |
+| --nut-inputnumber-border-radius          | 0                        |
+| --nut-inputnumber-height                 | auto                     |
+| --nut-inputnumber-line-height            | normal                   |
+| --nut-inputnumber-border-box             | content-box              |
+| --nut-inputnumber-display                | inline-flex              |

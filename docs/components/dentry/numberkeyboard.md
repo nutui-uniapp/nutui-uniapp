@@ -258,7 +258,7 @@ export default{
 ### Props
 
 | 参数            | 说明                                             | 类型             | 默认值                                         |
-|-----------------|--------------------------------------------------|------------------|------------------------------------------------|
+| --------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- |
 | v-model:visible | 是否显示键盘                                     | boolean          | `false`                                        |
 | v-model         | 当前输入值                                       | string           | -                                              |
 | title           | 键盘标题                                         | string           | -                                              |
@@ -273,7 +273,7 @@ export default{
 ### Events
 
 | 事件名 | 说明                           | 回调参数 |
-|--------|--------------------------------|----------|
+| ------ | ------------------------------ | -------- |
 | input  | 点击按键时触发                 | 按键内容 |
 | delete | 点击删除键时触发               | -        |
 | close  | 点击关闭按钮或非键盘区域时触发 | -        |
@@ -284,27 +284,27 @@ export default{
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                                  | 默认值        |
-|-------------------------------------------------------|---------------|
-| --nut-numberkeyboard-width                            | _100%_        |
-| --nut-numberkeyboard-padding                          | _0_           |
-| --nut-numberkeyboard-background-color                 | _#f2f3f5_     |
-| --nut-numberkeyboard-header-height                    | _34px_        |
-| --nut-numberkeyboard-header-padding                   | _6px 0 0 0_   |
-| --nut-numberkeyboard-header-color                     | _#646566_     |
-| --nut-numberkeyboard-header-font-size                 | _16px_        |
-| --nut-numberkeyboard-header-close-padding             | _0 16px_      |
-| --nut-numberkeyboard-header-close-color               | _#576b95_     |
-| --nut-numberkeyboard-header-close-font-size           | _14px_        |
-| --nut-numberkeyboard-header-close-background-color    | _transparent_ |
-| --nut-numberkeyboard-key-background-color             | _#fff_        |
-| --nut-numberkeyboard-key-active-background-color      | _#ebedf0_     |
-| --nut-numberkeyboard-key-height                       | _48px_        |
-| --nut-numberkeyboard-key-line-height                  | _1.5_         |
-| --nut-numberkeyboard-key-border-radius                | _8px_         |
-| --nut-numberkeyboard-key-font-size                    | _28px_        |
-| --nut-numberkeyboard-key-font-size-color              | _#333_        |
-| --nut-numberkeyboard-key-finish-font-size             | _16px_        |
-| --nut-numberkeyboard-key-finish-font-size-color       | _#fff_        |
-| --nut-numberkeyboard-key-finish-background-color      | _#1989fa_     |
-| --nut-numberkeyboard-key-activeFinsh-background-color | _#0570db_     |
+| 名称                                                  | 默认值      |
+| ----------------------------------------------------- | ----------- |
+| --nut-numberkeyboard-width                            | 100%        |
+| --nut-numberkeyboard-padding                          | 0           |
+| --nut-numberkeyboard-background-color                 | #f2f3f5     |
+| --nut-numberkeyboard-header-height                    | 34px        |
+| --nut-numberkeyboard-header-padding                   | 6px 0 0 0   |
+| --nut-numberkeyboard-header-color                     | #646566     |
+| --nut-numberkeyboard-header-font-size                 | 16px        |
+| --nut-numberkeyboard-header-close-padding             | 0 16px      |
+| --nut-numberkeyboard-header-close-color               | #576b95     |
+| --nut-numberkeyboard-header-close-font-size           | 14px        |
+| --nut-numberkeyboard-header-close-background-color    | transparent |
+| --nut-numberkeyboard-key-background-color             | #fff        |
+| --nut-numberkeyboard-key-active-background-color      | #ebedf0     |
+| --nut-numberkeyboard-key-height                       | 48px        |
+| --nut-numberkeyboard-key-line-height                  | 1.5         |
+| --nut-numberkeyboard-key-border-radius                | 8px         |
+| --nut-numberkeyboard-key-font-size                    | 28px        |
+| --nut-numberkeyboard-key-font-size-color              | #333        |
+| --nut-numberkeyboard-key-finish-font-size             | 16px        |
+| --nut-numberkeyboard-key-finish-font-size-color       | #fff        |
+| --nut-numberkeyboard-key-finish-background-color      | #1989fa     |
+| --nut-numberkeyboard-key-activeFinsh-background-color | #0570db     |

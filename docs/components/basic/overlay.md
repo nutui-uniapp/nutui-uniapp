@@ -232,27 +232,27 @@ export default {
 
 ### Props
 
-| 参数                   | 说明             | 类型           | 默认值 |
-| ---------------------- | ---------------- | -------------- | ------ |
-| v-model:visible        | 控制遮罩的显示/隐藏 | boolean        | `false`  |
-| z-index                | 自定义遮罩层级         | string \| number | `300`   |
-| duration               | 显示/隐藏的动画时长，单位毫秒 | string \| number | `300`    |
-| overlay-class          | 自定义遮罩类名   | string         | -      |
-| overlay-style          | 自定义遮罩样式   | CSSProperties  | -      |
-| lock-scroll    `H5`         | 遮罩显示时的背景是否锁定     | boolean        | `true`  |
-| close-on-click-overlay | 点击遮罩时是否关闭 | boolean    | `true`   |
+| 参数                   | 说明                          | 类型             | 默认值  |
+| ---------------------- | ----------------------------- | ---------------- | ------- |
+| v-model:visible        | 控制遮罩的显示/隐藏           | boolean          | `false` |
+| z-index                | 自定义遮罩层级                | string \| number | `300`   |
+| duration               | 显示/隐藏的动画时长，单位毫秒 | string \| number | `300`   |
+| overlay-class          | 自定义遮罩类名                | string           | -       |
+| overlay-style          | 自定义遮罩样式                | CSSProperties    | -       |
+| lock-scroll    `H5`    | 遮罩显示时的背景是否锁定      | boolean          | `true`  |
+| close-on-click-overlay | 点击遮罩时是否关闭            | boolean          | `true`  |
 
 ### Events
 
-| 事件名 | 说明       | 回调参数     |
-| ------ | ---------- | ------------ |
-| click  | 点击时触发   | event: MouseEvent |
+| 事件名 | 说明       | 回调参数          |
+| ------ | ---------- | ----------------- |
+| click  | 点击时触发 | event: MouseEvent |
 
 ### Slots
 
-| 名称 | 说明       |
-| ------ | ---------- |
-| default  | 内嵌遮罩内容自定义 |
+| 名称    | 说明               |
+| ------- | ------------------ |
+| default | 内嵌遮罩内容自定义 |
 
 ## 主题定制
 
@@ -260,6 +260,6 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                     |
-| --------------------------------------- | -------------------------- |
-| --nut-overlay-bg-color        | _rgba(0, 0, 0, 0.7)_        |
+| 名称                   | 默认值             |
+| ---------------------- | ------------------ |
+| --nut-overlay-bg-color | rgba(0, 0, 0, 0.7) |

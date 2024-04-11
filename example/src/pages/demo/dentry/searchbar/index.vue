@@ -62,8 +62,10 @@ function onSearch(value: string | number) {
     </h2>
     <nut-searchbar v-model="searchValue6">
       <template #clear-icon>
-        <image style="width: 20px; height: 20px;"
-               src="https://img10.360buyimg.com/imagetools/jfs/t1/170133/30/22902/10546/61833626E32d7ccde/a7c373ba30de9a89.png" />
+        <image
+          style="width: 20px; height: 20px;"
+          src="https://img10.360buyimg.com/imagetools/jfs/t1/170133/30/22902/10546/61833626E32d7ccde/a7c373ba30de9a89.png"
+        />
       </template>
     </nut-searchbar>
 
