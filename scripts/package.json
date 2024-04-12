@@ -32,8 +32,8 @@
   },
   "id": "nutui-uni",
   "peerDependencies": {
-    "@uni-helper/uni-app-types": "^0.5.12",
-    "vue": "3.2.47"
+    "@uni-helper/uni-app-types": ">=0.5.9",
+    "vue": ">=3.2.0"
   },
   "dcloudext": {
     "category": [
