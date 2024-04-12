@@ -1,3 +1,15 @@
+## [1.7.7](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.6...v1.7.7) (2024-04-12)
+
+### Bug Fixes
+
+* **ecard:** 修复输入框表现异常 ([#291](https://github.com/nutui-uniapp/nutui-uniapp/issues/291)) ([5763f25](https://github.com/nutui-uniapp/nutui-uniapp/commit/5763f25855bdd33e0068a9a1c7b2556f1e9dfaaa))
+* **swipe:** 修复组件宽度超出范围以及点击关闭问题 ([#284](https://github.com/nutui-uniapp/nutui-uniapp/issues/284)) ([48cc120](https://github.com/nutui-uniapp/nutui-uniapp/commit/48cc12026e0ec9befb7bc7215621649dee75032c))
+
+### Features
+
+* **datepicker:** 事件新增date参数 ([#289](https://github.com/nutui-uniapp/nutui-uniapp/issues/289)) ([29947b5](https://github.com/nutui-uniapp/nutui-uniapp/commit/29947b5660586650e6d8d281fa353ec47a6e6680))
+* **tag:** 新增disbaled、close-icon-size属性 ([#293](https://github.com/nutui-uniapp/nutui-uniapp/issues/293)) ([85b329c](https://github.com/nutui-uniapp/nutui-uniapp/commit/85b329cdb897164be082f4abe35c56289db1710c))
+
 ## [1.7.6](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.5...v1.7.6) (2024-04-10)
 
 ### Bug Fixes
