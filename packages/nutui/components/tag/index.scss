@@ -61,6 +61,10 @@
     }
   }
 
+  &--plain {
+    background: $white !important;
+  }
+
   &--round {
     border-radius: $tag-round-border-radius;
   }
@@ -72,5 +76,19 @@
   &--close {
     margin-left: 4px;
     cursor: pointer;
+  }
+
+  &--disabled {
+    background: $tag-disabled-background-color !important;
+
+    &.nut-tag--plain {
+      color: $tag-disabled-background-color !important;
+      background: $white !important;
+      border-color: $tag-disabled-background-color !important;
+    }
+
+    .nut-tag--close {
+      color: $tag-disabled-close-color;
+    }
   }
 }

@@ -569,6 +569,8 @@ $tag-danger-background-color: var(
 ) !default;
 $tag-danger-background-color-plain: var(--nut-tag-danger-background-color-plain, #df3526) !default;
 $tag-warning-background-color: var(--nut-tag-warning-background-color, #f3812e) !default;
+$tag-disabled-background-color: var(--nut-tag-disabled-background-color, $disable-color) !default;
+$tag-disabled-close-color: var(--nut-tag-disabled-close-color, #aaa) !default;
 $tag-default-color: var(--nut-tag-default-color, #fff) !default;
 $tag-border-width: var(--nut-tag-border-width, 1px) !default;
 $tag-plain-background-color: var(--nut-tag-plain-background-color, #fff) !default;
