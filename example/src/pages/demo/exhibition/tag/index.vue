@@ -1,18 +1,8 @@
-<script lang="ts">
-import { ref } from 'vue'
+<script lang="ts" setup>
+const show = ref<boolean>(true)
 
-export default {
-  setup() {
-    const show = ref(true)
-    const close = () => {
-      show.value = false
-    }
-
-    return {
-      close,
-      show,
-    }
-  },
+function close() {
+  show.value = false
 }
 </script>
 
@@ -59,21 +49,28 @@ export default {
       </nut-cell>
       <nut-cell title="圆角样式">
         <template #link>
-          <nut-tag round type="primary">
+          <nut-tag type="primary" round>
             标签
           </nut-tag>
         </template>
       </nut-cell>
       <nut-cell title="标记样式">
         <template #link>
-          <nut-tag mark type="primary">
+          <nut-tag type="primary" mark>
             标签
           </nut-tag>
         </template>
       </nut-cell>
       <nut-cell title="可关闭标签">
         <template #link>
-          <nut-tag v-if="show" closeable type="primary" @close="close">
+          <nut-tag v-if="show" type="primary" closeable @close="close">
+            标签
+          </nut-tag>
+        </template>
+      </nut-cell>
+      <nut-cell title="关闭图标大小">
+        <template #link>
+          <nut-tag type="primary" closeable close-icon-size="8">
             标签
           </nut-tag>
         </template>
@@ -83,21 +80,38 @@ export default {
     <nut-cell-group title="颜色自定义">
       <nut-cell title="背景颜色">
         <template #link>
-          <nut-tag custom-color="#FA685D">
+          <nut-tag custom-color="#fa685d">
             标签
           </nut-tag>
         </template>
       </nut-cell>
       <nut-cell title="文字颜色">
         <template #link>
-          <nut-tag custom-color="#E9E9E9" text-color="#999999">
+          <nut-tag custom-color="#e9e9e9" text-color="#999999">
             标签
           </nut-tag>
         </template>
       </nut-cell>
       <nut-cell title="空心颜色">
         <template #link>
-          <nut-tag custom-color="#FA2400" plain>
+          <nut-tag custom-color="#fa2400" plain>
+            标签
+          </nut-tag>
+        </template>
+      </nut-cell>
+    </nut-cell-group>
+
+    <nut-cell-group title="禁用状态">
+      <nut-cell title="普通标签">
+        <template #link>
+          <nut-tag type="primary" disabled>
+            标签
+          </nut-tag>
+        </template>
+      </nut-cell>
+      <nut-cell title="可关闭标签">
+        <template #link>
+          <nut-tag v-if="show" type="primary" closeable disabled @close="close">
             标签
           </nut-tag>
         </template>
@@ -109,6 +123,7 @@ export default {
 <style lang="scss" scoped>
 .nut-tag {
   margin-right: 15px;
+
   &:last-child {
     margin-bottom: 0;
     margin-right: 0;
@@ -118,11 +133,11 @@ export default {
 .nut-cell {
   align-items: flex-end;
   border-radius: 0;
+
   .nut-cell__title {
     font-size: 13px;
-    font-family: PingFangSC;
     font-weight: 500;
-    color: rgba(102, 102, 102, 1);
+    color: #666;
   }
 }
 </style>
