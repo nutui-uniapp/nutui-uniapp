@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeStringProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
+import type { TagType } from './type'
 
 export const tagProps = {
   ...commonProps,
@@ -15,7 +16,7 @@ export const tagProps = {
   /**
    * @description 标签类型，可选值为 primary、success、danger、warning
    */
-  type: makeStringProp<'primary' | 'success' | 'danger' | 'warning' | 'default'>('default'),
+  type: makeStringProp<TagType>('default'),
   /**
    * @description 是否为空心样式
    */
@@ -32,14 +33,21 @@ export const tagProps = {
    * @description 是否为可关闭标签
    */
   closeable: Boolean,
+  /**
+   * @description 关闭图表大小
+   */
+  closeIconSize: makeNumericProp(11),
+  /**
+   * @description 是否禁用
+   */
+  disabled: Boolean,
 }
 
 export type TagProps = ExtractPropTypes<typeof tagProps>
 
 export const tagEmits = {
-  [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
-  [CLOSE_EVENT]: (evt: Event) => evt instanceof Object,
-
+  [CLICK_EVENT]: (evt: any) => evt instanceof Object,
+  [CLOSE_EVENT]: (evt: any) => evt instanceof Object,
 }
 
 export type TagEmits = typeof tagEmits

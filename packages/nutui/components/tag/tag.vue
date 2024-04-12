@@ -16,37 +16,41 @@ const classes = computed(() => {
     [`${componentName}--plain`]: props.plain,
     [`${componentName}--round`]: props.round,
     [`${componentName}--mark`]: props.mark,
+    [`${componentName}--disabled`]: props.disabled,
   })
 })
 
 // 综合考虑 textColor、color、plain 组合使用时的效果
-const style = computed<string>(() => {
-  const style: CSSProperties = {}
+const styles = computed<string>(() => {
+  const value: CSSProperties = {}
+
   // 标签内字体颜色
   if (props.textColor)
-    style.color = props.textColor
-
+    value.color = props.textColor
   else if (props.customColor && props.plain)
-    style.color = props.customColor
+    value.color = props.customColor
 
   // 标签背景与边框颜色
-  if (props.plain) {
-    style.background = '#fff'
-    style['border-color'] = props.customColor
-  }
-  else if (props.customColor) {
-    style.background = props.customColor
-  }
-  return getMainStyle(props, style)
+  if (props.plain)
+    value.borderColor = props.customColor
+  else if (props.customColor)
+    value.background = props.customColor
+
+  return getMainStyle(props, value)
 })
 
-function onClose(event: Event) {
-  event.stopPropagation()
-  emit(CLOSE_EVENT, event)
+function onClick(event: any) {
+  if (props.disabled)
+    return
+
+  emit(CLICK_EVENT, event)
 }
 
-function onClick(event: unknown) {
-  emit(CLICK_EVENT, event as Event)
+function onCloseClick(event: any) {
+  if (props.disabled)
+    return
+
+  emit(CLOSE_EVENT, event)
 }
 </script>
 
@@ -64,12 +68,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="style" @click="onClick">
+  <view :class="classes" :style="styles" @tap="onClick">
     <slot />
-    <NutIcon v-if="closeable" name="close" custom-class="nut-tag--close" size="11" @click="onClose" />
+
+    <NutIcon
+      v-if="props.closeable"
+      name="close"
+      custom-class="nut-tag--close"
+      :size="props.closeIconSize"
+      @tap.stop="onCloseClick"
+    />
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
