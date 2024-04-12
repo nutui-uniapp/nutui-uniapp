@@ -1,7 +1,7 @@
 {
   "name": "@nutui-uniapp/docs",
   "type": "module",
-  "version": "1.7.6",
+  "version": "1.7.7",
   "private": true,
   "description": "NutUI for uniapp docs",
   "keywords": [
