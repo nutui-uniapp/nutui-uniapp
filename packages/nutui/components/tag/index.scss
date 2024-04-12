@@ -62,7 +62,7 @@
   }
 
   &--plain {
-    background: #fff !important;
+    background: $white !important;
   }
 
   &--round {
@@ -83,7 +83,7 @@
 
     &.nut-tag--plain {
       color: $tag-disabled-background-color !important;
-      background: #fff !important;
+      background: $white !important;
       border-color: $tag-disabled-background-color !important;
     }
 
