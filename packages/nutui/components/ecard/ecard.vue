@@ -93,7 +93,9 @@ function handleInputChange(event: InputOnInputEvent) {
   emit('update', finalValue.value)
 }
 
-function handleStepChange() {
+function handleStepChange(value: number | string) {
+  innerCount.value = Number(value)
+
   emit('changeStep', innerCount.value, innerValue.value)
 
   emit(UPDATE_MODEL_EVENT, finalValue.value)
@@ -188,7 +190,7 @@ export default defineComponent({
         <view>{{ props.suffix }}{{ props.modelValue }}</view>
 
         <NutInputNumber
-          v-model="innerCount"
+          :model-value="innerCount"
           :min="props.cardBuyMin"
           :max="props.cardBuyMax"
           @change="handleStepChange"
