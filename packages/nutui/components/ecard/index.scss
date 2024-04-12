@@ -6,7 +6,7 @@
 
     .nut-ecard__list__item {
       background: $dark-background5;
-      border: 1px solid $dark-background5;
+      border-color: $dark-background5;
 
       &.active {
         color: $dark-color2;

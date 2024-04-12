@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import { computed, defineComponent, nextTick, ref, watch } from 'vue'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import type { InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
 import { getMainClass } from '../_utils'
 import { ecardEmits, ecardProps } from './ecard'
-import type { EcardDataItem } from './type'
+import type { EcardDataItem, EcardDataValue, EcardUpdateOptions } from './type'
 
 const props = defineProps(ecardProps)
 
 const emit = defineEmits(ecardEmits)
 
-const innerValue = ref<number | null>(null)
+const innerValue = ref<EcardDataValue>(0)
 
 const currentIndex = ref<number | null>(null)
 
 const inputValue = ref<string>('')
 
-const innerCount = ref<number>(props.cardAmountMin)
+const innerCount = ref<number>(props.cardBuyMin)
 
-const amountValue = computed(() => {
+const finalValue = computed(() => {
   return Number(innerValue.value) * innerCount.value
 })
 
@@ -44,32 +44,22 @@ function handleClick(item: EcardDataItem, index: number) {
   currentIndex.value = index
 
   forceUpdateInputValue('')
-  innerCount.value = props.cardAmountMin
+  innerCount.value = props.cardBuyMin
 
   emit('change', item)
-  emit(UPDATE_MODEL_EVENT, innerValue.value)
+
+  emit(UPDATE_MODEL_EVENT, finalValue.value)
+  emit('update', finalValue.value)
 }
 
-function handleValue(value: number) {
-  if (value > props.cardAmountMax)
+function handleInputValue(value: number) {
+  if (value > Number(props.cardAmountMax))
     return props.cardAmountMax
 
-  if (value < props.cardAmountMin)
+  if (value < Number(props.cardAmountMin))
     return props.cardAmountMin
 
   return value
-}
-
-function handleInputChange(event: InputOnInputEvent) {
-  const value = Number(event.detail.value.replace(/\D/g, ''))
-
-  const valued = handleValue(value)
-
-  forceUpdateInputValue(String(valued))
-  innerValue.value = valued
-
-  emit('inputChange', valued)
-  emit(UPDATE_MODEL_EVENT, innerValue.value)
 }
 
 function handleInputClick() {
@@ -82,48 +72,65 @@ function handleInputClick() {
   currentIndex.value = -1
 
   forceUpdateInputValue('')
-  innerCount.value = props.cardAmountMin
+  innerCount.value = props.cardBuyMin
 
-  emit(UPDATE_MODEL_EVENT, innerValue.value)
+  emit(UPDATE_MODEL_EVENT, finalValue.value)
+  emit('update', finalValue.value)
 }
 
-function handleStepChange(value: number | string) {
-  innerCount.value = Number(value)
+function handleInputChange(event: InputOnInputEvent) {
+  const value = Number(event.detail.value.replace(/\D/g, ''))
 
+  const valued = handleInputValue(value)
+  const stringValued = String(valued)
+
+  forceUpdateInputValue(stringValued)
+  innerValue.value = valued
+
+  emit('inputChange', stringValued)
+
+  emit(UPDATE_MODEL_EVENT, finalValue.value)
+  emit('update', finalValue.value)
+}
+
+function handleStepChange() {
   emit('changeStep', innerCount.value, innerValue.value)
+
+  emit(UPDATE_MODEL_EVENT, finalValue.value)
+  emit('update', finalValue.value)
 }
 
-function applyModelValue(value: number | null) {
-  innerValue.value = value
+function update(options: EcardUpdateOptions) {
+  const { index, input, count } = options
 
-  if (value == null) {
-    currentIndex.value = null
-    forceUpdateInputValue('')
-    return
-  }
-
-  const index = props.list.findIndex(item => item.price === value)
-
-  if (index < 0) {
-    currentIndex.value = -1
-    forceUpdateInputValue(String(value))
-    return
-  }
-
-  currentIndex.value = index
-  forceUpdateInputValue('')
-}
-
-watch(
-  () => props.modelValue,
-  (value) => {
-    if (value === innerValue.value)
+  if (index !== undefined) {
+    if (index != null && (index < -1 || index >= props.list.length))
       return
 
-    applyModelValue(value)
-  },
-  { immediate: true },
-)
+    currentIndex.value = index
+
+    if (index == null || index === -1) {
+      if (input != null) {
+        innerValue.value = Number(input)
+        forceUpdateInputValue(input)
+      }
+    }
+    else {
+      innerValue.value = props.list[index].price
+      forceUpdateInputValue('')
+    }
+  }
+
+  if (count != null)
+    innerCount.value = count
+
+  emit(UPDATE_MODEL_EVENT, finalValue.value)
+  emit('update', finalValue.value)
+}
+
+defineExpose({
+  update,
+})
 </script>
 
 <script lang="ts">
@@ -178,7 +185,7 @@ export default defineComponent({
       </view>
 
       <view v-if="props.showStep" class="nut-ecard__list__step">
-        <view>{{ props.suffix }}{{ amountValue }}</view>
+        <view>{{ props.suffix }}{{ props.modelValue }}</view>
 
         <NutInputNumber
           v-model="innerCount"

@@ -1,14 +1,23 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNull, isNumber, makeArrayProp, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import {
+  commonProps,
+  isNumber,
+  isString,
+  makeArrayProp,
+  makeNumberProp,
+  makeNumericProp,
+  makeStringProp,
+  truthProp,
+} from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
-import type { EcardChangeEvent, EcardDataItem } from './type'
+import type { EcardChangeEvent, EcardDataItem, EcardDataValue } from './type'
 
 export const ecardProps = {
   ...commonProps,
   /**
    * @description 购买电子卡所需价钱
    */
-  modelValue: makeNumberProp(null),
+  modelValue: makeNumericProp(0),
   /**
    * @description 电子卡面值列表
    */
@@ -36,11 +45,11 @@ export const ecardProps = {
   /**
    * @description 其它面值最小值
    */
-  cardAmountMin: makeNumberProp(1),
+  cardAmountMin: makeNumericProp(1),
   /**
    * @description 其他面值最大值
    */
-  cardAmountMax: makeNumberProp(9999),
+  cardAmountMax: makeNumericProp(9999),
   /**
    * @description 是否显示步进
    */
@@ -58,10 +67,11 @@ export const ecardProps = {
 export type ECardProps = ExtractPropTypes<typeof ecardProps>
 
 export const ecardEmits = {
-  [UPDATE_MODEL_EVENT]: (val: number) => isNumber(val),
+  [UPDATE_MODEL_EVENT]: (val: EcardDataValue) => isNumber(val) || isString(val),
+  update: (val: EcardDataValue) => isNumber(val) || isString(val),
   change: (evt: EcardChangeEvent) => evt instanceof Object,
-  inputChange: (val: number) => isNumber(val),
-  changeStep: (val1: number, val2: number | null) => isNumber(val1) && (isNumber(val2) || isNull(val2)),
+  inputChange: (val: string) => isString(val),
+  changeStep: (val1: number, val2: EcardDataValue) => isNumber(val1) && (isNumber(val2) || isString(val2)),
   inputClick: () => true,
 }
 
