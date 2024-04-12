@@ -34,7 +34,7 @@ export const tagProps = {
    */
   closeable: Boolean,
   /**
-   * @description 关闭图表大小
+   * @description 关闭图标大小
    */
   closeIconSize: makeNumericProp(11),
   /**

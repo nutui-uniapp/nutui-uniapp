@@ -88,7 +88,7 @@
     }
 
     .nut-tag--close {
-      opacity: 0.5;
+      color: $tag-disabled-close-color;
     }
   }
 }
