@@ -23,7 +23,11 @@ const getStyle = computed(() => {
 })
 
 function handleClick(event: Event) {
-  emits(CLICK_EVENT, event)
+  const url = props.to
+  if (props.isLink)
+    emits(CLICK_EVENT, event)
+  if (url && props.isLink)
+    uni.navigateTo({ url })
 }
 </script>
 
