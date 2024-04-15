@@ -25,7 +25,7 @@
 
 ``` html
 <template>
-  <nut-switch v-model="checked" disable />
+  <nut-switch v-model="checked" disabled />
 </template>
 <script lang="ts">
   import { ref } from 'vue';
@@ -173,7 +173,7 @@ export default {
 | 参数           | 说明             | 类型                        | 默认值    |
 | -------------- | ---------------- | --------------------------- | --------- |
 | v-model        | 开关状态         | boolean \| string \| number | `false`   |
-| disable        | 禁用状态         | boolean                     | `false`   |
+| disabled        | 禁用状态         | boolean                     | `false`   |
 | loading        | 加载状态         | boolean                     | `false`   |
 | active-color   | 打开时的背景颜色 | string                      | `#fa2c19` |
 | inactive-color | 关闭时的背景颜色 | string                      | `#ebebeb` |
