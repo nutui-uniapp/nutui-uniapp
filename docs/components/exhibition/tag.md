@@ -100,20 +100,21 @@ function close() {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                          | 默认值                                                                                                |
-|---------------------------------------------|----------------------------------------------------------------------------------------------------|
-| --nut-tag-font-size                         | 12px                                                                                               |
-| --nut-tag-default-border-radius             | 4px                                                                                                |
-| --nut-tag-round-border-radius               | 8px                                                                                                |
-| --nut-tag-default-background-color          | #000000                                                                                            |
-| --nut-tag-primary-background-color          | #3460fa                                                                                            |
-| --nut-tag-success-background-color          | #4fc08d                                                                                            |
-| --nut-tag-danger-background-color           | linear-gradient(135deg,rgba(242, 20, 12, 1) 0%,rgba(232, 34, 14, 1) 70%,rgba(242, 77, 12, 1) 100%) |
-| --nut-tag-danger-background-color-plain     | #df3526                                                                                            |
-| --nut-tag-warning-background-color          | #f3812e                                                                                            |
-| --nut-tag-disabled-background-color `1.7.7` | #ccc                                                                                               |
-| --nut-tag-disabled-close-color `1.7.7`      | #aaa                                                                                               |
-| --nut-tag-default-color                     | #ffffff                                                                                            |
-| --nut-tag-border-width                      | 1px                                                                                                |
-| --nut-tag-plain-background-color            | #fff                                                                                               |
-| --nut-tag-height                            | auto                                                                                               |
+| 名称                                          | 默认值           |
+|---------------------------------------------|---------------|
+| --nut-tag-height                            | auto          |
+| --nut-tag-padding `1.7.8`                   | 0 4px         |
+| --nut-tag-font-size                         | 12px          |
+| --nut-tag-default-color                     | #fff          |
+| --nut-tag-border-width                      | 1px           |
+| --nut-tag-default-border-radius             | 4px           |
+| --nut-tag-round-border-radius               | 8px           |
+| --nut-tag-mark-border-radius                | 0 12px 12px 0 |
+| --nut-tag-default-background-color          | #000          |
+| --nut-tag-primary-background-color          | #3460fa       |
+| --nut-tag-success-background-color          | #4fc08d       |
+| --nut-tag-danger-background-color           | #df3526       |
+| --nut-tag-warning-background-color          | #f3812e       |
+| --nut-tag-plain-background-color            | transparent   |
+| --nut-tag-disabled-background-color `1.7.7` | #ccc          |
+| --nut-tag-disabled-close-color `1.7.7`      | #aaa          |
