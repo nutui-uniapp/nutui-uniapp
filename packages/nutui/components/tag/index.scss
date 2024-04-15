@@ -2,67 +2,61 @@
   display: inline-flex;
   align-items: center;
   height: $tag-height;
-  padding: 0 4px;
+  padding: $tag-padding;
   font-size: $tag-font-size;
+  color: $tag-default-color;
+  border-style: solid;
+  border-width: $tag-border-width;
   border-radius: $tag-default-border-radius;
 
   &--default {
-    color: $tag-default-color;
     background: $tag-default-background-color;
-    border: $tag-border-width solid transparent;
+    border-color: $tag-default-background-color;
 
     &.nut-tag--plain {
       color: $tag-default-background-color;
-      border: $tag-border-width solid $tag-default-background-color;
+      background: $tag-plain-background-color;
     }
   }
 
   &--primary {
-    color: $tag-default-color;
     background: $tag-primary-background-color;
-    border: $tag-border-width solid transparent;
+    border-color: $tag-primary-background-color;
 
     &.nut-tag--plain {
       color: $tag-primary-background-color;
-      border: $tag-border-width solid $tag-primary-background-color;
+      background: $tag-plain-background-color;
     }
   }
 
   &--success {
-    color: $tag-default-color;
     background: $tag-success-background-color;
-    border: $tag-border-width solid transparent;
+    border-color: $tag-success-background-color;
 
     &.nut-tag--plain {
       color: $tag-success-background-color;
-      border: $tag-border-width solid $tag-success-background-color;
+      background: $tag-plain-background-color;
     }
   }
 
   &--danger {
-    color: $tag-default-color;
     background: $tag-danger-background-color;
-    border: $tag-border-width solid transparent;
+    border-color: $tag-danger-background-color;
 
     &.nut-tag--plain {
-      color: $tag-danger-background-color-plain;
-      border: $tag-border-width solid $tag-danger-background-color-plain;
+      color: $tag-danger-background-color;
+      background: $tag-plain-background-color;
     }
   }
 
   &--warning {
-    color: $tag-default-color;
     background: $tag-warning-background-color;
-    border: $tag-border-width solid transparent;
+    border-color: $tag-warning-background-color;
 
     &.nut-tag--plain {
       color: $tag-warning-background-color;
-      border: $tag-border-width solid $tag-warning-background-color;
+      background: $tag-plain-background-color;
     }
-  }
-
-  &--plain {
-    background: $white !important;
   }
 
   &--round {
@@ -70,7 +64,7 @@
   }
 
   &--mark {
-    border-radius: 0 12px 12px 0;
+    border-radius: $tag-mark-border-radius;
   }
 
   &--close {
@@ -80,10 +74,11 @@
 
   &--disabled {
     background: $tag-disabled-background-color !important;
+    border-color: $tag-disabled-background-color !important;
 
     &.nut-tag--plain {
       color: $tag-disabled-background-color !important;
-      background: $white !important;
+      background: $tag-plain-background-color !important;
       border-color: $tag-disabled-background-color !important;
     }
 

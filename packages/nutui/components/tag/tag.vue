@@ -20,21 +20,23 @@ const classes = computed(() => {
   })
 })
 
-// 综合考虑 textColor、color、plain 组合使用时的效果
 const styles = computed<string>(() => {
   const value: CSSProperties = {}
 
-  // 标签内字体颜色
   if (props.textColor)
     value.color = props.textColor
-  else if (props.customColor && props.plain)
-    value.color = props.customColor
 
-  // 标签背景与边框颜色
-  if (props.plain)
+  if (props.customColor) {
     value.borderColor = props.customColor
-  else if (props.customColor)
-    value.background = props.customColor
+
+    if (props.plain) {
+      if (!props.textColor)
+        value.color = props.customColor
+    }
+    else {
+      value.background = props.customColor
+    }
+  }
 
   return getMainStyle(props, value)
 })
