@@ -155,45 +155,45 @@
 
 ### CellGroup Props
 
-| 参数  | 说明     | 类型   | 默认值 |
-| ----- | -------- | ------ | ------ |
-| title | 分组标题 | string | -      |
-| desc  | 分组描述 | string | -      |
+| 参数    | 说明   | 类型     | 默认值 |
+|-------|------|--------|-----|
+| title | 分组标题 | string | -   |
+| desc  | 分组描述 | string | -   |
 
 ### Cell Props
 
-| 参数            | 说明                                                                                         | 类型    | 默认值  |
-| --------------- | -------------------------------------------------------------------------------------------- | ------- | ------- |
-| title           | 标题名称                                                                                     | string  | -       |
-| sub-title       | 左侧副标题                                                                                   | string  | -       |
-| desc            | 右侧描述                                                                                     | string  | -       |
+| 参数              | 说明                                                                                 | 类型      | 默认值     |
+|-----------------|------------------------------------------------------------------------------------|---------|---------|
+| title           | 标题名称                                                                               | string  | -       |
+| sub-title       | 左侧副标题                                                                              | string  | -       |
+| desc            | 右侧描述                                                                               | string  | -       |
 | desc-text-align | 右侧描述文本对齐方式 [text-align](https://www.w3school.com.cn/cssref/pr_text_text-align.asp) | string  | `right` |
-| is-link         | 是否展示右侧箭头并开启点击反馈                                                               | boolean | `false` |
-| to        | 跳转地址                                                               | string | - |
-| round-radius    | 圆角半径                                                                                     | number  | `6px`   |
-| center          | 是否使内容垂直居中                                                                           | boolean | `false` |
+| is-link         | 是否展示右侧箭头并开启点击反馈                                                                    | boolean | `false` |
+| to `1.7.8`      | 跳转地址（uni.navigateTo的url参数）                                                         | string  | -       |
+| round-radius    | 圆角半径                                                                               | number  | `6px`   |
+| center          | 是否使内容垂直居中                                                                          | boolean | `false` |
 | size            | 单元格大小，可选值为 `large`                                                                 | string  | -       |
 
 ### Cell Events
 
-| 事件名 | 说明     | 回调参数      |
-| ------ | -------- | ------------- |
-| click  | 点击事件 | `event:Event` |
+| 事件名   | 说明   | 回调参数          |
+|-------|------|---------------|
+| click | 点击事件 | `event:Event` |
 
 ### Cell Slots
 
-| 名称          | 说明                    |
-| ------------- | ----------------------- |
-| icon          | 自定义左侧 `icon` 区域  |
-| default       | 自定义内容              |
-| link          | 自定义右侧 `link` 区域  |
-| title         | 自定义 `title` 标题区域 |
-| desc `v1.1.6` | 自定义 `desc` 描述区域  |
+| 名称           | 说明               |
+|--------------|------------------|
+| icon         | 自定义左侧 `icon` 区域  |
+| default      | 自定义内容            |
+| link         | 自定义右侧 `link` 区域  |
+| title        | 自定义 `title` 标题区域 |
+| desc `1.1.6` | 自定义 `desc` 描述区域  |
 
 ### CellGroup Slots
 
-| 名称  | 说明                    |
-| ----- | ----------------------- |
+| 名称    | 说明               |
+|-------|------------------|
 | title | 自定义 `title` 标题区域 |
 | desc  | 自定义 `desc` 描述区域  |
 
@@ -203,8 +203,8 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                               | 默认值                                 |
-| ---------------------------------- | -------------------------------------- |
+| 名称                                 | 默认值                                    |
+|------------------------------------|----------------------------------------|
 | --nut-cell-color                   | var(--nut-title-color2)                |
 | --nut-cell-title-font              | var(--nut-font-size-2)                 |
 | --nut-cell-title-desc-font         | var(--nut-font-size-1)                 |
