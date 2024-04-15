@@ -108,17 +108,15 @@ function scrollIntoView() {
 
       let to = 0
       if (props.direction === 'vertical') {
-        const DEFAULT_PADDING = 11
         const top = titleRects
           .slice(0, currentIndex.value)
-          .reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.height! + 0, DEFAULT_PADDING)
+          .reduce((prev: number, curr) => prev + curr.height!, 0)
         to = top - (navRectRef.value?.height - titleRect.height!) / 2
       }
       else {
-        const DEFAULT_PADDING = 31
         const left = titleRects
           .slice(0, currentIndex.value)
-          .reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.width! + 20, DEFAULT_PADDING)
+          .reduce((prev: number, curr) => prev + curr.width!, 0)
         // eslint-disable-next-line  ts/no-non-null-asserted-optional-chain
         to = left - (navRectRef.value?.width - titleRect?.width!) / 2
       }
@@ -264,9 +262,9 @@ const titleStyle = computed(() => {
     return {}
   const px = pxCheck(props.titleGutter)
   if (props.direction === 'vertical')
-    return { marginTop: px, marginBottom: px }
+    return { paddingTop: px, paddingBottom: px }
 
-  return { marginLeft: px, marginRight: px }
+  return { paddingLeft: px, paddingRight: px }
 })
 const classes = computed(() => {
   return getMainClass(props, componentName, {
