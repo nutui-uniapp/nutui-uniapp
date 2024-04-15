@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, toRef, watch } from 'vue'
+import { type CSSProperties, computed, defineComponent, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
@@ -10,13 +10,14 @@ const props = defineProps(switchProps)
 
 const emit = defineEmits(switchEmits)
 
-const disabled = useFormDisabled(toRef(props, 'disable'))
+const legacyDisabled = computed(() => props.disabled || props.disable)
+const disabled = useFormDisabled(legacyDisabled)
 
 const isActive = computed(() => props.modelValue === props.activeValue)
 const classes = computed(() => {
   return getMainClass(props, componentName, {
     [isActive.value ? 'nut-switch-open' : 'nut-switch-close']: true,
-    [`${componentName}-disable`]: disabled.value,
+    [`${componentName}-disabled`]: disabled.value,
     [`${componentName}-base`]: true,
   })
 })
@@ -31,7 +32,7 @@ const styles = computed(() => {
 let updateType = ''
 
 function onClick(event: Event) {
-  if (props.disable || props.loading)
+  if (disabled.value || props.loading)
     return
   const value = isActive.value ? props.inactiveValue : props.activeValue
   updateType = 'click'

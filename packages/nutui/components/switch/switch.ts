@@ -13,8 +13,13 @@ export const switchProps = {
   },
   /**
    * @description 禁用状态
+   * @deprecated 即将弃用，请使用`disabled`
    */
   disable: Boolean,
+  /**
+   * @description 禁用状态
+   */
+  disabled: Boolean,
   /**
    * @description 打开时的背景颜色
    */
