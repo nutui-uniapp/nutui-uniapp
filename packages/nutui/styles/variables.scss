@@ -557,8 +557,11 @@ $timeselect-timedetail-item-cur-text-color: var(
 ) !default;
 
 //  tag
-$tag-font-size: var(--nut-tag-font-size, 12px) !default;
+$tag-height: var(--nut-tag-height, auto) !default;
 $tag-padding: var(--nut-tag-padding, 0 4px) !default;
+$tag-font-size: var(--nut-tag-font-size, 12px) !default;
+$tag-default-color: var(--nut-tag-default-color, #fff) !default;
+$tag-border-width: var(--nut-tag-border-width, 1px) !default;
 $tag-default-border-radius: var(--nut-tag-default-border-radius, 4px) !default;
 $tag-round-border-radius: var(--nut-tag-round-border-radius, 8px) !default;
 $tag-mark-border-radius: var(--nut-tag-mark-border-radius, 0 12px 12px 0) !default;
@@ -567,12 +570,9 @@ $tag-primary-background-color: var(--nut-tag-primary-background-color, #3460fa) 
 $tag-success-background-color: var(--nut-tag-success-background-color, #4fc08d) !default;
 $tag-danger-background-color: var(--nut-tag-danger-background-color, #df3526) !default;
 $tag-warning-background-color: var(--nut-tag-warning-background-color, #f3812e) !default;
+$tag-plain-background-color: var(--nut-tag-plain-background-color, transparent) !default;
 $tag-disabled-background-color: var(--nut-tag-disabled-background-color, $disable-color) !default;
 $tag-disabled-close-color: var(--nut-tag-disabled-close-color, #aaa) !default;
-$tag-default-color: var(--nut-tag-default-color, #fff) !default;
-$tag-border-width: var(--nut-tag-border-width, 1px) !default;
-$tag-plain-background-color: var(--nut-tag-plain-background-color, #fff) !default;
-$tag-height: var(--nut-tag-height, auto) !default;
 
 //  badge
 $badge-background-color: var(
