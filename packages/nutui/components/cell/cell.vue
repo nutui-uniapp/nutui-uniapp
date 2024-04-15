@@ -6,7 +6,8 @@ import Icon from '../icon/icon.vue'
 import { cellEmits, cellProps } from './cell'
 
 const props = defineProps(cellProps)
-const emits = defineEmits(cellEmits)
+
+const emit = defineEmits(cellEmits)
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
@@ -16,14 +17,20 @@ const classes = computed(() => {
   })
 })
 
-const getStyle = computed(() => {
+const styles = computed(() => {
   return getMainStyle(props, {
     borderRadius: pxCheck(props.roundRadius),
   })
 })
 
-function handleClick(event: Event) {
-  emits(CLICK_EVENT, event)
+function handleClick(event: any) {
+  emit(CLICK_EVENT, event)
+
+  if (props.to) {
+    uni.navigateTo({
+      url: props.to,
+    })
+  }
 }
 </script>
 
@@ -43,44 +50,50 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="getStyle" @click="(handleClick as any)">
+  <view :class="classes" :style="styles" @click="handleClick">
     <slot>
       <view v-if="$slots.icon" class="nut-cell__icon">
         <slot name="icon" />
       </view>
-      <view v-if="title || subTitle || $slots.title" class="nut-cell__title">
-        <template v-if="subTitle">
+
+      <view v-if="props.title || props.subTitle || $slots.title" class="nut-cell__title">
+        <template v-if="props.subTitle">
           <slot name="title">
             <view class="title">
-              {{ title }}
+              {{ props.title }}
             </view>
           </slot>
+
           <view class="nut-cell__title-desc">
-            {{ subTitle }}
+            {{ props.subTitle }}
           </view>
         </template>
+
         <template v-else>
           <slot name="title">
-            {{ title }}
+            {{ props.title }}
           </slot>
         </template>
       </view>
+
       <view
-        v-if="desc || $slots.desc" class="nut-cell__value"
-        :class="{ 'nut-cell__value--alone': (!title && !subTitle && !$slots.title) }"
-        :style="{ 'text-align': descTextAlign }"
+        v-if="props.desc || $slots.desc"
+        class="nut-cell__value"
+        :class="{ 'nut-cell__value--alone': !props.title && !props.subTitle && !$slots.title }"
+        :style="{ 'text-align': props.descTextAlign }"
       >
         <slot name="desc">
-          {{ desc }}
+          {{ props.desc }}
         </slot>
       </view>
+
       <slot name="link">
-        <Icon v-if="isLink || to" name="right" class="nut-cell__link" />
+        <Icon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
       </slot>
     </slot>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
