@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, defineExpose, ref, useSlots, watch } from 'vue'
 import { CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
@@ -11,10 +11,16 @@ import { getMainClass } from '../_utils'
 import { skuEmits, skuProps } from './sku'
 
 const props = defineProps(skuProps)
+
 const emit = defineEmits(skuEmits)
+
+defineExpose({
+  resetCount,
+})
+
 const slots = useSlots()
 const showPopup = ref(props.visible)
-
+const skuStepperRef = ref()
 const goodsCount = ref(props.stepperMin)
 const classes = computed(() => {
   return getMainClass(props, componentName)
@@ -85,6 +91,11 @@ function closePopup(type: string) {
 function close() {
   emit(UPDATE_VISIBLE_EVENT, false)
 }
+
+function resetCount() {
+  skuStepperRef.value.reset()
+}
+
 const getSlots = (name: string) => slots[name]
 
 const hasSkuOperateSlot = getSlots('skuOperate') != null
@@ -132,7 +143,7 @@ export default defineComponent({
 
           <slot name="skuStepper">
             <SkuStepper
-              :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
+              ref="skuStepperRef" :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
               :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
               @reduce="reduce" @change-stepper="changeStepper" @over-limit="stepperOverLimit"
             />

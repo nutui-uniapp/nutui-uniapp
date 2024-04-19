@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, defineExpose, onMounted, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import { TypeOfFun } from '../_utils'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
 
 const props = defineProps({
+  modelValue: {
+    type: [Number, String],
+  },
+
   // 购买数量最大值
   stepperMax: {
     type: [Number, String],
@@ -30,6 +34,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['click', 'changeSku', 'changeStepper', 'clickBtnOptions', 'overLimit', 'reduce', 'add'])
+
+defineExpose({
+  reset,
+})
 
 const goodsCount = ref(props.stepperMin)
 
@@ -67,6 +75,11 @@ function changeStepper(value: number) {
   goodsCount.value = value
 
   emit('changeStepper', value)
+}
+
+// 重置值
+function reset() {
+  goodsCount.value = props.stepperMin
 }
 </script>
 
