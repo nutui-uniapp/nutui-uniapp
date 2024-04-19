@@ -7,6 +7,7 @@ import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
 import NutElevator from '../elevator/elevator.vue'
 import { getMainClass } from '../_utils'
+import requestAniFrame from '../_utils/raf'
 import { addressEmits, addressProps } from './address'
 import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './type'
 
@@ -148,7 +149,7 @@ function nextAreaList(item: AddressRegionData) {
 
     callBackParams.next = tabName.value[tabIndex.value]
 
-    scrollTo()
+    scrollToTop()
   }
   else {
     handClose()
@@ -169,9 +170,24 @@ function scrollChange(e: ScrollViewOnScrollEvent) {
   scrollDis.value[tabIndex.value] = e.detail.scrollTop
 }
 
+function scrollToTop() {
+  // scrollTop 不会实时变更。当再次赋值时，scrollTop无变化时，不会触发滚动
+  scrollTop.value += 1
+  requestAniFrame(() => {
+    setTimeout(() => {
+      // 直接设置为0无效
+      scrollTop.value = 0.01
+    }, 100)
+  })
+}
+
 function scrollTo() {
-  setTimeout(() => {
-    scrollTop.value = scrollDis.value[tabIndex.value]
+  // scrollTop 不会实时变更。当再次赋值时，scrollTop无变化时，不会触发滚动
+  scrollTop.value += 1
+  requestAniFrame(() => {
+    setTimeout(() => {
+      scrollTop.value = scrollDis.value[tabIndex.value]
+    }, 10)
   })
 }
 
