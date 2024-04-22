@@ -29,6 +29,7 @@ export default defineComponent({
       notSell: false,
       customStepper: false,
       customBySlot: false,
+      resetVisible: false,
 
       showAddressPopup: false,
     })
@@ -42,6 +43,8 @@ export default defineComponent({
     const stepperExtraText = () => {
       return '<span style="width:100%;text-align:right;color:#F00">2 件起售</span>'
     }
+
+    const skuRef = ref()
 
     const btnExtraText = ref('抱歉，此商品在所选区域暂无存货')
     const addressDesc = ref('(配送地会影响库存，请先确认)')
@@ -90,8 +93,6 @@ export default defineComponent({
         data.skuData = Sku as any
         data.goodsInfo = Goods
         data.imagePathMap = imagePathMap
-
-        console.log(Goods)
       }, 500)
     }
     onMounted(() => {
@@ -145,13 +146,20 @@ export default defineComponent({
       addressDesc.value = `${provinceName}${countyName}${cityName}`
     }
 
+    const handleReset = (e: any) => {
+      skuRef.value.resetCount()
+      selectSku(e)
+    }
+
     return {
+      skuRef,
       selectSku,
       changeStepper,
       clickBtnOperate,
       close,
       existAddress,
       selectedAddress,
+      handleReset,
       addressDesc,
       stepperExtraText,
       btnExtraText,
@@ -184,6 +192,11 @@ export default defineComponent({
       自定义插槽
     </h2>
     <nut-cell title="通过插槽自定义设置" desc="" @click="customBySlot = true" />
+
+    <h2 class="title">
+      规格改变后重置商品数量
+    </h2>
+    <nut-cell title="重置商品数量" desc="" @click="resetVisible = true" />
 
     <nut-sku
       v-model:visible="base"
@@ -290,6 +303,20 @@ export default defineComponent({
             @click="showAddressPopup = true"
           />
         </div>
+      </template>
+    </nut-sku>
+
+    <nut-sku
+      ref="skuRef"
+      v-model:visible="resetVisible"
+      :goods="goodsInfo"
+      :sku="skuData"
+      :btn-options="['cart', 'buy']"
+      @select-sku="handleReset"
+      @close="close"
+    >
+      <template #skuHeader>
+        <nut-sku-header :goods="goodsInfo" />
       </template>
     </nut-sku>
 

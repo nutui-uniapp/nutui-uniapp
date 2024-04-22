@@ -399,6 +399,71 @@ setup() {
 </style>
 ```
 
+### 规格改变后重置商品数量
+
+```html
+<template>
+  <nut-cell :title="`重置商品数量`" desc="" @click="resetVisible = true"></nut-cell>
+  <nut-sku
+    v-model:visible="resetVisible"
+    ref="skuRef"
+    :sku="sku"
+    :goods="goods"
+    @selectSku="selectSku"
+    @close="close"
+  ></nut-sku>
+</template>
+<script lang="ts">
+import { ref, reactive, onMounted, toRefs} from 'vue';
+
+export default {
+  setup() {
+    const resetVisible = ref(false);
+    const skuRef = ref()
+    const data = reactive({
+      sku: [],
+      goods: {}
+    });
+
+    onMounted(() => {
+      uni.request({
+        url: 'https://storage.360buyimg.com/nutui/3x/data.js', //仅为示例，并非真实的接口地址
+        success: function (res) {
+          console.log(res.data)
+          const { Sku, Goods, imagePathMap } = res.data;
+            data.sku = Sku;
+            data.goods = Goods;
+        }
+      })
+    });
+
+    // 切换规格类目
+    const selectSku = (ss: string) => {
+      const { sku, skuIndex, parentSku, parentIndex } = ss;
+      if (sku.disable) return false;
+      data.sku[parentIndex].list.forEach((s) => {
+        s.active = s.id == sku.id;
+      });
+      data.goods = {
+        skuId: sku.id,
+        price: '4599.00',
+        imagePath:
+          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg' 
+      };
+
+      // 在此处重置商品数量
+      skuRef.value.resetCount()
+    };
+
+    // 关闭商品规格弹框
+    const close = ()=>{}
+
+    return { resetVisible, skuRef, selectSku, close, ...toRefs(data) };
+  }
+}
+</script>
+```
+
 ## API
 
 ### Props
@@ -446,6 +511,14 @@ Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可�
 | skuStepper       | 数量选择区                                             |
 | skuStepperBottom | 数量选择区下方区域                                     |
 | skuOperate       | 底部按钮操作区域                                       |
+
+### Methods
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Sku 实例并调用实例方法
+
+| 方法名     | 说明       | 参数            | 返回值 |
+| ---------- | ---------- | --------------- | ------ |
+| resetCount | 重置商品数量 | -              |        |
 
 ### goods 对象结构
 
