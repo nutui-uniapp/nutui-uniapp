@@ -1,3 +1,20 @@
+## [1.7.8](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.7...v1.7.8) (2024-04-23)
+
+### Bug Fixes
+
+* 修复useSelectorQuery在app-plus环境获取instance报错 ([#307](https://github.com/nutui-uniapp/nutui-uniapp/issues/307)) ([3499c41](https://github.com/nutui-uniapp/nutui-uniapp/commit/3499c41bd6a3d2420ba32d5272a41b12c8da86d7))
+* 修改tabs选项卡微笑曲线属性，在navbar组件content slot中样式出错bug ([0f04867](https://github.com/nutui-uniapp/nutui-uniapp/commit/0f048670229498aa5a3dc8ec63c0fe744d8cfad2))
+* **address:** 修复在选择地址后，下一级地址无法滚动到顶部 ([#301](https://github.com/nutui-uniapp/nutui-uniapp/issues/301)) ([6971ece](https://github.com/nutui-uniapp/nutui-uniapp/commit/6971ece48b5e039f82d184e672556bad5aafb6af))
+* **cell:** 修复to属性无效 ([#294](https://github.com/nutui-uniapp/nutui-uniapp/issues/294)) ([f691dff](https://github.com/nutui-uniapp/nutui-uniapp/commit/f691dffeed47aed81a83d42aad625526b4efe85a))
+* **sku:** 移除defineExpose导入 ([e10294b](https://github.com/nutui-uniapp/nutui-uniapp/commit/e10294bfd4f6217df21a2bbc5c620c1587a178e9))
+* **tabs:** 修复 vertical 方式 tab 数量过多时滚动定位不准确的问题 ([a1334df](https://github.com/nutui-uniapp/nutui-uniapp/commit/a1334df9eebec32ebe0638242922d70ad5a9fe23))
+* **uploader:** 修复uid生成可能重复 ([1f49808](https://github.com/nutui-uniapp/nutui-uniapp/commit/1f49808b03fbaa0aab5865a2cbe65cbf933ce00c)), closes [#306](https://github.com/nutui-uniapp/nutui-uniapp/issues/306)
+
+### Features
+
+* **sku:** 新增重置商品数量方法 ([#305](https://github.com/nutui-uniapp/nutui-uniapp/issues/305)) ([8e8260b](https://github.com/nutui-uniapp/nutui-uniapp/commit/8e8260bfddf884169a8c4f3f271a7dd58bc0c66a))
+* **switch:** add disabled prop & mark disable deprecated ([#299](https://github.com/nutui-uniapp/nutui-uniapp/issues/299)) ([9e8ac05](https://github.com/nutui-uniapp/nutui-uniapp/commit/9e8ac05e4edd41116fa5f7f80d2cf98f0d3a81cd))
+
 ## [1.7.7](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.6...v1.7.7) (2024-04-12)
 
 ### Bug Fixes
