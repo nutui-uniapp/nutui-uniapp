@@ -126,7 +126,7 @@ function readFile(files: ChooseFile[]) {
       if (!fileType && (imgReg.test(filepath) || filepath.includes('data:image')))
         fileType = 'image'
     }
-    fileItem.uid = new Date().getTime().toString()
+    fileItem.uid = new Date().getTime().toString() + Math.random().toString(36).substring(2, 9)
     fileItem.path = filepath
     fileItem.name = file.name || filepath
     fileItem.status = 'ready'
