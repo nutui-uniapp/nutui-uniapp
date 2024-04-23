@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, defineExpose, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import { TypeOfFun } from '../_utils'
 import NutInputNumber from '../inputnumber/inputnumber.vue'

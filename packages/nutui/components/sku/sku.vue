@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineComponent, defineExpose, ref, useSlots, watch } from 'vue'
+import { computed, defineComponent, ref, useSlots, watch } from 'vue'
 import { CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
