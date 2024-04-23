@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.7.7",
   "private": "true",
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "pnpm@9.0.5",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -14,7 +14,8 @@
     "typescript"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=18",
+    "pnpm": ">=9"
   },
   "scripts": {
     "build": "pnpm run --dir packages/nutui build",
