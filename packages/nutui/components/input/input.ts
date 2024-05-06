@@ -1,5 +1,11 @@
 import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
-import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
+import type {
+  BaseEvent,
+  InputOnBlurEvent,
+  InputOnConfirmEvent,
+  InputOnFocusEvent,
+  InputOnInputEvent,
+} from '@uni-helper/uni-app-types'
 import type { ClassType } from '../_utils'
 import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
@@ -149,13 +155,13 @@ export const inputProps = {
 export type InputProps = ExtractPropTypes<typeof inputProps>
 
 export const inputEmits = {
-  [CLICK_EVENT]: (evt: Event) => evt instanceof Object,
-  clickInput: (evt: Event) => evt instanceof Object,
+  [CLICK_EVENT]: (evt: BaseEvent) => evt instanceof Object,
+  clickInput: (evt: BaseEvent) => evt instanceof Object,
   [BLUR_EVENT]: (evt: InputOnBlurEvent) => evt instanceof Object,
   [FOCUS_EVENT]: (evt: InputOnFocusEvent) => evt instanceof Object,
   [CLEAR_EVENT]: () => true,
   [CONFIRM_EVENT]: (evt: InputOnConfirmEvent) => evt instanceof Object,
-  [UPDATE_MODEL_EVENT]: (val1?: string | number, val2?: Event) => (isString(val1) || isNumber(val1)) && ((val2 instanceof Object) || val2 === undefined),
+  [UPDATE_MODEL_EVENT]: (val1: string | number, val2?: BaseEvent) => (isString(val1) || isNumber(val1)) && ((val2 instanceof Object) || val2 === undefined),
   [INPUT_EVENT]: (val: string | number, evt: InputOnInputEvent) => (isString(val) || isNumber(val)) && evt instanceof Object,
 }
 

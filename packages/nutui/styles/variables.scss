@@ -198,10 +198,14 @@ $picker-item-text-font-size: var(--nut-picker-item-text-font-size, 14px) !defaul
 $picker-item-active-line-border: var(--nut-picker-item-active-line-border, 1px solid #eae7e7) !default;
 
 // input
+$input-padding: var(--nut-input-padding, 10px 25px) !default;
+$input-font-size: var(--nut-input-font-size, $font-size-2) !default;
+$input-line-height: var(--nut-input-line-height, 20px) !default;
 $input-border-bottom: var(--nut-input-border-bottom, #eaf0fb) !default;
 $input-disabled-color: var(--nut-input-disabled-color, #c8c9cc) !default;
 $input-required-color: var(--nut-input-required-color, $required-color) !default;
-$input-font-size: var(--nut-input-font-size, $font-size-2) !default;
+$input-limit-font-size: var(--nut-input-limit-font-size, $font-size-1) !default;
+$input-limit-color: var(--nut-input-limit-color, #808080) !default;
 
 // textarea
 

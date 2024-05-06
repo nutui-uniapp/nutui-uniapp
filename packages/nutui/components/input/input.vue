@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, defineComponent, nextTick, onMounted, ref, toRef, watch } from 'vue'
+import { computed, defineComponent, nextTick, onMounted, ref, toRef, useSlots, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
@@ -12,6 +12,12 @@ import type { InputFormatTrigger, InputTarget } from './type'
 const props = defineProps(inputProps)
 
 const emit = defineEmits(inputEmits)
+
+const slots = useSlots()
+
+function hasSlot(name: string) {
+  return Boolean(slots[name])
+}
 
 const formDisabled = useFormDisabled(toRef(props, 'disabled'))
 
@@ -32,7 +38,6 @@ const classes = computed(() => {
     [`${componentName}--required`]: props.required,
     [`${componentName}--error`]: props.error,
     [`${componentName}--border`]: props.border,
-    [`${componentName}-text`]: true,
   })
 })
 
@@ -181,74 +186,75 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :style="props.customStyle" @click="handleClick">
-    <view class="nut-input-value">
-      <view class="nut-input-inner">
-        <view v-if="$slots.left" class="nut-input-left-box">
-          <slot name="left" />
-        </view>
-        <view class="nut-input-box">
-          <input
-            class="input-text"
-            :class="props.inputClass"
-            :style="inputStyles"
-            :value="innerValue"
-            :type="props.type as any"
-            :placeholder="props.placeholder"
-            :placeholder-style="props.placeholderStyle"
-            :placeholder-class="props.placeholderClass"
-            :disabled="formDisabled"
-            :readonly="props.readonly"
-            :focus="props.autofocus"
-            :maxlength="innerMaxLength"
-            :format-trigger="props.formatTrigger"
-            :auto-blur="props.autofocus ? true : undefined"
-            :confirm-type="props.confirmType"
-            :adjust-position="props.adjustPosition"
-            :always-system="props.alwaysSystem"
-            :inputmode="props.inputMode"
-            :cursor-spacing="props.cursorSpacing"
-            :always-embed="props.alwaysEmbed"
-            :confirm-hold="props.confirmHold"
-            :cursor="props.cursor"
-            :selection-start="props.selectionStart"
-            :selection-end="props.selectionEnd"
-            :hold-keyboard="props.holdKeyboard"
-            @input="handleInput"
-            @focus="handleFocus"
-            @blur="handleBlur"
-            @click="handleClickInput"
-            @change="endComposing"
-            @compositionstart="startComposing"
-            @compositionend="endComposing"
-            @confirm="handleConfirm"
-          >
-          <view v-if="props.readonly" class="nut-input-disabled-mask" @click="handleClickInput" />
-          <view v-if="props.showWordLimit && innerMaxLength > 0" class="nut-input-word-limit">
-            <text class="nut-input-word-num">
-              {{ innerValue.length }}
-            </text>/{{ innerMaxLength }}
-          </view>
-        </view>
-        <view
-          v-if="props.clearable && !props.readonly"
-          class="nut-input-clear-box"
-          :class="{ 'nut-hidden': !((active || props.showClearIcon) && innerValue.length > 0) }"
-          @click.stop="handleClear"
-        >
-          <slot name="clear">
-            <NutIcon
-              name="mask-close"
-              custom-class="nut-input-clear"
-              :size="props.clearSize"
-              :width="props.clearSize"
-              :height="props.clearSize"
-            />
-          </slot>
-        </view>
-        <view class="nut-input-right-box">
-          <slot name="right" />
-        </view>
+    <view v-if="hasSlot('left')" class="nut-input__left">
+      <slot name="left" />
+    </view>
+
+    <view class="nut-input__value">
+      <input
+        class="nut-input__input"
+        :class="props.inputClass"
+        :style="inputStyles"
+        :value="innerValue"
+        :type="props.type as any"
+        :placeholder="props.placeholder"
+        :placeholder-style="props.placeholderStyle"
+        :placeholder-class="props.placeholderClass"
+        :disabled="formDisabled"
+        :readonly="props.readonly"
+        :focus="props.autofocus"
+        :maxlength="innerMaxLength"
+        :format-trigger="props.formatTrigger"
+        :auto-blur="props.autofocus ? true : undefined"
+        :confirm-type="props.confirmType"
+        :adjust-position="props.adjustPosition"
+        :always-system="props.alwaysSystem"
+        :inputmode="props.inputMode"
+        :cursor-spacing="props.cursorSpacing"
+        :always-embed="props.alwaysEmbed"
+        :confirm-hold="props.confirmHold"
+        :cursor="props.cursor"
+        :selection-start="props.selectionStart"
+        :selection-end="props.selectionEnd"
+        :hold-keyboard="props.holdKeyboard"
+        @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @click="handleClickInput"
+        @change="endComposing"
+        @compositionstart="startComposing"
+        @compositionend="endComposing"
+        @confirm="handleConfirm"
+      >
+
+      <view v-if="props.readonly" class="nut-input__mask" @click="handleClickInput" />
+
+      <view v-if="props.showWordLimit && innerMaxLength > 0" class="nut-input__word-limit">
+        <text class="nut-input__word-num">
+          {{ innerValue.length }}
+        </text>/{{ innerMaxLength }}
       </view>
+    </view>
+
+    <view
+      v-if="props.clearable && !props.readonly"
+      class="nut-input__clear"
+      :class="{ 'nut-hidden': !((active || props.showClearIcon) && innerValue.length > 0) }"
+      @click.stop="handleClear"
+    >
+      <slot v-if="hasSlot('clear')" name="clear" />
+      <NutIcon
+        v-else
+        name="mask-close"
+        custom-class="nut-input__clear-icon"
+        :size="props.clearSize"
+        :width="props.clearSize"
+        :height="props.clearSize"
+      />
+    </view>
+
+    <view v-if="hasSlot('right')" class="nut-input__right">
+      <slot name="right" />
     </view>
   </view>
 </template>
