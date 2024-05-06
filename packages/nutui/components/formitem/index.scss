@@ -4,7 +4,7 @@
   .nut-form-item {
     &__body {
       &__slots {
-        :deep(.nut-input-text) {
+        :deep(.nut-input) {
           color: $dark-color;
           background: transparent;
         }
@@ -50,7 +50,7 @@
     &:deep(.nut-cell__title) {
       min-width: auto;
     }
-    
+
     &.required {
       &::before {
         margin-right: $form-item-required-margin-right;

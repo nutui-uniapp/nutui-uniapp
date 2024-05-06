@@ -1,64 +1,47 @@
-<script lang="ts">
-import { reactive } from 'vue'
+<script lang="ts" setup>
+const text = ref<string>('')
+const text1 = ref<string>('')
+const text2 = ref<string>('')
+const text3 = ref<string>('')
+const text4 = ref<string>('')
+const text5 = ref<string>('')
+const text6 = ref<string>('')
+const text7 = ref<string>('')
+const text8 = ref<string>('')
+const text9 = ref<string>('')
+const text10 = ref<string>('')
+const text11 = ref<string>('')
+const text12 = ref<string>('')
+const text13 = ref<string>('')
+const text14 = ref<string>('')
+const text15 = ref<string>('')
 
-export default {
-  setup() {
-    const state = reactive({
-      val1: '',
-      val2: '',
-      text: '',
-      password: '',
-      number: '',
-      digit: '',
-      tel: '',
-      readonly: '',
-      disabled: '',
-      showIcon: '',
-      required: '',
-      error1: '',
-      error2: '',
-      buttonVal: '',
-      format1: '',
-      format2: '',
-      textarea: '',
-      align1: '',
-      align2: '',
-      event: '',
-      slotsValue: '',
-      clear: '',
-      clear2: '',
-      adjustPosition: false,
-      show: false,
-      msg: '',
-    })
-    setTimeout(() => {
-      // state.val1 = '异步数据';
-    }, 2000)
-    const showToast = (msg: string) => {
-      state.show = true
-      state.msg = msg
-    }
-    const clear = () => {
-      /* eslint-disable no-console */
-      console.log('clear')
-      showToast('clear')
-    }
-    const clickInput = (value: string | number) => {
-      console.log('clickInput:', value)
-      showToast('clickInput')
-    }
-    const formatter = (value: string) => value.replace(/\d/g, '')
-    const clearValue = () => {
-      state.clear2 = ''
-    }
-    return {
-      state,
-      clear,
-      clickInput,
-      formatter,
-      clearValue,
-    }
-  },
+const form = ref({
+  text: '',
+})
+
+function clearValue() {
+  text8.value = ''
+}
+
+function formatter(value: string) {
+  return value.replace(/\d/g, '')
+}
+
+const show = ref<boolean>(false)
+const message = ref<string>('')
+
+function showToast(msg: string) {
+  message.value = msg
+  show.value = true
+}
+
+function onClear() {
+  showToast('clear')
+}
+
+function onInputClick() {
+  showToast('clickInput')
 }
 </script>
 
@@ -67,54 +50,55 @@ export default {
     <h2 class="title">
       基础用法
     </h2>
-    <nut-input v-model="state.val1" autofocus type="text" placeholder="文本" />
+    <nut-input v-model="text" type="text" placeholder="文本" autofocus />
 
     <h2 class="title">
       自定义类型
     </h2>
-    <nut-input v-model="state.text" placeholder="文本" />
-    <nut-input v-model="state.password" type="password" placeholder="密码" />
-    <nut-input v-model="state.number" type="digit" placeholder="数字" />
-    <nut-input v-model="state.digit" type="number" placeholder="整数" />
+    <nut-input v-model="text1" placeholder="文本" />
+    <nut-input v-model="text2" type="password" placeholder="密码" />
+    <nut-input v-model="text3" type="digit" placeholder="数字" />
+    <nut-input v-model="text4" type="number" placeholder="整数" />
 
     <h2 class="title">
       禁用和只读
     </h2>
-    <nut-input v-model="state.readonly" readonly placeholder="只读" />
-    <nut-input v-model="state.disabled" disabled placeholder="禁用" />
+    <nut-input v-model="text5" placeholder="只读" readonly />
+    <nut-input v-model="text6" placeholder="禁用" disabled />
 
     <h2 class="title">
       显示清除图标
     </h2>
-    <nut-input v-model="state.clear" clearable clear-size="14" placeholder="显示清除图标" @clear="clear" />
+    <nut-input v-model="text7" clearable clear-size="14" placeholder="显示清除图标" />
     <nut-input
-      v-model="state.clear2"
+      v-model="text8"
       placeholder="自定义清除图标"
       clearable
       clear-size="14"
       show-word-limit
       max-length="50"
-      :show-clear-icon="true"
+      show-clear-icon
     >
       <template #clear>
-        <nut-icon name="close" width="12" height="12" size="12" @click="clearValue" />
+        <nut-icon name="close" size="12" width="12" height="12" @click="clearValue" />
       </template>
     </nut-input>
+
     <h2 class="title">
       配合表单使用
     </h2>
-    <nut-form :model-value="state">
-      <nut-form-item label-align="center" label="文本">
-        <nut-input v-model="state.val2" placeholder="请输入文本" :border="false" />
+    <nut-form :model-value="form">
+      <nut-form-item label="文本" label-align="center">
+        <nut-input v-model="form.text" placeholder="请输入文本" :border="false" />
       </nut-form-item>
     </nut-form>
 
     <h2 class="title">
       格式化输入内容
     </h2>
-    <nut-input v-model="state.format1" error :formatter="formatter" placeholder="在输入时执行格式化" />
+    <nut-input v-model="text9" error :formatter="formatter" placeholder="在输入时执行格式化" />
     <nut-input
-      v-model="state.format2"
+      v-model="text10"
       :formatter="formatter"
       format-trigger="onBlur"
       placeholder="在失焦时执行格式化"
@@ -124,40 +108,39 @@ export default {
       显示字数统计
     </h2>
     <nut-input
-      v-model="state.textarea"
+      v-model="text11"
       type="text"
-      show-word-limit
-      rows="2"
       max-length="50"
+      show-word-limit
       placeholder="留言"
-      :adjust-position="state.adjustPosition"
     />
 
     <h2 class="title">
       无边框
     </h2>
-    <nut-input v-model="state.disabled" :border="false" placeholder="无边框" />
-    <nut-input v-model="state.showIcon" :border="false" placeholder="无边框" />
+    <nut-input v-model="text12" placeholder="无边框" :border="false" />
+    <nut-input v-model="text13" placeholder="无边框" :border="false" />
 
     <h2 class="title">
       事件演示
     </h2>
     <nut-input
-      v-model="state.event"
+      v-model="text14"
       placeholder="事件演示"
       clearable
-      :adjust-position="state.adjustPosition"
-      @clear="clear"
-      @click-input="clickInput"
+      @clear="onClear"
+      @click-input="onInputClick"
     />
-    <nut-toast v-model:visible="state.show" :msg="state.msg" type="text" />
+    <nut-toast v-model:visible="show" :msg="message" type="text" />
+
     <h2 class="title">
       插槽演示
     </h2>
-    <nut-input v-model="state.slotsValue" placeholder="插槽演示" clearable :adjust-position="state.adjustPosition">
+    <nut-input v-model="text15" placeholder="插槽演示" clearable>
       <template #left>
         <nut-icon name="ask" />
       </template>
+
       <template #right>
         <nut-button type="primary" size="small">
           获取验证码
