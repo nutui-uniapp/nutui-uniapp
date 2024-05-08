@@ -100,6 +100,7 @@ export default defineComponent({
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
+  inheritAttrs: true,
 })
 </script>
 
@@ -127,6 +128,7 @@ export default defineComponent({
       :disabled="formDisabled"
       :readonly="readonly"
       :value="String(modelValue)"
+      v-bind="$attrs"
       @input="(change as any)"
       @blur="(blur as any)"
       @focus="(focus as any)"
