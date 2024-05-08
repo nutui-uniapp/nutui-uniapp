@@ -1,3 +1,10 @@
+## [1.7.9](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.8...v1.7.9) (2024-05-08)
+
+### Features
+
+* **input-number:** 支持透传属性至 input 元素 ([7547ed0](https://github.com/nutui-uniapp/nutui-uniapp/commit/7547ed0d7f458babb76c19ddd3c5bd093e021474))
+* **number-keyboard:** 新增 confirm 事件 ([0a6b06c](https://github.com/nutui-uniapp/nutui-uniapp/commit/0a6b06cfd21fe3e7957e082115947e393a7072f7))
+
 ## [1.7.8](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.7...v1.7.8) (2024-04-23)
 
 ### Bug Fixes
