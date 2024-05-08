@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isBoolean, isNumber, isString, makeArrayProp, makeNumericProp, makeStringProp } from '../_utils'
-import { CLOSE_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CLOSE_EVENT, CONFIRM_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const numberkeyboardProps = {
   ...commonProps,
@@ -57,6 +57,7 @@ export const numberkeyboardEmits = {
   [CLOSE_EVENT]: () => true,
   [UPDATE_VISIBLE_EVENT]: (visible: boolean) => isBoolean(visible),
   [UPDATE_MODEL_EVENT]: (val: string | number) => isString(val) || isNumber(val),
+  [CONFIRM_EVENT]: () => true,
 }
 
 export type NumberKeyBoardEmits = typeof numberkeyboardEmits

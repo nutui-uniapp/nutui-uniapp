@@ -113,6 +113,9 @@ function closeBoard() {
   emit(CLOSE_EVENT)
   emit(UPDATE_VISIBLE_EVENT, false)
 }
+function onConfirm() {
+  emit('confirm')
+}
 </script>
 
 <script lang="ts">
@@ -198,7 +201,7 @@ export default defineComponent({
               />
             </div>
           </div>
-          <div class="nut-key__wrapper nut-key__wrapper--finish" @click="closeBoard()">
+          <div class="nut-key__wrapper nut-key__wrapper--finish" @click="onConfirm">
             <div class="nut-key nut-key--finish " :class="[{ activefinsh: clickKeyIndex === 'finish' }]">
               {{ confirmText || translate('done') }}
             </div>
