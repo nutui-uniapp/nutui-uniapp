@@ -1,3 +1,9 @@
+## [1.7.10](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.9...v1.7.10) (2024-05-08)
+
+### Bug Fixes
+
+* **input-number:** 修复小程序不支持vBind ([60427bc](https://github.com/nutui-uniapp/nutui-uniapp/commit/60427bc61a23383a42985fa276c40ada4a5c6b6d))
+
 ## [1.7.9](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.8...v1.7.9) (2024-05-08)
 
 ### Features
