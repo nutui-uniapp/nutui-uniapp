@@ -204,7 +204,7 @@
 
 ### Attrs version
 
-支持透传属性至组件内部的 input 元素。
+支持透传属性至组件内部的 input 元素, 仅支持H5。
 
 ### Slots
 

@@ -108,8 +108,7 @@ export default defineComponent({
   <view :class="classes" :style="customStyle">
     <view
       class="nut-input-number__icon nut-input-number__left"
-      :class="{ 'nut-input-number__icon--disabled': !reduceAllow() }"
-      @click="(reduce as any)"
+      :class="{ 'nut-input-number__icon--disabled': !reduceAllow() }" @click="(reduce as any)"
     >
       <slot name="leftIcon">
         <NutIcon name="minus" :size="pxCheck(buttonSize)" />
@@ -118,25 +117,27 @@ export default defineComponent({
     <view v-if="props.readonly" class="nut-input-number__text--readonly">
       {{ modelValue }}
     </view>
-    <input
-      v-else
-      class="nut-input-number__text--input"
-      type="number"
-      :min="min"
-      :max="max"
-      :style="{ width: pxCheck(inputWidth), height: pxCheck(buttonSize) }"
-      :disabled="formDisabled"
-      :readonly="readonly"
-      :value="String(modelValue)"
-      v-bind="$attrs"
-      @input="(change as any)"
-      @blur="(blur as any)"
-      @focus="(focus as any)"
-    >
+    <template v-else>
+      <!-- #ifdef MP -->
+      <input
+        class="nut-input-number__text--input" type="number" :min="min" :max="max"
+        :style="{ width: pxCheck(inputWidth), height: pxCheck(buttonSize) }" :disabled="formDisabled"
+        :readonly="readonly" :value="String(modelValue)" @input="(change as any)" @blur="(blur as any)"
+        @focus="(focus as any)"
+      >
+      <!-- #endif -->
+      <!-- #ifndef MP -->
+      <input
+        class="nut-input-number__text--input" type="number" :min="min" :max="max"
+        :style="{ width: pxCheck(inputWidth), height: pxCheck(buttonSize) }" :disabled="formDisabled"
+        :readonly="readonly" :value="String(modelValue)" v-bind="$attrs" @input="(change as any)" @blur="(blur as any)"
+        @focus="(focus as any)"
+      >
+      <!-- #endif -->
+    </template>
     <view
       class="nut-input-number__icon nut-input-number__right"
-      :class="{ 'nut-input-number__icon--disabled': !addAllow() }"
-      @click="(add as any)"
+      :class="{ 'nut-input-number__icon--disabled': !addAllow() }" @click="(add as any)"
     >
       <slot name="rightIcon">
         <NutIcon name="plus" :size="pxCheck(buttonSize)" />
