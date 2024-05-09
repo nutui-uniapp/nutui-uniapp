@@ -45,7 +45,7 @@
     "build:uni": "esno scripts/uni.ts"
   },
   "dependencies": {
-    "vue": "3.4.21"
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.1",
@@ -55,7 +55,7 @@
     "@nutui/touch-emulator": "^1.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.12.7",
-    "@uni-helper/uni-app-types": "^0.5.12",
+    "@uni-helper/uni-app-types": "^0.5.13",
     "@vue/tsconfig": "^0.5.1",
     "bumpp": "^9.4.0",
     "commitizen": "^4.3.0",
@@ -80,12 +80,12 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
-    "typescript": "5.4.5",
+    "typescript": "^5.4.5",
     "unbuild": "^2.0.0",
-    "vite": "4.5.2",
-    "vitepress": "1.1.3",
+    "vite": "^5.2.11",
+    "vitepress": "^1.1.4",
     "vitest": "^1.5.0",
-    "vue-tsc": "1.8.24"
+    "vue-tsc": "^2.0.16"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",

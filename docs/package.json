@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "nutui-uniapp": "workspace:^",
-    "vue": "3.3.9"
+    "vue": "^3.4.27"
   },
   "devDependencies": {
     "@vite-pwa/vitepress": "^0.3.1"

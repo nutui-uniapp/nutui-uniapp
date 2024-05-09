@@ -17,12 +17,6 @@
     "**/locale/**"
   ],
   "vueCompilerOptions": {
-    "experimentalRuntimeMode": "runtime-uni-app",
-    "nativeTags": [
-      "block",
-      "component",
-      "template",
-      "slot"
-    ]
+    "plugins": ["@uni-helper/uni-app-types/volar-plugin"]
   }
 }
