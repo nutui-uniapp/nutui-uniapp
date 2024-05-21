@@ -384,21 +384,21 @@ export default {
 
 ### MenuItem Events
 
-| 事件名                 | 说明       | 回调参数             |
-|---------------------|----------|------------------|
-| change              | 选择选项时触发  | `value`          |
-| open                | 打开菜单栏时触发 | -                |
-| close               | 关闭菜单栏时触发 | -                |
-| item-click `1.7.11` | 点击选项时触发  | `MenuItemOption` |
+| 事件名                 | 说明       | 回调参数                      |
+|---------------------|----------|---------------------------|
+| change              | 选择选项时触发  | value: `number \| string` |
+| open                | 打开菜单栏时触发 | -                         |
+| close               | 关闭菜单栏时触发 | -                         |
+| item-click `1.7.11` | 点击选项时触发  | item: `MenuItemOption`    |
 
 ### MenuItem Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 MenuItem 实例并调用实例方法
 
-| 方法名             | 说明                                       | 参数                 | 返回值     |
-|-----------------|------------------------------------------|--------------------|---------|
-| toggle          | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | (show?: `boolean`) | -       |
-| change `1.7.11` | 变更选择项                                    | (show?: `boolean`) | `value` |
+| 方法名             | 说明                                       | 参数                        | 返回值 |
+|-----------------|------------------------------------------|---------------------------|-----|
+| toggle          | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | show?: `boolean`          | -   |
+| change `1.7.11` | 变更选择项                                    | value: `number \| string` | -   |
 
 ## 主题定制
 

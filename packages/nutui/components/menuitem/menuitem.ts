@@ -44,11 +44,11 @@ export type MenuItemProps = ExtractPropTypes<typeof menuitemProps>
 
 /* eslint-disable unused-imports/no-unused-vars */
 export const menuitemEmits = {
-  [UPDATE_MODEL_EVENT]: (value: string | number) => true,
-  [CHANGE_EVENT]: (value: string | number) => true,
+  [UPDATE_MODEL_EVENT]: (value: number | string) => true,
+  [CHANGE_EVENT]: (value: number | string) => true,
   [OPEN_EVENT]: () => true,
   [CLOSE_EVENT]: () => true,
-  itemClick: (option: MenuItemOption) => true,
+  itemClick: (item: MenuItemOption) => true,
 }
 /* eslint-enable unused-imports/no-unused-vars */
 
@@ -58,7 +58,7 @@ export interface MenuItemInst {
   /**
    * @description 变更选择项
    */
-  change: (val?: any) => any
+  change: (value?: number | string) => any
   /**
    * @description 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反
    */
