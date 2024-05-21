@@ -25,7 +25,7 @@ export default defineComponent({
   },
   props: menuitemProps,
   emits: menuitemEmits,
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const state = reactive({
       showPopup: false,
       showWrapper: false,
@@ -58,14 +58,32 @@ export default defineComponent({
       return { ...heightStyle, top: 'auto' }
     })
 
-    const toggle = (show = !state.showPopup, _options: { immediate?: boolean } = {}) => {
+    const open = () => {
+      // TODO 触发更新offset
+      state.showPopup = true
+      state.showWrapper = true
+    }
+
+    const close = () => {
+      state.showPopup = false
+    }
+
+    const toggle = (show = !state.showPopup) => {
       if (show === state.showPopup)
         return
 
-      state.showPopup = show
-
       if (show)
-        state.showWrapper = true
+        open()
+      else
+        close()
+    }
+
+    const change = (value: MenuItemOption['value']) => {
+      if (value === props.modelValue)
+        return
+
+      emit('update:modelValue', value)
+      emit('change', value)
     }
 
     const renderTitle = () => {
@@ -82,10 +100,7 @@ export default defineComponent({
 
       emit('itemClick', option)
 
-      if (option.value !== props.modelValue) {
-        emit('update:modelValue', option.value)
-        emit('change', option.value)
-      }
+      change(option.value)
     }
 
     const handleClose = () => {
@@ -103,6 +118,13 @@ export default defineComponent({
       else
         emit(CLOSE_EVENT)
     }
+
+    expose({
+      change,
+      open,
+      close,
+      toggle,
+    })
 
     return {
       classes,

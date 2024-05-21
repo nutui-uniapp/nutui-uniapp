@@ -56,7 +56,7 @@ export type MenuitemEmits = typeof menuitemEmits
 
 export interface MenuItemInst {
   /**
-   * @description 选择 `option` 之后触发
+   * @description 变更选择项
    */
   change: (val?: any) => any
   /**
@@ -64,11 +64,11 @@ export interface MenuItemInst {
    */
   toggle: (show?: boolean) => boolean
   /**
-   * @description 打开菜单栏时触发
+   * @description 打开菜单栏
    */
   open: () => void
   /**
-   * @description 关闭菜单栏时触发
+   * @description 关闭菜单栏
    */
   close: () => void
 }
