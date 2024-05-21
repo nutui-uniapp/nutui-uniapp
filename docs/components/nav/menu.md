@@ -391,7 +391,7 @@ export default {
 | close               | 关闭菜单栏时触发 | -                |
 | item-click `1.7.11` | 点击选项时触发  | `MenuItemOption` |
 
-### Methods
+### MenuItem Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 MenuItem 实例并调用实例方法
 
