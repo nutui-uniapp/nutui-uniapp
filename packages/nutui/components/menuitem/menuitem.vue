@@ -11,19 +11,20 @@ import type { MenuProps } from '../menu'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
 
 const componentName = `${PREFIX}-menu-item`
+
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
   components: {
     PopUp,
     Icon,
   },
   props: menuitemProps,
   emits: menuitemEmits,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
   setup(props, { emit }) {
     const state = reactive({
       showPopup: false,
@@ -40,6 +41,7 @@ export default defineComponent({
         'nut-hidden': !state.showWrapper,
       })
     })
+
     const styles = computed(() => {
       const obj = parent?.props.direction === 'down'
         ? { top: `${parent?.offset.value}px` }
@@ -53,9 +55,9 @@ export default defineComponent({
       if (parent?.props.direction === 'down')
         return { ...heightStyle, top: 0 }
 
-      else
-        return { ...heightStyle, top: 'auto' }
+      return { ...heightStyle, top: 'auto' }
     })
+
     const toggle = (show = !state.showPopup, _options: { immediate?: boolean } = {}) => {
       if (show === state.showPopup)
         return
@@ -78,6 +80,8 @@ export default defineComponent({
     const onClick = (option: MenuItemOption) => {
       state.showPopup = false
 
+      emit('itemClick', option)
+
       if (option.value !== props.modelValue) {
         emit('update:modelValue', option.value)
         emit('change', option.value)
@@ -91,6 +95,7 @@ export default defineComponent({
     const handleClickOutside = () => {
       state.showPopup = false
     }
+
     const handleVisible = (visible: boolean) => {
       if (visible)
         emit(OPEN_EVENT)
@@ -113,7 +118,6 @@ export default defineComponent({
       handleClickOutside,
     }
   },
-
 })
 </script>
 

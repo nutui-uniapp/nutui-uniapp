@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export interface MenuItemOption {
@@ -42,12 +42,16 @@ export const menuitemProps = {
 
 export type MenuItemProps = ExtractPropTypes<typeof menuitemProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const menuitemEmits = {
-  [UPDATE_MODEL_EVENT]: (val: string | number) => isString(val) || isNumber(val),
-  [CHANGE_EVENT]: (val: string | number) => isString(val) || isNumber(val),
+  [UPDATE_MODEL_EVENT]: (value: string | number) => true,
+  [CHANGE_EVENT]: (value: string | number) => true,
   [OPEN_EVENT]: () => true,
   [CLOSE_EVENT]: () => true,
+  itemClick: (option: MenuItemOption) => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
+
 export type MenuitemEmits = typeof menuitemEmits
 
 export interface MenuItemInst {
