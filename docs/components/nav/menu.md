@@ -346,50 +346,59 @@ export default {
 
 ### Menu Props
 
-| 参数                   | 说明                           | 类型                        | 默认值      |
-| ---------------------- | ------------------------------ | --------------------------- | ----------- |
-| active-color           | 选项的选中态图标颜色           | string                      | `#F2270C`   |
-| close-on-click-overlay | 是否在点击遮罩层后关闭菜单     | boolean                     | `true`      |
-| scroll-fixed           | 滚动后是否固定，可设置固定位置 | boolean \| string \| number | `false`     |
-| title-class            | 自定义标题样式类               | string                      | -           |
-| lock-scroll `H5`       | 背景是否锁定                   | boolean                     | `true`      |
-| title-icon             | 自定义标题图标                 | string                      | -           |
-| direction              | 展开方向，可选值为`up` `down`  | string                      | -           |
-| up-icon                | 收起的图标                     | string                      | `rect-up`   |
-| down-icon              | 展开的图标                     | string                      | `rect-down` |
+| 参数                     | 说明                   | 类型                        | 默认值         |
+|------------------------|----------------------|---------------------------|-------------|
+| active-color           | 选项的选中态图标颜色           | string                    | `#F2270C`   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭菜单        | boolean                   | `true`      |
+| scroll-fixed           | 滚动后是否固定，可设置固定位置      | boolean \ string \ number | `false`     |
+| title-class            | 自定义标题样式类             | string                    | -           |
+| lock-scroll `H5`       | 背景是否锁定               | boolean                   | `true`      |
+| title-icon             | 自定义标题图标              | string                    | -           |
+| direction              | 展开方向，可选值为`up` `down` | string                    | -           |
+| up-icon                | 收起的图标                | string                    | `rect-up`   |
+| down-icon              | 展开的图标                | string                    | `rect-down` |
 
 ### Menu Slots
 
-| 名称 | 说明                                                            |
-| ---- | --------------------------------------------------------------- |
-| icon | 自定义标题图标 (不支持小程序,小程序建议使用 props 传递图标名称) |
+| 名称   | 说明                                    |
+|------|---------------------------------------|
+| icon | 自定义标题图标 (不支持小程序，小程序建议使用 props 传递图标名称) |
 
 ### MenuItem Props
 
-| 参数                 | 说明                             | 类型    | 默认值           |
-| -------------------- | -------------------------------- | ------- | ---------------- |
-| title                | 菜单项标题                       | string  | `当前选中项文字` |
-| options              | 选项数组                         | Array   | -                |
-| disabled             | 是否禁用菜单                     | boolean | `false`          |
-| cols                 | 可以设置一行展示多少列 `options` | number  | `1`              |
-| direction            | 菜单展开方向，可选值为 `up`      | string  | `down`           |
-| active-title-class   | 选项选中时自定义标题样式类       | string  | -                |
-| inactive-title-class | 选项非选中时自定义标题样式类     | string  | -                |
+| 参数                   | 说明                    | 类型      | 默认值       |
+|----------------------|-----------------------|---------|-----------|
+| title                | 菜单项标题                 | string  | `当前选中项文字` |
+| options              | 选项数组                  | Array   | -         |
+| disabled             | 是否禁用菜单                | boolean | `false`   |
+| cols                 | 可以设置一行展示多少列 `options` | number  | `1`       |
+| direction            | 菜单展开方向，可选值为 `up`      | string  | `down`    |
+| active-title-class   | 选项选中时自定义标题样式类         | string  | -         |
+| inactive-title-class | 选项非选中时自定义标题样式类        | string  | -         |
 
 ### MenuItem Slots
 
-| 名称 | 说明                          |
-| ---- | ----------------------------- |
+| 名称   | 说明               |
+|------|------------------|
 | icon | 自定义选项图标 (不支持小程序) |
 
 ### MenuItem Events
 
-| 事件名 | 说明                                                             | 回调参数       |
-| ------ | ---------------------------------------------------------------- | -------------- |
-| change | 选择 `option` 之后触发                                           | 选择的 `value` |
-| toggle | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | show?: boolean |
-| open   | 打开菜单栏时触发                                                 | -              |
-| close  | 关闭菜单栏时触发                                                 | -              |
+| 事件名                 | 说明       | 回调参数                      |
+|---------------------|----------|---------------------------|
+| change              | 选择选项时触发  | value: `number \| string` |
+| open                | 打开菜单栏时触发 | -                         |
+| close               | 关闭菜单栏时触发 | -                         |
+| item-click `1.7.11` | 点击选项时触发  | item: `MenuItemOption`    |
+
+### MenuItem Methods
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 MenuItem 实例并调用实例方法
+
+| 方法名             | 说明                                       | 参数                        | 返回值 |
+|-----------------|------------------------------------------|---------------------------|-----|
+| toggle          | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | show?: `boolean`          | -   |
+| change `1.7.11` | 变更选择项                                    | value: `number \| string` | -   |
 
 ## 主题定制
 
@@ -397,8 +406,8 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                  | 默认值                            |
-| ------------------------------------- | --------------------------------- |
+| 名称                                    | 默认值                               |
+|---------------------------------------|-----------------------------------|
 | --nut-menu-bar-line-height            | 48px                              |
 | --nut-menu-item-font-size             | var(--nut-font-size-2)            |
 | --nut-menu-item-text-color            | var(--nut-title-color)            |

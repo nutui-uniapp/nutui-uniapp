@@ -11,20 +11,21 @@ import type { MenuProps } from '../menu'
 import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
 
 const componentName = `${PREFIX}-menu-item`
+
 export default defineComponent({
   name: componentName,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
   components: {
     PopUp,
     Icon,
   },
   props: menuitemProps,
   emits: menuitemEmits,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const state = reactive({
       showPopup: false,
       showWrapper: false,
@@ -40,6 +41,7 @@ export default defineComponent({
         'nut-hidden': !state.showWrapper,
       })
     })
+
     const styles = computed(() => {
       const obj = parent?.props.direction === 'down'
         ? { top: `${parent?.offset.value}px` }
@@ -53,17 +55,35 @@ export default defineComponent({
       if (parent?.props.direction === 'down')
         return { ...heightStyle, top: 0 }
 
-      else
-        return { ...heightStyle, top: 'auto' }
+      return { ...heightStyle, top: 'auto' }
     })
-    const toggle = (show = !state.showPopup, _options: { immediate?: boolean } = {}) => {
+
+    const open = () => {
+      // TODO 触发更新offset
+      state.showPopup = true
+      state.showWrapper = true
+    }
+
+    const close = () => {
+      state.showPopup = false
+    }
+
+    const toggle = (show = !state.showPopup) => {
       if (show === state.showPopup)
         return
 
-      state.showPopup = show
-
       if (show)
-        state.showWrapper = true
+        open()
+      else
+        close()
+    }
+
+    const change = (value: MenuItemOption['value']) => {
+      if (value === props.modelValue)
+        return
+
+      emit('update:modelValue', value)
+      emit('change', value)
     }
 
     const renderTitle = () => {
@@ -78,10 +98,9 @@ export default defineComponent({
     const onClick = (option: MenuItemOption) => {
       state.showPopup = false
 
-      if (option.value !== props.modelValue) {
-        emit('update:modelValue', option.value)
-        emit('change', option.value)
-      }
+      emit('itemClick', option)
+
+      change(option.value)
     }
 
     const handleClose = () => {
@@ -91,6 +110,7 @@ export default defineComponent({
     const handleClickOutside = () => {
       state.showPopup = false
     }
+
     const handleVisible = (visible: boolean) => {
       if (visible)
         emit(OPEN_EVENT)
@@ -98,6 +118,13 @@ export default defineComponent({
       else
         emit(CLOSE_EVENT)
     }
+
+    expose({
+      change,
+      open,
+      close,
+      toggle,
+    })
 
     return {
       classes,
@@ -113,7 +140,6 @@ export default defineComponent({
       handleClickOutside,
     }
   },
-
 })
 </script>
 

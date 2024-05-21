@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, isString, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export interface MenuItemOption {
@@ -42,29 +42,33 @@ export const menuitemProps = {
 
 export type MenuItemProps = ExtractPropTypes<typeof menuitemProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const menuitemEmits = {
-  [UPDATE_MODEL_EVENT]: (val: string | number) => isString(val) || isNumber(val),
-  [CHANGE_EVENT]: (val: string | number) => isString(val) || isNumber(val),
+  [UPDATE_MODEL_EVENT]: (value: number | string) => true,
+  [CHANGE_EVENT]: (value: number | string) => true,
   [OPEN_EVENT]: () => true,
   [CLOSE_EVENT]: () => true,
+  itemClick: (item: MenuItemOption) => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
+
 export type MenuitemEmits = typeof menuitemEmits
 
 export interface MenuItemInst {
   /**
-   * @description 选择 `option` 之后触发
+   * @description 变更选择项
    */
-  change: (val?: any) => any
+  change: (value?: number | string) => any
   /**
    * @description 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反
    */
   toggle: (show?: boolean) => boolean
   /**
-   * @description 打开菜单栏时触发
+   * @description 打开菜单栏
    */
   open: () => void
   /**
-   * @description 关闭菜单栏时触发
+   * @description 关闭菜单栏
    */
   close: () => void
 }
