@@ -219,7 +219,7 @@ export default defineComponent({
         :hold-keyboard="props.holdKeyboard"
         @input="handleInput"
         @focus="handleFocus"
-        @blur="handleBlur"
+        @blur.capture="handleBlur"
         @click="handleClickInput"
         @change="endComposing"
         @compositionstart="startComposing"
