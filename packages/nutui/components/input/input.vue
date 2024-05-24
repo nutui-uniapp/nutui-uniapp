@@ -120,7 +120,7 @@ function handleBlur(evt: InputOnBlurEvent) {
     active.value = false
   }, 200)
 
-  updateValue(evt.detail.value, 'onBlur')
+  updateValue(innerValue.value, 'onBlur')
 
   emit(BLUR_EVENT, evt)
 }
@@ -219,7 +219,7 @@ export default defineComponent({
         :hold-keyboard="props.holdKeyboard"
         @input="handleInput"
         @focus="handleFocus"
-        @blur.capture="handleBlur"
+        @blur="handleBlur"
         @click="handleClickInput"
         @change="endComposing"
         @compositionstart="startComposing"
