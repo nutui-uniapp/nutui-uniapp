@@ -680,6 +680,8 @@ $tabs-vertical-titles-item-active-line-height: var(--nut-tabs-vertical-titles-it
 $tabs-vertical-titles-width: var(--nut-tabs-vertical-titles-width, 100px) !default;
 $tabs-titles-item-line-border-radius: var(--nut-tabs-titles-item-line-border-radius, 0) !default;
 $tabs-titles-item-line-opacity: var(--nut-tabs-titles-item-line-opacity, 1) !default;
+$tab-pane-padding: var(--nut-tab-pane-padding, 24px 20px) !default;
+$tab-pane-background: var(--nut-tab-pane-background, $white) !default;
 
 // indicator
 $indicator-bg-color: var(--nut-indicator-bg-color, $primary-color) !default;
