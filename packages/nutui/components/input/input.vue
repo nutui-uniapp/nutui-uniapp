@@ -120,7 +120,7 @@ function handleBlur(evt: InputOnBlurEvent) {
     active.value = false
   }, 200)
 
-  updateValue(evt.detail.value, 'onBlur')
+  updateValue(innerValue.value, 'onBlur')
 
   emit(BLUR_EVENT, evt)
 }
