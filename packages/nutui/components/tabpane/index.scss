@@ -1,4 +1,4 @@
-@import '../tabs/index';
+@import "../tabs/index";
 
 .nut-theme-dark {
   .nut-tab-pane {
@@ -12,10 +12,10 @@
   flex-shrink: 0;
   width: 100%;
   height: 100%;
-  padding: 24px 20px;
+  padding: $tab-pane-padding;
   overflow: auto;
   word-break: break-all;
-  background-color: #fff;
+  background: $tab-pane-background;
 
   &.inactive {
     height: 0;
