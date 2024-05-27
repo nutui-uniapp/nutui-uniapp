@@ -28,11 +28,6 @@
     "src/utils/touchEmulator.js"
   ],
   "vueCompilerOptions": {
-    "nativeTags": [
-      "block",
-      "component",
-      "template",
-      "slot"
-    ]
+    "plugins": ["@uni-helper/uni-app-types/volar-plugin"]
   }
 }
