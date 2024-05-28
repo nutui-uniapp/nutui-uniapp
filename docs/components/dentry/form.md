@@ -165,6 +165,7 @@ const demoForm = ref<DemoForm>({
   }
 });
 
+// 自 2.0.0 开始，FormRules支持传入泛型，可以有正确的字段提示
 const demoRules: FormRules<DemoForm> = {
   nickname: { required: true, message: "请输入用户昵称", trigger: ["blur", "change"] },
   isVip: [{ required: true, message: "请选择是否为vip用户", trigger: "change" }],
@@ -184,6 +185,7 @@ const demoRules: FormRules<DemoForm> = {
     },
     trigger: "blur"
   },
+  // 自 2.0.0 开始支持多级prop
   "object.test1": [
     { required: true, message: "请输入其他信息", trigger: ["blur", "change"] },
     { regex: /^[\u4E00-\u9FA5]+$/g, message: "其他信息只能输入中文", trigger: "blur" }
@@ -207,7 +209,7 @@ async function submitDemoForm() {
 }
 
 function clearDemoFormValidate() {
-  // 2.0.0 开始使用 `clearValidate` 方法来清除校验信息，之前的版本使用 `reset` 方法
+  // 自 2.0.0 开始使用 `clearValidate` 方法来清除校验信息，之前的版本使用 `reset` 方法
   demoFormInst.value?.clearValidate();
 }
 ```
