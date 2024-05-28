@@ -1,18 +1,16 @@
-import { computed } from 'vue'
-import type { ComputedRef, ExtractPropTypes, Ref } from 'vue'
-import { commonProps, makeObjectProp, makeStringProp } from '../_utils'
-import { useInject } from '../_hooks'
-import type { ErrorMessage, FormLabelPosition, FormRules, FormStarPosition } from './types'
-
-export const FORM_KEY = Symbol('Form')
+import type { ComputedRef, ExtractPropTypes, InjectionKey, Ref } from 'vue'
+import { computed, inject } from 'vue'
+import { commonProps, makeObjectProp, makeStringProp, truthProp } from '../_utils'
+import type { OptionalBoolean, OptionalValue } from '../_types'
+import type { FormItemValidateResult } from '../formitem'
+import type { FormContext, FormLabelPosition, FormRules, FormStarPosition } from './type'
 
 export const formProps = {
   ...commonProps,
   /**
    * @description 表单数据对象(使用表单校验时，_必填_)
    */
-  modelValue: makeObjectProp({}),
-
+  modelValue: makeObjectProp<any>({}),
   /**
    * @description 统一配置每个 `FormItem` 的 `rules`
    */
@@ -22,24 +20,47 @@ export const formProps = {
    */
   disabled: Boolean,
   /**
+   * @description 必填表单项 label 的红色星标位置
+   */
+  starPosition: makeStringProp<FormStarPosition>('left'),
+  /**
    * @description 表单项 label 的位置
    */
   labelPosition: makeStringProp<FormLabelPosition>('left'),
   /**
-   * @description 必填表单项 label 的红色星标位置
+   * 是否内置cell-group
    */
-  starPosition: makeStringProp<FormStarPosition>('left'),
+  builtinCellGroup: truthProp,
+  /**
+   * 是否在rules属性改变后立即触发一次验证
+   */
+  validateOnRuleChange: truthProp,
 }
 
 export type FormProps = ExtractPropTypes<typeof formProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const formEmits = {
-  validate: (msg: ErrorMessage) => msg instanceof Object,
+  validate: (result: FormItemValidateResult) => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type FormEmits = typeof formEmits
 
-export function useFormDisabled(disabled: Ref<boolean>): ComputedRef<boolean> {
-  const { parent } = useInject<{ props: { disabled: boolean } }>(FORM_KEY)
-  return computed(() => disabled.value || parent?.props?.disabled || false)
+export const FORM_CONTEXT_KEY: InjectionKey<FormContext> = Symbol('FORM_CONTEXT')
+
+export function useFormContext() {
+  return inject(FORM_CONTEXT_KEY, undefined)
+}
+
+export function useFormDisabled(
+  context: OptionalValue<FormContext>,
+  disabled: Ref<OptionalBoolean>,
+): ComputedRef<boolean> {
+  return computed(() => {
+    if (disabled.value !== undefined)
+      return disabled.value
+
+    return context?.disabled.value ?? false
+  })
 }

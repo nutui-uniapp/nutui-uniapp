@@ -107,5 +107,8 @@ export function IdIDLang() {
       loosing: 'Lepaskan Refresh',
       loading: 'Memuat...',
     },
+    formitem: {
+      defaultErrorMessage: 'Verifikasi gagal',
+    }
   })
 }

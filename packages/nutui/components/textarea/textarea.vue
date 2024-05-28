@@ -5,15 +5,18 @@ import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, 
 import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
 import type { InputTarget } from '../input/type'
+import { useFormItemContext } from '../formitem'
 import { textareaEmits, textareaProps } from './textarea'
 
 const props = defineProps(textareaProps)
 
 const emit = defineEmits(textareaEmits)
 
-const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const formDisabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 function stringModelValue() {
   if (props.modelValue == null)
@@ -69,6 +72,9 @@ function updateValue(value: string, evt: any) {
 
   emit(UPDATE_MODEL_EVENT, value, evt)
   emit(CHANGE_EVENT, value, evt)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 
 function _onInput(evt: TextareaOnInputEvent) {
@@ -105,6 +111,9 @@ function handleBlur(evt: TextareaOnBlurEvent) {
   updateValue(evt.detail.value, evt)
 
   emit(BLUR_EVENT, evt)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.blur)
+    formItemContext.validate('blur')
 }
 
 function handleConfirm(evt: TextareaOnConfirmEvent) {

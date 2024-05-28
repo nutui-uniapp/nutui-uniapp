@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isBoolean, isString, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isBoolean, isString, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const checkboxProps = {
@@ -11,7 +11,7 @@ export const checkboxProps = {
   /**
    * @description 是否禁用选择
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 文本所在的位置，可选值：`left`,`right`
    */

@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import type { ComputedRef } from 'vue'
-import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, reactive, toRef, useSlots, watch } from 'vue'
+import { computed, defineComponent, reactive, toRef, useSlots, watch } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useInject } from '../_hooks'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { CHECKBOX_KEY, checkboxEmits, checkboxProps } from './checkbox'
 
 const props = defineProps(checkboxProps)
+
 const emit = defineEmits(checkboxEmits)
+
 const slots = useSlots()
-const disabled = useFormDisabled(toRef(props, 'disabled'))
+
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
+
 const { parent } = useInject<{
   value: ComputedRef<any[]>
   disabled: ComputedRef<boolean>
@@ -68,6 +75,9 @@ function emitChange(value: string | boolean, label?: string) {
   updateType = 'click'
   emit(UPDATE_MODEL_EVENT, value)
   emit(CHANGE_EVENT, value, label!)
+
+  if (!hasParent.value && formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 
 watch(

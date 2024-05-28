@@ -3,13 +3,19 @@ import { type CSSProperties, type ComponentInternalInstance, computed, defineCom
 import { getRandomId, isEqualValue, isH5, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { type SliderValue, rangeEmits, rangeProps } from './range'
 
 const props = defineProps(rangeProps)
+
 const emit = defineEmits(rangeEmits)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
-const disabled = useFormDisabled(toRef(props, 'disabled'))
+
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const RangeID = computed(() => `root-${getRandomId()}`)
 const state = ref({
@@ -167,8 +173,12 @@ function updateValue(value: SliderValue, end?: boolean) {
   if (!isEqualValue(value, props.modelValue))
     emit(UPDATE_MODEL_EVENT, value)
 
-  if (end && !isEqualValue(value, startValue))
+  if (end && !isEqualValue(value, startValue)) {
     emit(CHANGE_EVENT, value)
+
+    if (formItemContext !== undefined && formItemContext.triggers.value.change)
+      formItemContext.validate('change')
+  }
 }
 
 async function onClick(event: any) {

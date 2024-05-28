@@ -3,7 +3,8 @@ import { type CSSProperties, computed, defineComponent, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { switchEmits, switchProps } from './switch'
 
 const props = defineProps(switchProps)
@@ -11,7 +12,10 @@ const props = defineProps(switchProps)
 const emit = defineEmits(switchEmits)
 
 const legacyDisabled = computed(() => props.disabled || props.disable)
-const disabled = useFormDisabled(legacyDisabled)
+
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const disabled = useFormDisabled(formContext, legacyDisabled)
 
 const isActive = computed(() => props.modelValue === props.activeValue)
 const classes = computed(() => {
@@ -38,6 +42,9 @@ function onClick(event: Event) {
   updateType = 'click'
   emit(UPDATE_MODEL_EVENT, value)
   emit(CHANGE_EVENT, value, event)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 
 watch(

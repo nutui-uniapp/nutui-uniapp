@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
 import type { TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
-import type { ClassType } from '../_utils'
+import { type ClassType, nullableBooleanProp } from '../_utils'
 import { commonProps, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
@@ -61,7 +61,7 @@ export const textareaProps = {
   /**
    * @description 禁用属性
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 是否自适应内容高度，也可传入对象
    */

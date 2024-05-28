@@ -30,7 +30,7 @@ function init() {
 }
 
 function submitFun() {
-  formRef.value?.validate().then(({ valid, errors }: any) => {
+  formRef.value?.validate().then(({ valid, errors }) => {
     emit('onSubmit', valid, errors)
   })
 }

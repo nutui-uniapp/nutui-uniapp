@@ -104,6 +104,9 @@ export interface BaseLang {
     loosing: string
     loading: string
   }
+  formitem: {
+    defaultErrorMessage: string
+  }
 }
 
 export function defineLocaleConfig(locale: BaseLang) {

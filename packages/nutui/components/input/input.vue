@@ -4,7 +4,8 @@ import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnI
 import { getMainClass, isH5 } from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
 import type { InputFormatTrigger, InputTarget } from './type'
@@ -15,11 +16,9 @@ const emit = defineEmits(inputEmits)
 
 const slots = useSlots()
 
-function hasSlot(name: string) {
-  return Boolean(slots[name])
-}
-
-const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const formDisabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 function stringModelValue() {
   if (props.modelValue == null)
@@ -75,6 +74,9 @@ function _onInput(evt: InputOnInputEvent) {
 
   nextTick(() => {
     emit(INPUT_EVENT, innerValue.value, evt)
+
+    if (formItemContext !== undefined && formItemContext.triggers.value.change)
+      formItemContext.validate('change')
   })
 }
 
@@ -123,6 +125,9 @@ function handleBlur(evt: InputOnBlurEvent) {
   updateValue(innerValue.value, 'onBlur')
 
   emit(BLUR_EVENT, evt)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.blur)
+    formItemContext.validate('blur')
 }
 
 function handleConfirm(evt: InputOnConfirmEvent) {
@@ -186,7 +191,7 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :style="props.customStyle" @click="handleClick">
-    <view v-if="hasSlot('left')" class="nut-input__left">
+    <view v-if="slots.left" class="nut-input__left">
       <slot name="left" />
     </view>
 
@@ -242,7 +247,7 @@ export default defineComponent({
       :class="{ 'nut-hidden': !((active || props.showClearIcon) && innerValue.length > 0) }"
       @click.stop="handleClear"
     >
-      <slot v-if="hasSlot('clear')" name="clear" />
+      <slot v-if="slots.clear" name="clear" />
       <NutIcon
         v-else
         name="mask-close"
@@ -253,7 +258,7 @@ export default defineComponent({
       />
     </view>
 
-    <view v-if="hasSlot('right')" class="nut-input__right">
+    <view v-if="slots.right" class="nut-input__right">
       <slot name="right" />
     </view>
   </view>

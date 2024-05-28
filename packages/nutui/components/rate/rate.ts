@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, isNumber, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const rateProps = {
@@ -31,7 +31,7 @@ export const rateProps = {
   /**
    * @description 是否禁用
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 间距
    */

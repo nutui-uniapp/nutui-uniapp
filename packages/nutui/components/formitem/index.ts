@@ -1,2 +1,2 @@
-export type * from './formitem'
-export * from './types'
+export * from './type'
+export * from './formitem'

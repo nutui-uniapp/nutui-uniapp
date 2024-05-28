@@ -4,11 +4,22 @@ import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { useProvide } from '../_hooks'
 import { RADIO_KEY } from '../radio'
+import { useFormItemContext } from '../formitem'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
 
 const props = defineProps(radiogroupProps)
+
 const emit = defineEmits(radiogroupEmits)
-const updateValue = (value: string | boolean | number) => emit(UPDATE_MODEL_EVENT, value)
+
+const formItemContext = useFormItemContext()
+
+function updateValue(value: string | boolean | number) {
+  emit(UPDATE_MODEL_EVENT, value)
+  emit(CHANGE_EVENT, value)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
+}
 
 useProvide(RADIO_KEY)({
   label: readonly(computed(() => props.modelValue)),

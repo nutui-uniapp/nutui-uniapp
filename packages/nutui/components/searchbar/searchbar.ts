@@ -7,6 +7,7 @@ import {
   makeNumericProp,
   makeObjectProp,
   makeStringProp,
+  nullableBooleanProp,
   numericProp,
   truthProp,
 } from '../_utils'
@@ -63,7 +64,7 @@ export const searchbarProps = {
   /**
    * @description 是否禁用输入框
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 输入框只读
    */

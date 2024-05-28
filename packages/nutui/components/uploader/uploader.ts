@@ -1,5 +1,13 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { type Interceptor, commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import type { Interceptor } from '../_utils'
+import {
+  commonProps,
+  makeArrayProp,
+  makeNumericProp,
+  makeStringProp,
+  nullableBooleanProp,
+  truthProp,
+} from '../_utils'
 import type { AcceptType, FileItem, MediaType, SizeType, SourceType } from './type'
 import type { UploadOptions } from './use-uploader'
 
@@ -88,7 +96,7 @@ export const uploaderProps = {
   /**
    * @description 是否禁用文件上传
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 是否在选取文件后立即进行上传，false 时需要手动执行ref的`submit`方法进行上传
    */

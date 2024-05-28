@@ -107,5 +107,8 @@ export function ZhTWLang() {
       loosing: '釋放刷新',
       loading: '加載中...',
     },
+    formitem: {
+      defaultErrorMessage: '校驗不通過',
+    }
   })
 }

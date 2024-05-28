@@ -3,13 +3,16 @@ import { computed, defineComponent, toRef } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
 import { useInject } from '../_hooks'
 import { RADIO_KEY, radioProps } from './radio'
 
 const props = defineProps(radioProps)
+
 const { parent }: any = useInject(RADIO_KEY)
-const disabled = useFormDisabled(toRef(props, 'disabled'))
+
+const formContext = useFormContext()
+const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const reverseState = computed(() => parent.position.value === 'left')
 

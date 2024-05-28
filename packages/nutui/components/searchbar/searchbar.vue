@@ -6,7 +6,8 @@ import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVEN
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
 import { getMainClass, getMainStyle } from '../_utils'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { searchbarEmits, searchbarProps } from './searchbar'
 
 const props = defineProps(searchbarProps)
@@ -15,11 +16,9 @@ const emit = defineEmits(searchbarEmits)
 
 const slots = useSlots()
 
-function hasSlot(name: string) {
-  return Boolean(slots[name])
-}
-
-const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const formDisabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const state = reactive({
   active: false,
@@ -84,6 +83,9 @@ function handleInput(event: InputOnInputEvent) {
 
   emit(UPDATE_MODEL_EVENT, value, event)
   emit(CHANGE_EVENT, value, event)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 
 function handleFocus(event: InputOnFocusEvent) {
@@ -102,12 +104,18 @@ function handleBlur(event: InputOnBlurEvent) {
   }, 200)
 
   emit(BLUR_EVENT, value, event)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.blur)
+    formItemContext.validate('blur')
 }
 
 function handleClear(event: any) {
   emit(UPDATE_MODEL_EVENT, '', event)
   emit(CHANGE_EVENT, '', event)
   emit(CLEAR_EVENT, '')
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 
 function handleSubmit() {
@@ -144,17 +152,17 @@ export default defineComponent({
 <template>
   <view :class="classes" :style="styles">
     <view
-      v-if="hasSlot('leftout')"
+      v-if="slots.leftout"
       class="nut-searchbar__search-icon nut-searchbar__left-search-icon"
       @click="handleLeftIconClick"
     >
       <slot name="leftout" />
     </view>
     <view class="nut-searchbar__search-input" :class="[props.shape]" :style="inputWrapperStyles">
-      <view v-if="hasSlot('leftin')" class="nut-searchbar__search-icon nut-searchbar__iptleft-search-icon">
+      <view v-if="slots.leftin" class="nut-searchbar__search-icon nut-searchbar__iptleft-search-icon">
         <slot name="leftin" />
       </view>
-      <view class="nut-searchbar__input-inner" :class="{ 'nut-searchbar__input-inner-absolute': hasSlot('rightin') }">
+      <view class="nut-searchbar__input-inner" :class="{ 'nut-searchbar__input-inner-absolute': slots.rightin }">
         <form class="nut-searchbar__input-form" action="#" onsubmit="return false" @submit.prevent="handleSubmit">
           <input
             class="nut-searchbar__input-bar"
@@ -179,7 +187,7 @@ export default defineComponent({
       </view>
       <view
         class="nut-searchbar__input-inner-icon"
-        :class="{ 'nut-searchbar__input-inner-icon-absolute': hasSlot('rightin') }"
+        :class="{ 'nut-searchbar__input-inner-icon-absolute': slots.rightin }"
       >
         <view
           v-if="props.clearable"
@@ -187,13 +195,13 @@ export default defineComponent({
           :class="{ 'nut-hidden': innerValue.length <= 0 }"
           @click="handleClear"
         >
-          <template v-if="hasSlot('clear-icon')">
+          <template v-if="slots['clear-icon']">
             <slot name="clear-icon" />
           </template>
           <NutIcon v-else :name="props.clearIcon" />
         </view>
         <view
-          v-if="hasSlot('rightin')"
+          v-if="slots.rightin"
           class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon"
           @click="handleRightIconClick"
         >
@@ -201,7 +209,7 @@ export default defineComponent({
         </view>
       </view>
     </view>
-    <view v-if="hasSlot('rightout')" class="nut-searchbar__search-icon nut-searchbar__right-search-icon">
+    <view v-if="slots.rightout" class="nut-searchbar__search-icon nut-searchbar__right-search-icon">
       <slot name="rightout" />
     </view>
   </view>

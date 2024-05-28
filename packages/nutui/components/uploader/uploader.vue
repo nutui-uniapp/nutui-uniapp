@@ -6,17 +6,22 @@ import NutProgress from '../progress/progress.vue'
 import NutIcon from '../icon/icon.vue'
 import NutButton from '../button/button.vue'
 import { getMainClass } from '../_utils'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { uploaderEmits, uploaderProps } from './uploader'
 import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
 import type { FileItem } from './type'
 
 const props = defineProps(uploaderProps)
+
 const emit = defineEmits(uploaderEmits)
-defineExpose({ submit, chooseImage, clearUploadQueue })
+
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
+
 const fileList = ref(props.fileList as Array<FileItem>)
 const uploadQueue = ref<Promise<any>[]>([])
-const disabled = useFormDisabled(toRef(props, 'disabled'))
 
 watch(
   () => props.fileList,
@@ -199,12 +204,17 @@ function chooseImage(event: InputEvent) {
     readFile(filteredFiles)
 
     emit('change', { fileList: fileList.value, event })
+
+    if (formItemContext !== undefined && formItemContext.triggers.value.change)
+      formItemContext.validate('change')
   })
 }
 
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
+
+defineExpose({ submit, chooseImage, clearUploadQueue })
 </script>
 
 <script lang="ts">

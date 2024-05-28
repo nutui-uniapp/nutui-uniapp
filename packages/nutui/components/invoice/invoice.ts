@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isBoolean, makeArrayProp, truthProp } from '../_utils'
-import type { ErrorMessage } from '../form'
+import { commonProps, makeArrayProp, truthProp } from '../_utils'
+import type { FormItemValidateResult } from '../formitem'
 
 export const invoiceProps = {
   ...commonProps,
@@ -24,9 +24,11 @@ export const invoiceProps = {
 
 export type InvoiceProps = ExtractPropTypes<typeof invoiceProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const invoiceEmits = {
-  onSubmit: (valid: boolean | object, errors: (boolean | ErrorMessage)[]) => (isBoolean(valid) || valid instanceof Object) && (isBoolean(errors) || errors instanceof Object),
+  onSubmit: (valid: boolean, errors: FormItemValidateResult[]) => true,
   scrollBottom: () => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type InvoiceEmits = typeof invoiceEmits
