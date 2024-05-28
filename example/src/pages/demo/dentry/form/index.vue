@@ -1,166 +1,157 @@
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-import type { FormItemRule, FormItemRuleWithoutValidator } from 'nutui-uniapp'
+<script lang="ts" setup>
+import type { FormInst, FormRules } from 'nutui-uniapp'
 
-/* eslint-disable no-console */
-const formData = reactive({
-  name: '',
-  age: '',
-  tel: '',
-  address: '',
-})
-const basicData = reactive({
-  name: '',
-  age: '',
-  time: '',
-  address: '',
-})
-const dynamicRefForm = ref<any>(null)
-const dynamicForm = {
-  state: reactive({
-    name: '',
-    time: [{
-      key: 1,
-      value: '',
-    }],
-  }),
-
-  methods: {
-    submit() {
-      dynamicRefForm.value.validate().then(({ valid, errors }: any) => {
-        if (valid)
-          console.log('success', dynamicForm)
-        else
-          console.log('error submit!!', errors)
-      })
-    },
-    reset() {
-      dynamicRefForm.value.reset()
-    },
-    remove() {
-      dynamicForm.state.time.splice(dynamicForm.state.time.length - 1, 1)
-    },
-    add() {
-      dynamicForm.state.time.push({
-        key: Date.now(),
-        value: '',
-      })
-    },
-  },
+interface BaseForm {
+  text1: string
+  text2: string
+  text3: string
+  text4: string
+  text5: string
+  text6: string
+  text7: string
+  text8: string
 }
 
-const formData2 = reactive({
-  switch: false,
-  checkbox: false,
-  radio: 0,
-  number: 0,
-  rate: 3,
-  range: 30,
-  address: '',
-  defaultFileList: [
-    {
-      name: '文件1.png',
-      url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-      status: 'success',
-      message: '上传成功',
-      type: 'image',
-    },
-    {
-      name: '文件2.png',
-      url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
-      status: 'uploading',
-      message: '上传中...',
-      type: 'image',
-    },
+interface DemoForm {
+  // input
+  nickname: string
+  // checkbox
+  isVip: boolean
+  // checkbox-group
+  gifts: string[]
+  // input-number
+  count: number
+  // radio-group
+  hobby: string
+  // range
+  progress: number
+  // rate
+  rate: number
+  // switch
+  enabled: boolean
+  // textarea
+  remarks: string
+  // nested test
+  object: {
+    test1: string
+  }
+}
+
+interface DynamicTelItem {
+  key: number
+  value: string
+}
+
+interface DynamicForm {
+  name: string
+  tels: DynamicTelItem[]
+}
+
+const baseForm = ref<BaseForm>({
+  text1: '',
+  text2: '',
+  text3: '',
+  text4: '',
+  text5: '',
+  text6: '',
+  text7: '',
+  text8: '',
+})
+
+const demoFormInst = ref<FormInst<DemoForm> | null>(null)
+
+const demoForm = ref<DemoForm>({
+  nickname: '',
+  isVip: false,
+  gifts: [],
+  count: 1,
+  hobby: '',
+  progress: 0,
+  rate: 0,
+  enabled: false,
+  remarks: '',
+  object: {
+    test1: '',
+  },
+})
+
+/* eslint-disable style/quote-props */
+const demoRules: FormRules<DemoForm> = {
+  nickname: { required: true, message: '请输入用户昵称', trigger: ['blur', 'change'] },
+  isVip: [{ required: true, message: '请选择是否为vip用户', trigger: 'change' }],
+  gifts: [
+    { required: true, message: '请选择赠送的礼物', trigger: 'change' },
+    { minlen: 3, message: '至少赠送3个礼物', trigger: ['change'] },
   ],
+  count: { max: 5, message: '商品数量不能超过5个', trigger: 'change' },
+  hobby: { required: true, message: '请选择用户喜好', trigger: 'change' },
+  progress: { min: 30, message: '进度不能小于30%', trigger: 'change' },
+  rate: { min: 2, message: '评价不能低于2星' },
+  remarks: {
+    validator(value) {
+      if (!value.includes('nutui'))
+        return '输入的备注中没有包含 "nutui" 字样'
+    },
+    trigger: 'blur',
+  },
+  'object.test1': [
+    { required: true, message: '请输入其他信息', trigger: ['blur', 'change'] },
+    { regex: /^[\u4E00-\u9FA5]+$/g, message: '其他信息只能输入中文', trigger: 'blur' },
+  ],
+}
+/* eslint-enable style/quote-props */
+
+function onDemoFormRateChange() {
+  demoFormInst.value?.validate('rate')
+}
+
+async function submitDemoForm() {
+  const { valid, errors } = await demoFormInst.value!.validate()
+
+  if (!valid) {
+    // eslint-disable-next-line no-console
+    console.log('校验不通过', errors)
+    return
+  }
+
+  // eslint-disable-next-line no-console
+  console.log('校验通过')
+}
+
+function clearDemoFormValidate() {
+  demoFormInst.value?.clearValidate()
+}
+
+const dynamicFormInst = ref<FormInst<DynamicForm> | null>(null)
+
+const dynamicForm = ref<DynamicForm>({
+  name: '',
+  tels: [{ key: 1, value: '' }],
 })
 
-const addressModule = reactive({
-  state: {
-    show: false,
-    province: [
-      { id: 1, name: '北京' },
-      { id: 2, name: '广西' },
-      { id: 3, name: '江西' },
-      { id: 4, name: '四川' },
-    ],
-    city: [
-      { id: 7, name: '朝阳区' },
-      { id: 8, name: '崇文区' },
-      { id: 9, name: '昌平区' },
-      { id: 6, name: '石景山区' },
-    ],
-    country: [
-      { id: 3, name: '八里庄街道' },
-      { id: 9, name: '北苑' },
-      { id: 4, name: '常营乡' },
-    ],
-    town: [],
-  },
-  methods: {
-    show() {
-      addressModule.state.show = !addressModule.state.show
-      if (addressModule.state.show)
-        formData2.address = ''
-    },
-    onChange({ _custom, next, value }: any) {
-      formData2.address += value?.name
-      const name = (addressModule as any).state[next]
-      if (name.length < 1)
-        addressModule.state.show = false
-    },
-  },
-})
-
-const ruleForm = ref<any>(null)
-
-function submit() {
-  ruleForm.value.validate().then(({ valid, errors }: any) => {
-    if (valid)
-      console.log('success', formData)
-    else
-      console.log('error submit!!', errors)
-  })
+function createDynamicFormItem() {
+  dynamicForm.value.tels.push({ key: Date.now() + Math.round(Math.random() * 1000), value: '' })
 }
-function reset() {
-  ruleForm.value.reset()
-}
-// 失去焦点校验
-function customBlurValidate(prop: string) {
-  ruleForm.value.validate(prop).then(({ valid, errors }: any) => {
-    if (valid)
-      console.log('success', formData)
-    else
-      console.log('error submit!!', errors)
-  })
-}
-// 函数校验
-const customValidator = async (val: string) => /^\d+$/.test(val)
-async function customRulePropValidator(val: string, rule: FormItemRuleWithoutValidator) {
-  return (rule?.reg as RegExp).test(val)
-}
-const nameLengthValidator = async (val: string) => val?.length >= 2
-// Promise 异步校验
-async function asyncValidator(val: string): Promise<string> {
-  const telReg = /^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/
-  return new Promise((resolve, reject) => {
-    uni.showLoading({
-      title: '模拟异步验证中...',
-    })
-    setTimeout(() => {
-      uni.hideLoading()
-      if (!val)
-        // eslint-disable-next-line prefer-promise-reject-errors
-        reject('请输入联系电话')
 
-      else if (!telReg.test(val))
-        // eslint-disable-next-line prefer-promise-reject-errors
-        reject('联系电话格式不正确')
+function deleteDynamicFormItem() {
+  dynamicForm.value.tels.splice(dynamicForm.value.tels.length - 1, 1)
+}
 
-      else
-        resolve('')
-    }, 1000)
-  })
+async function submitDynamicForm() {
+  const { valid, errors } = await dynamicFormInst.value!.validate()
+
+  if (!valid) {
+    // eslint-disable-next-line no-console
+    console.log('校验不通过', errors)
+    return
+  }
+
+  // eslint-disable-next-line no-console
+  console.log('校验通过')
+}
+
+function clearDynamicFormValidate() {
+  dynamicFormInst.value?.clearValidate()
 }
 </script>
 
@@ -169,203 +160,170 @@ async function asyncValidator(val: string): Promise<string> {
     <h2 class="title">
       基础用法
     </h2>
+
     <nut-form>
       <nut-form-item label="昵称">
-        <nut-input v-model="basicData.name" custom-class="nut-input-text" placeholder="请输入昵称" type="text" />
+        <nut-input v-model="baseForm.text1" placeholder="请输入昵称" />
       </nut-form-item>
+
       <nut-form-item label="网龄">
-        <nut-input v-model="basicData.age" custom-class="nut-input-text" placeholder="请输入网龄" type="text" />
+        <nut-input v-model="baseForm.text2" placeholder="请输入网龄" />
       </nut-form-item>
+
       <nut-form-item label="时间">
-        <nut-input v-model="basicData.time" custom-class="nut-input-text" placeholder="请输入时间" type="text" />
+        <nut-input v-model="baseForm.text3" placeholder="请输入时间" />
       </nut-form-item>
+
       <nut-form-item label="地址">
-        <nut-input v-model="basicData.address" custom-class="nut-input-text" placeholder="请输入地址" type="text" />
+        <nut-input v-model="baseForm.text4" placeholder="请输入地址" />
       </nut-form-item>
+
       <nut-form-item label="备注">
-        <nut-textarea placeholder="请输入备注" type="text" />
-      </nut-form-item>
-    </nut-form>
-    <h2 class="title">
-      动态表单
-    </h2>
-    <nut-form ref="dynamicRefForm" :model-value="dynamicForm.state">
-      <nut-form-item label="昵称" prop="name" required :rules="[{ required: true, message: '请填写姓名' }]">
-        <nut-input v-model="dynamicForm.state.name" custom-class="nut-input-text" placeholder="请输入姓名" type="text" />
-      </nut-form-item>
-      <nut-form-item
-        v-for="(item, index) in dynamicForm.state.time"
-        :key="item.key"
-        :label="`时间${index}`"
-        :prop="`tels.${index}.value`"
-        required
-        :rules="[{ required: true, message: `请填写时间${index}` }]"
-      >
-        <nut-input v-model="item.value" custom-class="nut-input-text" :placeholder="`请输入时间${index}`" type="text" />
-      </nut-form-item>
-      <nut-cell>
-        <nut-button size="small" custom-style="margin-right: 10px" @click="dynamicForm.methods.add">
-          添加
-        </nut-button>
-        <nut-button size="small" custom-style="margin-right: 10px" @click="dynamicForm.methods.remove">
-          删除
-        </nut-button>
-        <nut-button type="primary" custom-style="margin-right: 10px" size="small" @click="dynamicForm.methods.submit">
-          提交
-        </nut-button>
-        <nut-button size="small" @click="dynamicForm.methods.reset">
-          重置提示状态
-        </nut-button>
-      </nut-cell>
-    </nut-form>
-    <h2 class="title">
-      表单校验
-    </h2>
-    <nut-form
-      ref="ruleForm"
-      :model-value="formData"
-      :rules="{
-        name: [
-          { required: true, message: '请填写姓名' },
-          {
-            message: 'Name should be at least two characters',
-            validator: nameLengthValidator,
-          },
-        ],
-      }"
-    >
-      <nut-form-item label="姓名" prop="name">
-        <nut-input
-          v-model="formData.name"
-          class="nut-input-text"
-          placeholder="请输入姓名，blur 事件校验"
-          type="text"
-          @blur="customBlurValidate('name')"
-        />
-      </nut-form-item>
-      <nut-form-item
-        label="网龄"
-        prop="age"
-        required
-        :rules="[
-          { required: true, message: '请填写网龄' },
-          { validator: customValidator, message: '必须输入数字' },
-          { validator: customRulePropValidator, message: '必须输入数字', reg: /^\d+$/ },
-          { regex: /^(\d{1,2}|1\d{2}|200)$/, message: '必须输入0-200区间' },
-        ] as FormItemRule[]"
-      >
-        <nut-input
-          v-model="formData.age"
-          custom-class="nut-input-text"
-          placeholder="请输入网龄，必须数字且0-200区间"
-          type="text"
-        />
-      </nut-form-item>
-      <nut-form-item
-        label="号码"
-        prop="tel"
-        required
-        :rules="[
-          { required: true, message: '请填写号码' },
-          { validator: asyncValidator, message: '号码格式不正确' },
-        ]"
-      >
-        <nut-input
-          v-model="formData.tel"
-          custom-class="nut-input-text"
-          placeholder="请输入号码，异步号码格式"
-          type="text"
-        />
-      </nut-form-item>
-      <nut-form-item label="地址" prop="address" required :rules="[{ required: true, message: '请填写地址' }]">
-        <nut-input v-model="formData.address" custom-class="nut-input-text" placeholder="请输入地址" type="text" />
-      </nut-form-item>
-      <nut-cell>
-        <nut-button type="primary" size="small" custom-style="margin-right: 10px" @click="submit">
-          提交
-        </nut-button>
-        <nut-button size="small" @click="reset">
-          重置提示状态
-        </nut-button>
-      </nut-cell>
-    </nut-form>
-    <h2 class="title">
-      表单类型
-    </h2>
-    <nut-form>
-      <nut-form-item label="开关">
-        <nut-switch v-model="formData2.switch" />
-      </nut-form-item>
-      <nut-form-item label="复选框">
-        <nut-checkbox v-model="formData2.checkbox">
-          复选框
-        </nut-checkbox>
-      </nut-form-item>
-      <nut-form-item label="单选按钮">
-        <nut-radio-group v-model="formData2.radio" direction="horizontal">
-          <nut-radio label="1">
-            选项1
-          </nut-radio>
-          <nut-radio disabled label="2">
-            选项2
-          </nut-radio>
-          <nut-radio label="3">
-            选项3
-          </nut-radio>
-        </nut-radio-group>
-      </nut-form-item>
-      <nut-form-item label="评分">
-        <nut-rate v-model="formData2.rate" />
-      </nut-form-item>
-      <nut-form-item label="步进器">
-        <nut-input-number v-model="formData2.number" />
-      </nut-form-item>
-      <nut-form-item label="滑块">
-        <nut-range v-model="formData2.range" hidden-tag />
-      </nut-form-item>
-      <nut-form-item label="文件上传">
-        <nut-uploader
-          v-model:file-list="formData2.defaultFileList"
-          url="http://服务地址"
-          accept="image"
-          maximum="3"
-          multiple
-        />
-      </nut-form-item>
-      <nut-form-item label="地址">
-        <nut-input
-          v-model="formData2.address"
-          class="nut-input-text"
-          readonly
-          placeholder="请选择地址"
-          type="text"
-          @click="addressModule.methods.show"
-        />
-        <!-- nut-address -->
-        <nut-address
-          v-model:visible="addressModule.state.show"
-          :province="addressModule.state.province"
-          :city="addressModule.state.city"
-          :country="addressModule.state.country"
-          :town="addressModule.state.town"
-          custom-address-title="请选择所在地区"
-          @change="addressModule.methods.onChange"
-        />
+        <nut-textarea v-model="baseForm.text5" placeholder="请输入备注" />
       </nut-form-item>
     </nut-form>
 
     <h2 class="title">
-      自定义labe位置
+      表单校验
     </h2>
-    <nut-form label-position="top" star-position="right">
-      <nut-form-item label="姓名" required>
-        <nut-input v-model="basicData.name" class="nut-input-text" placeholder="请输入姓名" type="text" />
+
+    <nut-form ref="demoFormInst" :model-value="demoForm" :rules="demoRules">
+      <nut-form-item label="昵称" prop="nickname">
+        <nut-input v-model="demoForm.nickname" placeholder="请输入用户昵称" />
       </nut-form-item>
-      <nut-form-item label="年龄" required>
-        <nut-input v-model="basicData.age" class="nut-input-text" placeholder="请输入年龄" type="text" />
+
+      <nut-form-item label="是否会员" prop="isVip">
+        <nut-checkbox v-model="demoForm.isVip">
+          会员
+        </nut-checkbox>
       </nut-form-item>
-      <nut-form-item label-position="left" label="备注">
-        <nut-textarea placeholder="请输入备注" type="text" />
+
+      <nut-form-item label="赠送礼物" prop="gifts">
+        <nut-checkbox-group v-model="demoForm.gifts">
+          <nut-checkbox label="1">
+            礼物1
+          </nut-checkbox>
+          <nut-checkbox label="2">
+            礼物2
+          </nut-checkbox>
+          <nut-checkbox label="3">
+            礼物3
+          </nut-checkbox>
+          <nut-checkbox label="4">
+            礼物4
+          </nut-checkbox>
+        </nut-checkbox-group>
+      </nut-form-item>
+
+      <nut-form-item label="商品数量" prop="count">
+        <nut-input-number v-model="demoForm.count" />
+      </nut-form-item>
+
+      <nut-form-item label="用户喜好" prop="hobby">
+        <nut-radio-group v-model="demoForm.hobby">
+          <nut-radio label="1">
+            喜好1
+          </nut-radio>
+          <nut-radio label="2">
+            喜好2
+          </nut-radio>
+          <nut-radio label="3">
+            喜好3
+          </nut-radio>
+        </nut-radio-group>
+      </nut-form-item>
+
+      <nut-form-item label="解锁进度" prop="progress" required>
+        <nut-range v-model="demoForm.progress" hidden-tag />
+      </nut-form-item>
+
+      <nut-form-item label="星级评价" prop="rate">
+        <nut-rate v-model="demoForm.rate" @change="onDemoFormRateChange" />
+      </nut-form-item>
+
+      <nut-form-item label="是否启用" prop="enabled">
+        <nut-switch v-model="demoForm.enabled" />
+      </nut-form-item>
+
+      <view>
+        <view>
+          <text class="mx-15px text-12px text-#999">
+            支持任意嵌套布局
+          </text>
+          <nut-form-item label="其他信息" prop="object.test1">
+            <nut-input v-model="demoForm.object.test1" placeholder="请输入其他信息" />
+          </nut-form-item>
+        </view>
+      </view>
+
+      <nut-form-item label="备注信息" prop="remarks">
+        <nut-textarea v-model="demoForm.remarks" placeholder="请输入备注信息" />
+      </nut-form-item>
+
+      <nut-cell>
+        <nut-button class="!mr-10px" type="primary" size="small" @click="submitDemoForm">
+          提交
+        </nut-button>
+        <nut-button size="small" @click="clearDemoFormValidate">
+          清除校验信息
+        </nut-button>
+      </nut-cell>
+    </nut-form>
+
+    <h2 class="title">
+      动态表单
+    </h2>
+
+    <nut-form ref="dynamicFormInst" :model-value="dynamicForm">
+      <nut-form-item
+        label="姓名"
+        prop="name"
+        :rules="{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }"
+      >
+        <nut-input v-model="dynamicForm.name" placeholder="请输入姓名" />
+      </nut-form-item>
+
+      <nut-form-item
+        v-for="(item, index) in dynamicForm.tels"
+        :key="item.key"
+        :label="`联系方式${index + 1}`"
+        :prop="`tels[${index}].value`"
+        :rules="{ required: true, message: `请输入联系方式${index + 1}`, trigger: ['blur', 'change'] }"
+      >
+        <nut-input v-model="item.value" :placeholder="`请输入联系方式${index + 1}`" />
+      </nut-form-item>
+
+      <nut-cell>
+        <nut-button class="!mr-10px" size="small" @click="createDynamicFormItem">
+          添加
+        </nut-button>
+        <nut-button class="!mr-10px" size="small" @click="deleteDynamicFormItem">
+          删除
+        </nut-button>
+        <nut-button class="!mr-10px" type="primary" size="small" @click="submitDynamicForm">
+          提交
+        </nut-button>
+        <nut-button size="small" @click="clearDynamicFormValidate">
+          清除校验信息
+        </nut-button>
+      </nut-cell>
+    </nut-form>
+
+    <h2 class="title">
+      自定义Label&Star位置
+    </h2>
+
+    <nut-form label-position="right">
+      <nut-form-item label="昵称" label-position="top">
+        <nut-input v-model="baseForm.text6" placeholder="请输入昵称" />
+      </nut-form-item>
+
+      <nut-form-item label="网龄" label-position="left" required star-position="right">
+        <nut-input v-model="baseForm.text7" placeholder="请输入网龄" />
+      </nut-form-item>
+
+      <nut-form-item label="其他">
+        <nut-input v-model="baseForm.text8" placeholder="请输入其他信息" />
       </nut-form-item>
     </nut-form>
   </div>

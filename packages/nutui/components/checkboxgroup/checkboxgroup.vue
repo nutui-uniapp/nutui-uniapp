@@ -4,14 +4,15 @@ import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { useProvide } from '../_hooks'
 import { CHECKBOX_KEY } from '../checkbox'
+import { useFormItemContext } from '../formitem'
 import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 
 const props = defineProps(checkboxgroupProps)
+
 const emit = defineEmits(checkboxgroupEmits)
-defineExpose({
-  toggleAll,
-  toggleReverse,
-})
+
+const formItemContext = useFormItemContext()
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
@@ -19,6 +20,9 @@ const classes = computed(() => {
 function updateValue(value: string[]) {
   emit(UPDATE_MODEL_EVENT, value)
   emit(CHANGE_EVENT, value)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 
 function toggleAll(checked: boolean) {
@@ -57,6 +61,11 @@ watch(
     emit(CHANGE_EVENT, value)
   },
 )
+
+defineExpose({
+  toggleAll,
+  toggleReverse,
+})
 </script>
 
 <script lang="ts">

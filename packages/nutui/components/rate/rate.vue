@@ -3,12 +3,17 @@ import { computed, defineComponent, ref, toRef } from 'vue'
 import { getMainClass, getRandomId, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { rateEmits, rateProps } from './rate'
 
 const props = defineProps(rateProps)
+
 const emit = defineEmits(rateEmits)
-const disabled = useFormDisabled(toRef(props, 'disabled'))
+
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const refRandomId = getRandomId()
 const rateRefs = ref<HTMLElement[]>([])
@@ -18,6 +23,9 @@ const classes = computed(() => {
 function updateVal(value: number) {
   emit(UPDATE_MODEL_EVENT, value)
   emit(CHANGE_EVENT, value)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 function onClick(e: number, index: number) {
   if (disabled.value || props.readonly)

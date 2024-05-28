@@ -75,14 +75,14 @@ function showWarningRef() {
 const toastState = ref<Pick<ToastProps, 'visible' | 'type' | 'msg'>>({
   visible: false,
   type: 'text',
-  msg: ''
+  msg: '',
 })
 
 function showSuccessProps() {
   toastState.value = {
     visible: true,
     type: 'success',
-    msg: '成功提示'
+    msg: '成功提示',
   }
 }
 
@@ -90,7 +90,7 @@ function showErrorProps() {
   toastState.value = {
     visible: true,
     type: 'error',
-    msg: '错误提示'
+    msg: '错误提示',
   }
 }
 
@@ -98,7 +98,7 @@ function showWarningProps() {
   toastState.value = {
     visible: true,
     type: 'warning',
-    msg: '警告提示'
+    msg: '警告提示',
   }
 }
 </script>

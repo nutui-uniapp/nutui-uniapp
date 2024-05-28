@@ -4,12 +4,17 @@ import { computed, defineComponent, toRef } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
-import { useFormDisabled } from '../form/form'
+import { useFormContext, useFormDisabled } from '../form'
+import { useFormItemContext } from '../formitem'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
 
 const props = defineProps(inputnumberProps)
+
 const emit = defineEmits(inputnumberEmits)
-const formDisabled = useFormDisabled(toRef(props, 'disabled'))
+
+const formContext = useFormContext()
+const formItemContext = useFormItemContext()
+const formDisabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
@@ -23,12 +28,20 @@ function change(event: any) {
   const value = event.detail.value
   emit(UPDATE_MODEL_EVENT, value, event)
   emit(CHANGE_EVENT, value, event)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.change)
+    formItemContext.validate('change')
 }
 function emitChange(value: string | number, event: Event) {
   const output_value: number | string = fixedDecimalPlaces(value)
   emit(UPDATE_MODEL_EVENT, output_value, event)
-  if (Number(props.modelValue) !== Number(output_value))
+
+  if (Number(props.modelValue) !== Number(output_value)) {
     emit(CHANGE_EVENT, output_value, event)
+
+    if (formItemContext !== undefined && formItemContext.triggers.value.change)
+      formItemContext.validate('change')
+  }
 }
 function addAllow(value = Number(props.modelValue)): boolean {
   return value < Number(props.max) && !formDisabled.value
@@ -77,7 +90,11 @@ function blur(event: Event) {
       value = Number(props.max)
     emitChange(value, event)
   }
+
   emit(BLUR_EVENT, event)
+
+  if (formItemContext !== undefined && formItemContext.triggers.value.blur)
+    formItemContext.validate('blur')
 }
 function focus(event: Event) {
   if (formDisabled.value)

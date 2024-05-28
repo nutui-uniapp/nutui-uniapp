@@ -107,5 +107,8 @@ export function EnUSLang() {
       loosing: 'Loose to refresh...',
       loading: 'Loading...',
     },
+    formitem: {
+      defaultErrorMessage: 'Verification failed',
+    }
   })
 }

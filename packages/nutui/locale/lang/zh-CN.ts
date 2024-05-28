@@ -107,5 +107,8 @@ export function ZhCNLang() {
       loosing: '释放刷新',
       loading: '加载中...',
     },
+    formitem: {
+      defaultErrorMessage: '校验不通过',
+    }
   })
 }

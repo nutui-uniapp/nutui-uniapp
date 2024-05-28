@@ -1,73 +1,246 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, useSlots } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
+import { computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRef, useSlots } from 'vue'
+import { useTranslate } from '../../locale'
+import { castArray, get, isEmpty } from '../_plugins/lodash'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
-import { FORM_KEY } from '../form/form'
-import { useInject } from '../_hooks'
-import type { FormItemRule } from './types'
-import type { FormItemProps } from './formitem'
-import { formitemProps } from './formitem'
+import { useFormContext } from '../form'
+import type { NullableString, OptionalValue } from '../_types'
+import { FORM_ITEM_CONTEXT_KEY, formitemProps } from './formitem'
+import type {
+  FormItemContext,
+  FormItemRule,
+  FormItemRuleTrigger,
+  FormItemRuleTriggers,
+  FormItemValidateResult,
+} from './type'
 
 const props = defineProps(formitemProps)
+
 const slots = useSlots()
-const Parent = useInject<{ formErrorTip: Required<any>, props: Required<FormItemProps> }>(FORM_KEY)
 
-const isRequired = computed(() => {
-  if (props.required === false)
-    return false
-  const rules = Parent.parent?.props?.rules
-  let formRequired = false
-  for (const key in rules) {
-    if (Object.prototype.hasOwnProperty.call(rules, key) && key === props.prop && Array.isArray(rules[key as any]))
-      formRequired = rules[key as any].some((rule: FormItemRule) => rule.required)
+const formContext = useFormContext()
+
+const componentName = `${PREFIX}-form-item`
+
+const { translate } = useTranslate(componentName)
+
+const rules = computed<FormItemRule[]>(() => {
+  if (props.prop == null)
+    return []
+
+  if (formContext === undefined)
+    return castArray(props.rules)
+
+  return [...castArray(props.rules), ...castArray(formContext.rules.value[props.prop] ?? [])]
+})
+
+const triggers = computed<FormItemRuleTriggers>(() => {
+  const value: FormItemRuleTriggers = { blur: false, change: false }
+
+  for (const { trigger } of rules.value) {
+    if (trigger === undefined)
+      continue
+
+    const normalized: FormItemRuleTrigger[] = castArray(trigger)
+
+    if (normalized.length <= 0)
+      continue
+
+    for (const it of normalized) {
+      if (it === 'blur')
+        value.blur = true
+      else if (it === 'change')
+        value.change = true
+
+      if (value.blur && value.change)
+        break
+    }
   }
-  return props.required || props.rules.some(rule => rule.required) || formRequired
+
+  return value
 })
 
-const labelPositionClass = computed(() => {
-  const labelPosition = Parent.parent?.props.labelPosition
-  const position = props.labelPosition ? props.labelPosition : labelPosition
+const isRequired = computed<boolean>(() => {
+  if (props.required !== undefined)
+    return props.required
 
-  return `nut-form-item__${position}`
+  for (const item of rules.value) {
+    if (item.required)
+      return true
+  }
+
+  return false
 })
 
-const starPositionClass = computed(() => {
-  const starPosition = Parent.parent?.props.starPosition
-  const position = props.starPosition ? props.starPosition : starPosition
-  return `nut-form-item__star-${position}`
+const errorMessage = ref<NullableString>(null)
+
+const isError = computed<boolean>(() => {
+  return !isEmpty(errorMessage.value)
+})
+
+const hasErrorMessage = computed<boolean>(() => {
+  return props.showErrorMessage! && isError.value
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  const labelPosition = props.labelPosition ?? formContext?.labelPosition.value
+  const starPosition = props.starPosition ?? formContext?.starPosition.value
+
+  return getMainClass(props, componentName, {
+    'is-required': isRequired.value,
+    'is-error': isError.value,
+    'has-line': props.showErrorLine && isError.value,
+    [`nut-form-item--${labelPosition}`]: true,
+    [`nut-form-item--star-${starPosition}`]: true,
+  })
 })
-const labelStyle = computed(() => {
+
+const styles = computed(() => {
+  return getMainStyle(props)
+})
+
+const labelStyles = computed<CSSProperties>(() => {
   return {
     width: pxCheck(props.labelWidth),
-    textAlign: props.labelAlign,
-  } as CSSProperties
+  }
 })
-const bodyStyle = computed(() => {
+
+const bodyStyles = computed<CSSProperties>(() => {
   return {
     textAlign: props.bodyAlign,
-  } as CSSProperties
+  }
 })
-const formErrorTip = Parent.parent?.formErrorTip || {}
 
-const errorMessageStyle = computed(() => {
+const errorMessageStyles = computed<CSSProperties>(() => {
   return {
     textAlign: props.errorMessageAlign,
-  } as CSSProperties
+  }
 })
-const getSlots = (name: string) => slots[name]
+
+async function executeValidate(trigger?: FormItemRuleTrigger): Promise<FormItemValidateResult> {
+  const { prop } = props
+
+  if (prop === undefined || formContext === undefined || formContext.modelValue == null || formContext.modelValue.value == null)
+    return { valid: true, prop }
+
+  const value = get(formContext.modelValue.value, prop)
+
+  if (rules.value.length <= 0)
+    return { valid: true, prop, value }
+
+  for (const {
+    required = false,
+    regex,
+    min,
+    max,
+    minlen,
+    maxlen,
+    message = translate('defaultErrorMessage'),
+    validator,
+    trigger: ruleTrigger,
+  } of rules.value) {
+    if (trigger != null && ruleTrigger != null && !castArray(ruleTrigger).includes(trigger))
+      continue
+
+    if (required) {
+      if (['string', 'object', 'null', 'undefined'].includes(typeof value)) {
+        if (isEmpty(value))
+          return { valid: false, prop, value, message }
+      }
+    }
+
+    if (regex !== undefined) {
+      regex.lastIndex = 0
+
+      if (!regex.test(String(value)))
+        return { valid: false, prop, value, message }
+    }
+
+    if (min !== undefined) {
+      if (Number(value) < min)
+        return { valid: false, prop, value, message }
+    }
+
+    if (max !== undefined) {
+      if (Number(value) > max)
+        return { valid: false, prop, value, message }
+    }
+
+    if (minlen !== undefined) {
+      if (value.length < minlen)
+        return { valid: false, prop, value, message }
+    }
+
+    if (maxlen !== undefined) {
+      if (value.length > maxlen)
+        return { valid: false, prop, value, message }
+    }
+
+    if (validator !== undefined) {
+      const result: OptionalValue<boolean | string> = await validator(value, { required, message, regex })
+
+      if (result === false || typeof result === 'string') {
+        return {
+          valid: false,
+          prop,
+          value,
+          message: typeof result === 'string' ? result : message,
+        }
+      }
+    }
+  }
+
+  return { valid: true, prop, value }
+}
+
+function clearValidate(): void {
+  errorMessage.value = null
+}
+
+async function validate(trigger?: FormItemRuleTrigger): Promise<FormItemValidateResult> {
+  const result = await executeValidate(trigger)
+
+  if (result.valid)
+    clearValidate()
+  else
+    errorMessage.value = result.message!
+
+  formContext?.emitValidate(result)
+
+  return result
+}
+
+const selfContext: FormItemContext = {
+  prop: toRef(props, 'prop'),
+  triggers,
+  validate,
+  clearValidate,
+}
+
+provide(FORM_ITEM_CONTEXT_KEY, selfContext)
+
+onMounted(() => {
+  if (props.prop !== undefined)
+    formContext?.insertField(selfContext)
+})
+
+onBeforeUnmount(() => {
+  if (props.prop !== undefined)
+    formContext?.removeField(selfContext)
+})
+
+defineExpose({
+  validate,
+  clearValidate,
+})
 </script>
 
 <script lang="ts">
-const componentName = `${PREFIX}-form-item`
-
 export default defineComponent({
-  name: componentName,
+  name: `${PREFIX}-form-item`,
   inheritAttrs: false,
   options: {
     virtualHost: true,
@@ -79,30 +252,37 @@ export default defineComponent({
 
 <template>
   <NutCell
-    :custom-class="[{ error: formErrorTip[prop], line: showErrorLine }, classes, labelPositionClass]"
-    :custom-style="customStyle"
+    :custom-class="classes"
+    :custom-style="styles"
   >
     <view
-      v-if="label || getSlots('label')"
-      class="nut-cell__title nut-form-item__label"
-      :style="labelStyle"
-      :class="{ required: isRequired, [starPositionClass]: starPositionClass }"
+      v-if="props.label || slots.label"
+      class="nut-form-item__label nut-cell__title"
+      :style="labelStyles"
     >
-      <slot name="label">
-        {{ label }}
-      </slot>
+      <slot v-if="slots.label" name="label" />
+
+      <template v-else>
+        {{ props.label }}
+      </template>
     </view>
-    <view class="nut-cell__value nut-form-item__body">
-      <view class="nut-form-item__body__slots" :style="bodyStyle">
+
+    <view class="nut-form-item__body nut-cell__value">
+      <view class="nut-form-item__body__slots" :style="bodyStyles">
         <slot />
       </view>
-      <view v-if="formErrorTip[prop] && showErrorMessage" class="nut-form-item__body__tips" :style="errorMessageStyle">
-        {{ formErrorTip[prop] }}
+
+      <view v-if="hasErrorMessage" class="nut-form-item__body__tips" :style="errorMessageStyles">
+        <slot v-if="slots.error" name="error" :message="errorMessage" />
+
+        <template v-else>
+          {{ errorMessage }}
+        </template>
       </view>
     </view>
   </NutCell>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

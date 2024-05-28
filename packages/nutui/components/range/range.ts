@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { commonProps, isNumber, makeNumericProp, makeObjectProp } from '../_utils'
+import { commonProps, isNumber, makeNumericProp, makeObjectProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export type SliderValue = number | number[]
@@ -32,7 +32,7 @@ export const rangeProps = {
   /**
    * @description 是否禁用滑块
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 是否竖向展示
    */

@@ -1,180 +1,95 @@
 <script setup lang="ts">
-import type { VNode } from 'vue'
-import { computed, defineComponent, reactive, watch } from 'vue'
-import { getMainClass, getPropByPath, isObject, isPromise } from '../_utils'
+import { computed, defineComponent, provide, toRef, watch } from 'vue'
+import { castArray } from '../_plugins/lodash'
+import { getMainClass, getMainStyle } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
-import type { FormItemRule } from '../formitem/types'
-import { useProvide } from '../_hooks'
-import { FORM_KEY, formEmits, formProps } from './form'
-import type { ErrorMessage, FormRule, FormRules } from './types'
+import type { FormItemContext, FormItemValidateResult } from '../formitem'
+import type { Arrayable } from '../_types'
+import { FORM_CONTEXT_KEY, formEmits, formProps } from './form'
+import type { FormValidateResult } from './type'
 
 const props = defineProps(formProps)
-const emit = defineEmits(formEmits)
-defineExpose({ reset, submit, validate })
-const formErrorTip = computed(() => reactive<any>({}))
 
-const { internalChildren } = useProvide(
-  FORM_KEY,
-  'nut-form-item',
-)({ props, formErrorTip })
+const emit = defineEmits(formEmits)
 
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
-function clearErrorTips() {
-  Object.keys(formErrorTip.value).forEach((item) => {
-    formErrorTip.value[item] = ''
-  })
+
+const styles = computed(() => {
+  return getMainStyle(props)
+})
+
+const items: Map<string, FormItemContext> = new Map()
+
+function insertField(field: FormItemContext) {
+  if (field.prop.value === undefined)
+    return
+
+  items.set(field.prop.value, field)
 }
 
-function reset() {
-  clearErrorTips()
+function removeField(field: FormItemContext) {
+  if (field.prop.value === undefined)
+    return
+
+  items.delete(field.prop.value)
 }
 
-watch(
-  () => props.modelValue,
-  () => {
-    clearErrorTips()
-  },
-  { immediate: true },
-)
+function filterFields(fields?: Arrayable<string>): FormItemContext[] {
+  if (fields === undefined)
+    return Array.from(items.values())
 
-function findFormItem(vnodes: VNode[]) {
-  let task: FormRule[] = []
-  vnodes.forEach((vnode: VNode) => {
-    let type = vnode.type
-    type = (type as any).name || type
-    if (type === 'nut-form-item' || type?.toString().endsWith('form-item')) {
-      task.push({
-        prop: vnode.props?.prop,
-        rules: vnode.props?.rules || [],
-      })
-    }
-    else if (Array.isArray(vnode.children) && vnode.children?.length) {
-      task = task.concat(findFormItem(vnode.children as VNode[]))
-    }
-    else if (isObject(vnode.children) && Object.keys(vnode.children)) {
-      // 异步节点获取
-      if ((vnode.children as any)?.default) {
-        vnode.children = (vnode.children as any).default()
-        task = task.concat(findFormItem(vnode.children as VNode[]))
-      }
-    }
-    else if (Array.isArray(vnode)) {
-      task = task.concat(findFormItem(vnode as VNode[]))
-    }
-  })
+  const normalized: string[] = castArray(fields)
 
-  return task
+  return Array.from(items.entries())
+    .filter(([prop]) => normalized.includes(prop))
+    .map(([_, value]) => value)
 }
 
-function tipMessage(errorMsg: ErrorMessage) {
-  if (errorMsg.message)
-    emit('validate', errorMsg)
+async function validate(fields?: Arrayable<string>): Promise<FormValidateResult> {
+  const result = await Promise.all(filterFields(fields).map(item => item.validate()))
 
-  formErrorTip.value[errorMsg.prop] = errorMsg.message
-}
+  const errors = result.filter(item => !item.valid)
 
-async function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
-  const { rules, prop } = item
-
-  const _Promise = (errorMsg: ErrorMessage): Promise<ErrorMessage> => {
-    return new Promise((resolve, reject) => {
-      try {
-        tipMessage(errorMsg)
-        resolve(errorMsg)
-      }
-      catch (error) {
-        reject(error)
-      }
-    })
+  return {
+    valid: errors.length <= 0,
+    errors,
   }
-
-  if (!prop)
-    console.warn('[NutUI] <FormItem> 使用 rules 校验规则时 , 必须设置 prop 参数')
-
-  const value = getPropByPath(props.modelValue, prop || '')
-
-  // clear tips
-  tipMessage({ prop, message: '' })
-  const formRules: FormRules = props.rules || {}
-  const _rules = [...(formRules?.[prop] || []), ...rules]
-  while (_rules.length) {
-    const rule = _rules.shift() as FormItemRule
-    const { validator, ...ruleWithoutValidator } = rule
-    const { required, regex, message } = ruleWithoutValidator
-    const errorMsg = { prop, message }
-    if (required) {
-      if (Array.isArray(value)) {
-        if (!value.length)
-          return _Promise(errorMsg)
-      }
-      else if (!value && value !== 0) {
-        return _Promise(errorMsg)
-      }
-    }
-    if (regex && !regex.test(String(value)))
-      return _Promise(errorMsg)
-
-    if (validator) {
-      const result = validator(value, ruleWithoutValidator)
-      if (isPromise(result)) {
-        try {
-          const value = await result
-          if (value === false)
-            return _Promise(errorMsg)
-        }
-        catch (error) {
-          const validateErrorMsg = { prop, message: error as string }
-          return _Promise(validateErrorMsg)
-        }
-      }
-      else {
-        if (!result)
-          return _Promise(errorMsg)
-      }
-    }
-  }
-  return Promise.resolve(true)
 }
 
-/**
- * 校验
- * @param customProp 指定校验，用于用户自定义场景时触发，例如 blur、change 事件
- * @returns
- */
-function validate(customProp = '') {
-  return new Promise((resolve, reject) => {
-    try {
-      const task = findFormItem(internalChildren?.map(child => child.vnode))
-
-      const errors = task.map((item) => {
-        if (customProp && customProp !== item.prop)
-          return Promise.resolve(true)
-
-        return checkRule(item)
-      })
-
-      Promise.all(errors).then((errorRes) => {
-        errorRes = errorRes.filter(item => item !== true)
-        const res = { valid: true, errors: [] }
-        if (errorRes.length) {
-          res.valid = false
-          res.errors = errorRes as any
-        }
-        resolve(res)
-      })
-    }
-    catch (error) {
-      reject(error)
-    }
-  })
+function clearValidate(fields?: Arrayable<string>) {
+  for (const item of filterFields(fields))
+    item.clearValidate()
 }
-function submit() {
-  validate()
-  return false
+
+function emitValidate(result: FormItemValidateResult) {
+  emit('validate', result)
 }
+
+watch(() => props.rules, () => {
+  if (props.validateOnRuleChange)
+    validate()
+}, { deep: true })
+
+function preventDefault() {}
+
+provide(FORM_CONTEXT_KEY, {
+  modelValue: toRef(props, 'modelValue'),
+  rules: toRef(props, 'rules'),
+  disabled: toRef(props, 'disabled'),
+  starPosition: toRef(props, 'starPosition'),
+  labelPosition: toRef(props, 'labelPosition'),
+  insertField,
+  removeField,
+  emitValidate,
+})
+
+defineExpose({
+  validate,
+  clearValidate,
+})
 </script>
 
 <script lang="ts">
@@ -191,13 +106,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <form :class="classes" :style="customStyle" action="#" @submit.prevent="() => false">
-    <NutCellGroup>
+  <form
+    :class="classes"
+    :style="styles"
+    action="#"
+    @submit.prevent="preventDefault"
+  >
+    <NutCellGroup v-if="props.builtinCellGroup">
       <slot />
     </NutCellGroup>
+
+    <slot v-else />
   </form>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

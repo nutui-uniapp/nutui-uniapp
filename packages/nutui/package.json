@@ -59,5 +59,8 @@
   "peerDependencies": {
     "@uni-helper/uni-app-types": ">=0.5.12",
     "vue": ">=3.2.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
   }
 }

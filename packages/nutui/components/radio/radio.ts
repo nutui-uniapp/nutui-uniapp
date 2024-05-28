@@ -1,12 +1,12 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
 
 export const radioProps = {
   ...commonProps,
   /**
    * @description 是否禁用选择
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 图标尺寸
    */
