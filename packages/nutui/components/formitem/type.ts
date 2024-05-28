@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { Arrayable, Awaitable, NullableValue, OptionalString, OptionalValue } from '../_types'
+import type { Arrayable, Awaitable, OptionalString, OptionalValue } from '../_types'
 
 export const formItemStarPosition = ['left', 'right'] as const
 export type FormItemStarPosition = (typeof formItemStarPosition)[number]
@@ -15,7 +15,7 @@ export type FormItemRuleTrigger = (typeof formItemRuleTrigger)[number]
 
 export type FormItemRuleTriggers = { [key in FormItemRuleTrigger]: boolean }
 
-export class FormItemRuleWithoutValidator {
+export interface FormItemRuleWithoutValidator {
   required?: boolean
   regex?: RegExp
   min?: number

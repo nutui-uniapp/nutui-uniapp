@@ -10,7 +10,7 @@ export const formitemProps = {
    */
   prop: String,
   /**
-   * @description
+   * @description 标签文本
    */
   label: makeStringProp(''),
   /**
