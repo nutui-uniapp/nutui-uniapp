@@ -47,6 +47,12 @@ interface DynamicForm {
   tels: DynamicTelItem[]
 }
 
+function sleep(timeout: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout)
+  })
+}
+
 const baseForm = ref<BaseForm>({
   text1: '',
   text2: '',
@@ -87,13 +93,57 @@ const demoRules: FormRules<DemoForm> = {
   hobby: { required: true, message: '请选择用户喜好', trigger: 'change' },
   progress: { min: 30, message: '进度不能小于30%', trigger: 'change' },
   rate: { min: 2, message: '评价不能低于2星' },
-  remarks: {
+  remarks: [{
+    // 返回值说明
+    // 字符串/false：校验失败
+    // true/undefined：校验通过
     validator(value) {
       if (!value.includes('nutui'))
+        // 可以直接返回字符串作为错误信息
         return '输入的备注中没有包含 "nutui" 字样'
     },
     trigger: 'blur',
-  },
+  }, {
+    validator(value) {
+      if (value.length < 10)
+        // 也可以返回false表示校验不通过，将会使用message字段作为错误信息
+        return false
+    },
+    message: '备注信息长度不能小于10',
+    trigger: 'blur',
+  }, {
+    async validator(value) {
+      // 也可以异步校验，这里用sleep模拟接口请求
+      await sleep(1000)
+
+      // 这里模拟异步处理，返回值的处理逻辑与同步校验相同
+      return value.length > 30 ? '备注信息长度不能大于30' : true
+    },
+    trigger: 'blur',
+  }, {
+    validator(value) {
+      // 当然，也可以返回一个Promise
+      return new Promise((resolve) => {
+        sleep(1000).then(() => {
+          if (!value.startsWith('您好'))
+            resolve('备注信息必须以 "您好" 开头')
+          else
+            resolve()
+        })
+      })
+    },
+    trigger: 'blur',
+  }, {
+    validator(value) {
+      if (!value.endsWith('谢谢'))
+        // 如果你更喜欢使用reject表示错误信息，也可以这样
+        // eslint-disable-next-line prefer-promise-reject-errors
+        return Promise.reject('备注信息必须以 "谢谢" 结尾')
+        // 也可以使用Error
+        // return Promise.reject(new Error('备注信息必须以 "谢谢" 结尾'))
+    },
+    trigger: 'blur',
+  }],
   'object.test1': [
     { required: true, message: '请输入其他信息', trigger: ['blur', 'change'] },
     { regex: /^[\u4E00-\u9FA5]+$/g, message: '其他信息只能输入中文', trigger: 'blur' },
@@ -179,7 +229,7 @@ function clearDynamicFormValidate() {
       </nut-form-item>
 
       <nut-form-item label="备注">
-        <nut-textarea v-model="baseForm.text5" placeholder="请输入备注" />
+        <nut-textarea v-model="baseForm.text5" placeholder="请输入备注" disable-default-padding />
       </nut-form-item>
     </nut-form>
 
@@ -257,11 +307,11 @@ function clearDynamicFormValidate() {
       </view>
 
       <nut-form-item label="备注信息" prop="remarks">
-        <nut-textarea v-model="demoForm.remarks" placeholder="请输入备注信息" />
+        <nut-textarea v-model="demoForm.remarks" placeholder="请输入备注信息" disable-default-padding />
       </nut-form-item>
 
       <nut-cell>
-        <nut-button class="!mr-10px" type="primary" size="small" @click="submitDemoForm">
+        <nut-button custom-style="margin-right: 10px" type="primary" size="small" @click="submitDemoForm">
           提交
         </nut-button>
         <nut-button size="small" @click="clearDemoFormValidate">
@@ -294,13 +344,13 @@ function clearDynamicFormValidate() {
       </nut-form-item>
 
       <nut-cell>
-        <nut-button class="!mr-10px" size="small" @click="createDynamicFormItem">
+        <nut-button custom-style="margin-right: 10px" size="small" @click="createDynamicFormItem">
           添加
         </nut-button>
-        <nut-button class="!mr-10px" size="small" @click="deleteDynamicFormItem">
+        <nut-button custom-style="margin-right: 10px" size="small" @click="deleteDynamicFormItem">
           删除
         </nut-button>
-        <nut-button class="!mr-10px" type="primary" size="small" @click="submitDynamicForm">
+        <nut-button custom-style="margin-right: 10px" type="primary" size="small" @click="submitDynamicForm">
           提交
         </nut-button>
         <nut-button size="small" @click="clearDynamicFormValidate">

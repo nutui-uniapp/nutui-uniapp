@@ -2,8 +2,8 @@
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRef, useSlots } from 'vue'
 import { useTranslate } from '../../locale'
-import { castArray, get, isEmpty } from '../_plugins/lodash'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import { castArray, get, isEmpty, omit } from '../_plugins/lodash'
+import { getMainClass, getMainStyle, isPromise, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
 import { useFormContext } from '../form'
@@ -14,6 +14,7 @@ import type {
   FormItemRule,
   FormItemRuleTrigger,
   FormItemRuleTriggers,
+  FormItemRuleWithoutValidator,
   FormItemValidateResult,
 } from './type'
 
@@ -120,6 +121,36 @@ const errorMessageStyles = computed<CSSProperties>(() => {
   }
 })
 
+function collectValidatorResult(
+  validator: FormItemRule['validator'],
+  value: any,
+  rule: FormItemRuleWithoutValidator,
+): Promise<OptionalValue<boolean | string | void>> {
+  const normalize = (val: Awaited<ReturnType<NonNullable<FormItemRule['validator']>>>) => {
+    return val instanceof Error ? val.message : val
+  }
+
+  return new Promise((resolve) => {
+    if (validator == null) {
+      resolve(true)
+      return
+    }
+
+    const result = validator(value, rule)
+
+    if (!isPromise(result)) {
+      resolve(normalize(result))
+      return
+    }
+
+    result.then((res) => {
+      resolve(normalize(res))
+    }).catch((res) => {
+      resolve(normalize(res))
+    })
+  })
+}
+
 async function executeValidate(trigger?: FormItemRuleTrigger): Promise<FormItemValidateResult> {
   const { prop } = props
 
@@ -131,17 +162,19 @@ async function executeValidate(trigger?: FormItemRuleTrigger): Promise<FormItemV
   if (rules.value.length <= 0)
     return { valid: true, prop, value }
 
-  for (const {
-    required = false,
-    regex,
-    min,
-    max,
-    minlen,
-    maxlen,
-    message = translate('defaultErrorMessage'),
-    validator,
-    trigger: ruleTrigger,
-  } of rules.value) {
+  for (const rule of rules.value) {
+    const {
+      required = false,
+      regex,
+      min,
+      max,
+      minlen,
+      maxlen,
+      message = translate('defaultErrorMessage'),
+      validator,
+      trigger: ruleTrigger,
+    } = rule
+
     if (trigger != null && ruleTrigger != null && !castArray(ruleTrigger).includes(trigger))
       continue
 
@@ -180,7 +213,7 @@ async function executeValidate(trigger?: FormItemRuleTrigger): Promise<FormItemV
     }
 
     if (validator !== undefined) {
-      const result: OptionalValue<boolean | string> = await validator(value, { required, message, regex })
+      const result = await collectValidatorResult(validator, value, omit(rule, 'validator'))
 
       if (result === false || typeof result === 'string') {
         return {
