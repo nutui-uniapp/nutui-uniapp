@@ -7,7 +7,7 @@ import { getMainClass, getMainStyle, isPromise, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
 import { useFormContext } from '../form'
-import type { NullableString, OptionalValue } from '../_types'
+import type { OptionalValue } from '../_types'
 import { FORM_ITEM_CONTEXT_KEY, formitemProps } from './formitem'
 import type {
   FormItemContext,
@@ -16,6 +16,7 @@ import type {
   FormItemRuleTriggers,
   FormItemRuleWithoutValidator,
   FormItemValidateResult,
+  FormItemValidateState,
 } from './type'
 
 const props = defineProps(formitemProps)
@@ -23,10 +24,6 @@ const props = defineProps(formitemProps)
 const slots = useSlots()
 
 const formContext = useFormContext()
-
-const componentName = `${PREFIX}-form-item`
-
-const { translate } = useTranslate(componentName)
 
 const rules = computed<FormItemRule[]>(() => {
   if (props.prop == null)
@@ -76,27 +73,32 @@ const isRequired = computed<boolean>(() => {
   return false
 })
 
-const errorMessage = ref<NullableString>(null)
+const validateState = ref<FormItemValidateState>('default')
+const validateMessage = ref<string>('')
 
-const isError = computed<boolean>(() => {
-  return !isEmpty(errorMessage.value)
+const isErrorState = computed<boolean>(() => {
+  return validateState.value === 'error'
 })
 
-const hasErrorMessage = computed<boolean>(() => {
-  return props.showErrorMessage! && isError.value
+const shouldShowError = computed<boolean>(() => {
+  return props.showErrorMessage && isErrorState.value
 })
 
 const classes = computed(() => {
   const labelPosition = props.labelPosition ?? formContext?.labelPosition.value
   const starPosition = props.starPosition ?? formContext?.starPosition.value
 
-  return getMainClass(props, componentName, {
+  const value = {
     'is-required': isRequired.value,
-    'is-error': isError.value,
-    'has-line': props.showErrorLine && isError.value,
-    [`nut-form-item--${labelPosition}`]: true,
-    [`nut-form-item--star-${starPosition}`]: true,
-  })
+    'show-error-line': props.showErrorLine && isErrorState.value,
+    [`is-label-${labelPosition}`]: true,
+    [`is-star-${starPosition}`]: isRequired.value,
+  }
+
+  if (validateState.value !== 'default')
+    value[`is-${validateState.value}`] = true
+
+  return getMainClass(props, componentName, value)
 })
 
 const styles = computed(() => {
@@ -163,17 +165,7 @@ async function executeValidate(trigger?: FormItemRuleTrigger): Promise<FormItemV
     return { valid: true, prop, value }
 
   for (const rule of rules.value) {
-    const {
-      required = false,
-      regex,
-      min,
-      max,
-      minlen,
-      maxlen,
-      message = translate('defaultErrorMessage'),
-      validator,
-      trigger: ruleTrigger,
-    } = rule
+    const { required = false, regex, min, max, minlen, maxlen, message, validator, trigger: ruleTrigger } = rule
 
     if (trigger != null && ruleTrigger != null && !castArray(ruleTrigger).includes(trigger))
       continue
@@ -230,16 +222,23 @@ async function executeValidate(trigger?: FormItemRuleTrigger): Promise<FormItemV
 }
 
 function clearValidate(): void {
-  errorMessage.value = null
+  validateState.value = 'default'
+  validateMessage.value = ''
 }
 
 async function validate(trigger?: FormItemRuleTrigger): Promise<FormItemValidateResult> {
+  validateState.value = 'validating'
+
   const result = await executeValidate(trigger)
 
-  if (result.valid)
-    clearValidate()
-  else
-    errorMessage.value = result.message!
+  if (result.valid) {
+    validateState.value = 'success'
+    validateMessage.value = ''
+  }
+  else {
+    validateState.value = 'error'
+    validateMessage.value = result.message || ''
+  }
 
   formContext?.emitValidate(result)
 
@@ -272,6 +271,10 @@ defineExpose({
 </script>
 
 <script lang="ts">
+const componentName = `${PREFIX}-form-item`
+
+const { translate } = useTranslate(componentName)
+
 export default defineComponent({
   name: `${PREFIX}-form-item`,
   inheritAttrs: false,
@@ -305,11 +308,11 @@ export default defineComponent({
         <slot />
       </view>
 
-      <view v-if="hasErrorMessage" class="nut-form-item__body__tips" :style="errorMessageStyles">
-        <slot v-if="slots.error" name="error" :message="errorMessage" />
+      <view v-if="shouldShowError" class="nut-form-item__body__tips" :style="errorMessageStyles">
+        <slot v-if="slots.error" name="error" :message="validateMessage || translate('defaultErrorMessage')" />
 
         <template v-else>
-          {{ errorMessage }}
+          {{ validateMessage || translate('defaultErrorMessage') }}
         </template>
       </view>
     </view>

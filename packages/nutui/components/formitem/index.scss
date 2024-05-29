@@ -30,7 +30,7 @@
   }
 
   &.is-error {
-    &.has-line {
+    &.show-error-line {
       &::before {
         border-bottom: 1px solid $form-item-error-line-color;
         transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -93,11 +93,11 @@
     }
   }
 
-  &--right {
+  &.is-label-right {
     --nut-form-item-label-text-align: right;
   }
 
-  &--top {
+  &.is-label-top {
     flex-direction: column;
 
     #{$block}__label {
@@ -118,7 +118,7 @@
       }
     }
 
-    &#{$block}--star-right {
+    &.is-star-right {
       #{$block}__label {
         &::before {
           display: none;
