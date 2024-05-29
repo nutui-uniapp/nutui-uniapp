@@ -27,7 +27,7 @@ export interface FormItemRuleWithoutValidator {
 }
 
 export interface FormItemRule extends FormItemRuleWithoutValidator {
-  validator?: (value: any, rule: FormItemRuleWithoutValidator) => Awaitable<OptionalValue<boolean | string>>
+  validator?: (value: any, rule: FormItemRuleWithoutValidator) => Awaitable<OptionalValue<boolean | string | Error | void>>
 }
 
 export interface FormItemValidateResult {
