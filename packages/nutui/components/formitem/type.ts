@@ -15,6 +15,9 @@ export type FormItemRuleTrigger = (typeof formItemRuleTrigger)[number]
 
 export type FormItemRuleTriggers = { [key in FormItemRuleTrigger]: boolean }
 
+export const formItemValidateState = ['default', 'validating', 'success', 'error'] as const
+export type FormItemValidateState = (typeof formItemValidateState)[number]
+
 export interface FormItemRuleWithoutValidator {
   required?: boolean
   regex?: RegExp
