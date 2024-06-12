@@ -164,21 +164,21 @@ const innerStyles = computed<CSSProperties>(() => {
 
 watch(() => props, (value) => {
   toastOptions.value = Object.assign(cloneDeep(toastDefaultOptions), value)
+
+  if (value.visible)
+    show(toastOptions.value.type!, toastOptions.value.msg!, toastOptions.value)
+  else
+    hide()
 }, { deep: true })
 
 watch(injectToastOptions, (value) => {
   toastOptions.value = Object.assign(cloneDeep(toastDefaultOptions), value)
-})
 
-watch(
-  () => toastOptions.value.visible,
-  (value) => {
-    if (value)
-      show(toastOptions.value.type!, toastOptions.value.msg!, toastOptions.value)
-    else
-      hide()
-  },
-)
+  if (value.visible)
+    show(toastOptions.value.type!, toastOptions.value.msg!, toastOptions.value)
+  else
+    hide()
+})
 
 onUnmounted(() => {
   destroyTimer()
