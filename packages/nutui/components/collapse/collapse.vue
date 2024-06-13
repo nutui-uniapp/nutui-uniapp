@@ -1,15 +1,29 @@
 <script lang="ts" setup>
-import { computed, defineComponent, provide, ref, watch } from 'vue'
-import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { computed, provide, ref, watch } from 'vue'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { collapseEmits, collapseProps } from './collapse'
 
+const COMPONENT_NAME = 'nut-collapse'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(collapseProps)
+
 const emit = defineEmits(collapseEmits)
 
 const innerValue = ref(props.modelValue || (props.accordion ? '' : []))
+
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 watch(() => props.modelValue, (val) => {
@@ -61,21 +75,8 @@ provide('collapseParent', {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-collapse`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <slot />
   </view>
 </template>

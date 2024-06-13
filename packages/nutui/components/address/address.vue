@@ -9,7 +9,7 @@ import NutElevator from '../elevator/elevator.vue'
 import { getMainClass } from '../_utils'
 import requestAniFrame from '../_utils/raf'
 import { addressEmits, addressProps } from './address'
-import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './type'
+import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './types'
 
 const COMPONENT_NAME = 'nut-address'
 

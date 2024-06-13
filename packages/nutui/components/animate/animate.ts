@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
-import type { AnimateAction, AnimateType } from './type'
+import type { AnimateAction, AnimateType } from './types'
 
 export const animateProps = {
   ...commonProps,

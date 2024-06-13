@@ -1,10 +1,10 @@
 import { type CSSProperties, type SetupContext, computed, onMounted, ref, watch } from 'vue'
 import { funInterceptor, getMainClass } from '../_utils'
-import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { DialogEmits, DialogProps } from './dialog'
-import type { DialogOptions } from './type'
+import type { DialogOptions } from './types'
 
-const componentName = `${PREFIX}-dialog`
+const COMPONENT_NAME = 'nut-dialog'
 
 export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['emit']) {
   const showPopup = ref(props.visible)
@@ -62,7 +62,7 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
   )
 
   const classes = computed(() => {
-    return getMainClass(props, componentName)
+    return getMainClass(props, COMPONENT_NAME)
   })
 
   function update(val: boolean) {

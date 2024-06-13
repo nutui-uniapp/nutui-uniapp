@@ -1,13 +1,25 @@
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
 import { configProviderProps } from './configprovider'
 
+const COMPONENT_NAME = 'nut-config-provider'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(configProviderProps)
+
 function kebabCase(str: string): string {
   str = str.replace(str.charAt(0), str.charAt(0).toLocaleLowerCase())
   return str.replace(/([a-z])([A-Z])/g, (_, p1, p2) => `${p1}-${p2.toLowerCase()}`)
 }
+
 function colorRgb(str: string) {
   if (!str)
     return
@@ -32,6 +44,7 @@ function colorRgb(str: string) {
   }
   return null
 }
+
 function mapThemeVarsToCSSVars(themeVars: Record<string, string>) {
   if (!themeVars)
     return
@@ -56,21 +69,8 @@ function mapThemeVarsToCSSVars(themeVars: Record<string, string>) {
 }
 </script>
 
-<script  lang="ts">
-const componentName = `${PREFIX}-config-provider`
-
-export default defineComponent ({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="`nut-theme-${props.theme}`" :style="mapThemeVarsToCSSVars(themeVars)">
+  <view :class="`nut-theme-${props.theme}`" :style="mapThemeVarsToCSSVars(props.themeVars)">
     <slot />
   </view>
 </template>

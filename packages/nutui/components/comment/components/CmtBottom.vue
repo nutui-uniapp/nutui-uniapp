@@ -1,9 +1,20 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
-import { defineComponent, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useTranslate } from '../../../locale'
-import { PREFIX } from '../../_constants'
 import NutIcon from '../../icon/icon.vue'
+
+const COMPONENT_NAME = 'nut-comment-bottom'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps({
   type: {
@@ -14,17 +25,19 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
-
   operation: {
     type: Array as PropType<string[]>,
     default: () => ['replay', 'like', 'more'],
   },
 })
+
 const emit = defineEmits(['clickOperate', 'handleClick'])
 
-const showPopver = ref(false)
+const { translate } = useTranslate(COMPONENT_NAME)
 
-const mergeOp = ref([])
+const showPopover = ref(false)
+
+const mergeOp = ref<any[]>([])
 
 onMounted(() => {
   const deOp = ['replay', 'like', 'more']
@@ -32,14 +45,14 @@ onMounted(() => {
   if (props.operation) {
     props.operation.forEach((name: string) => {
       if (deOp.includes(name))
-        (mergeOp.value as any).push(name)
+        mergeOp.value.push(name)
     })
   }
 })
 
 function operate(type: string) {
   if (type === 'more')
-    showPopver.value = !showPopver.value
+    showPopover.value = !showPopover.value
 
   emit('clickOperate', type)
 }
@@ -49,41 +62,37 @@ function handleClick() {
 }
 </script>
 
-<script  lang="ts">
-const componentName = `${PREFIX}-comment-bottom`
-const { translate } = useTranslate(componentName)
-export default defineComponent ({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view class="nut-comment-bottom">
     <view class="nut-comment-bottom__lable" @click="handleClick">
-      <span v-if="type !== 'complex'" style="display: inline;white-space:none;">
-        {{ info.size }}
-      </span>
+      <text v-if="props.type !== 'complex'" style="display: inline;white-space:none;">
+        {{ props.info.size }}
+      </text>
     </view>
 
     <view class="nut-comment-bottom__cpx">
       <template v-for="(name, i) in mergeOp" :key="i">
-        <view class="nut-comment-bottom__cpx-item" :class="[`nut-comment-bottom__cpx-item--${name}`]" @click="operate(name)">
+        <view
+          class="nut-comment-bottom__cpx-item"
+          :class="[`nut-comment-bottom__cpx-item--${name}`]"
+          @click="operate(name)"
+        >
           <template v-if="name !== 'more'">
-            <text>{{ info[name] }}</text>
+            <text>{{ props.info[name] }}</text>
+
             <NutIcon v-if="name === 'like'" name="fabulous" />
             <NutIcon v-else name="comment" />
           </template>
+
           <template v-if="name === 'more'">
             <NutIcon name="more-x" />
-            <view v-if="showPopver" class="nut-comment-bottom__cpx-item-popover" @click="operate('popover')">
-              {{
-                translate('complaintsText')
-              }}
+
+            <view
+              v-if="showPopover"
+              class="nut-comment-bottom__cpx-item-popover"
+              @click="operate('popover')"
+            >
+              {{ translate('complaintsText') }}
             </view>
           </template>
         </view>
@@ -109,8 +118,8 @@ export default defineComponent ({
   }
 }
 
-.nut-comment{
-    &-bottom {
+.nut-comment {
+  &-bottom {
     display: flex;
     justify-content: space-between;
     margin-right: 5px;
@@ -161,7 +170,7 @@ export default defineComponent ({
             right: 0;
             width: 0;
             height: 0;
-            content: '';
+            content: "";
             border-top: 10px solid transparent;
             border-right: 0 solid transparent;
             border-bottom: 10px solid $white;
@@ -174,7 +183,7 @@ export default defineComponent ({
             right: -1px;
             width: 0;
             height: 0;
-            content: '';
+            content: "";
             border-top: 10px solid transparent;
             border-right: 0 solid transparent;
             border-bottom: 10px solid rgb(114 113 113 / 10%);

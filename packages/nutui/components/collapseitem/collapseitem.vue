@@ -1,27 +1,47 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
 import { collapseitemProps } from './collapseitem'
 
+const COMPONENT_NAME = 'nut-collapse-item'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(collapseitemProps)
-const instance = getCurrentInstance() as ComponentInternalInstance
-const { getSelectorNodeInfo } = useSelectorQuery(instance)
-const refRandomId = getRandomId()
+
 const slots = useSlots()
+
+const instance = getCurrentInstance() as ComponentInternalInstance
+
+const { getSelectorNodeInfo } = useSelectorQuery(instance)
+
+const refRandomId = getRandomId()
 
 const target = `#nut-collapse__item-${refRandomId}`
 
 const currentHeight = ref<string>('auto')
+
 const inAnimation = ref(false)
+
 const timeoutId = ref<any>('')
+
 const collapse: any = inject('collapseParent')
 const parent: any = reactive(collapse)
+
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}__border`]: props.border,
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}__border`]: props.border,
   })
 })
 
@@ -109,55 +129,50 @@ function toggle(open: boolean) {
 watch(expanded, toggle)
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-collapse-item`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <view
-      class="nut-collapse-item__title" :class="[{ 'nut-collapse-item__title--disabled': disabled }]"
+      class="nut-collapse-item__title"
+      :class="{ 'nut-collapse-item__title--disabled': props.disabled }"
       @click="handleClick"
     >
       <view class="nut-collapse-item__title-main">
         <view class="nut-collapse-item__title-main-value">
-          <slot v-if="$slots.title" name="title" />
+          <slot v-if="slots.title" name="title" />
+
           <template v-else>
-            <rich-text class="nut-collapse-item__title-mtitle" :nodes="title" />
+            <rich-text class="nut-collapse-item__title-mtitle" :nodes="props.title" />
           </template>
-          <view v-if="label" class="nut-collapse-item__title-label">
-            {{ label }}
+
+          <view v-if="props.label" class="nut-collapse-item__title-label">
+            {{ props.label }}
           </view>
         </view>
       </view>
-      <view v-if="$slots.value" class="nut-collapse-item__title-sub">
+
+      <view v-if="slots.value" class="nut-collapse-item__title-sub">
         <slot name="value" />
       </view>
-      <rich-text v-else class="nut-collapse-item__title-sub" :nodes="value" />
+
+      <rich-text v-else class="nut-collapse-item__title-sub" :nodes="props.value" />
+
       <view
-        class="nut-collapse-item__title-icon" :class="[{ 'nut-collapse-item__title-icon--expanded': expanded }]"
-        :style="{ transform: `rotate(${expanded ? rotate : 0}deg)` }"
+        class="nut-collapse-item__title-icon"
+        :class="{ 'nut-collapse-item__title-icon--expanded': expanded }"
+        :style="{ transform: `rotate(${expanded ? props.rotate : 0}deg)` }"
       >
         <slot name="icon">
-          <NutIcon :name="icon" />
+          <NutIcon :name="props.icon" />
         </slot>
       </view>
     </view>
 
-    <view v-if="$slots.extra" class="nut-collapse__item-extraWrapper">
-      <div class="nut-collapse__item-extraWrapper__extraRender">
+    <view v-if="slots.extra" class="nut-collapse__item-extraWrapper">
+      <view class="nut-collapse__item-extraWrapper__extraRender">
         <slot name="extra" />
-      </div>
+      </view>
     </view>
+
     <view
       class="nut-collapse__item-wrapper"
       :style="{

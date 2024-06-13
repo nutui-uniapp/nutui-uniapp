@@ -6,8 +6,8 @@ import { AVATAR_GROUP_KEY } from '../avatargroup'
 import { useInject } from '../_hooks'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { avatarProps } from './avatar'
-import type { AvatarFinalSize, AvatarShape, AvatarSize } from './type'
-import { avatarSize } from './type'
+import type { AvatarFinalSize, AvatarShape, AvatarSize } from './types'
+import { avatarSize } from './types'
 
 const COMPONENT_NAME = 'nut-avatar'
 

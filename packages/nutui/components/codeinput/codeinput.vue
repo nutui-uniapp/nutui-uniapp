@@ -1,23 +1,39 @@
 <script lang="ts" setup>
 import { type CSSProperties, nextTick } from 'vue'
-import { computed, defineComponent, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { getMainClass, getPx } from '../_utils'
-import { CHANGE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CHANGE_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { codeinputEmits, codeinputProps } from './codeinput'
+
+const COMPONENT_NAME = 'nut-code-input'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(codeinputProps)
 
 const emit = defineEmits(codeinputEmits)
+
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
+
 const inputValue = ref('')
+
 const isFocus = ref(props.focus)
 
 const codeLength = computed(() => {
   return Array.from({ length: Number(props.maxlength) })
 })
-const itemStyle = computed(() => {
+
+const itemStyles = computed(() => {
   return (index: number) => {
     const style: CSSProperties = {
       width: `${props.size}px`,
@@ -55,10 +71,12 @@ const itemStyle = computed(() => {
     return style
   }
 })
+
 const codeArray = computed(() => {
   return String(inputValue.value).split('')
 })
-const lineStyle = computed(() => {
+
+const lineStyles = computed(() => {
   const style: CSSProperties = {}
   style.height = props.hairline ? '2px' : '4px'
   style.width = `${props.size}px`
@@ -95,45 +113,50 @@ function inputHandler(e: { detail: { value: string } }) {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-code-input`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
-    <view v-for="(item, index) in codeLength" :key="index" class="nut-code-input__item" :style="[itemStyle(index)]">
-      <view v-if="dot && codeArray.length > index" class="nut-code-input__item__dot" />
+  <view :class="classes" :style="props.customStyle">
+    <view
+      v-for="(item, index) in codeLength"
+      :key="index"
+      class="nut-code-input__item"
+      :style="[itemStyles(index)]"
+    >
+      <view v-if="props.dot && codeArray.length > index" class="nut-code-input__item__dot" />
+
       <text
-        v-else :style="{
+        v-else
+        :style="{
           fontSize: `${props.fontSize}px`,
-          fontWeight: bold ? 'bold' : 'normal',
-          color: customColor,
+          fontWeight: props.bold ? 'bold' : 'normal',
+          color: props.customColor,
         }"
       >
         {{ codeArray[index] }}
       </text>
-      <view v-if="mode === 'line'" class="nut-code-input__item__line" :style="[lineStyle]" />
+
+      <view v-if="props.mode === 'line'" class="nut-code-input__item__line" :style="[lineStyles]" />
+
       <!-- #ifndef APP-PLUS -->
       <view
-        v-if="isFocus && codeArray.length === index" :style="{ backgroundColor: customColor }"
+        v-if="isFocus && codeArray.length === index"
         class="nut-code-input__item__cursor"
+        :style="{ backgroundColor: props.customColor }"
       />
       <!-- #endif -->
     </view>
+
     <input
-      :disabled="disabledKeyboard" type="number" :focus="focus" :value="inputValue" :maxlength="+maxlength"
-      :adjustPosition="adjustPosition" class="nut-code-input__input" :style="{
-        height: `${props.size}px`,
-      }" @input="inputHandler" @focus="isFocus = true" @blur="isFocus = false"
+      class="nut-code-input__input"
+      :style="{ height: `${props.size}px` }"
+      :value="inputValue"
+      type="number"
+      :disabled="props.disabledKeyboard"
+      :focus="focus"
+      :maxlength="+props.maxlength"
+      :adjust-position="props.adjustPosition"
+      @input="inputHandler"
+      @focus="isFocus = true"
+      @blur="isFocus = false"
     >
   </view>
 </template>

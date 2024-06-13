@@ -21,7 +21,7 @@ import { CHOOSE_EVENT, SELECT_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
 import { calendaritemEmits, calendaritemProps } from './calendaritem'
-import type { CalendarDateProp, CalendarTaroState, Day, MonthInfo, StringArr } from './type'
+import type { CalendarDateProp, CalendarTaroState, Day, MonthInfo, StringArr } from './types'
 
 const COMPONENT_NAME = 'nut-calendar-item'
 

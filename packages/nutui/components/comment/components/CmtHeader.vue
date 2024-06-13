@@ -1,9 +1,19 @@
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import { PREFIX } from '../../_constants'
 import NutRate from '../../rate/rate.vue'
 
-defineProps({
+const COMPONENT_NAME = 'nut-comment-header'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
+const props = defineProps({
   type: {
     type: String,
     default: 'default', // default，complex
@@ -21,55 +31,49 @@ function handleClick() {
 }
 </script>
 
-<script  lang="ts">
-const componentName = `${PREFIX}-comment-header`
-
-export default defineComponent ({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view>
-    <view v-if="info" class="nut-comment-header" @click="handleClick">
+    <view v-if="props.info" class="nut-comment-header" @click="handleClick">
       <view class="nut-comment-header__user">
         <view class="nut-comment-header__user-avter">
-          <image v-if="info.avatar" :src="info.avatar" />
+          <image v-if="props.info.avatar" :src="props.info.avatar" />
         </view>
 
-        <view v-if="type === 'default'" :class="[`nut-comment-header__user-${type}`]">
-          <view :class="[`nut-comment-header__user-${type}-name`]">
-            <text>{{ info.nickName }}</text>
+        <view v-if="props.type === 'default'" :class="[`nut-comment-header__user-${props.type}`]">
+          <view :class="[`nut-comment-header__user-${props.type}-name`]">
+            <text>{{ props.info.nickName }}</text>
+
             <slot name="labels" />
           </view>
 
           <view class="nut-comment-header__user-score">
-            <!-- eslint-disable vue/no-mutating-props -->
-            <NutRate v-model="info.score" size="12" spacing="5" readonly @change="handleClick" />
+            <!-- eslint-disable-next-line vue/no-mutating-props -->
+            <NutRate v-model="props.info.score" size="12" spacing="5" readonly @change="handleClick" />
           </view>
         </view>
 
-        <view v-else :class="[`nut-comment-header__user-${type}`]">
-          <text :class="[`nut-comment-header__user-${type}-name`]">
-            {{ info.nickName }}
+        <view v-else :class="[`nut-comment-header__user-${props.type}`]">
+          <text :class="[`nut-comment-header__user-${props.type}-name`]">
+            {{ props.info.nickName }}
           </text>
+
           <slot name="labels" />
         </view>
       </view>
-      <view v-if="info.time" class="nut-comment-header__time">
-        {{ info.time }}
+
+      <view v-if="props.info.time" class="nut-comment-header__time">
+        {{ props.info.time }}
       </view>
     </view>
-    <view v-if="type === 'complex'" :class="[`nut-comment-header__${type}-score`]">
-      <NutRate v-model="info.score" size="12" spacing="3" readonly />
-      <i :class="[`nut-comment-header__${type}-score-i`]" />
-      <view :class="[`nut-comment-header__${type}-score-size`]">
-        {{ info.size }}
+
+    <view v-if="props.type === 'complex'" :class="[`nut-comment-header__${props.type}-score`]">
+      <!-- eslint-disable-next-line vue/no-mutating-props -->
+      <NutRate v-model="props.info.score" size="12" spacing="3" readonly />
+
+      <i :class="[`nut-comment-header__${props.type}-score-i`]" />
+
+      <view :class="[`nut-comment-header__${props.type}-score-size`]">
+        {{ props.info.size }}
       </view>
     </view>
   </view>
@@ -95,7 +99,7 @@ export default defineComponent ({
 }
 
 .nut-comment {
-    &-header {
+  &-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
