@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type CSSProperties, useSlots } from 'vue'
 import { computed, defineComponent, reactive, toRef } from 'vue'
 import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'

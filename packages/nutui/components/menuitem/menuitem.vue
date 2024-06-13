@@ -207,5 +207,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

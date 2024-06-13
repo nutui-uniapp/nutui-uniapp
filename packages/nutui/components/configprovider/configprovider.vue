@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { configProviderProps } from './configprovider'
@@ -76,5 +76,5 @@ export default defineComponent ({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

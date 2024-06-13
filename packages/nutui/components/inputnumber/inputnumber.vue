@@ -1,5 +1,5 @@
 <!-- eslint-disable padded-blocks -->
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, toRef } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
@@ -164,5 +164,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

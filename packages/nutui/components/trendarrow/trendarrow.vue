@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, reactive } from 'vue'
 import { getMainClass, myFixed } from '../_utils'
 import { PREFIX } from '../_constants'
@@ -68,5 +68,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

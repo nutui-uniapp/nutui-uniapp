@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import { giftboxEmits } from './giftbox'
@@ -61,5 +61,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

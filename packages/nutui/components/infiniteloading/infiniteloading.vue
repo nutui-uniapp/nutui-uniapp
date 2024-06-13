@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive } from 'vue'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
@@ -187,5 +187,5 @@ const { translate } = useTranslate(componentName)
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

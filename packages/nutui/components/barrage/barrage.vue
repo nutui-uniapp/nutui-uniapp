@@ -1,17 +1,28 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass } from '../_utils'
 import { barrageProps } from './barrage'
 
+const COMPONENT_NAME = 'nut-barrage'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(barrageProps)
 
-defineExpose({ add })
-
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
+
 const classTime = new Date().getTime()
 
 const slotDefault = !!useSlots().default
@@ -23,7 +34,7 @@ const top = ref<number>(props.top)
 const speeds = props.speeds
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
+  return getMainClass(props, COMPONENT_NAME, {
     [`nut-barrage--dmBody${timeId.value}`]: true,
   })
 })
@@ -34,10 +45,11 @@ onMounted(() => {
     const list = document
       .getElementsByClassName(`nut-barrage__slotBody${classTime}`)[0]
       .getElementsByClassName('nut-barrage__item')
-    const childrens = list?.[0]?.children || []
-    danmuList.value = childrens
+
+    danmuList.value = list?.[0]?.children || []
   }
   // #endif
+
   runStep()
 })
 
@@ -50,6 +62,7 @@ watch(
 
 function add(word: string) {
   danmuList.value = [...danmuList.value, word]
+
   runStep()
 }
 
@@ -71,7 +84,9 @@ function runStep() {
     getNode(index)
   })
 }
+
 const styleList: any[] = reactive([])
+
 function styleInfo(index: number, nodeTop: string, width: number) {
   const timeIndex = index - rows.value > 0 ? index - rows.value : 0
   const list = styleList
@@ -94,38 +109,30 @@ function styleInfo(index: number, nodeTop: string, width: number) {
     styleList.push(obj)
   }
 }
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-barrage`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  add,
 })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
-    <div>
-      <div :class="[`nut-barrage__slotBody${classTime}`]">
+  <view :class="classes" :style="props.customStyle">
+    <view>
+      <view :class="[`nut-barrage__slotBody${classTime}`]">
         <view
           v-for="(item, index) of danmuList"
           :key="`danmu${index}`"
-          class="nut-barrage__item move" :class="[`nut-barrage__item${index}`]"
+          class="nut-barrage__item move"
+          :class="[`nut-barrage__item${index}`]"
           :style="styleList[index]"
         >
-          {{ item.length > 8 ? `${item.substr(0, 8)}...` : item }}
+          {{ item.length > 8 ? `${item.slice(0, 8)}...` : item }}
         </view>
-      </div>
-    </div>
+      </view>
+    </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

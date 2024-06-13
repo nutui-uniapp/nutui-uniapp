@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, toRefs } from 'vue'
 import { PREFIX } from '../_constants'
 import NutAvatar from '../avatar/avatar.vue'
@@ -71,5 +71,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

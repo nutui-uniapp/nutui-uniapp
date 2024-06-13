@@ -1,19 +1,33 @@
-<script setup lang="ts">
-import { computed, defineComponent } from 'vue'
+<script lang="ts" setup>
+import { computed } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
-import { CLICK_EVENT, PREFIX } from '../_constants'
+import { CLICK_EVENT } from '../_constants'
 import Icon from '../icon/icon.vue'
 import { cellEmits, cellProps } from './cell'
+
+const COMPONENT_NAME = 'nut-cell'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
+})
 
 const props = defineProps(cellProps)
 
 const emit = defineEmits(cellEmits)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--clickable`]: props.isLink || props.to,
-    [`${componentName}--center`]: props.center,
-    [`${componentName}--large`]: props.size === 'large',
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--clickable`]: props.isLink || props.to,
+    [`${COMPONENT_NAME}--center`]: props.center,
+    [`${COMPONENT_NAME}--large`]: props.size === 'large',
   })
 })
 
@@ -32,21 +46,6 @@ function handleClick(event: any) {
     })
   }
 }
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-cell`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
 </script>
 
 <template>

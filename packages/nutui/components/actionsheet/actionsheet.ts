@@ -10,6 +10,7 @@ export interface ActionSheetOption {
   name: string
   subname?: string
 }
+
 export const actionsheetProps = {
   ...popupProps,
   ...commonProps,
@@ -58,7 +59,6 @@ export const actionsheetEmits = {
   [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
   [CANCEL_EVENT]: () => true,
   [CHOOSE_EVENT]: (item: ActionSheetOption, index: number) => item instanceof Object && isNumber(index),
-
 }
 
 export type ActionsheetEmits = typeof actionsheetEmits

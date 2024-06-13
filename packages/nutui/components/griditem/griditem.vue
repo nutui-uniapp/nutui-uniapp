@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type CSSProperties, computed, defineComponent } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
@@ -101,5 +101,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

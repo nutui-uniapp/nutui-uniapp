@@ -1,7 +1,7 @@
-<script setup lang="ts">
-import { computed, defineComponent, reactive, ref, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, reactive, ref, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
-import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CHANGE_EVENT, CLOSE_EVENT, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
 import NutIcon from '../icon/icon.vue'
@@ -11,11 +11,26 @@ import requestAniFrame from '../_utils/raf'
 import { addressEmits, addressProps } from './address'
 import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './type'
 
+const COMPONENT_NAME = 'nut-address'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(addressProps)
+
 const emit = defineEmits(addressEmits)
 
+const { translate } = useTranslate(COMPONENT_NAME)
+
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 const showPopup = ref(props.visible)
@@ -106,6 +121,7 @@ function initCustomSelected() {
 function getTabName(item: AddressRegionData | null, index: number) {
   if (item && item.name)
     return item.name
+
   if (tabIndex.value < index && item)
     return item.name
 
@@ -157,6 +173,7 @@ function nextAreaList(item: AddressRegionData) {
   }
   emit(CHANGE_EVENT, callBackParams)
 }
+
 // 切换地区Tab
 function changeRegionTab(item: AddressRegionData, index: number) {
   prevTabIndex.value = tabIndex.value
@@ -210,6 +227,7 @@ function selectedExist(item: AddressExistRegionData) {
 
   handClose()
 }
+
 // 初始化
 function initAddress() {
   selectedRegion.value = []
@@ -284,35 +302,21 @@ watch(
 )
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-address`
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <NutPopup
     v-model:visible="showPopup"
-    :z-index="zIndex"
+    :z-index="props.zIndex"
     position="bottom"
-    :lock-scroll="lockScroll"
-    :round="round"
+    :lock-scroll="props.lockScroll"
+    :round="props.round"
     @close="close"
     @click-overlay="clickOverlay"
     @open="closeWay = 'self'"
   >
-    <view :class="classes" :style="customStyle">
+    <view :class="classes" :style="props.customStyle">
       <view class="nut-address__header">
         <view class="nut-address__header-back" @click="switchModule">
-          <slot v-if="type === 'exist' && privateType === 'custom'" name="backIcon">
+          <slot v-if="props.type === 'exist' && privateType === 'custom'" name="backIcon">
             <NutIcon name="left" size="14px" />
           </slot>
         </view>
@@ -320,8 +324,8 @@ export default defineComponent({
         <view class="nut-address__header__title">
           {{
             privateType === 'custom'
-              ? customAddressTitle || translate('selectRegion')
-              : existAddressTitle || translate('deliveryTo')
+              ? props.customAddressTitle || translate('selectRegion')
+              : props.existAddressTitle || translate('deliveryTo')
           }}
         </view>
 
@@ -336,27 +340,32 @@ export default defineComponent({
       <view v-if="['custom', 'custom2'].includes(privateType)" class="nut-address__custom">
         <view class="nut-address__region">
           <view
-            v-for="(item, index) in selectedRegion" :key="index"
+            v-for="(item, index) in selectedRegion"
+            :key="index"
             class="nut-address__region-item "
             :class="[index === tabIndex ? 'active' : '']"
             @click="changeRegionTab(item, index)"
           >
             <view>{{ getTabName(item, index) }} </view>
+
             <view class="nut-address__region-line--mini" :class="{ active: index === tabIndex }" />
           </view>
+
           <view v-if="tabIndex === selectedRegion.length" class="active nut-address__region-item">
             <view>{{ getTabName(null, selectedRegion.length) }} </view>
+
             <view class="nut-address__region-line--mini active" />
           </view>
         </view>
 
         <view v-if="privateType === 'custom'" class="nut-address__detail">
-          <div class="nut-address__detail-list">
+          <view class="nut-address__detail-list">
             <scroll-view :scroll-y="true" :style="{ height: '100%' }" :scroll-top="scrollTop" @scroll="scrollChange">
-              <div
+              <view
                 v-for="(item, index) in regionList"
                 :key="index"
-                class="nut-address__detail-item" :class="[selectedRegion[tabIndex]?.id === item.id ? 'active' : '']"
+                class="nut-address__detail-item"
+                :class="[selectedRegion[tabIndex]?.id === item.id ? 'active' : '']"
                 @click="nextAreaList(item)"
               >
                 <view>
@@ -364,14 +373,14 @@ export default defineComponent({
                     <NutIcon name="Check" custom-class="nut-address-select-icon" width="13px" />
                   </slot>{{ item.name }}
                 </view>
-              </div>
+              </view>
             </scroll-view>
-          </div>
+          </view>
         </view>
 
         <view v-else class="nut-address__elevator-group">
           <NutElevator
-            :height="height"
+            :height="props.height"
             :index-list="transformData(regionList)"
             @click-item="handleElevatorItem"
           />
@@ -380,10 +389,10 @@ export default defineComponent({
 
       <!-- 配送至 -->
       <view v-else-if="privateType === 'exist'" class="nut-address__exist">
-        <div class="nut-address__exist-group">
+        <view class="nut-address__exist-group">
           <ul class="nut-address__exist-group-list">
             <li
-              v-for="(item, index) in existAddress"
+              v-for="(item, index) in props.existAddress"
               :key="index"
               class="nut-address__exist-group-item"
               :class="[item.selectedAddress ? 'active' : '']"
@@ -397,33 +406,34 @@ export default defineComponent({
                 <NutIcon name="Check" custom-class="nut-address-select-icon" width="13px" />
               </slot>
 
-              <div class="nut-address__exist-item-info">
-                <div v-if="item.name && item.phone" class="nut-address__exist-item-info-top">
-                  <div class="nut-address__exist-item-info-name">
+              <view class="nut-address__exist-item-info">
+                <view v-if="item.name && item.phone" class="nut-address__exist-item-info-top">
+                  <view class="nut-address__exist-item-info-name">
                     {{ item.name }}
-                  </div>
-                  <div class="nut-address__exist-item-info-phone">
-                    {{ item.phone }}
-                  </div>
-                </div>
+                  </view>
 
-                <div class="nut-address__exist-item-info-bottom">
+                  <view class="nut-address__exist-item-info-phone">
+                    {{ item.phone }}
+                  </view>
+                </view>
+
+                <view class="nut-address__exist-item-info-bottom">
                   <view>
                     {{ item.provinceName + item.cityName + item.countyName + item.townName + item.addressDetail }}
                   </view>
-                </div>
-              </div>
+                </view>
+              </view>
             </li>
           </ul>
-        </div>
-        <div v-if="isShowCustomAddress" class="nut-address__exist-choose" @click="switchModule">
-          <div class="nut-address__exist-choose-btn">
-            {{
-              customAndExistTitle || translate('chooseAnotherAddress')
-            }}
-          </div>
-        </div>
-        <template v-if="!isShowCustomAddress">
+        </view>
+
+        <view v-if="props.isShowCustomAddress" class="nut-address__exist-choose" @click="switchModule">
+          <view class="nut-address__exist-choose-btn">
+            {{ props.customAndExistTitle || translate('chooseAnotherAddress') }}
+          </view>
+        </view>
+
+        <template v-if="!props.isShowCustomAddress">
           <slot name="bottom" />
         </template>
       </view>
@@ -432,5 +442,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useExtend } from '../_hooks'
@@ -570,5 +570,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

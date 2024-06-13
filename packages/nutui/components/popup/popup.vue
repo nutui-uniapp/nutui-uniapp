@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutOverlay from '../overlay/overlay.vue'
@@ -66,5 +66,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
 import { funInterceptor, getMainClass } from '../_utils'
@@ -263,5 +263,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

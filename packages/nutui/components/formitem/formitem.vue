@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRef, useSlots } from 'vue'
 import { useTranslate } from '../../locale'

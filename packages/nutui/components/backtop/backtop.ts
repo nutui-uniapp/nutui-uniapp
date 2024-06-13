@@ -8,27 +8,22 @@ export const backtopProps = {
    * @description 滚动区域的高度
    */
   height: makeStringProp('100vh'),
-
   /**
    * @description 距离页面底部距离
    */
   bottom: makeNumberProp(20),
-
   /**
    * @description 距离页面右侧距离
    */
   right: makeNumberProp(10),
-
   /**
    * @description 页面垂直滚动多高后出现
    */
   distance: makeNumberProp(200),
-
   /**
    * @description 设置组件页面层级
    */
   zIndex: makeNumberProp(10),
-
   /**
    * @description 自定义图标颜色
    */

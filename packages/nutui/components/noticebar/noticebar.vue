@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import { getMainClass, isObject, pxCheck } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
@@ -13,8 +13,8 @@ const emit = defineEmits(noticebarEmits)
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
-const wrap = ref<null | HTMLElement>(null)
-const content = ref<null | HTMLElement>(null)
+const wrap = ref<HTMLElement | null>(null)
+const content = ref<HTMLElement | null>(null)
 
 const state = reactive<stateProps>({
   wrapWidth: 0,
@@ -313,5 +313,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

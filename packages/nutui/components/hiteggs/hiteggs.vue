@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, reactive, ref } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
@@ -57,5 +57,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -1,13 +1,25 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComputedRef } from 'vue'
-import { computed, defineComponent, reactive, toRef, useSlots, watch } from 'vue'
+import { computed, reactive, toRef, useSlots, watch } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
-import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useInject } from '../_hooks'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
 import { CHECKBOX_KEY, checkboxEmits, checkboxProps } from './checkbox'
+
+const COMPONENT_NAME = 'nut-checkbox'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(checkboxProps)
 
@@ -17,6 +29,7 @@ const slots = useSlots()
 
 const formContext = useFormContext()
 const formItemContext = useFormItemContext()
+
 const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const { parent } = useInject<{
@@ -25,6 +38,7 @@ const { parent } = useInject<{
   max: ComputedRef<number>
   updateValue: (value: string[]) => void
 }>(CHECKBOX_KEY)
+
 const state = reactive({
   partialSelect: props.indeterminate,
 })
@@ -35,38 +49,47 @@ const pValue = computed(() => {
   if (hasParent.value)
     return parent?.value.value.includes(props.label)
 
-  else
-    return props.modelValue
+  return props.modelValue
 })
+
 const pDisabled = computed(() => {
-  return hasParent.value ? (parent?.disabled.value ? parent.disabled.value : disabled.value) : disabled.value
+  if (hasParent.value)
+    return parent?.disabled.value ? parent.disabled.value : disabled.value
+
+  return disabled.value
 })
 
 const checked = computed(() => !!props.modelValue)
 
-const color = computed(() => {
-  return !pDisabled.value
-    ? state.partialSelect
-      ? 'nut-checkbox__icon--indeterminate'
-      : !pValue.value
-          ? 'nut-checkbox__icon--unchecked'
-          : 'nut-checkbox__icon'
-    : 'nut-checkbox__icon--disable'
-})
-
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--reverse`]: props.textPosition === 'left',
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--reverse`]: props.textPosition === 'left',
   })
 })
 
-const getLabelClass = computed(() => {
-  return `${componentName}__label ${pDisabled.value ? `${componentName}__label--disabled` : ''}`
+const iconClasses = computed(() => {
+  if (pDisabled.value)
+    return 'nut-checkbox__icon--disable'
+
+  if (state.partialSelect)
+    return 'nut-checkbox__icon--indeterminate'
+
+  return pValue.value ? 'nut-checkbox__icon' : 'nut-checkbox__icon--unchecked'
 })
 
-const getButtonClass = computed(() => {
-  return `${componentName}__button ${pValue.value && `${componentName}__button--active`} ${pDisabled.value ? `${componentName}__button--disabled` : ''
-    }`
+const labelClasses = computed(() => {
+  return {
+    [`${COMPONENT_NAME}__label`]: true,
+    [`${COMPONENT_NAME}__label--disabled`]: pDisabled.value,
+  }
+})
+
+const buttonClasses = computed(() => {
+  return {
+    [`${COMPONENT_NAME}__button`]: true,
+    [`${COMPONENT_NAME}__button--active`]: pValue.value,
+    [`${COMPONENT_NAME}__button--disabled`]: pDisabled.value,
+  }
 })
 
 let updateType = ''
@@ -94,6 +117,7 @@ watch(
 function handleClick() {
   if (pDisabled.value)
     return
+
   if (checked.value && state.partialSelect) {
     // TODO uniapp小程序拿不到slots的children https://github.com/dcloudio/uni-app/issues/3279
     state.partialSelect = false
@@ -136,45 +160,44 @@ watch(
 )
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-checkbox`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle" @click="handleClick">
-    <view v-if="shape === 'button'" :class="getButtonClass">
+  <view :class="classes" :style="props.customStyle" @click="handleClick">
+    <view v-if="props.shape === 'button'" :class="buttonClasses">
       <slot />
     </view>
 
     <template v-else>
       <slot v-if="state.partialSelect" name="indeterminate">
         <NutIcon
-          name="check-disabled" :size="pxCheck(iconSize)" :width="pxCheck(iconSize)" :height="pxCheck(iconSize)"
-          :pop-class="color"
+          :custom-class="iconClasses"
+          name="check-disabled"
+          :size="pxCheck(props.iconSize)"
+          :width="pxCheck(props.iconSize)"
+          :height="pxCheck(props.iconSize)"
         />
       </slot>
+
       <slot v-else-if="!pValue" name="icon">
         <NutIcon
-          name="check-normal" :size="pxCheck(iconSize)" :width="pxCheck(iconSize)" :height="pxCheck(iconSize)"
-          :pop-class="color"
+          :custom-class="iconClasses"
+          name="check-normal"
+          :size="pxCheck(props.iconSize)"
+          :width="pxCheck(props.iconSize)"
+          :height="pxCheck(props.iconSize)"
         />
       </slot>
+
       <slot v-else name="checkedIcon">
         <NutIcon
-          name="checked" :size="pxCheck(iconSize)" :width="pxCheck(iconSize)" :height="pxCheck(iconSize)"
-          :pop-class="color"
+          :custom-class="iconClasses"
+          name="checked"
+          :size="pxCheck(props.iconSize)"
+          :width="pxCheck(props.iconSize)"
+          :height="pxCheck(props.iconSize)"
         />
       </slot>
-      <view :class="getLabelClass">
+
+      <view :class="labelClasses">
         <slot />
       </view>
     </template>
@@ -182,5 +205,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

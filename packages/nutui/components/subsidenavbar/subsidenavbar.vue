@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type CSSProperties, computed, defineComponent, onMounted, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
@@ -69,5 +69,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type CSSProperties, nextTick } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { getMainClass, getPx } from '../_utils'
@@ -139,5 +139,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

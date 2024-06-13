@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, provide, toRef, watch } from 'vue'
 import { castArray } from '../_plugins/lodash'
 import { getMainClass, getMainStyle } from '../_utils'

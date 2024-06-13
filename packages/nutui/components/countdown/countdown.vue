@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
 import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'
 import { INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
@@ -235,5 +235,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

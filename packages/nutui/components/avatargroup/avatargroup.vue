@@ -1,11 +1,23 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import NutAvatar from '../avatar/avatar.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { AVATAR_GROUP_KEY, avatargroupProps } from './avatargroup'
+
+const COMPONENT_NAME = 'nut-avatar-group'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(avatargroupProps)
 
@@ -31,7 +43,7 @@ watch(() => ({
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 const styles = computed(() => {
@@ -47,22 +59,10 @@ const foldStyles = computed<CSSProperties>(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-avatar-group`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view :class="classes" :style="styles">
     <slot />
+
     <NutAvatar
       v-if="foldCount > 0"
       custom-class="avatar-fold"
@@ -78,5 +78,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

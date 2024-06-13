@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { type ComponentInternalInstance, type VNode, nextTick } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onDeactivated, reactive, watch } from 'vue'
 import { clamp, getRandomId } from '../_utils'
@@ -373,5 +373,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

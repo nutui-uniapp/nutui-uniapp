@@ -1,7 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, getCurrentInstance, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, getCurrentInstance, ref, watch } from 'vue'
 import type { AvatarGroupProps } from '../avatargroup'
 import { AVATAR_GROUP_KEY } from '../avatargroup'
 import { useInject } from '../_hooks'
@@ -9,6 +8,18 @@ import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { avatarProps } from './avatar'
 import type { AvatarFinalSize, AvatarShape, AvatarSize } from './type'
 import { avatarSize } from './type'
+
+const COMPONENT_NAME = 'nut-avatar'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(avatarProps)
 
@@ -75,7 +86,7 @@ const classes = computed(() => {
   if (finalSize.value.preset)
     value[`nut-avatar-${finalSize.value.value}`] = true
 
-  return getMainClass(props, componentName, value)
+  return getMainClass(props, COMPONENT_NAME, value)
 })
 
 const styles = computed(() => {
@@ -99,19 +110,6 @@ const styles = computed(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-avatar`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view :style="styles" :class="classes">
     <slot />
@@ -119,5 +117,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

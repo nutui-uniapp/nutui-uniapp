@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { clamp, preventDefault, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX } from '../_constants'

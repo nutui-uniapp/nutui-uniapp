@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import NutPopUp from '../popup/popup.vue'
@@ -60,5 +60,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

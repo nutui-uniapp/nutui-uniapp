@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
@@ -45,5 +45,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

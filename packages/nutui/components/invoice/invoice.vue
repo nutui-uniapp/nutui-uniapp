@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import NutForm from '../form/form.vue'
@@ -97,5 +97,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
