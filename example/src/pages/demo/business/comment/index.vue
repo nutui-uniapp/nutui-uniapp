@@ -1,6 +1,6 @@
 <script lang="ts">
-import { isH5 } from '@uni-helper/uni-env'
 import { defineComponent, ref } from 'vue'
+import { isH5 } from '@/utils/env'
 
 export default defineComponent({
   setup() {
@@ -48,7 +48,7 @@ export default defineComponent({
     <nut-cell>
       <nut-comment
         :images="cmt?.images"
-        :videos="isH5 ? cmt?.videos : ''"
+        :videos="isH5 ? cmt?.videos : []"
         :info="cmt?.info"
         :operation="['replay']"
         @click="handleclick"
@@ -73,7 +73,7 @@ export default defineComponent({
         header-type="complex"
         images-rows="multi"
         :images="cmt?.images"
-        :videos="isH5 ? cmt?.videos : ''"
+        :videos="isH5 ? cmt?.videos : []"
         :info="cmt?.info"
         ellipsis="6"
         @click-images="clickImages"
@@ -103,7 +103,7 @@ export default defineComponent({
       <nut-comment
         images-rows="multi"
         :images="cmt?.images"
-        :videos="isH5 ? cmt?.videos : ''"
+        :videos="isH5 ? cmt?.videos : []"
         :info="cmt?.info"
         :follow="cmt?.follow"
         @click-images="clickImages"

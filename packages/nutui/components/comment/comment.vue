@@ -57,12 +57,25 @@ export default defineComponent({
 
     <slot name="feature" />
 
+    <!-- #ifndef H5 -->
+    <!--  BUG web端使用 rich-text自定义 style 会导致内存泄漏 -->
     <rich-text
       class="nut-comment__main"
       :style="`-webkit-line-clamp:${conEllipsis}`"
       :nodes="info.content"
       @click="handleClick"
     />
+    <!-- #endif -->
+
+    <!-- #ifdef H5 -->
+    <text
+      class="nut-comment__main"
+      :style="`-webkit-line-clamp:${conEllipsis}`"
+      @click="handleClick"
+    >
+      {{ info.content }}
+    </text>
+    <!-- #endif -->
 
     <ComentImages :images="images" :videos="videos" :type="imagesRows" @click-images="clickImages" />
 
@@ -73,7 +86,11 @@ export default defineComponent({
       <view class="nut-comment__follow-com">
         {{ follow.content }}
       </view>
-      <view v-if="follow.images && follow.images.length > 0" class="nut-comment__follow-img" @click="clickImages(follow.images)">
+      <view
+        v-if="follow.images && follow.images.length > 0"
+        class="nut-comment__follow-img"
+        @click="clickImages(follow.images)"
+      >
         {{ follow.images.length }} 张追评图片 <NutIcon name="right" size="12px" />
       </view>
     </view>
