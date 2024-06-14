@@ -135,7 +135,7 @@
   }
 
   // 右侧向左侧划入
-  /* stylelint-disable-next-line keyframes-name-pattern */
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-right {
     0% {
       opacity: 0;
@@ -149,7 +149,7 @@
   }
 
   // 左侧向右侧划入
-  /* stylelint-disable-next-line keyframes-name-pattern */
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-left {
     0% {
       opacity: 0;
@@ -163,7 +163,7 @@
   }
 
   // 上面向下面划入
-  /* stylelint-disable-next-line keyframes-name-pattern */
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-top {
     0% {
       opacity: 0;
@@ -177,7 +177,7 @@
   }
 
   // 下面向上面划入
-  /* stylelint-disable-next-line keyframes-name-pattern */
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-bottom {
     0% {
       opacity: 0;
@@ -191,7 +191,7 @@
   }
 
   // 漂浮 float
-  /* stylelint-disable-next-line keyframes-name-pattern */
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes float-pop {
     0% {
       top: 0;

@@ -10,7 +10,7 @@ import {
   truthProp,
 } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
-import type { EcardChangeEvent, EcardDataItem, EcardDataValue } from './type'
+import type { EcardChangeEvent, EcardDataItem, EcardDataValue } from './types'
 
 export const ecardProps = {
   ...commonProps,

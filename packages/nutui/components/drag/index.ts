@@ -1,1 +1,1 @@
-export type * from './drag'
+export * from './drag'

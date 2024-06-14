@@ -1,20 +1,31 @@
 <script lang="ts" setup>
-import { computed, defineComponent, provide, toRef, watch } from 'vue'
+import { computed, provide, toRef, watch } from 'vue'
 import { castArray } from '../_plugins/lodash'
 import { getMainClass, getMainStyle } from '../_utils'
-import { PREFIX } from '../_constants'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemContext, FormItemValidateResult } from '../formitem'
 import type { Arrayable } from '../_types'
 import { FORM_CONTEXT_KEY, formEmits, formProps } from './form'
-import type { FormValidateResult } from './type'
+import type { FormValidateResult } from './types'
+
+const COMPONENT_NAME = 'nut-form'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(formProps)
 
 const emit = defineEmits(formEmits)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 const styles = computed(() => {
@@ -89,19 +100,6 @@ provide(FORM_CONTEXT_KEY, {
 defineExpose({
   validate,
   clearValidate,
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-form`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 

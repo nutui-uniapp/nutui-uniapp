@@ -9,9 +9,9 @@
         &__code {
           color: $dark-color;
 
-           &::after {
-             background-color: $dark-background7;
-           }
+          &::after {
+            background-color: $dark-background7;
+          }
         }
       }
 
@@ -20,8 +20,8 @@
       }
     }
 
-    &__bars{
-    background-color: $dark-background;
+    &__bars {
+      background-color: $dark-background;
     }
   }
 }
@@ -58,7 +58,7 @@
           left: 0;
           width: $elevator-list-item-code-after-width;
           height: $elevator-list-item-code-after-height;
-          content: ' ';
+          content: " ";
           background-color: $elevator-list-item-code-after-bg-color;
         }
       }
@@ -132,4 +132,3 @@
     }
   }
 }
-

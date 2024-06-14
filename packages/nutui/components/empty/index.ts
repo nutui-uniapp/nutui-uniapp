@@ -1,1 +1,1 @@
-export type * from './empty'
+export * from './empty'

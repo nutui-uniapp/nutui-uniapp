@@ -1,15 +1,29 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { useRect } from '../_hooks'
-import { getMainStyle, getRandomId } from '../_utils'
+import { getMainClass, getMainStyle, getRandomId } from '../_utils'
 import { dragProps } from './drag'
 
-const props = defineProps(dragProps)
-const instance = getCurrentInstance() as ComponentInternalInstance
-const myDrag = ref()
+const COMPONENT_NAME = 'nut-drag'
 
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
+const props = defineProps(dragProps)
+
+const instance = getCurrentInstance() as ComponentInternalInstance
+
+const myDrag = ref()
 const myDragID = `myDrag${getRandomId()}`
+
 const state: any = reactive({
   elWidth: 0,
   elHeight: 0,
@@ -31,13 +45,18 @@ const state: any = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = 'nut-uni-drag'
-  return {
-    [prefixCls]: true,
-    [`${props.customClass}`]: props.customClass,
-  }
+  return getMainClass(props, COMPONENT_NAME)
 })
+
+const styles = computed(() => {
+  return getMainStyle(props, {
+    transform: `translate(${state.left}px, ${state.top}px)`,
+    transition: state.attractTransition ? 'all ease 0.3s' : 'none',
+  })
+})
+
 const domElem = uni.getSystemInfoSync()
+
 async function getInfo() {
   const rec = await useRect(myDragID, instance)
 
@@ -52,7 +71,7 @@ async function getInfo() {
   attractFn()
 }
 
-function touchMove(e: TouchEvent) {
+function touchMove(e: any) {
   e.preventDefault()
   const touch = e.touches[0]
 
@@ -94,37 +113,20 @@ function attractFn() {
 function touchEnd() {
   attractFn()
 }
-function touchStart(e: TouchEvent) {
+
+function touchStart(e: any) {
   const touch = e.touches[0]
   state.startLeft = touch.clientX - state.left
   state.startTop = touch.clientY - state.top
   state.attractTransition = false
 }
+
 onMounted(() => {
   setTimeout(() => {
     getInfo()
   }, 200)
 
   state.boundary = props.boundary
-})
-
-const getStyle = computed(() => {
-  return getMainStyle(props, {
-    transform: `translate(${`${state.left}px`}, ${`${state.top}px`})`,
-    transition: state.attractTransition ? 'all ease 0.3s' : 'none',
-  })
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-drag`
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 
@@ -133,10 +135,10 @@ export default defineComponent({
     :id="myDragID"
     ref="myDrag"
     :class="classes"
-    :style="getStyle"
-    @touchstart="(touchStart as any)"
-    @touchmove.stop.prevent="(touchMove as any)"
-    @touchend="(touchEnd as any)"
+    :style="styles"
+    @touchstart="touchStart"
+    @touchmove.stop.prevent="touchMove"
+    @touchend="touchEnd"
   >
     <slot />
   </view>

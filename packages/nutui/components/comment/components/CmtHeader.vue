@@ -123,7 +123,7 @@ function handleClick() {
       }
 
       &-name {
-        /* stylelint-disable-next-line at-rule-no-unknown */
+        // stylelint-disable-next-line at-rule-no-unknown
         @include oneline-ellipsis;
 
         width: auto;
@@ -141,7 +141,7 @@ function handleClick() {
           align-items: center;
           margin-bottom: 3px;
 
-          /* stylelint-disable-next-line at-rule-no-unknown */
+          // stylelint-disable-next-line at-rule-no-unknown
           @include oneline-ellipsis;
 
           font-size: 12px;
@@ -162,7 +162,7 @@ function handleClick() {
           max-width: 80px;
           margin-right: 10px;
 
-          /* stylelint-disable-next-line at-rule-no-unknown */
+          // stylelint-disable-next-line at-rule-no-unknown
           @include text-ellipsis;
         }
 
@@ -216,7 +216,7 @@ function handleClick() {
       }
 
       &-size {
-        /* stylelint-disable-next-line at-rule-no-unknown */
+        // stylelint-disable-next-line at-rule-no-unknown
         @include oneline-ellipsis;
       }
     }

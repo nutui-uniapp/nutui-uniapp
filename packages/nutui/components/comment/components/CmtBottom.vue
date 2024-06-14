@@ -129,7 +129,7 @@ function handleClick() {
       flex: 1;
       margin-right: 10px;
 
-      /* stylelint-disable-next-line at-rule-no-unknown */
+      // stylelint-disable-next-line at-rule-no-unknown
       @include oneline-ellipsis;
     }
 

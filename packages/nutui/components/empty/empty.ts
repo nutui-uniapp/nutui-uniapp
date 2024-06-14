@@ -8,15 +8,14 @@ export const emptyProps = {
    */
   // eslint-disable-next-line ts/ban-types
   image: makeStringProp<'empty' | 'error' | 'network' | (string & {})>('empty'),
-
   /**
    * @description 图片大小，单位为 `px`
    */
   imageSize: makeNumericProp(''),
-
   /**
    * @description 图片下方的描述文字
    */
   description: makeStringProp(''),
 }
+
 export type EmptyProps = ExtractPropTypes<typeof emptyProps>

@@ -141,8 +141,7 @@ function showImages(type: string, index: string | number) {
       // }
 
       &--video {
-
-        /* stylelint-disable-next-line rule-empty-line-before */
+        // stylelint-disable-next-line rule-empty-line-before
         image {
           position: absolute;
           top: 50%;

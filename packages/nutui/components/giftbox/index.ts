@@ -1,1 +1,2 @@
-export type * from './giftbox'
+export * from './types'
+export * from './giftbox'

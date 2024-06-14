@@ -1,24 +1,31 @@
 <script lang="ts" setup>
-import { computed, defineComponent, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, ref } from 'vue'
 import { giftboxEmits } from './giftbox'
 
+const COMPONENT_NAME = 'nut-giftbox'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const emit = defineEmits(giftboxEmits)
-defineExpose({ init })
+
 const classes = computed(() => {
-  const prefixCls = componentName
   return {
-    [prefixCls]: true,
+    [COMPONENT_NAME]: true,
     'gift-box': true,
   }
 })
 
 function gift(e?: any) {
-  let transitionFlag = true
-  if (e?.target === e?.currentTarget && transitionFlag) {
-    transitionFlag = false
+  if (e?.target === e?.currentTarget)
     emit('endTurns')
-  }
 }
 
 const openActive = ref(false)
@@ -35,26 +42,25 @@ function handleClick() {
 function init() {
   openActive.value = false
 }
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-giftbox`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  init,
 })
 </script>
 
 <template>
   <view class="giftbox-wraper">
     <view :class="classes" @click="handleClick">
-      <view id="giftAnimate" class="gBox gift-box-1" :class="{ 'gift-box-1-open': openActive }" @transition-end="gift" @webkit-transition-end="gift" />
+      <view
+        id="giftAnimate"
+        class="gBox gift-box-1"
+        :class="{ 'gift-box-1-open': openActive }"
+        @transition-end="gift"
+        @webkit-transition-end="gift"
+      />
+
       <view class="gBox gift-box-2" />
+
       <view class="gBox gift-box-3" :class="{ 'gift-box-3-open': openActive }" />
     </view>
   </view>

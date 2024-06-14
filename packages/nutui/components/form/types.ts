@@ -5,7 +5,7 @@ import type {
   FormItemRule,
   FormItemStarPosition,
   FormItemValidateResult,
-} from '../formitem/type'
+} from '../formitem/types'
 import type { Arrayable, FieldPath, MaybeRef, RefsObject } from '../_types'
 import type { FormProps } from './form'
 

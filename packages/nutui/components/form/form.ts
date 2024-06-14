@@ -3,7 +3,7 @@ import { computed, inject } from 'vue'
 import { commonProps, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import type { OptionalBoolean, OptionalValue } from '../_types'
 import type { FormItemValidateResult } from '../formitem'
-import type { FormContext, FormLabelPosition, FormRules, FormStarPosition } from './type'
+import type { FormContext, FormLabelPosition, FormRules, FormStarPosition } from './types'
 
 export const formProps = {
   ...commonProps,

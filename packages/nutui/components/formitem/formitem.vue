@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRef, useSlots } from 'vue'
+import { computed, onBeforeUnmount, onMounted, provide, ref, toRef, useSlots } from 'vue'
 import { useTranslate } from '../../locale'
 import { castArray, get, isEmpty, omit } from '../_plugins/lodash'
 import { getMainClass, getMainStyle, isPromise, pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
 import NutCell from '../cell/cell.vue'
 import { useFormContext } from '../form'
 import type { OptionalValue } from '../_types'
@@ -17,9 +16,24 @@ import type {
   FormItemRuleWithoutValidator,
   FormItemValidateResult,
   FormItemValidateState,
-} from './type'
+} from './types'
+
+const COMPONENT_NAME = 'nut-form-item'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  inheritAttrs: false,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(formitemProps)
+
+const { translate } = useTranslate(COMPONENT_NAME)
 
 const slots = useSlots()
 
@@ -98,7 +112,7 @@ const classes = computed(() => {
   if (validateState.value !== 'default')
     value[`is-${validateState.value}`] = true
 
-  return getMainClass(props, componentName, value)
+  return getMainClass(props, COMPONENT_NAME, value)
 })
 
 const styles = computed(() => {
@@ -267,22 +281,6 @@ onBeforeUnmount(() => {
 defineExpose({
   validate,
   clearValidate,
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-form-item`
-
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: `${PREFIX}-form-item`,
-  inheritAttrs: false,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 

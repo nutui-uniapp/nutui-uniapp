@@ -14,7 +14,8 @@
       }
     }
 
-    /* stylelint-disable selector-class-pattern */
+    // stylelint-disable selector-class-pattern
+
     .nut-collapse__item-wrapper {
       .collapse-content,
       .nut-collapse__item-wrapper__content,
@@ -31,7 +32,7 @@
       }
     }
 
-    /* stylelint-enable selector-class-pattern */
+    // stylelint-enable selector-class-pattern
   }
 }
 
@@ -110,7 +111,8 @@
     }
   }
 
-  /* stylelint-disable selector-class-pattern */
+  // stylelint-disable selector-class-pattern
+
   .nut-collapse__item-wrapper,
   .nut-collapse__item-extraWrapper {
     position: relative;
@@ -143,7 +145,8 @@
       word-wrap: break-word;
     }
   }
-  /* stylelint-enable selector-class-pattern */
+
+  // stylelint-enable selector-class-pattern
 
   .open-style {
     height: auto;

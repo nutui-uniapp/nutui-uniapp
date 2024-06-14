@@ -1,9 +1,20 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
-import { PREFIX } from '../_constants'
-import { getMainClass } from '../_utils'
+import { type ComponentInternalInstance, computed, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
+import { getMainClass, pxCheck } from '../_utils'
 import { elevatorEmits, elevatorProps } from './elevator'
-import type { ElevatorData } from './type'
+import type { ElevatorData } from './types'
+
+const COMPONENT_NAME = 'nut-elevator'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(elevatorProps)
 
@@ -11,9 +22,6 @@ const emit = defineEmits(elevatorEmits)
 
 const instance = getCurrentInstance() as ComponentInternalInstance
 
-defineExpose({
-  scrollTo,
-})
 const spaceHeight = 23
 
 const state = reactive({
@@ -35,7 +43,7 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 // const fixedStyle = computed(() => {
@@ -104,7 +112,7 @@ function scrollTo(index: number) {
   state.scrollTop = state.listHeight[index]
 }
 
-function touchStart(e: TouchEvent) {
+function touchStart(e: any) {
   state.scrollStart = true
   const index = getData(e.target as HTMLElement)
   const firstTouch = e.touches[0]
@@ -114,7 +122,7 @@ function touchStart(e: TouchEvent) {
   scrollTo(+index)
 }
 
-function touchMove(e: TouchEvent) {
+function touchMove(e: any) {
   const firstTouch = e.touches[0]
   state.touchState.y2 = firstTouch.pageY
   const delta = ((state.touchState.y2 - state.touchState.y1) / spaceHeight) | 0
@@ -192,77 +200,82 @@ watch(
 )
 
 const { scrollTop, scrollY, currentIndex, scrollStart, codeIndex, currentData, currentKey } = toRefs(state)
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-elevator`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  scrollTo,
 })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <scroll-view
       id="listview"
       class="nut-elevator__list nut-elevator__list--mini"
-      :scroll-top="scrollTop"
+      :style="{ height: pxCheck(props.height) }"
       :scroll-y="true"
+      :scroll-top="scrollTop"
       :scroll-with-animation="true"
       :scroll-anchoring="true"
-      :style="{ height: isNaN(+height) ? height : `${height}px` }"
       @scroll="listViewScroll"
     >
       <view id="elevator__item-wrap">
         <view
-          v-for="(item, index) in indexList"
+          v-for="(item, index) in props.indexList"
           :id="[`elevator__item__${index}`]"
-          :key="item[acceptKey]"
+          :key="item[props.acceptKey]"
           class="nut-elevator__list__item"
         >
           <view class="nut-elevator__list__item__code">
-            {{ item[acceptKey] }}
+            {{ item[props.acceptKey] }}
           </view>
+
           <view
             v-for="subitem in item.list"
             :key="subitem.id"
             class="nut-elevator__list__item__name"
             :class="{
-              'nut-elevator__list__item__name--highcolor': currentData.id === subitem.id && currentKey === item[acceptKey],
+              'nut-elevator__list__item__name--highcolor': currentData.id === subitem.id && currentKey === item[props.acceptKey],
             }"
-            @click="handleClickItem(item[acceptKey], subitem)"
+            @click="handleClickItem(item[props.acceptKey], subitem)"
           >
             <rich-text v-if="!$slots.default" :nodes="subitem.name" />
+
             <slot v-else :item="subitem" />
           </view>
         </view>
       </view>
     </scroll-view>
-    <view class="nut-elevator__list__fixed" :class="{ 'nut-hidden': !(scrollY > 2 && isSticky) }">
+
+    <view class="nut-elevator__list__fixed" :class="{ 'nut-hidden': !(scrollY > 2 && props.isSticky) }">
       <view class="nut-elevator__list__fixed-title">
-        {{ indexList[currentIndex][acceptKey] }}
+        {{ props.indexList[currentIndex][props.acceptKey] }}
       </view>
     </view>
-    <view v-if="indexList.length > 0" class="nut-elevator__code--current" :class="{ 'nut-hidden': !scrollStart }">
-      {{ indexList[codeIndex][acceptKey] }}
+
+    <view
+      v-if="props.indexList.length > 0"
+      class="nut-elevator__code--current"
+      :class="{ 'nut-hidden': !scrollStart }"
+    >
+      {{ props.indexList[codeIndex][props.acceptKey] }}
     </view>
-    <view class="nut-elevator__bars" @touchstart="(touchStart as any)" @touchmove.stop.prevent="(touchMove as any)" @touchend="touchEnd">
+
+    <view
+      class="nut-elevator__bars"
+      @touchstart="touchStart"
+      @touchmove.stop.prevent="touchMove"
+      @touchend="touchEnd"
+    >
       <view class="nut-elevator__bars__inner">
         <view
-          v-for="(item, index) in indexList"
-          :key="item[acceptKey]"
+          v-for="(item, index) in props.indexList"
+          :key="item[props.acceptKey]"
           class="nut-elevator__bars__inner__item"
-          :class="{ active: item?.[acceptKey] === indexList?.[currentIndex]?.[acceptKey] }"
+          :class="{ active: item?.[props.acceptKey] === props.indexList?.[currentIndex]?.[props.acceptKey] }"
           :data-index="index"
-          @click="handleClickIndex(item[acceptKey])"
+          @click="handleClickIndex(item[props.acceptKey])"
         >
-          {{ item[acceptKey] }}
+          {{ item[props.acceptKey] }}
         </view>
       </view>
     </view>

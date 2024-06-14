@@ -1,16 +1,30 @@
 <script lang="ts" setup>
-import { computed, defineComponent, nextTick, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import type { InputOnInputEvent } from '@uni-helper/uni-app-types'
-import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
 import { getMainClass } from '../_utils'
 import { ecardEmits, ecardProps } from './ecard'
-import type { EcardDataItem, EcardDataValue, EcardUpdateOptions } from './type'
+import type { EcardDataItem, EcardDataValue, EcardUpdateOptions } from './types'
+
+const COMPONENT_NAME = 'nut-ecard'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(ecardProps)
 
 const emit = defineEmits(ecardEmits)
+
+const { translate } = useTranslate(COMPONENT_NAME)
 
 const innerValue = ref<EcardDataValue>(0)
 
@@ -25,7 +39,7 @@ const finalValue = computed(() => {
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 async function forceUpdateInputValue(value: string) {
@@ -132,20 +146,6 @@ function update(options: EcardUpdateOptions) {
 
 defineExpose({
   update,
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-ecard`
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 
