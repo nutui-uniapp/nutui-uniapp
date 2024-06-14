@@ -1,6 +1,6 @@
 <script lang="ts">
-import { isH5 } from '@uni-helper/uni-env'
 import { defineComponent, ref } from 'vue'
+import { isH5 } from '@/utils/env'
 
 export default defineComponent({
   setup() {
@@ -47,19 +47,14 @@ export default defineComponent({
     </h2>
     <nut-cell>
       <nut-comment
-        :images="cmt?.images"
-        :videos="isH5 ? cmt?.videos : ''"
-        :info="cmt?.info"
-        :operation="['replay']"
-        @click="handleclick"
-        @click-images="clickImages"
+        :images="cmt?.images" :videos="cmt?.videos" :info="cmt?.info" :operation="['replay']"
+        @click="handleclick" @click-images="clickImages"
       >
         <template #commentLabels>
           <image
             class="nut-comment-header__labels--item"
             src="https://img11.360buyimg.com/imagetools/jfs/t1/211858/17/4258/12101/618e6f78Ed0edcadc/e83a673555edf59f.jpg"
-            style="width: 50px"
-            mode="widthFix"
+            style="width: 50px" mode="widthFix"
           />
         </template>
       </nut-comment>
@@ -70,13 +65,8 @@ export default defineComponent({
     </h2>
     <nut-cell>
       <nut-comment
-        header-type="complex"
-        images-rows="multi"
-        :images="cmt?.images"
-        :videos="isH5 ? cmt?.videos : ''"
-        :info="cmt?.info"
-        ellipsis="6"
-        @click-images="clickImages"
+        header-type="complex" images-rows="multi" :images="cmt?.images" :videos="isH5 ? cmt?.videos : ''"
+        :info="cmt?.info" ellipsis="6" @click-images="clickImages"
       >
         <template #commentLabels>
           <image
@@ -101,12 +91,8 @@ export default defineComponent({
     </h2>
     <nut-cell>
       <nut-comment
-        images-rows="multi"
-        :images="cmt?.images"
-        :videos="isH5 ? cmt?.videos : ''"
-        :info="cmt?.info"
-        :follow="cmt?.follow"
-        @click-images="clickImages"
+        images-rows="multi" :images="cmt?.images" :videos="isH5 ? cmt?.videos : ''" :info="cmt?.info"
+        :follow="cmt?.follow" @click-images="clickImages"
       />
     </nut-cell>
   </div>
