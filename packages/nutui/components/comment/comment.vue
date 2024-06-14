@@ -87,16 +87,19 @@ export default defineComponent({
         {{ follow.content }}
       </view>
       <view
-        v-if="follow.images && follow.images.length > 0" class="nut-comment__follow-img"
+        v-if="follow.images && follow.images.length > 0"
+        class="nut-comment__follow-img"
         @click="clickImages(follow.images)"
       >
-        {{ follow.images.length }} 张追评图片
-        <NutIcon name="right" size="12px" />
+        {{ follow.images.length }} 张追评图片 <NutIcon name="right" size="12px" />
       </view>
     </view>
 
     <ComentBottom
-      :type="headerType" :info="info" :operation="operation" @click-operate="clickOperate"
+      :type="headerType"
+      :info="info"
+      :operation="operation"
+      @click-operate="clickOperate"
       @handle-click="handleClick"
     />
 
