@@ -68,12 +68,25 @@ function clickImages(value: any) {
 
     <slot name="feature" />
 
+    <!-- #ifndef H5 -->
+    <!--  BUG web端使用 rich-text自定义 style 会导致内存泄漏 -->
     <rich-text
       class="nut-comment__main"
       :style="`-webkit-line-clamp:${conEllipsis}`"
       :nodes="props.info.content"
       @click="handleClick"
     />
+    <!-- #endif -->
+
+    <!-- #ifdef H5 -->
+    <text
+      class="nut-comment__main"
+      :style="`-webkit-line-clamp:${conEllipsis}`"
+      @click="handleClick"
+    >
+      {{ props.info.content }}
+    </text>
+    <!-- #endif -->
 
     <CommentImages
       :type="props.imagesRows"
