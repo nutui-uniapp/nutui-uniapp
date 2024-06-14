@@ -58,7 +58,8 @@ export default defineComponent({
           <image
             class="nut-comment-header__labels--item"
             src="https://img11.360buyimg.com/imagetools/jfs/t1/211858/17/4258/12101/618e6f78Ed0edcadc/e83a673555edf59f.jpg"
-            style="width: 50px" mode="widthFix"
+            style="width: 50px"
+            mode="widthFix"
           />
         </template>
       </nut-comment>
@@ -73,7 +74,8 @@ export default defineComponent({
         images-rows="multi"
         :images="cmt?.images"
         :videos="isH5 ? cmt?.videos : []"
-        :info="cmt?.info" ellipsis="6"
+        :info="cmt?.info"
+        ellipsis="6"
         @click-images="clickImages"
       >
         <template #commentLabels>
