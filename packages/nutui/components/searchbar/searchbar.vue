@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type CSSProperties, useSlots } from 'vue'
-import { computed, defineComponent, reactive, toRef } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, reactive, toRef, useSlots } from 'vue'
 import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'

@@ -1,16 +1,26 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
+import { computed, onMounted, reactive, watch } from 'vue'
 import { funInterceptor, getMainClass } from '../_utils'
-import { CLOSE_EVENT, PREFIX } from '../_constants'
+import { CLOSE_EVENT } from '../_constants'
 import NutPopup from '../popup/popup.vue'
-
 import NutSwiper from '../swiper/swiper.vue'
 import NutSwiperItem from '../swiperitem/swiperitem.vue'
-
 import NutIcon from '../icon/icon.vue'
 import type { ImageInterface } from './types'
 import { imagepreviewEmits, imagepreviewProps } from './imagepreview'
+
+const COMPONENT_NAME = 'nut-image-preview'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(imagepreviewProps)
 
@@ -33,21 +43,19 @@ const state = reactive({
   lastTouchEndTime: 0, // 用来辅助监听双击
 })
 
-const styles = computed(() => {
-  const style: CSSProperties = {
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
 
-  }
+const styles = computed(() => {
+  const style: CSSProperties = {}
+
   if (props.closeIconPosition === 'top-right')
     style.right = '10px'
-
   else
     style.left = '10px'
 
   return style
-})
-
-const classes = computed(() => {
-  return getMainClass(props, componentName)
 })
 
 // 设置当前选中第几个
@@ -69,6 +77,7 @@ function onClose() {
     done: () => closeDone(),
   })
 }
+
 // 执行关闭
 function closeDone() {
   state.showPop = false
@@ -87,7 +96,7 @@ function scaleNow() {
     state.eleImg.style.transform = `scale(${state.store.scale})`
 }
 
-function onTouchStart(event: TouchEvent) {
+function onTouchStart(event: any) {
   const curTouchTime = new Date().getTime()
   if (curTouchTime - state.lastTouchEndTime < 300) {
     const store = state.store
@@ -208,41 +217,43 @@ onMounted(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-image-preview`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <NutPopup v-model:visible="state.showPop" :lock-scroll="true" pop-class="nut-image-preview-custom-pop">
-    <view :class="classes" :style="customStyle" @touchstart.capture="(onTouchStart as any)">
+  <NutPopup
+    v-model:visible="state.showPop"
+    :lock-scroll="true"
+    pop-class="nut-image-preview-custom-pop"
+  >
+    <view
+      :class="classes"
+      :style="props.customStyle"
+      @touchstart.capture="onTouchStart"
+    >
       <NutSwiper
         v-if="state.showPop"
-        :auto-play="autoplay"
         custom-class="nut-image-preview-swiper"
-        :loop="isLoop"
+        :auto-play="props.autoplay"
+        :loop="props.isLoop"
         :is-prevent-default="false"
         direction="horizontal"
-        :init-page="initNo"
-        :pagination-visible="paginationVisible"
-        :pagination-color="paginationColor"
+        :init-page="props.initNo"
+        :pagination-visible="props.paginationVisible"
+        :pagination-color="props.paginationColor"
         @change="setActive"
       >
-        <NutSwiperItem v-for="(item, index) in images" :key="index">
+        <NutSwiperItem v-for="(item, index) in props.images" :key="index">
           <movable-area class="nut-image-movable-area">
-            <movable-view :disabled="!scale" inertia scale-area class="nut-image-preview-img" :scale="scale" direction="all">
+            <movable-view
+              class="nut-image-preview-img"
+              :scale="props.scale"
+              :disabled="!props.scale"
+              inertia
+              scale-area
+              direction="all"
+            >
               <image
-                mode="aspectFit"
-                :src="item.src"
                 class="nut-image-preview-img"
+                :src="item.src"
+                mode="aspectFit"
                 @long-press="longPress(item)"
                 @long-tap="longPress(item)"
                 @click.stop="closeOnImg"
@@ -253,10 +264,16 @@ export default defineComponent({
       </NutSwiper>
     </view>
 
-    <view v-if="showIndex" class="nut-image-preview-index">
-      {{ state.active + 1 }} / {{ images.length }}
+    <view v-if="props.showIndex" class="nut-image-preview-index">
+      {{ state.active + 1 }} / {{ props.images.length }}
     </view>
-    <view v-if="closeable" class="nut-image-preview-close-icon" :style="styles" @click="onClose">
+
+    <view
+      v-if="props.closeable"
+      class="nut-image-preview-close-icon"
+      :style="styles"
+      @click="onClose"
+    >
       <NutIcon name="circle-close" custom-color="#ffffff" />
     </view>
   </NutPopup>

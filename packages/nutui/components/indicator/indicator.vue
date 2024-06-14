@@ -1,39 +1,38 @@
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue'
+import { computed } from 'vue'
 import { getMainClass, padZero } from '../_utils'
-import { PREFIX } from '../_constants'
 import { indicatorProps } from './indicator'
 
-const props = defineProps(indicatorProps)
+const COMPONENT_NAME = 'nut-indicator'
 
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--block`]: props.block,
-    [`${componentName}--align__${props.align}`]: props.block && props.align,
-  })
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-indicator`
-
-export default defineComponent({
-  name: componentName,
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(indicatorProps)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--block`]: props.block,
+    [`${COMPONENT_NAME}--align__${props.align}`]: props.block && props.align,
+  })
+})
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
-    <template v-for="item in size" :key="item">
-      <view v-if="item === current" :class="`${componentName}--number`">
-        {{ (fillZero && padZero(item)) || item }}
+  <view :class="classes" :style="props.customStyle">
+    <template v-for="item in props.size" :key="item">
+      <view v-if="item === props.current" :class="`${COMPONENT_NAME}--number`">
+        {{ (props.fillZero && padZero(item)) || item }}
       </view>
-      <view v-else :class="`${componentName}--dot`" />
+
+      <view v-else :class="`${COMPONENT_NAME}--dot`" />
     </template>
   </view>
 </template>

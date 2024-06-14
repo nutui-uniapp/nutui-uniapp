@@ -39,6 +39,8 @@
       height: 50px;
     }
 
+    // stylelint-enable selector-class-pattern
+
     .hammer {
       position: absolute;
       top: -15px;
@@ -128,3 +130,7 @@
     transform: rotate(10deg);
   }
 }
+
+// stylelint-enable keyframes-name-pattern
+
+// stylelint-enable declaration-block-no-duplicate-properties

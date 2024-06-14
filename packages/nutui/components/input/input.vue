@@ -1,14 +1,26 @@
 <script lang="ts" setup>
-import { computed, defineComponent, nextTick, onMounted, ref, toRef, useSlots, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, toRef, useSlots, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { getMainClass, isH5 } from '../_utils'
-import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
 import { inputEmits, inputProps } from './input'
 import { formatNumber } from './util'
-import type { InputFormatTrigger, InputTarget } from './type'
+import type { InputFormatTrigger, InputTarget } from './types'
+
+const COMPONENT_NAME = 'nut-input'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(inputProps)
 
@@ -32,11 +44,11 @@ const innerValue = computed<string>(() => {
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--disabled`]: formDisabled.value,
-    [`${componentName}--required`]: props.required,
-    [`${componentName}--error`]: props.error,
-    [`${componentName}--border`]: props.border,
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--disabled`]: formDisabled.value,
+    [`${COMPONENT_NAME}--required`]: props.required,
+    [`${COMPONENT_NAME}--error`]: props.error,
+    [`${COMPONENT_NAME}--border`]: props.border,
   })
 })
 
@@ -176,19 +188,6 @@ onMounted(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-input`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view :class="classes" :style="props.customStyle" @click="handleClick">
     <view v-if="slots.left" class="nut-input__left">
@@ -222,7 +221,7 @@ export default defineComponent({
         :selection-start="props.selectionStart"
         :selection-end="props.selectionEnd"
         :hold-keyboard="props.holdKeyboard"
-        @input="handleInput"
+        @input="handleInput as any"
         @focus="handleFocus"
         @blur.capture="handleBlur"
         @click="handleClickInput"

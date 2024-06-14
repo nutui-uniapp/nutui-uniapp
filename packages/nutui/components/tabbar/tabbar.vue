@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass } from '../_utils'

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { type CSSProperties, computed } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 import { GRID_KEY, type GridProps } from '../grid'

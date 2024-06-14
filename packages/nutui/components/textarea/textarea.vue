@@ -6,7 +6,7 @@ import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { useFormContext, useFormDisabled } from '../form'
-import type { InputTarget } from '../input/type'
+import type { InputTarget } from '../input/types'
 import { useFormItemContext } from '../formitem'
 import { textareaEmits, textareaProps } from './textarea'
 

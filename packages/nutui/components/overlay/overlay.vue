@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type ComputedRef, watchEffect } from 'vue'
-import { computed, defineComponent } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed, defineComponent, watchEffect } from 'vue'
 import { CLICK_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import NutTransition from '../transition/transition.vue'
 import { useLockScroll } from '../_hooks'

@@ -85,7 +85,7 @@ function selected(item: any, event: any) {
       </view>
     </slot>
 
-    <div class="nut-fixed-nav__btn" @click="updateValue()">
+    <view class="nut-fixed-nav__btn" @click="updateValue()">
       <slot name="btn">
         <NutIcon name="left" custom-color="#fff" />
 
@@ -93,7 +93,7 @@ function selected(item: any, event: any) {
           {{ props.visible ? props.activeText || translate('activeText') : props.unActiveText || translate('unActiveText') }}
         </view>
       </slot>
-    </div>
+    </view>
   </view>
 </template>
 

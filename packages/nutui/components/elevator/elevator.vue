@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, computed, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { elevatorEmits, elevatorProps } from './elevator'
 import type { ElevatorData } from './types'

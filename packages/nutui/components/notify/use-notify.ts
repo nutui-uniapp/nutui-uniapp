@@ -1,4 +1,5 @@
-import { type SetupContext, onUnmounted, ref, watch } from 'vue'
+import type { SetupContext } from 'vue'
+import { onUnmounted, ref, watch } from 'vue'
 import { UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { NotifyEmits, NotifyProps } from './notify'
 import type { NotifyOptions } from './type'

@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef } from 'vue'
+import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef } from 'vue'
 import { getRandomId, isEqualValue, isH5, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
-import { type SliderValue, rangeEmits, rangeProps } from './range'
+import type { SliderValue } from './range'
+import { rangeEmits, rangeProps } from './range'
 
 const props = defineProps(rangeProps)
 

@@ -9,7 +9,8 @@ import { getMainClass } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
 import { uploaderEmits, uploaderProps } from './uploader'
-import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
+import type { ChooseFile, OnProgressUpdateResult, UploadFileSuccessCallbackResult, UploadOptions } from './use-uploader'
+import { chooseFile, createUploader } from './use-uploader'
 import type { FileItem } from './type'
 
 const props = defineProps(uploaderProps)

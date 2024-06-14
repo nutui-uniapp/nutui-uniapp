@@ -1,21 +1,38 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { useRect, useSelectorQuery } from '../_hooks'
 import { cloneDeep, getMainClass, getRandomId } from '../_utils'
 import { guessgiftEmits, guessgiftProps } from './guessgift'
 
+const COMPONENT_NAME = 'nut-guess-gift'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(guessgiftProps)
 
 const emit = defineEmits(guessgiftEmits)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const { query } = useSelectorQuery(instance)
 
-defineExpose({ start })
 const randomId = getRandomId()
+
 const bowlList = reactive([1, 2, 3])
+
 const num = ref(0)
+
 const lock = ref(false)
+
 // 点击的哪一个碗，index索引
 const bowlRaiseIndex = ref(0)
 const bowlRaiseIndexTop = ref('0')
@@ -30,13 +47,13 @@ const bowlBox: any = ref(null)
 
 watch(
   () => showBean.value,
-  (n, o) => {
+  () => {
     bowlEle = []
   },
 )
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
+  return getMainClass(props, COMPONENT_NAME, {
     'guess-gift': true,
     'disabledClick': bowlLock.value,
   })
@@ -44,6 +61,7 @@ const classes = computed(() => {
 
 // 打乱数组顺序
 const shuffleNewary = ref<any[]>([])
+
 function shuffle(ary: Array<any>) {
   const array = cloneDeep(ary)
   for (let i = array.length - 1; i > 0; i--) {
@@ -59,6 +77,7 @@ const bowlLocation: any = reactive([])
 let bowlElement: any = reactive([])
 const guessGiftEle: any = ref()
 const goldBeanEle: any = ref()
+
 onMounted(() => {
   query.selectAll('.bowl-item').boundingClientRect()
   query.selectAll('.guess-gift').boundingClientRect()
@@ -76,6 +95,7 @@ onMounted(() => {
 const goldBeanDom: any = ref(null)
 const goldBeanDomLeft: any = ref('30px')
 let orginBowlCopy: any = reactive([])
+
 function changePosition() {
   const orginBowl = bowlLocation
   orginBowlCopy = shuffle(bowlLocation)
@@ -88,6 +108,7 @@ function changePosition() {
 }
 
 const timer = ref<any>(null)
+
 function init() {
   showBean.value = false
   clearTimeout(timer) // 初始化timeout定时器，防止定时器重叠
@@ -189,29 +210,27 @@ function raise(index: number) {
     })
   }, { immediate: true, deep: true })
 }
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-guess-gift`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  start,
 })
 </script>
 
 <template>
-  <view ref="bowlBox" :class="classes" :style="customStyle">
+  <view ref="bowlBox" :class="classes" :style="props.customStyle">
     <view
-      v-for="(item, idx) of bowlList" :id="`${randomId}-${idx}`" :key="`bowl${item}`" class="bowl-item"
-      :style="{ top: bowlRaiseIndex === idx ? bowlRaiseIndexTop : '0' }" @click="raise(idx)"
+      v-for="(item, idx) of bowlList"
+      :id="`${randomId}-${idx}`"
+      :key="`bowl${item}`"
+      class="bowl-item"
+      :style="{ top: bowlRaiseIndex === idx ? bowlRaiseIndexTop : '0' }"
+      @click="raise(idx)"
     />
+
     <view
-      ref="goldBeanDom" class="gold-bean" :class="[showBean ? '_opacity1' : '_opacity0']"
+      ref="goldBeanDom"
+      class="gold-bean"
+      :class="[showBean ? '_opacity1' : '_opacity0']"
       :style="{ left: goldBeanDomLeft }"
     />
   </view>
@@ -220,11 +239,3 @@ export default defineComponent({
 <style lang="scss">
 @import "./index";
 </style>
-
-<route lang="json">
-{
-  "style": {
-    "navigationBarTitleText": "ShakeDice"
-  }
-}
-</route>

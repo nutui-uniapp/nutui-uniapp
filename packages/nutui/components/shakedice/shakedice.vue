@@ -86,11 +86,3 @@ export default defineComponent({
 <style lang="scss">
 @import "./index";
 </style>
-
-<route lang="json">
-{
-  "style": {
-    "navigationBarTitleText": "ShakeDice"
-  }
-}
-</route>

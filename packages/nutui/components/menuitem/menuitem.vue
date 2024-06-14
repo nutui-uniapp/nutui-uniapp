@@ -8,7 +8,8 @@ import { getMainClass, getMainStyle } from '../_utils'
 import { useInject } from '../_hooks'
 import { MENU_KEY } from '../menu/menu'
 import type { MenuProps } from '../menu'
-import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
+import type { MenuItemOption } from './menuitem'
+import { menuitemEmits, menuitemProps } from './menuitem'
 
 const componentName = `${PREFIX}-menu-item`
 

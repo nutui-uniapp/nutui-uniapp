@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { type CSSProperties, computed, defineComponent, onMounted, ref } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'

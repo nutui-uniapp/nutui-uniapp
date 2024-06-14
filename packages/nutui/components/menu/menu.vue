@@ -1,5 +1,6 @@
 <script lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, ref } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
 import { PREFIX } from '../_constants'
 import { useProvide, useRect } from '../_hooks'
