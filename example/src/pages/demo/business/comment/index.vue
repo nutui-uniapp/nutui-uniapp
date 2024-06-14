@@ -47,7 +47,7 @@ export default defineComponent({
     </h2>
     <nut-cell>
       <nut-comment
-        :images="cmt?.images" :videos="cmt?.videos" :info="cmt?.info" :operation="['replay']"
+        :images="cmt?.images" :videos="isH5 ? cmt?.videos : []" :info="cmt?.info" :operation="['replay']"
         @click="handleclick" @click-images="clickImages"
       >
         <template #commentLabels>
@@ -65,7 +65,7 @@ export default defineComponent({
     </h2>
     <nut-cell>
       <nut-comment
-        header-type="complex" images-rows="multi" :images="cmt?.images" :videos="isH5 ? cmt?.videos : ''"
+        header-type="complex" images-rows="multi" :images="cmt?.images" :videos="isH5 ? cmt?.videos : []"
         :info="cmt?.info" ellipsis="6" @click-images="clickImages"
       >
         <template #commentLabels>
@@ -91,7 +91,7 @@ export default defineComponent({
     </h2>
     <nut-cell>
       <nut-comment
-        images-rows="multi" :images="cmt?.images" :videos="isH5 ? cmt?.videos : ''" :info="cmt?.info"
+        images-rows="multi" :images="cmt?.images" :videos="isH5 ? cmt?.videos : []" :info="cmt?.info"
         :follow="cmt?.follow" @click-images="clickImages"
       />
     </nut-cell>
