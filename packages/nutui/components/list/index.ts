@@ -1,1 +1,1 @@
-export type * from './list'
+export * from './list'

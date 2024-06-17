@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { computed, defineComponent, onMounted, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, onMounted, ref, watch } from 'vue'
 import NutForm from '../form/form.vue'
 import NutFormItem from '../formitem/formitem.vue'
 import NutRadio from '../radio/radio.vue'
@@ -8,17 +7,31 @@ import NutRadioGroup from '../radiogroup/radiogroup.vue'
 import NutButton from '../button/button.vue'
 import type { FormInst } from '../form'
 import { getMainClass } from '../_utils'
+import type { NullableValue } from '../_types'
 import { invoiceEmits, invoiceProps } from './invoice'
+
+const COMPONENT_NAME = 'nut-invoice'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(invoiceProps)
 
 const emit = defineEmits(invoiceEmits)
-const formRef = ref<FormInst>()
 
-const list: any = ref([])
+const formRef = ref<NullableValue<FormInst>>(null)
+
+const list = ref<any[]>([])
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 onMounted(() => {
@@ -42,22 +55,9 @@ watch(
 )
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-invoice`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
-    <NutForm ref="formRef" :model-value="formValue">
+  <view :class="classes" :style="props.customStyle">
+    <NutForm ref="formRef" :model-value="props.formValue">
       <NutFormItem
         v-for="(item, index) of list"
         :key="index"
@@ -66,29 +66,33 @@ export default defineComponent({
         :rules="item.rules"
         :prop="item.formItemProp"
       >
+        <!-- eslint-disable vue/no-mutating-props -->
         <template v-if="item.type === 'radio'">
-          <NutRadioGroup v-model="formValue[item.formItemProp]">
+          <NutRadioGroup v-model="props.formValue[item.formItemProp]">
             <NutRadio
               v-for="(radioItem, radioIndex) of item.radioLabel"
               :key="radioIndex"
-              shape="button"
               :label="radioItem.label"
+              shape="button"
             >
               {{ radioItem.label }}
             </NutRadio>
           </NutRadioGroup>
         </template>
+
         <template v-else>
           <input
-            v-model="formValue[item.formItemProp]"
+            v-model="props.formValue[item.formItemProp]"
             class="nut-input-text"
-            :placeholder="item.placeholder"
             type="text"
+            :placeholder="item.placeholder"
           >
         </template>
+        <!-- eslint-enable vue/no-mutating-props -->
       </NutFormItem>
     </NutForm>
-    <div v-if="submit" class="nut-invoice__submit">
+
+    <div v-if="props.submit" class="nut-invoice__submit">
       <NutButton type="primary" block @click="submitFun">
         提交审批
       </NutButton>

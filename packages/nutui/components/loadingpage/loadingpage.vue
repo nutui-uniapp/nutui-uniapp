@@ -1,73 +1,74 @@
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass } from '../_utils'
 import { loadingpageProps } from './loadingpage'
 
-const props = defineProps(loadingpageProps)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-</script>
+const COMPONENT_NAME = 'nut-loading-page'
 
-<script lang="ts">
-const componentName = `${PREFIX}-loading-page`
-
-export default defineComponent({
-  name: componentName,
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(loadingpageProps)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
 </script>
 
 <template>
   <NutTransition
-    :show="loading"
+    :show="props.loading"
     :custom-style="{
       position: 'fixed',
       top: 0,
-      left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: bgColor,
+      left: 0,
+      zIndex: props.zIndex,
       display: 'flex',
-      zIndex,
+      backgroundColor: props.bgColor,
     }"
   >
-    <view :class="classes" :style="customStyle">
+    <view :class="classes" :style="props.customStyle">
       <view class="nut-loading-page__warpper">
         <view class="nut-loading-page__warpper__loading-icon">
           <image
-            v-if="image"
-            :src="image"
+            v-if="props.image"
             class="nut-loading-page__warpper__loading-icon__img"
-            mode="widthFix"
             :style="{
-              width: `${iconSize}px`,
-              height: `${iconSize}px`,
+              width: `${props.iconSize}px`,
+              height: `${props.iconSize}px`,
             }"
+            :src="props.image"
+            mode="widthFix"
           />
+
           <NutIcon
             v-else
             name="loading1"
-            :size="iconSize"
-            :custom-color="loadingColor"
+            :size="props.iconSize"
+            :custom-color="props.loadingColor"
           />
         </view>
+
         <slot>
           <text
             class="nut-loading-page__warpper__text"
             :style="{
-              fontSize: `${fontSize}px`,
-              color: customColor,
+              fontSize: `${props.fontSize}px`,
+              color: props.customColor,
             }"
           >
-            {{ loadingText }}
+            {{ props.loadingText }}
           </text>
         </slot>
       </view>
