@@ -1,123 +1,119 @@
-<script lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, getCurrentInstance, ref } from 'vue'
+import { computed, getCurrentInstance, ref } from 'vue'
 import { onPageScroll } from '@dcloudio/uni-app'
-import { PREFIX } from '../_constants'
 import { useProvide, useRect } from '../_hooks'
-import Icon from '../icon/icon.vue'
+import NutIcon from '../icon/icon.vue'
 import { getMainClass, getRandomId } from '../_utils'
 import { MENU_KEY, menuProps } from './menu'
 
-const componentName = `${PREFIX}-menu`
-export default defineComponent({
-  name: componentName,
-  components: { Icon },
-  props: menuProps,
+const COMPONENT_NAME = 'nut-menu'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
-  setup(props) {
-    const barId = `nut-menu__bar${getRandomId()}`
-    const offset = ref(0)
-    const isScrollFixed = ref(false)
-    const instance = getCurrentInstance() as ComponentInternalInstance
+})
 
-    const { children } = useProvide(MENU_KEY)({ props, offset })
+const props = defineProps(menuProps)
 
-    const opened = computed(() => children.some(item => item?.state?.showWrapper))
+const instance = getCurrentInstance() as ComponentInternalInstance
 
-    const classes = computed(() => {
-      return getMainClass(props, componentName, {
-        'scroll-fixed': isScrollFixed.value,
-      })
+const barId = `nut-menu__bar${getRandomId()}`
+
+const offset = ref(0)
+const isScrollFixed = ref(false)
+
+const { children } = useProvide(MENU_KEY)({ props, offset })
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME, {
+    'scroll-fixed': isScrollFixed.value,
+  })
+})
+
+const opened = computed(() => children.some(item => item?.state?.showWrapper))
+
+function updateOffset(children: any) {
+  setTimeout(() => {
+    useRect(barId, instance).then((rect) => {
+      if (props.direction === 'down')
+        offset.value = rect.bottom! + uni.getSystemInfoSync().windowTop!
+
+      else
+        offset.value = uni.getSystemInfoSync().windowHeight - rect.top!
+
+      children.toggle()
     })
+  }, 100)
+}
 
-    function updateOffset(children: any) {
-      setTimeout(() => {
-        useRect(barId, instance).then((rect) => {
-          if (props.direction === 'down')
-            offset.value = rect.bottom! + uni.getSystemInfoSync().windowTop!
+function toggleItem(active: number) {
+  children.forEach((item, index) => {
+    if (index === active)
+      updateOffset(item)
 
-          else offset.value = uni.getSystemInfoSync().windowHeight - rect.top!
+    else if (item.state.showPopup)
+      item.toggle(false, { immediate: true })
+  })
+}
 
-          children.toggle()
-        })
-      }, 100)
-    }
+function onScroll(res: { scrollTop: number }) {
+  const { scrollFixed } = props
 
-    function toggleItem(active: number) {
-      children.forEach((item, index) => {
-        if (index === active)
-          updateOffset(item)
+  const scrollTop = res.scrollTop
 
-        else if (item.state.showPopup)
-          item.toggle(false, { immediate: true })
-      })
-    }
+  isScrollFixed.value = scrollTop > (typeof scrollFixed === 'boolean' ? 30 : Number(scrollFixed))
+}
 
-    function onScroll(res: { scrollTop: number }) {
-      const { scrollFixed } = props
+function getClasses(showPopup: boolean) {
+  let str = ''
+  const { titleClass } = props
 
-      const scrollTop = res.scrollTop
+  if (showPopup)
+    str += 'active'
 
-      isScrollFixed.value = scrollTop > (typeof scrollFixed === 'boolean' ? 30 : Number(scrollFixed))
-    }
+  if (titleClass)
+    str += ` ${titleClass}`
 
-    function getClasses(showPopup: boolean) {
-      let str = ''
-      const { titleClass } = props
+  return str
+}
 
-      if (showPopup)
-        str += 'active'
-
-      if (titleClass)
-        str += ` ${titleClass}`
-
-      return str
-    }
-
-    onPageScroll((res) => {
-      const { scrollFixed } = props
-      if (scrollFixed)
-        onScroll(res)
-    })
-    return {
-      barId,
-      toggleItem,
-      children,
-      opened,
-      classes,
-      getClasses,
-    }
-  },
+onPageScroll((res) => {
+  if (props.scrollFixed)
+    onScroll(res)
 })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <view :id="barId" class="nut-menu__bar" :class="{ opened }">
       <template v-for="(item, index) in children" :key="index">
         <view
           class="nut-menu__item"
           :class="{ disabled: item.disabled, active: item.state.showPopup }"
-          :style="{ color: item.state.showPopup ? activeColor : '' }"
+          :style="{ color: item.state.showPopup ? props.activeColor : '' }"
           @click="!item.disabled && toggleItem(index)"
         >
           <view class="nut-menu__title" :class="getClasses(item.state.showPopup)">
             <view class="nut-menu__title-text">
               {{ item.renderTitle() }}
             </view>
+
             <view class="nut-menu__title-icon">
               <!-- #ifdef MP-WEIXIN -->
-              <Icon v-if="direction === 'up'" :name="upIcon" />
-              <Icon v-else :name="downIcon" />
+              <NutIcon v-if="props.direction === 'up'" :name="props.upIcon" />
+              <NutIcon v-else :name="props.downIcon" />
               <!-- #endif -->
+
               <!-- #ifndef MP-WEIXIN -->
               <slot name="icon">
-                <Icon v-if="direction === 'up'" name="rect-up" />
-                <Icon v-else name="rect-down" />
+                <NutIcon v-if="props.direction === 'up'" name="rect-up" />
+                <NutIcon v-else name="rect-down" />
               </slot>
               <!-- #endif -->
             </view>
@@ -125,6 +121,7 @@ export default defineComponent({
         </view>
       </template>
     </view>
+
     <slot />
   </view>
 </template>
