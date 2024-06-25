@@ -1,1 +1,1 @@
-export type * from './noticebar'
+export * from './noticebar'
