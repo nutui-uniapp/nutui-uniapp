@@ -2,12 +2,13 @@ import type { SetupContext } from 'vue'
 import { onUnmounted, ref, watch } from 'vue'
 import { UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { NotifyEmits, NotifyProps } from './notify'
-import type { NotifyOptions } from './type'
+import type { NotifyOptions } from './types'
 
 export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['emit']) {
   const clickCover = () => {
     props.onClick && props.onClick()
   }
+
   let timer: NodeJS.Timeout | null | undefined
 
   const clearTimer = () => {
@@ -16,6 +17,7 @@ export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['e
       timer = null
     }
   }
+
   // watch show popup
   const isShowPopup = ref<boolean>(false)
 

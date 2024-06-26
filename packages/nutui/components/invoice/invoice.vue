@@ -92,11 +92,11 @@ watch(
       </NutFormItem>
     </NutForm>
 
-    <div v-if="props.submit" class="nut-invoice__submit">
+    <view v-if="props.submit" class="nut-invoice__submit">
       <NutButton type="primary" block @click="submitFun">
         提交审批
       </NutButton>
-    </div>
+    </view>
   </view>
 </template>
 
