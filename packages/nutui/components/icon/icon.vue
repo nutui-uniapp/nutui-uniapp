@@ -18,10 +18,10 @@ defineOptions({
 
 const props = defineProps(iconProps)
 
-const emits = defineEmits(iconEmits)
+const emit = defineEmits(iconEmits)
 
 function handleClick(event: any) {
-  emits(CLICK_EVENT, event)
+  emit(CLICK_EVENT, event)
 }
 
 const isImage = computed(() => {

@@ -1,1 +1,1 @@
-export type * from './overlay'
+export * from './overlay'
