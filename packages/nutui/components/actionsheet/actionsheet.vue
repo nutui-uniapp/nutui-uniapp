@@ -7,9 +7,11 @@ import { getMainClass } from '../_utils'
 import { type ActionSheetOption, actionsheetEmits, actionsheetProps } from './actionsheet'
 
 const props = defineProps(actionsheetProps)
+
 const emit = defineEmits(actionsheetEmits)
 
 const slotDefault = !!useSlots().default
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
@@ -52,19 +54,37 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutPopup v-bind="props" :visible="visible" position="bottom" round :close-on-click-overlay="closeAbled" @click-overlay="close">
-    <view :class="classes" :style="customStyle">
-      <view v-if="title" class="nut-action-sheet__title">
-        {{ title }}
+  <NutPopup
+    :pop-class="props.popClass"
+    :custom-style="props.popStyle"
+    :visible="props.visible"
+    position="bottom"
+    :overlay="props.overlay"
+    :round="props.round"
+    :safe-area-inset-bottom="props.safeAreaInsetBottom"
+    :z-index="props.zIndex"
+    :duration="props.duration"
+    :overlay-class="props.overlayClass"
+    :overlay-style="props.overlayStyle"
+    :lock-scroll="props.lockScroll"
+    :close-on-click-overlay="props.closeAbled"
+    @click-overlay="close"
+  >
+    <view :class="classes" :style="props.customStyle">
+      <view v-if="props.title" class="nut-action-sheet__title">
+        {{ props.title }}
       </view>
+
       <slot />
+
       <view v-if="!slotDefault">
-        <view v-if="description" class="nut-action-sheet__item nut-action-sheet__desc">
-          {{ description }}
+        <view v-if="props.description" class="nut-action-sheet__item nut-action-sheet__desc">
+          {{ props.description }}
         </view>
-        <view v-if="menuItems.length" class="nut-action-sheet__menu">
+
+        <view v-if="props.menuItems.length" class="nut-action-sheet__menu">
           <view
-            v-for="(item, index) of menuItems"
+            v-for="(item, index) of props.menuItems"
             :key="index"
             class="nut-action-sheet__item"
             :class="{
@@ -75,16 +95,19 @@ export default defineComponent({
             @click="chooseItem(item, index)"
           >
             <NutIcon v-if="item.loading" name="loading" />
+
             <view v-else>
-              {{ item[optionTag] }}
+              {{ item[props.optionTag] }}
             </view>
+
             <view class="nut-action-sheet__subdesc">
-              {{ item[optionSubTag] }}
+              {{ item[props.optionSubTag] }}
             </view>
           </view>
         </view>
-        <view v-if="cancelTxt" class="nut-action-sheet__cancel" @click="cancelActionSheet">
-          {{ cancelTxt }}
+
+        <view v-if="props.cancelTxt" class="nut-action-sheet__cancel" @click="cancelActionSheet">
+          {{ props.cancelTxt }}
         </view>
       </view>
     </view>
