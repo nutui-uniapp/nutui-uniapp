@@ -55,10 +55,18 @@ function close() {
 
 <template>
   <NutPopup
-    v-bind="props"
+    :pop-class="props.popClass"
+    :custom-style="props.popStyle"
     :visible="props.visible"
     position="bottom"
-    round
+    :overlay="props.overlay"
+    :round="props.round"
+    :safe-area-inset-bottom="props.safeAreaInsetBottom"
+    :z-index="props.zIndex"
+    :duration="props.duration"
+    :overlay-class="props.overlayClass"
+    :overlay-style="props.overlayStyle"
+    :lock-scroll="props.lockScroll"
     :close-on-click-overlay="props.closeAbled"
     @click-overlay="close"
   >
@@ -107,5 +115,5 @@ function close() {
 </template>
 
 <style lang="scss">
-@import "./index";
+@import './index';
 </style>
