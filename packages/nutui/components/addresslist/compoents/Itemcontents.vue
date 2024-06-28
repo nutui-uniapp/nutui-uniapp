@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { PREFIX } from '../../_constants'
 import { useTranslate } from '../../../locale'
 import NutIcon from '../../icon/icon.vue'
 
@@ -29,7 +28,7 @@ const props = defineProps({
 
 const emit = defineEmits(['delIcon', 'editIcon', 'clickItem'])
 
-const { translate } = useTranslate(`${PREFIX}-address-list`)
+const { translate } = useTranslate('nut-address-list')
 
 function handleDelIconClick(event: any) {
   event.stopPropagation()

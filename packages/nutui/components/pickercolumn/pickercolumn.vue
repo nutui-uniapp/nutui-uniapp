@@ -1,10 +1,22 @@
 <script lang="ts" setup>
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { clamp, preventDefault, pxCheck } from '../_utils'
-import { CHANGE_EVENT, PREFIX } from '../_constants'
+import { CHANGE_EVENT } from '../_constants'
 import { useTouch } from '../_hooks'
 import { pickercolumnEmits, pickercolumnProps } from './pickercolumn'
-import type { PickerTouchParams } from './type'
+import type { PickerTouchParams } from './types'
+
+const COMPONENT_NAME = 'nut-picker-column'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(pickercolumnProps)
 
@@ -267,19 +279,6 @@ onMounted(() => {
 
 defineExpose({
   stopMomentum,
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-picker-column`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 

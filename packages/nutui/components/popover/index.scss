@@ -103,8 +103,6 @@
     &-group {
       display: block;
       width: 100%;
-
-      // position: relative;
       height: 100%;
     }
 
@@ -148,12 +146,12 @@
     }
 
     &--top-end {
+      right: 0;
+
       .nut-popover-arrow--top-end {
         right: 16px;
         transform: translateX(0%);
       }
-
-      right: 0;
     }
 
     &--top-start {

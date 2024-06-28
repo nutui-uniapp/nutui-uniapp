@@ -1,20 +1,35 @@
 <script lang="ts" setup>
-import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
 import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { getMainClass, getMainStyle, getRandomId } from '../_utils'
-import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
-import type { PopoverRootPosition } from './type'
-
+import type { PopoverRootPosition } from './types'
 import { popoverEmits, popoverProps } from './popover'
 
+const COMPONENT_NAME = 'nut-popover'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(popoverProps)
+
 const emit = defineEmits(popoverEmits)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const popoverID = `popoverRef${getRandomId()}`
 const popoverContentID = `popoverContentRef${getRandomId()}`
+
 const showPopup = ref(props.visible)
 const rootPosition = ref<PopoverRootPosition>()
 
@@ -22,19 +37,23 @@ const elRect = ref({
   width: 0,
   height: 0,
 })
+
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
+  return getMainClass(props, COMPONENT_NAME, {
     [`nut-popover--${props.theme}`]: true,
   })
 })
+
 const popoverArrow = computed(() => {
   const prefixCls = 'nut-popover-arrow'
   const loca = props.location
   const direction = loca.split('-')[0]
   return `${prefixCls} ${prefixCls}-${direction} ${prefixCls}--${loca}`
 })
+
 const popoverArrowStyle = computed(() => {
   const styles: CSSProperties = {}
+
   const { bgColor, arrowOffset, location } = props
   const direction = location.split('-')[0]
   const skew = location.split('-')[1]
@@ -77,6 +96,7 @@ function upperCaseFirst(str: string) {
 
 const getRootPosition = computed(() => {
   const styles: CSSProperties = {}
+
   if (!rootPosition.value) {
     styles.visibility = 'hidden'
     return styles
@@ -138,7 +158,6 @@ const styles = computed(() => {
   return getMainStyle(props, styles)
 })
 
-// 获取宽度
 async function getContentWidth() {
   uni.createSelectorQuery().selectViewport().scrollOffset((res: any) => {
     const distance = res.scrollTop
@@ -180,6 +199,7 @@ async function getPopoverContentW() {
     }
   })
 }
+
 watch(
   () => props.visible,
   (value) => {
@@ -194,29 +214,35 @@ watch(
 
 watch(
   () => props.location,
-  (value) => {
+  () => {
     getContentWidth()
   },
 )
+
 function update(val: boolean) {
   emit('update', val)
   emit(UPDATE_VISIBLE_EVENT, val)
 }
+
 function openPopover() {
   update(!props.visible)
   emit(OPEN_EVENT)
 }
+
 function closePopover() {
   emit(UPDATE_VISIBLE_EVENT, false)
   emit(CLOSE_EVENT)
 }
+
 function chooseItem(item: any, index: number) {
   !item.disabled && emit(CHOOSE_EVENT, item, index)
 }
+
 function clickContent() {
   if (props.closeOnClickAction)
     closePopover()
 }
+
 function clickAway() {
   props.closeOnClickOutside && closePopover()
 }
@@ -228,37 +254,44 @@ onMounted(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-popover`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view v-if="!targetId" :id="popoverID" class="nut-popover-wrapper" @click="openPopover">
+  <view
+    v-if="!props.targetId"
+    :id="popoverID"
+    class="nut-popover-wrapper"
+    @click="openPopover"
+  >
     <slot name="reference" />
   </view>
+
   <view :class="classes" :style="getRootPosition">
     <NutPopup
       v-model:visible="showPopup"
-      :destroy-on-close="false" :pop-class="`nut-popover-content nut-popover-content--${location}`"
-      :custom-style="styles" :position="`` as any" :transition="`nut-popover` as any" :overlay="overlay"
-      :duration="+duration" :overlay-style="overlayStyle" :overlay-class="overlayClass"
-      :close-on-click-overlay="closeOnClickOverlay"
+      :destroy-on-close="false"
+      :pop-class="`nut-popover-content nut-popover-content--${props.location}`"
+      :custom-style="styles"
+      :position="'' as any"
+      :transition="`nut-popover` as any"
+      :overlay="props.overlay"
+      :duration="props.duration"
+      :overlay-class="props.overlayClass"
+      :overlay-style="props.overlayStyle"
+      :close-on-click-overlay="props.closeOnClickOverlay"
     >
-      <view :id="popoverContentID" class="nut-popover-content-group" @click.stop="clickContent">
-        <view v-if="showArrow" :class="popoverArrow" :style="popoverArrowStyle" />
+      <view
+        :id="popoverContentID"
+        class="nut-popover-content-group"
+        @click.stop="clickContent"
+      >
+        <view v-if="props.showArrow" :class="popoverArrow" :style="popoverArrowStyle" />
+
         <slot name="content" />
+
         <view
-          v-for="(item, index) in list" :key="index"
-          class="nut-popover-menu-item" :class="[item.className, item.disabled && 'nut-popover-menu-disabled']"
+          v-for="(item, index) in props.list"
+          :key="index"
+          class="nut-popover-menu-item"
+          :class="[item.className, { 'nut-popover-menu-disabled': item.disabled }]"
           @click="chooseItem(item, index)"
         >
           <NutIcon v-if="item.icon" :name="item.icon" custom-class="nut-popover-item-img" />

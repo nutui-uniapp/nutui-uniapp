@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
 import NutAvatar from '../avatar/avatar.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
@@ -21,7 +20,7 @@ defineOptions({
 
 const props = defineProps(avatargroupProps)
 
-const { internalChildren } = useProvide(AVATAR_GROUP_KEY, `${PREFIX}-avatar`)({ props })
+const { internalChildren } = useProvide(AVATAR_GROUP_KEY, 'nut-avatar')({ props })
 
 const innerMaxCount = computed<number>(() => {
   return Number(props.maxCount)
