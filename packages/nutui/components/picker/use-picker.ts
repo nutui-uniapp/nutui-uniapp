@@ -1,9 +1,9 @@
 import type { SetupContext } from 'vue'
 import { computed, nextTick, reactive, ref, toRefs, watch } from 'vue'
 import type { PickerOption } from '../pickercolumn'
-import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { cloneDeep, getMainClass, isEqualValue } from '../_utils'
-import type { PickerColumnsType } from './type'
+import type { PickerColumnsType } from './types'
 import type { PickerEmits, PickerProps } from './picker'
 
 const DEFAULT_FILED_NAMES = {
@@ -13,11 +13,11 @@ const DEFAULT_FILED_NAMES = {
   className: '',
 }
 
-export const componentName = `${PREFIX}-picker`
+const COMPONENT_NAME = 'nut-picker'
 
 export function usePicker(props: PickerProps, emit: SetupContext<PickerEmits>['emit']) {
   const classes = computed(() => {
-    return getMainClass(props, componentName)
+    return getMainClass(props, COMPONENT_NAME)
   })
 
   const state: {

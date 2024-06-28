@@ -1,11 +1,3 @@
-export interface CachedPosition {
-  index: number
-  top: number
-  bottom: number
-  height: number
-  dValue: number
-}
-
 export enum CompareResult {
   eq = 1,
   lt,

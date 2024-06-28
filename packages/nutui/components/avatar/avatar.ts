@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
-import type { AvatarShape, AvatarSize } from './type'
+import type { AvatarShape, AvatarSize } from './types'
 
 export const avatarProps = {
   ...commonProps,

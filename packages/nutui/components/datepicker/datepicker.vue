@@ -1,12 +1,24 @@
-<script setup lang="ts">
-import { computed, defineComponent, nextTick, onBeforeMount, reactive, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, nextTick, onBeforeMount, reactive, watch } from 'vue'
 import { isDate, isEqualValue, padZero } from '../_utils'
-import { CANCEL_EVENT, CONFIRM_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CANCEL_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutPicker from '../picker/picker.vue'
 import type { PickerOption } from '../pickercolumn'
 import type { PickerBaseEvent, PickerChangeEvent } from '../picker'
 import { datepickerEmits, datepickerProps } from './datepicker'
-import type { DateLike, DatePickerBaseEvent, DatePickerColumnType, DatePickerRangeItem } from './type'
+import type { DateLike, DatePickerBaseEvent, DatePickerColumnType, DatePickerRangeItem } from './types'
+
+const COMPONENT_NAME = 'nut-date-picker'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(datepickerProps)
 
@@ -361,19 +373,6 @@ watch(
     }
   },
 )
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-date-picker`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
 </script>
 
 <template>

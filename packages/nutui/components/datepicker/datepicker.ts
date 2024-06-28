@@ -8,7 +8,7 @@ import type {
   DatePickerFilter,
   DatePickerFormatter,
   DatePickerType,
-} from './type'
+} from './types'
 
 export const datepickerProps = {
   /**

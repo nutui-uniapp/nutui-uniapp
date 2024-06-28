@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isString, makeArrayProp, makeObjectProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
-import type { FollowType, ImagesType, InfoType, VideosType } from './type'
+import type { FollowType, ImagesType, InfoType, VideosType } from './types'
 
 export const commentProps = {
   ...commonProps,

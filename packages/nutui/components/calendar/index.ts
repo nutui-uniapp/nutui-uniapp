@@ -1,1 +1,1 @@
-export type * from './calendar'
+export * from './calendar'

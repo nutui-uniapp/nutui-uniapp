@@ -1,53 +1,57 @@
-<script setup lang="ts">
-import { computed, defineComponent, ref } from 'vue'
-import { CHANGE_EVENT, PREFIX } from '../_constants'
+<script lang="ts" setup>
+import { computed, ref } from 'vue'
+import { CHANGE_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { categoryEmits, categoryProps } from './category'
 
-const props = defineProps(categoryProps)
-const emit = defineEmits(categoryEmits)
-const checkIndex = ref(0)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-function getChildList(index: any) {
-  checkIndex.value = index
-  emit(CHANGE_EVENT, index)
-}
-</script>
+const COMPONENT_NAME = 'nut-category'
 
-<script lang="ts">
-const componentName = `${PREFIX}-category`
-
-export default defineComponent({
-  name: componentName,
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(categoryProps)
+
+const emit = defineEmits(categoryEmits)
+
+const checkIndex = ref(0)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+function getChildList(index: any) {
+  checkIndex.value = index
+
+  emit(CHANGE_EVENT, index)
+}
 </script>
 
 <template>
-  <div :class="classes" :style="customStyle">
-    <div class="nut-category__cateList">
-      <div v-if="type === 'classify' || type === 'text'">
-        <div v-for="(item, index) in category" :key="index" class="nut-category__cateListLeft">
-          <div
+  <view :class="classes" :style="props.customStyle">
+    <view class="nut-category__cateList">
+      <view v-if="props.type === 'classify' || props.type === 'text'">
+        <view v-for="(item, index) in props.category" :key="index" class="nut-category__cateListLeft">
+          <view
             :class="[checkIndex === index ? 'nut-category__cateListItemChecked' : 'nut-category__cateListItem']"
             @click="getChildList(index)"
           >
             {{ item.catName }}
-          </div>
-        </div>
-      </div>
+          </view>
+        </view>
+      </view>
 
       <slot />
-    </div>
-  </div>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

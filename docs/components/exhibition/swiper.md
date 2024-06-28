@@ -72,7 +72,7 @@
         setTimeout(() => {
           state.list = [
             'https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg',
-            'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg,
+            'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg',
             'https://storage.360buyimg.com/jdc-article/welcomenutui.jpg',
             'https://storage.360buyimg.com/jdc-article/fristfabu.jpg'
           ];
@@ -113,7 +113,7 @@
         page: 2,
         list: [
           'https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg',
-          'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg,
+          'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg',
           'https://storage.360buyimg.com/jdc-article/welcomenutui.jpg',
           'https://storage.360buyimg.com/jdc-article/fristfabu.jpg'
         ]
@@ -338,7 +338,7 @@
         page: 2,
         list: [
           'https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg',
-          'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg,
+          'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg',
           'https://storage.360buyimg.com/jdc-article/welcomenutui.jpg',
           'https://storage.360buyimg.com/jdc-article/fristfabu.jpg'
         ],

@@ -1,5 +1,5 @@
-@import '../popup/index';
-@import '../elevator/index';
+@import "../popup/index";
+@import "../elevator/index";
 
 .nut-theme-dark {
   .nut-address {
@@ -65,15 +65,12 @@
     }
   }
 
-  // 请选择
   .nut-address__custom {
     display: block;
 
     .nut-address__region {
       position: relative;
       display: flex;
-
-      // margin-top: 32px;
       padding: 0 20px;
       font-size: $address-region-tab-font-size;
       color: $address-region-tab-color;
@@ -96,7 +93,6 @@
           white-space: nowrap;
         }
 
-        
 
         .nut-address__region-line--mini {
           position: absolute;
@@ -135,7 +131,6 @@
       margin: 20px 20px 0;
 
       .nut-address__detail-list {
-        // overflow-y: auto;
         box-sizing: border-box;
         height: 270px;
         padding: 0;
@@ -166,7 +161,6 @@
     }
   }
 
-  // 配送至
   .nut-address__exist {
     display: block;
     margin-top: 15px;
@@ -196,11 +190,6 @@
             margin-right: $address-item-margin-right;
             color: $address-icon-color !important;
           }
-
-          // span {
-          //   display: inline-block;
-          //   flex: 1;
-          // }
         }
       }
     }

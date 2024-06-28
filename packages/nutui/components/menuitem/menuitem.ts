@@ -1,14 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-
-export interface MenuItemOption {
-  text: string
-  value: number | string
-}
+import type { MenuItemOption } from './types'
 
 export const menuitemProps = {
   ...commonProps,
+  modelValue: [String, Number],
   /**
    * @@description 菜单项标题
    */
@@ -21,7 +18,6 @@ export const menuitemProps = {
    * @description 是否禁用菜单
    */
   disabled: Boolean,
-  modelValue: [String, Number],
   /**
    * @description 可以设置一行展示多少列 `options`
    */
@@ -53,22 +49,3 @@ export const menuitemEmits = {
 /* eslint-enable unused-imports/no-unused-vars */
 
 export type MenuitemEmits = typeof menuitemEmits
-
-export interface MenuItemInst {
-  /**
-   * @description 变更选择项
-   */
-  change: (value?: number | string) => any
-  /**
-   * @description 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反
-   */
-  toggle: (show?: boolean) => boolean
-  /**
-   * @description 打开菜单栏
-   */
-  open: () => void
-  /**
-   * @description 关闭菜单栏
-   */
-  close: () => void
-}

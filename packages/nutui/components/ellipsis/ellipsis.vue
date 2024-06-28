@@ -1,26 +1,47 @@
-<script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { CLICK_EVENT, PREFIX } from '../_constants'
+<script lang="ts" setup>
+import type { ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import { CLICK_EVENT } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
 import { getRandomId } from '../_utils'
-import type { EllipsisedValue } from './ellipsis'
+import type { EllipsisedValue } from './types'
 import { ellipsisEmits, ellipsisProps } from './ellipsis'
+
+const COMPONENT_NAME = 'nut-ellipsis'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(ellipsisProps)
 
 const emit = defineEmits(ellipsisEmits)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const { query } = useSelectorQuery(instance)
+
 const refRandomId = getRandomId()
 const rootId = `root${refRandomId}`
 const symbolContainId = `symbolContain${refRandomId}`
 const rootContainId = `rootContain${refRandomId}`
-const contantCopy = ref(props.content)
+
+const contentCopy = ref(props.content)
+
 let maxHeight = 0 // 超出的最大高度
 let lineHeight = 0 // 当行的最大高度
 let originHeight = 0 // 原始高度
+
 const ellipsis = reactive<EllipsisedValue>({})
+
 const widthRef = ref('auto')
+
 const state = reactive({
   exceeded: false, // 是否超出
   expanded: false, // 是否折叠
@@ -28,16 +49,16 @@ const state = reactive({
 
 let widthBase = [14, 10, 7, 8.4, 10] // 中、英(大)、英(小)、数字、其他字符的基础宽度
 let symbolTextWidth = widthBase[0] * 0.7921
+
 const chineseReg = /^[\u4E00-\u9FA5]+$/ // 汉字
 const digitReg = /^[0-9]+$/ // 数字
 const letterUpperReg = /^[A-Z]+$/ // 字母
 const letterLowerReg = /^[a-z]+$/ // 字母
 
 const classes = computed(() => {
-  const prefixCls = componentName
   return {
+    [COMPONENT_NAME]: true,
     ell: true,
-    [prefixCls]: true,
   }
 })
 
@@ -54,6 +75,7 @@ onMounted(() => {
     getReference()
   }, 100)
 })
+
 // 获取省略号宽度
 async function getSymbolInfo() {
   const refe = await useRect(symbolContainId, instance)
@@ -138,9 +160,10 @@ async function verifyEllipsis() {
 }
 
 function assignContent() {
-  contantCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''
+  contentCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''
     }${ellipsis.tailing || ''}`
 }
+
 // 计算省略号
 function tailorContent(left: number, right: number, type = '') {
   const threeDotWidth = symbolTextWidth
@@ -216,50 +239,35 @@ function handleClick() {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-ellipsis`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="customClass" :style="customStyle">
+  <view :class="props.customClass" :style="props.customStyle">
     <view :id="rootId" :class="classes" @click="handleClick">
       <view v-if="!state.exceeded" class="nut-ellipsis__wordbreak">
-        {{ content }}
+        {{ props.content }}
       </view>
 
       <view v-if="state.exceeded && !state.expanded" class="nut-ellipsis__wordbreak">
-        {{ ellipsis.leading }}{{ ellipsis.leading && symbol
-        }}
-        <view v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(1)">
-          {{ expandText }}
-        </view>{{ ellipsis.tailing && symbol }}{{ ellipsis.tailing }}
+        {{ ellipsis.leading }}{{ ellipsis.leading && props.symbol }}
+        <view v-if="props.expandText" class="nut-ellipsis__text" @click.stop="clickHandle(1)">
+          {{ props.expandText }}
+        </view>{{ ellipsis.tailing && props.symbol }}{{ ellipsis.tailing }}
       </view>
+
       <view v-if="state.exceeded && state.expanded">
-        {{ content }}
-        <view v-if="expandText" class="nut-ellipsis__text" @click.stop="clickHandle(2)">
-          {{ collapseText }}
+        {{ props.content }}
+        <view v-if="props.expandText" class="nut-ellipsis__text" @click.stop="clickHandle(2)">
+          {{ props.collapseText }}
         </view>
       </view>
     </view>
 
     <view :id="rootContainId" class="nut-ellipsis__copy" :style="{ width: widthRef }">
-      <view>{{ contantCopy }}</view>
+      <view>{{ contentCopy }}</view>
     </view>
 
     <!-- 省略号 symbol  -->
     <view :id="symbolContainId" class="nut-ellipsis__copy" style="display: inline">
-      {{
-        symbolText
-      }}
+      {{ symbolText }}
     </view>
 
     <!-- 数字 9 英文 W  -->
@@ -267,5 +275,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

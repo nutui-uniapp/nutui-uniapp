@@ -1,2 +1,2 @@
-export type * from './comment'
-export type * from './type'
+export * from './types'
+export * from './comment'

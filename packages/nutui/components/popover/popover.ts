@@ -1,7 +1,7 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { commonProps, isBoolean, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import type { PopoverList, PopoverLocation, PopoverTheme } from './type'
+import type { PopoverList, PopoverLocation, PopoverTheme } from './types'
 
 export const popoverProps = {
   ...commonProps,

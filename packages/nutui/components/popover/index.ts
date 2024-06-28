@@ -1,2 +1,2 @@
-export type * from './popover'
-export * from './type'
+export * from './types'
+export * from './popover'

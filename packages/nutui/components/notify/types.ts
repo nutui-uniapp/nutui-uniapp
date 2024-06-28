@@ -2,6 +2,7 @@ import type { Position } from '../_constants/types'
 
 export const notifyType = ['primary', 'success', 'danger', 'warning'] as const
 export type NotifyType = (typeof notifyType)[number]
+
 export interface NotifyOptions {
   /**
    * @description 提示的信息类型，可选值为`primary` `success` `danger` `warning`

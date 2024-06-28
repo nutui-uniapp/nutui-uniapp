@@ -1,4 +1,4 @@
-@import '../popup/index';
+@import "../popup/index";
 
 .nut-theme-dark {
   .nut-short-password-title {
@@ -22,7 +22,7 @@
           inset: -50%;
           box-sizing: border-box;
           pointer-events: none;
-          content: ' ';
+          content: " ";
           outline: 1px solid #3a3a3c;
           transform: scale(0.5);
         }

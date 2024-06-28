@@ -1,1 +1,1 @@
-export type * from './configprovider'
+export * from './configprovider'

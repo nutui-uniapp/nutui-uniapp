@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { popupProps } from '../popup/popup'
 import { commonProps, isBoolean, isNumber, makeArrayProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHOOSE_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
@@ -10,9 +10,28 @@ export interface ActionSheetOption {
   name: string
   subname?: string
 }
+
 export const actionsheetProps = {
   ...popupProps,
   ...commonProps,
+  /**
+   * @description 是否显示圆角
+   */
+  round: truthProp,
+  /**
+   * @description 是否开启 iPhone 系列全面屏底部安全区适配，仅当 `position` 为 `bottom` 时有效
+   */
+  safeAreaInsetBottom: truthProp,
+  /**
+   * @description 遮罩显示时的背景是否锁定
+   */
+  lockScroll: truthProp,
+  /**
+   * @description 自定义 popup 弹框样式
+   */
+  popStyle: {
+    type: Object as PropType<CSSProperties>,
+  },
   /**
    * @description 取消文案
    */
@@ -58,7 +77,6 @@ export const actionsheetEmits = {
   [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
   [CANCEL_EVENT]: () => true,
   [CHOOSE_EVENT]: (item: ActionSheetOption, index: number) => item instanceof Object && isNumber(index),
-
 }
 
 export type ActionsheetEmits = typeof actionsheetEmits

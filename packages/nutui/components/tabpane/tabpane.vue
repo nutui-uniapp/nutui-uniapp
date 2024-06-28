@@ -1,5 +1,6 @@
-<script setup lang="ts">
-import { type CSSProperties, type ComputedRef, computed, defineComponent } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties, ComputedRef } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
 import { TAB_KEY } from '../tabs'
@@ -43,5 +44,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

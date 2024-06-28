@@ -1,1 +1,1 @@
-export type * from './icon'
+export * from './icon'

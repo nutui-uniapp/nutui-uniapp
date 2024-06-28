@@ -1,4 +1,5 @@
-import { type ComponentInternalInstance, onMounted, reactive, ref } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { useTouch } from '../_hooks'
 import { getRandomId } from '../_utils'
 

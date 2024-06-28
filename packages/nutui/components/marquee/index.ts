@@ -1,1 +1,1 @@
-export type * from './marquee'
+export * from './marquee'

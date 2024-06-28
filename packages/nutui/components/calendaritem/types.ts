@@ -33,25 +33,22 @@ export interface CalendarState {
   monthsNum: number
   defaultRange: number[]
 }
+
 export interface CalendarTaroState extends CalendarState {
   scrollTop: number
   containerHeight: string
 }
+
+export interface CalendarDateProp {
+  year: string
+  month: string
+}
+
 export interface Day {
   day: string
   type: string
   year?: string
   month?: string
-}
-
-export interface Dateprop {
-  year: string
-  month: string
-}
-export interface DateInfo {
-  year: string
-  month: string
-  day: string
 }
 
 export interface MonthInfo {
@@ -61,6 +58,7 @@ export interface MonthInfo {
   cssHeight: number
   cssScrollHeight: number
 }
+
 export interface CalendarInst extends HTMLElement {
   scrollToDate: (date: string) => void
   initPosition: () => void

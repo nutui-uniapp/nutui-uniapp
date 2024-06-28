@@ -1,29 +1,44 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { getMainClass } from '../_utils'
 import { dollmachineEmits, dollmachineProps } from './dollmachine'
+
+const COMPONENT_NAME = 'nut-doll-machine'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(dollmachineProps)
 
 const emit = defineEmits(dollmachineEmits)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const giftPrize = ref()
 const machineBoxDom = ref()
 const machineToolsDom = ref()
+
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
-const toolsStyle = reactive({
+
+const toolsStyles = reactive({
   left: '50%',
   marginLeft: '0',
 })
 
 function leftCenter() {
-  toolsStyle.left = '50%'
+  toolsStyles.left = '50%'
   const toolDomW = machineToolsDom.value.width
-  toolsStyle.marginLeft = `-${toolDomW / 2}px`
+  toolsStyles.marginLeft = `-${toolDomW / 2}px`
 }
 
 function leftRightMove(flag: string) {
@@ -48,32 +63,21 @@ function leftRightMove(flag: string) {
       const left: number = toolDomLeft + distance
 
       if (flag === 'left')
-        toolsStyle.left = `${left < 0 ? 0 : left}px`
+        toolsStyles.left = `${left < 0 ? 0 : left}px`
 
       else
-        toolsStyle.left = `${left > max ? max : left}px`
+        toolsStyles.left = `${left > max ? max : left}px`
     }, 200)
   })
 }
 
-// const topBottomMove = (flag: string) => {
-//   if (flag == "top") {
-//   } else {
-//   }
-// };
-
 function moveTools(flag: string) {
-  // toolsStyle.transform = "none";
-  toolsStyle.marginLeft = '0'
-  if (flag === 'left' || flag === 'right') {
+  toolsStyles.marginLeft = '0'
+  if (flag === 'left' || flag === 'right')
     leftRightMove(flag)
-  }
-  else {
-    // topBottomMove(flag);
-  }
 }
 
-const clawStyle = ref({
+const clawStyles = ref({
   'background-image': `url(${props.defaultClaw})`,
   'background-size': '100% 100%',
   'background-position': 'center',
@@ -95,17 +99,17 @@ function startGame() {
   giftPrize.value = ''
   machineLock.value = true
   initLock.value = true
-  clawStyle.value['background-image'] = `url(${props.activeClaw})`
+  clawStyles.value['background-image'] = `url(${props.activeClaw})`
   const heightBox = machineBoxDom.value.height
   const heightTools = machineToolsDom.value.height
   const heightOpe = machineOperateDom.value.height
-  ropeDomHeight.value.height = `${
-        heightBox - heightOpe - heightTools - 20
-      }px`
+  ropeDomHeight.value.height = `${heightBox - heightOpe - heightTools - 20}px`
 }
+
 function initGame() {
   ropeDomHeight.value.height = '20px'
 }
+
 function ropeHeightEnd() {
   const query = uni.createSelectorQuery().in(instance)
   query.select('.machine-rope').boundingClientRect()
@@ -116,14 +120,16 @@ function ropeHeightEnd() {
       machineLock.value = false
       emit('endTurns')
     }
-    clawStyle.value['background-image'] = `url(${props.defaultClaw})`
+    clawStyles.value['background-image'] = `url(${props.defaultClaw})`
     giftPrize.value = props.prizeList[props.prizeIndex].imagePath
     setTimeout(() => {
       initGame()
     }, 200)
   })
 }
-const giftEle: any = reactive([])
+
+const giftEle: any[] = reactive([])
+
 function setGiftEle() {
   const left = Math.floor(Math.random() * 325)
   const top = Math.floor(Math.random() * (150 - 70) + 70)
@@ -163,23 +169,10 @@ onMounted(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-doll-machine`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <div :class="classes" :style="customClass">
+  <div :class="classes" :style="props.customClass">
     <div class="machine-box">
-      <div class="machine-tools" :style="toolsStyle">
+      <div class="machine-tools" :style="toolsStyles">
         <div
           id="machine-rope"
           class="machine-rope"
@@ -187,7 +180,8 @@ export default defineComponent({
           @transitionend="ropeHeightEnd"
           @webkitTransitionEnd="ropeHeightEnd"
         />
-        <div ref="machineClawDom" class="machine-claw" :style="clawStyle">
+
+        <div ref="machineClawDom" class="machine-claw" :style="clawStyles">
           <image
             v-if="giftPrize"
             :src="giftPrize"
@@ -196,10 +190,11 @@ export default defineComponent({
           />
         </div>
       </div>
+
       <div class="machine-gift-box">
         <div class="box-glass">
           <image
-            v-for="(item, index) of prizeList"
+            v-for="(item, index) of props.prizeList"
             :id="`gift${index}`"
             :key="index"
             :ref="setGiftEle"
@@ -209,35 +204,23 @@ export default defineComponent({
             @load="setGiftEle"
           />
         </div>
+
         <div class="machine-operate">
-          <div
-            class="machine-direction" :class="[machineLock ? 'disabledClick' : '']"
-          >
-            <!-- <span
-              class="direction-block direction-block-top"
-              @click="moveTools('top')"
-            ></span> -->
-            <span
-              class="direction-block direction-block-left"
-              @click="moveTools('left')"
-            />
-            <span
-              class="direction-block direction-block-right"
-              @click="moveTools('right')"
-            />
-            <!-- <span
-              class="direction-block direction-block-bottom"
-              @click="moveTools('bottom')"
-            ></span> -->
+          <div class="machine-direction" :class="[machineLock ? 'disabledClick' : '']">
+            <span class="direction-block direction-block-left" @click="moveTools('left')" />
+
+            <span class="direction-block direction-block-right" @click="moveTools('right')" />
           </div>
+
           <div
-            class="machine-btn" :class="[
-              machineLock ? 'machine-disabled disabledClick' : 'machine-start',
-            ]"
+            class="machine-btn"
+            :class="[machineLock ? 'machine-disabled disabledClick' : 'machine-start']"
             @click="startGame"
           />
+
           <div
-            class="machine-reset-btn" :class="[initLock ? 'disabledClick' : '']"
+            class="machine-reset-btn"
+            :class="[initLock ? 'disabledClick' : '']"
             @click="init"
           >
             重置
@@ -249,5 +232,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

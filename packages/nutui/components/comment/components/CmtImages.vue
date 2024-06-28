@@ -1,8 +1,19 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { PropType } from 'vue'
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import NutIcon from '../../icon/icon.vue'
-import { PREFIX } from '../../_constants'
+
+const COMPONENT_NAME = 'nut-comment-images'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps({
   type: {
@@ -26,6 +37,7 @@ interface VideosType {
   mainUrl: string
   videoUrl: string
 }
+
 interface ImagesType {
   smallImgUrl: string
   bigImgUrl: string
@@ -68,40 +80,31 @@ function showImages(type: string, index: string | number) {
 }
 </script>
 
-<script  lang="ts">
-const componentName = `${PREFIX}-comment-images`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="`nut-comment-images nut-comment-images--${type}`">
+  <view class="nut-comment-images" :class="[`nut-comment-images--${props.type}`]">
     <!-- videos -->
     <view
-      v-for="(itV, index) in videos" :key="itV.id" class="nut-comment-images__item nut-comment-images__item--video"
+      v-for="(itV, index) in props.videos"
+      :key="itV.id"
+      class="nut-comment-images__item nut-comment-images__item--video"
       @click="showImages('video', index)"
     >
       <image :src="itV.mainUrl" />
+
       <view class="nut-comment-images__play" />
     </view>
+
     <!-- images -->
-    <template v-for="(itI, index) in images" :key="itI.id">
+    <template v-for="(itI, index) in props.images" :key="itI.id">
       <view
-        v-if="(type === 'multi' && videos.length + index < 9) || type !== 'multi'"
+        v-if="(props.type === 'multi' && props.videos.length + index < 9) || props.type !== 'multi'"
         class="nut-comment-images__item nut-comment-images__item--imgbox"
-        @click="showImages('img', index + videos.length)"
+        @click="showImages('img', index + props.videos.length)"
       >
         <image :src="itI.smallImgUrl ? itI.smallImgUrl : itI.imgUrl" />
 
         <view
-          v-if="type === 'multi' && totalImages.length > 9 && videos.length + index > 7"
+          v-if="type === 'multi' && totalImages.length > 9 && props.videos.length + index > 7"
           class="nut-comment-images__mask"
         >
           <text>共 {{ totalImages.length }} 张</text>
@@ -138,8 +141,7 @@ export default defineComponent({
       // }
 
       &--video {
-
-        /* stylelint-disable-next-line rule-empty-line-before */
+        // stylelint-disable-next-line rule-empty-line-before
         image {
           position: absolute;
           top: 50%;
@@ -197,7 +199,7 @@ export default defineComponent({
     &::after {
       display: block;
       width: 105px;
-      content: '';
+      content: "";
     }
   }
 
@@ -217,7 +219,7 @@ export default defineComponent({
       top: 11px;
       left: 15px;
       display: block;
-      content: '';
+      content: "";
       border-top: 9px solid transparent;
       border-bottom: 9px solid transparent;
       border-left: 15px solid #fff;

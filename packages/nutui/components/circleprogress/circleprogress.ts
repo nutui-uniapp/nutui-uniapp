@@ -22,7 +22,7 @@ export const circleprogressProps = {
   /**
    * @description 圆环进度条颜色
    */
-  customColor: { type: [String, Object], default: '#FF673E' },
+  customColor: { type: [String, Object], default: '#ff673e' },
   /**
    * @description 圆环轨道颜色
    */

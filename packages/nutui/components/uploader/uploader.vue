@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, reactive, ref, toRef, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
@@ -9,7 +9,8 @@ import { getMainClass } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
 import { uploaderEmits, uploaderProps } from './uploader'
-import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
+import type { ChooseFile, OnProgressUpdateResult, UploadFileSuccessCallbackResult, UploadOptions } from './use-uploader'
+import { chooseFile, createUploader } from './use-uploader'
 import type { FileItem } from './type'
 
 const props = defineProps(uploaderProps)
@@ -313,5 +314,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

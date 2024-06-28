@@ -1,30 +1,48 @@
-<script setup lang="ts">
-import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+<script lang="ts" setup>
+import { computed, ref, watch } from 'vue'
 import { getMainClass, getMainStyle, getRandomId, pxCheck } from '../_utils'
 import { circleprogressProps } from './circleprogress'
 
-interface Item {
+interface ColorItem {
   key?: string
   value?: string
 }
-const props = defineProps(circleprogressProps)
-const isIos = uni.getSystemInfoSync().platform === 'ios'
-const currentRate = ref(props.progress)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
+
+const COMPONENT_NAME = 'nut-circle-progress'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
-const getStyle = computed(() => {
+
+const props = defineProps(circleprogressProps)
+
+const isIos = uni.getSystemInfoSync().platform === 'ios'
+
+const currentRate = ref(props.progress)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+const styles = computed(() => {
   return getMainStyle(props, {
     height: `${pxCheck(Number(props.radius) * 2)}`,
     width: `${pxCheck(Number(props.radius) * 2)}`,
   })
 })
+
 const isObject = (val: unknown): val is Record<any, any> => val !== null && typeof val === 'object'
 
 function transColor(color: string | undefined) {
   return color && color.replace('#', '%23')
 }
+
 function stop() {
   if (!isObject(props.customColor))
     return []
@@ -32,7 +50,7 @@ function stop() {
   const color = props.customColor
   const colorArr = Object.keys(color).sort((a, b) => Number.parseFloat(a) - Number.parseFloat(b))
 
-  const stopArr: object[] = []
+  const stopArr: ColorItem[] = []
   colorArr.forEach((item) => {
     const obj = {
       key: '',
@@ -45,13 +63,15 @@ function stop() {
   return stopArr
 }
 
-const style = computed(() => {
+const format = (progress: string | number) => Math.min(Math.max(+progress, 0), 100)
+
+const svgStyles = computed(() => {
   const { strokeWidth } = props
 
-  const stopArr: Array<object> = stop()
+  const stopArr: ColorItem[] = stop()
   const stopDom: string[] = []
   if (stopArr) {
-    stopArr.forEach((item: Item) => {
+    stopArr.forEach((item) => {
       let obj = ''
       obj = `%3Cstop offset='${item.key}' stop-color='${transColor(item.value)}'/%3E`
       stopDom.push(obj)
@@ -76,7 +96,6 @@ const style = computed(() => {
     transition: `${isIos ? '' : 'background-image .3s ease 0s, '}stroke .3s ease 0s`,
   }
 })
-const format = (progress: string | number) => Math.min(Math.max(+progress, 0), 100)
 
 watch(
   () => props.progress,
@@ -86,30 +105,18 @@ watch(
 )
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-circle-progress`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <div :class="classes" :style="getStyle">
-    <div :style="style" />
-    <div class="nut-circle-progress__text">
+  <view :class="classes" :style="styles">
+    <view :style="svgStyles" />
+
+    <view class="nut-circle-progress__text">
       <slot>
-        <span>{{ progress }}%</span>
+        <text>{{ props.progress }}%</text>
       </slot>
-    </div>
-  </div>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

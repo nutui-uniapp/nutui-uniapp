@@ -77,34 +77,3 @@ export const countupEmits = {
 }
 
 export type CountUpEmits = typeof countupEmits
-
-export interface IData {
-  valFlag: boolean
-  current: number
-  sortFlag: string
-  initDigit1: number
-  initDigit2: number
-  to0_10: number[]
-  to10_0: Array<number>
-  timer: null | any
-  totalCount: number // 正整数
-  pointNum: number // 小数位
-  numberVal: number // 数字
-  num_total_len: number // 数字长度
-  relNum: number // 去除小数点
-  customNumber: number
-  prizeLevelTrun: number
-  prizeY: Array<any>
-  prizeYPrev: Array<any>
-  // machineTransition: 'none',
-  finshMachine: number
-  notPrize: Array<any>
-  typeMachine: string
-}
-
-export interface CountUpInst {
-  /**
-   * @description 抽奖
-   */
-  machineLuck: () => void
-}

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
@@ -86,5 +86,5 @@ export default defineComponent ({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

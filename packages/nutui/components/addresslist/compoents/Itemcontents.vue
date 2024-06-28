@@ -1,8 +1,20 @@
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import { PREFIX } from '../../_constants'
 import { useTranslate } from '../../../locale'
 import NutIcon from '../../icon/icon.vue'
+
+const COMPONENT_NAME = 'nut-address-list-item'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
+})
 
 const props = defineProps({
   item: {
@@ -15,6 +27,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['delIcon', 'editIcon', 'clickItem'])
+
+const { translate } = useTranslate('nut-address-list')
 
 function handleDelIconClick(event: any) {
   event.stopPropagation()
@@ -33,21 +47,6 @@ function handleContentsClick(event: any) {
 
   emit('clickItem', event, props.item)
 }
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-address-list-item`
-const { translate } = useTranslate(`${PREFIX}-address-list`)
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
 </script>
 
 <template>
@@ -73,8 +72,16 @@ export default defineComponent({
         <slot v-if="props.useContentIconSlot" name="content-icon" />
 
         <template v-else>
-          <NutIcon name="del" custom-class="nut-address-list-item__info-handle-del" @tap.stop="handleDelIconClick" />
-          <NutIcon name="edit" custom-class="nut-address-list-item__info-handle-edit" @tap.stop="handleEditIconClick" />
+          <NutIcon
+            custom-class="nut-address-list-item__info-handle-del"
+            name="del"
+            @tap.stop="handleDelIconClick"
+          />
+          <NutIcon
+            custom-class="nut-address-list-item__info-handle-edit"
+            name="edit"
+            @tap.stop="handleEditIconClick"
+          />
         </template>
       </view>
     </view>

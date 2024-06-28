@@ -5,12 +5,6 @@
       background: $dark-background3;
       box-shadow: none;
     }
-
-  //   .nut-cell {
-  //     &::after {
-  //      border-bottom: $dark-cell-after-border-bottom;
-  //    }
-  //  }
   }
 }
 
@@ -45,7 +39,7 @@
     border-radius: $cell-border-radius;
     box-shadow: $cell-box-shadow;
 
-  :deep(.nut-cell) {
+    :deep(.nut-cell) {
       margin: 0;
       border-radius: 0;
       box-shadow: none;

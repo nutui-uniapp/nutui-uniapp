@@ -1,1 +1,2 @@
-export type * from './countup'
+export * from './types'
+export * from './countup'

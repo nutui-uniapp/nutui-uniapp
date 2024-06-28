@@ -1,4 +1,4 @@
-@import '../rate/index';
+@import "../rate/index";
 
 .nut-theme-dark {
   .nut-comment {
@@ -7,7 +7,6 @@
         color: $dark-color;
       }
     }
-
 
     .nut-comment-shop {
       border-top: 1px solid $dark-color;
@@ -19,8 +18,6 @@
   width: 100%;
   font-size: 12px;
 
-
-
   &__main {
     display: -webkit-box;
     overflow: hidden;
@@ -28,10 +25,6 @@
     white-space: pre-wrap;
     -webkit-box-orient: vertical;
   }
-
-
-
-
 
   &__follow {
     &-title {
@@ -63,10 +56,6 @@
       margin: 0 0 8px 8px;
     }
   }
-
-
-
-
 
   .nut-comment-shop {
     width: 100%;

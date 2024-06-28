@@ -8,37 +8,30 @@ export const fixednavProps = {
    * @description 是否打开
    */
   visible: Boolean,
-
   /**
    * @description 悬浮列表内容数据
    */
   navList: makeArrayProp<any>([]),
-
   /**
    * @description 选中按钮文案颜色
    */
   activeColor: makeStringProp(''),
-
   /**
    * @description 收起列表按钮文案
    */
   activeText: makeStringProp(''),
-
   /**
    * @description 展开列表按钮文案
    */
   unActiveText: makeStringProp(''),
-
   /**
    * @description 导航方向，可选值 'left'、'right'
    */
   type: makeStringProp<'left' | 'right'>('right'),
-
   /**
    * @description 展开时是否显示遮罩
    */
   overlay: truthProp,
-
   /**
    * @description fixed 垂直位置
    */

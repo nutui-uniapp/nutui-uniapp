@@ -1,4 +1,4 @@
-@import '../popup/index';
+@import "../popup/index";
 
 .nut-popover {
   position: absolute;
@@ -97,15 +97,12 @@
     border-radius: 5px;
     box-shadow: 0 2px 12px #3232331f;
     opacity: 1;
-    transition:
-      opacity 0.15s,
-      transform 0.15s;
+    transition: opacity 0.15s,
+    transform 0.15s;
 
     &-group {
       display: block;
       width: 100%;
-
-      // position: relative;
       height: 100%;
     }
 
@@ -149,12 +146,12 @@
     }
 
     &--top-end {
+      right: 0;
+
       .nut-popover-arrow--top-end {
         right: 16px;
         transform: translateX(0%);
       }
-
-      right: 0;
     }
 
     &--top-start {

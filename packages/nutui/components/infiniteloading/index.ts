@@ -1,1 +1,1 @@
-export type * from './infiniteloading'
+export * from './infiniteloading'

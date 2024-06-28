@@ -1,41 +1,55 @@
-<script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import { getMainClass, isObject, pxCheck } from '../_utils'
-import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
+import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
-import type { stateProps } from './noticebar'
 import { noticebarEmits, noticebarProps } from './noticebar'
+import type { NoticebarState } from './types'
+
+const COMPONENT_NAME = 'nut-noticebar'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(noticebarProps)
 
 const emit = defineEmits(noticebarEmits)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
-const wrap = ref<null | HTMLElement>(null)
-const content = ref<null | HTMLElement>(null)
+const wrap = ref<HTMLElement | null>(null)
+const content = ref<HTMLElement | null>(null)
 
-const state = reactive<stateProps>({
+const state = reactive<NoticebarState>({
   wrapWidth: 0,
   firstRound: true,
   duration: 0,
   offsetWidth: 0,
   showNoticebar: true,
   animationClass: '',
-
   animate: false,
   scrollList: [],
   distance: 0,
   timer: null,
   keepAlive: false,
   isCanScroll: null,
-  showNotica: true,
+  showNotice: true,
   id: Math.round(Math.random() * 100000),
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 const isEllipsis = computed(() => {
@@ -46,7 +60,7 @@ const isEllipsis = computed(() => {
     return !state.isCanScroll && !props.wrapable
 })
 
-const wrapContentClass = computed(() => {
+const wrapContentClasses = computed(() => {
   return {
     'nut-noticebar__page-wrap-content': true,
     'nut-ellipsis': isEllipsis.value,
@@ -55,43 +69,47 @@ const wrapContentClass = computed(() => {
   }
 })
 
-const barStyle = computed(() => {
-  const style: {
-    [props: string]: any
-  } = {}
+const barStyles = computed(() => {
+  const value: CSSProperties = {}
 
-  props.customColor && (style.color = props.customColor)
-  props.background && (style.background = props.background)
+  if (props.customColor)
+    value.color = props.customColor
+
+  if (props.background)
+    value.background = props.background
 
   if (props.direction === 'vertical')
-    style.height = `${props.height}px`
+    value.height = `${props.height}px`
 
-  return style
+  return value
 })
 
-const contentStyle = computed(() => {
+const contentStyles = computed(() => {
   return {
     animationDelay: `${state.firstRound ? props.delay : 0}s`,
     animationDuration: `${state.duration}s`,
     transform: `translateX(${state.firstRound ? 0 : `${state.wrapWidth}px`})`,
   }
 })
-const horseLampStyle = computed(() => {
-  let styles = {}
+
+const marqueeStyles = computed(() => {
+  const value: CSSProperties = {}
+
   if (props.complexAm) {
-    styles = {
+    Object.assign(value, {
       transform: `translateY(${state.distance}px)`,
-    }
+    })
   }
   else {
     if (state.animate) {
-      styles = {
-        'transition': `all ${~~(props.height / props.speed / 4)}s`,
-        'margin-top': `-${props.height}px`,
-      }
+      Object.assign(value, {
+        transition: `all ${~~(props.height / props.speed / 4)}s`,
+        marginTop: `-${props.height}px`,
+      })
     }
   }
-  return styles
+
+  return value
 })
 
 watch(
@@ -122,10 +140,13 @@ function initScrollWrap() {
     getSelectorNodeInfo(`.wrap${state.id}`).then((rect) => {
       if (rect.width! > 0)
         wrapWidth = rect.width!
+
       getSelectorNodeInfo(`.content${state.id}`).then((rect) => {
         if (rect.width! > 0)
           offsetWidth = rect.width!
+
         state.isCanScroll = props.scrollable == null ? offsetWidth > wrapWidth : props.scrollable
+
         if (state.isCanScroll) {
           state.wrapWidth = wrapWidth
           state.offsetWidth = offsetWidth
@@ -140,34 +161,46 @@ function initScrollWrap() {
     })
   }, 100)
 }
-function handleClick(event: Event) {
+
+function handleClick(event: any) {
   emit('click', event)
 }
 
-function onClickIcon(event: Event) {
+function onClickIcon(event: any) {
   if (props.closeMode)
     state.showNoticebar = !props.closeMode
 
   emit('close', event)
 }
 
-function onAnimationEnd(event: Event) {
+function onAnimationEnd(event: any) {
   state.firstRound = false
   emit('acrossEnd', event)
+
   setTimeout(() => {
     state.duration = (state.offsetWidth + state.wrapWidth) / props.speed
     state.animationClass = 'play-infinite'
   }, 0)
 }
 
+function destroyTimer() {
+  if (state.timer == null)
+    return
+
+  clearInterval(state.timer)
+  state.timer = null
+}
+
 /**
  * 利益点滚动方式一
  */
 function startRollEasy() {
-  showhorseLamp();
-  (state.timer as any) = setInterval(showhorseLamp, ~~(props.height / props.speed / 4) * 1000 + props.standTime)
+  showMarquee()
+
+  state.timer = setInterval(showMarquee, ~~(props.height / props.speed / 4) * 1000 + props.standTime)
 }
-function showhorseLamp() {
+
+function showMarquee() {
   state.animate = true
   setTimeout(() => {
     state.scrollList.push(state.scrollList[0])
@@ -177,12 +210,13 @@ function showhorseLamp() {
 }
 
 function startRoll() {
-  (state.timer as any) = setInterval(() => {
+  state.timer = setInterval(() => {
     const chunk = 100
     for (let i = 0; i < chunk; i++)
       scroll(i, !(i < chunk - 1))
   }, props.standTime + 100 * props.speed)
 }
+
 function scroll(n: number, last: boolean) {
   setTimeout(() => {
     state.distance -= props.height / 100
@@ -193,6 +227,7 @@ function scroll(n: number, last: boolean) {
     }
   }, n * props.speed)
 }
+
 /**
  * 点击滚动单元
  */
@@ -227,71 +262,66 @@ onActivated(() => {
 
 onDeactivated(() => {
   state.keepAlive = true
-  clearInterval(state.timer as any)
+
+  destroyTimer()
 })
 
 onUnmounted(() => {
-  clearInterval(state.timer as any)
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-noticebar`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+  destroyTimer()
 })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <view
-      v-if="direction === 'across'"
+      v-if="props.direction === 'across'"
       class="nut-noticebar__page"
       :class="{
-        'nut-noticebar__page--withicon': closeMode,
-        'nut-noticebar__page--close': closeMode,
-        'nut-noticebar__page--wrapable': wrapable,
+        'nut-noticebar__page--withicon': props.closeMode,
+        'nut-noticebar__page--close': props.closeMode,
+        'nut-noticebar__page--wrapable': props.wrapable,
         'nut-hidden': !state.showNoticebar,
       }"
-      :style="barStyle"
-      @click="(handleClick as any)"
+      :style="barStyles"
+      @click="handleClick"
     >
-      <view v-if="leftIcon" class="nut-noticebar__page-lefticon">
+      <view v-if="props.leftIcon" class="nut-noticebar__page-lefticon">
         <slot name="leftIcon">
           <NutIcon name="notice" size="16px" />
         </slot>
       </view>
+
       <view ref="wrap" :class="`nut-noticebar__page-wrap wrap${state.id}`">
         <view
           ref="content"
-          :class="wrapContentClass"
-          :style="contentStyle"
-          @animationend="(onAnimationEnd as any)"
-          @webkit-animation-end="(onAnimationEnd as any)"
+          :class="wrapContentClasses"
+          :style="contentStyles"
+          @animationend="onAnimationEnd"
+          @webkit-animation-end="onAnimationEnd"
         >
-          <slot>{{ text }}</slot>
+          <slot>{{ props.text }}</slot>
         </view>
       </view>
-      <view v-if="closeMode || $slots.rightIcon" class="nut-noticebar__page-righticon" @click.stop="(onClickIcon as any)">
+
+      <view
+        v-if="props.closeMode || $slots.rightIcon"
+        class="nut-noticebar__page-righticon"
+        @click.stop="onClickIcon"
+      >
         <slot name="rightIcon">
           <NutIcon name="circle-close" />
         </slot>
       </view>
     </view>
+
     <!-- TODO uniapp拿不到 slots -->
 
     <view
-      v-if="state.scrollList.length > 0 && direction === 'vertical' && state.showNoticebar"
+      v-if="state.scrollList.length > 0 && props.direction === 'vertical' && state.showNoticebar"
       class="nut-noticebar__vertical"
-      :style="barStyle"
+      :style="barStyles"
     >
-      <view class="nut-noticebar__vertical-list" :style="horseLampStyle">
+      <view class="nut-noticebar__vertical-list" :style="marqueeStyles">
         <view
           v-for="(item, index) in state.scrollList"
           :key="index"
@@ -305,7 +335,12 @@ export default defineComponent({
 
       <view class="go" @click="handleClickIcon()">
         <slot name="rightIcon">
-          <NutIcon v-if="closeMode" name="circle-close" :custom-color="customColor" size="11px" />
+          <NutIcon
+            v-if="props.closeMode"
+            name="circle-close"
+            :custom-color="props.customColor"
+            size="11px"
+          />
         </slot>
       </view>
     </view>
@@ -313,5 +348,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

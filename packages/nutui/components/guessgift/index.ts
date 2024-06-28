@@ -1,1 +1,2 @@
-export type * from './guessgift'
+export * from './types'
+export * from './guessgift'

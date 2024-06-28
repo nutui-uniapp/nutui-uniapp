@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 

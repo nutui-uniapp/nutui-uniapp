@@ -35,7 +35,7 @@
       font-size: $menu-item-font-size;
       color: $menu-item-text-color;
       text-align: center;
-      
+
 
       &.active {
         color: $menu-item-active-text-color;
@@ -60,9 +60,8 @@
           display: block;
           padding-right: $menu-title-text-padding-right;
           padding-left: $menu-title-text-padding-left;
-          
+
           @include text-ellipsis;
-       
         }
 
         &.active .nut-menu__title-icon {

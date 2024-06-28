@@ -1,3 +1,3 @@
-export type * from './dialog'
-export type * from './type'
+export * from './types'
+export * from './dialog'
 export * from './use-dialog'

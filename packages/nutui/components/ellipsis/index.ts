@@ -1,1 +1,1 @@
-export type * from './ellipsis'
+export * from './ellipsis'

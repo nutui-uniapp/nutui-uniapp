@@ -1,5 +1,5 @@
-@import '../progress/index';
-@import '../button/index';
+@import "../progress/index";
+@import "../button/index";
 
 .nut-theme-dark {
   .nut-uploader {
@@ -36,7 +36,7 @@
     height: $uploader-picture-height;
     background: $uploader-background;
 
-   
+
   }
 
   &__input {
@@ -67,7 +67,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      
+
       /* #ifdef H5 */
 
       z-index: 99;
@@ -81,8 +81,6 @@
       height: 100%;
       background: rgb(0 0 0 / 60%);
 
-
-      
 
       &__msg {
         margin-top: 6px;

@@ -1,1 +1,2 @@
-export type { CountDownPropsProps, CountdownEmits, CountdownInst } from './countdown'
+export * from './types'
+export * from './countdown'

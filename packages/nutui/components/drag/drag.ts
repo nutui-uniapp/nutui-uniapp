@@ -7,12 +7,10 @@ export const dragProps = {
    * @description 是否开启自动吸边（根据 screenWidth 进行吸边）
    */
   attract: Boolean,
-
   /**
    * @description 拖拽元素的拖拽方向限制，'x'/'y'/'all'三选一
    */
   direction: makeStringProp<'x' | 'y' | 'all'>('all'),
-
   /**
    * @description 拖拽元素的拖拽边界
    */

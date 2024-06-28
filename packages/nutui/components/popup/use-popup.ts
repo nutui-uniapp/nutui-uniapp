@@ -1,4 +1,5 @@
-import { type ComputedRef, type SetupContext, computed, reactive, toRefs, watch, watchEffect } from 'vue'
+import type { ComputedRef, SetupContext } from 'vue'
+import { computed, reactive, toRefs, watch, watchEffect } from 'vue'
 import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { animationName } from '../_constants/types'
 import { getMainClass, getMainStyle } from '../_utils'

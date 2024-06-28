@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent, useSlots } from 'vue'
 import { useTranslate } from '../../locale'
 import { isH5 } from '../_utils'
@@ -54,5 +54,5 @@ export default defineComponent ({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

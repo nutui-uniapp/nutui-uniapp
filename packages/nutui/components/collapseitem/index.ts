@@ -1,1 +1,1 @@
-export type * from './collapseitem'
+export * from './collapseitem'

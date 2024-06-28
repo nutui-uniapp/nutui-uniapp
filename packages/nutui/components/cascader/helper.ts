@@ -1,4 +1,4 @@
-import type { CascaderConfig, CascaderOption, convertConfig } from './types'
+import type { CascaderConfig, CascaderOption, ConvertConfig } from './types'
 
 export function formatTree(tree: CascaderOption[], parent: CascaderOption | null, config: CascaderConfig): CascaderOption[] {
   return tree.map((node: CascaderOption) => {
@@ -42,7 +42,8 @@ const defaultConvertConfig = {
   pidKey: 'pid',
   sortKey: '',
 }
-export function convertListToOptions(list: CascaderOption[], options: convertConfig): CascaderOption[] {
+
+export function convertListToOptions(list: CascaderOption[], options: ConvertConfig): CascaderOption[] {
   const mergedOptions = {
     ...defaultConvertConfig,
     ...(options || {}),

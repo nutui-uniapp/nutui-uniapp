@@ -66,7 +66,7 @@ export default {
               text: '福州',
               leaf: false,
               children: []
-            }
+            },
             {
               value: '厦门',
               text: '厦门',

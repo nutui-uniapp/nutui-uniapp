@@ -1,5 +1,4 @@
-@import '../button/index';
-/* stylelint-disable selector-class-pattern */
+@import "../button/index";
 
 .nut-signature {
   .nut-signature-inner {
@@ -11,6 +10,7 @@
     border: 1px solid #dadada;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .spcanvas_WEAPP {
     width: 100%;
     height: 100%;

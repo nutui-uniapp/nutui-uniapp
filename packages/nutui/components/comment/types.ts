@@ -3,6 +3,7 @@ export interface VideosType {
   mainUrl: string
   videoUrl: string
 }
+
 export interface ImagesType {
   smallImgUrl: string
   bigImgUrl: string

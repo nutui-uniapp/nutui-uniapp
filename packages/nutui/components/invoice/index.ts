@@ -1,1 +1,1 @@
-export type * from './invoice'
+export * from './invoice'

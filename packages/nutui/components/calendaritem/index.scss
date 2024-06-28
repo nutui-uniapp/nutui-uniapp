@@ -11,12 +11,11 @@
     .nut-calendar__content {
       .nut-calendar__panel {
         .nut-calendar__days {
-          .nut-calendar__day{
+          .nut-calendar__day {
             &--disabled {
               color: $dark-calendar-disabled !important;
             }
           }
-          
 
           .calendar-month-day {
             &-choose {
@@ -24,11 +23,7 @@
               background-color: $dark-calendar-choose-color;
             }
           }
-
-           
         }
-
-        
       }
     }
 
@@ -36,8 +31,6 @@
       color: $dark-color;
       background: $dark-background2;
     }
-
-    
   }
 }
 
@@ -63,8 +56,6 @@
   .popup-box {
     height: 100%;
   }
-
-
 
   ::-webkit-scrollbar {
     display: none;
@@ -134,7 +125,7 @@
         text-align: center;
       }
 
-      div:nth-of-type(2) {
+      view:nth-of-type(2) {
         .nut-calendar__month-title {
           padding-top: 0;
         }
@@ -235,7 +226,7 @@
             &::after {
               position: absolute;
               inset: 0;
-              content: '';
+              content: "";
               background-color: $calendar-choose-color;
               opacity: 0.09;
             }

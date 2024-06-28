@@ -1,37 +1,36 @@
 .nut-loading-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__warpper {
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: -150px;
 
-    &__warpper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: -150px;
+    /* #ifndef APP-NVUE */
 
-        /* #ifndef APP-NVUE */
+    font-size: $font-size-4;
+    color: $text-color;
 
-        font-size: $font-size-4;
-        color: $text-color;
+    /* #endif */
 
-        /* #endif */
-        
+    &__loading-icon {
+      margin-bottom: $loadingpage-icon-margin-bottom;
 
-        &__loading-icon {
-            margin-bottom: $loadingpage-icon-margin-bottom;
-
-            &__img {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        &__text {
-            font-size: $font-size-4;
-            color: $text-color;
-        }
+      &__img {
+        width: 40px;
+        height: 40px;
+      }
     }
+
+    &__text {
+      font-size: $font-size-4;
+      color: $text-color;
+    }
+  }
 }

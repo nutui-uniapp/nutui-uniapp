@@ -1,16 +1,28 @@
-<script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+<script lang="ts" setup>
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { getMainClass } from '../_utils'
 import { marqueeEmits, marqueeProps } from './marquee'
+
+const COMPONENT_NAME = 'nut-marquee'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(marqueeProps)
 
 const emit = defineEmits(marqueeEmits)
+
 let { prizeList, styleOpt } = reactive(props)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 onMounted(() => {
@@ -19,12 +31,13 @@ onMounted(() => {
 
 watch(
   () => props.prizeList,
-  (list, prevList) => {
+  (list) => {
     prizeList = list
   },
 )
 
-const marqueeDom: any = ref(null)
+const marqueeDom = ref<any>(null)
+
 // 上锁
 const lock = ref(false)
 // 转动到的商品的index
@@ -93,33 +106,31 @@ function startDraw() {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-marquee`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view ref="marqueeDom" :class="classes" :style="customStyle">
+  <view ref="marqueeDom" :class="classes" :style="props.customStyle">
     <view class="bgContent" />
+
     <view class="marqueeBg" :style="bgContentStyle" />
-    <view class="start" :class="[{ disabledDraw: lock || props.disabled }]" :style="cursorStyle" @click="startDraw" />
+
+    <view
+      class="start"
+      :class="[{ disabledDraw: lock || props.disabled }]"
+      :style="cursorStyle"
+      @click="startDraw"
+    />
+
     <ul class="gift-list">
       <li
         v-for="(item, i) in prizeList"
-        :key="`luckmarquee${i}`" class="gift-item" :class="[`gift-${i + 1}`, { active: index === i }]"
+        :key="`luckmarquee${i}`"
+        class="gift-item"
+        :class="[`gift-${i + 1}`, { active: index === i }]"
         :style="bgItemStyle"
       >
-        <div class="gift-img">
+        <view class="gift-img">
           <image :src="item.prizeImg" />
-        </div>
+        </view>
+
         <span class="desc" v-html="item.prizeName" />
       </li>
     </ul>
@@ -127,5 +138,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

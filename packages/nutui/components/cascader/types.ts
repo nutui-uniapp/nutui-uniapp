@@ -28,7 +28,7 @@ export interface CascaderOption {
 
 export type CascaderValue = CascaderOption['value'][]
 
-export interface convertConfig {
+export interface ConvertConfig {
   topId?: string | number | null
   idKey?: string
   pidKey?: string

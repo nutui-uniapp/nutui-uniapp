@@ -1,1 +1,1 @@
-export type * from './imagepreview'
+export * from './imagepreview'

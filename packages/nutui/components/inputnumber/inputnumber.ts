@@ -41,6 +41,7 @@ export const inputnumberProps = {
    */
   readonly: Boolean,
 }
+
 export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
 
 export const inputnumberEmits = {

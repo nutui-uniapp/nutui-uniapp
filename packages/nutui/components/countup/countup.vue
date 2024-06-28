@@ -1,17 +1,31 @@
-<script setup lang="ts">
-import { computed, defineComponent, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
-import { PREFIX } from '../_constants'
+<script lang="ts" setup>
+import { computed, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
 import { useExtend } from '../_hooks'
 import { cloneDeep, getMainClass } from '../_utils'
-import { type IData, countupEmits, countupProps } from './countup'
+import { countupEmits, countupProps } from './countup'
+import type { CountUpData } from './types'
+
+const COMPONENT_NAME = 'nut-countup'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(countupProps)
+
 const emit = defineEmits(countupEmits)
-defineExpose({ machineLuck })
+
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
-const data = reactive<IData>({
+
+const data = reactive<CountUpData>({
   valFlag: false,
   current: 0,
   sortFlag: 'add',
@@ -34,44 +48,48 @@ const data = reactive<IData>({
   notPrize: [],
   typeMachine: '',
 })
-const { startFlag, scrolling, customBgImg, type } = reactive(props)
+
 watch(
   () => props.customChangeNum,
-  (count, prevCount) => {
+  () => {
     clearIntervalTime()
-    // data.customNumber = count;
+
     countGo(0)
   },
 )
+
 watch(
   () => props.machinePrizeLevel,
-  (count, prevCount) => {
+  (count) => {
     data.prizeLevelTrun = count
   },
 )
+
 watch(
   () => props.initNum,
-  (count, prevCount) => {
+  (count) => {
     data.current = count
     data.valFlag = false
     valChange()
   },
 )
+
 watch(
   () => props.endNum,
-  (count, prevCount) => {
+  () => {
     data.current = props.initNum
     data.valFlag = false
     valChange()
   },
 )
+
 function valChange() {
   if (data.valFlag)
     return false
 
-  if (startFlag) {
-    if (scrolling || customBgImg) {
-      if (type !== 'machine')
+  if (props.startFlag) {
+    if (props.scrolling || props.customBgImg) {
+      if (props.type !== 'machine')
         countGo()
     }
     else {
@@ -82,11 +100,13 @@ function valChange() {
     }
   }
 }
+
 // 清空定时器
 function clearIntervalTime() {
   clearInterval(Number(data.timer))
   data.timer = null
 }
+
 // 精确计算
 function calculation(num1: number, num2: number, type: string) {
   const num1Digits = (num1.toString().split('.')[1] || '').length
@@ -101,6 +121,7 @@ function calculation(num1: number, num2: number, type: string) {
     return m / baseNum
   }
 }
+
 // 数字滚动-top值
 function topNumber(index: number) {
   const { num_total_len, pointNum, initDigit1, initDigit2, sortFlag } = data
@@ -121,18 +142,18 @@ function topNumber(index: number) {
 
   return num
 }
+
 // 数字滚动-到哪里了
 function turnNumber(index: number) {
-  const { num_total_len, pointNum, initDigit1, initDigit2, sortFlag } = data
+  const { num_total_len, pointNum, initDigit1, initDigit2 } = data
   const idx1 = String(initDigit2)[index - (num_total_len - pointNum)]
-  const num
-        = index > num_total_len - pointNum - 1
-          ? idx1 || 0
-          : index <= String(initDigit1).length - 1
-            ? String(initDigit1)[index]
-            : 0
-  return num
+  return index > num_total_len - pointNum - 1
+    ? idx1 || 0
+    : index <= String(initDigit1).length - 1
+      ? String(initDigit1)[index]
+      : 0
 }
+
 // 基础用法
 function countChange() {
   const { endNum, initNum, speed, toFixed } = props
@@ -164,6 +185,7 @@ function countChange() {
     }
   }, props.during)
 }
+
 function countGo(flag?: number): void {
   let { initNum, endNum, toFixed, customBgImg } = props
   if (customBgImg)
@@ -253,7 +275,7 @@ function countGo(flag?: number): void {
     data.initDigit2 = 0
   }
 
-  if (scrolling && !customBgImg) {
+  if (props.scrolling && !customBgImg) {
     // #ifdef H5
   // 数字都是从小加到大的，所以我们循环转动最后一个数字，传入最后一个数字的DOM
     nextTick(() => {
@@ -272,6 +294,7 @@ function countGo(flag?: number): void {
       imgNumberScroll()
   }
 }
+
 function runTurn(el: Element) {
   clearIntervalTime()
   let m = 1
@@ -331,11 +354,12 @@ function runStep(el: any) {
   if (el.style.top === '-100%' && data.sortFlag === 'reduce')
     runStep(el.previousSibling as HTMLElement)
 }
+
 // 自定义图片
 function imgNumberScroll() {
-  let m = 1
-  if (data.pointNum !== 0)
-    m = 10 ** data.pointNum
+  // let m = 1
+  // if (data.pointNum !== 0)
+  //   m = 10 ** data.pointNum
   // #ifdef H5
   nextTick(() => {
     const f = document.getElementsByClassName('nut-countup__numberimg')[0]
@@ -352,6 +376,7 @@ function imgNumberScroll() {
   })
   // #endif
 }
+
 // 不中奖设置随机数
 function generateRandom() {
   data.notPrize = []
@@ -361,6 +386,7 @@ function generateRandom() {
       data.notPrize.push(rand)
   }
 }
+
 // 抽奖
 function machineLuck() {
   const machineTurnMoreNum = props.machineTurnMore < 0 ? 0 : props.machineTurnMore
@@ -392,7 +418,9 @@ function machineLuck() {
     }, 500 * i)
   }
 }
+
 useExtend({ machineLuck })
+
 function scrollTime(index: number, total: number, num: number) {
   // this.machineTransition = `all linear ${this.during/this.machinePrizeNum}ms`;
   let t: any = setInterval(() => {
@@ -443,69 +471,60 @@ onUnmounted(() => {
   clearIntervalTime()
   data.timer = null
 })
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-countup`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
+defineExpose({ machineLuck })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
-    <template v-if="customBgImg !== ''">
-      <template v-if="type === 'machine'">
-        <view class="nut-countup__machine" :style="{ height: `${numHeight}px` }">
+  <view :class="classes" :style="props.customStyle">
+    <template v-if="props.customBgImg !== ''">
+      <template v-if="props.type === 'machine'">
+        <view class="nut-countup__machine" :style="{ height: `${props.numHeight}px` }">
           <view
-            v-for="(val, index) of machineNum"
+            v-for="(val, index) of props.machineNum"
             :key="`mImg${index}`"
             class="nut-countup__machine-item"
             :style="{
-              width: `${numWidth}px`,
-              height: `${numHeight}px`,
-              background: `url(${customBgImg}) `,
+              width: `${props.numWidth}px`,
+              height: `${props.numHeight}px`,
+              background: `url(${props.customBgImg}) `,
               backgroundPosition: `0 ${data.prizeY[index]}px`,
             }"
           />
         </view>
       </template>
+
       <template v-else>
-        <view class="nut-countup__numberimg" :style="{ height: `${numHeight}px` }">
+        <view class="nut-countup__numberimg" :style="{ height: `${props.numHeight}px` }">
           <view
             v-for="(val, index) of data.num_total_len"
             :key="`cImg${index}`"
             class="nut-countup__numberimg__item"
             :style="{
-              width: `${numWidth}px`,
-              height: `${numHeight}px`,
+              width: `${props.numWidth}px`,
+              height: `${props.numHeight}px`,
               left:
-                `${numWidth
+                `${props.numWidth
                   * (index > data.num_total_len - data.pointNum - 1
                     ? index === data.num_total_len - data.pointNum
                       ? index * 1.5
                       : index * 1.3
                     : index)
                 }px`,
-              backgroundImage: `url(${customBgImg})`,
+              backgroundImage: `url(${props.customBgImg})`,
               backgroundPosition:
-                `0 ${-(+String(data.relNum)[index] * numHeight + customSpacNum * +String(data.relNum)[index])}px`,
-              transition: `all linear ${during / 10}ms`,
+                `0 ${-(+String(data.relNum)[index] * props.numHeight + props.customSpacNum * +String(data.relNum)[index])}px`,
+              transition: `all linear ${props.during / 10}ms`,
             }"
           />
+
           <view
             v-if="data.pointNum > 0"
             class="nut-countup-pointstyl"
             :style="{
-              width: `${numWidth / 2}px`,
+              width: `${props.numWidth / 2}px`,
               bottom: 0,
-              left: `${numWidth * (data.num_total_len - data.pointNum) * 1.1}px`,
+              left: `${props.numWidth * (data.num_total_len - data.pointNum) * 1.1}px`,
               fontSize: '30px',
             }"
           >
@@ -514,14 +533,15 @@ export default defineComponent({
         </view>
       </template>
     </template>
+
     <template v-else>
       <view
-        v-if="scrolling"
+        v-if="props.scrolling"
         class="nut-countup__number"
         :style="{
-          width: `${numWidth * data.num_total_len + numWidth / 3}px`,
-          height: `${numHeight}px`,
-          lineHeight: `${numHeight}px`,
+          width: `${props.numWidth * data.num_total_len + props.numWidth / 3}px`,
+          height: `${props.numHeight}px`,
+          lineHeight: `${props.numHeight}px`,
         }"
       >
         <view
@@ -531,7 +551,7 @@ export default defineComponent({
           :style="{
             all: turnNumber(index) as any,
             top: topNumber(index),
-            left: `${numWidth * (index > data.num_total_len - data.pointNum - 1 ? index * 1.1 : index)}px`,
+            left: `${props.numWidth * (index > data.num_total_len - data.pointNum - 1 ? index * 1.1 : index)}px`,
           }"
           :turn-number="turnNumber(index)"
         >
@@ -540,28 +560,30 @@ export default defineComponent({
             :key="`dote${idx}`"
             class="nut-countup__number-item__span"
             :style="{
-              width: `${numWidth}px`,
-              height: `${numHeight}px`,
-              lineHeight: `${numHeight}px`,
+              width: `${props.numWidth}px`,
+              height: `${props.numHeight}px`,
+              lineHeight: `${props.numHeight}px`,
             }"
           >
             {{ item }}
           </view>
         </view>
+
         <view
           v-if="data.pointNum > 0"
           class="nut-countup-pointstyl"
           :style="{
-            width: `${numWidth / 3}px`,
-            height: `${numHeight}px`,
-            lineHeight: `${numHeight}px`,
+            width: `${props.numWidth / 3}px`,
+            height: `${props.numHeight}px`,
+            lineHeight: `${props.numHeight}px`,
             top: 0,
-            left: `${numWidth * (data.num_total_len - data.pointNum)}px`,
+            left: `${props.numWidth * (data.num_total_len - data.pointNum)}px`,
           }"
         >
           .
         </view>
       </view>
+
       <template v-else>
         {{ data.current }}
       </template>
@@ -570,5 +592,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

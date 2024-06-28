@@ -1,8 +1,8 @@
-@import '../popup/index';
-@import '../swiper/index';
-@import '../swiperitem/index';
+@import "../popup/index";
+@import "../swiper/index";
+@import "../swiperitem/index";
 
-.nut-image-movable-area{
+.nut-image-movable-area {
   width: 100vw;
   height: 100vh;
 }
@@ -85,7 +85,6 @@
   }
 
   .nut-video {
-    // height: auto;
     video {
       object-fit: contain;
     }

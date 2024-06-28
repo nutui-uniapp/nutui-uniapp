@@ -1,1 +1,1 @@
-export type * from './codeinput'
+export * from './codeinput'

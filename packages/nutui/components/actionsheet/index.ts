@@ -1,1 +1,1 @@
-export type * from './actionsheet'
+export * from './actionsheet'

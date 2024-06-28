@@ -1,23 +1,37 @@
-<script setup lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+<script lang="ts" setup>
+import { computed, ref } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
-import { CLICK_EVENT, PREFIX } from '../_constants'
+import { CLICK_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
 import { backtopEmits, backtopProps } from './backtop'
+
+const COMPONENT_NAME = 'nut-backtop'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(backtopProps)
 
 const emit = defineEmits(backtopEmits)
 
-const backTop = ref(false)
 const scrollTop = ref(1)
+const backTop = ref(false)
+
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
+  return getMainClass(props, COMPONENT_NAME, {
     show: backTop.value,
   })
 })
-const style = computed(() => {
+
+const styles = computed(() => {
   return getMainStyle(props, {
     right: `${props.right}px`,
     bottom: `${props.bottom}px`,
@@ -25,49 +39,43 @@ const style = computed(() => {
   })
 })
 
-function scroll(e: ScrollViewOnScrollEvent) {
+function handleScroll(e: ScrollViewOnScrollEvent) {
   scrollTop.value = 2
   backTop.value = e.detail.scrollTop >= props.distance
 }
 
-function click(e: unknown) {
+function handleClick(e: any) {
   scrollTop.value = 1
+
   emit(CLICK_EVENT, e as MouseEvent)
 }
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-backtop`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
 </script>
 
 <template>
   <view>
     <scroll-view
+      :style="{ height: props.height }"
       :scroll-y="true"
-      :style="{ height }"
       :scroll-top="scrollTop"
       :scroll-with-animation="true"
-      @scroll="scroll"
+      @scroll="handleScroll"
     >
       <slot name="content" />
     </scroll-view>
-    <view :class="classes" :style="style" @click.stop="click">
+
+    <view :class="classes" :style="styles" @click.stop="handleClick">
       <slot name="icon">
-        <NutIcon :custom-color="customColor" name="top" :size="19" custom-class="nut-backtop-main" />
+        <NutIcon
+          custom-class="nut-backtop-main"
+          name="top"
+          :size="19"
+          :custom-color="props.customColor"
+        />
       </slot>
     </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, provide } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
@@ -40,5 +40,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

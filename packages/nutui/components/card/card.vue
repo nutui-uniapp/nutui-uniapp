@@ -1,72 +1,79 @@
-<script setup lang="ts">
-import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+<script lang="ts" setup>
+import { computed } from 'vue'
 import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
 import { getMainClass } from '../_utils'
 import { cardProps } from './card'
 
-const props = defineProps(cardProps)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-</script>
+const COMPONENT_NAME = 'nut-card'
 
-<script lang="ts">
-const componentName = `${PREFIX}-card`
-
-export default defineComponent({
-  name: componentName,
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(cardProps)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
 </script>
 
 <template>
-  <div :class="classes" :style="customStyle">
-    <div class="nut-card__left">
-      <image :src="imgUrl" alt="" />
-    </div>
-    <div class="nut-card__right">
-      <div class="nut-card__right__title">
-        {{ title }}
-      </div>
+  <view :class="classes" :style="props.customStyle">
+    <view class="nut-card__left">
+      <image :src="props.imgUrl" />
+    </view>
+
+    <view class="nut-card__right">
+      <view class="nut-card__right__title">
+        {{ props.title }}
+      </view>
+
       <slot name="prolist" />
-      <div v-if="isNeedPrice" class="nut-card__right__price">
+
+      <view v-if="props.isNeedPrice" class="nut-card__right__price">
         <slot name="price">
-          <NutPrice v-if="price" :price="price" />
+          <NutPrice v-if="props.price" :price="props.price" />
         </slot>
+
         <slot name="origin">
           <view class="nut-card__right__price__origin">
-            <NutPrice v-if="vipPrice" :price="vipPrice" />
+            <NutPrice v-if="props.vipPrice" :price="props.vipPrice" />
           </view>
         </slot>
-      </div>
-      <div class="nut-card__right__other">
+      </view>
+
+      <view class="nut-card__right__other">
         <slot name="shopTag">
           <NutTag type="danger">
-            {{ shopDesc }}
+            {{ props.shopDesc }}
           </NutTag>
+
           <NutTag plain>
-            {{ delivery }}
+            {{ props.delivery }}
           </NutTag>
         </slot>
-      </div>
-      <div class="nut-card__right__shop">
+      </view>
+
+      <view class="nut-card__right__shop">
         <slot name="shopName">
-          <div class="nut-card__right__shop__name">
-            {{ shopName }}
-          </div>
+          <view class="nut-card__right__shop__name">
+            {{ props.shopName }}
+          </view>
         </slot>
+
         <slot name="footer" />
-      </div>
-    </div>
-  </div>
+      </view>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

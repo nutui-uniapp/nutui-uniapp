@@ -55,7 +55,6 @@ export const marqueeEmits = {
    * @description 停止跑动后的回调函数
    */
   endTurns: () => true,
-
 }
 
 export type MarqueeEmits = typeof marqueeEmits

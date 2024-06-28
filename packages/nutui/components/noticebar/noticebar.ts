@@ -2,23 +2,6 @@ import type { ExtractPropTypes } from 'vue'
 import { commonProps, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 
-export interface stateProps {
-  wrapWidth: number
-  firstRound: boolean
-  duration: number
-  offsetWidth: number
-  showNoticebar: boolean
-  animationClass: string
-  animate: boolean
-  scrollList: any[]
-  distance: number
-  timer: null
-  keepAlive: boolean
-  isCanScroll: null | boolean
-  showNotica: boolean
-  id: number
-}
-
 export const noticebarProps = {
   ...commonProps,
   /**
@@ -89,7 +72,6 @@ export const noticebarEmits = {
   [CLICK_EVENT]: (value: Event | string) => value instanceof Object || isString(value),
   [CLOSE_EVENT]: (evt: Event | string) => evt instanceof Object || isString(evt),
   acrossEnd: (evt: Event) => evt instanceof Object,
-
 }
 
 export type NoticeBarEmits = typeof noticebarEmits

@@ -42,4 +42,5 @@ export const checkboxEmits = {
 }
 
 export type CheckboxEmits = typeof checkboxEmits
+
 export const CHECKBOX_KEY = Symbol('nut-checkbox')
