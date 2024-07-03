@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, watchEffect } from 'vue'
 import { PREFIX } from '../_constants'
+import { setGlobalZIndex } from '../_hooks'
 import { configProviderProps } from './configprovider'
 
 const props = defineProps(configProviderProps)
@@ -54,6 +55,11 @@ function mapThemeVarsToCSSVars(themeVars: Record<string, string>) {
   })
   return cssVars
 }
+
+watchEffect(() => {
+  if (props.zIndex !== undefined)
+    setGlobalZIndex(props.zIndex)
+})
 </script>
 
 <script  lang="ts">

@@ -11,7 +11,7 @@ export const overlayProps = {
   /**
    * @description 自定义遮罩层级
    */
-  zIndex: makeNumericProp(300),
+  zIndex: Number,
   /**
    * @description 显示/隐藏的动画时长，单位毫秒
    */
