@@ -72,7 +72,6 @@ export const popupEmits = {
   'opend': () => true,
   [CLOSED_EVENT]: () => true,
   'click-overlay': () => true,
-
 }
 
 export type PopupEmits = typeof popupEmits
