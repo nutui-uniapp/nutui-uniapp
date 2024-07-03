@@ -1,23 +1,23 @@
-import type { ComputedRef, SetupContext } from 'vue'
-import { computed, reactive, toRefs, watch, watchEffect } from 'vue'
-import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import type { SetupContext } from 'vue'
+import { computed, reactive, toRefs, watch } from 'vue'
+import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { animationName } from '../_constants/types'
 import { getMainClass, getMainStyle } from '../_utils'
+import type { NutAnimationName } from '../transition'
+import { useGlobalZIndex } from '../_hooks'
 import type { PopupEmits, PopupProps } from './popup'
 
-const initIndex = 500
-let _zIndex = initIndex
-const componentName = `${PREFIX}-popup`
+const COMPONENT_NAME = 'nut-popup'
+
 export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit']) {
-  let opened: boolean
   const state = reactive({
-    zIndex: props.zIndex,
+    innerVisible: false,
+    innerIndex: props.zIndex,
     showSlot: true,
-    closed: props.closeable,
   })
 
   const classes = computed(() => {
-    return getMainClass(props, componentName, {
+    return getMainClass(props, COMPONENT_NAME, {
       round: props.round,
       [`nut-popup--${props.position}`]: true,
       [`nut-popup--${props.position}--safebottom`]: props.position === 'bottom' && props.safeAreaInsetBottom,
@@ -26,58 +26,63 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     })
   })
 
-  const popStyle: ComputedRef = computed(() => {
+  const popStyle = computed(() => {
     return getMainStyle(props, {
-      zIndex: +state.zIndex,
+      zIndex: state.innerIndex,
       transitionDuration: `${props.duration}ms`,
     })
   })
 
-  const transitionName: ComputedRef = computed(() => {
+  const transitionName = computed<NutAnimationName>(() => {
     return props.transition ? props.transition : `${animationName[props.position]}`
   })
 
   const open = () => {
-    if (!opened) {
-      opened = true
-      if (props.zIndex !== initIndex)
-        _zIndex = Number(props.zIndex)
+    if (state.innerVisible)
+      return
 
-      emit(UPDATE_VISIBLE_EVENT, true)
-      state.zIndex = ++_zIndex
-      state.showSlot = true
+    state.innerIndex = props.zIndex !== undefined ? props.zIndex : useGlobalZIndex()
 
-      emit(OPEN_EVENT)
-    }
+    state.innerVisible = true
+    emit(UPDATE_VISIBLE_EVENT, true)
+
+    state.showSlot = true
+
+    emit(OPEN_EVENT)
   }
 
   const close = () => {
-    if (opened) {
-      opened = false
-      emit(UPDATE_VISIBLE_EVENT, false)
-      emit(CLOSE_EVENT)
-    }
+    if (!state.innerVisible)
+      return
+
+    state.innerVisible = false
+    emit(UPDATE_VISIBLE_EVENT, false)
+
+    emit(CLOSE_EVENT)
   }
 
-  const onClick = (e: Event) => {
+  const onClick = (e: any) => {
     emit('click-pop', e)
   }
 
-  const onClickCloseIcon = (e: Event) => {
+  const onClickCloseIcon = (e: any) => {
     e.stopPropagation()
+
     emit('click-close-icon')
+
     close()
   }
 
   const onClickOverlay = () => {
     emit('click-overlay')
+
     if (props.closeOnClickOverlay)
       close()
   }
 
   const onOpened = () => {
-    emit('opend')
     emit(OPENED_EVENT)
+    emit('opend')
   }
 
   const onClosed = () => {
@@ -86,21 +91,14 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     state.showSlot = !props.destroyOnClose
   }
 
-  watch(
-    () => props.visible,
-    (val) => {
-      if (val && !opened)
-        open()
+  watch(() => props.visible, (value) => {
+    if (value && !state.innerVisible)
+      open()
 
-      if (!val && opened) {
-        opened = false
-        emit('close')
-      }
-    },
-  )
-  watchEffect(() => {
-    // props.visible ? open() : close();
-    state.closed = props.closeable
+    if (!value && state.innerVisible) {
+      state.innerVisible = false
+      emit(CLOSE_EVENT)
+    }
   })
 
   return {

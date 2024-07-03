@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { watchEffect } from 'vue'
+import { setGlobalZIndex } from '../_hooks'
 import { configProviderProps } from './configprovider'
 
 const COMPONENT_NAME = 'nut-config-provider'
@@ -67,6 +69,11 @@ function mapThemeVarsToCSSVars(themeVars: Record<string, string>) {
   })
   return cssVars
 }
+
+watchEffect(() => {
+  if (props.zIndex !== undefined)
+    setGlobalZIndex(props.zIndex)
+})
 </script>
 
 <template>
