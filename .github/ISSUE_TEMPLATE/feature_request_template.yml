@@ -10,7 +10,7 @@ body:
 
         这个表单仅用于新功能请求。如果你有使用上的问题，或者不确定它是否是一个 bug，请先：
 
-        - 查看组件文档 [nutui-uniapp](https://uniapp-nutui.tech/)
+        - 查看组件文档 [nutui-uniapp](https://nutui-uniapp.netlify.app)
         - 在 [Issue](https://github.com/nutui-uniapp/nutui-uniapp/issues) 列表中查找解决方案
         - 查看 [常见问题 QA](https://github.com/nutui-uniapp/nutui-uniapp/issues/2461)
   - type: textarea
