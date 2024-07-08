@@ -1,3 +1,19 @@
+## [1.7.11](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.10...v1.7.11) (2024-07-08)
+
+### Bug Fixes
+
+* 修复comment生产环境web端卡死 ([#352](https://github.com/nutui-uniapp/nutui-uniapp/issues/352)) ([be73ccc](https://github.com/nutui-uniapp/nutui-uniapp/commit/be73cccab1afc1d4a93d8c653437bd17b7ce4a23))
+* **actionsheet:** 修复custom-style表现异常 ([#360](https://github.com/nutui-uniapp/nutui-uniapp/issues/360)) ([25fc6a1](https://github.com/nutui-uniapp/nutui-uniapp/commit/25fc6a12fa943fd1b6c233dc15b529867fd03446))
+* **input:** 修复小程序端clear清除困难问题 ([#324](https://github.com/nutui-uniapp/nutui-uniapp/issues/324)) ([155b00b](https://github.com/nutui-uniapp/nutui-uniapp/commit/155b00bcb3255763634a0227f197894dd2e1aae2))
+* **input:** 修复由于capture引起的blur参数丢失 ([#325](https://github.com/nutui-uniapp/nutui-uniapp/issues/325)) ([a1351ad](https://github.com/nutui-uniapp/nutui-uniapp/commit/a1351addfe187914983fad1da4f9039348574eda))
+* **popup:** 修复z-index表现异常 ([#364](https://github.com/nutui-uniapp/nutui-uniapp/issues/364)) ([cd50fc3](https://github.com/nutui-uniapp/nutui-uniapp/commit/cd50fc31d3b8e13771b30429de003cf6522e81ee))
+* **toast:** 修复部分情况下toast的duration属性无效 ([1885ded](https://github.com/nutui-uniapp/nutui-uniapp/commit/1885ded405a0cadf00dd2adb9865c98a05f7e682))
+
+### Features
+
+* **menuitem:** 新增item-click事件 ([#323](https://github.com/nutui-uniapp/nutui-uniapp/issues/323)) ([df9eeed](https://github.com/nutui-uniapp/nutui-uniapp/commit/df9eeed564f89f3ed111f91f2837c0ec8b0088cc))
+* **tab-pane:** 新增padding、background样式变量 ([#326](https://github.com/nutui-uniapp/nutui-uniapp/issues/326)) ([bf5ebae](https://github.com/nutui-uniapp/nutui-uniapp/commit/bf5ebae39aa9769c9c212fae0910c2e12621fdec))
+
 ## [1.7.10](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.9...v1.7.10) (2024-05-08)
 
 ### Bug Fixes
