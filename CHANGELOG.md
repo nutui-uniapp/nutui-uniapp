@@ -1,3 +1,9 @@
+## [1.7.12](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.11...v1.7.12) (2024-07-09)
+
+### Bug Fixes
+
+* **input:** 修复由于[#324](https://github.com/nutui-uniapp/nutui-uniapp/issues/324)、[#325](https://github.com/nutui-uniapp/nutui-uniapp/issues/325)引出的blur事件失效 ([afb5c76](https://github.com/nutui-uniapp/nutui-uniapp/commit/afb5c76bf10972321d79c51c7a240be5eb9559a6))
+
 ## [1.7.11](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.10...v1.7.11) (2024-07-08)
 
 ### Bug Fixes
