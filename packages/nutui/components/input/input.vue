@@ -115,28 +115,35 @@ function handleClickInput(evt: any) {
   emit('clickInput', evt)
 }
 
-const active = ref<boolean>(false)
+const active = ref(false)
+
+const clearing = ref(false)
 
 function handleFocus(evt: InputOnFocusEvent) {
   if (formDisabled.value || props.readonly)
     return
 
-  active.value = true
-
   emit(FOCUS_EVENT, evt)
+
+  active.value = true
 }
 
 function handleBlur(evt: InputOnBlurEvent) {
   if (formDisabled.value || props.readonly)
     return
 
+  emit(BLUR_EVENT, evt)
+
   setTimeout(() => {
     active.value = false
   }, 200)
 
-  updateValue(innerValue.value, 'onBlur')
+  if (clearing.value) {
+    clearing.value = false
+    return
+  }
 
-  emit(BLUR_EVENT, evt)
+  updateValue(evt.detail.value, 'onBlur')
 
   if (formItemContext !== undefined && formItemContext.triggers.value.blur)
     formItemContext.validate('blur')
@@ -152,6 +159,8 @@ function handleClear(evt: any) {
 
   emit(UPDATE_MODEL_EVENT, '', evt)
   emit(CLEAR_EVENT)
+
+  clearing.value = true
 }
 
 function startComposing(evt: any) {
@@ -223,7 +232,7 @@ onMounted(() => {
         :hold-keyboard="props.holdKeyboard"
         @input="handleInput as any"
         @focus="handleFocus"
-        @blur.capture="handleBlur"
+        @blur="handleBlur"
         @click="handleClickInput"
         @change="endComposing"
         @compositionstart="startComposing"
