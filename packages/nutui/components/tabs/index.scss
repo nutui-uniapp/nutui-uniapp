@@ -54,11 +54,11 @@
       color: $tabs-titles-item-color;
 
       &__text {
+        text-align: center;
+
         &.ellipsis {
           @include oneline-ellipsis;
         }
-
-        text-align: center;
       }
 
       &__smile {
@@ -139,7 +139,7 @@
             color: $tabs-tab-smile-color;
           }
 
-          
+
         }
 
         &-left {
@@ -243,7 +243,7 @@
         .nut-tabs__titles-item__smile {
           display: none;
         }
-        
+
         &.nut-tabs-active {
           .nut-tabs__titles-item__smile {
             display: block;
