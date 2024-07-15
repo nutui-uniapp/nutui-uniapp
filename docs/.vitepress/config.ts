@@ -31,7 +31,7 @@ export default withPwa(defineConfig({
       { text: '组件', items: navComponents },
       {
         text: '示例',
-        link: 'https://nutui-uniapp.netlify.app/ui',
+        link: 'https://nutui-uniapp.pages.dev/ui',
       },
       {
         text: '其他',
