@@ -17,23 +17,15 @@ if (window.parent !== window.self) {
 
 <template>
   <nut-config-provider :theme="darkMode ? 'dark' : ''">
-    <!-- #ifdef H5 -->
-    <!-- <nut-navbar
-      :placeholder="false" :fixed="true" :left-show="!!title" safe-area-inset-top
-      :title="title ? title : 'NutUi'" :size="16" custom-style="font-weight: bold;" @on-click-back="onClickLeft"
-    /> -->
-    <!-- #endif -->
-    <nut-backtop custom-class=" n-bg pb-safe pt-safe">
-      <template #content>
-        <slot />
-      </template>
-    </nut-backtop>
+    <slot />
   </nut-config-provider>
 </template>
 
-<style>
-.header {
-  color: #fff;
-  background-color: black;
+<style lang="scss">
+page {
+  > .nut-theme-,
+  > .nut-theme-dark {
+    height: 100%;
+  }
 }
 </style>

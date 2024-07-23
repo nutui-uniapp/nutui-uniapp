@@ -1,6 +1,5 @@
 <script lang="ts">
 import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, ref } from 'vue'
-import { onPageScroll } from '@dcloudio/uni-app'
 import { PREFIX } from '../_constants'
 import { useProvide, useRect } from '../_hooks'
 import Icon from '../icon/icon.vue'
@@ -20,12 +19,20 @@ export default defineComponent({
   setup(props) {
     const barId = `nut-menu__bar${getRandomId()}`
     const offset = ref(0)
-    const isScrollFixed = ref(false)
     const instance = getCurrentInstance() as ComponentInternalInstance
 
     const { children } = useProvide(MENU_KEY)({ props, offset })
 
     const opened = computed(() => children.some(item => item?.state?.showWrapper))
+
+    const isScrollFixed = computed(() => {
+      const { scrollFixed, scrollTop } = props
+
+      if (!scrollFixed)
+        return false
+
+      return scrollTop > (typeof scrollFixed === 'boolean' ? 30 : Number(scrollFixed))
+    })
 
     const classes = computed(() => {
       return getMainClass(props, componentName, {
@@ -56,14 +63,6 @@ export default defineComponent({
       })
     }
 
-    function onScroll(res: { scrollTop: number }) {
-      const { scrollFixed } = props
-
-      const scrollTop = res.scrollTop
-
-      isScrollFixed.value = scrollTop > (typeof scrollFixed === 'boolean' ? 30 : Number(scrollFixed))
-    }
-
     function getClasses(showPopup: boolean) {
       let str = ''
       const { titleClass } = props
@@ -77,11 +76,6 @@ export default defineComponent({
       return str
     }
 
-    onPageScroll((res) => {
-      const { scrollFixed } = props
-      if (scrollFixed)
-        onScroll(res)
-    })
     return {
       barId,
       toggleItem,
