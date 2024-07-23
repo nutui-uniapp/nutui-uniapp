@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, ref } from 'vue'
-import { onPageScroll } from '@dcloudio/uni-app'
 import { useProvide, useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, getRandomId } from '../_utils'
@@ -26,9 +25,17 @@ const instance = getCurrentInstance() as ComponentInternalInstance
 const barId = `nut-menu__bar${getRandomId()}`
 
 const offset = ref(0)
-const isScrollFixed = ref(false)
 
 const { children } = useProvide(MENU_KEY)({ props, offset })
+
+const isScrollFixed = computed(() => {
+  const { scrollFixed, scrollTop } = props
+
+  if (!scrollFixed)
+    return false
+
+  return scrollTop > (typeof scrollFixed === 'boolean' ? 30 : Number(scrollFixed))
+})
 
 const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME, {
@@ -62,14 +69,6 @@ function toggleItem(active: number) {
   })
 }
 
-function onScroll(res: { scrollTop: number }) {
-  const { scrollFixed } = props
-
-  const scrollTop = res.scrollTop
-
-  isScrollFixed.value = scrollTop > (typeof scrollFixed === 'boolean' ? 30 : Number(scrollFixed))
-}
-
 function getClasses(showPopup: boolean) {
   let str = ''
   const { titleClass } = props
@@ -82,11 +81,6 @@ function getClasses(showPopup: boolean) {
 
   return str
 }
-
-onPageScroll((res) => {
-  if (props.scrollFixed)
-    onScroll(res)
-})
 </script>
 
 <template>
