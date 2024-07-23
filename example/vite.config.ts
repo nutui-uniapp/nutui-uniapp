@@ -26,7 +26,6 @@ export default defineConfig({
       deep: true,
       dts: 'src/components.d.ts',
       resolvers: [NutResolver()],
-
     }),
     UniPages({
       minify: true,
@@ -39,17 +38,17 @@ export default defineConfig({
         'uni-app',
         {
           'nutui-uniapp/composables': [
-            'useToast'
+            'useToast',
           ],
-        }
+        },
       ],
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/composables', 'src/stores'],
       vueTemplate: true,
     }),
-
     UniLayouts(),
-    uni(),
+    // @ts-expect-error whatever
+    uni.default(),
   ],
   css: {
     preprocessorOptions: {
