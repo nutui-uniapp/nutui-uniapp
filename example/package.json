@@ -1,5 +1,6 @@
 {
   "name": "@nutui-uniapp/example",
+  "type": "module",
   "version": "1.7.12",
   "private": "true",
   "scripts": {
