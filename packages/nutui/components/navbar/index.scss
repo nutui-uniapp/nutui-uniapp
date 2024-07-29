@@ -39,8 +39,9 @@
     width: 100%;
 
     &.nut-navbar--safe-area-inset-top {
-      height: calc($navbar-height + constant(safe-area-inset-top));
-      height: calc($navbar-height + var(--status-bar-height));
+      // height: calc($navbar-height + constant(safe-area-inset-top));
+      // height: calc($navbar-height + var(--status-bar-height));
+      height: calc($navbar-height + env(safe-area-inset-top));
     }
   }
 
@@ -50,8 +51,9 @@
   }
 
   &--safe-area-inset-top {
-    padding-top: constant(safe-area-inset-top);
-    padding-top: var(--status-bar-height);
+    // padding-top: constant(safe-area-inset-top);
+    // padding-top: var(--status-bar-height);
+    padding-top: env(safe-area-inset-top);
   }
 
 
