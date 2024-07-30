@@ -58,9 +58,12 @@ export function useFormDisabled(
   disabled: Ref<OptionalBoolean>,
 ): ComputedRef<boolean> {
   return computed(() => {
-    if (disabled.value !== undefined)
+    if (disabled.value != null)
       return disabled.value
 
-    return context?.disabled.value ?? false
+    if (context?.disabled.value != null)
+      return context.disabled.value
+
+    return false
   })
 }

@@ -46,7 +46,7 @@ const rules = computed<FormItemRule[]>(() => {
   if (formContext === undefined)
     return castArray(props.rules)
 
-  return [...castArray(props.rules), ...castArray(formContext.rules.value[props.prop] ?? [])]
+  return [...castArray(props.rules), ...castArray(formContext.rules.value[props.prop] || [])]
 })
 
 const triggers = computed<FormItemRuleTriggers>(() => {
@@ -99,8 +99,8 @@ const shouldShowError = computed<boolean>(() => {
 })
 
 const classes = computed(() => {
-  const labelPosition = props.labelPosition ?? formContext?.labelPosition.value
-  const starPosition = props.starPosition ?? formContext?.starPosition.value
+  const labelPosition = props.labelPosition || formContext?.labelPosition.value
+  const starPosition = props.starPosition || formContext?.starPosition.value
 
   const value = {
     'is-required': isRequired.value,
