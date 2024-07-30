@@ -1,3 +1,15 @@
+## [1.7.13](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.12...v1.7.13) (2024-07-30)
+
+### Bug Fixes
+
+* **avatar:** 修复支付宝小程序不支持??语法 ([b7df6be](https://github.com/nutui-uniapp/nutui-uniapp/commit/b7df6beddf1044a078c67681f75d7f3eb90bf4e6))
+* **navbar:** 修复 navbar safe-area-inset-top 不生效的问题 ([#379](https://github.com/nutui-uniapp/nutui-uniapp/issues/379)) ([74ff480](https://github.com/nutui-uniapp/nutui-uniapp/commit/74ff480985067e7f0ebeebb74d264fe5aa3aa1d4))
+* **popup,safearea:** 修复部分低版本系统safearea不生效问题 ([271e24a](https://github.com/nutui-uniapp/nutui-uniapp/commit/271e24a9b206487627bf5b59a364b306e79f50fa))
+
+### Features
+
+* **menu:** add scroll-top prop ([#377](https://github.com/nutui-uniapp/nutui-uniapp/issues/377)) ([7b31fdf](https://github.com/nutui-uniapp/nutui-uniapp/commit/7b31fdf9db08a0696a6ce4d6c8c52d437666aa64))
+
 ## [1.7.12](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.11...v1.7.12) (2024-07-09)
 
 ### Bug Fixes

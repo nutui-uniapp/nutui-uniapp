@@ -27,12 +27,12 @@ const instance = getCurrentInstance()
 
 const { parent } = useInject<{ props: Required<AvatarGroupProps> }>(AVATAR_GROUP_KEY)
 
-const show = ref<boolean>(true)
+const show = ref(true)
 
 const innerZIndex = ref<number | undefined>(undefined)
 
 watch(() => ({
-  maxCount: parent?.props?.maxCount,
+  maxCount: parent?.props.maxCount,
   children: parent?.internalChildren,
 }), ({ maxCount, children }) => {
   if (maxCount == null || Number(maxCount) <= 0 || children == null || instance == null) {
@@ -53,7 +53,7 @@ watch(() => ({
 
   show.value = index < Number(maxCount)
 
-  if (parent?.props?.zIndex === 'right')
+  if (parent?.props.zIndex === 'right')
     innerZIndex.value = children.length - index
   else
     innerZIndex.value = undefined
@@ -62,8 +62,18 @@ watch(() => ({
   deep: true,
 })
 
+function getTrulySize() {
+  if (props.size != null)
+    return props.size
+
+  if (parent != null && parent.props.size != null)
+    return parent.props.size
+
+  return 'normal'
+}
+
 const finalSize = computed<AvatarFinalSize>(() => {
-  const size: string | number = props.size ?? parent?.props?.size ?? 'normal'
+  const size: string | number = getTrulySize()
 
   const preset: boolean = avatarSize.includes(size as AvatarSize)
 
@@ -74,7 +84,13 @@ const finalSize = computed<AvatarFinalSize>(() => {
 })
 
 const finalShape = computed<AvatarShape>(() => {
-  return props.shape ?? parent?.props?.shape ?? 'round'
+  if (props.shape != null)
+    return props.shape
+
+  if (parent != null && parent.props.shape != null)
+    return parent.props.shape
+
+  return 'round'
 })
 
 const classes = computed(() => {
@@ -100,8 +116,8 @@ const styles = computed(() => {
     value.height = finalSize.value.value
   }
 
-  if (parent?.props?.span)
-    value.marginLeft = pxCheck(parent?.props?.span)
+  if (parent?.props.span)
+    value.marginLeft = pxCheck(parent?.props.span)
 
   if (innerZIndex.value !== undefined)
     value.zIndex = innerZIndex.value
