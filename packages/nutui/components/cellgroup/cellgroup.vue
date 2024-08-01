@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { getMainClass } from '../_utils'
 import { cellgroupProps } from './cellgroup'
 
@@ -19,24 +19,30 @@ defineOptions({
 
 const props = defineProps(cellgroupProps)
 
+const slots = useSlots()
+
 const classes = computed(() => {
-  return getMainClass(props, COMPONENT_NAME)
+  return getMainClass(props, componentName)
 })
 </script>
 
 <template>
   <view :class="classes" :style="props.customStyle">
-    <slot v-if="$slots.title" name="title" />
+    <slot v-if="slots.title" name="title" />
 
-    <view v-else-if="props.title" class="nut-cell-group__title">
-      {{ props.title }}
-    </view>
+    <template v-else>
+      <view v-if="props.title" class="nut-cell-group__title">
+        {{ props.title }}
+      </view>
+    </template>
 
-    <slot v-if="$slots.desc" name="desc" />
+    <slot v-if="slots.desc" name="desc" />
 
-    <view v-else-if="props.desc" class="nut-cell-group__desc">
-      {{ props.desc }}
-    </view>
+    <template v-else>
+      <view v-if="props.desc" class="nut-cell-group__desc">
+        {{ props.desc }}
+      </view>
+    </template>
 
     <view class="nut-cell-group__wrap">
       <slot />
