@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import type { ComputedRef, ExtractPropTypes, Ref } from 'vue'
+import type { ExtractPropTypes, Ref } from 'vue'
 import { commonProps, makeObjectProp, makeStringProp } from '../_utils'
 import { useInject } from '../_hooks'
 import type { ErrorMessage, FormLabelPosition, FormRules, FormStarPosition } from './types'
@@ -39,7 +39,16 @@ export const formEmits = {
 
 export type FormEmits = typeof formEmits
 
-export function useFormDisabled(disabled: Ref<boolean>): ComputedRef<boolean> {
+export function useFormDisabled(disabled: Ref<boolean | undefined>) {
   const { parent } = useInject<{ props: { disabled: boolean } }>(FORM_KEY)
-  return computed(() => disabled.value || parent?.props?.disabled || false)
+
+  return computed(() => {
+    if (disabled.value != null)
+      return disabled.value
+
+    if (parent?.props.disabled != null)
+      return parent.props.disabled
+
+    return false
+  })
 }
