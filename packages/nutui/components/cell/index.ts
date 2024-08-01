@@ -1,1 +1,1 @@
-export type * from './cell'
+export * from './cell'
