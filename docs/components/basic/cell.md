@@ -9,63 +9,76 @@
 ```html
 <template>
   <nut-cell title="我是标题" desc="描述文字"></nut-cell>
-  <nut-cell title="我是标题" sub-title="副标题描述" desc="描述文字"></nut-cell>
-  <nut-cell title="点击测试" @click="testClick"></nut-cell>
+
+  <nut-cell title="我是标题"
+            sub-title="副标题描述"
+            desc="描述文字"></nut-cell>
+
+  <!-- 自 1.7.14 开始支持 clickable 属性，可以启用点击效果 -->
+  <nut-cell title="点击测试"
+            clickable
+            @click="testClick"></nut-cell>
+
   <nut-cell title="圆角设置 0" round-radius="0"></nut-cell>
 </template>
-<script>
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const switchChecked = ref(true);
-      const testClick = (event) => {
-        console.log('Click Test');
-      };
-      return { testClick, switchChecked };
-    }
-  };
-</script>
 ```
 
-### 尺寸设置 large
+### large尺寸
 
 ```html
 <template>
-  <nut-cell size="large" title="我是标题" desc="描述文字"></nut-cell>
-  <nut-cell size="large" title="我是标题" sub-title="副标题描述" desc="描述文字"></nut-cell>
+  <nut-cell size="large"
+            title="我是标题"
+            desc="描述文字"></nut-cell>
+
+  <nut-cell size="large"
+            title="我是标题"
+            sub-title="副标题描述"
+            desc="描述文字"></nut-cell>
 </template>
 ```
 
-### 直接使用插槽（slot）
+### 直接使用插槽
 
 ```html
 <template>
   <nut-cell>
-    <div>自定义内容</div>
+    <text>自定义内容</text>
   </nut-cell>
 </template>
 ```
 
-### 直接使用插槽（slot title）
+### 标题插槽
 
 ```html
 <template>
   <nut-cell desc="描述文字">
-      <template v-slot:title>
-        <span>Title <b style="color: red">1</b></span>
-      </template>
+    <template #title>
+      <text>Title</text>
+    </template>
   </nut-cell>
 </template>
 ```
 
-### 链接 | 分组用法
+### 描述插槽
 
 ```html
 <template>
-  <nut-cell-group title="链接 | 分组用法" desc="使用 nut-cell-group 支持 title desc slots">
-    <nut-cell title="链接" is-link></nut-cell>
-    <nut-cell title="URL 跳转" desc="https://m.jd.com" is-link url="https://m.jd.com"></nut-cell>
-    <nut-cell title="路由跳转 ’/‘ " to="/"></nut-cell>
+  <nut-cell title="我是标题">
+    <template #desc>
+      <text>描述文字</text>
+    </template>
+  </nut-cell>
+</template>
+```
+
+### 链接 / 分组用法
+
+```html
+<template>
+  <nut-cell-group title="链接 / 分组用法">
+    <nut-cell title="链接样式" is-link></nut-cell>
+    <nut-cell title="路由跳转 “/” " to="/"></nut-cell>
   </nut-cell-group>
 </template>
 ```
@@ -74,80 +87,62 @@
 
 ```html
 <template>
-  <nut-cell-group title="自定义右侧箭头区域">
-    <nut-cell title="Switch">
-      <template v-slot:link>
-        <nut-switch v-model="switchChecked" />
-      </template>
-    </nut-cell>
-  </nut-cell-group>
+  <nut-cell title="Switch">
+    <template #link>
+      <nut-switch></nut-switch>
+    </template>
+  </nut-cell>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const testClick = (event: Event) => {
-        console.log('点击事件');
-      };
-      const switchChecked = ref(true);
-      return { testClick, switchChecked };
-    }
-  };
-</script>
 ```
 
-### 自定义左侧 Icon 区域
+### 自定义左侧图标区域
 
 ```html
 <template>
-  <nut-cell-group title="自定义左侧 Icon 区域">
+  <nut-cell-group title="自定义左侧图标区域">
     <nut-cell title="图片">
-      <template v-slot:icon>
-        <img
-          class="nut-icon"
-          src="https://img11.360buyimg.com/imagetools/jfs/t1/137646/13/7132/1648/5f4c748bE43da8ddd/a3f06d51dcae7b60.png"
-        />
+      <template #icon>
+        <image class="nut-icon" src=""></image>
       </template>
     </nut-cell>
   </nut-cell-group>
 </template>
 ```
 
-### 展示图标
+> 自 `1.7.14` 开始支持用过 `icon` 属性自定义左侧图标，之前的版本通过 `icon` 插槽修改
 
 ```html
 <template>
-  <nut-cell title="姓名" icon="my" desc="张三"></nut-cell>
+  <nut-cell title="icon属性" icon="my" desc="张三"></nut-cell>
+
+  <nut-cell title="icon插槽" desc="张三">
+    <template #icon>
+      <nut-icon name="my"></nut-icon>
+    </template>
+  </nut-cell>
 </template>
 ```
 
-### 只展示 desc ，可通过 desc-text-align 调整内容位置
+### 只展示描述
+
+可通过 `desc-text-align` 调整内容位置
 
 ```html
 <template>
-  <nut-cell desc-text-align="left" desc="张三"></nut-cell>
+  <nut-cell desc="张三" desc-text-align="left"></nut-cell>
 </template>
 ```
 
 ### 垂直居中
 
-通过 `center` 属性可以让 Cell 的左右内容都垂直居中。
+通过 `center` 属性可以让 Cell 的左右内容都垂直居中
 
 ```html
 <template>
-  <nut-cell center title="我是标题" sub-title="副标题描述" desc="描述文字"></nut-cell>
-</template>
-```
-
-### 直接使用插槽（slot desc）
-
-```vue
-<template>
-  <nut-cell title="我是标题">
-    <template #desc>
-      <span>描述文字 <b style="color: red">2</b></span>
-    </template>
-  </nut-cell>
+  <nut-cell title="我是标题"
+            sub-title="副标题描述"
+            desc="描述文字"
+            center></nut-cell>
 </template>
 ```
 
@@ -160,42 +155,45 @@
 | title | 分组标题 | string | -   |
 | desc  | 分组描述 | string | -   |
 
+### CellGroup Slots
+
+| 名称      | 说明               |
+|---------|------------------|
+| default | 自定义内容            |
+| title   | 自定义 `title` 标题区域 |
+| desc    | 自定义 `desc` 描述区域  |
+
 ### Cell Props
 
-| 参数              | 说明                                                                                 | 类型      | 默认值     |
-|-----------------|------------------------------------------------------------------------------------|---------|---------|
-| title           | 标题名称                                                                               | string  | -       |
-| sub-title       | 左侧副标题                                                                              | string  | -       |
-| desc            | 右侧描述                                                                               | string  | -       |
-| desc-text-align | 右侧描述文本对齐方式 [text-align](https://www.w3school.com.cn/cssref/pr_text_text-align.asp) | string  | `right` |
-| is-link         | 是否展示右侧箭头并开启点击反馈                                                                    | boolean | `false` |
-| to `1.7.8`      | 跳转地址（uni.navigateTo的url参数）                                                         | string  | -       |
-| round-radius    | 圆角半径                                                                               | number  | `6px`   |
-| center          | 是否使内容垂直居中                                                                          | boolean | `false` |
-| size            | 单元格大小，可选值为 `large`                                                                 | string  | -       |
+| 参数                 | 说明                                                                                 | 类型               | 默认值     |
+|--------------------|------------------------------------------------------------------------------------|------------------|---------|
+| title              | 标题名称                                                                               | string           | -       |
+| sub-title          | 左侧副标题                                                                              | string           | -       |
+| desc               | 右侧描述                                                                               | string           | -       |
+| desc-text-align    | 右侧描述文本对齐方式 [text-align](https://www.w3school.com.cn/cssref/pr_text_text-align.asp) | string           | `right` |
+| is-link            | 是否展示右侧箭头并开启点击反馈                                                                    | boolean          | `false` |
+| to `1.7.8`         | 跳转地址（uni.navigateTo的url参数）                                                         | string           | -       |
+| round-radius       | 圆角半径                                                                               | number \| string | `6px`   |
+| center             | 是否使内容垂直居中                                                                          | boolean          | `false` |
+| size               | 单元格大小，可选值为 `large`                                                                 | string           | -       |
+| clickable `1.7.14` | 是否启用点击效果（存在 `is-link` 或者 `to` 属性时会自动启用，也可以手动启用）                                    | boolean          | `false` |
+| icon `1.7.14`      | 左侧图标（对应 `nut-icon` 的 `name` 属性）                                                    | string           | -       |
 
 ### Cell Events
 
-| 事件名   | 说明   | 回调参数          |
-|-------|------|---------------|
-| click | 点击事件 | `event:Event` |
+| 事件名   | 说明   | 回调参数           |
+|-------|------|----------------|
+| click | 点击事件 | `event: Event` |
 
 ### Cell Slots
 
 | 名称           | 说明               |
 |--------------|------------------|
-| icon         | 自定义左侧 `icon` 区域  |
 | default      | 自定义内容            |
-| link         | 自定义右侧 `link` 区域  |
 | title        | 自定义 `title` 标题区域 |
+| icon         | 自定义左侧 `icon` 区域  |
+| link         | 自定义右侧 `link` 区域  |
 | desc `1.1.6` | 自定义 `desc` 描述区域  |
-
-### CellGroup Slots
-
-| 名称    | 说明               |
-|-------|------------------|
-| title | 自定义 `title` 标题区域 |
-| desc  | 自定义 `desc` 描述区域  |
 
 ## 主题定制
 
