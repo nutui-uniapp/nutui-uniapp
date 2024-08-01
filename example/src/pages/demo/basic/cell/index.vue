@@ -52,7 +52,7 @@ function testClick() {
 
     <nut-cell-group title="链接 / 分组用法">
       <nut-cell title="链接样式" is-link />
-      <nut-cell title="路由跳转 “/” " to="/" />
+      <nut-cell title="路由跳转 “/” " to="/pages/index/index" />
     </nut-cell-group>
 
     <nut-cell-group title="自定义右侧箭头区域" desc="使用 nut-cell-group 支持 title desc slots">
