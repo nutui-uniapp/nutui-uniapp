@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { ComputedRef } from 'vue'
 import { computed, reactive, toRef, useSlots, watch } from 'vue'
+import NutIcon from '../icon/icon.vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { useInject } from '../_hooks'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
@@ -34,32 +34,32 @@ const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
 
 const { parent } = useInject<{
   value: ComputedRef<any[]>
-  disabled: ComputedRef<boolean>
+  disabled: ComputedRef<boolean | undefined>
   max: ComputedRef<number>
-  updateValue: (value: string[]) => void
+  updateValue: (value: any[]) => void
 }>(CHECKBOX_KEY)
 
 const state = reactive({
   partialSelect: props.indeterminate,
 })
 
-const hasParent = computed(() => !!parent)
+function isCheckedValue<T>(value: T) {
+  return value === props.checkedValue
+}
 
-const pValue = computed(() => {
-  if (hasParent.value)
-    return parent?.value.value.includes(props.label)
+const innerChecked = computed(() => {
+  if (parent != null)
+    return parent.value.value.includes(props.label)
 
-  return props.modelValue
+  return isCheckedValue(props.modelValue)
 })
 
-const pDisabled = computed(() => {
-  if (hasParent.value)
-    return parent?.disabled.value ? parent.disabled.value : disabled.value
+const innerDisabled = computed(() => {
+  if (parent != null && parent.disabled.value != null)
+    return parent.disabled.value
 
   return disabled.value
 })
-
-const checked = computed(() => !!props.modelValue)
 
 const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME, {
@@ -68,96 +68,92 @@ const classes = computed(() => {
 })
 
 const iconClasses = computed(() => {
-  if (pDisabled.value)
-    return 'nut-checkbox__icon--disable'
-
-  if (state.partialSelect)
-    return 'nut-checkbox__icon--indeterminate'
-
-  return pValue.value ? 'nut-checkbox__icon' : 'nut-checkbox__icon--unchecked'
+  return {
+    [`${COMPONENT_NAME}__icon`]: true,
+    [`${COMPONENT_NAME}__icon--disabled`]: innerDisabled.value,
+    // TODO 2.x移除
+    [`${COMPONENT_NAME}__icon--disable`]: innerDisabled.value,
+    [`${COMPONENT_NAME}__icon--indeterminate`]: state.partialSelect,
+    [`${COMPONENT_NAME}__icon--unchecked`]: !innerChecked.value,
+  }
 })
 
 const labelClasses = computed(() => {
   return {
     [`${COMPONENT_NAME}__label`]: true,
-    [`${COMPONENT_NAME}__label--disabled`]: pDisabled.value,
+    [`${COMPONENT_NAME}__label--disabled`]: innerDisabled.value,
   }
 })
 
 const buttonClasses = computed(() => {
   return {
     [`${COMPONENT_NAME}__button`]: true,
-    [`${COMPONENT_NAME}__button--active`]: pValue.value,
-    [`${COMPONENT_NAME}__button--disabled`]: pDisabled.value,
+    [`${COMPONENT_NAME}__button--active`]: innerChecked.value,
+    [`${COMPONENT_NAME}__button--disabled`]: innerDisabled.value,
   }
 })
 
-let updateType = ''
+let updateSource: '' | 'click' = ''
 
-function emitChange(value: string | boolean, label?: string) {
-  updateType = 'click'
+function emitClickChange(checked: boolean, value: any) {
+  updateSource = 'click'
+
   emit(UPDATE_MODEL_EVENT, value)
-  emit(CHANGE_EVENT, value, label!)
+  emit(CHANGE_EVENT, checked, value)
 
-  if (!hasParent.value && formItemContext !== undefined && formItemContext.triggers.value.change)
+  if (parent == null && formItemContext !== undefined && formItemContext.triggers.value.change)
     formItemContext.validate('change')
 }
 
-watch(
-  () => props.modelValue,
-  (v) => {
-    if (updateType === 'click')
-      updateType = ''
+watch(() => props.modelValue, (value) => {
+  if (updateSource === 'click') {
+    updateSource = ''
+    return
+  }
 
-    else
-      emit(CHANGE_EVENT, v)
-  },
-)
+  if (parent == null)
+    emit(CHANGE_EVENT, isCheckedValue(value), value)
+})
 
 function handleClick() {
-  if (pDisabled.value)
+  if (innerDisabled.value)
     return
 
-  if (checked.value && state.partialSelect) {
-    // TODO uniapp小程序拿不到slots的children https://github.com/dcloudio/uni-app/issues/3279
+  if (parent != null) {
+    const values = parent.value.value
+    const max = parent.max.value
+
+    const index = values.indexOf(props.label)
+
+    if (index >= 0) {
+      values.splice(index, 1)
+
+      emitClickChange(false, props.label)
+    }
+    else {
+      if (max <= 0 || values.length < max) {
+        values.push(props.label)
+
+        emitClickChange(true, props.label)
+      }
+    }
+
+    parent.updateValue(values)
+  }
+  else {
+    if (innerChecked.value && !state.partialSelect)
+      emitClickChange(false, props.uncheckedValue)
+    else
+      emitClickChange(true, props.checkedValue)
+  }
+
+  if (state.partialSelect)
     state.partialSelect = false
-    // #ifdef H5
-    emitChange(checked.value, slots.default?.()[0].children as string)
-    // #endif
-    // #ifndef H5
-    emitChange(checked.value, props.label)
-    // #endif
-
-    return
-  }
-
-  // #ifdef H5
-  emitChange(!checked.value, slots.default?.()[0].children as string)
-  // #endif
-  // #ifndef H5
-  emitChange(!checked.value, props.label)
-  // #endif
-
-  if (hasParent.value) {
-    const value = parent?.value.value
-    const max = parent?.max.value
-    const { label } = props
-    const index = value!.indexOf(label)
-    if (index > -1)
-      value?.splice(index, 1)
-    else if (index <= -1 && (value!.length < max! || !max))
-      value?.push(label)
-
-    parent?.updateValue(value!)
-  }
 }
 
-watch(
-  () => props.indeterminate,
-  (newVal) => {
-    state.partialSelect = newVal
-  },
-)
+watch(() => props.indeterminate, (value) => {
+  state.partialSelect = value
+})
 </script>
 
 <template>
@@ -167,35 +163,44 @@ watch(
     </view>
 
     <template v-else>
-      <slot v-if="state.partialSelect" name="indeterminate">
+      <template v-if="state.partialSelect">
+        <slot v-if="slots.indeterminate" name="indeterminate" />
+
         <NutIcon
+          v-else
           :custom-class="iconClasses"
           name="check-disabled"
           :size="pxCheck(props.iconSize)"
           :width="pxCheck(props.iconSize)"
           :height="pxCheck(props.iconSize)"
         />
-      </slot>
+      </template>
 
-      <slot v-else-if="!pValue" name="icon">
+      <template v-else-if="!innerChecked">
+        <slot v-if="slots.icon" name="icon" />
+
         <NutIcon
+          v-else
           :custom-class="iconClasses"
           name="check-normal"
           :size="pxCheck(props.iconSize)"
           :width="pxCheck(props.iconSize)"
           :height="pxCheck(props.iconSize)"
         />
-      </slot>
+      </template>
 
-      <slot v-else name="checkedIcon">
+      <template v-else>
+        <slot v-if="slots.checkedIcon" name="checkedIcon" />
+
         <NutIcon
+          v-else
           :custom-class="iconClasses"
           name="checked"
           :size="pxCheck(props.iconSize)"
           :width="pxCheck(props.iconSize)"
           :height="pxCheck(props.iconSize)"
         />
-      </slot>
+      </template>
 
       <view :class="labelClasses">
         <slot />
