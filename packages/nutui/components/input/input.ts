@@ -7,7 +7,16 @@ import type {
   InputOnInputEvent,
 } from '@uni-helper/uni-app-types'
 import type { ClassType } from '../_utils'
-import { commonProps, isNumber, isString, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import {
+  commonProps,
+  isNumber,
+  isString,
+  makeNumberProp,
+  makeNumericProp,
+  makeStringProp,
+  nullableBooleanProp,
+  truthProp,
+} from '../_utils'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType, InputConfirmType, InputFormatTrigger, InputMode, InputType } from './type'
 
@@ -58,7 +67,7 @@ export const inputProps = {
   /**
    * @description 是否禁用
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 是否只读
    */

@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, isObject, makeNumericProp } from '../_utils'
+import { commonProps, isNumber, isObject, makeNumericProp, nullableBooleanProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const inputnumberProps = {
@@ -35,7 +35,7 @@ export const inputnumberProps = {
   /**
    * @description 禁用所有功能
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 只读状态禁用输入框操作行为
    */

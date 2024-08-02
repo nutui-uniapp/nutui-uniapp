@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isArray, makeArrayProp, makeNumberProp } from '../_utils'
+import { commonProps, makeArrayProp, makeNumberProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const checkboxgroupProps = {
@@ -11,7 +11,7 @@ export const checkboxgroupProps = {
   /**
    * @description 是否禁用选择,将用于其下的全部复选框
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 限制选择的数量，不能和全选/取消/反选一起使用, 0表示没有限制
    */
@@ -20,20 +20,11 @@ export const checkboxgroupProps = {
 
 export type CheckboxGroupProps = ExtractPropTypes<typeof checkboxgroupProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const checkboxgroupEmits = {
-  [CHANGE_EVENT]: (val: any[]) => val instanceof Object,
-  [UPDATE_MODEL_EVENT]: (val: any[]) => isArray(val),
+  [UPDATE_MODEL_EVENT]: (value: any[]) => true,
+  [CHANGE_EVENT]: (value: any[]) => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type CheckboxGroupEmits = typeof checkboxgroupEmits
-
-export interface CheckBoxInst {
-  /**
-   * @description 全选/取消 传 true,表示全选，传 false,表示取消全选
-   */
-  toggleAll: (val: boolean) => void
-  /**
-   * @description 反选
-   */
-  toggleReverse: () => void
-}

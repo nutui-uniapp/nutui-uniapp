@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isBoolean, isString, makeNumericProp, makeStringProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
 export const checkboxProps = {
@@ -7,11 +7,14 @@ export const checkboxProps = {
   /**
    * @description 是否处于选中状态
    */
-  modelValue: Boolean,
+  modelValue: {
+    type: [Boolean, Number, String],
+    default: false,
+  },
   /**
    * @description 是否禁用选择
    */
-  disabled: Boolean,
+  disabled: nullableBooleanProp,
   /**
    * @description 文本所在的位置，可选值：`left`,`right`
    */
@@ -21,9 +24,9 @@ export const checkboxProps = {
    */
   iconSize: makeNumericProp(''),
   /**
-   * @description 复选框的文本内容
+   * @description 复选框标识
    */
-  label: makeStringProp(''),
+  label: [Boolean, Number, String],
   /**
    * @description 当前是否支持半选状态，一般用在全选操作中
    */
@@ -32,14 +35,31 @@ export const checkboxProps = {
    * @description 形状，可选值：`button`、`round`
    */
   shape: makeStringProp<'button' | 'round'>('round'),
+  /**
+   * @description 选中状态的值
+   */
+  checkedValue: {
+    type: [Boolean, Number, String],
+    default: true,
+  },
+  /**
+   * @description 未选中状态的值
+   */
+  uncheckedValue: {
+    type: [Boolean, Number, String],
+    default: false,
+  },
 }
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const checkboxEmits = {
-  [CHANGE_EVENT]: (val: boolean | string, val2?: string) => isBoolean(val) || (isString(val) && isString(val2)),
-  [UPDATE_MODEL_EVENT]: (val: boolean | string) => isBoolean(val),
+  [UPDATE_MODEL_EVENT]: (value: any) => true,
+  [CHANGE_EVENT]: (checked: boolean, value: any) => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type CheckboxEmits = typeof checkboxEmits
+
 export const CHECKBOX_KEY = Symbol('nut-checkbox')
