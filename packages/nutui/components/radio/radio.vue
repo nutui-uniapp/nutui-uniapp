@@ -1,118 +1,131 @@
 <script lang="ts" setup>
-import { computed, defineComponent, toRef } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
-import { PREFIX } from '../_constants'
+import { type ComputedRef, useSlots } from 'vue'
+import { computed, toRef } from 'vue'
 import NutIcon from '../icon/icon.vue'
+import { getMainClass, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useInject } from '../_hooks'
 import { RADIO_KEY, radioProps } from './radio'
 
-const props = defineProps(radioProps)
+const COMPONENT_NAME = 'nut-radio'
 
-const { parent }: any = useInject(RADIO_KEY)
-
-const formContext = useFormContext()
-const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
-
-const reverseState = computed(() => parent.position.value === 'left')
-
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--reverse`]: reverseState.value,
-    [`${componentName}--${props.shape}`]: true,
-  })
-})
-function handleClick() {
-  if (isCurValue.value || disabled.value)
-    return
-  parent.updateValue(props.label)
-}
-const isCurValue = computed(() => {
-  return parent.label.value === props.label
-})
-
-const color = computed(() => {
-  return !disabled.value
-    ? isCurValue.value
-      ? 'nut-radio__icon'
-      : 'nut-radio__icon--unchecked'
-    : 'nut-radio__icon--disable'
-})
-
-const getButtonClass = computed(() => {
-  return `${componentName}__button ${componentName}__button--${props.size} ${isCurValue.value && `${componentName}__button--active`} ${
-            disabled.value ? `${componentName}__button--disabled` : ''
-          }`
-})
-
-const getLabelClass = computed(() => {
-  return `${componentName}__label ${disabled.value ? `${componentName}__label--disabled` : ''}`
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-radio`
-
-export default defineComponent({
-  name: componentName,
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(radioProps)
+
+const slots = useSlots()
+
+const formContext = useFormContext()
+const disabled = useFormDisabled(formContext, toRef(props, 'disabled'))
+
+const { parent } = useInject<{
+  label: ComputedRef<any>
+  position: ComputedRef<string>
+  updateValue: (value: any) => void
+}>(RADIO_KEY)
+
+const shouldReverse = computed(() => {
+  if (parent == null)
+    return false
+
+  return parent.position.value === 'left'
+})
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--${props.shape}`]: true,
+    [`${COMPONENT_NAME}--reverse`]: shouldReverse.value,
+  })
+})
+
+const innerChecked = computed(() => {
+  if (parent == null)
+    return false
+
+  return parent.label.value === props.label
+})
+
+const iconClasses = computed(() => {
+  return {
+    [`${COMPONENT_NAME}__icon`]: true,
+    [`${COMPONENT_NAME}__icon--disabled`]: disabled.value,
+    // TODO 2.x移除
+    [`${COMPONENT_NAME}__icon--disable`]: disabled.value,
+    [`${COMPONENT_NAME}__icon--unchecked`]: !innerChecked.value,
+  }
+})
+
+const buttonClasses = computed(() => {
+  return {
+    [`${COMPONENT_NAME}__button`]: true,
+    [`${COMPONENT_NAME}__button--${props.size}`]: true,
+    [`${COMPONENT_NAME}__button--active`]: innerChecked.value,
+    [`${COMPONENT_NAME}__button--disabled`]: disabled.value,
+  }
+})
+
+const labelClasses = computed(() => {
+  return {
+    [`${COMPONENT_NAME}__label`]: true,
+    [`${COMPONENT_NAME}__label--disabled`]: disabled.value,
+  }
+})
+
+function handleClick() {
+  if (innerChecked.value || disabled.value)
+    return
+
+  if (parent != null)
+    parent.updateValue(props.label)
+}
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle" @click="handleClick">
-    <view v-if="shape === 'button'" :class="getButtonClass">
+  <view :class="classes" :style="props.customStyle" @click="handleClick">
+    <view v-if="props.shape === 'button'" :class="buttonClasses">
       <slot />
     </view>
 
-    <template v-else-if="reverseState">
-      <view :class="getLabelClass">
+    <template v-else>
+      <view v-if="shouldReverse" :class="labelClasses">
         <slot />
       </view>
 
-      <slot v-if="!isCurValue" name="icon">
+      <template v-if="!innerChecked">
+        <slot v-if="slots.icon" name="icon" />
+
         <NutIcon
+          v-else
+          :custom-class="iconClasses"
           name="check-normal"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
-          :pop-class="color"
+          :size="pxCheck(props.iconSize)"
+          :width="pxCheck(props.iconSize)"
+          :height="pxCheck(props.iconSize)"
         />
-      </slot>
-      <slot v-else name="checkedIcon">
+      </template>
+
+      <template v-else>
+        <slot v-if="slots.checkedIcon" name="checkedIcon" />
+
         <NutIcon
+          v-else
+          :custom-class="iconClasses"
           name="check-checked"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
-          :pop-class="color"
+          :size="pxCheck(props.iconSize)"
+          :width="pxCheck(props.iconSize)"
+          :height="pxCheck(props.iconSize)"
         />
-      </slot>
-    </template>
-    <template v-else>
-      <slot v-if="!isCurValue" name="icon">
-        <NutIcon
-          name="check-normal"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
-          :pop-class="color"
-        />
-      </slot>
-      <slot v-else name="checkedIcon">
-        <NutIcon
-          name="check-checked"
-          :size="pxCheck(iconSize)"
-          :width="pxCheck(iconSize)"
-          :height="pxCheck(iconSize)"
-          :pop-class="color"
-        />
-      </slot>
-      <view :class="getLabelClass">
+      </template>
+
+      <view v-if="!shouldReverse" :class="labelClasses">
         <slot />
       </view>
     </template>
