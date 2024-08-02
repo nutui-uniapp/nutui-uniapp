@@ -22,7 +22,7 @@ const props = defineProps(cellgroupProps)
 const slots = useSlots()
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 </script>
 

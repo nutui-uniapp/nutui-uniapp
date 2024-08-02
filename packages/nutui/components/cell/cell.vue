@@ -54,21 +54,6 @@ function handleClick(event: any) {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-cell`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
-</script>
-
 <template>
   <view :class="classes" :style="styles" @click="handleClick">
     <slot v-if="slots.default" />
