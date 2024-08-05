@@ -65,9 +65,11 @@ export default {
 </template>
 <script lang="ts">
 import { ref,reactive } from 'vue';
+import type { FormInst } from 'nutui-uniapp'
+
 export default {
   setup(){
-    const dynamicRefForm = ref<any>(null);
+    const dynamicRefForm = ref<FormInst | null>(null);
     const dynamicForm = {
       state: reactive({
         name: '',
@@ -79,7 +81,7 @@ export default {
 
       methods: {
         submit() {
-          dynamicRefForm.value.validate().then(({ valid, errors }: any) => {
+          dynamicRefForm.value?.validate().then(({ valid, errors }) => {
             if (valid) {
               console.log('success', dynamicForm);
             } else {
@@ -89,7 +91,7 @@ export default {
           });
         },
         reset() {
-          dynamicRefForm.value.reset();
+          dynamicRefForm.value?.reset();
         },
         remove() {
           dynamicForm.state.tels.splice(dynamicForm.state.tels.length - 1, 1);

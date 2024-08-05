@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type { FormItemRule, FormItemRuleWithoutValidator } from 'nutui-uniapp'
+import type { FormInst, FormItemRule, FormItemRuleWithoutValidator } from 'nutui-uniapp'
 
 /* eslint-disable no-console */
 const formData = reactive({
@@ -15,7 +15,7 @@ const basicData = reactive({
   time: '',
   address: '',
 })
-const dynamicRefForm = ref<any>(null)
+const dynamicRefForm = ref<FormInst | null>(null)
 const dynamicForm = {
   state: reactive({
     name: '',
@@ -27,7 +27,7 @@ const dynamicForm = {
 
   methods: {
     submit() {
-      dynamicRefForm.value.validate().then(({ valid, errors }: any) => {
+      dynamicRefForm.value?.validate().then(({ valid, errors }) => {
         if (valid)
           console.log('success', dynamicForm)
         else
@@ -35,7 +35,7 @@ const dynamicForm = {
       })
     },
     reset() {
-      dynamicRefForm.value.reset()
+      dynamicRefForm.value?.reset()
     },
     remove() {
       dynamicForm.state.time.splice(dynamicForm.state.time.length - 1, 1)
@@ -112,10 +112,10 @@ const addressModule = reactive({
   },
 })
 
-const ruleForm = ref<any>(null)
+const ruleForm = ref<FormInst | null>(null)
 
 function submit() {
-  ruleForm.value.validate().then(({ valid, errors }: any) => {
+  ruleForm.value?.validate().then(({ valid, errors }: any) => {
     if (valid)
       console.log('success', formData)
     else
@@ -123,11 +123,11 @@ function submit() {
   })
 }
 function reset() {
-  ruleForm.value.reset()
+  ruleForm.value?.reset()
 }
 // 失去焦点校验
 function customBlurValidate(prop: string) {
-  ruleForm.value.validate(prop).then(({ valid, errors }: any) => {
+  ruleForm.value?.validate(prop).then(({ valid, errors }) => {
     if (valid)
       console.log('success', formData)
     else
