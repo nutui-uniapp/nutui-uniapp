@@ -6,6 +6,7 @@ export default antfu({
       'ts/no-unused-expressions': 'off',
     },
   },
+  markdown: false,
   vue: {
     overrides: {
       'vue/component-name-in-template-casing': ['off'],
