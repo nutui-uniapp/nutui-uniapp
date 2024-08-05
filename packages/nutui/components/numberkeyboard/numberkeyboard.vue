@@ -173,7 +173,7 @@ function onConfirm() {
       <view class="nut-number-keyboard__body">
         <view class="nut-number-keyboard__keys">
           <view
-            v-for="item of keysList"
+            v-for="item in keysList"
             :key="`key${item.id}`"
             class="nut-key__wrapper"
             :class="{

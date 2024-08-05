@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, useSlots } from 'vue'
-import Icon from '../icon/icon.vue'
+import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
 import { cellEmits, cellProps } from './cell'
@@ -62,7 +62,7 @@ function handleClick(event: any) {
       <view v-if="props.icon || slots.icon" class="nut-cell__icon">
         <slot v-if="slots.icon" name="icon" />
 
-        <Icon v-else custom-class="nut-cell__icon__inner" :name="props.icon" />
+        <NutIcon v-else custom-class="nut-cell__icon__inner" :name="props.icon" />
       </view>
 
       <view v-if="props.title || props.subTitle || slots.title" class="nut-cell__title">
@@ -93,7 +93,7 @@ function handleClick(event: any) {
       <slot v-if="slots.link" name="link" />
 
       <template v-else>
-        <Icon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
+        <NutIcon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
       </template>
     </template>
   </view>

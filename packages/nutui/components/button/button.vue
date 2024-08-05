@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed } from 'vue'
-import Icon from '../icon/icon.vue'
+import NutIcon from '../icon/icon.vue'
 import { CLICK_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
 import { buttonEmits, buttonProps } from './button'
@@ -106,7 +106,7 @@ function handleClick(event: any) {
     @im="emit('im', $event)"
   >
     <view class="nut-button__wrap">
-      <Icon v-if="props.loading" name="loading" class="nut-icon-loading" />
+      <NutIcon v-if="props.loading" name="loading" class="nut-icon-loading" />
 
       <slot v-if="$slots.icon && !props.loading" name="icon" />
 
