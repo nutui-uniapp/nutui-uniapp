@@ -10,7 +10,6 @@ import type { FormValidateResult } from './types'
 
 const COMPONENT_NAME = 'nut-form'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -27,19 +27,40 @@ export default defineComponent({
     <h2 class="title">
       基础用法
     </h2>
-    <nut-pagination v-model="currentPage" :total-items="25" :items-per-page="5" @change="pageChange" />
+    <nut-pagination
+      v-model="currentPage"
+      :total-items="25"
+      :items-per-page="5"
+      @change="pageChange"
+    />
     <h2 class="title">
       简单模式
     </h2>
-    <nut-pagination v-model="currentPage1" :page-count="12" mode="simple" @change="pageChange" />
+    <nut-pagination
+      v-model="currentPage1"
+      :page-count="12"
+      mode="simple"
+      @change="pageChange"
+    />
     <h2 class="title">
       显示省略号
     </h2>
-    <nut-pagination v-model="currentPage2" :total-items="125" :show-page-size="3" force-ellipses @change="pageChange" />
+    <nut-pagination
+      v-model="currentPage2"
+      :total-items="125"
+      :show-page-size="3"
+      force-ellipses
+      @change="pageChange"
+    />
     <h2 class="title">
       自定义按钮
     </h2>
-    <nut-pagination v-model="currentPage3" :total-items="500" :show-page-size="5" @change="pageChange">
+    <nut-pagination
+      v-model="currentPage3"
+      :total-items="500"
+      :show-page-size="5"
+      @change="pageChange"
+    >
       <template #prevText>
         <nut-icon name="left" size="10px" />
       </template>

@@ -5,7 +5,6 @@ import { colProps } from './col'
 
 const COMPONENT_NAME = 'nut-col'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

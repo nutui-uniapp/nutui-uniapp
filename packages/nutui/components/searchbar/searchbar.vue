@@ -163,7 +163,12 @@ export default defineComponent({
         <slot name="leftin" />
       </view>
       <view class="nut-searchbar__input-inner" :class="{ 'nut-searchbar__input-inner-absolute': slots.rightin }">
-        <form class="nut-searchbar__input-form" action="#" onsubmit="return false" @submit.prevent="handleSubmit">
+        <form
+          class="nut-searchbar__input-form"
+          action="#"
+          onsubmit="return false"
+          @submit.prevent="handleSubmit"
+        >
           <input
             class="nut-searchbar__input-bar"
             :class="{ 'nut-searchbar__input-bar_clear': props.clearable }"

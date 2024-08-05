@@ -30,7 +30,7 @@
         Category,
         Find,
         Cart,
-        My 
+        My
       };
     },
   }
@@ -294,7 +294,7 @@
       {
         title:'标签',
         icon: 'find',
-        
+
       },
       {
         title:'标签',

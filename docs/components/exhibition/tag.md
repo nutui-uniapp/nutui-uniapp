@@ -33,10 +33,10 @@
 ```
 
 ```typescript
-const show = ref<boolean>(true);
+const show = ref<boolean>(true)
 
 function close() {
-  show.value = false;
+  show.value = false
 }
 ```
 

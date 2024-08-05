@@ -53,7 +53,12 @@ function copy(text: string) {
     <nut-cell-group v-for="item in icons.data" :key="item.name" :title="item.name">
       <nut-cell>
         <view class="ul">
-          <view v-for="icon in item.icons" :key="icon" class="li cursor-pointer" @click="copy(icon)">
+          <view
+            v-for="icon in item.icons"
+            :key="icon"
+            class="li cursor-pointer"
+            @click="copy(icon)"
+          >
             <nut-icon :name="icon" />
             <text class="span text-center">
               {{ icon }}

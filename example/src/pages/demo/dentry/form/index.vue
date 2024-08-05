@@ -311,7 +311,12 @@ function clearDynamicFormValidate() {
       </nut-form-item>
 
       <nut-cell>
-        <nut-button custom-style="margin-right: 10px" type="primary" size="small" @click="submitDemoForm">
+        <nut-button
+          custom-style="margin-right: 10px"
+          type="primary"
+          size="small"
+          @click="submitDemoForm"
+        >
           提交
         </nut-button>
         <nut-button size="small" @click="clearDemoFormValidate">
@@ -350,7 +355,12 @@ function clearDynamicFormValidate() {
         <nut-button custom-style="margin-right: 10px" size="small" @click="deleteDynamicFormItem">
           删除
         </nut-button>
-        <nut-button custom-style="margin-right: 10px" type="primary" size="small" @click="submitDynamicForm">
+        <nut-button
+          custom-style="margin-right: 10px"
+          type="primary"
+          size="small"
+          @click="submitDynamicForm"
+        >
           提交
         </nut-button>
         <nut-button size="small" @click="clearDynamicFormValidate">
@@ -368,7 +378,12 @@ function clearDynamicFormValidate() {
         <nut-input v-model="baseForm.text6" placeholder="请输入昵称" />
       </nut-form-item>
 
-      <nut-form-item label="网龄" label-position="left" required star-position="right">
+      <nut-form-item
+        label="网龄"
+        label-position="left"
+        required
+        star-position="right"
+      >
         <nut-input v-model="baseForm.text7" placeholder="请输入网龄" />
       </nut-form-item>
 

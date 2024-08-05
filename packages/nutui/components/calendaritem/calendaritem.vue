@@ -25,7 +25,6 @@ import type { CalendarDateProp, CalendarTaroState, Day, MonthInfo, StringArr } f
 
 const COMPONENT_NAME = 'nut-calendar-item'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -138,9 +137,10 @@ function getClass(day: Day, month: MonthInfo, index?: number) {
   const res = []
   if (
     typeof index === 'number'
-      && ((index + 1 + props.firstDayOfWeek) % 7 === 0 || (index + props.firstDayOfWeek) % 7 === 0)
-  )
+    && ((index + 1 + props.firstDayOfWeek) % 7 === 0 || (index + props.firstDayOfWeek) % 7 === 0)
+  ) {
     res.push('weekend')
+  }
 
   const currDate = getCurrDate(day, month)
   const { type } = props
@@ -149,22 +149,25 @@ function getClass(day: Day, month: MonthInfo, index?: number) {
       isEqual(state.currDate as string, currDate)
       || ((type === 'range' || type === 'week') && (isStart(currDate) || isEnd(currDate)))
       || (type === 'multiple' && isMultiple(currDate))
-    )
+    ) {
       res.push(`${state.dayPrefix}--active`)
+    }
     else if (
       (state.propStartDate && compareDate(currDate, state.propStartDate))
       || (state.propEndDate && compareDate(state.propEndDate, currDate))
       || (props.disabledDate && props.disabledDate(currDate))
-    )
+    ) {
       res.push(`${state.dayPrefix}--disabled`)
+    }
     else if (
       (type === 'range' || type === 'week')
       && Array.isArray(state.currDate)
       && Object.values(state.currDate).length === 2
       && compareDate(state.currDate[0], currDate)
       && compareDate(currDate, state.currDate[1])
-    )
+    ) {
       res.push(`${state.dayPrefix}--choose`)
+    }
   }
   else {
     res.push(`${state.dayPrefix}--disabled`)
@@ -405,8 +408,9 @@ function getMonth(curData: string[], type: string) {
         `${state.endData[0]}-${state.endData[1]}-${getMonthDays(state.endData[0], state.endData[1])}`,
         `${curData[0]}-${curData[1]}-${curData[2]}`,
       )
-    )
+    ) {
       state.monthsData.push(monthInfo)
+    }
   }
   else {
     // 判断当前日期 是否小于 第一天
@@ -416,10 +420,12 @@ function getMonth(curData: string[], type: string) {
         `${curData[0]}-${curData[1]}-${curData[2]}`,
         `${state.startData[0]}-${state.startData[1]}-01`,
       )
-    )
+    ) {
       state.monthsData.unshift(monthInfo)
-    else
+    }
+    else {
       state.unLoadPrev = true
+    }
   }
 }
 

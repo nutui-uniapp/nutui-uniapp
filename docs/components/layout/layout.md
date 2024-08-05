@@ -87,7 +87,7 @@ Layout 组件提供 24列栅格，通过在 Col 上添加 span 属性设置列�
       <nut-col :span="8">
           <div class="flex-content">span:8</div>
       </nut-col>
-  </nut-row>   
+  </nut-row>
 </template>
 <style lang="scss">
 .nut-row {

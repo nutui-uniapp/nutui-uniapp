@@ -6,7 +6,6 @@ import { collapseEmits, collapseProps } from './collapse'
 
 const COMPONENT_NAME = 'nut-collapse'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -38,7 +38,14 @@ export default {
       划线价
     </h2>
     <nut-cell>
-      <nut-price :price="8888" :decimal-digits="0" size="normal" need-symbol thousands strike-through />
+      <nut-price
+        :price="8888"
+        :decimal-digits="0"
+        size="normal"
+        need-symbol
+        thousands
+        strike-through
+      />
     </nut-cell>
     <h2 class="title">
       货币符号

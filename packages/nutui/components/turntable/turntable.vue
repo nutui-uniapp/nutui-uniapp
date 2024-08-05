@@ -219,13 +219,22 @@ export default defineComponent({
   <view ref="turntableDom" :class="classes" :style="styles">
     <view class="turntable" :style="{ transform: rotateAngle, transition: rotateTransition }">
       <canvas
-        id="canvasWx" ref="canvasDom" type="2d" :class="isMpWeixin ? '' : 'mlcanvas'" canvas-id="canvasWx"
+        id="canvasWx"
+        ref="canvasDom"
+        type="2d"
+        :class="isMpWeixin ? '' : 'mlcanvas'"
+        canvas-id="canvasWx"
         :style="isMpWeixin ? '' : getRotateAngle(0, 'canvas')"
       />
       <!-- <canvas id="canvasWx" canvas-id="canvasWx" ref="canvasDom" type="2d" :style="getRotateAngle(0)">
       </canvas> -->
       <view v-if="prizeList.length > 0" class="prize">
-        <view v-for="(item, index) of prizeList" :key="index" class="item" :style="getRotateAngle(index)">
+        <view
+          v-for="(item, index) of prizeList"
+          :key="index"
+          class="item"
+          :style="getRotateAngle(index)"
+        >
           <view class="drawTable-name">
             {{ item.prizeName }}
           </view>

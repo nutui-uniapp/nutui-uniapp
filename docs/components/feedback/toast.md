@@ -13,10 +13,10 @@
 > 自 `1.7.5` 开始支持组合式函数用法，`useToast` 的自动按需导入请参考 [快速上手-API导入](/guide/quick-start#api导入) 部分
 
 ```typescript
-const toast = useToast();
+const toast = useToast()
 
 function showText() {
-  toast.text("文字提示");
+  toast.text('文字提示')
 }
 ```
 
@@ -51,34 +51,34 @@ function showText() {
 :::
 
 ```typescript
-import { useToast } from "nutui-uniapp/composables";
+import { useToast } from 'nutui-uniapp/composables'
 
-const toast = useToast();
+const toast = useToast()
 
 function showText() {
-  toast.text("文字提示");
+  toast.text('文字提示')
 }
 
 function showSuccess() {
-  toast.success("成功提示");
+  toast.success('成功提示')
 }
 
 function showError() {
-  toast.error("错误提示");
+  toast.error('错误提示')
 }
 
 function showWarning() {
-  toast.warning("警告提示");
+  toast.warning('警告提示')
 }
 
 function showLoading() {
-  toast.loading("加载提示", {
+  toast.loading('加载提示', {
     duration: 5000
-  });
+  })
 }
 
 function hideLoading() {
-  toast.hide();
+  toast.hide()
 }
 ```
 
@@ -98,8 +98,8 @@ function hideLoading() {
 若页面中存在多个`toast`实例，可以使用`selector`改变配置注入的key，以防止同时控制多个实例（注意，`selector`不支持动态修改）
 
 ```typescript
-const toast = useToast();
-const toast2 = useToast("toast2");
+const toast = useToast()
+const toast2 = useToast('toast2')
 ```
 
 ```html
@@ -112,20 +112,20 @@ const toast2 = useToast("toast2");
 ### Ref用法
 
 ```typescript
-import type { ToastInst } from "nutui-uniapp";
+import type { ToastInst } from 'nutui-uniapp'
 
-const toast = ref<ToastInst | null>(null);
+const toast = ref<ToastInst | null>(null)
 
 function showSuccess() {
-  toast.value?.success("成功提示");
+  toast.value?.success('成功提示')
 }
 
 function showError() {
-  toast.value?.error("错误提示");
+  toast.value?.error('错误提示')
 }
 
 function showWarning() {
-  toast.value?.warning("警告提示");
+  toast.value?.warning('警告提示')
 }
 ```
 
@@ -142,36 +142,36 @@ function showWarning() {
 ### Props用法
 
 ```typescript
-import type { ToastProps } from "nutui-uniapp";
+import type { ToastProps } from 'nutui-uniapp'
 
-const toastState = ref<Pick<ToastProps, "visible" | "type" | "msg">>({
+const toastState = ref<Pick<ToastProps, 'visible' | 'type' | 'msg'>>({
   visible: false,
-  type: "text",
-  msg: ""
-});
+  type: 'text',
+  msg: ''
+})
 
 function showSuccess() {
   toastState.value = {
     visible: true,
-    type: "success",
-    msg: "成功提示"
-  };
+    type: 'success',
+    msg: '成功提示'
+  }
 }
 
 function showError() {
   toastState.value = {
     visible: true,
-    type: "error",
-    msg: "错误提示"
-  };
+    type: 'error',
+    msg: '错误提示'
+  }
 }
 
 function showWarning() {
   toastState.value = {
     visible: true,
-    type: "warning",
-    msg: "警告提示"
-  };
+    type: 'warning',
+    msg: '警告提示'
+  }
 }
 ```
 
@@ -192,34 +192,34 @@ function showWarning() {
 ```typescript
 // 带标题的提示
 function showSuccessWithTitle() {
-  toast.success("成功提示", {
-    title: "我是一个有标题的提示"
-  });
+  toast.success('成功提示', {
+    title: '我是一个有标题的提示'
+  })
 }
 
 // 不同的图标
 function showSuccessOtherIcon() {
-  toast.success("成功提示", {
-    icon: "dongdong",
-    iconSize: "60rpx"
-  });
+  toast.success('成功提示', {
+    icon: 'dongdong',
+    iconSize: '60rpx'
+  })
 }
 
 // 也可以有遮罩层
 function showSuccessWithCover() {
-  toast.success("成功提示", {
+  toast.success('成功提示', {
     duration: 0,
     cover: true,
-    coverColor: "rgba(0, 0, 0, 0.5)",
+    coverColor: 'rgba(0, 0, 0, 0.5)',
     closeOnClickOverlay: true
-  });
+  })
 }
 
 // 展示在底部
 function showSuccessBottom() {
-  toast.success("成功提示", {
+  toast.success('成功提示', {
     center: false
-  });
+  })
 }
 ```
 
@@ -365,11 +365,11 @@ export interface ToastInst {
    * @description 显示提示
    */
   showToast: {
-    text(msg: string, options?: ToastOptions): void
-    success(msg: string, options?: ToastOptions): void
-    fail(msg: string, options?: ToastOptions): void
-    warn(msg: string, options?: ToastOptions): void
-    loading(msg: string, options?: ToastOptions): void
+    text: (msg: string, options?: ToastOptions) => void
+    success: (msg: string, options?: ToastOptions) => void
+    fail: (msg: string, options?: ToastOptions) => void
+    warn: (msg: string, options?: ToastOptions) => void
+    loading: (msg: string, options?: ToastOptions) => void
   }
   /**
    * @deprecated 使用`hide`代替
@@ -380,32 +380,32 @@ export interface ToastInst {
   /**
    * @description 文字提示
    */
-  text(msg: string, options?: ToastOptions): void
+  text: (msg: string, options?: ToastOptions) => void
 
   /**
    * @description 成功提示
    */
-  success(msg: string, options?: ToastOptions): void
+  success: (msg: string, options?: ToastOptions) => void
 
   /**
    * @description 错误提示
    */
-  error(msg: string, options?: ToastOptions): void
+  error: (msg: string, options?: ToastOptions) => void
 
   /**
    * @description 警告提示
    */
-  warning(msg: string, options?: ToastOptions): void
+  warning: (msg: string, options?: ToastOptions) => void
 
   /**
    * @description 加载提示
    */
-  loading(msg: string, options?: ToastOptions): void
+  loading: (msg: string, options?: ToastOptions) => void
 
   /**
    * @description 隐藏提示
    */
-  hide(): void
+  hide: () => void
 }
 ```
 

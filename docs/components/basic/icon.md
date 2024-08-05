@@ -57,7 +57,7 @@
 
 <style>
   .nut-icon{
-    --animate-duration: 1s ; 
+    --animate-duration: 1s ;
     --animate-delay: 0s;
   }
 </style>
@@ -85,16 +85,16 @@
 第二步：项目入口文件 main.js 引用 `iconfont.css`
 
 ``` javascript
-import './assets/font/iconfont.css';
+import './assets/font/iconfont.css'
 ```
 
 第三步：
 
 ```html
-<!-- 
+<!--
   font-class-name 指定类名为默认 iconfont
   class-prefix 指定默认 icon
-  name 值根据 iconfont.css 中值对应填写 
+  name 值根据 iconfont.css 中值对应填写
 -->
 <nut-icon font-class-name="iconfont" class-prefix="icon" name="close" />
 ```
@@ -118,7 +118,7 @@ import './assets/font/iconfont.css';
 ```
 
 ```html
-<!-- 
+<!--
   font-class-name 指定类名为默认 my-icon
   class-prefix 指定默认 my-icon
 -->

@@ -10,7 +10,6 @@ import CommentBottom from './components/CmtBottom.vue'
 
 const COMPONENT_NAME = 'nut-comment'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

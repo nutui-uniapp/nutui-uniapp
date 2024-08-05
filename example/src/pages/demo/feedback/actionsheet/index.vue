@@ -170,7 +170,8 @@ export default {
     <!-- 自定义面板 -->
     <nut-action-sheet
       v-model:visible="state.isVisible5"
-      :safe-area-inset-bottom="true" title="标题"
+      :safe-area-inset-bottom="true"
+      title="标题"
     >
       <div class="custom-content">
         自定义内容

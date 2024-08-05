@@ -251,7 +251,12 @@ export default defineComponent({
     <h2 class="title">
       选择自定义地址
     </h2>
-    <nut-cell title="选择地址" :desc="one" is-link @click="showAddress" />
+    <nut-cell
+      title="选择地址"
+      :desc="one"
+      is-link
+      @click="showAddress"
+    />
 
     <nut-address
       v-model:visible="normal"
@@ -266,7 +271,12 @@ export default defineComponent({
     <h2 class="title">
       选中省市区
     </h2>
-    <nut-cell title="选择地址" :desc="six" is-link @click="showSelected" />
+    <nut-cell
+      title="选择地址"
+      :desc="six"
+      is-link
+      @click="showSelected"
+    />
 
     <nut-address
       v-model="value"
@@ -283,7 +293,12 @@ export default defineComponent({
     <h2 class="title">
       选择自定义地址2
     </h2>
-    <nut-cell title="选择地址" :desc="five" is-link @click="showAddress2" />
+    <nut-cell
+      title="选择地址"
+      :desc="five"
+      is-link
+      @click="showAddress2"
+    />
 
     <nut-address
       v-model="value2"
@@ -302,7 +317,12 @@ export default defineComponent({
     <h2 class="title">
       选择已有地址
     </h2>
-    <nut-cell title="选择地址" :desc="two" is-link @click="showAddressExist" />
+    <nut-cell
+      title="选择地址"
+      :desc="two"
+      is-link
+      @click="showAddressExist"
+    />
 
     <nut-address
       v-model:visible="exist"
@@ -317,7 +337,12 @@ export default defineComponent({
     <h2 class="title">
       自定义图标
     </h2>
-    <nut-cell title="选择地址" :desc="three" is-link @click="showCustomImg" />
+    <nut-cell
+      title="选择地址"
+      :desc="three"
+      is-link
+      @click="showCustomImg"
+    />
 
     <nut-address
       v-model:visible="customImg"
@@ -348,7 +373,12 @@ export default defineComponent({
     <h2 class="title">
       自定义地址与已有地址切换
     </h2>
-    <nut-cell title="选择地址" :desc="four" is-link @click="showAddressOther" />
+    <nut-cell
+      title="选择地址"
+      :desc="four"
+      is-link
+      @click="showAddressOther"
+    />
 
     <nut-address
       v-model:visible="other"

@@ -55,7 +55,12 @@ export default {
       限制输入范围
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val3" min="10" max="20" @overlimit="overlimit" />
+      <nut-input-number
+        v-model="state.val3"
+        min="10"
+        max="20"
+        @overlimit="overlimit"
+      />
     </nut-cell>
     <h2 class="title">
       禁用操作
@@ -73,7 +78,12 @@ export default {
       支持小数
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val6" step="0.1" decimal-places="1" readonly />
+      <nut-input-number
+        v-model="state.val6"
+        step="0.1"
+        decimal-places="1"
+        readonly
+      />
     </nut-cell>
     <h2 class="title">
       支持异步修改

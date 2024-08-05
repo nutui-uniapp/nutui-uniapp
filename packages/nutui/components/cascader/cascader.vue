@@ -8,7 +8,6 @@ import type { CascaderOption, CascaderValue } from './types'
 
 const COMPONENT_NAME = 'nut-cascader'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

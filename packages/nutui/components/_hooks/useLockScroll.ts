@@ -9,7 +9,9 @@ export function useLockScroll(isLock: () => boolean) {
         !count && document.body.classList.add(CLSNAME)
         count++
       }
-      catch (error) {}
+      catch (error) {
+        console.error(error)
+      }
     }
   }
 
@@ -19,7 +21,9 @@ export function useLockScroll(isLock: () => boolean) {
         count--
         !count && document.body.classList.remove(CLSNAME)
       }
-      catch (error) {}
+      catch (error) {
+        console.error(error)
+      }
     }
   }
 

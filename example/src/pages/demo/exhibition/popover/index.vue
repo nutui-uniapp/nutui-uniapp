@@ -196,7 +196,12 @@ export default {
     </h2>
     <nut-row type="flex">
       <nut-col :span="8">
-        <nut-popover v-model:visible="showIcon" theme="dark" :list="itemList" custom-class="popover-demo-custom">
+        <nut-popover
+          v-model:visible="showIcon"
+          theme="dark"
+          :list="itemList"
+          custom-class="popover-demo-custom"
+        >
           <template #reference>
             <nut-button type="primary" shape="square">
               展示图标
@@ -243,7 +248,12 @@ export default {
     </h2>
     <nut-cell title="点击查看更多方向" @click="handlePicker" />
 
-    <nut-popup v-model:visible="showPicker" :destroy-on-close="false" position="bottom" custom-class="popover-demo-custom">
+    <nut-popup
+      v-model:visible="showPicker"
+      :destroy-on-close="false"
+      position="bottom"
+      custom-class="popover-demo-custom"
+    >
       <nut-picker
         :columns="columns as any"
         @change="change"

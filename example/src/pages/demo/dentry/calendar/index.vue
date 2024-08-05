@@ -359,7 +359,14 @@ export default {
       >
         <template #footer="dateInfo">
           <view class="flex justify-center w-full">
-            <nut-button size="large" block round type="primary" :disabled="disabled10" @click="clickBtn10(dateInfo)">
+            <nut-button
+              size="large"
+              block
+              round
+              type="primary"
+              :disabled="disabled10"
+              @click="clickBtn10(dateInfo)"
+            >
               {{
                 disabled10 ? '偶数的日期不能选择' : '奇数的日期可以选择'
               }}

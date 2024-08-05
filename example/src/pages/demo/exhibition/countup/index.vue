@@ -65,8 +65,18 @@ export default {
     </h2>
     <div class="show-demo">
       <nut-countup :init-num="0" :end-num="200" />
-      <nut-countup :init-num="150.0" :end-num="0.0" :speed="6.18" :to-fixed="2" />
-      <nut-countup :init-num="500.0" :end-num="0.0" :speed="17" :to-fixed="2" />
+      <nut-countup
+        :init-num="150.0"
+        :end-num="0.0"
+        :speed="6.18"
+        :to-fixed="2"
+      />
+      <nut-countup
+        :init-num="500.0"
+        :end-num="0.0"
+        :speed="17"
+        :to-fixed="2"
+      />
     </div>
     <h2 class="title">
       自定义滚动图片展示

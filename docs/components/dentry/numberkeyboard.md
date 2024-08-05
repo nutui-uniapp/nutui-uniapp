@@ -79,7 +79,6 @@ export default{
       input,
       showKeyBoard,
       close,
-     
 
     };
   }
@@ -221,10 +220,10 @@ export default{
       :desc="value"
       title="双向绑定："
     ></nut-cell>
-     <nut-number-keyboard 
-       v-model:visible="visible" 
-       v-model:value="value" 
-       maxlength="6" 
+     <nut-number-keyboard
+       v-model:visible="visible"
+       v-model:value="value"
+       maxlength="6"
        @close="close">
     </nut-number-keyboard>
 </template>

@@ -7,7 +7,6 @@ import type { ElevatorData } from './types'
 
 const COMPONENT_NAME = 'nut-elevator'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -20,34 +20,34 @@
 ```typescript
 const data = ref([{
   testid: 3,
-  testaddressName: "姓名",
-  phone: "123****4567",
+  testaddressName: '姓名',
+  phone: '123****4567',
   defaultAddress: false,
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试'
 }, {
   testid: 4,
-  testaddressName: "姓名",
-  phone: "123****4567",
+  testaddressName: '姓名',
+  phone: '123****4567',
   defaultAddress: true,
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
-}]);
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试'
+}])
 
 const dataOptions = reactive({
-  id: "testid",
-  addressDetail: "testaddressDetail",
-  addressName: "testaddressName"
-});
+  id: 'testid',
+  addressDetail: 'testaddressDetail',
+  addressName: 'testaddressName'
+})
 
 function onItemClick() {
-  console.log("Click To Address");
+  console.log('Click To Address')
 }
 
 function onItemDelClick() {
-  console.log("Click To Delete");
+  console.log('Click To Delete')
 }
 
 function onItemEditClick() {
-  console.log("Click To Edit");
+  console.log('Click To Edit')
 }
 ```
 
@@ -71,46 +71,46 @@ function onItemEditClick() {
 ```typescript
 const data = ref([{
   testid: 3,
-  testaddressName: "姓名",
-  phone: "123****4567",
+  testaddressName: '姓名',
+  phone: '123****4567',
   defaultAddress: false,
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试'
 }, {
   testid: 4,
-  testaddressName: "姓名",
-  phone: "123****4567",
+  testaddressName: '姓名',
+  phone: '123****4567',
   defaultAddress: true,
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
-}]);
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试'
+}])
 
 const dataOptions = reactive({
-  id: "testid",
-  addressDetail: "testaddressDetail",
-  addressName: "testaddressName"
-});
+  id: 'testid',
+  addressDetail: 'testaddressDetail',
+  addressName: 'testaddressName'
+})
 
 function onItemClick() {
-  console.log("Click To Address");
+  console.log('Click To Address')
 }
 
 function onItemDelClick() {
-  console.log("Click To Delete");
+  console.log('Click To Delete')
 }
 
 function onItemEditClick() {
-  console.log("Click To Edit");
+  console.log('Click To Edit')
 }
 
 function onItemLongCopyClick() {
-  console.log("Click To Copy");
+  console.log('Click To Copy')
 }
 
 function onItemLongSetClick() {
-  console.log("Click On Settings");
+  console.log('Click On Settings')
 }
 
 function onItemLongDelClick() {
-  console.log("Click To Add");
+  console.log('Click To Add')
 }
 ```
 
@@ -133,42 +133,42 @@ function onItemLongDelClick() {
 ```typescript
 const data = ref([{
   testid: 3,
-  testaddressName: "姓名",
-  phone: "123****4567",
+  testaddressName: '姓名',
+  phone: '123****4567',
   defaultAddress: false,
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试'
 }, {
   testid: 4,
-  testaddressName: "姓名",
-  phone: "123****4567",
+  testaddressName: '姓名',
+  phone: '123****4567',
   defaultAddress: true,
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试"
-}]);
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试'
+}])
 
 const dataOptions = reactive({
-  id: "testid",
-  addressDetail: "testaddressDetail",
-  addressName: "testaddressName"
-});
+  id: 'testid',
+  addressDetail: 'testaddressDetail',
+  addressName: 'testaddressName'
+})
 
 function onItemClick() {
-  console.log("Click To Address");
+  console.log('Click To Address')
 }
 
 function onItemDelClick() {
-  console.log("Click To Delete");
+  console.log('Click To Delete')
 }
 
 function onItemEditClick() {
-  console.log("Click To Edit");
+  console.log('Click To Edit')
 }
 
 function onItemSwipeDelClick() {
-  console.log("Click On DelClickSwipe");
+  console.log('Click On DelClickSwipe')
 };
 
 function onAddressAddClick() {
-  console.log("Click To Add");
+  console.log('Click To Add')
 }
 ```
 
@@ -235,22 +235,22 @@ function onAddressAddClick() {
 
 ```javascript
 const dataInfo = {
-  id: 2, //地址id
-  addressName: "姓名", //地址姓名
-  phone: "123****4567", //联系方式
-  defaultAddress: false, //是否是默认
-  fullAddress: "北京市通州区测试测试测试测试测试测试测试测试测试" //详细地址
-};
+  id: 2, // 地址id
+  addressName: '姓名', // 地址姓名
+  phone: '123****4567', // 联系方式
+  defaultAddress: false, // 是否是默认
+  fullAddress: '北京市通州区测试测试测试测试测试测试测试测试测试' // 详细地址
+}
 ```
 
 组件内优先获取基础数据结构中定义的字段，若想自定义 `key` 值，可以通过 `options` 设置映射关系
 
 ```javascript
 const dataOptions = {
-  id: "testid",
-  addressDetail: "testaddressDetail",
-  addressName: "testaddressName",
-};
+  id: 'testid',
+  addressDetail: 'testaddressDetail',
+  addressName: 'testaddressName',
+}
 ```
 
 ## 主题定制

@@ -11,7 +11,6 @@ import { popoverEmits, popoverProps } from './popover'
 
 const COMPONENT_NAME = 'nut-popover'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

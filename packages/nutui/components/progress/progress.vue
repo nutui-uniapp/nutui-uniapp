@@ -7,7 +7,6 @@ import { progressProps } from './progress'
 
 const COMPONENT_NAME = 'nut-progress'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

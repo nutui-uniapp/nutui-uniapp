@@ -6,7 +6,7 @@ import type { CommonProps } from './props'
 export type NormalizedStyle = Record<string, string | number>
 
 const listDelimiterRE = /;(?![^(]*\))/g
-const propertyDelimiterRE = /:([^]+)/
+const propertyDelimiterRE = /:([\s\S]+)/
 const styleCommentRE = /\/\*.*?\*\//g
 
 export function parseStringStyle(cssText: string): NormalizedStyle {
@@ -59,8 +59,9 @@ export function addStyle(customStyle: string | object, target = 'object') {
     isEmpty(customStyle)
     || (typeof customStyle === 'object' && target === 'object')
     || (target === 'string' && typeof customStyle === 'string')
-  )
+  ) {
     return customStyle
+  }
 
   // 字符串转对象
   if (target === 'object') {

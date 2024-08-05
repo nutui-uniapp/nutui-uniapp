@@ -11,7 +11,6 @@ import { rangeEmits, rangeProps } from './range'
 
 const COMPONENT_NAME = 'nut-range'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -373,7 +372,12 @@ onMounted(() => {
       {{ innerMin }}
     </view>
 
-    <view :id="rangeId" :class="classes" :style="wrapperStyles" @click.stop="onClick">
+    <view
+      :id="rangeId"
+      :class="classes"
+      :style="wrapperStyles"
+      @click.stop="onClick"
+    >
       <view class="nut-range-mark">
         <template v-if="innerMarks.length > 0">
           <view

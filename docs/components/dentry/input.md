@@ -15,7 +15,7 @@
 ```
 
 ```typescript
-const text = ref<string>("");
+const text = ref<string>('')
 ```
 
 ### 自定义类型
@@ -87,10 +87,10 @@ const text = ref<string>("");
 ```
 
 ```typescript
-const text = ref<string>("");
+const text = ref<string>('')
 
 function clearValue() {
-  text.value = "";
+  text.value = ''
 }
 ```
 
@@ -110,8 +110,8 @@ function clearValue() {
 
 ```typescript
 const form = ref({
-  text: ""
-});
+  text: ''
+})
 ```
 
 ### 格式化输入内容
@@ -133,11 +133,11 @@ const form = ref({
 ```
 
 ```typescript
-const text1 = ref<string>("");
-const text2 = ref<string>("");
+const text1 = ref<string>('')
+const text2 = ref<string>('')
 
 function formatter(value: string) {
-  return value.replace(/\d/g, "");
+  return value.replace(/\d/g, '')
 }
 ```
 
@@ -185,22 +185,22 @@ function formatter(value: string) {
 ```
 
 ```typescript
-const text = ref<string>("");
+const text = ref<string>('')
 
-const show = ref<boolean>(false);
-const message = ref<string>("");
+const show = ref<boolean>(false)
+const message = ref<string>('')
 
 function showToast(msg: string) {
-  message.value = msg;
-  show.value = true;
+  message.value = msg
+  show.value = true
 }
 
 function onClear() {
-  showToast("clear");
+  showToast('clear')
 }
 
 function onInputClick() {
-  showToast("clickInput");
+  showToast('clickInput')
 }
 ```
 

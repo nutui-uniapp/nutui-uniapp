@@ -6,7 +6,6 @@ import { dollmachineEmits, dollmachineProps } from './dollmachine'
 
 const COMPONENT_NAME = 'nut-doll-machine'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -56,8 +55,9 @@ function leftRightMove(flag: string) {
       if (
         (flag === 'left' && toolDomLeft === 0)
         || (flag === 'right' && toolDomLeft === max)
-      )
+      ) {
         return false
+      }
 
       const distance = flag === 'left' ? -30 : 30
       const left: number = toolDomLeft + distance

@@ -18,9 +18,9 @@
     @close="state.showKeyboard1=false"
   >
   </nut-short-password>
-  <nut-number-keyboard 
+  <nut-number-keyboard
     v-model="state.value1"
-    v-model:visible="state.showKeyboard1" 
+    v-model:visible="state.showKeyboard1"
   >
   </nut-number-keyboard>
 </template>
@@ -61,10 +61,10 @@ export default{
     @complete="methods.complete"
   >
   </nut-short-password>
-  <nut-number-keyboard 
+  <nut-number-keyboard
     v-model="state.value2"
-    v-model:visible="state.showKeyboard2" 
-    maxlength="4" 
+    v-model:visible="state.showKeyboard2"
+    maxlength="4"
   >
   </nut-number-keyboard>
 </template>
@@ -111,9 +111,9 @@ export default{
     @tips="methods.onTips"
   >
   </nut-short-password>
-  <nut-number-keyboard 
+  <nut-number-keyboard
     v-model="state.value3"
-    v-model:visible="state.showKeyboard3" 
+    v-model:visible="state.showKeyboard3"
   >
   </nut-number-keyboard>
 </template>
@@ -160,9 +160,9 @@ export default{
     @tips="methods.onTips"
   >
   </nut-short-password>
-  <nut-number-keyboard 
+  <nut-number-keyboard
     v-model="state.value4"
-    v-model:visible="state.showKeyboard4" 
+    v-model:visible="state.showKeyboard4"
   >
   </nut-number-keyboard>
 </template>

@@ -40,13 +40,29 @@ const content = ref(
       展开收起
     </h2>
     <nut-cell>
-      <nut-ellipsis :content="content" direction="start" expand-text="展开" collapse-text="收起" />
+      <nut-ellipsis
+        :content="content"
+        direction="start"
+        expand-text="展开"
+        collapse-text="收起"
+      />
     </nut-cell>
     <nut-cell>
-      <nut-ellipsis :content="content" direction="middle" expand-text="展开" collapse-text="收起" />
+      <nut-ellipsis
+        :content="content"
+        direction="middle"
+        expand-text="展开"
+        collapse-text="收起"
+      />
     </nut-cell>
     <nut-cell>
-      <nut-ellipsis :content="content" direction="end" rows="3" expand-text="展开" collapse-text="收起" />
+      <nut-ellipsis
+        :content="content"
+        direction="end"
+        rows="3"
+        expand-text="展开"
+        collapse-text="收起"
+      />
     </nut-cell>
   </div>
 </template>

@@ -50,7 +50,12 @@ function onInputClick() {
     <h2 class="title">
       基础用法
     </h2>
-    <nut-input v-model="text" type="text" placeholder="文本" autofocus />
+    <nut-input
+      v-model="text"
+      type="text"
+      placeholder="文本"
+      autofocus
+    />
 
     <h2 class="title">
       自定义类型
@@ -69,7 +74,12 @@ function onInputClick() {
     <h2 class="title">
       显示清除图标
     </h2>
-    <nut-input v-model="text7" clearable clear-size="14" placeholder="显示清除图标" />
+    <nut-input
+      v-model="text7"
+      clearable
+      clear-size="14"
+      placeholder="显示清除图标"
+    />
     <nut-input
       v-model="text8"
       placeholder="自定义清除图标"
@@ -80,7 +90,13 @@ function onInputClick() {
       show-clear-icon
     >
       <template #clear>
-        <nut-icon name="close" size="12" width="12" height="12" @click="clearValue" />
+        <nut-icon
+          name="close"
+          size="12"
+          width="12"
+          height="12"
+          @click="clearValue"
+        />
       </template>
     </nut-input>
 
@@ -96,7 +112,12 @@ function onInputClick() {
     <h2 class="title">
       格式化输入内容
     </h2>
-    <nut-input v-model="text9" error :formatter="formatter" placeholder="在输入时执行格式化" />
+    <nut-input
+      v-model="text9"
+      error
+      :formatter="formatter"
+      placeholder="在输入时执行格式化"
+    />
     <nut-input
       v-model="text10"
       :formatter="formatter"

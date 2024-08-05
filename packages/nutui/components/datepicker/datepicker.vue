@@ -10,7 +10,6 @@ import type { DateLike, DatePickerBaseEvent, DatePickerColumnType, DatePickerRan
 
 const COMPONENT_NAME = 'nut-date-picker'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

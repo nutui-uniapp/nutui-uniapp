@@ -9,7 +9,6 @@ import { RADIO_KEY, radioProps } from './radio'
 
 const COMPONENT_NAME = 'nut-radio'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -4,7 +4,6 @@ import { giftboxEmits } from './giftbox'
 
 const COMPONENT_NAME = 'nut-giftbox'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -6,7 +6,6 @@ import { categoryEmits, categoryProps } from './category'
 
 const COMPONENT_NAME = 'nut-category'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

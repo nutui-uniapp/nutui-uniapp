@@ -5,7 +5,6 @@ import { clientHeight, listEmits, listProps } from './list'
 
 const COMPONENT_NAME = 'nut-list'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

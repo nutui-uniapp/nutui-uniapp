@@ -11,7 +11,6 @@ import { CHECKBOX_KEY, checkboxEmits, checkboxProps } from './checkbox'
 
 const COMPONENT_NAME = 'nut-checkbox'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

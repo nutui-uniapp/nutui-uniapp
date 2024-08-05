@@ -2,8 +2,8 @@ import { computed, getCurrentInstance, inject, onUnmounted, ref } from 'vue'
 import type { ComponentInternalInstance, InjectionKey } from 'vue'
 
 type ParentProvide<T> = T & {
-  add(child: ComponentInternalInstance): void
-  remove(child: ComponentInternalInstance): void
+  add: (child: ComponentInternalInstance) => void
+  remove: (child: ComponentInternalInstance) => void
   internalChildren: ComponentInternalInstance[]
 }
 

@@ -6,7 +6,6 @@ import ItemContents from './Itemcontents.vue'
 
 const COMPONENT_NAME = 'nut-address-list-general'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -221,7 +220,12 @@ function handleSwipeMove() {
         <slot v-if="props.useSwipeRightBtnSlot" name="swipe-right-btn" />
 
         <template v-else>
-          <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="handleSwipeDelClick">
+          <NutButton
+            shape="square"
+            custom-style="height: 100%;"
+            type="danger"
+            @tap.stop="handleSwipeDelClick"
+          >
             删除
           </NutButton>
         </template>

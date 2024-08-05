@@ -40,7 +40,12 @@ export default {
       @start-turns="startTurns"
       @end-turns="endTurns"
     />
-    <nut-button custom-style="margin-top:10px" size="large" type="primary" @click="initBox">
+    <nut-button
+      custom-style="margin-top:10px"
+      size="large"
+      type="primary"
+      @click="initBox"
+    >
       再来一次
     </nut-button>
   </div>

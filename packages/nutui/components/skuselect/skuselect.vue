@@ -68,7 +68,9 @@ export default defineComponent({
       </view>
       <view class="nut-sku-select-item-skus">
         <view
-          v-for="(itemAttr, itemAttrIndex) in item.list" :key="itemAttr.name" class="nut-sku-select-item-skus-sku"
+          v-for="(itemAttr, itemAttrIndex) in item.list"
+          :key="itemAttr.name"
+          class="nut-sku-select-item-skus-sku"
           :class="[{ active: !itemAttr.disable && itemAttr.active }, { disable: itemAttr.disable }]"
           @click="changeSaleChild(itemAttr, itemAttrIndex, item, index)"
         >

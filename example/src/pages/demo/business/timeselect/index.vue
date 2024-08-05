@@ -209,7 +209,12 @@ export default defineComponent({
         <nut-time-detail :times="times2" @select="selectTime2" />
       </template>
     </nut-time-select>
-    <nut-toast v-model:visible="show" :msg="msg" :type="type as any" :cover="cover" />
+    <nut-toast
+      v-model:visible="show"
+      :msg="msg"
+      :type="type as any"
+      :cover="cover"
+    />
   </div>
 </template>
 

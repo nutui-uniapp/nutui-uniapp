@@ -52,8 +52,14 @@ export default defineComponent({
 
 <template>
   <NutPopup
-    position="bottom" closeable round :visible="visible" :custom-style="popStyle" :lock-scroll="lockScroll"
-    @click-overlay="close" @click-close-icon="close"
+    position="bottom"
+    closeable
+    round
+    :visible="visible"
+    :custom-style="popStyle"
+    :lock-scroll="lockScroll"
+    @click-overlay="close"
+    @click-close-icon="close"
   >
     <view :class="classes" :style="customStyle">
       <view class="nut-time-select__title">

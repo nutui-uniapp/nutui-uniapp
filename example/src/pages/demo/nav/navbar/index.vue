@@ -58,7 +58,12 @@ export default defineComponent({
         <nut-icon name="left" />
       </template>
     </nut-navbar>
-    <nut-navbar custom-class="mt-20px" title="Title" @on-click-back="back" @on-click-title="title">
+    <nut-navbar
+      custom-class="mt-20px"
+      title="Title"
+      @on-click-back="back"
+      @on-click-title="title"
+    >
       <template #left>
         <nut-icon name="left" /> Back
       </template>
@@ -71,7 +76,12 @@ export default defineComponent({
         Share
       </template>
     </nut-navbar>
-    <nut-navbar custom-class="mt-20px" title="Title" @on-click-back="back" @on-click-title="title">
+    <nut-navbar
+      custom-class="mt-20px"
+      title="Title"
+      @on-click-back="back"
+      @on-click-title="title"
+    >
       <template #right>
         <nut-icon name="share" />
       </template>
@@ -79,7 +89,12 @@ export default defineComponent({
     <h2 class="title">
       自定义导航栏中间内容
     </h2>
-    <nut-navbar desc="编辑" @on-click-back="back" @on-click-title="title" @on-click-right="rightClick">
+    <nut-navbar
+      desc="编辑"
+      @on-click-back="back"
+      @on-click-title="title"
+      @on-click-right="rightClick"
+    >
       <template #content>
         <div class="h-full">
           <nut-tabs v-model="tab1value" @click="changeTab">

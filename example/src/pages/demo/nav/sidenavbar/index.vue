@@ -46,7 +46,12 @@ export default defineComponent({
     <nut-cell @click="handleClick1">
       <span><label>右侧</label></span>
     </nut-cell>
-    <nut-popup v-model:visible="show1" z-index="3000" position="right" :custom-style="{ width, height }">
+    <nut-popup
+      v-model:visible="show1"
+      z-index="3000"
+      position="right"
+      :custom-style="{ width, height }"
+    >
       <nut-side-navbar>
         <nut-sub-side-navbar title="智能城市AI" ikey="6">
           <nut-sub-side-navbar title="人体识别1" ikey="9">
@@ -63,7 +68,12 @@ export default defineComponent({
     <nut-cell @click="handleClick2">
       <span><label>左侧</label></span>
     </nut-cell>
-    <nut-popup v-model:visible="show2" z-index="3000" position="left" :custom-style="{ width, height }">
+    <nut-popup
+      v-model:visible="show2"
+      z-index="3000"
+      position="left"
+      :custom-style="{ width, height }"
+    >
       <nut-side-navbar>
         <nut-subside-navbar title="图像理解" ikey="3" :open="false">
           <nut-side-navbaritem ikey="4" title="菜品识别" />
@@ -82,7 +92,12 @@ export default defineComponent({
       <nut-cell @click="handleClick3">
         <span><label>显示</label></span>
       </nut-cell>
-      <nut-popup v-model:visible="show3" z-index="3000" position="right" :custom-style="{ width, height }">
+      <nut-popup
+        v-model:visible="show3"
+        z-index="3000"
+        position="right"
+        :custom-style="{ width, height }"
+      >
         <nut-side-navbar :show="show3">
           <nut-side-navbaritem ikey="1" title="人脸识别" @click="handleClick4('人脸识别')" />
           <nut-side-navbaritem ikey="2" title="云存自然语言处理" />

@@ -72,26 +72,27 @@
 ```
 
 ```typescript
-import type { SwipeInts, SwipeToggleEvent } from "nutui-uniapp";
+import type { SwipeInts, SwipeToggleEvent } from 'nutui-uniapp'
 
-const swipe = ref<SwipeInts | null>(null);
+const swipe = ref<SwipeInts | null>(null)
 
-const checked = ref<boolean>(false);
+const checked = ref<boolean>(false)
 
 function onSwitchChange(value: boolean) {
   if (value) {
-    swipe.value?.open("left");
-  } else {
-    swipe.value?.close();
+    swipe.value?.open('left')
+  }
+  else {
+    swipe.value?.close()
   }
 }
 
 function onOpen(info: SwipeToggleEvent) {
-  console.log("打开了...", info);
+  console.log('打开了...', info)
 }
 
 function onClose(info: SwipeToggleEvent) {
-  console.log("关闭了...", info);
+  console.log('关闭了...', info)
 }
 ```
 
@@ -119,7 +120,7 @@ function onClose(info: SwipeToggleEvent) {
 ```
 
 ```typescript
-const number = ref<number>(0);
+const number = ref<number>(0)
 ```
 
 ### 使用 SwipeGroup 控制 Swipe 之间互斥

@@ -9,7 +9,6 @@ import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 
 const COMPONENT_NAME = 'nut-checkbox-group'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

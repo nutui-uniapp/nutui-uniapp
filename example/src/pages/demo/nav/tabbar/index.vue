@@ -128,7 +128,12 @@ export default {
       自定义选中
     </h2>
     <nut-tabbar v-model="active">
-      <nut-tabbar-item v-for="(item, index) in List" :key="index" :tab-title="item.title" :icon="item.icon" />
+      <nut-tabbar-item
+        v-for="(item, index) in List"
+        :key="index"
+        :tab-title="item.title"
+        :icon="item.icon"
+      />
     </nut-tabbar>
 
     <h2 class="title">
@@ -146,7 +151,12 @@ export default {
       自定义颜色
     </h2>
     <nut-tabbar unactive-color="#7d7e80" active-color="#1989fa">
-      <nut-tabbar-item v-for="(item, index) in List" :key="index" :tab-title="item.title" :icon="item.icon" />
+      <nut-tabbar-item
+        v-for="(item, index) in List"
+        :key="index"
+        :tab-title="item.title"
+        :icon="item.icon"
+      />
     </nut-tabbar>
     <h2 class="title">
       三个icon的tabbar

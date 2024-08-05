@@ -11,7 +11,6 @@ interface StatusOptions {
 
 const COMPONENT_NAME = 'nut-empty'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

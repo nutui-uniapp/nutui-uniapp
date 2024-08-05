@@ -38,8 +38,14 @@ export default defineComponent({
   <div :class="classes" :style="customStyle">
     <div class="nut-signature-inner spcanvas_WEAPP">
       <canvas
-        :id="canvasSetId" ref="spcanvas" class="spcanvas" :canvasId="canvasSetId" :disable-scroll="true"
-        @touchstart="startEventHandler" @touchmove="moveEventHandler" @touchend="endEventHandler"
+        :id="canvasSetId"
+        ref="spcanvas"
+        class="spcanvas"
+        :canvasId="canvasSetId"
+        :disable-scroll="true"
+        @touchstart="startEventHandler"
+        @touchmove="moveEventHandler"
+        @touchend="endEventHandler"
         @touchleave="leaveEventHandler"
       />
     </div>

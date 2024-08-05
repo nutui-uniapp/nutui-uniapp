@@ -55,7 +55,8 @@ export default {
       <view class="index-header n-bg-2">
         <image
           src="https://s2.loli.net/2023/08/30/1AxH9rbqi4kvCls.png"
-          alt="" srcset=""
+          alt=""
+          srcset=""
         />
         <view class="info">
           <h1 class="title">

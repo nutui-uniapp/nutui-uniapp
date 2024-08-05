@@ -10,7 +10,6 @@ import type { NoticebarState } from './types'
 
 const COMPONENT_NAME = 'nut-noticebar'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

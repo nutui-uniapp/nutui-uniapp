@@ -9,7 +9,6 @@ import type { NumberKeyboardKeyItem } from './types'
 
 const COMPONENT_NAME = 'nut-number-keyboard'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

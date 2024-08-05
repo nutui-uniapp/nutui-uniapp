@@ -82,14 +82,34 @@ export default {
     <h2 class="title">
       基础用法
     </h2>
-    <nut-image-preview :show="showPreview1" :images="imgData" :is-loop="false" @close="hideFn(1)" />
-    <nut-cell is-link title="展示图片预览" :show-icon="true" @click="showFn(1)" />
+    <nut-image-preview
+      :show="showPreview1"
+      :images="imgData"
+      :is-loop="false"
+      @close="hideFn(1)"
+    />
+    <nut-cell
+      is-link
+      title="展示图片预览"
+      :show-icon="true"
+      @click="showFn(1)"
+    />
 
     <h2 class="title">
       设置初始页码
     </h2>
-    <nut-image-preview :show="showPreview2" :images="imgData" :init-no="3" @close="hideFn(2)" />
-    <nut-cell is-link title="设置初始页码" :show-icon="true" @click="showFn(2)" />
+    <nut-image-preview
+      :show="showPreview2"
+      :images="imgData"
+      :init-no="3"
+      @close="hideFn(2)"
+    />
+    <nut-cell
+      is-link
+      title="设置初始页码"
+      :show-icon="true"
+      @click="showFn(2)"
+    />
 
     <h2 class="title">
       设置轮播指示器及颜色
@@ -101,7 +121,12 @@ export default {
       pagination-color="red"
       @close="hideFn(3)"
     />
-    <nut-cell is-link title="设置轮播指示器及颜色" :show-icon="true" @click="showFn(3)" />
+    <nut-cell
+      is-link
+      title="设置轮播指示器及颜色"
+      :show-icon="true"
+      @click="showFn(3)"
+    />
   </div>
 </template>
 
