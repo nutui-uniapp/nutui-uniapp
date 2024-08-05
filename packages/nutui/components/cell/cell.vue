@@ -1,26 +1,46 @@
-<script setup lang="ts">
-import { computed, defineComponent } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties } from 'vue'
+import { computed, useSlots } from 'vue'
+import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
-import { CLICK_EVENT, PREFIX } from '../_constants'
-import Icon from '../icon/icon.vue'
+import { CLICK_EVENT } from '../_constants'
 import { cellEmits, cellProps } from './cell'
+
+const COMPONENT_NAME = 'nut-cell'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
+})
 
 const props = defineProps(cellProps)
 
 const emit = defineEmits(cellEmits)
 
+const slots = useSlots()
+
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--clickable`]: props.isLink || props.to,
-    [`${componentName}--center`]: props.center,
-    [`${componentName}--large`]: props.size === 'large',
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--clickable`]: props.isLink || props.to || props.clickable,
+    [`${COMPONENT_NAME}--center`]: props.center,
+    [`${COMPONENT_NAME}--large`]: props.size === 'large',
   })
 })
 
 const styles = computed(() => {
-  return getMainStyle(props, {
-    borderRadius: pxCheck(props.roundRadius),
-  })
+  const value: CSSProperties = {}
+
+  if (props.roundRadius != null)
+    value.borderRadius = pxCheck(props.roundRadius)
+
+  return getMainStyle(props, value)
 })
 
 function handleClick(event: any) {
@@ -34,63 +54,48 @@ function handleClick(event: any) {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-cell`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
-</script>
-
 <template>
   <view :class="classes" :style="styles" @click="handleClick">
-    <slot>
-      <view v-if="$slots.icon" class="nut-cell__icon">
-        <slot name="icon" />
+    <slot v-if="slots.default" />
+
+    <template v-else>
+      <view v-if="props.icon || slots.icon" class="nut-cell__icon">
+        <slot v-if="slots.icon" name="icon" />
+
+        <NutIcon v-else custom-class="nut-cell__icon__inner" :name="props.icon" />
       </view>
 
-      <view v-if="props.title || props.subTitle || $slots.title" class="nut-cell__title">
-        <template v-if="props.subTitle">
-          <slot name="title">
-            <view class="title">
-              {{ props.title }}
-            </view>
-          </slot>
+      <view v-if="props.title || props.subTitle || slots.title" class="nut-cell__title">
+        <slot v-if="slots.title" name="title" />
 
-          <view class="nut-cell__title-desc">
-            {{ props.subTitle }}
-          </view>
-        </template>
+        <view v-else class="title">
+          {{ props.title }}
+        </view>
 
-        <template v-else>
-          <slot name="title">
-            {{ props.title }}
-          </slot>
-        </template>
+        <view v-if="props.subTitle" class="nut-cell__title-desc">
+          {{ props.subTitle }}
+        </view>
       </view>
 
       <view
-        v-if="props.desc || $slots.desc"
+        v-if="props.desc || slots.desc"
         class="nut-cell__value"
-        :class="{ 'nut-cell__value--alone': !props.title && !props.subTitle && !$slots.title }"
-        :style="{ 'text-align': props.descTextAlign }"
+        :class="{ 'nut-cell__value--alone': !(props.title || props.subTitle || slots.title) }"
+        :style="{ textAlign: props.descTextAlign }"
       >
-        <slot name="desc">
+        <slot v-if="slots.desc" name="desc" />
+
+        <template v-else>
           {{ props.desc }}
-        </slot>
+        </template>
       </view>
 
-      <slot name="link">
-        <Icon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
-      </slot>
-    </slot>
+      <slot v-if="slots.link" name="link" />
+
+      <template v-else>
+        <NutIcon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
+      </template>
+    </template>
   </view>
 </template>
 

@@ -1,7 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { isFunction, isNumber } from '../_utils'
+import { commonProps, isFunction, isNumber } from '../_utils'
 
 export const infiniteloadingProps = {
+  ...commonProps,
   hasMore: {
     type: Boolean,
     default: true,

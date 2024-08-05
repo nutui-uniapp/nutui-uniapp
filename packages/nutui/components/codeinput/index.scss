@@ -31,6 +31,7 @@
     }
 
     /* #ifndef APP-PLUS */
+
     &__cursor {
       position: absolute;
       top: 50%;
@@ -42,7 +43,6 @@
     }
 
     /* #endif */
-
   }
 
   &__input {
@@ -58,6 +58,7 @@
 }
 
 /* #ifndef APP-PLUS */
+
 // stylelint-disable-next-line keyframes-name-pattern
 @keyframes nut-cursor-flicker {
   0% {

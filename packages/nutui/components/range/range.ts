@@ -1,8 +1,7 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { commonProps, isNumber, makeNumericProp, makeObjectProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-
-export type SliderValue = number | number[]
+import type { RangeValue } from './types'
 
 export const rangeProps = {
   ...commonProps,
@@ -10,7 +9,7 @@ export const rangeProps = {
    * @description 当前进度百分比
    */
   modelValue: {
-    type: [Number, Array] as PropType<SliderValue>,
+    type: [Number, Array] as PropType<RangeValue>,
     default: 0,
   },
   /**
@@ -66,9 +65,9 @@ export const rangeProps = {
 export type RangeProps = ExtractPropTypes<typeof rangeProps>
 
 export const rangeEmits = {
-  [UPDATE_MODEL_EVENT]: (val: SliderValue) => isNumber(val) || val instanceof Object,
+  [UPDATE_MODEL_EVENT]: (val: RangeValue) => isNumber(val) || val instanceof Object,
   dragStart: () => true,
-  [CHANGE_EVENT]: (val: SliderValue) => isNumber(val) || val instanceof Object,
+  [CHANGE_EVENT]: (val: RangeValue) => isNumber(val) || val instanceof Object,
   dragEnd: () => true,
 }
 

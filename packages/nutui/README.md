@@ -47,13 +47,13 @@ nutui-uniapp 组件库，基于Taro版[`NutUi`](https://nutui.jd.com/#/) 4.x版�
 
 ## 快速上手
 
-请参考[快速上手](https://uniapp-nutui.tech/guide/quick-start.html)。
+请参考[快速上手](https://nutui-uniapp.pages.dev/guide/quick-start.html)。
 
 ## 链接
 
 - [意见反馈](https://github.com/nutui-uniapp/nutui-uniapp/issues)
 - [更新日志](https://github.com/nutui-uniapp/nutui-uniapp/releases)
-- [常见问题](https://uniapp-nutui.tech/guide/faq.html)
+- [常见问题](https://nutui-uniapp.pages.dev/guide/faq.html)
 - [Discussions 讨论区](https://github.com/nutui-uniapp/nutui-uniapp/discussions)
 
 ## 贡献指南

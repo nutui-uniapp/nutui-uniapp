@@ -2,7 +2,7 @@ import type { ExtractPropTypes } from 'vue'
 import { commonProps, isBoolean, makeNumberProp, makeStringProp } from '../_utils'
 import type { Position } from '../_constants/types'
 import { UPDATE_VISIBLE_EVENT } from '../_constants'
-import type { NotifyType } from './type'
+import type { NotifyType } from './types'
 
 export const notifyProps = {
   ...commonProps,
@@ -55,6 +55,7 @@ export const notifyProps = {
    */
   onClick: Function,
 }
+
 export type NotifyProps = ExtractPropTypes<typeof notifyProps>
 
 export const notifyEmits = {

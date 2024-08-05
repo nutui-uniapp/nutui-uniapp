@@ -3,7 +3,7 @@ import { computed, inject } from 'vue'
 import { commonProps, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import type { OptionalBoolean, OptionalValue } from '../_types'
 import type { FormItemValidateResult } from '../formitem'
-import type { FormContext, FormLabelPosition, FormRules, FormStarPosition } from './type'
+import type { FormContext, FormLabelPosition, FormRules, FormStarPosition } from './types'
 
 export const formProps = {
   ...commonProps,
@@ -58,9 +58,12 @@ export function useFormDisabled(
   disabled: Ref<OptionalBoolean>,
 ): ComputedRef<boolean> {
   return computed(() => {
-    if (disabled.value !== undefined)
+    if (disabled.value != null)
       return disabled.value
 
-    return context?.disabled.value ?? false
+    if (context?.disabled.value != null)
+      return context.disabled.value
+
+    return false
   })
 }

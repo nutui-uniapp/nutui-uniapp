@@ -1,5 +1,6 @@
-<script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, reactive, useSlots } from 'vue'
+<script lang="ts" setup>
+import type { ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, inject, reactive, useSlots } from 'vue'
 import { PREFIX } from '../_constants'
 import NutBadge from '../badge/badge.vue'
 import NutIcon from '../icon/icon.vue'
@@ -97,5 +98,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

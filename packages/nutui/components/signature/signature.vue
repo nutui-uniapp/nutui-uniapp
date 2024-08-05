@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
@@ -53,5 +53,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -9,7 +9,7 @@
   &::after {
     flex: 1;
     height: $divider-line-height;
-    content: '';
+    content: "";
     border: $divider-line-height solid currentColor;
     border-width: $divider-line-height 0 0;
   }

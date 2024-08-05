@@ -1,1 +1,1 @@
-export type * from './cascaderitem'
+export * from './cascaderitem'

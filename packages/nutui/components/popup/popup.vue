@@ -1,21 +1,15 @@
-<script setup lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
 import NutTransition from '../transition/transition.vue'
 import NutOverlay from '../overlay/overlay.vue'
 import NutIcon from '../icon/icon.vue'
-import { PREFIX } from '../_constants'
 import { popupEmits, popupProps } from './popup'
 import { usePopup } from './use-popup'
 
-const props = defineProps(popupProps)
-const emit = defineEmits(popupEmits)
-const { onClickOverlay, showSlot, onClickCloseIcon, closed, transitionName, onOpened, onClosed, classes, popStyle, onClick } = usePopup(props, emit)
-</script>
+const COMPONENT_NAME = 'nut-popup'
 
-<script lang="ts">
-const componentName = `${PREFIX}-popup`
-export default defineComponent({
-  name: componentName,
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
@@ -24,39 +18,58 @@ export default defineComponent({
     // #endif
   },
 })
+
+const props = defineProps(popupProps)
+
+const emit = defineEmits(popupEmits)
+
+const {
+  classes,
+  popStyle,
+  innerIndex,
+  showSlot,
+  transitionName,
+  onClick,
+  onClickCloseIcon,
+  onClickOverlay,
+  onOpened,
+  onClosed,
+} = usePopup(props, emit)
 </script>
 
 <template>
   <NutOverlay
-    v-if="overlay"
-    :visible="visible"
-    :close-on-click-overlay="closeOnClickOverlay"
-    :z-index="zIndex"
-    :lock-scroll="lockScroll"
-    :duration="duration"
-    :overlay-class="overlayClass"
-    :overlay-style="overlayStyle"
-    :destroy-on-close="destroyOnClose"
+    v-if="props.overlay"
     v-bind="$attrs"
+    :visible="props.visible"
+    :close-on-click-overlay="props.closeOnClickOverlay"
+    :z-index="innerIndex"
+    :lock-scroll="props.lockScroll"
+    :duration="props.duration"
+    :overlay-class="props.overlayClass"
+    :overlay-style="props.overlayStyle"
+    :destroy-on-close="props.destroyOnClose"
     @click="onClickOverlay"
   />
+
   <NutTransition
     :name="transitionName"
     :custom-class="classes"
-    :show="visible"
-    :destroy-on-close="destroyOnClose"
+    :show="props.visible"
+    :destroy-on-close="props.destroyOnClose"
     :custom-style="popStyle"
-    :duration="Number(duration)"
+    :duration="Number(props.duration)"
     @after-enter="onOpened"
     @after-leave="onClosed"
     @click="onClick"
   >
     <slot v-if="showSlot" />
+
     <view
-      v-if="closed"
+      v-if="props.closeable"
       class="nut-popup__close-icon"
-      :class="`nut-popup__close-icon--${closeIconPosition}`"
-      @click="(onClickCloseIcon as any)"
+      :class="`nut-popup__close-icon--${props.closeIconPosition}`"
+      @click="onClickCloseIcon"
     >
       <slot name="closeIcon">
         <NutIcon name="close" height="12px" />
@@ -66,5 +79,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

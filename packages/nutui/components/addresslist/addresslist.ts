@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isNumber, isString, makeArrayProp, makeObjectProp, truthProp } from '../_utils'
-import type { AddressListOptions } from './type'
+import type { AddressListOptions } from './types'
 
 export const addresslistProps = {
   ...commonProps,

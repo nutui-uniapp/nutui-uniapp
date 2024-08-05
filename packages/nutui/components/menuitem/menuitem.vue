@@ -1,32 +1,33 @@
 <script lang="ts">
-import type { Ref } from 'vue'
+import type { CSSProperties, Ref } from 'vue'
 import { computed, defineComponent, reactive } from 'vue'
-import { CLOSE_EVENT, OPEN_EVENT, PREFIX } from '../_constants'
-import PopUp from '../popup/popup.vue'
-import Icon from '../icon/icon.vue'
+import { CLOSE_EVENT, OPEN_EVENT } from '../_constants'
+import NutIcon from '../icon/icon.vue'
+import NutPopup from '../popup/popup.vue'
 import { getMainClass, getMainStyle } from '../_utils'
 import { useInject } from '../_hooks'
 import { MENU_KEY } from '../menu/menu'
 import type { MenuProps } from '../menu'
-import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
+import type { MenuItemOption, MenuItemState } from './types'
+import { menuitemEmits, menuitemProps } from './menuitem'
 
-const componentName = `${PREFIX}-menu-item`
+const COMPONENT_NAME = 'nut-menu-item'
 
 export default defineComponent({
-  name: componentName,
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
   components: {
-    PopUp,
-    Icon,
+    NutIcon,
+    NutPopup,
   },
   props: menuitemProps,
   emits: menuitemEmits,
   setup(props, { emit, expose }) {
-    const state = reactive({
+    const state: MenuItemState = reactive({
       showPopup: false,
       showWrapper: false,
     })
@@ -37,25 +38,41 @@ export default defineComponent({
     }>(MENU_KEY)
 
     const classes = computed(() => {
-      return getMainClass(props, componentName, {
+      return getMainClass(props, COMPONENT_NAME, {
         'nut-hidden': !state.showWrapper,
       })
     })
 
     const styles = computed(() => {
-      const obj = parent?.props.direction === 'down'
-        ? { top: `${parent?.offset.value}px` }
-        : { bottom: `${parent?.offset.value}px` }
-      return getMainStyle(props, obj)
+      const value: CSSProperties = {}
+
+      if (parent?.props.direction === 'down') {
+        Object.assign(value, {
+          top: `${parent?.offset.value}px`,
+        })
+      }
+      else {
+        Object.assign(value, {
+          bottom: `${parent?.offset.value}px`,
+        })
+      }
+
+      return getMainStyle(props, value)
     })
 
-    const placeholderElementStyle = computed(() => {
-      const heightStyle = { height: `${parent?.offset.value}px` }
+    const placeholderStyles = computed(() => {
+      const value = {
+        top: 'auto',
+        height: `${parent?.offset.value}px`,
+      }
 
-      if (parent?.props.direction === 'down')
-        return { ...heightStyle, top: 0 }
+      if (parent?.props.direction === 'down') {
+        Object.assign(value, {
+          top: 0,
+        })
+      }
 
-      return { ...heightStyle, top: 'auto' }
+      return value
     })
 
     const open = () => {
@@ -129,7 +146,7 @@ export default defineComponent({
     return {
       classes,
       styles,
-      placeholderElementStyle,
+      placeholderStyles,
       renderTitle,
       state,
       parent,
@@ -148,10 +165,11 @@ export default defineComponent({
     <view
       class="nut-menu-item-placeholder-element"
       :class="{ 'nut-hidden': !state.showPopup, 'placeholder-element-up': parent?.props.direction === 'up' }"
-      :style="placeholderElementStyle"
+      :style="placeholderStyles"
       @click="handleClickOutside"
     />
-    <PopUp
+
+    <NutPopup
       v-bind="$attrs"
       v-model:visible="state.showPopup"
       :custom-style="{ position: 'absolute' }"
@@ -185,11 +203,12 @@ export default defineComponent({
             >
               <!-- #ifndef MP-WEIXIN -->
               <slot name="icon">
-                <Icon name="Check" :custom-color="parent?.props.activeColor" />
+                <NutIcon name="Check" :custom-color="parent?.props.activeColor" />
               </slot>
               <!-- #endif -->
+
               <!-- #ifdef MP-WEIXIN -->
-              <Icon :name="optionIcon" :custom-color="parent?.props.activeColor" />
+              <NutIcon :name="optionIcon" :custom-color="parent?.props.activeColor" />
               <!-- #endif -->
             </view>
             <view
@@ -199,13 +218,14 @@ export default defineComponent({
               {{ option.text }}
             </view>
           </view>
+
           <slot />
         </view>
       </scroll-view>
-    </PopUp>
+    </NutPopup>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

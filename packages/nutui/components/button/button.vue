@@ -1,25 +1,39 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent } from 'vue'
-import Icon from '../icon/icon.vue'
-import { CLICK_EVENT, PREFIX } from '../_constants'
+import { computed } from 'vue'
+import NutIcon from '../icon/icon.vue'
+import { CLICK_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
 import { buttonEmits, buttonProps } from './button'
+
+const COMPONENT_NAME = 'nut-button'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
+})
 
 const props = defineProps(buttonProps)
 
 const emit = defineEmits(buttonEmits)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--${props.type}`]: !!props.type,
-    [`${componentName}--${props.size}`]: !!props.size,
-    [`${componentName}--${props.shape}`]: !!props.shape,
-    [`${componentName}--plain`]: props.plain,
-    [`${componentName}--block`]: props.block,
-    [`${componentName}--disabled`]: props.disabled,
-    [`${componentName}--loading`]: props.loading,
-    [`${componentName}--hovercls`]: props.hoverClass !== 'button-hover',
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--${props.type}`]: !!props.type,
+    [`${COMPONENT_NAME}--${props.size}`]: !!props.size,
+    [`${COMPONENT_NAME}--${props.shape}`]: !!props.shape,
+    [`${COMPONENT_NAME}--plain`]: props.plain,
+    [`${COMPONENT_NAME}--block`]: props.block,
+    [`${COMPONENT_NAME}--disabled`]: props.disabled,
+    [`${COMPONENT_NAME}--loading`]: props.loading,
+    [`${COMPONENT_NAME}--hovercls`]: props.hoverClass !== 'button-hover',
   })
 })
 
@@ -49,21 +63,6 @@ function handleClick(event: any) {
 
   emit(CLICK_EVENT, event)
 }
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-button`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
 </script>
 
 <template>
@@ -107,9 +106,11 @@ export default defineComponent({
     @im="emit('im', $event)"
   >
     <view class="nut-button__wrap">
-      <Icon v-if="loading" name="loading" class="nut-icon-loading" />
-      <slot v-if="$slots.icon && !loading" name="icon" />
-      <view v-if="$slots.default" :class="{ 'nut-button__text': $slots.icon || loading }">
+      <NutIcon v-if="props.loading" name="loading" class="nut-icon-loading" />
+
+      <slot v-if="$slots.icon && !props.loading" name="icon" />
+
+      <view v-if="$slots.default" :class="{ 'nut-button__text': $slots.icon || props.loading }">
         <slot />
       </view>
     </view>
@@ -117,5 +118,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

@@ -1,5 +1,6 @@
-<script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, onMounted, ref } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { PREFIX } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
@@ -69,5 +70,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

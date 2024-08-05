@@ -1,1 +1,1 @@
-export type * from './cellgroup'
+export * from './cellgroup'

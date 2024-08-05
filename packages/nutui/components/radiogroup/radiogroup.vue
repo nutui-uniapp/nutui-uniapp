@@ -1,11 +1,23 @@
-<script setup lang="ts">
-import { computed, defineComponent, readonly, watch } from 'vue'
-import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+<script lang="ts" setup>
+import { computed, watch } from 'vue'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { useProvide } from '../_hooks'
 import { RADIO_KEY } from '../radio'
 import { useFormItemContext } from '../formitem'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
+
+const COMPONENT_NAME = 'nut-radio-group'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(radiogroupProps)
 
@@ -13,7 +25,11 @@ const emit = defineEmits(radiogroupEmits)
 
 const formItemContext = useFormItemContext()
 
+let updateSource: '' | 'children' = ''
+
 function updateValue(value: string | boolean | number) {
+  updateSource = 'children'
+
   emit(UPDATE_MODEL_EVENT, value)
   emit(CHANGE_EVENT, value)
 
@@ -22,42 +38,33 @@ function updateValue(value: string | boolean | number) {
 }
 
 useProvide(RADIO_KEY)({
-  label: readonly(computed(() => props.modelValue)),
-  position: readonly(computed(() => props.textPosition)),
+  label: computed(() => props.modelValue),
+  position: computed(() => props.textPosition),
   updateValue,
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--${props.direction}`]: true,
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--${props.direction}`]: true,
   })
 })
 
-watch(
-  () => props.modelValue,
-  value => emit(CHANGE_EVENT, value),
-)
-</script>
+watch(() => props.modelValue, (value) => {
+  if (updateSource === 'children') {
+    updateSource = ''
+    return
+  }
 
-<script lang="ts">
-const componentName = `${PREFIX}-radio-group`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+  emit(CHANGE_EVENT, value)
 })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <slot />
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

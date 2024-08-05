@@ -33,6 +33,3 @@ export const guessgiftEmits = {
 }
 
 export type GuessGiftEmits = typeof guessgiftEmits
-export interface ShakeDiceInst {
-  shake: () => true
-}

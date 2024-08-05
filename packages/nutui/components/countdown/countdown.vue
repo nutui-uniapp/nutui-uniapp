@@ -1,13 +1,25 @@
-<script setup lang="ts">
-import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, onBeforeMount, reactive, watch } from 'vue'
 import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'
-import { INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import requestAniFrame from '../_utils/raf'
 import { countdownEmits, countdownProps } from './countdown'
 
+const COMPONENT_NAME = 'nut-countdown'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(countdownProps)
-const emits = defineEmits(countdownEmits)
-defineExpose({ start, pause, reset })
+
+const emit = defineEmits(countdownEmits)
 
 const state = reactive({
   restTime: 0, // 倒计时剩余时间时间
@@ -18,7 +30,7 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 // 将倒计时剩余时间格式化   参数： t  时间戳  type custom 自定义类型
@@ -104,7 +116,7 @@ function tick() {
     if (!remainTime) {
       state.counting = false
       pause()
-      emits('onEnd')
+      emit('onEnd')
     }
 
     if (remainTime > 0)
@@ -124,6 +136,7 @@ function tick() {
     })
   }
 }
+
 /**
  * @description 开始倒计时
  */
@@ -132,9 +145,10 @@ function start() {
     state.counting = true
     state.handleEndTime = Date.now() + Number(state.restTime)
     tick()
-    emits('onRestart', state.restTime)
+    emit('onRestart', state.restTime)
   }
 }
+
 /**
  * @description 暂停倒计时
  */
@@ -145,8 +159,9 @@ function pause() {
     clearTimeout(state.timer as any)
 
   state.counting = false
-  emits('onPaused', state.restTime)
+  emit('onPaused', state.restTime)
 }
+
 /**
  * @description 重设倒计时，若 `auto-start` 为 `true`，重设后会自动开始倒计时
  */
@@ -172,8 +187,8 @@ watch(
   () => state.restTime,
   (value) => {
     const tranTime = formatRemainTime(value, 'custom')
-    emits(UPDATE_MODEL_EVENT, tranTime)
-    emits(INPUT_EVENT, tranTime)
+    emit(UPDATE_MODEL_EVENT, tranTime)
+    emit(INPUT_EVENT, tranTime)
   },
 )
 
@@ -191,7 +206,7 @@ watch(
         tick()
       }
 
-      emits('onRestart', state.restTime)
+      emit('onRestart', state.restTime)
     }
   },
 )
@@ -209,25 +224,20 @@ watch(
     initTime()
   },
 )
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-countdown`
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  start,
+  pause,
+  reset,
 })
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <template v-if="$slots.default">
       <slot />
     </template>
+
     <template v-else>
       <rich-text class="nut-countdown__content" :nodes="renderTime as string" />
     </template>
@@ -235,5 +245,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

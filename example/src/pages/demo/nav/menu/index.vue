@@ -49,11 +49,16 @@ function handleChange(val: any) {
     title: JSON.stringify(val),
   })
 }
+
+const scrollTop = ref(0)
+
+onPageScroll((res) => {
+  scrollTop.value = res.scrollTop
+})
 </script>
 
 <template>
-  <nut-navbar left-show fixed safe-area-inset-top placeholder title="Menu" />
-  <div class="demo full h-100vh!">
+  <div class="demo full">
     <h2 class="title">
       基础用法
     </h2>
@@ -61,6 +66,15 @@ function handleChange(val: any) {
       <nut-menu-item v-model="state.value1" :options="state.options1" />
       <nut-menu-item v-model="state.value2" :options="state.options2" @change="handleChange" />
     </nut-menu>
+
+    <h2 class="title">
+      滚动固定
+    </h2>
+    <nut-menu :scroll-fixed="true" :scroll-top="scrollTop">
+      <nut-menu-item v-model="state.value1" :options="state.options1" />
+      <nut-menu-item v-model="state.value2" :options="state.options2" />
+    </nut-menu>
+
     <h2 class="title">
       自定义菜单内容
     </h2>
@@ -77,12 +91,14 @@ function handleChange(val: any) {
         </div>
       </nut-menu-item>
     </nut-menu>
+
     <h2 class="title">
       一行两列
     </h2>
     <nut-menu>
       <nut-menu-item v-model="state.value3" :cols="2" :options="state.options3" />
     </nut-menu>
+
     <h2 class="title">
       自定义选中态颜色
     </h2>
@@ -90,6 +106,7 @@ function handleChange(val: any) {
       <nut-menu-item v-model="state.value1" :options="state.options1" />
       <nut-menu-item v-model="state.value2" :options="state.options2" @change="handleChange" />
     </nut-menu>
+
     <h2 class="title">
       自定义图标
     </h2>
@@ -104,6 +121,7 @@ function handleChange(val: any) {
         </template>
       </nut-menu-item>
     </nut-menu>
+
     <h2 class="title">
       向上展开
     </h2>
@@ -111,6 +129,7 @@ function handleChange(val: any) {
       <nut-menu-item v-model="state.value1" :options="state.options1" />
       <nut-menu-item v-model="state.value2" :options="state.options2" @change="handleChange" />
     </nut-menu>
+
     <h2 class="title">
       禁用菜单
     </h2>
@@ -125,9 +144,8 @@ function handleChange(val: any) {
 
 <route lang="json">
 {
-"style": {
-    "navigationBarTitleText": "Menu",
-    "navigationStyle":"custom"
+  "style": {
+    "navigationBarTitleText": "Menu"
   }
 }
 </route>

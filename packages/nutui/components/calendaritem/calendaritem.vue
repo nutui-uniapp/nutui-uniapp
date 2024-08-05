@@ -1,55 +1,47 @@
-<script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
-import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
-import { CHOOSE_EVENT, PREFIX, SELECT_EVENT } from '../_constants'
+import {
+  compareDate,
+  date2Str,
+  formatResultDate,
+  getDay,
+  getMainClass,
+  getMonthDays,
+  getMonthPreDay,
+  getMonthWeek,
+  getNumTwoBit,
+  getWeekDate,
+  getWhatDay,
+  getYearWeek,
+  isEqual,
+  isH5,
+} from '../_utils'
+import { CHOOSE_EVENT, SELECT_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import requestAniFrame from '../_utils/raf'
 import { calendaritemEmits, calendaritemProps } from './calendaritem'
-import type { CalendarTaroState, Day, MonthInfo } from './type'
+import type { CalendarDateProp, CalendarTaroState, Day, MonthInfo, StringArr } from './types'
 
-type StringArr = string[]
-interface CalendarDateProp {
-  year: string
-  month: string
-}
+const COMPONENT_NAME = 'nut-calendar-item'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(calendaritemProps)
 
 const emit = defineEmits(calendaritemEmits)
 
 const slots = useSlots()
-defineExpose({
-  scrollToDate,
-  initPosition,
-})
-const componentName = `${PREFIX}-calendar-item`
-const { translate } = useTranslate(componentName)
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    'nut-calendar--nopop': !props.poppable,
-    'nut-calendar--nofooter': props.isAutoBackFill,
-  })
-})
-// 新增：自定义周起始日
-const weekdays = (translate('weekdays') as any).map((day: string, index: number) => ({
-  day,
-  weekend: index === 0 || index === 6,
-}))
-const weeks = ref([...weekdays.slice(props.firstDayOfWeek, 7), ...weekdays.slice(0, props.firstDayOfWeek)])
-// element refs
-const scalePx = ref(2)
-const months = ref<null | HTMLElement>(null)
-const viewHeight = ref(0)
-const compConthsData = computed(() => {
-  return state.monthsData.slice(state.defaultRange[0], state.defaultRange[1])
-})
-const scrollWithAnimation = ref(false)
-const topInfo = computed(() => {
-  return slots.topInfo
-})
-const bottomInfo = computed(() => {
-  return slots.bottomInfo
-})
+
+const { translate } = useTranslate(COMPONENT_NAME)
 
 const state: CalendarTaroState = reactive({
   yearMonthTitle: '',
@@ -83,18 +75,48 @@ const state: CalendarTaroState = reactive({
   scrollTop: 0,
   monthsNum: 0,
 })
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME, {
+    'nut-calendar--nopop': !props.poppable,
+    'nut-calendar--nofooter': props.isAutoBackFill,
+  })
+})
+
+// 新增：自定义周起始日
+const weekdays = (translate('weekdays') as any).map((day: string, index: number) => ({
+  day,
+  weekend: index === 0 || index === 6,
+}))
+
+const weeks = ref([...weekdays.slice(props.firstDayOfWeek, 7), ...weekdays.slice(0, props.firstDayOfWeek)])
+
+const months = ref<HTMLElement | null>(null)
+
+const scalePx = ref(2)
+const viewHeight = ref(0)
+
+const compConthsData = computed(() => {
+  return state.monthsData.slice(state.defaultRange[0], state.defaultRange[1])
+})
+
+const scrollWithAnimation = ref(false)
+
 // 日期转化成数组
 function splitDate(date: string) {
   return date.split('-')
 }
+
 // 判断是否为开始时间
 function isStart(currDate: string) {
   return isEqual(state.currDate[0], currDate)
 }
+
 // 判断是否为结束时间
 function isEnd(currDate: string) {
   return isEqual(state.currDate[1], currDate)
 }
+
 function isMultiple(currDate: string) {
   if (state.currDate?.length > 0) {
     return (state.currDate as StringArr)?.some((item: string) => {
@@ -105,6 +127,7 @@ function isMultiple(currDate: string) {
     return false
   }
 }
+
 // 获取当前数据
 function getCurrDate(day: Day, month: MonthInfo) {
   return `${month.curData[0]}-${month.curData[1]}-${getNumTwoBit(+day.day)}`
@@ -148,6 +171,7 @@ function getClass(day: Day, month: MonthInfo, index?: number) {
   }
   return res
 }
+
 // 确认选择时触发
 function confirm() {
   const { type } = props
@@ -254,15 +278,17 @@ function chooseDay(day: Day, month: MonthInfo, isFirst = false) {
     }
   }
 }
+
 function handleWeekDate(weekDate: string[]) {
   const [y, m, d] = weekDate
-  const obj = {
+
+  return {
     date: weekDate,
     monthWeekNum: getMonthWeek(y, m, d, props.firstDayOfWeek),
     yearWeekNum: getYearWeek(y, m, d),
   }
-  return obj
 }
+
 // 获取当前月数据
 function getCurrData(type: string) {
   const monthData = type === 'prev' ? state.monthsData[0] : state.monthsData[state.monthsData.length - 1]
@@ -297,6 +323,7 @@ function getDaysStatus(days: number, type: string, dateInfo: CalendarDateProp) {
     }
   })
 }
+
 // 获取上一个月的最后一周天数，填充当月空白
 function getPreDaysStatus(days: number, type: string, dateInfo: CalendarDateProp, preCurrMonthDays: number) {
   // 新增：自定义周起始日
@@ -316,6 +343,7 @@ function getPreDaysStatus(days: number, type: string, dateInfo: CalendarDateProp
   })
   return months.slice(preCurrMonthDays - days)
 }
+
 // 获取月数据
 function getMonth(curData: string[], type: string) {
   // 一号为周几
@@ -545,6 +573,7 @@ function initData() {
   if (months?.value)
     viewHeight.value = months.value.clientHeight
 }
+
 function scrollToDate(date: string) {
   if (compareDate(date, state.propStartDate))
     date = state.propStartDate
@@ -570,9 +599,11 @@ function scrollToDate(date: string) {
     }
   })
 }
+
 function initPosition() {
   state.scrollTop = Math.ceil(state.monthsData[state.currentIndex].cssScrollHeight)
 }
+
 // 设置当前可见月份
 function setDefaultRange(monthsNum: number, current: number) {
   if (monthsNum >= 3) {
@@ -591,6 +622,7 @@ function setDefaultRange(monthsNum: number, current: number) {
   const defaultScrollTop = state.monthsData[state.defaultRange[0]].cssScrollHeight
   state.translateY = defaultScrollTop
 }
+
 // 区间选择&&当前月&&选中态
 function isActive(day: Day, month: MonthInfo) {
   return (
@@ -612,17 +644,20 @@ function isEndTip(day: Day, month: MonthInfo) {
 
   return false
 }
+
 // 开始结束时间是否相等
 function rangeTip() {
   if (state.currDate.length >= 2)
     return isEqual(state.currDate[0], state.currDate[1])
 }
+
 // 是否有 当前日期
 function isCurrDay(dateInfo: Day) {
   const date = `${dateInfo.year}-${dateInfo.month}-${Number(dateInfo.day) < 10 ? `0${dateInfo.day}` : dateInfo.day
     }`
   return isEqual(date, date2Str(new Date()))
 }
+
 // 滚动处理事件
 function mothsViewScroll(e: ScrollViewOnScrollEvent) {
   if (state.monthsData.length <= 1)
@@ -654,6 +689,7 @@ function resetRender() {
   state.monthsData.splice(0)
   initData()
 }
+
 onMounted(() => {
   // 初始化数据
   uni.getSystemInfo({
@@ -685,16 +721,10 @@ watch(
     }
   },
 )
-</script>
 
-<script lang="ts">
-export default defineComponent({
-  name: `${PREFIX}-calendar-item`,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  scrollToDate,
+  initPosition,
 })
 </script>
 
@@ -702,19 +732,22 @@ export default defineComponent({
   <view
     class="nut-calendar"
     :class="classes"
-    :style="customStyle"
+    :style="props.customStyle"
   >
     <!-- header -->
     <view class="nut-calendar__header">
-      <view v-if="showTitle" class="nut-calendar__header-title">
-        {{ title || translate('title') }}
+      <view v-if="props.showTitle" class="nut-calendar__header-title">
+        {{ props.title || translate('title') }}
       </view>
-      <view v-if="btnSlot" class="nut-calendar__header-slot">
+
+      <view v-if="props.btnSlot" class="nut-calendar__header-slot">
         <slot name="btn" />
       </view>
-      <view v-if="showSubTitle" class="nut-calendar__header-subtitle">
+
+      <view v-if="props.showSubTitle" class="nut-calendar__header-subtitle">
         {{ state.yearMonthTitle }}
       </view>
+
       <view class="nut-calendar__weekdays">
         <view
           v-for="(item, index) of weeks"
@@ -726,12 +759,13 @@ export default defineComponent({
         </view>
       </view>
     </view>
+
     <!-- content -->
     <scroll-view
       ref="months"
-      :scroll-top="state.scrollTop"
-      :scroll-y="true"
       class="nut-calendar__content"
+      :scroll-y="true"
+      :scroll-top="state.scrollTop"
       :scroll-with-animation="scrollWithAnimation"
       @scroll="mothsViewScroll"
     >
@@ -741,49 +775,66 @@ export default defineComponent({
             <view class="nut-calendar__month-title">
               {{ month.title }}
             </view>
+
             <view class="nut-calendar__days">
-              <view class="nut-calendar__days-item" :class="type === 'range' ? 'nut-calendar__days-item--range' : ''">
+              <view
+                class="nut-calendar__days-item"
+                :class="{ 'nut-calendar__days-item--range': props.type === 'range' }"
+              >
                 <template v-for="(day, i) of month.monthData" :key="i">
-                  <view class="nut-calendar__day" :class="getClass(day, month, i)" @click="chooseDay(day, month)">
+                  <view
+                    class="nut-calendar__day"
+                    :class="getClass(day, month, i)"
+                    @click="chooseDay(day, month)"
+                  >
                     <!-- 日期显示slot -->
                     <view class="nut-calendar__day-value">
                       <!-- #ifdef MP -->
                       {{ day.type === 'curr' ? day.day : '' }}
                       <!-- #endif -->
+
                       <!-- #ifndef MP -->
                       <slot name="day" :date="day.type === 'curr' ? day : ''">
                         {{ day.type === 'curr' ? day.day : '' }}
                       </slot>
                       <!-- #endif -->
                     </view>
+
                     <!-- #ifdef H5 -->
-                    <view v-if="topInfo" class="nut-calendar__day-tips nut-calendar__day-tips--top">
+                    <view v-if="slots.topInfo" class="nut-calendar__day-tips nut-calendar__day-tips--top">
                       <slot name="topInfo" :date="day.type === 'curr' ? day : ''" />
                     </view>
-                    <view v-if="bottomInfo" class="nut-calendar__day-tips nut-calendar__day-tips--bottom">
+
+                    <view v-if="slots.bottomInfo" class="nut-calendar__day-tips nut-calendar__day-tips--bottom">
                       <slot name="bottomInfo" :date="day.type === 'curr' ? day : ''" />
                     </view>
                     <!-- #endif -->
+
                     <!-- #ifndef MP -->
-                    <view v-if="!bottomInfo && showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
+                    <view
+                      v-if="!slots.bottomInfo && props.showToday && isCurrDay(day)"
+                      class="nut-calendar__day-tips--curr"
+                    >
                       {{ translate('today') }}
                     </view>
                     <!-- #endif -->
+
                     <!-- #ifdef MP -->
-                    <view v-if="showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
+                    <view v-if="props.showToday && isCurrDay(day)" class="nut-calendar__day-tips--curr">
                       {{ translate('today') }}
                     </view>
                     <!-- #endif -->
+
                     <view
                       v-if="isStartTip(day, month)"
-                      class="nut-calendar__day-tip" :class="{ 'nut-calendar__day-tips--top': rangeTip() }"
+                      class="nut-calendar__day-tip"
+                      :class="{ 'nut-calendar__day-tips--top': rangeTip() }"
                     >
-                      {{ startText || translate('start') }}
+                      {{ props.startText || translate('start') }}
                     </view>
+
                     <view v-if="isEndTip(day, month)" class="nut-calendar__day-tip">
-                      {{
-                        endText || translate('end')
-                      }}
+                      {{ props.endText || translate('end') }}
                     </view>
                   </view>
                 </template>
@@ -793,17 +844,18 @@ export default defineComponent({
         </view>
       </view>
     </scroll-view>
+
     <!-- footer -->
-    <view v-if="poppable && !isAutoBackFill" class="nut-calendar__footer">
-      <slot v-if="footerSlot" name="footer" :date="state.chooseData" />
+    <view v-if="props.poppable && !props.isAutoBackFill" class="nut-calendar__footer">
+      <slot v-if="props.footerSlot" name="footer" :date="state.chooseData" />
 
       <view v-else class="nut-calendar__confirm" @click="confirm">
-        {{ confirmText || translate('confirm') }}
+        {{ props.confirmText || translate('confirm') }}
       </view>
     </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

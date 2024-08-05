@@ -1,5 +1,6 @@
-<script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, watch } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
@@ -90,5 +91,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

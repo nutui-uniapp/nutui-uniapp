@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 
 export const MENU_KEY = Symbol('nut-menu')
 
@@ -37,12 +37,16 @@ export const menuProps = {
    */
   direction: makeStringProp<'down' | 'up'>('down'),
   /**
-   * @description 滚动后是否固定，可设置固定位置
+   * @description 滚动后是否固定，可设置固定位置（需要配合 `scrollTop` 使用）
    */
   scrollFixed: {
     type: [Boolean, String, Number],
     default: false,
   },
+  /**
+   * @description 页面的滚动距离，通过 `onPageScroll` 获取
+   */
+  scrollTop: makeNumberProp(0),
   /**
    * @description 标题样式类名
    */

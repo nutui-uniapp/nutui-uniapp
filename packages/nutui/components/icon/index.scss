@@ -6,6 +6,9 @@
   line-height: $icon-line-height;
   text-align: right;
 
+  --animate-duration: 1s;
+  --animate-delay: 0s;
+
   &::before {
     position: absolute;
     top: 50%;
@@ -24,9 +27,6 @@
     display: inline-block;
     animation: rotation 1s infinite linear;
   }
-
-  --animate-duration: 1s;
-  --animate-delay: 0s;
 
   &-am-infinite {
     animation-iteration-count: infinite;
@@ -58,7 +58,6 @@
   &-am-blink {
     animation-name: nutBlink;
     animation-duration: var(--animate-duration);
-    animation-timing-function: ease-in-out;
     animation-timing-function: linear;
     animation-delay: var(--animate-delay);
   }

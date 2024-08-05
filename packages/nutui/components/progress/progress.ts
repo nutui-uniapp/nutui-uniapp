@@ -50,4 +50,5 @@ export const progressProps = {
    */
   status: makeStringProp<'text' | 'active' | 'icon'>('text'),
 }
+
 export type ProgressProps = ExtractPropTypes<typeof progressProps>

@@ -1,1 +1,1 @@
-export type * from './dollmachine'
+export * from './dollmachine'

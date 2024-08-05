@@ -1,21 +1,32 @@
-<script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import NutButton from '../button/button.vue'
 import { floatData, getMainClass } from '../_utils'
-import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
 import GeneralShell from './compoents/generalshell.vue'
 import { addresslistEmits, addresslistProps } from './addresslist'
+
+const COMPONENT_NAME = 'nut-address-list'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
+})
 
 const props = defineProps(addresslistProps)
 
 const emit = defineEmits(addresslistEmits)
 
-const slots = useSlots()
+const { translate } = useTranslate(COMPONENT_NAME)
 
-function hasSlot(name: string) {
-  return Boolean(slots[name])
-}
+const slots = useSlots()
 
 const dataArray = ref<any[]>([])
 const dataInfo = reactive({
@@ -27,7 +38,7 @@ const dataInfo = reactive({
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 // 磨平参数差异
@@ -98,35 +109,19 @@ onMounted(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-address-list`
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <GeneralShell
       v-for="(item, index) in dataArray"
       :key="index"
       :address="item"
       :long-press="props.longPress"
       :swipe-edition="props.swipeEdition"
-      :use-content-info-slot="hasSlot('itemInfos')"
-      :use-content-icons-slot="hasSlot('itemIcon')"
-      :use-content-addrs-slot="hasSlot('itemAddr')"
-      :use-longpress-all-slot="hasSlot('longpressBtns')"
-      :use-swipe-right-btn-slot="hasSlot('swipeRight')"
+      :use-content-info-slot="!!slots.itemInfos"
+      :use-content-icons-slot="!!slots.itemIcon"
+      :use-content-addrs-slot="!!slots.itemAddr"
+      :use-longpress-all-slot="!!slots.longpressBtns"
+      :use-swipe-right-btn-slot="!!slots.swipeRight"
       @del-icon="handleDelIconClick($event, item, index)"
       @edit-icon="handleEditIconClick($event, item, index)"
       @click-item="handleContentItemClick($event, item, index)"
@@ -138,15 +133,19 @@ export default defineComponent({
       <template #content-info>
         <slot name="itemInfos" :item="item" />
       </template>
+
       <template #content-icons>
         <slot name="itemIcon" :item="item" />
       </template>
+
       <template #content-addrs>
         <slot name="itemAddr" :item="item" />
       </template>
+
       <template v-if="props.longPress" #longpress-all>
         <slot name="longpressBtns" :item="item" />
       </template>
+
       <template v-if="props.swipeEdition" #swipe-right-btn>
         <slot name="swipeRight" :item="item" />
       </template>
@@ -161,5 +160,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

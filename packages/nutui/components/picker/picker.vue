@@ -1,21 +1,37 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
+import { computed, reactive, ref, toRefs } from 'vue'
 import type { PickerViewOnChangeEvent } from '@uni-helper/uni-app-types'
 import type { PickerOption } from '../pickercolumn'
 import { pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
 
 // #ifdef H5
+
 import NutPickerColumn from '../pickercolumn/pickercolumn.vue'
 
 // #endif
+
 import { pickerEmits, pickerProps } from './picker'
-import { componentName, usePicker } from './use-picker'
+import { usePicker } from './use-picker'
+
+const COMPONENT_NAME = 'nut-picker'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(pickerProps)
 
 const emit = defineEmits(pickerEmits)
+
+const { translate } = useTranslate(COMPONENT_NAME)
 
 const innerVisibleOptionNum = computed(() => {
   return Number(props.visibleOptionNum)
@@ -24,8 +40,6 @@ const innerVisibleOptionNum = computed(() => {
 const innerOptionHeight = computed(() => {
   return Number(props.optionHeight)
 })
-
-const { translate } = useTranslate(componentName)
 
 const {
   changeHandler,
@@ -151,17 +165,6 @@ function onConfirm() {
   confirmHandlerMp()
   // #endif
 }
-</script>
-
-<script lang="ts">
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
 </script>
 
 <template>

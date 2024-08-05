@@ -1,1 +1,1 @@
-export type * from './loadingpage'
+export * from './loadingpage'

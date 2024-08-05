@@ -1,16 +1,32 @@
-<script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive } from 'vue'
-import { PREFIX } from '../_constants'
+<script lang="ts" setup>
+import type { ComponentInternalInstance } from 'vue'
+import { computed, getCurrentInstance, onMounted, reactive } from 'vue'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { infiniteloadingEmits, infiniteloadingProps } from './infiniteloading'
+
+const COMPONENT_NAME = 'nut-infiniteloading'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(infiniteloadingProps)
 
 const emit = defineEmits(infiniteloadingEmits)
 
+const { translate } = useTranslate(COMPONENT_NAME)
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const { query } = useSelectorQuery(instance)
 
 const state = reactive({
@@ -26,13 +42,10 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  const prefixCls = componentName
-  return {
-    [prefixCls]: true,
-  }
+  return getMainClass(props, COMPONENT_NAME)
 })
 
-const getStyle = computed(() => {
+const styles = computed(() => {
   return {
     height: state.distance < 0 ? '0px' : `${state.distance}px`,
     transition: state.isTouching
@@ -40,9 +53,11 @@ const getStyle = computed(() => {
       : 'height 0.2s cubic-bezier(0.25,0.1,0.25,1)',
   }
 })
+
 function getParentElement(el: string) {
   return query.select(props.containerId ? `#${props.containerId} #${el}` : `#${el}`)
 }
+
 /** 获取需要滚动的距离 */
 function getScrollHeight() {
   const parentElement = getParentElement('scroller')
@@ -89,14 +104,14 @@ function infiniteDone() {
   state.isInfiniting = false
 }
 
-function touchStart(event: TouchEvent) {
+function touchStart(event: any) {
   if (state.scrollTop === 0 && !state.isTouching && props.isOpenRefresh) {
     state.y = event.touches[0].pageY
     state.isTouching = true
   }
 }
 
-function touchMove(event: TouchEvent) {
+function touchMove(event: any) {
   state.distance = event.touches[0].pageY - state.y
 
   if (state.distance > 0 && state.isTouching) {
@@ -124,42 +139,31 @@ function refreshDone() {
 
 onMounted(() => {
   state.refreshMaxH = props.upperThreshold
+
   setTimeout(() => {
     getScrollHeight()
   }, 200)
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-infiniteloading`
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-const { translate } = useTranslate(componentName)
-</script>
-
 <template>
   <scroll-view
     id="scroller"
     :class="classes"
-    :scroll-y="true"
     style="height: 100%"
+    :scroll-y="true"
     @scrolltolower="lower"
     @scroll="scroll"
-    @touchstart="(touchStart as any)"
-    @touchmove="(touchMove as any)"
+    @touchstart="touchStart"
+    @touchmove="touchMove"
     @touchend="touchEnd"
   >
-    <view class="nut-infinite-top" :style="getStyle">
+    <view class="nut-infinite-top" :style="styles">
       <view id="refreshTop" class="top-box">
-        <NutIcon custom-class="top-img" :name="pullIcon" />
+        <NutIcon custom-class="top-img" :name="props.pullIcon" />
+
         <view class="top-text">
-          {{ pullTxt || translate('pullTxt') }}
+          {{ props.pullTxt || translate('pullTxt') }}
         </view>
       </view>
     </view>
@@ -171,15 +175,17 @@ const { translate } = useTranslate(componentName)
     <view class="nut-infinite-bottom">
       <template v-if="state.isInfiniting">
         <view class="bottom-box">
-          <NutIcon custom-class="bottom-img" :name="loadIcon" />
+          <NutIcon custom-class="bottom-img" :name="props.loadIcon" />
+
           <view class="bottom-text">
-            {{ loadTxt || translate('loading') }}
+            {{ props.loadTxt || translate('loading') }}
           </view>
         </view>
       </template>
-      <template v-else-if="!hasMore">
+
+      <template v-else-if="!props.hasMore">
         <view class="tips">
-          {{ loadMoreTxt || translate('loadMoreTxt') }}
+          {{ props.loadMoreTxt || translate('loadMoreTxt') }}
         </view>
       </template>
     </view>
@@ -187,5 +193,5 @@ const { translate } = useTranslate(componentName)
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

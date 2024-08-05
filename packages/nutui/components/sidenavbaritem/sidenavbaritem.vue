@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
@@ -48,5 +48,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

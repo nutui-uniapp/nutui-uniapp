@@ -1,1 +1,2 @@
-export type * from './barrage'
+export * from './types'
+export * from './barrage'

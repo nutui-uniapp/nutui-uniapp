@@ -1,9 +1,22 @@
 <script lang="ts" setup>
-import { defineComponent, ref } from 'vue'
+import { ref } from 'vue'
 import NutButton from '../../button/button.vue'
 import NutSwipe from '../../swipe/swipe.vue'
-import { PREFIX } from '../../_constants'
 import ItemContents from './Itemcontents.vue'
+
+const COMPONENT_NAME = 'nut-address-list-general'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    // #ifndef H5
+    styleIsolation: 'shared',
+    // #endif
+  },
+})
 
 const props = defineProps({
   address: {
@@ -130,21 +143,6 @@ function handleSwipeMove() {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-address-list-general`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
-</script>
-
 <template>
   <view v-if="!props.swipeEdition" class="nut-address-list-general">
     <ItemContents
@@ -162,9 +160,11 @@ export default defineComponent({
       <template #content-top>
         <slot name="content-info" />
       </template>
+
       <template #content-icon>
         <slot name="content-icons" />
       </template>
+
       <template #content-addr>
         <slot name="content-addrs" />
       </template>
@@ -205,9 +205,11 @@ export default defineComponent({
         <template #content-top>
           <slot name="content-info" />
         </template>
+
         <template #content-icon>
           <slot name="content-icons" />
         </template>
+
         <template #content-addr>
           <slot name="content-addrs" />
         </template>

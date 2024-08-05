@@ -7,15 +7,15 @@ export const cellProps = {
   /**
    * @description 标题名称
    */
-  title: makeStringProp(''),
+  title: String,
   /**
    * @description 左侧副标题
    */
-  subTitle: makeStringProp(''),
+  subTitle: String,
   /**
    * @description 右侧描述
    */
-  desc: makeStringProp(''),
+  desc: String,
   /**
    * @description 右侧描述文本对齐方式 [text-align](https://www.w3school.com.cn/cssref/pr_text_text-align.asp)
    */
@@ -27,11 +27,11 @@ export const cellProps = {
   /**
    * @description 点击后跳转的目标路由对象，
    */
-  to: makeStringProp(''),
+  to: String,
   /**
    * @description 圆角半径
    */
-  roundRadius: makeNumericProp(''),
+  roundRadius: makeNumericProp(undefined),
   /**
    * @description 是否使内容垂直居中
    */
@@ -40,6 +40,14 @@ export const cellProps = {
    * @description 单元格大小，可选值为 `large`
    */
   size: makeStringProp(''),
+  /**
+   * @description 是否启用点击效果
+   */
+  clickable: Boolean,
+  /**
+   * @description 左侧图标
+   */
+  icon: String,
 }
 
 export type CellProps = ExtractPropTypes<typeof cellProps>

@@ -1,5 +1,6 @@
-<script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties, ComponentInternalInstance, Ref, VNode } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
 import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import raf from '../_utils/raf'
@@ -343,5 +344,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

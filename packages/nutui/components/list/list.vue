@@ -1,19 +1,32 @@
-<script setup lang="ts">
-import { computed, defineComponent, reactive, watch } from 'vue'
-import { PREFIX } from '../_constants'
+<script lang="ts" setup>
+import { computed, reactive, watch } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { clientHeight, listEmits, listProps } from './list'
+
+const COMPONENT_NAME = 'nut-list'
+
+// eslint-disable-next-line vue/define-macros-order
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(listProps)
 
 const emit = defineEmits(listEmits)
+
 const state = reactive({
   startOffset: 0,
   start: 0,
   list: props.listData.slice(),
 })
+
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 const styles = computed(() => {
@@ -64,48 +77,30 @@ watch(
 )
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-list`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <scroll-view
     :class="classes"
-    :scroll-y="true"
     :style="styles"
+    :scroll-y="true"
     scroll-top="0"
     @scroll="handleScrollEvent"
   >
-    <div
-      class="nut-list-phantom"
-      :style="{ height: `${listHeight}px` }"
-    />
-    <div
-      class="nut-list-container"
-      :style="{ transform: getTransform }"
-    >
-      <div
+    <view class="nut-list-phantom" :style="{ height: `${listHeight}px` }" />
+
+    <view class="nut-list-container" :style="{ transform: getTransform }">
+      <view
         v-for="(item, index) in visibleData"
         :id="`list-item-${Number(index + state.start)}`"
         :key="index"
-        :style="{ height: `${height}px` }"
         class="nut-list-item"
+        :style="{ height: `${props.height}px` }"
       >
         <slot :item="item" :index="index + state.start" />
-      </div>
-    </div>
+      </view>
+    </view>
   </scroll-view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

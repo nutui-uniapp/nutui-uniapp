@@ -1,1 +1,1 @@
-export type * from './hiteggs'
+export * from './hiteggs'

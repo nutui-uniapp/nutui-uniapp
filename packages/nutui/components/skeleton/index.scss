@@ -1,5 +1,4 @@
-@import '../avatar/index';
-/* stylelint-disable selector-class-pattern */
+@import "../avatar/index";
 
 .nut-skeleton {
   position: relative;
@@ -10,6 +9,7 @@
   .nut-skeleton-content {
     display: flex;
 
+    /* stylelint-disable selector-class-pattern */
     .avatarClass {
       margin-right: 20px;
       background-color: $skeleton-content-avatar-background-color;
@@ -44,6 +44,7 @@
         border-radius: 10px;
       }
     }
+    /* stylelint-enable selector-class-pattern */
   }
 
   .nut-skeleton-animation {

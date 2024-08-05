@@ -1,1 +1,1 @@
-export type * from './backtop'
+export * from './backtop'
