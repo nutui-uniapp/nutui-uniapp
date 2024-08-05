@@ -115,7 +115,7 @@ const addressModule = reactive({
 const ruleForm = ref<FormInst | null>(null)
 
 function submit() {
-  ruleForm.value?.validate().then(({ valid, errors }: any) => {
+  ruleForm.value?.validate().then(({ valid, errors }) => {
     if (valid)
       console.log('success', formData)
     else
