@@ -1,168 +1,210 @@
-<script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef } from 'vue'
-import { getRandomId, isEqualValue, isH5, preventDefault } from '../_utils'
+<script lang="ts" setup>
+import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef, useSlots } from 'vue'
+import { getRandomId, isEqualValue, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { useFormDisabled } from '../form/form'
-import { type SliderValue, rangeEmits, rangeProps } from './range'
+import type { RangeArrayValue, RangeValue } from './types'
+import { rangeEmits, rangeProps } from './range'
 
 const props = defineProps(rangeProps)
+
 const emit = defineEmits(rangeEmits)
+
+const slots = useSlots()
+
 const instance = getCurrentInstance() as ComponentInternalInstance
+
 const disabled = useFormDisabled(toRef(props, 'disabled'))
 
-const RangeID = computed(() => `root-${getRandomId()}`)
+const touch = useTouch()
+
+const rangeId = computed(() => `root-${getRandomId()}`)
+
 const state = ref({
   width: 0,
   height: 0,
 })
+
 const buttonIndex = ref(0)
-let startValue: SliderValue
-let currentValue: SliderValue
 
-const dragStatus = ref<'start' | 'draging' | ''>()
-const touch = useTouch()
+let startValue: RangeValue
+let currentValue: RangeValue
 
-const marksList = computed(() => {
-  const { marks, max, min } = props
-  const marksKeys = Object.keys(marks)
-  const list = marksKeys
-    .map(Number.parseFloat)
+const dragStatus = ref<'start' | 'dragging' | ''>('')
+
+const innerMin = computed(() => Number(props.min))
+
+const innerMax = computed(() => Number(props.max))
+
+const innerStep = computed(() => Number(props.step))
+
+const innerMarks = computed(() => {
+  return Object.keys(props.marks)
+    .map(it => Number.parseFloat(it))
     .sort((a, b) => a - b)
-    .filter(point => point >= +min && point <= +max)
-  return list
+    .filter(point => point >= innerMin.value && point <= innerMax.value)
 })
-const scope = computed(() => Number(props.max) - Number(props.min))
 
-const classes = computed(() => {
-  const prefixCls = componentName
+const scope = computed(() => innerMax.value - innerMin.value)
+
+const classes = computed<Record<string, boolean>>(() => {
+  const classPrefix = componentName
+
   return {
-    [prefixCls]: true,
-    [`${prefixCls}-disabled`]: disabled.value,
-    [`${prefixCls}-vertical`]: props.vertical,
-    [`${prefixCls}-show-number`]: !props.hiddenRange,
+    [classPrefix]: true,
+    [`${classPrefix}-disabled`]: disabled.value,
+    [`${classPrefix}-vertical`]: props.vertical,
+    [`${classPrefix}-show-number`]: !props.hiddenRange,
   }
 })
-const containerClasses = computed(() => {
-  const prefixCls = 'nut-range-container'
+
+const containerClasses = computed<Record<string, boolean>>(() => {
+  const classPrefix = 'nut-range-container'
+
   return {
-    [prefixCls]: true,
-    [`${prefixCls}-vertical`]: props.vertical,
+    [classPrefix]: true,
+    [`${classPrefix}-vertical`]: props.vertical,
   }
 })
-const wrapperStyle = computed(() => {
+
+const wrapperStyles = computed<CSSProperties>(() => {
   return {
     background: props.inactiveColor,
   }
 })
 
-const buttonStyle = computed(() => {
+const buttonStyles = computed<CSSProperties>(() => {
   return {
     borderColor: props.buttonColor,
   }
 })
 
-const isRange = (val: unknown): val is number[] => !!props.range && Array.isArray(val)
+const isArrayValue = (value: unknown): value is RangeArrayValue => props.range && Array.isArray(value)
 
 function calcMainAxis() {
-  const { modelValue, min } = props
-  if (isRange(modelValue))
+  const { modelValue } = props
+
+  if (isArrayValue(modelValue))
     return `${((modelValue[1] - modelValue[0]) * 100) / scope.value}%`
 
-  return `${((modelValue - Number(min)) * 100) / scope.value}%`
+  return `${((modelValue - innerMin.value) * 100) / scope.value}%`
 }
 
 function calcOffset() {
-  const { modelValue, min } = props
-  if (isRange(modelValue))
-    return `${((modelValue[0] - Number(min)) * 100) / scope.value}%`
+  const { modelValue } = props
+
+  if (isArrayValue(modelValue))
+    return `${((modelValue[0] - innerMin.value) * 100) / scope.value}%`
 
   return '0%'
 }
 
-const barStyle = computed<CSSProperties>(() => {
+const barStyles = computed<CSSProperties>(() => {
+  const style: CSSProperties = {
+    background: props.activeColor,
+    transition: dragStatus.value ? 'none' : undefined,
+  }
+
   if (props.vertical) {
-    return {
-      height: calcMainAxis(),
-      top: calcOffset(),
-      background: props.activeColor,
-      transition: dragStatus.value ? 'none' : undefined,
-    }
+    style.top = calcOffset()
+    style.height = calcMainAxis()
   }
   else {
-    return {
-      width: calcMainAxis(),
-      left: calcOffset(),
-      background: props.activeColor,
-      transition: dragStatus.value ? 'none' : undefined,
-    }
+    style.left = calcOffset()
+    style.width = calcMainAxis()
   }
+
+  return style
 })
-function markClassName(mark: number) {
+
+function getMarkClasses(mark: number) {
   const classPrefix = 'nut-range-mark'
-  const { modelValue, max, min } = props
-  let lowerBound = Number(min)
-  let upperBound: number | number[] = Number(max)
-  if (props.range) {
-    const [left, right] = modelValue as number[]
+
+  const { modelValue } = props
+
+  let lowerBound: number
+  let upperBound: number
+
+  if (isArrayValue(modelValue)) {
+    const [left, right] = modelValue
+
     lowerBound = left
     upperBound = right
   }
   else {
+    lowerBound = innerMin.value
     upperBound = modelValue
   }
-  const isActive = mark <= (upperBound as number) && mark >= lowerBound
+
+  const isActive = mark <= upperBound && mark >= lowerBound
+
   return {
     [`${classPrefix}-text`]: true,
     [`${classPrefix}-text-active`]: isActive,
   }
 }
-function marksStyle(mark: number) {
-  const { min, vertical } = props
-  let style: CSSProperties = {
-    left: `${((mark - Number(min)) / scope.value) * 100}%`,
-  }
-  if (vertical) {
-    style = {
-      top: `${((mark - Number(min)) / scope.value) * 100}%`,
-    }
-  }
+
+function getMarkStyles(mark: number) {
+  const style: CSSProperties = {}
+
+  if (props.vertical)
+    style.top = `${((mark - innerMin.value) / scope.value) * 100}%`
+  else
+    style.left = `${((mark - innerMin.value) / scope.value) * 100}%`
+
   return style
 }
-function tickStyle(mark: number) {
-  const { modelValue, max, min } = props
-  let lowerBound = Number(min)
-  let upperBound = Number(max)
-  if (props.range) {
-    const [left, right] = modelValue as number[]
+
+function getTickStyles(mark: number) {
+  const style: CSSProperties = {}
+
+  const { modelValue } = props
+
+  let lowerBound: number
+  let upperBound: number
+
+  if (isArrayValue(modelValue)) {
+    const [left, right] = modelValue
+
     lowerBound = left
     upperBound = right
   }
-  const isActive = mark <= upperBound && mark >= lowerBound
-  const style: CSSProperties = {
-    background: !isActive ? props.inactiveColor : props.activeColor,
+  else {
+    lowerBound = innerMin.value
+    upperBound = innerMax.value
   }
+
+  const isActive = mark <= upperBound && mark >= lowerBound
+
+  style.background = isActive ? props.activeColor : props.inactiveColor
 
   return style
 }
-function format(value: number) {
-  const { min, max, step } = props
-  value = Math.max(+min, Math.min(value, +max))
-  return Math.round(value / +step) * +step
+
+function formatValue(value: number) {
+  const trulyValue = Math.max(innerMin.value, Math.min(value, innerMax.value))
+
+  return Math.round(trulyValue / innerStep.value) * innerStep.value
 }
 
-function handleOverlap(value: number[]) {
+function normalizeArrayValue(value: RangeArrayValue) {
   if (value[0] > value[1])
-    return value.slice(0).reverse()
+    return value.slice(0).reverse() as RangeArrayValue
 
   return value
 }
 
-function updateValue(value: SliderValue, end?: boolean) {
-  if (isRange(value))
-    value = handleOverlap(value).map(format)
+function formatArrayValue(value: RangeArrayValue) {
+  return normalizeArrayValue(value).map(it => formatValue(it)) as RangeArrayValue
+}
+
+function updateValue(value: RangeValue, end?: boolean) {
+  if (isArrayValue(value))
+    value = formatArrayValue(value)
   else
-    value = format(value)
+    value = formatValue(value)
 
   if (!isEqualValue(value, props.modelValue))
     emit(UPDATE_MODEL_EVENT, value)
@@ -175,29 +217,35 @@ async function onClick(event: any) {
   if (disabled.value)
     return
 
-  const { min, modelValue } = props
-  const rect = await useRect(RangeID.value, instance)
+  const { modelValue } = props
+
+  const rect = await useRect(rangeId.value, instance)
+
   state.value.width = rect.width!
   state.value.height = rect.height!
-  let clientX, clientY
-  if (isH5) {
-    clientX = event.clientX
-    clientY = event.clientY
-  }
-  else {
-    clientX = event.touches[0].clientX
-    clientY = event.touches[0].clientY
-  }
-  let delta = clientX - rect.left!
-  let total = rect.width!
+
+  const clientX = event.touches[0].clientX
+  const clientY = event.touches[0].clientY
+
+  let delta: number
+  let total: number
+
   if (props.vertical) {
     delta = clientY - rect.top!
     total = rect.height!
   }
-  const value = Number(min) + (delta / total) * scope.value
-  if (isRange(modelValue)) {
+  else {
+    delta = clientX - rect.left!
+    total = rect.width!
+  }
+
+  const value = innerMin.value + (delta / total) * scope.value
+
+  if (isArrayValue(modelValue)) {
     const [left, right] = modelValue
+
     const middle = (left + right) / 2
+
     if (value <= middle)
       updateValue([value, right], true)
     else
@@ -208,25 +256,8 @@ async function onClick(event: any) {
   }
 }
 
-function onTouchStart(event: TouchEvent) {
-  if (disabled.value)
-    return
-
-  touch.start(event)
-  currentValue = props.modelValue
-
-  if (isRange(currentValue))
-    startValue = currentValue.map(format)
-  else
-    startValue = format(currentValue)
-
-  dragStatus.value = 'start'
-  preventDefault(event, true)
-}
-
-// 初始化 range 宽高
 function init() {
-  useRect(RangeID.value, instance).then(
+  useRect(rangeId.value, instance).then(
     (rect) => {
       state.value.width = rect.width!
       state.value.height = rect.height!
@@ -235,51 +266,79 @@ function init() {
   )
 }
 
-async function onTouchMove(event: TouchEvent) {
+function onTouchStart(event: any) {
   if (disabled.value)
     return
+
+  touch.start(event)
+
+  currentValue = props.modelValue
+
+  if (isArrayValue(currentValue))
+    startValue = formatArrayValue(currentValue)
+  else
+    startValue = formatValue(currentValue)
+
+  dragStatus.value = 'start'
+
+  preventDefault(event, true)
+}
+
+async function onTouchMove(event: any) {
+  if (disabled.value)
+    return
+
   preventDefault(event, true)
 
   if (dragStatus.value === 'start')
     emit('dragStart')
 
   touch.move(event)
-  dragStatus.value = 'draging'
 
-  const rect = await useRect(RangeID.value, instance)
-  let delta = touch.deltaX.value
-  let total = state.value.width
-  let diff = (delta / total) * scope.value
+  dragStatus.value = 'dragging'
+
+  let delta: number
+  let total: number
+
   if (props.vertical) {
     delta = touch.deltaY.value
     total = state.value.height
-    diff = (delta / total) * scope.value
   }
-  if (isRange(startValue))
-    (currentValue as number[])[buttonIndex.value] = startValue[buttonIndex.value] + diff
+  else {
+    delta = touch.deltaX.value
+    total = state.value.width
+  }
+
+  const diff = (delta / total) * scope.value
+
+  if (isArrayValue(startValue))
+    (currentValue as RangeArrayValue)[buttonIndex.value] = startValue[buttonIndex.value] + diff
   else
     currentValue = startValue + diff
 
   updateValue(currentValue)
 }
 
-function onTouchEnd(event: TouchEvent) {
+function onTouchEnd(event: any) {
   if (disabled.value)
     return
 
-  if (dragStatus.value === 'draging') {
+  if (dragStatus.value === 'dragging') {
     updateValue(currentValue, true)
+
     emit('dragEnd')
   }
+
   dragStatus.value = ''
+
   preventDefault(event, true)
 }
-function curValue(idx?: number): number {
-  const value
-        = Array.isArray(props.modelValue) && typeof idx === 'number'
-          ? (props.modelValue as number[])[idx]
-          : Number(props.modelValue)
-  return value
+
+function formatCurrentValue(idx?: number): number {
+  if (Array.isArray(props.modelValue) && typeof idx === 'number')
+    return props.modelValue[idx]
+
+  return Number(props.modelValue)
 }
 
 onMounted(() => {
@@ -303,70 +362,92 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="[containerClasses, customClass]" :style="customStyle">
-    <view v-if="!hiddenRange" class="nut-range-min">
-      {{ +min }}
+  <view :class="[containerClasses, props.customClass]" :style="props.customStyle">
+    <view v-if="!props.hiddenRange" class="nut-range-min">
+      {{ innerMin }}
     </view>
-    <view :id="RangeID" :style="wrapperStyle" :class="classes" @click.stop="onClick">
+
+    <view :id="rangeId" :class="classes" :style="wrapperStyles" @click.stop="onClick">
       <view class="nut-range-mark">
-        <template v-if="marksList.length > 0">
-          <view v-for="marks in marksList" :key="marks" :class="markClassName(marks)" :style="marksStyle(marks)">
-            {{ marks }}
-            <view class="nut-range-tick" :style="tickStyle(marks)" />
+        <template v-if="innerMarks.length > 0">
+          <view
+            v-for="item in innerMarks"
+            :key="item"
+            :class="getMarkClasses(item)"
+            :style="getMarkStyles(item)"
+          >
+            {{ item }}
+            <view class="nut-range-tick" :style="getTickStyles(item)" />
           </view>
         </template>
       </view>
-      <view class="nut-range-bar" :style="barStyle">
-        <template v-if="range">
+
+      <view class="nut-range-bar" :style="barStyles">
+        <template v-if="props.range">
           <view
-            v-for="index of [0, 1]" :key="index" role="slider" :class="{
-              'nut-range-button-wrapper-left': index === 0,
-              'nut-range-button-wrapper-right': index === 1,
-            }" :catch-move="true" :tabindex="disabled ? -1 : 0" :aria-valuemin="+min" :aria-valuenow="curValue(index)"
-            :aria-valuemax="+max" aria-orientation="horizontal" @touchstart.stop.prevent="(e: any) => {
-              if (typeof index === 'number') {
-                // 实时更新当前拖动的按钮索引
-                buttonIndex = index;
-              }
+            v-for="index in [0, 1]"
+            :key="index"
+            :class="[index === 0 ? 'nut-range-button-wrapper-left' : 'nut-range-button-wrapper-right']"
+            :catch-move="true"
+            :tabindex="disabled ? -1 : 0"
+            role="slider"
+            :aria-valuenow="formatCurrentValue(index)"
+            :aria-valuemin="innerMin"
+            :aria-valuemax="innerMax"
+            aria-orientation="horizontal"
+            @touchstart.stop.prevent="(e: any) => {
+              buttonIndex = index;
               onTouchStart(e);
-            }
-            " @touchmove.stop.prevent="(onTouchMove as any)" @touchend.stop.prevent="(onTouchEnd as any)"
-            @touchcancel.stop.prevent="(onTouchEnd as any)" @click="(e: any) => e.stopPropagation()"
+            }"
+            @touchmove.stop.prevent="onTouchMove"
+            @touchend.stop.prevent="onTouchEnd"
+            @touchcancel.stop.prevent="onTouchEnd"
+            @click="(e: any) => e.stopPropagation()"
           >
-            <slot v-if="$slots.button" name="button" />
-            <view v-else class="nut-range-button" :style="buttonStyle">
-              <view v-if="!hiddenTag" class="number">
-                {{ curValue(index) }}
+            <slot v-if="slots.button" name="button" />
+
+            <view v-else class="nut-range-button" :style="buttonStyles">
+              <view v-if="!props.hiddenTag" class="number">
+                {{ formatCurrentValue(index) }}
               </view>
             </view>
           </view>
         </template>
+
         <template v-else>
           <view
-            role="slider" class="nut-range-button-wrapper" :tabindex="disabled ? -1 : 0" :aria-valuemin="+min"
-            :aria-valuenow="curValue()" :aria-valuemax="+max" aria-orientation="horizontal" :catch-move="true"
-            @touchstart.stop.prevent="(e: any) => {
-              onTouchStart(e);
-            }
-            " @touchmove.stop.prevent="(onTouchMove as any)" @touchend.stop.prevent="(onTouchEnd as any)"
-            @touchcancel.stop.prevent="(onTouchEnd as any)" @click="(e: any) => e.stopPropagation()"
+            class="nut-range-button-wrapper"
+            :catch-move="true"
+            :tabindex="disabled ? -1 : 0"
+            role="slider"
+            :aria-valuenow="formatCurrentValue()"
+            :aria-valuemin="innerMin"
+            :aria-valuemax="innerMax"
+            aria-orientation="horizontal"
+            @touchstart.stop.prevent="onTouchStart"
+            @touchmove.stop.prevent="onTouchMove"
+            @touchend.stop.prevent="onTouchEnd"
+            @touchcancel.stop.prevent="onTouchEnd"
+            @click="(e: any) => e.stopPropagation()"
           >
-            <slot v-if="$slots.button" name="button" />
-            <view v-else class="nut-range-button" :style="buttonStyle">
-              <view v-if="!hiddenTag" class="number">
-                {{ curValue() }}
+            <slot v-if="slots.button" name="button" />
+
+            <view v-else class="nut-range-button" :style="buttonStyles">
+              <view v-if="!props.hiddenTag" class="number">
+                {{ formatCurrentValue() }}
               </view>
             </view>
           </view>
         </template>
       </view>
     </view>
-    <view v-if="!hiddenRange" class="nut-range-max">
-      {{ +max }}
+
+    <view v-if="!props.hiddenRange" class="nut-range-max">
+      {{ innerMax }}
     </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
