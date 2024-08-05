@@ -26,7 +26,6 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 4px;
 
   .nut-range-min,
   .nut-range-max {
@@ -42,7 +41,7 @@
 
     .nut-range {
       width: 4px;
-      height: 100%;
+      height: auto;
 
       &-button {
         &-wrapper,
@@ -75,7 +74,6 @@
         position: absolute;
         top: initial;
         right: 50%;
-        width: 100%;
         width: 36px;
         height: 100%;
         padding: 0;
@@ -118,7 +116,7 @@
 .nut-range {
   position: relative;
   display: block;
-  width: 100%;
+  flex: 1;
   height: 4px;
   cursor: pointer;
   border-radius: 2px;
