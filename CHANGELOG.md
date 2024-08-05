@@ -1,3 +1,14 @@
+## [1.7.14](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.13...v1.7.14) (2024-08-05)
+
+### Bug Fixes
+
+* **range:** 修复点击控制导致NaN问题 ([415c87c](https://github.com/nutui-uniapp/nutui-uniapp/commit/415c87c7d7738d57f4406387208875409cebfa31))
+
+### Features
+
+* **cell:** 新增icon、clickable属性 ([#384](https://github.com/nutui-uniapp/nutui-uniapp/issues/384)) ([3e4ff54](https://github.com/nutui-uniapp/nutui-uniapp/commit/3e4ff54ff558fbe37ace5201aa2721fbd07e659f))
+* **checkbox:** 新增checked-value、unchecked-value属性 ([#385](https://github.com/nutui-uniapp/nutui-uniapp/issues/385)) ([9ef1b34](https://github.com/nutui-uniapp/nutui-uniapp/commit/9ef1b34f9ac63eb12d54cf60ac5f6ad9c6945043))
+
 ## [1.7.13](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.12...v1.7.13) (2024-07-30)
 
 ### Bug Fixes
