@@ -110,11 +110,18 @@ export default defineComponent({
   <view ref="marqueeDom" :class="classes" :style="customStyle">
     <view class="bgContent" />
     <view class="marqueeBg" :style="bgContentStyle" />
-    <view class="start" :class="[{ disabledDraw: lock || props.disabled }]" :style="cursorStyle" @click="startDraw" />
+    <view
+      class="start"
+      :class="[{ disabledDraw: lock || props.disabled }]"
+      :style="cursorStyle"
+      @click="startDraw"
+    />
     <ul class="gift-list">
       <li
         v-for="(item, i) in prizeList"
-        :key="`luckmarquee${i}`" class="gift-item" :class="[`gift-${i + 1}`, { active: index === i }]"
+        :key="`luckmarquee${i}`"
+        class="gift-item"
+        :class="[`gift-${i + 1}`, { active: index === i }]"
         :style="bgItemStyle"
       >
         <div class="gift-img">

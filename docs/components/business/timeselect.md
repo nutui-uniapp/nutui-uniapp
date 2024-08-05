@@ -75,12 +75,12 @@
         });
       });
 
-      return { 
-        ...toRefs(state), 
+      return {
+        ...toRefs(state),
         handleChange1,
         handleSelected1,
         selectTime1,
-        handleClick1, 
+        handleClick1,
       };
     }
   };
@@ -161,12 +161,12 @@
         });
       });
 
-      return { 
-        ...toRefs(state), 
+      return {
+        ...toRefs(state),
         handleChange2,
         handleSelected2,
         selectTime2,
-        handleClick2, 
+        handleClick2,
       };
     }
   };
@@ -253,12 +253,12 @@
         });
       });
 
-      return { 
-        ...toRefs(state), 
+      return {
+        ...toRefs(state),
         handleChange2,
         handleSelected2,
         selectTime2,
-        handleClick2, 
+        handleClick2,
       };
     }
   };

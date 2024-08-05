@@ -65,7 +65,12 @@ export default {
       <nut-collapse-item :title="title1" :name="1" icon="notice">
         京东数科IPO将引入“绿鞋机制”
       </nut-collapse-item>
-      <nut-collapse-item :title="title2" :name="2" value="文本内容" icon="follow">
+      <nut-collapse-item
+        :title="title2"
+        :name="2"
+        value="文本内容"
+        icon="follow"
+      >
         世界制造业大会开幕，阿里巴巴与安徽合作再升级
       </nut-collapse-item>
     </nut-collapse>

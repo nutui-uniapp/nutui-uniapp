@@ -53,8 +53,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <image v-if="isImage" :class="classes" :style="getStyle" :src="name" @click="handleClick" />
-  <text v-else :class="classes" :style="getStyle" @click="handleClick" />
+  <image
+    v-if="isImage"
+    :class="classes"
+    :style="getStyle"
+    :src="name"
+    @click="handleClick"
+  />
+  <text
+    v-else
+    :class="classes"
+    :style="getStyle"
+    @click="handleClick"
+  />
 </template>
 
 <style lang="scss">

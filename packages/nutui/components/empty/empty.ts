@@ -6,7 +6,6 @@ export const emptyProps = {
   /**
    * @description 图片类型，可选值为 `empty`、`error`、`network`，支持传入图片 `URL`
    */
-  // eslint-disable-next-line ts/ban-types
   image: makeStringProp<'empty' | 'error' | 'network' | (string & {})>('empty'),
 
   /**

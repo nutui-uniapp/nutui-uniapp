@@ -97,7 +97,12 @@ export default {
         state.errorMsg = '请输入正确密码';
       "
     />
-    <nut-toast v-model:visible="state.show" msg="忘记密码" type="text" :cover="state.cover" />
+    <nut-toast
+      v-model:visible="state.show"
+      msg="忘记密码"
+      type="text"
+      :cover="state.cover"
+    />
     <nut-short-password
       v-model="state.value4"
       v-model:visible="state.visible4"

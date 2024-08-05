@@ -21,7 +21,7 @@ export default {
       return new Promise((resolve) => {
         console.log('模拟异步验证中...')
         setTimeout(() => {
-          resolve(/^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/.test(val))
+          resolve(/^400(-?)\d{7}$|^1\d{10}$|^0\d{2,3}-\d{7,8}$/.test(val))
         }, 1000)
       })
     }

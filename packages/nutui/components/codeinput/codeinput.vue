@@ -110,10 +110,16 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :style="customStyle">
-    <view v-for="(item, index) in codeLength" :key="index" class="nut-code-input__item" :style="[itemStyle(index)]">
+    <view
+      v-for="(item, index) in codeLength"
+      :key="index"
+      class="nut-code-input__item"
+      :style="[itemStyle(index)]"
+    >
       <view v-if="dot && codeArray.length > index" class="nut-code-input__item__dot" />
       <text
-        v-else :style="{
+        v-else
+        :style="{
           fontSize: `${props.fontSize}px`,
           fontWeight: bold ? 'bold' : 'normal',
           color: customColor,
@@ -124,16 +130,26 @@ export default defineComponent({
       <view v-if="mode === 'line'" class="nut-code-input__item__line" :style="[lineStyle]" />
       <!-- #ifndef APP-PLUS -->
       <view
-        v-if="isFocus && codeArray.length === index" :style="{ backgroundColor: customColor }"
+        v-if="isFocus && codeArray.length === index"
+        :style="{ backgroundColor: customColor }"
         class="nut-code-input__item__cursor"
       />
       <!-- #endif -->
     </view>
     <input
-      :disabled="disabledKeyboard" type="number" :focus="focus" :value="inputValue" :maxlength="+maxlength"
-      :adjustPosition="adjustPosition" class="nut-code-input__input" :style="{
+      :disabled="disabledKeyboard"
+      type="number"
+      :focus="focus"
+      :value="inputValue"
+      :maxlength="+maxlength"
+      :adjustPosition="adjustPosition"
+      class="nut-code-input__input"
+      :style="{
         height: `${props.size}px`,
-      }" @input="inputHandler" @focus="isFocus = true" @blur="isFocus = false"
+      }"
+      @input="inputHandler"
+      @focus="isFocus = true"
+      @blur="isFocus = false"
     >
   </view>
 </template>

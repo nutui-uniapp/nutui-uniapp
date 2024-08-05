@@ -191,7 +191,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <form :class="classes" :style="customStyle" action="#" @submit.prevent="() => false">
+  <form
+    :class="classes"
+    :style="customStyle"
+    action="#"
+    @submit.prevent="() => false"
+  >
     <NutCellGroup>
       <slot />
     </NutCellGroup>

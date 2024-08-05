@@ -68,11 +68,11 @@
 ```
 
 ```typescript
-const value1 = ref(true);
+const value1 = ref(true)
 
 function onChange(checked: boolean, value: any) {
-  console.log("是否选中", checked);
-  console.log("变化后的值", value);
+  console.log('是否选中', checked)
+  console.log('变化后的值', value)
 }
 ```
 
@@ -118,31 +118,31 @@ const value = ref(['2', '3'])
 
 ```typescript
 // 自 1.7.14 开始更名为 CheckboxGroupInst，之前的版本为 CheckBoxInst（2.x版本将会废弃）
-import type { CheckboxGroupInst } from "nutui-uniapp";
+import type { CheckboxGroupInst } from 'nutui-uniapp'
 
-const group = ref<CheckboxGroupInst | null>(null);
+const group = ref<CheckboxGroupInst | null>(null)
 
-const value = ref<string[]>([]);
+const value = ref<string[]>([])
 
 const source = ref([
-  { label: "1", value: "组合复选框" },
-  { label: "2", value: "组合复选框" },
-  { label: "3", value: "组合复选框" },
-  { label: "4", value: "组合复选框" },
-  { label: "5", value: "组合复选框" },
-  { label: "6", value: "组合复选框" }
-]);
+  { label: '1', value: '组合复选框' },
+  { label: '2', value: '组合复选框' },
+  { label: '3', value: '组合复选框' },
+  { label: '4', value: '组合复选框' },
+  { label: '5', value: '组合复选框' },
+  { label: '6', value: '组合复选框' }
+])
 
 function onChange(value: any[]) {
-  console.log(toRaw(value));
+  console.log(toRaw(value))
 }
 
 function toggleAll(checked: boolean) {
-  group.value?.toggleAll(checked);
+  group.value?.toggleAll(checked)
 }
 
 function toggleReverse() {
-  group.value?.toggleReverse();
+  group.value?.toggleReverse()
 }
 ```
 
@@ -180,28 +180,30 @@ function toggleReverse() {
 ```
 
 ```typescript
-import type { CheckboxGroupInst } from "nutui-uniapp";
+import type { CheckboxGroupInst } from 'nutui-uniapp'
 
-const group = ref<CheckboxGroupInst | null>(null);
+const group = ref<CheckboxGroupInst | null>(null)
 
-const value = ref(false);
-const indeterminate = ref(false);
+const value = ref(false)
+const indeterminate = ref(false)
 
-const groupValue = ref<string[]>([]);
+const groupValue = ref<string[]>([])
 
 function onChange(checked: boolean) {
-  group.value?.toggleAll(checked);
+  group.value?.toggleAll(checked)
 }
 
 function onGroupChange(values: any[]) {
   if (values.length >= 4) {
-    indeterminate.value = false;
-    value.value = true;
-  } else if (values.length > 0) {
-    indeterminate.value = true;
-  } else {
-    indeterminate.value = false;
-    value.value = false;
+    indeterminate.value = false
+    value.value = true
+  }
+  else if (values.length > 0) {
+    indeterminate.value = true
+  }
+  else {
+    indeterminate.value = false
+    value.value = false
   }
 }
 ```

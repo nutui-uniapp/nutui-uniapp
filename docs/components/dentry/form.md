@@ -39,7 +39,7 @@ export default {
     return {basicData}
   }
 }
-</script>  
+</script>
 ```
 
 ### 动态表单
@@ -163,7 +163,7 @@ export default {
         console.log('模拟异步验证中...')
         setTimeout(() => {
           console.log('验证完成')
-          resolve(/^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/.test(val))
+          resolve(/^400(-?)\d{7}$|^1\d{10}$|^0\d{2,3}-\d{7,8}$/.test(val))
         }, 1000)
       })
     }
@@ -174,7 +174,9 @@ export default {
 
 <template>
   <nut-form
-    ref="ruleForm" :model-value="formData" :rules="{ name: [
+    ref="ruleForm"
+    :model-value="formData"
+    :rules="{ name: [
       { required: true, message: '请填写姓名' },
       {
         message: 'name 至少两个字符',
@@ -183,33 +185,67 @@ export default {
   >
     <nut-form-item label="姓名" prop="name">
       <nut-input
-        v-model="formData.name" class="nut-input-text" placeholder="请输入姓名，blur 事件校验"
-        type="text" @blur="customBlurValidate('name')"
+        v-model="formData.name"
+        class="nut-input-text"
+        placeholder="请输入姓名，blur 事件校验"
+        type="text"
+        @blur="customBlurValidate('name')"
       />
     </nut-form-item>
     <nut-form-item
-      label="年龄" prop="age" required :rules="[
+      label="年龄"
+      prop="age"
+      required
+      :rules="[
         { required: true, message: '请填写年龄' },
         { validator: customValidator, message: '必须输入数字' },
         { validator: customRulePropValidator, message: '必须输入数字', reg: /^\d+$/ },
         { regex: /^(\d{1,2}|1\d{2}|200)$/, message: '必须输入0-200区间' },
       ]"
     >
-      <nut-input v-model="formData.age" class="nut-input-text" placeholder="请输入年龄，必须数字且0-200区间" type="text" />
+      <nut-input
+        v-model="formData.age"
+        class="nut-input-text"
+        placeholder="请输入年龄，必须数字且0-200区间"
+        type="text"
+      />
     </nut-form-item>
     <nut-form-item
-      label="联系电话" prop="tel" required :rules="[
+      label="联系电话"
+      prop="tel"
+      required
+      :rules="[
         { required: true, message: '请填写联系电话' },
         { validator: asyncValidator, message: '电话格式不正确' },
       ]"
     >
-      <nut-input v-model="formData.tel" class="nut-input-text" placeholder="请输入联系电话，异步校验电话格式" type="text" />
+      <nut-input
+        v-model="formData.tel"
+        class="nut-input-text"
+        placeholder="请输入联系电话，异步校验电话格式"
+        type="text"
+      />
     </nut-form-item>
-    <nut-form-item label="地址" prop="address" required :rules="[{ required: true, message: '请填写地址' }]">
-      <nut-input v-model="formData.address" class="nut-input-text" placeholder="请输入地址" type="text" />
+    <nut-form-item
+      label="地址"
+      prop="address"
+      required
+      :rules="[{ required: true, message: '请填写地址' }]"
+    >
+      <nut-input
+        v-model="formData.address"
+        class="nut-input-text"
+        placeholder="请输入地址"
+        type="text"
+      />
     </nut-form-item>
     <nut-cell>
-      <nut-button type="primary" size="small" style="margin-right: 10px" @click="submit">
+      <nut-button
+        type="primary"
+        size="small"
+        style="margin-right: 10px"
+        @click="submit"
+      >
         提交
       </nut-button>
       <nut-button size="small" @click="reset">
@@ -349,10 +385,20 @@ const basicData = reactive({
 <template>
   <nut-form label-position="top" star-position="right">
     <nut-form-item label="姓名" required>
-      <nut-input v-model="basicData.name" class="nut-input-text" placeholder="请输入姓名" type="text" />
+      <nut-input
+        v-model="basicData.name"
+        class="nut-input-text"
+        placeholder="请输入姓名"
+        type="text"
+      />
     </nut-form-item>
     <nut-form-item label="年龄" required>
-      <nut-input v-model="basicData.age" class="nut-input-text" placeholder="请输入年龄" type="text" />
+      <nut-input
+        v-model="basicData.age"
+        class="nut-input-text"
+        placeholder="请输入年龄"
+        type="text"
+      />
     </nut-form-item>
     <nut-form-item label="备注" label-position="left">
       <nut-textarea placeholder="请输入备注" type="text" />

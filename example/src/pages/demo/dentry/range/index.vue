@@ -57,7 +57,12 @@ export default {
       指定范围
     </h2>
     <nut-cell custom-class="cell">
-      <nut-range v-model="value3" :max="10" :min="-10" @change="onChange" />
+      <nut-range
+        v-model="value3"
+        :max="10"
+        :min="-10"
+        @change="onChange"
+      />
     </nut-cell>
     <h2 class="title">
       设置步长
@@ -115,22 +120,44 @@ export default {
         <nut-range v-model="value10" :vertical="true" @change="onChange" />
       </view>
       <view class="div">
-        <nut-range v-model="value11" range :vertical="true" @change="onChange" />
+        <nut-range
+          v-model="value11"
+          range
+          :vertical="true"
+          @change="onChange"
+        />
       </view>
     </nut-cell>
     <h2 class="title">
       刻度标记
     </h2>
     <nut-cell custom-class="cell">
-      <nut-range v-model="value12" :marks="marks" :hidden-range="true" @change="onChange" />
+      <nut-range
+        v-model="value12"
+        :marks="marks"
+        :hidden-range="true"
+        @change="onChange"
+      />
     </nut-cell>
     <nut-cell custom-class="cell">
-      <nut-range v-model="value13" range :marks="marks" :hidden-range="true" @change="onChange" />
+      <nut-range
+        v-model="value13"
+        range
+        :marks="marks"
+        :hidden-range="true"
+        @change="onChange"
+      />
     </nut-cell>
 
     <nut-cell custom-class="vertical_div">
       <view class="div">
-        <nut-range v-model="value14" :vertical="true" :marks="marks" :hidden-range="true" @change="onChange" />
+        <nut-range
+          v-model="value14"
+          :vertical="true"
+          :marks="marks"
+          :hidden-range="true"
+          @change="onChange"
+        />
       </view>
       <view class="div">
         <nut-range

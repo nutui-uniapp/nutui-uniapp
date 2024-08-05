@@ -91,12 +91,22 @@ export default {
     <h2 class="title">
       通告栏模式--关闭模式
     </h2>
-    <nut-noticebar :close-mode="true" background="rgba(251, 248, 220, 1)" :custom-color="color1" @click="hello">
+    <nut-noticebar
+      :close-mode="true"
+      background="rgba(251, 248, 220, 1)"
+      :custom-color="color1"
+      @click="hello"
+    >
       NutUI 是京东风格的移动端组件库，使用 Vue 语言来编写可以在
       H5，小程序平台上的应用，帮助研发人员提升开发效率，改善开发体验。
     </nut-noticebar>
     <p />
-    <nut-noticebar :close-mode="true" background="rgba(251, 248, 220, 1)" :custom-color="color1" @click="hello">
+    <nut-noticebar
+      :close-mode="true"
+      background="rgba(251, 248, 220, 1)"
+      :custom-color="color1"
+      @click="hello"
+    >
       NutUI 是京东风格的移动端组件库，使用 Vue 语言来编写可以在
       H5，小程序平台上的应用，帮助研发人员提升开发效率，改善开发体验。
     </nut-noticebar>

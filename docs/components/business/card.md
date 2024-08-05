@@ -60,7 +60,7 @@
           <span class="word">国产</span>
         </div>
       </template>
-  
+
   </nut-card>
 </template>
 <script>
@@ -204,7 +204,6 @@
   font-size: 12px;
 }
 </style>
-
 
 ```
 

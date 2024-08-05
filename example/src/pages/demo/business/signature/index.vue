@@ -57,7 +57,13 @@ export default {
     <h2 class="title">
       基础用法
     </h2>
-    <nut-signature :stroke-style="darkMode ? 'white' : '#111'" custom-class="test" @confirm="confirm" @clear="clear" @start="start" />
+    <nut-signature
+      :stroke-style="darkMode ? 'white' : '#111'"
+      custom-class="test"
+      @confirm="confirm"
+      @clear="clear"
+      @start="start"
+    />
     <image v-if="demoSignUrl" :src="demoSignUrl" class="demoSignUrl" />
 
     <h2 class="title">

@@ -76,7 +76,10 @@ export default defineComponent ({
 
     <view v-if="showDefaultOperate" class="nut-sku-operate-btn">
       <view
-        v-for="(btn, i) in btnOptions" :key="i" class="nut-sku-operate-btn-item" :class="[`nut-sku-operate-btn-${btn}`]"
+        v-for="(btn, i) in btnOptions"
+        :key="i"
+        class="nut-sku-operate-btn-item"
+        :class="[`nut-sku-operate-btn-${btn}`]"
         @click="clickBtnOperate(btn)"
       >
         {{ getBtnDesc(btn) }}

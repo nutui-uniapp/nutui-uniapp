@@ -207,11 +207,17 @@ export default defineComponent({
 <template>
   <view ref="bowlBox" :class="classes" :style="customStyle">
     <view
-      v-for="(item, idx) of bowlList" :id="`${randomId}-${idx}`" :key="`bowl${item}`" class="bowl-item"
-      :style="{ top: bowlRaiseIndex === idx ? bowlRaiseIndexTop : '0' }" @click="raise(idx)"
+      v-for="(item, idx) of bowlList"
+      :id="`${randomId}-${idx}`"
+      :key="`bowl${item}`"
+      class="bowl-item"
+      :style="{ top: bowlRaiseIndex === idx ? bowlRaiseIndexTop : '0' }"
+      @click="raise(idx)"
     />
     <view
-      ref="goldBeanDom" class="gold-bean" :class="[showBean ? '_opacity1' : '_opacity0']"
+      ref="goldBeanDom"
+      class="gold-bean"
+      :class="[showBean ? '_opacity1' : '_opacity0']"
       :style="{ left: goldBeanDomLeft }"
     />
   </view>

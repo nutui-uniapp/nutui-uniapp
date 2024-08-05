@@ -40,7 +40,12 @@ onBeforeMount(async () => {
       <div id="pwa-message" class="mb-3">
         {{ offlineReady ? 'App ready to work offline' : 'New content available, click the reload button to update.' }}
       </div>
-      <button v-if="needRefresh" type="button" class="pwa-refresh" @click="updateServiceWorker?.()">
+      <button
+        v-if="needRefresh"
+        type="button"
+        class="pwa-refresh"
+        @click="updateServiceWorker?.()"
+      >
         Reload
       </button>
       <button type="button" class="pwa-cancel" @click="close">

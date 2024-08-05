@@ -41,8 +41,9 @@ function leftRightMove(flag: string) {
       if (
         (flag === 'left' && toolDomLeft === 0)
         || (flag === 'right' && toolDomLeft === max)
-      )
+      ) {
         return false
+      }
 
       const distance = flag === 'left' ? -30 : 30
       const left: number = toolDomLeft + distance
@@ -211,7 +212,8 @@ export default defineComponent({
         </div>
         <div class="machine-operate">
           <div
-            class="machine-direction" :class="[machineLock ? 'disabledClick' : '']"
+            class="machine-direction"
+            :class="[machineLock ? 'disabledClick' : '']"
           >
             <!-- <span
               class="direction-block direction-block-top"
@@ -231,13 +233,15 @@ export default defineComponent({
             ></span> -->
           </div>
           <div
-            class="machine-btn" :class="[
+            class="machine-btn"
+            :class="[
               machineLock ? 'machine-disabled disabledClick' : 'machine-start',
             ]"
             @click="startGame"
           />
           <div
-            class="machine-reset-btn" :class="[initLock ? 'disabledClick' : '']"
+            class="machine-reset-btn"
+            :class="[initLock ? 'disabledClick' : '']"
             @click="init"
           >
             重置

@@ -118,8 +118,14 @@ export default defineComponent({
 <template>
   <NutPopup
     v-model:visible="showPopup"
-    safe-area-inset-bottom position="bottom" closeable round custom-style="height: 75%"
-    @click-close-icon="closePopup('icon')" @click-overlay="closePopup('overlay')" @close="closePopup('close')"
+    safe-area-inset-bottom
+    position="bottom"
+    closeable
+    round
+    custom-style="height: 75%"
+    @click-close-icon="closePopup('icon')"
+    @click-overlay="closePopup('overlay')"
+    @close="closePopup('close')"
   >
     <view :class="classes" :style="customStyle">
       <slot name="skuHeader">
@@ -143,9 +149,16 @@ export default defineComponent({
 
           <slot name="skuStepper">
             <SkuStepper
-              ref="skuStepperRef" :goods="goods" :stepper-title="stepperTitle || translate('buyNumber')"
-              :stepper-max="stepperMax" :stepper-min="stepperMin" :stepper-extra-text="stepperExtraText" @add="add"
-              @reduce="reduce" @change-stepper="changeStepper" @over-limit="stepperOverLimit"
+              ref="skuStepperRef"
+              :goods="goods"
+              :stepper-title="stepperTitle || translate('buyNumber')"
+              :stepper-max="stepperMax"
+              :stepper-min="stepperMin"
+              :stepper-extra-text="stepperExtraText"
+              @add="add"
+              @reduce="reduce"
+              @change-stepper="changeStepper"
+              @over-limit="stepperOverLimit"
             />
           </slot>
 
@@ -154,8 +167,11 @@ export default defineComponent({
       </scroll-view>
 
       <SkuOperate
-        :btn-extra-text="btnExtraText" :btn-options="btnOptions" :buy-text="buyText || translate('buyNow')"
-        :add-cart-text="addCartText || translate('addToCart')" :confirm-text="confirmText || translate('confirm')"
+        :btn-extra-text="btnExtraText"
+        :btn-options="btnOptions"
+        :buy-text="buyText || translate('buyNow')"
+        :add-cart-text="addCartText || translate('addToCart')"
+        :confirm-text="confirmText || translate('confirm')"
         :show-default-operate="!hasSkuOperateSlot"
         @click-btn-operate="clickBtnOperate"
       >

@@ -85,7 +85,9 @@ export default defineComponent({
   <view :class="`nut-comment-images nut-comment-images--${type}`">
     <!-- videos -->
     <view
-      v-for="(itV, index) in videos" :key="itV.id" class="nut-comment-images__item nut-comment-images__item--video"
+      v-for="(itV, index) in videos"
+      :key="itV.id"
+      class="nut-comment-images__item nut-comment-images__item--video"
       @click="showImages('video', index)"
     >
       <image :src="itV.mainUrl" />

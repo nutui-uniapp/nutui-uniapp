@@ -252,7 +252,12 @@ export default defineComponent({
     <view v-if="indexList.length > 0" class="nut-elevator__code--current" :class="{ 'nut-hidden': !scrollStart }">
       {{ indexList[codeIndex][acceptKey] }}
     </view>
-    <view class="nut-elevator__bars" @touchstart="(touchStart as any)" @touchmove.stop.prevent="(touchMove as any)" @touchend="touchEnd">
+    <view
+      class="nut-elevator__bars"
+      @touchstart="(touchStart as any)"
+      @touchmove.stop.prevent="(touchMove as any)"
+      @touchend="touchEnd"
+    >
       <view class="nut-elevator__bars__inner">
         <view
           v-for="(item, index) in indexList"

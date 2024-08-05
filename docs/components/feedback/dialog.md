@@ -96,7 +96,6 @@ export default {
       }, 2000)
     }
 
-
     return {
       visible1,
       visible2,

@@ -238,7 +238,14 @@ export default defineComponent({
       >
         <NutSwiperItem v-for="(item, index) in images" :key="index">
           <movable-area class="nut-image-movable-area">
-            <movable-view :disabled="!scale" inertia scale-area class="nut-image-preview-img" :scale="scale" direction="all">
+            <movable-view
+              :disabled="!scale"
+              inertia
+              scale-area
+              class="nut-image-preview-img"
+              :scale="scale"
+              direction="all"
+            >
               <image
                 mode="aspectFit"
                 :src="item.src"
@@ -256,7 +263,12 @@ export default defineComponent({
     <view v-if="showIndex" class="nut-image-preview-index">
       {{ state.active + 1 }} / {{ images.length }}
     </view>
-    <view v-if="closeable" class="nut-image-preview-close-icon" :style="styles" @click="onClose">
+    <view
+      v-if="closeable"
+      class="nut-image-preview-close-icon"
+      :style="styles"
+      @click="onClose"
+    >
       <NutIcon name="circle-close" custom-color="#ffffff" />
     </view>
   </NutPopup>

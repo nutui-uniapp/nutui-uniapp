@@ -82,12 +82,28 @@ export default {
 <template>
   <div class="demo h-100vh!">
     <nut-cell title="基础弹框" @click="baseClick" />
-    <nut-dialog v-model:visible="visible1" title="基础弹框" content="这是基础弹框。" @cancel="onCancel" @ok="onOk" />
+    <nut-dialog
+      v-model:visible="visible1"
+      title="基础弹框"
+      content="这是基础弹框。"
+      @cancel="onCancel"
+      @ok="onOk"
+    />
 
     <nut-cell title="支持富文本 html" @click="htmlClick" />
-    <nut-dialog v-model:visible="visible6" :content="content" @cancel="onCancel" @ok="onOk" />
+    <nut-dialog
+      v-model:visible="visible6"
+      :content="content"
+      @cancel="onCancel"
+      @ok="onOk"
+    />
     <nut-cell title="无标题弹框" @click="noTitleClick" />
-    <nut-dialog v-model:visible="visible2" content="这是无标题弹框。" @cancel="onCancel" @ok="onOk" />
+    <nut-dialog
+      v-model:visible="visible2"
+      content="这是无标题弹框。"
+      @cancel="onCancel"
+      @ok="onOk"
+    />
 
     <nut-cell title="提示弹框" @click="tipsClick" />
     <nut-dialog

@@ -50,7 +50,13 @@ export default defineComponent ({
 
           <view class="nut-comment-header__user-score">
             <!-- eslint-disable vue/no-mutating-props -->
-            <NutRate v-model="info.score" size="12" spacing="5" readonly @change="handleClick" />
+            <NutRate
+              v-model="info.score"
+              size="12"
+              spacing="5"
+              readonly
+              @change="handleClick"
+            />
           </view>
         </view>
 
@@ -66,7 +72,12 @@ export default defineComponent ({
       </view>
     </view>
     <view v-if="type === 'complex'" :class="[`nut-comment-header__${type}-score`]">
-      <NutRate v-model="info.score" size="12" spacing="3" readonly />
+      <NutRate
+        v-model="info.score"
+        size="12"
+        spacing="3"
+        readonly
+      />
       <i :class="[`nut-comment-header__${type}-score-i`]" />
       <view :class="[`nut-comment-header__${type}-score-size`]">
         {{ info.size }}

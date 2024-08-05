@@ -42,9 +42,25 @@ export default defineComponent({
 
 <template>
   <div :class="classes" :style="customStyle">
-    <div v-for="(item, index) in num" :key="index" class="nut-eggs-item" :style="{ width, height }">
-      <image v-if="!(arr.indexOf(index) > -1)" class="intactImg" :src="intactImg" alt="" @click="hitEggs(index)" />
-      <image v-if="arr.indexOf(index) > -1" class="splitImg" :src="splitImg" alt="" />
+    <div
+      v-for="(item, index) in num"
+      :key="index"
+      class="nut-eggs-item"
+      :style="{ width, height }"
+    >
+      <image
+        v-if="!(arr.indexOf(index) > -1)"
+        class="intactImg"
+        :src="intactImg"
+        alt=""
+        @click="hitEggs(index)"
+      />
+      <image
+        v-if="arr.indexOf(index) > -1"
+        class="splitImg"
+        :src="splitImg"
+        alt=""
+      />
       <image
         class="hammer"
         :class="{ 'nut-hidden': index !== hitIndex }"

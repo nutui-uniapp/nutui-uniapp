@@ -54,7 +54,12 @@ export default defineComponent({
         {{ title }}
       </text>
       <view class="nut-sub-side-navbar__title__icon">
-        <NutIcon v-if="!direction" custom-class="icon" name="arrow-down2" size="12px" />
+        <NutIcon
+          v-if="!direction"
+          custom-class="icon"
+          name="arrow-down2"
+          size="12px"
+        />
         <NutIcon v-else name="arrow-up2" size="12px" />
       </view>
     </view>

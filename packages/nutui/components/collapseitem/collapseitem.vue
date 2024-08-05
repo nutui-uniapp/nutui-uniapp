@@ -125,7 +125,8 @@ export default defineComponent({
 <template>
   <view :class="classes" :style="customStyle">
     <view
-      class="nut-collapse-item__title" :class="[{ 'nut-collapse-item__title--disabled': disabled }]"
+      class="nut-collapse-item__title"
+      :class="[{ 'nut-collapse-item__title--disabled': disabled }]"
       @click="handleClick"
     >
       <view class="nut-collapse-item__title-main">
@@ -144,7 +145,8 @@ export default defineComponent({
       </view>
       <rich-text v-else class="nut-collapse-item__title-sub" :nodes="value" />
       <view
-        class="nut-collapse-item__title-icon" :class="[{ 'nut-collapse-item__title-icon--expanded': expanded }]"
+        class="nut-collapse-item__title-icon"
+        :class="[{ 'nut-collapse-item__title-icon--expanded': expanded }]"
         :style="{ transform: `rotate(${expanded ? rotate : 0}deg)` }"
       >
         <slot name="icon">

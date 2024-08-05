@@ -43,7 +43,15 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutPopUp v-model:visible="isShowPopup" :custom-style="notifyStatus.safeAreaInsetTop ? `top:${safeHeight}px` : ''" safe-area-inset-bottom safe-area-inset-top :z-index="99999999" :position="notifyStatus.position" :overlay="false">
+  <NutPopUp
+    v-model:visible="isShowPopup"
+    :custom-style="notifyStatus.safeAreaInsetTop ? `top:${safeHeight}px` : ''"
+    safe-area-inset-bottom
+    safe-area-inset-top
+    :z-index="99999999"
+    :position="notifyStatus.position"
+    :overlay="false"
+  >
     <div
       :class="classes"
       :style="styles"

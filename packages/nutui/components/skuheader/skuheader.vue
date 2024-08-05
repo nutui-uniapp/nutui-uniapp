@@ -40,7 +40,12 @@ export default defineComponent ({
       <template v-if="getSlots('skuHeaderPrice')">
         <slot name="skuHeaderPrice" />
       </template>
-      <NutPrice v-else :price="goods.price" :need-symbol="true" :thousands="false" />
+      <NutPrice
+        v-else
+        :price="goods.price"
+        :need-symbol="true"
+        :thousands="false"
+      />
 
       <template v-if="getSlots('skuHeaderExtra')">
         <slot name="skuHeaderExtra" />

@@ -305,7 +305,12 @@ export default defineComponent({
 
       <view class="go" @click="handleClickIcon()">
         <slot name="rightIcon">
-          <NutIcon v-if="closeMode" name="circle-close" :custom-color="customColor" size="11px" />
+          <NutIcon
+            v-if="closeMode"
+            name="circle-close"
+            :custom-color="customColor"
+            size="11px"
+          />
         </slot>
       </view>
     </view>

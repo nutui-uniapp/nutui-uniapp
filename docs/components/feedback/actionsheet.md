@@ -12,7 +12,7 @@
       :show-icon="true"
       :isLink="true"
       @click="switchActionSheet('isVisible1')"
-     
+
     >
       <span><label>基础用法</label></span>
       <div v-html="state.val"></div>

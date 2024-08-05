@@ -29,7 +29,12 @@ export default {
       基础用法
     </h2>
     <nut-cell title="展示弹出层" is-link @click="showBasic = true" />
-    <nut-popup v-model:visible="showBasic" :destroy-on-close="false" pop-class="popclass" :z-index="100">
+    <nut-popup
+      v-model:visible="showBasic"
+      :destroy-on-close="false"
+      pop-class="popclass"
+      :z-index="100"
+    >
       <div :style="{ padding: '30px 50px' }">
         正文
       </div>
@@ -49,7 +54,12 @@ export default {
       关闭图标
     </h2>
     <nut-cell title="关闭图标" is-link @click="showIcon = true" />
-    <nut-popup v-model:visible="showIcon" position="bottom" closeable :custom-style="{ height: '20%' }" />
+    <nut-popup
+      v-model:visible="showIcon"
+      position="bottom"
+      closeable
+      :custom-style="{ height: '20%' }"
+    />
     <nut-cell title="图标位置" is-link @click="showIconPosition = true" />
     <nut-popup
       v-model:visible="showIconPosition"
@@ -74,7 +84,13 @@ export default {
       圆角弹框
     </h2>
     <nut-cell title="圆角弹框" is-link @click="showRound = true" />
-    <nut-popup v-model:visible="showRound" position="bottom" closeable round :custom-style="{ height: '30%' }" />
+    <nut-popup
+      v-model:visible="showRound"
+      position="bottom"
+      closeable
+      round
+      :custom-style="{ height: '30%' }"
+    />
     <h2 class="title">
       多层堆叠
     </h2>

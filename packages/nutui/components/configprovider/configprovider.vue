@@ -14,7 +14,7 @@ function colorRgb(str: string) {
     return
   let sColor = str.toLowerCase()
   // 十六进制颜色值的正则表达式
-  const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/
+  const reg = /^#([0-9A-f]{3}|[0-9A-f]{6})$/
   // 如果是16进制颜色
   if (sColor && reg.test(sColor)) {
     if (sColor.length === 4) {

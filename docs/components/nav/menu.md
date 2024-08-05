@@ -51,9 +51,8 @@ export default {
 
 启用 `scroll-fixed` 属性可以滚动一定距离后变更为 `fixed` 定位
 
-> 自 `1.7.13` 开始，必须配合 `scroll-top` 属性使用，需要将 
+> 自 `1.7.13` 开始，必须配合 `scroll-top` 属性使用，需要将
 > [onPageScroll](https://uniapp.dcloud.net.cn/tutorial/page.html#onpagescroll) 的 scrollTop 传给组件
-
 > 对于 `1.7.12` 及以下的版本，由于uniapp中组件单独声明 `onPageScroll` 无效，需要手动在页面中声明一次 `onPageScroll` 后组件内部
 > 才能正确获取 scrollTop 的值（参考 [question-136635](https://ask.dcloud.net.cn/question/136635)）
 
@@ -80,11 +79,11 @@ export default {
 ```
 
 ```typescript
-const scrollTop = ref(0);
+const scrollTop = ref(0)
 
 onPageScroll((res) => {
-  scrollTop.value = res.scrollTop;
-});
+  scrollTop.value = res.scrollTop
+})
 ```
 
 ### 自定义菜单内容
@@ -386,60 +385,60 @@ export default {
 
 ### Menu Props
 
-| 参数                     | 说明                                      | 类型                          | 默认值         |
-|------------------------|-----------------------------------------|-----------------------------|-------------|
-| active-color           | 选项的选中态图标颜色                              | string                      | `#F2270C`   |
-| close-on-click-overlay | 是否在点击遮罩层后关闭菜单                           | boolean                     | `true`      |
+| 参数                   | 说明                                                                    | 类型                        | 默认值      |
+| ---------------------- | ----------------------------------------------------------------------- | --------------------------- | ----------- |
+| active-color           | 选项的选中态图标颜色                                                    | string                      | `#F2270C`   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭菜单                                              | boolean                     | `true`      |
 | scroll-fixed           | 滚动后是否固定，可设置固定位置（参考 [滚动固定](#滚动固定) 部分的说明） | boolean \| string \| number | `false`     |
-| scroll-top `1.7.13`    | 页面的滚动距离，通过 `onPageScroll` 获取            | number                      | `0`         |
-| title-class            | 自定义标题样式类                                | string                      | -           |
-| lock-scroll `H5`       | 背景是否锁定                                  | boolean                     | `true`      |
-| title-icon             | 自定义标题图标                                 | string                      | -           |
-| direction              | 展开方向，可选值为`up` `down`                    | string                      | -           |
-| up-icon                | 收起的图标                                   | string                      | `rect-up`   |
-| down-icon              | 展开的图标                                   | string                      | `rect-down` |
+| scroll-top `1.7.13`    | 页面的滚动距离，通过 `onPageScroll` 获取                                | number                      | `0`         |
+| title-class            | 自定义标题样式类                                                        | string                      | -           |
+| lock-scroll `H5`       | 背景是否锁定                                                            | boolean                     | `true`      |
+| title-icon             | 自定义标题图标                                                          | string                      | -           |
+| direction              | 展开方向，可选值为`up` `down`                                           | string                      | -           |
+| up-icon                | 收起的图标                                                              | string                      | `rect-up`   |
+| down-icon              | 展开的图标                                                              | string                      | `rect-down` |
 
 ### Menu Slots
 
-| 名称   | 说明                                    |
-|------|---------------------------------------|
+| 名称 | 说明                                                             |
+| ---- | ---------------------------------------------------------------- |
 | icon | 自定义标题图标 (不支持小程序，小程序建议使用 props 传递图标名称) |
 
 ### MenuItem Props
 
-| 参数                   | 说明                    | 类型      | 默认值       |
-|----------------------|-----------------------|---------|-----------|
-| title                | 菜单项标题                 | string  | `当前选中项文字` |
-| options              | 选项数组                  | Array   | -         |
-| disabled             | 是否禁用菜单                | boolean | `false`   |
-| cols                 | 可以设置一行展示多少列 `options` | number  | `1`       |
-| direction            | 菜单展开方向，可选值为 `up`      | string  | `down`    |
-| active-title-class   | 选项选中时自定义标题样式类         | string  | -         |
-| inactive-title-class | 选项非选中时自定义标题样式类        | string  | -         |
+| 参数                 | 说明                             | 类型    | 默认值           |
+| -------------------- | -------------------------------- | ------- | ---------------- |
+| title                | 菜单项标题                       | string  | `当前选中项文字` |
+| options              | 选项数组                         | Array   | -                |
+| disabled             | 是否禁用菜单                     | boolean | `false`          |
+| cols                 | 可以设置一行展示多少列 `options` | number  | `1`              |
+| direction            | 菜单展开方向，可选值为 `up`      | string  | `down`           |
+| active-title-class   | 选项选中时自定义标题样式类       | string  | -                |
+| inactive-title-class | 选项非选中时自定义标题样式类     | string  | -                |
 
 ### MenuItem Slots
 
-| 名称   | 说明               |
-|------|------------------|
+| 名称 | 说明                          |
+| ---- | ----------------------------- |
 | icon | 自定义选项图标 (不支持小程序) |
 
 ### MenuItem Events
 
-| 事件名                 | 说明       | 回调参数                      |
-|---------------------|----------|---------------------------|
-| change              | 选择选项时触发  | value: `number \| string` |
+| 事件名              | 说明             | 回调参数                  |
+| ------------------- | ---------------- | ------------------------- |
+| change              | 选择选项时触发   | value: `number \| string` |
 | open                | 打开菜单栏时触发 | -                         |
 | close               | 关闭菜单栏时触发 | -                         |
-| item-click `1.7.11` | 点击选项时触发  | item: `MenuItemOption`    |
+| item-click `1.7.11` | 点击选项时触发   | item: `MenuItemOption`    |
 
 ### MenuItem Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 MenuItem 实例并调用实例方法
 
-| 方法名             | 说明                                       | 参数                        | 返回值 |
-|-----------------|------------------------------------------|---------------------------|-----|
-| toggle          | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | show?: `boolean`          | -   |
-| change `1.7.11` | 变更选择项                                    | value: `number \| string` | -   |
+| 方法名          | 说明                                                             | 参数                      | 返回值 |
+| --------------- | ---------------------------------------------------------------- | ------------------------- | ------ |
+| toggle          | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | show?: `boolean`          | -      |
+| change `1.7.11` | 变更选择项                                                       | value: `number \| string` | -      |
 
 ## 主题定制
 
@@ -447,8 +446,8 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                               |
-|---------------------------------------|-----------------------------------|
+| 名称                                  | 默认值                            |
+| ------------------------------------- | --------------------------------- |
 | --nut-menu-bar-line-height            | 48px                              |
 | --nut-menu-item-font-size             | var(--nut-font-size-2)            |
 | --nut-menu-item-text-color            | var(--nut-title-color)            |

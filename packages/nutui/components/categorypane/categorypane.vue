@@ -79,7 +79,12 @@ export default defineComponent({
 
     <div v-if="type === 'custom'" class="nut-category-pane__selfItemList">
       <slot />
-      <div v-for="(sku, key) in customCategory" :key="key" class="nut-category-pane__skuName" @click="onChange(sku)">
+      <div
+        v-for="(sku, key) in customCategory"
+        :key="key"
+        class="nut-category-pane__skuName"
+        @click="onChange(sku)"
+      >
         {{ sku?.catName }}
       </div>
     </div>

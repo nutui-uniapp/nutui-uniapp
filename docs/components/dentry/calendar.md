@@ -105,7 +105,7 @@ export default {
       setChooseValue,
       select,
     };
-  }  
+  }
 };
 </script>
 <style lang="scss">
@@ -167,7 +167,7 @@ export default {
       setChooseValue7,
       select,
     };
-  }  
+  }
 };
 </script>
 ```
@@ -226,7 +226,7 @@ export default {
       setChooseValue,
       select,
     };
-  }  
+  }
 };
 </script>
 <style lang="scss">

@@ -13,7 +13,7 @@
 ```
 
 ```typescript
-const searchValue = ref<string>("");
+const searchValue = ref<string>('')
 ```
 
 ### 设置搜索框形状
@@ -33,10 +33,10 @@ const searchValue = ref<string>("");
 ```
 
 ```typescript
-const searchValue = ref<string>("");
+const searchValue = ref<string>('')
 
 function onSearch(value: string) {
-  console.log("搜索触发", value);
+  console.log('搜索触发', value)
 }
 ```
 
@@ -114,7 +114,7 @@ function onSearch(value: string) {
 | ------------------------------ | ----------------------------------------------------------------------------------------------------- | --------------- | -------------- |
 | v-model                        | 当前输入的值                                                                                          | number \ string | `''`           |
 | shape                          | 搜索框形状，可选值为 `square` `round`                                                                 | string          | `round`        |
-| max-length                     | 最大输入长度   
+| max-length                     | 最大输入长度                                                                                          |
 | input-type                     | 输入框类型                                                                                            | string          | `text`         |
 | placeholder                    | 输入框默认暗纹                                                                                        | string          | `请输入`       |
 | clearable                      | 是否展示清除按钮                                                                                      | boolean         | `true`         |

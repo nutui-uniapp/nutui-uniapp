@@ -153,7 +153,9 @@ export default {
       数量多，滚动操作（纵向）
     </h2>
     <nut-tabs
-      v-model="state.tab4value" title-scroll direction="vertical"
+      v-model="state.tab4value"
+      title-scroll
+      direction="vertical"
       custom-style="height: 220px;"
     >
       <nut-tab-pane v-for="item in state.list4" :key="item" :title="`Tab ${item}`">
@@ -163,16 +165,37 @@ export default {
     <h2 class="title">
       左右布局
     </h2>
-    <nut-tabs v-model="state.tab5value" custom-style="height: 300px;" title-scroll direction="vertical">
-      <nut-tab-pane v-for="item in state.list5" :key="item" :pane-key="item" :title="`Tab ${item}`">
+    <nut-tabs
+      v-model="state.tab5value"
+      custom-style="height: 300px;"
+      title-scroll
+      direction="vertical"
+    >
+      <nut-tab-pane
+        v-for="item in state.list5"
+        :key="item"
+        :pane-key="item"
+        :title="`Tab ${item}`"
+      >
         Tab {{ item }}
       </nut-tab-pane>
     </nut-tabs>
     <h2 class="title">
       左右布局-微笑曲线
     </h2>
-    <nut-tabs v-model="state.tab6value" custom-style="height: 300px;" type="smile" title-scroll direction="vertical">
-      <nut-tab-pane v-for="item in state.list5" :key="item" :pane-key="item" :title="`Tab ${item}`">
+    <nut-tabs
+      v-model="state.tab6value"
+      custom-style="height: 300px;"
+      type="smile"
+      title-scroll
+      direction="vertical"
+    >
+      <nut-tab-pane
+        v-for="item in state.list5"
+        :key="item"
+        :pane-key="item"
+        :title="`Tab ${item}`"
+      >
         Tab {{ item }}
       </nut-tab-pane>
     </nut-tabs>
@@ -219,8 +242,11 @@ export default {
       <template #titles>
         <div class="title-list">
           <view
-            v-for="item in state.list6" :key="item.paneKey" class="title-item"
-            :class="{ 'tabs-active': state.tab7value === item.paneKey }" @click="state.tab7value = item.paneKey"
+            v-for="item in state.list6"
+            :key="item.paneKey"
+            class="title-item"
+            :class="{ 'tabs-active': state.tab7value === item.paneKey }"
+            @click="state.tab7value = item.paneKey"
           >
             <nut-icon name="dongdong" />
             <view class="nut-tabs__titles-item__text">
@@ -230,7 +256,12 @@ export default {
           </view>
         </div>
       </template>
-      <nut-tab-pane v-for="item in state.list6" :key="item.paneKey" title="" :pane-key="item.paneKey">
+      <nut-tab-pane
+        v-for="item in state.list6"
+        :key="item.paneKey"
+        title=""
+        :pane-key="item.paneKey"
+      >
         {{ item.title }}
       </nut-tab-pane>
     </nut-tabs>

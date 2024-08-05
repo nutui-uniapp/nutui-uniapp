@@ -29,7 +29,7 @@ const state = reactive({
 let widthBase = [14, 10, 7, 8.4, 10] // 中、英(大)、英(小)、数字、其他字符的基础宽度
 let symbolTextWidth = widthBase[0] * 0.7921
 const chineseReg = /^[\u4E00-\u9FA5]+$/ // 汉字
-const digitReg = /^[0-9]+$/ // 数字
+const digitReg = /^\d+$/ // 数字
 const letterUpperReg = /^[A-Z]+$/ // 字母
 const letterLowerReg = /^[a-z]+$/ // 字母
 

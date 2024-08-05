@@ -81,7 +81,8 @@ export default defineComponent({
         </view>
 
         <view
-          class="nut-tabbar-item_icon-box_nav-word" :class="[
+          class="nut-tabbar-item_icon-box_nav-word"
+          :class="[
             { 'nut-tabbar-item_icon-box_big-word': !icon && !isHaveSlot('icon') },
           ]"
         >

@@ -77,7 +77,12 @@ export default defineComponent({
 
 <template>
   <div :class="classes" :style="[animationStyle, transformStyle, customStyle]">
-    <div v-for="(item, index) in new Array(dice)" :key="index" class="page" :class="[`page${index + 1}`]">
+    <div
+      v-for="(item, index) in new Array(dice)"
+      :key="index"
+      class="page"
+      :class="[`page${index + 1}`]"
+    >
       <text v-for="(item2, index2) in new Array(index + 1)" :key="index2" />
     </div>
   </div>

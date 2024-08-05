@@ -328,9 +328,9 @@
 <script lang="ts">
   import { reactive, toRefs, ref, Ref } from 'vue';
   export default {
-    components: { 
-      Left, 
-      Right 
+    components: {
+      Left,
+      Right
     },
     setup() {
       const swiper = ref(null) as Ref;
@@ -349,7 +349,7 @@
       const handleNext = () => {
         swiper.value.next();
       };
-      
+
       return { ...toRefs(state), swiper, handlePrev, handleNext };
     }
   };

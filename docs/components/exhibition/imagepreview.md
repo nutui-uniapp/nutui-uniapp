@@ -41,7 +41,7 @@
         const hideFn = () => {
             resData.showPreview = false;
         }
-        
+
         return {
             ...toRefs(resData),
             showFn,
@@ -88,7 +88,7 @@
         const hideFn = () => {
             resData.showPreview = false;
         }
-        
+
         return {
             ...toRefs(resData),
             showFn,
@@ -141,7 +141,7 @@
         const hideFn = () => {
             resData.showPreview = false;
         }
-        
+
         return {
             ...toRefs(resData),
             showFn,

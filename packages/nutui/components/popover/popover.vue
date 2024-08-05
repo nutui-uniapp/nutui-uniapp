@@ -242,23 +242,36 @@ export default defineComponent({
 </script>
 
 <template>
-  <view v-if="!targetId" :id="popoverID" class="nut-popover-wrapper" @click="openPopover">
+  <view
+    v-if="!targetId"
+    :id="popoverID"
+    class="nut-popover-wrapper"
+    @click="openPopover"
+  >
     <slot name="reference" />
   </view>
   <view :class="classes" :style="getRootPosition">
     <NutPopup
       v-model:visible="showPopup"
-      :destroy-on-close="false" :pop-class="`nut-popover-content nut-popover-content--${location}`"
-      :custom-style="styles" :position="`` as any" :transition="`nut-popover` as any" :overlay="overlay"
-      :duration="+duration" :overlay-style="overlayStyle" :overlay-class="overlayClass"
+      :destroy-on-close="false"
+      :pop-class="`nut-popover-content nut-popover-content--${location}`"
+      :custom-style="styles"
+      :position="`` as any"
+      :transition="`nut-popover` as any"
+      :overlay="overlay"
+      :duration="+duration"
+      :overlay-style="overlayStyle"
+      :overlay-class="overlayClass"
       :close-on-click-overlay="closeOnClickOverlay"
     >
       <view :id="popoverContentID" class="nut-popover-content-group" @click.stop="clickContent">
         <view v-if="showArrow" :class="popoverArrow" :style="popoverArrowStyle" />
         <slot name="content" />
         <view
-          v-for="(item, index) in list" :key="index"
-          class="nut-popover-menu-item" :class="[item.className, item.disabled && 'nut-popover-menu-disabled']"
+          v-for="(item, index) in list"
+          :key="index"
+          class="nut-popover-menu-item"
+          :class="[item.className, item.disabled && 'nut-popover-menu-disabled']"
           @click="chooseItem(item, index)"
         >
           <NutIcon v-if="item.icon" :name="item.icon" custom-class="nut-popover-item-img" />

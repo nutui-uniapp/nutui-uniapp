@@ -367,7 +367,12 @@ export default defineComponent({
       {{ innerMin }}
     </view>
 
-    <view :id="rangeId" :class="classes" :style="wrapperStyles" @click.stop="onClick">
+    <view
+      :id="rangeId"
+      :class="classes"
+      :style="wrapperStyles"
+      @click.stop="onClick"
+    >
       <view class="nut-range-mark">
         <template v-if="innerMarks.length > 0">
           <view

@@ -8,9 +8,9 @@
 
 ```html
 <template>
-  <nut-invoice 
-    :data="data" 
-    :formValue="formValue" 
+  <nut-invoice
+    :data="data"
+    :formValue="formValue"
     @onSubmit="submit"
   >
   </nut-invoice>

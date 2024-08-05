@@ -128,7 +128,14 @@ export default defineComponent({
     <view id="navBarHtml" :class="classes" :style="styles">
       <view class="nut-navbar__left" @click="handleLeft">
         <slot v-if="leftShow" name="leftShow">
-          <NutIcon custom-class="right-icon" name="left" height="12px" :size="size" :custom-color="customColor" @click="handleBack" />
+          <NutIcon
+            custom-class="right-icon"
+            name="left"
+            height="12px"
+            :size="size"
+            :custom-color="customColor"
+            @click="handleBack"
+          />
         </slot>
         <view v-if="leftText" :style="colorStyle" class="nut-navbar__text">
           {{ leftText }}
@@ -136,7 +143,12 @@ export default defineComponent({
         <slot name="left" />
       </view>
       <view class="nut-navbar__title">
-        <view v-if="title" class="text" :style="colorStyle" @click="handleCenter">
+        <view
+          v-if="title"
+          class="text"
+          :style="colorStyle"
+          @click="handleCenter"
+        >
           {{ title }}
         </view>
         <view v-if="titleIcon" class="icon" @click="handleCenterIcon">

@@ -80,7 +80,13 @@ const { translate } = useTranslate(componentName)
           >
             {{ dialogStatus.cancelText || props.cancelText || translate('cancel') }}
           </NutButton>
-          <NutButton v-if="!dialogStatus.noOkBtn" size="small" type="primary" custom-class="nut-dialog__footer-ok" @click="onOk">
+          <NutButton
+            v-if="!dialogStatus.noOkBtn"
+            size="small"
+            type="primary"
+            custom-class="nut-dialog__footer-ok"
+            @click="onOk"
+          >
             {{ dialogStatus.okText || props.okText || translate('confirm') }}
           </NutButton>
         </template>

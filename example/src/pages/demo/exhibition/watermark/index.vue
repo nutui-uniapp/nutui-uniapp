@@ -31,7 +31,12 @@ export default defineComponent({
       <nut-button @click="showImageMark">
         图片水印
       </nut-button>
-      <nut-watermark v-if="!flag" class="mark1" :z-index="1" content="nut-ui-water-mark" />
+      <nut-watermark
+        v-if="!flag"
+        class="mark1"
+        :z-index="1"
+        content="nut-ui-water-mark"
+      />
       <nut-watermark
         v-if="flag"
         class="mark1"

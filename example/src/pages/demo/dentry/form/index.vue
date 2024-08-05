@@ -142,7 +142,7 @@ async function customRulePropValidator(val: string, rule: FormItemRuleWithoutVal
 const nameLengthValidator = async (val: string) => val?.length >= 2
 // Promise 异步校验
 async function asyncValidator(val: string): Promise<string> {
-  const telReg = /^400(-?)[0-9]{7}$|^1\d{10}$|^0[0-9]{2,3}-[0-9]{7,8}$/
+  const telReg = /^400(-?)\d{7}$|^1\d{10}$|^0\d{2,3}-\d{7,8}$/
   return new Promise((resolve, reject) => {
     uni.showLoading({
       title: '模拟异步验证中...',
@@ -171,16 +171,36 @@ async function asyncValidator(val: string): Promise<string> {
     </h2>
     <nut-form>
       <nut-form-item label="昵称">
-        <nut-input v-model="basicData.name" custom-class="nut-input-text" placeholder="请输入昵称" type="text" />
+        <nut-input
+          v-model="basicData.name"
+          custom-class="nut-input-text"
+          placeholder="请输入昵称"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item label="网龄">
-        <nut-input v-model="basicData.age" custom-class="nut-input-text" placeholder="请输入网龄" type="text" />
+        <nut-input
+          v-model="basicData.age"
+          custom-class="nut-input-text"
+          placeholder="请输入网龄"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item label="时间">
-        <nut-input v-model="basicData.time" custom-class="nut-input-text" placeholder="请输入时间" type="text" />
+        <nut-input
+          v-model="basicData.time"
+          custom-class="nut-input-text"
+          placeholder="请输入时间"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item label="地址">
-        <nut-input v-model="basicData.address" custom-class="nut-input-text" placeholder="请输入地址" type="text" />
+        <nut-input
+          v-model="basicData.address"
+          custom-class="nut-input-text"
+          placeholder="请输入地址"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item label="备注">
         <nut-textarea placeholder="请输入备注" type="text" />
@@ -190,8 +210,18 @@ async function asyncValidator(val: string): Promise<string> {
       动态表单
     </h2>
     <nut-form ref="dynamicRefForm" :model-value="dynamicForm.state">
-      <nut-form-item label="昵称" prop="name" required :rules="[{ required: true, message: '请填写姓名' }]">
-        <nut-input v-model="dynamicForm.state.name" custom-class="nut-input-text" placeholder="请输入姓名" type="text" />
+      <nut-form-item
+        label="昵称"
+        prop="name"
+        required
+        :rules="[{ required: true, message: '请填写姓名' }]"
+      >
+        <nut-input
+          v-model="dynamicForm.state.name"
+          custom-class="nut-input-text"
+          placeholder="请输入姓名"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item
         v-for="(item, index) in dynamicForm.state.time"
@@ -201,7 +231,12 @@ async function asyncValidator(val: string): Promise<string> {
         required
         :rules="[{ required: true, message: `请填写时间${index}` }]"
       >
-        <nut-input v-model="item.value" custom-class="nut-input-text" :placeholder="`请输入时间${index}`" type="text" />
+        <nut-input
+          v-model="item.value"
+          custom-class="nut-input-text"
+          :placeholder="`请输入时间${index}`"
+          type="text"
+        />
       </nut-form-item>
       <nut-cell>
         <nut-button size="small" custom-style="margin-right: 10px" @click="dynamicForm.methods.add">
@@ -210,7 +245,12 @@ async function asyncValidator(val: string): Promise<string> {
         <nut-button size="small" custom-style="margin-right: 10px" @click="dynamicForm.methods.remove">
           删除
         </nut-button>
-        <nut-button type="primary" custom-style="margin-right: 10px" size="small" @click="dynamicForm.methods.submit">
+        <nut-button
+          type="primary"
+          custom-style="margin-right: 10px"
+          size="small"
+          @click="dynamicForm.methods.submit"
+        >
           提交
         </nut-button>
         <nut-button size="small" @click="dynamicForm.methods.reset">
@@ -277,11 +317,26 @@ async function asyncValidator(val: string): Promise<string> {
           type="text"
         />
       </nut-form-item>
-      <nut-form-item label="地址" prop="address" required :rules="[{ required: true, message: '请填写地址' }]">
-        <nut-input v-model="formData.address" custom-class="nut-input-text" placeholder="请输入地址" type="text" />
+      <nut-form-item
+        label="地址"
+        prop="address"
+        required
+        :rules="[{ required: true, message: '请填写地址' }]"
+      >
+        <nut-input
+          v-model="formData.address"
+          custom-class="nut-input-text"
+          placeholder="请输入地址"
+          type="text"
+        />
       </nut-form-item>
       <nut-cell>
-        <nut-button type="primary" size="small" custom-style="margin-right: 10px" @click="submit">
+        <nut-button
+          type="primary"
+          size="small"
+          custom-style="margin-right: 10px"
+          @click="submit"
+        >
           提交
         </nut-button>
         <nut-button size="small" @click="reset">
@@ -359,10 +414,20 @@ async function asyncValidator(val: string): Promise<string> {
     </h2>
     <nut-form label-position="top" star-position="right">
       <nut-form-item label="姓名" required>
-        <nut-input v-model="basicData.name" class="nut-input-text" placeholder="请输入姓名" type="text" />
+        <nut-input
+          v-model="basicData.name"
+          class="nut-input-text"
+          placeholder="请输入姓名"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item label="年龄" required>
-        <nut-input v-model="basicData.age" class="nut-input-text" placeholder="请输入年龄" type="text" />
+        <nut-input
+          v-model="basicData.age"
+          class="nut-input-text"
+          placeholder="请输入年龄"
+          type="text"
+        />
       </nut-form-item>
       <nut-form-item label-position="left" label="备注">
         <nut-textarea placeholder="请输入备注" type="text" />

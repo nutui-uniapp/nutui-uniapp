@@ -53,12 +53,20 @@ export default defineComponent({
 
 <template>
   <view :class="classes" :style="styles">
-    <NutOverlay v-if="overlay" :visible="visible" :z-index="200" @click="updateValue(false)" />
+    <NutOverlay
+      v-if="overlay"
+      :visible="visible"
+      :z-index="200"
+      @click="updateValue(false)"
+    />
     <slot name="list">
       <view class="nut-fixed-nav__list">
         <view
-          v-for="(item, index) in navList" :key="item.id || index"
-          class="nut-fixed-nav__list-item" :class="{ active: item.id === current }" @click="selected(item, $event as any)"
+          v-for="(item, index) in navList"
+          :key="item.id || index"
+          class="nut-fixed-nav__list-item"
+          :class="{ active: item.id === current }"
+          @click="selected(item, $event as any)"
         >
           <image :src="item.icon" />
           <view class="span">

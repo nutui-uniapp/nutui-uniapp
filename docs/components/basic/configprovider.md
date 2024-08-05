@@ -115,7 +115,7 @@
 ```scss
 // 如果您仍旧选择使用:root 选择器来进行修改主色调，您还需要修改以下3个组件变量色  primaryColor为设置的主色调
 
---nut-address-region-tab-line: linear-gradient(90deg, primaryColor 0%, rgba(primaryColor,0.15) 100%)  ; 
+--nut-address-region-tab-line: linear-gradient(90deg, primaryColor 0%, rgba(primaryColor,0.15) 100%)  ;
 --nut-tabs-horizontal-tab-line-color: linear-gradient(180deg, primaryColor 0%, rgba(primaryColor,0.15) 100%);
 --nut-tabs-vertical-tab-line-color: linear-gradient(180deg, primaryColor 0%, rgba(primaryColor,0.15) 100%);
 ```

@@ -93,7 +93,8 @@ export default defineComponent({
 <template>
   <view :class="classes" :style="customStyle">
     <view
-      class="nut-pagination-prev" :class="[mode === 'multi' ? '' : 'simple-border', modelValue === 1 ? 'disabled' : '']"
+      class="nut-pagination-prev"
+      :class="[mode === 'multi' ? '' : 'simple-border', modelValue === 1 ? 'disabled' : '']"
       @click="select(modelValue - 1, true)"
     >
       <slot name="prevText">
@@ -104,7 +105,8 @@ export default defineComponent({
       <view
         v-for="(item, index) of pages"
         :key="`${index}pagination`"
-        class="nut-pagination-item" :class="[item.active ? 'active' : '']"
+        class="nut-pagination-item"
+        :class="[item.active ? 'active' : '']"
         @click="select(item.number, true)"
       >
         <slot name="page" :item="item">
@@ -118,7 +120,8 @@ export default defineComponent({
       </view>
     </view>
     <view
-      class="nut-pagination-next" :class="[modelValue >= countRef ? 'disabled' : '']"
+      class="nut-pagination-next"
+      :class="[modelValue >= countRef ? 'disabled' : '']"
       @click="select(modelValue + 1, true)"
     >
       <slot name="nextText">

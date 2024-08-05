@@ -49,7 +49,12 @@ export default defineComponent({
 <template>
   <view v-if="info && Object.keys(info)" :class="classes" :style="customStyle">
     <!-- 根据展示信息的多少，分为3种展示风格：simple，base，complex -->
-    <CommentHeader :type="headerType" :info="info" :labels="labels" @handle-click="handleClick">
+    <CommentHeader
+      :type="headerType"
+      :info="info"
+      :labels="labels"
+      @handle-click="handleClick"
+    >
       <template #labels>
         <slot name="commentLabels" />
       </template>
@@ -77,7 +82,12 @@ export default defineComponent({
     </text>
     <!-- #endif -->
 
-    <ComentImages :images="images" :videos="videos" :type="imagesRows" @click-images="clickImages" />
+    <ComentImages
+      :images="images"
+      :videos="videos"
+      :type="imagesRows"
+      @click-images="clickImages"
+    />
 
     <view v-if="follow && follow.days > 0" class="nut-comment__follow" @click="handleClick">
       <view class="nut-comment__follow-title">

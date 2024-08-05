@@ -115,7 +115,12 @@ onPageScroll((res) => {
         <nut-icon name="triangle-down" />
       </template>
       <nut-menu-item v-model="state.value1" :options="state.options1" />
-      <nut-menu-item v-model="state.value2" option-icon="checked" :options="state.options2" @change="handleChange">
+      <nut-menu-item
+        v-model="state.value2"
+        option-icon="checked"
+        :options="state.options2"
+        @change="handleChange"
+      >
         <template #icon>
           <nut-icon name="checked" />
         </template>
@@ -135,7 +140,12 @@ onPageScroll((res) => {
     </h2>
     <nut-menu>
       <nut-menu-item v-model="state.value1" disabled :options="state.options1" />
-      <nut-menu-item v-model="state.value2" disabled :options="state.options2" @change="handleChange" />
+      <nut-menu-item
+        v-model="state.value2"
+        disabled
+        :options="state.options2"
+        @change="handleChange"
+      />
     </nut-menu>
   </div>
 </template>

@@ -219,7 +219,12 @@ export default defineComponent({
         <slot v-if="props.useSwipeRightBtnSlot" name="swipe-right-btn" />
 
         <template v-else>
-          <NutButton shape="square" custom-style="height: 100%;" type="danger" @tap.stop="handleSwipeDelClick">
+          <NutButton
+            shape="square"
+            custom-style="height: 100%;"
+            type="danger"
+            @tap.stop="handleSwipeDelClick"
+          >
             删除
           </NutButton>
         </template>

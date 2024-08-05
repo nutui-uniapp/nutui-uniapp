@@ -116,7 +116,8 @@ export default defineComponent({
         <view
           v-for="(item, index) of danmuList"
           :key="`danmu${index}`"
-          class="nut-barrage__item move" :class="[`nut-barrage__item${index}`]"
+          class="nut-barrage__item move"
+          :class="[`nut-barrage__item${index}`]"
           :style="styleList[index]"
         >
           {{ item.length > 8 ? `${item.substr(0, 8)}...` : item }}

@@ -61,7 +61,12 @@ export default defineComponent({
     <view class="nut-time-detail__detail nut-time-detail__detail--moring">
       <!-- <view class="nut-time-detail__detail__time">上午</view> -->
       <view class="nut-time-detail__detail__list">
-        <view v-for="item in renderData" :key="item" :class="getClass(item)" @click="handleTime(item)">
+        <view
+          v-for="item in renderData"
+          :key="item"
+          :class="getClass(item)"
+          @click="handleTime(item)"
+        >
           {{ item }}
         </view>
       </view>

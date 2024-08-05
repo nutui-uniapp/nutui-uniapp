@@ -35,7 +35,7 @@ export default {
     margin-left:20px;
   }
 </style>
-```  
+```
 
 ### 简单模式
 

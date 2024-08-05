@@ -40,7 +40,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="styles" :ikey="ikey" @click.stop="handleClick">
+  <view
+    :class="classes"
+    :style="styles"
+    :ikey="ikey"
+    @click.stop="handleClick"
+  >
     <text class="nut-side-navbar-item__title">
       {{ title }}
     </text>

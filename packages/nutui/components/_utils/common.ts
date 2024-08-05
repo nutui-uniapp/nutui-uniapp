@@ -56,6 +56,7 @@ export function getPropByPath(obj: any, keyPath: string) {
   try {
     return keyPath.split('.').reduce((prev, curr) => prev[curr], obj)
   }
+  // eslint-disable-next-line unused-imports/no-unused-vars
   catch (error) {
     return ''
   }

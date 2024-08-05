@@ -336,7 +336,8 @@ export default defineComponent({
       <view v-if="['custom', 'custom2'].includes(privateType)" class="nut-address__custom">
         <view class="nut-address__region">
           <view
-            v-for="(item, index) in selectedRegion" :key="index"
+            v-for="(item, index) in selectedRegion"
+            :key="index"
             class="nut-address__region-item "
             :class="[index === tabIndex ? 'active' : '']"
             @click="changeRegionTab(item, index)"
@@ -352,11 +353,17 @@ export default defineComponent({
 
         <view v-if="privateType === 'custom'" class="nut-address__detail">
           <div class="nut-address__detail-list">
-            <scroll-view :scroll-y="true" :style="{ height: '100%' }" :scroll-top="scrollTop" @scroll="scrollChange">
+            <scroll-view
+              :scroll-y="true"
+              :style="{ height: '100%' }"
+              :scroll-top="scrollTop"
+              @scroll="scrollChange"
+            >
               <div
                 v-for="(item, index) in regionList"
                 :key="index"
-                class="nut-address__detail-item" :class="[selectedRegion[tabIndex]?.id === item.id ? 'active' : '']"
+                class="nut-address__detail-item"
+                :class="[selectedRegion[tabIndex]?.id === item.id ? 'active' : '']"
                 @click="nextAreaList(item)"
               >
                 <view>

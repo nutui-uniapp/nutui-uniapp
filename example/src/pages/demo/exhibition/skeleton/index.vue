@@ -22,25 +22,57 @@ export default {
     <h2 class="title">
       传入多行
     </h2>
-    <nut-skeleton width="250px" height="15px" title animated row="3" />
+    <nut-skeleton
+      width="250px"
+      height="15px"
+      title
+      animated
+      row="3"
+    />
 
     <h2 class="title">
       显示头像
     </h2>
-    <nut-skeleton width="250px" height="15px" title animated avatar row="3" />
+    <nut-skeleton
+      width="250px"
+      height="15px"
+      title
+      animated
+      avatar
+      row="3"
+    />
 
     <h2 class="title">
       标题段落圆角风格
     </h2>
-    <nut-skeleton width="250px" height="15px" animated round />
+    <nut-skeleton
+      width="250px"
+      height="15px"
+      animated
+      round
+    />
 
     <h2 class="title">
       图片组合
     </h2>
 
     <div class="pic-compose">
-      <nut-skeleton width="250px" height="15px" title animated row="3" class="item" />
-      <nut-skeleton width="250px" height="15px" title animated row="3" class="item" />
+      <nut-skeleton
+        width="250px"
+        height="15px"
+        title
+        animated
+        row="3"
+        class="item"
+      />
+      <nut-skeleton
+        width="250px"
+        height="15px"
+        title
+        animated
+        row="3"
+        class="item"
+      />
     </div>
 
     <h2 class="title">
@@ -50,7 +82,15 @@ export default {
       <div>
         <nut-switch v-model="checked" />
       </div>
-      <nut-skeleton width="250px" height="15px" title animated avatar row="3" :loading="!checked">
+      <nut-skeleton
+        width="250px"
+        height="15px"
+        title
+        animated
+        avatar
+        row="3"
+        :loading="!checked"
+      >
         <view class="container">
           <nut-avatar :size="50">
             <image
