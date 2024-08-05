@@ -240,7 +240,12 @@ export default defineComponent({
       </template>
     </view>
 
-    <view v-for="(item, index) in fileList" :key="item.uid" class="nut-uploader__preview" :class="[listType]">
+    <view
+      v-for="(item, index) in fileList"
+      :key="item.uid"
+      class="nut-uploader__preview"
+      :class="[listType]"
+    >
       <view v-if="listType === 'picture' && !$slots.default" class="nut-uploader__preview-img">
         <view v-if="item.status !== 'success'" class="nut-uploader__preview__progress">
           <template v-if="item.status !== 'ready'">

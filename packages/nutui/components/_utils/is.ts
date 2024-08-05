@@ -91,6 +91,6 @@ export function isMap(val: unknown): val is Map<any, any> {
 }
 
 export function isUrl(path: string): boolean {
-  const reg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/
+  const reg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?/
   return reg.test(path)
 }

@@ -5,7 +5,6 @@ import { dividerProps } from './divider'
 
 const COMPONENT_NAME = 'nut-divider'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

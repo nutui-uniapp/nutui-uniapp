@@ -34,20 +34,20 @@
 
 ```typescript
 interface BaseForm {
-  text1: string;
-  text2: string;
-  text3: string;
-  text4: string;
-  text5: string;
+  text1: string
+  text2: string
+  text3: string
+  text4: string
+  text5: string
 }
 
 const baseForm = ref<BaseForm>({
-  text1: "",
-  text2: "",
-  text3: "",
-  text4: "",
-  text5: ""
-});
+  text1: '',
+  text2: '',
+  text3: '',
+  text4: '',
+  text5: ''
+})
 ```
 
 ### 表单校验
@@ -131,133 +131,134 @@ const baseForm = ref<BaseForm>({
 ```
 
 ```typescript
-import type { FormInst, FormRules } from "nutui-uniapp";
+import type { FormInst, FormRules } from 'nutui-uniapp'
 
 interface DemoForm {
-  nickname: string;
-  isVip: boolean;
-  gifts: string[];
-  count: number;
-  hobby: string;
-  progress: number;
-  rate: number;
-  enabled: boolean;
-  remarks: string;
+  nickname: string
+  isVip: boolean
+  gifts: string[]
+  count: number
+  hobby: string
+  progress: number
+  rate: number
+  enabled: boolean
+  remarks: string
   object: {
     test1: string
-  };
+  }
 }
 
-const demoFormInst = ref<FormInst<DemoForm> | null>(null);
+const demoFormInst = ref<FormInst<DemoForm> | null>(null)
 
 const demoForm = ref<DemoForm>({
-  nickname: "",
+  nickname: '',
   isVip: false,
   gifts: [],
   count: 1,
-  hobby: "",
+  hobby: '',
   progress: 0,
   rate: 0,
   enabled: false,
-  remarks: "",
+  remarks: '',
   object: {
-    test1: ""
+    test1: ''
   }
-});
+})
 
 // 自 2.0.0 开始，FormRules支持传入泛型，可以有正确的字段提示
 const demoRules: FormRules<DemoForm> = {
-  nickname: { required: true, message: "请输入用户昵称", trigger: ["blur", "change"] },
-  isVip: [{ required: true, message: "请选择是否为vip用户", trigger: "change" }],
-  gifts: [
-    { required: true, message: "请选择赠送的礼物", trigger: "change" },
-    { minlen: 3, message: "至少赠送3个礼物", trigger: ["change"] }
+  'nickname': { required: true, message: '请输入用户昵称', trigger: ['blur', 'change'] },
+  'isVip': [{ required: true, message: '请选择是否为vip用户', trigger: 'change' }],
+  'gifts': [
+    { required: true, message: '请选择赠送的礼物', trigger: 'change' },
+    { minlen: 3, message: '至少赠送3个礼物', trigger: ['change'] }
   ],
-  count: { max: 5, message: "商品数量不能超过5个", trigger: "change" },
-  hobby: { required: true, message: "请选择用户喜好", trigger: "change" },
-  progress: { min: 30, message: "进度不能小于30%", trigger: "change" },
-  rate: { min: 2, message: "评价不能低于2星" },
-  remarks: [{
+  'count': { max: 5, message: '商品数量不能超过5个', trigger: 'change' },
+  'hobby': { required: true, message: '请选择用户喜好', trigger: 'change' },
+  'progress': { min: 30, message: '进度不能小于30%', trigger: 'change' },
+  'rate': { min: 2, message: '评价不能低于2星' },
+  'remarks': [{
     // 返回值说明
     // 字符串/false：校验失败
     // true/undefined：校验通过
     validator(value) {
-      if (!value.includes("nutui")) {
+      if (!value.includes('nutui')) {
         // 可以直接返回字符串作为错误信息
-        return "输入的备注中没有包含 \"nutui\" 字样";
+        return '输入的备注中没有包含 "nutui" 字样'
       }
     },
-    trigger: "blur"
+    trigger: 'blur'
   }, {
     validator(value) {
       if (value.length < 10) {
         // 也可以返回false表示校验不通过，将会使用message字段作为错误信息
-        return false;
+        return false
       }
     },
-    message: "备注信息长度不能小于10",
-    trigger: "blur"
+    message: '备注信息长度不能小于10',
+    trigger: 'blur'
   }, {
     async validator(value) {
       // 也可以异步校验，这里用sleep模拟接口请求
-      await sleep(1000);
+      await sleep(1000)
 
       // 这里模拟异步处理，返回值的处理逻辑与同步校验相同
-      return value.length > 30 ? "备注信息长度不能大于30" : true;
+      return value.length > 30 ? '备注信息长度不能大于30' : true
     },
-    trigger: "blur"
+    trigger: 'blur'
   }, {
     validator(value) {
       // 当然，也可以返回一个Promise
       return new Promise((resolve) => {
         sleep(1000).then(() => {
-          if (!value.startsWith("您好")) {
-            resolve("备注信息必须以 \"您好\" 开头");
-          } else {
-            resolve();
+          if (!value.startsWith('您好')) {
+            resolve('备注信息必须以 "您好" 开头')
           }
-        });
-      });
+          else {
+            resolve()
+          }
+        })
+      })
     },
-    trigger: "blur"
+    trigger: 'blur'
   }, {
     validator(value) {
-      if (!value.endsWith("谢谢")) {
+      if (!value.endsWith('谢谢')) {
         // 如果你更喜欢使用reject表示错误信息，也可以这样
-        return Promise.reject("备注信息必须以 \"谢谢\" 结尾");
+        return Promise.reject('备注信息必须以 "谢谢" 结尾')
 
         // 也可以使用Error
         // return Promise.reject(new Error('备注信息必须以 "谢谢" 结尾'))
       }
     },
-    trigger: "blur"
+    trigger: 'blur'
   }],
   // 自 2.0.0 开始支持多级prop
-  "object.test1": [
-    { required: true, message: "请输入其他信息", trigger: ["blur", "change"] },
-    { regex: /^[\u4E00-\u9FA5]+$/g, message: "其他信息只能输入中文", trigger: "blur" }
+  'object.test1': [
+    { required: true, message: '请输入其他信息', trigger: ['blur', 'change'] },
+    { regex: /^[\u4E00-\u9FA5]+$/g, message: '其他信息只能输入中文', trigger: 'blur' }
   ]
-};
+}
 
 function onDemoFormRateChange() {
   // 也可以手动调用validate方法
-  demoFormInst.value?.validate("rate");
+  demoFormInst.value?.validate('rate')
 }
 
 async function submitDemoForm() {
-  const { valid, errors } = await demoFormInst.value!.validate();
+  const { valid, errors } = await demoFormInst.value!.validate()
 
   if (!valid) {
-    console.log("校验不通过", errors);
-    return;
+    console.log('校验不通过', errors)
+    return
   }
 
-  console.log("校验通过");
+  console.log('校验通过')
 }
 
 function clearDemoFormValidate() {
   // 自 2.0.0 开始使用 `clearValidate` 方法来清除校验信息，之前的版本使用 `reset` 方法
-  demoFormInst.value?.clearValidate();
+  demoFormInst.value?.clearValidate()
 }
 ```
 
@@ -303,48 +304,46 @@ function clearDemoFormValidate() {
 ```
 
 ```typescript
-import type { FormInst } from "nutui-uniapp";
+import type { FormInst } from 'nutui-uniapp'
 
 interface DynamicTelItem {
-  key: number;
-  value: string;
+  key: number
+  value: string
 }
 
 interface DynamicForm {
-  name: string;
-  tels: DynamicTelItem[];
+  name: string
+  tels: DynamicTelItem[]
 }
 
-const dynamicFormInst = ref<FormInst<DynamicForm> | null>(null);
+const dynamicFormInst = ref<FormInst<DynamicForm> | null>(null)
 
 const dynamicForm = ref<DynamicForm>({
-  name: "",
-  tels: [{ key: 1, value: "" }]
-});
+  name: '',
+  tels: [{ key: 1, value: '' }]
+})
 
 function createDynamicFormItem() {
-  dynamicForm.value.tels.push({ key: Date.now() + Math.round(Math.random() * 1000), value: "" });
+  dynamicForm.value.tels.push({ key: Date.now() + Math.round(Math.random() * 1000), value: '' })
 }
 
 function deleteDynamicFormItem() {
-  dynamicForm.value.tels.splice(dynamicForm.value.tels.length - 1, 1);
+  dynamicForm.value.tels.splice(dynamicForm.value.tels.length - 1, 1)
 }
 
 async function submitDynamicForm() {
-  const { valid, errors } = await dynamicFormInst.value!.validate();
+  const { valid, errors } = await dynamicFormInst.value!.validate()
 
   if (!valid) {
-    // eslint-disable-next-line no-console
-    console.log("校验不通过", errors);
-    return;
+    console.log('校验不通过', errors)
+    return
   }
 
-  // eslint-disable-next-line no-console
-  console.log("校验通过");
+  console.log('校验通过')
 }
 
 function clearDynamicFormValidate() {
-  dynamicFormInst.value?.clearValidate();
+  dynamicFormInst.value?.clearValidate()
 }
 ```
 
@@ -375,9 +374,9 @@ function clearDynamicFormValidate() {
 > 自 `2.0.0` 开始，自定义组件可以通过 `formItemContext` 来支持自动触发校验，下面以 `change` 事件为例
 
 ```typescript
-import { useFormItemContext } from "nutui-uniapp/composables";
+import { useFormItemContext } from 'nutui-uniapp/composables'
 
-const formItemContext = useFormItemContext();
+const formItemContext = useFormItemContext()
 
 function onChange() {
   // ...
@@ -415,19 +414,19 @@ interface FormItemValidateResult {
   /**
    * 是否验证通过
    */
-  valid: boolean;
+  valid: boolean
   /**
    * 触发校验的字段
    */
-  prop?: string;
+  prop?: string
   /**
    * 触发校验字段的值
    */
-  value?: any;
+  value?: any
   /**
    * 错误信息
    */
-  message?: string;
+  message?: string
 }
 ```
 
@@ -453,41 +452,41 @@ interface FormItemValidateResult {
 ::: details 类型定义 `2.0.0`
 
 ```typescript
-type FormItemRuleTrigger = "blur" | "change";
+type FormItemRuleTrigger = 'blur' | 'change'
 
 interface FormItemRuleWithoutValidator {
   /**
    * 是否必须
    */
-  required?: boolean;
+  required?: boolean
   /**
    * 正则
    */
-  regex?: RegExp;
+  regex?: RegExp
   /**
    * 最小值
    */
-  min?: number;
+  min?: number
   /**
    * 最大值
    */
-  max?: number;
+  max?: number
   /**
    * 最小长度
    */
-  minlen?: number;
+  minlen?: number
   /**
    * 最大长度
    */
-  maxlen?: number;
+  maxlen?: number
   /**
    * 提示信息
    */
-  message?: string;
+  message?: string
   /**
    * 校验触发方式
    */
-  trigger?: Arrayable<FormItemRuleTrigger>;
+  trigger?: Arrayable<FormItemRuleTrigger>
 }
 
 interface FormItemRule extends FormItemRuleWithoutValidator {
@@ -497,7 +496,7 @@ interface FormItemRule extends FormItemRuleWithoutValidator {
    * @param value 当前值
    * @param rule 校验规则
    */
-  validator?: (value: any, rule: FormItemRuleWithoutValidator) => Awaitable<OptionalValue<boolean | string>>;
+  validator?: (value: any, rule: FormItemRuleWithoutValidator) => Awaitable<OptionalValue<boolean | string>>
 }
 ```
 
@@ -526,8 +525,8 @@ interface FormItemRule extends FormItemRuleWithoutValidator {
 
 ```typescript
 interface FormValidateResult {
-  valid: boolean;
-  errors: FormItemValidateResult[];
+  valid: boolean
+  errors: FormItemValidateResult[]
 }
 ```
 

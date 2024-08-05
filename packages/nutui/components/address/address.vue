@@ -13,7 +13,6 @@ import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from
 
 const COMPONENT_NAME = 'nut-address'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -360,7 +359,12 @@ watch(
 
         <view v-if="privateType === 'custom'" class="nut-address__detail">
           <view class="nut-address__detail-list">
-            <scroll-view :scroll-y="true" :style="{ height: '100%' }" :scroll-top="scrollTop" @scroll="scrollChange">
+            <scroll-view
+              :scroll-y="true"
+              :style="{ height: '100%' }"
+              :scroll-top="scrollTop"
+              @scroll="scrollChange"
+            >
               <view
                 v-for="(item, index) in regionList"
                 :key="index"

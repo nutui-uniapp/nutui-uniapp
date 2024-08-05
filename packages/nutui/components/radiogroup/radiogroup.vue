@@ -9,7 +9,6 @@ import { radiogroupEmits, radiogroupProps } from './radiogroup'
 
 const COMPONENT_NAME = 'nut-radio-group'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

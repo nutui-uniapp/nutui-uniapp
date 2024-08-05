@@ -88,7 +88,12 @@ const overlayStyles = {
         点击遮罩不关闭
       </nut-button>
 
-      <nut-overlay v-model:visible="visible6" :z-index="2000" lock-scroll :close-on-click-overlay="false">
+      <nut-overlay
+        v-model:visible="visible6"
+        :z-index="2000"
+        lock-scroll
+        :close-on-click-overlay="false"
+      >
         <view class="wrapper">
           <view class="content n-bg-2" @click.stop="visible6 = false">
             close

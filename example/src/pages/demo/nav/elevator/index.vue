@@ -294,7 +294,12 @@ export default defineComponent({
       基础用法
     </h2>
     <div class="elevator-wrapper">
-      <nut-elevator :index-list="temp" :height="260" @click-item="clickItem" @click-index="clickIndex" />
+      <nut-elevator
+        :index-list="temp"
+        :height="260"
+        @click-item="clickItem"
+        @click-index="clickIndex"
+      />
     </div>
     <h2 class="title">
       自定义索引key
@@ -324,7 +329,12 @@ export default defineComponent({
       自定义内容
     </h2>
     <div class="elevator-wrapper">
-      <nut-elevator :index-list="temp" :height="260" @click-item="clickItem" @click-index="clickIndex">
+      <nut-elevator
+        :index-list="temp"
+        :height="260"
+        @click-item="clickItem"
+        @click-index="clickIndex"
+      >
         <template #default="slotProps">
           <nut-icon name="jd" width="12px" />
           <span :style="{ marginLeft: '15px' }">{{ slotProps.item.name }}</span>

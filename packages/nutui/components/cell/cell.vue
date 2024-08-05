@@ -8,7 +8,6 @@ import { cellEmits, cellProps } from './cell'
 
 const COMPONENT_NAME = 'nut-cell'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

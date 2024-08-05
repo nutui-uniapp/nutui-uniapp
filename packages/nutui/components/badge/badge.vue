@@ -5,7 +5,6 @@ import { badgeProps } from './badge'
 
 const COMPONENT_NAME = 'nut-badge'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

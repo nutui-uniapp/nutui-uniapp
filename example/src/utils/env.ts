@@ -109,6 +109,7 @@ export function parseJSON<T>(val: any) {
   try {
     obj = JSON.parse(val || '{}') as T
   }
+  // eslint-disable-next-line unused-imports/no-unused-vars
   catch (error) {
     obj = {} as T
   }

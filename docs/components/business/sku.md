@@ -50,13 +50,13 @@ export default {
           skuId: sku.id,
           price: '4599.00',
           imagePath:
-            '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg' 
+            '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg'
         };
       };
       // 底部操作按钮触发
       const clickBtnOperate = (op:string)=>{
         console.log('点击了操作按钮',op)
-      } 
+      }
       // 关闭商品规格弹框
       const close = ()=>{}
       return { base, selectSku, clickBtnOperate,close, ...toRefs(data) };
@@ -127,13 +127,13 @@ setup() {
         skuId: sku.id,
         price: '4599.00',
         imagePath:
-          '//img14.360buyimg.com/n4/jfs/t1/216079/14/3895/201095/618a5c0cEe0b9e2ba/cf5b98fb6128a09e.jpg' 
+          '//img14.360buyimg.com/n4/jfs/t1/216079/14/3895/201095/618a5c0cEe0b9e2ba/cf5b98fb6128a09e.jpg'
       };
     };
     // 底部操作按钮触发
     const clickBtnOperate = (op:string)=>{
       console.log('点击了操作按钮',op)
-    } 
+    }
     return { notSell, changeStepper,selectSku,btnExtraText,...toRefs(data) };
   }
 }
@@ -224,13 +224,13 @@ setup() {
         skuId: sku.id,
         price: '4599.00',
         imagePath:
-          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg' 
+          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg'
       };
     };
     // 底部操作按钮触发
     const clickBtnOperate = (op:string)=>{
       console.log('点击了操作按钮',op)
-    } 
+    }
     return { customStepper, overLimit, changeStepper,selectSku, clickBtnOperate,stepperExtraText,...toRefs(data) };
 }
 }
@@ -258,11 +258,11 @@ Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可�
               <nut-price :price="goods.price" :needSymbol="true" :thousands="false"> </nut-price>
               <span class="tag"></span>
           </div>
-      </template> 
+      </template>
       <!-- 商品展示区，编号区域 -->
       <template #skuHeaderExtra>
           <span class="nut-sku-header-right-extra">重量：0.1kg  编号：{{skuId}}  </span>
-      </template> 
+      </template>
       <!-- sku 展示区上方与商品信息展示区下方区域，无默认展示内容 -->
       <template #skuSelectTop>
           <div class="address">
@@ -362,7 +362,7 @@ setup() {
         skuId: sku.id,
         price: '6002.10',
         imagePath:
-          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg' 
+          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg'
       };
     };
     const selectedAddress = (prevExistAdd: any, nowExistAdd: any) => {
@@ -372,7 +372,7 @@ setup() {
     // 底部操作按钮触发
     const clickBtnOperate = (op:string)=>{
       console.log('点击了操作按钮',op)
-    } 
+    }
     return { customBySlot, selectSku, clickBtnOperate,existAddress,addressDesc,selectedAddress,...toRefs(data) };
 }
 }
@@ -448,7 +448,7 @@ export default {
         skuId: sku.id,
         price: '4599.00',
         imagePath:
-          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg' 
+          '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg'
       };
 
       // 在此处重置商品数量
@@ -537,87 +537,73 @@ sku 数组中，每一个数组索引代表一个规格类目。其中，`list` 
 
 ```javascript
 sku : [{
-    id: 1,
-    name: '颜色',
-    list: [{
-        name: '亮黑色',
-        id: 100016015112,
-        active: true,
-        disable: false
-      },
-      {
-        name: '釉白色',
-        id: 100016015142,
-        active: false,
-        disable: false
-      },
-      {
-        name: '秘银色',
-        id: 100016015078,
-        active: false,
-        disable: false
-      },
-      {
-        name: '夏日胡杨',
-        id: 100009064831,
-        active: false,
-        disable: false
-      },
-      {
-        name: '秋日胡杨',
-        id: 100009064830,
-        active: false,
-        disable: false
-      }
-    ]
-  },
-  {
-    id: 2,
-    name: '版本',
-    list: [{
-        name: '8GB+128GB',
-        id: 100016015102,
-        active: true,
-        disable: false
-      },
-      {
-        name: '8GB+256GB',
-        id: 100016015122,
-        active: false,
-        disable: false
-      }
-    ]
-  },
-  {
-    id: 3,
-    name: '版本',
-    list: [{
-        name: '4G（有充版）',
-        id: 100016015103,
-        active: true,
-        disable: false
-      },
-      {
-        name: '5G（有充版）',
-        id: 100016015123,
-        active: false,
-        disable: false
-      },
-      {
-        name: '5G（无充版）',
-        id: 100016015104,
-        active: true,
-        disable: true
-      },
-      {
-        name: '5G（无充）质保换新版',
-        id: 100016015125,
-        active: false,
-        disable: false
-      }
-    ]
-  }
-];
+  id: 1,
+  name: '颜色',
+  list: [{
+    name: '亮黑色',
+    id: 100016015112,
+    active: true,
+    disable: false
+  }, {
+    name: '釉白色',
+    id: 100016015142,
+    active: false,
+    disable: false
+  }, {
+    name: '秘银色',
+    id: 100016015078,
+    active: false,
+    disable: false
+  }, {
+    name: '夏日胡杨',
+    id: 100009064831,
+    active: false,
+    disable: false
+  }, {
+    name: '秋日胡杨',
+    id: 100009064830,
+    active: false,
+    disable: false
+  }]
+}, {
+  id: 2,
+  name: '版本',
+  list: [{
+    name: '8GB+128GB',
+    id: 100016015102,
+    active: true,
+    disable: false
+  }, {
+    name: '8GB+256GB',
+    id: 100016015122,
+    active: false,
+    disable: false
+  }]
+}, {
+  id: 3,
+  name: '版本',
+  list: [{
+    name: '4G（有充版）',
+    id: 100016015103,
+    active: true,
+    disable: false
+  }, {
+    name: '5G（有充版）',
+    id: 100016015123,
+    active: false,
+    disable: false
+  }, {
+    name: '5G（无充版）',
+    id: 100016015104,
+    active: true,
+    disable: true
+  }, {
+    name: '5G（无充）质保换新版',
+    id: 100016015125,
+    active: false,
+    disable: false
+  }]
+}]
 ```
 
 ## 主题定制

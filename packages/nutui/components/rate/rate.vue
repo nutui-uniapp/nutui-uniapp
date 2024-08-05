@@ -59,17 +59,37 @@ export default defineComponent({
 <template>
   <view :class="classes" :style="customStyle">
     <view
-      v-for="n in Number(count)" :id="`rateRefs-${refRandomId}${n}`" :key="n" ref="rateRefs" class="nut-rate-item"
+      v-for="n in Number(count)"
+      :id="`rateRefs-${refRandomId}${n}`"
+      :key="n"
+      ref="rateRefs"
+      class="nut-rate-item"
       :style="n < Number(count) ? { marginRight: pxCheck(spacing!) } : {}"
     >
       <view class="nut-rate-item__icon--full" @click="onClick(1, n)">
-        <NutIcon :size="props.size" :custom-class="`nut-rate-item__icon ${disabled || n > +modelValue ? 'nut-rate-item__icon--disabled' : ''}`" :name="customIcon" :custom-color="n <= +modelValue ? activeColor : voidColor" />
+        <NutIcon
+          :size="props.size"
+          :custom-class="`nut-rate-item__icon ${disabled || n > +modelValue ? 'nut-rate-item__icon--disabled' : ''}`"
+          :name="customIcon"
+          :custom-color="n <= +modelValue ? activeColor : voidColor"
+        />
       </view>
       <view v-if="allowHalf && Number(modelValue) + 1 > n" class="nut-rate-item__icon--half" @click="onClick(2, n)">
-        <NutIcon :size="props.size" custom-class="nut-rate-item__icon" :name="customIcon" :custom-color="n <= Number(modelValue) + 1 ? activeColor : voidColor" @click="onClick(2, n)" />
+        <NutIcon
+          :size="props.size"
+          custom-class="nut-rate-item__icon"
+          :name="customIcon"
+          :custom-color="n <= Number(modelValue) + 1 ? activeColor : voidColor"
+          @click="onClick(2, n)"
+        />
       </view>
       <view v-else-if="allowHalf && Number(modelValue) + 1 < n" class="nut-rate-item__icon--half" @click="onClick(2, n)">
-        <NutIcon :size="props.size" :name="customIcon" custom-class="nut-rate-item__icon nut-rate-item__icon--disabled" :custom-color="voidColor" />
+        <NutIcon
+          :size="props.size"
+          :name="customIcon"
+          custom-class="nut-rate-item__icon nut-rate-item__icon--disabled"
+          :custom-color="voidColor"
+        />
       </view>
     </view>
   </view>

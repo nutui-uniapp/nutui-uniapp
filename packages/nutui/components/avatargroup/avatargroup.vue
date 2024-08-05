@@ -8,7 +8,6 @@ import { AVATAR_GROUP_KEY, avatargroupProps } from './avatargroup'
 
 const COMPONENT_NAME = 'nut-avatar-group'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

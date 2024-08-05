@@ -66,7 +66,12 @@ function selected(res: any) {
       @selected="selected"
     />
 
-    <nut-fixed-nav v-model:visible="myActive" :position="{ top: '280px' }" type="left" @selected="selected">
+    <nut-fixed-nav
+      v-model:visible="myActive"
+      :position="{ top: '280px' }"
+      type="left"
+      @selected="selected"
+    >
       <template #list>
         <ul class="nut-fixed-nav__list">
           <li class="nut-fixed-nav__list-item">

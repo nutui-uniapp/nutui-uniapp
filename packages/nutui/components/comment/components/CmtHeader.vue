@@ -3,7 +3,6 @@ import NutRate from '../../rate/rate.vue'
 
 const COMPONENT_NAME = 'nut-comment-header'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -47,8 +46,15 @@ function handleClick() {
           </view>
 
           <view class="nut-comment-header__user-score">
-            <!-- eslint-disable-next-line vue/no-mutating-props -->
-            <NutRate v-model="props.info.score" size="12" spacing="5" readonly @change="handleClick" />
+            <!-- eslint-disable vue/no-mutating-props -->
+            <NutRate
+              v-model="props.info.score"
+              size="12"
+              spacing="5"
+              readonly
+              @change="handleClick"
+            />
+            <!-- eslint-enable vue/no-mutating-props -->
           </view>
         </view>
 
@@ -67,8 +73,14 @@ function handleClick() {
     </view>
 
     <view v-if="props.type === 'complex'" :class="[`nut-comment-header__${props.type}-score`]">
-      <!-- eslint-disable-next-line vue/no-mutating-props -->
-      <NutRate v-model="props.info.score" size="12" spacing="3" readonly />
+      <!-- eslint-disable vue/no-mutating-props -->
+      <NutRate
+        v-model="props.info.score"
+        size="12"
+        spacing="3"
+        readonly
+      />
+      <!-- eslint-enable vue/no-mutating-props -->
 
       <i :class="[`nut-comment-header__${props.type}-score-i`]" />
 

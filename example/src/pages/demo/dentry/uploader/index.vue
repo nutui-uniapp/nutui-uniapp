@@ -111,11 +111,23 @@ function beforeXhrUpload(UploadFile: any, options: any) {
     <h2 class="title">
       上传状态
     </h2>
-    <nut-uploader v-model:file-list="defaultFileList" :url="uploadUrl" maximum="3" multiple @delete="onDelete" />
+    <nut-uploader
+      v-model:file-list="defaultFileList"
+      :url="uploadUrl"
+      maximum="3"
+      multiple
+      @delete="onDelete"
+    />
     <h2 class="title">
       基础用法-上传列表展示
     </h2>
-    <nut-uploader v-model:file-list="defaultFileList1" :url="uploadUrl" maximum="10" multiple list-type="list">
+    <nut-uploader
+      v-model:file-list="defaultFileList1"
+      :url="uploadUrl"
+      maximum="10"
+      multiple
+      list-type="list"
+    >
       <nut-button type="success" size="small">
         上传文件
       </nut-button>
@@ -154,7 +166,13 @@ function beforeXhrUpload(UploadFile: any, options: any) {
     <h2 class="title">
       使用前摄像头拍摄3s视频并上传(仅支持微信小程序)
     </h2>
-    <nut-uploader :media-type="['video']" max-duration="3" :source-type="['camera']" camera="front" :url="uploadUrl" />
+    <nut-uploader
+      :media-type="['video']"
+      max-duration="3"
+      :source-type="['camera']"
+      camera="front"
+      :url="uploadUrl"
+    />
     <h2 class="title">
       上传状态
     </h2>
@@ -170,7 +188,12 @@ function beforeXhrUpload(UploadFile: any, options: any) {
     <h2 class="title">
       自定义数据 FormData 、 headers
     </h2>
-    <nut-uploader :url="uploadUrl" :data="formData" :headers="formData" :with-credentials="true" />
+    <nut-uploader
+      :url="uploadUrl"
+      :data="formData"
+      :headers="formData"
+      :with-credentials="true"
+    />
     <h2 class="title">
       自定义 uni.uploadFile 上传方式(before-xhr-upload)
     </h2>
@@ -178,7 +201,12 @@ function beforeXhrUpload(UploadFile: any, options: any) {
     <h2 class="title">
       选中文件后，通过按钮手动执行上传
     </h2>
-    <nut-uploader ref="uploadRef" :url="uploadUrl" maximum="5" :auto-upload="false" />
+    <nut-uploader
+      ref="uploadRef"
+      :url="uploadUrl"
+      maximum="5"
+      :auto-upload="false"
+    />
     <br>
     <nut-button type="success" size="small" @click="submitUpload">
       手动执行上传

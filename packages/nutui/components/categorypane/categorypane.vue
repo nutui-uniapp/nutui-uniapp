@@ -5,7 +5,6 @@ import { categorypaneEmits, categorypaneProps } from './categorypane'
 
 const COMPONENT_NAME = 'nut-category-pane'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

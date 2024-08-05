@@ -42,7 +42,12 @@ export default {
     </h2>
     <div>
       <nut-cell>
-        <nut-progress percentage="30" stroke-color=" rgba(250,44,25,0.47)" stroke-width="20" text-color="red" />
+        <nut-progress
+          percentage="30"
+          stroke-color=" rgba(250,44,25,0.47)"
+          stroke-width="20"
+          text-color="red"
+        />
       </nut-cell>
     </div>
     <h2 class="title">
@@ -112,7 +117,12 @@ export default {
           status="icon"
         >
           <template #iconName>
-            <nut-icon name="issue" custom-color="red" width="15px" height="15px" />
+            <nut-icon
+              name="issue"
+              custom-color="red"
+              width="15px"
+              height="15px"
+            />
           </template>
         </nut-progress>
       </nut-cell>

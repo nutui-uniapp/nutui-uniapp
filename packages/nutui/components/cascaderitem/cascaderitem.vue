@@ -13,7 +13,6 @@ import { cascaderitemEmits, cascaderitemProps } from './cascaderitem'
 
 const COMPONENT_NAME = 'nut-calendar-item'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

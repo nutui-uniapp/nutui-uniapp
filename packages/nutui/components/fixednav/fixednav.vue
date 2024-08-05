@@ -9,7 +9,6 @@ import { fixednavEmits, fixednavProps } from './fixednav'
 
 const COMPONENT_NAME = 'nut-fixed-nav'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

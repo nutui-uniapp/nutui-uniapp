@@ -12,7 +12,6 @@ import { imagepreviewEmits, imagepreviewProps } from './imagepreview'
 
 const COMPONENT_NAME = 'nut-image-preview'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

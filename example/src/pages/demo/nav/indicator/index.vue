@@ -19,7 +19,12 @@
           </nut-button>
         </nut-col>
         <nut-col :span="12">
-          <nut-indicator :block="true" align="right" :size="6" :current="5">
+          <nut-indicator
+            :block="true"
+            align="right"
+            :size="6"
+            :current="5"
+          >
             step1
           </nut-indicator>
         </nut-col>
@@ -29,17 +34,32 @@
       block用法
     </h2>
     <nut-cell>
-      <nut-indicator :block="true" algin="center" :size="6" :current="5">
+      <nut-indicator
+        :block="true"
+        algin="center"
+        :size="6"
+        :current="5"
+      >
         step1
       </nut-indicator>
     </nut-cell>
     <nut-cell>
-      <nut-indicator :block="true" align="left" :size="6" :current="1">
+      <nut-indicator
+        :block="true"
+        align="left"
+        :size="6"
+        :current="1"
+      >
         step1
       </nut-indicator>
     </nut-cell>
     <nut-cell>
-      <nut-indicator :block="true" align="right" :size="6" :current="5">
+      <nut-indicator
+        :block="true"
+        align="right"
+        :size="6"
+        :current="5"
+      >
         step1
       </nut-indicator>
     </nut-cell>

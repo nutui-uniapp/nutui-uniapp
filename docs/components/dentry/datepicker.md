@@ -18,15 +18,15 @@
 ```
 
 ```typescript
-import type { DatePickerBaseEvent } from "nutui-uniapp";
+import type { DatePickerBaseEvent } from 'nutui-uniapp'
 
-const minDate = new Date(2020, 0, 1);
-const maxDate = new Date(2025, 10, 1);
+const minDate = new Date(2020, 0, 1)
+const maxDate = new Date(2025, 10, 1)
 
-const currentDate = ref<Date>(new Date(2022, 4, 10));
+const currentDate = ref<Date>(new Date(2022, 4, 10))
 
 function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent) {
-  console.log(date, selectedValue, selectedOptions);
+  console.log(date, selectedValue, selectedOptions)
 }
 ```
 
@@ -52,24 +52,24 @@ function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent
 ```
 
 ```typescript
-const show = ref<boolean>(false);
-const popupDesc = ref<string>("");
+const show = ref<boolean>(false)
+const popupDesc = ref<string>('')
 
-const minDate = new Date(2020, 0, 1);
-const maxDate = new Date(2025, 10, 1);
+const minDate = new Date(2020, 0, 1)
+const maxDate = new Date(2025, 10, 1)
 
-const currentDate = ref<Date>(new Date(2022, 4, 10, 10, 10));
+const currentDate = ref<Date>(new Date(2022, 4, 10, 10, 10))
 
 function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent) {
-  console.log(date, selectedValue, selectedOptions);
+  console.log(date, selectedValue, selectedOptions)
 
-  popupDesc.value = selectedOptions.map(item => item.text).join("-");
-  show.value = false;
+  popupDesc.value = selectedOptions.map(item => item.text).join('-')
+  show.value = false
 }
 
 function onButtonClick() {
-  popupDesc.value = "永远有效";
-  show.value = false;
+  popupDesc.value = '永远有效'
+  show.value = false
 }
 ```
 
@@ -154,29 +154,29 @@ function onButtonClick() {
 ```
 
 ```typescript
-import type { DatePickerColumnType, PickerOption } from "nutui-uniapp";
+import type { DatePickerColumnType, PickerOption } from 'nutui-uniapp'
 
 function formatter(type: DatePickerColumnType, option: PickerOption) {
   switch (type) {
-    case "year":
-      option.text += "";
-      break;
-    case "month":
-      option.text += "月";
-      break;
-    case "day":
-      option.text += "日";
-      break;
-    case "hour":
-      option.text += "时";
-      break;
-    case "minute":
-      option.text += "分";
-      break;
+    case 'year':
+      option.text += ''
+      break
+    case 'month':
+      option.text += '月'
+      break
+    case 'day':
+      option.text += '日'
+      break
+    case 'hour':
+      option.text += '时'
+      break
+    case 'minute':
+      option.text += '分'
+      break
     default:
-      option.text += "";
+      option.text += ''
   }
-  return option;
+  return option
 }
 ```
 
@@ -207,14 +207,14 @@ function formatter(type: DatePickerColumnType, option: PickerOption) {
 ```
 
 ```typescript
-import type { DatePickerColumnType, PickerOption } from "nutui-uniapp";
+import type { DatePickerColumnType, PickerOption } from 'nutui-uniapp'
 
 function filter(type: DatePickerColumnType, options: PickerOption[]) {
-  if (type === "hour") {
-    return options.filter(item => Number(item.value) % 6 === 0);
+  if (type === 'hour') {
+    return options.filter(item => Number(item.value) % 6 === 0)
   }
 
-  return options;
+  return options
 }
 ```
 

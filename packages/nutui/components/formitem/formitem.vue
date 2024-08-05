@@ -20,7 +20,6 @@ import type {
 
 const COMPONENT_NAME = 'nut-form-item'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   inheritAttrs: false,

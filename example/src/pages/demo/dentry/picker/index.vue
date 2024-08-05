@@ -185,22 +185,42 @@ onMounted(() => {
     <h2 class="title">
       默认选中项
     </h2>
-    <nut-picker v-model="selectedValue1" :columns="columns" title="城市选择" @confirm="onConfirm" />
+    <nut-picker
+      v-model="selectedValue1"
+      :columns="columns"
+      title="城市选择"
+      @confirm="onConfirm"
+    />
 
     <h2 class="title">
       多列样式
     </h2>
-    <nut-picker v-model="selectedValue2" :columns="multipleColumns" title="城市选择" @confirm="onConfirm" />
+    <nut-picker
+      v-model="selectedValue2"
+      :columns="multipleColumns"
+      title="城市选择"
+      @confirm="onConfirm"
+    />
 
     <h2 class="title">
       多级联动
     </h2>
-    <nut-picker v-model="selectedCascader" :columns="cascaderColumns" title="城市选择" @confirm="onConfirm" />
+    <nut-picker
+      v-model="selectedCascader"
+      :columns="cascaderColumns"
+      title="城市选择"
+      @confirm="onConfirm"
+    />
 
     <h2 class="title">
       异步获取
     </h2>
-    <nut-picker v-model="asyncValue" :columns="asyncColumns" title="城市选择" @confirm="onConfirm" />
+    <nut-picker
+      v-model="asyncValue"
+      :columns="asyncColumns"
+      title="城市选择"
+      @confirm="onConfirm"
+    />
 
     <h2 class="title">
       自定义字段名

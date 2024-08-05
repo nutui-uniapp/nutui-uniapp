@@ -168,8 +168,7 @@
         "name": "message",
         "animation-name": "am-shake",
         "animation-time": "am-infinite"
-      }
-      ]
+      }]
     }
   ]
 }

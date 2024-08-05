@@ -60,11 +60,21 @@ export default defineComponent({
   <view v-else :class="classes" :style="customStyle">
     <view v-if="animated" class="nut-skeleton-animation" />
     <view class="nut-skeleton-content">
-      <NutAvatar v-if="avatar" :custom-class="avatarClass" :shape="avatarShape" :custom-style="getStyle()" />
+      <NutAvatar
+        v-if="avatar"
+        :custom-class="avatarClass"
+        :shape="avatarShape"
+        :custom-style="getStyle()"
+      />
 
       <view class="nut-skeleton-content__line" :style="{ width }">
         <view v-if="title" :class="getBlockClass('nut-skeleton-blockTitle')" :style="{ height }" />
-        <view v-for="_ in Number(row)" :key="_" :class="getBlockClass('nut-skeleton-blockLine')" :style="{ height }" />
+        <view
+          v-for="_ in Number(row)"
+          :key="_"
+          :class="getBlockClass('nut-skeleton-blockLine')"
+          :style="{ height }"
+        />
       </view>
     </view>
   </view>

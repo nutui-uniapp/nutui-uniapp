@@ -65,13 +65,13 @@ npm install nutui-uniapp
   > vite.config.ts
 
     ```typescript
-    import { defineConfig } from "vite";
-    import UniApp from "@dcloudio/vite-plugin-uni";
-    import Components from "@uni-helper/vite-plugin-uni-components";
-    import { NutResolver } from "nutui-uniapp";
-    
+    import { defineConfig } from 'vite'
+    import UniApp from '@dcloudio/vite-plugin-uni'
+    import Components from '@uni-helper/vite-plugin-uni-components'
+    import { NutResolver } from 'nutui-uniapp'
+
     // https://vitejs.dev/config
-    export default defineConfig({
+    exportdefault defineConfig({
       // ...
       plugins: [
         // ...
@@ -81,7 +81,7 @@ npm install nutui-uniapp
         // 注意，UniApp插件一定要放到后面！
         UniApp()
       ]
-    });
+    })
     ```
 
   > 如果使用 `pnpm` 管理依赖，请在项目根目录下的 `.npmrc` 文件中添加如下内容，详细请参考 [issue 389](https://github.com/antfu/unplugin-vue-components/issues/389)
@@ -152,7 +152,7 @@ npm install nutui-uniapp
     <!-- 注意这里的 lang="scss" -->
     <style lang="scss">
       @import "nutui-uniapp/styles/index.scss";
-    
+
       // ...
     </style>
     ```
@@ -170,10 +170,10 @@ npm install nutui-uniapp
   - vite.config.ts
 
     ```typescript
-    import { defineConfig } from "vite";
-    
+    import { defineConfig } from 'vite'
+
     // https://vitejs.dev/config
-    export default defineConfig({
+    exportdefault defineConfig({
       // ...
       css: {
         preprocessorOptions: {
@@ -182,7 +182,7 @@ npm install nutui-uniapp
           }
         }
       }
-    });
+    })
     ```
 
 #### API导入
@@ -216,45 +216,45 @@ npm install nutui-uniapp
   > vite.config.ts
 
     ```typescript
-    import {defineConfig} from "vite";
-    import AutoImport from "unplugin-auto-import/vite";
-    
+    import { defineConfig } from 'vite'
+    import AutoImport from 'unplugin-auto-import/vite'
+
     // https://vitejs.dev/config
-    export default defineConfig({
+    exportdefault defineConfig({
       // ...
       plugins: [
         // ...
         AutoImport({
           imports: [
-            "vue",
-            "uni-app",
-            "pinia",
+            'vue',
+            'uni-app',
+            'pinia',
             {
-              "nutui-uniapp/composables": [
+              'nutui-uniapp/composables': [
                 // 在这里添加需要自动导入的API
-                "useToast"
+                'useToast'
               ]
             }
           ]
         })
       ]
-    });
+    })
     ```
 
 - 使用
 
   ```typescript
   // 现在无需手动导入即可直接使用
-  const toast = useToast();
+  const toast = useToast()
   ```
 
 ##### 手动导入
 
 ```typescript
 // nutui-uniapp提供的组合式函数都在composables模块下
-import { useToast } from "nutui-uniapp/composables";
+import { useToast } from 'nutui-uniapp/composables'
 
-const toast = useToast();
+const toast = useToast()
 ```
 
 ### 完成
@@ -302,9 +302,9 @@ nutui-uniapp提供了npm和uni_modules两种方式使用组件。虽然提供了
 
 ```typescript
 // nutui-uniapp提供的组合式函数都在composables目录下
-import { useToast } from "/uni_modules/nutui-uni/components/composables";
+import { useToast } from '/uni_modules/nutui-uni/components/composables'
 
-const toast = useToast();
+const toast = useToast()
 ```
 
 ### 完成

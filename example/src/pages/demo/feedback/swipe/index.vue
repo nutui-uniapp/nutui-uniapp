@@ -76,10 +76,20 @@ function onClose(obj: any) {
     <h2 class="title">
       异步控制
     </h2>
-    <nut-swipe ref="swipe" :close-on-click="['right']" @open="onOpen" @close="onClose">
+    <nut-swipe
+      ref="swipe"
+      :close-on-click="['right']"
+      @open="onOpen"
+      @close="onClose"
+    >
       <nut-cell title="异步打开关闭">
         <template #link>
-          <nut-switch v-model="checked" active-text="开" inactive-text="关" @change="onSwitchChange" />
+          <nut-switch
+            v-model="checked"
+            active-text="开"
+            inactive-text="关"
+            @change="onSwitchChange"
+          />
         </template>
       </nut-cell>
       <template #right>

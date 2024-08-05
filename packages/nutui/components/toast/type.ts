@@ -79,10 +79,12 @@ export interface ToastOptions {
   /**
    * @description 关闭时触发的事件
    */
+  // eslint-disable-next-line ts/no-unsafe-function-type
   onClose?: Function
   /**
    * @description 关闭动画完成时触发的事件
    */
+  // eslint-disable-next-line ts/no-unsafe-function-type
   onClosed?: Function
 }
 
@@ -92,11 +94,11 @@ export interface ToastInst {
    * @description 显示提示
    */
   showToast: {
-    text(msg: string, options?: ToastOptions): void
-    success(msg: string, options?: ToastOptions): void
-    fail(msg: string, options?: ToastOptions): void
-    warn(msg: string, options?: ToastOptions): void
-    loading(msg: string, options?: ToastOptions): void
+    text: (msg: string, options?: ToastOptions) => void
+    success: (msg: string, options?: ToastOptions) => void
+    fail: (msg: string, options?: ToastOptions) => void
+    warn: (msg: string, options?: ToastOptions) => void
+    loading: (msg: string, options?: ToastOptions) => void
   }
   /**
    * @deprecated 使用`hide`代替
@@ -107,25 +109,25 @@ export interface ToastInst {
   /**
    * @description 文字提示
    */
-  text(msg: string, options?: ToastOptions): void
+  text: (msg: string, options?: ToastOptions) => void
   /**
    * @description 成功提示
    */
-  success(msg: string, options?: ToastOptions): void
+  success: (msg: string, options?: ToastOptions) => void
   /**
    * @description 错误提示
    */
-  error(msg: string, options?: ToastOptions): void
+  error: (msg: string, options?: ToastOptions) => void
   /**
    * @description 警告提示
    */
-  warning(msg: string, options?: ToastOptions): void
+  warning: (msg: string, options?: ToastOptions) => void
   /**
    * @description 加载提示
    */
-  loading(msg: string, options?: ToastOptions): void
+  loading: (msg: string, options?: ToastOptions) => void
   /**
    * @description 隐藏提示
    */
-  hide(): void
+  hide: () => void
 }

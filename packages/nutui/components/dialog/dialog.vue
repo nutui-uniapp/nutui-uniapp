@@ -7,7 +7,6 @@ import { useDialog } from './use-dialog'
 
 const COMPONENT_NAME = 'nut-dialog'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   inheritAttrs: false,

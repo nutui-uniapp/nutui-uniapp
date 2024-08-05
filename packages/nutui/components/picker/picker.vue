@@ -17,7 +17,6 @@ import { usePicker } from './use-picker'
 
 const COMPONENT_NAME = 'nut-picker'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

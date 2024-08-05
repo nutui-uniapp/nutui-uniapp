@@ -50,7 +50,13 @@ export default {
 <template>
   <div class="demo h-100vh!">
     <nut-cell :is-link="true" title="默认键盘" @click="showKeyBoard(1)" />
-    <nut-number-keyboard v-model:visible="visible1" overlay @input="input" @delete="onDelete" @close="close(1)" />
+    <nut-number-keyboard
+      v-model:visible="visible1"
+      overlay
+      @input="input"
+      @delete="onDelete"
+      @close="close(1)"
+    />
     <nut-cell :is-link="true" title="带右侧栏键盘" @click="showKeyBoard(2)" />
     <nut-number-keyboard
       v-model:visible="visible2"
@@ -81,9 +87,26 @@ export default {
       @close="close(4)"
     />
     <nut-cell :is-link="true" title="身份证键盘" @click="showKeyBoard(6)" />
-    <nut-number-keyboard v-model:visible="visible6" overlay :custom-key="customKey3" @input="input" @close="close(6)" />
-    <nut-cell :is-link="true" :desc="value" title="双向绑定" @click="showKeyBoard(5)" />
-    <nut-number-keyboard v-model:visible="visible5" v-model="value" overlay maxlength="6" @close="close(5)" />
+    <nut-number-keyboard
+      v-model:visible="visible6"
+      overlay
+      :custom-key="customKey3"
+      @input="input"
+      @close="close(6)"
+    />
+    <nut-cell
+      :is-link="true"
+      :desc="value"
+      title="双向绑定"
+      @click="showKeyBoard(5)"
+    />
+    <nut-number-keyboard
+      v-model:visible="visible5"
+      v-model="value"
+      overlay
+      maxlength="6"
+      @close="close(5)"
+    />
   </div>
 </template>
 

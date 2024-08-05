@@ -42,7 +42,7 @@ export default {
 ```
 
 ### ref调用
-  
+
   ```html
   <template>
   <nut-cell-group title="ref调用">

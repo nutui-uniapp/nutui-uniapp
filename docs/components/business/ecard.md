@@ -14,16 +14,16 @@
 
 ```typescript
 // `1.7.7` 开始提供 EcardDataItem 类型，之前版本使用 { price: number | number }
-import type { EcardDataItem } from "nutui-uniapp";
+import type { EcardDataItem } from 'nutui-uniapp'
 
-const money = ref<number>(0);
+const money = ref<number>(0)
 
 const dataList = ref<EcardDataItem[]>([
   { price: 10 },
   { price: 20 },
   { price: 30 },
   { price: 40 }
-]);
+])
 ```
 
 ### 相关事件
@@ -42,27 +42,27 @@ const dataList = ref<EcardDataItem[]>([
 
 ```typescript
 // `1.7.7` 开始提供 EcardChangeEvent、EcardDataValue 类型
-import type { EcardChangeEvent, EcardDataValue } from "nutui-uniapp";
+import type { EcardChangeEvent, EcardDataValue } from 'nutui-uniapp'
 
 // `1.7.7` 开始提供 update 事件
 function onUpdate(value: EcardDataValue) {
-  console.log("updated", value);
+  console.log('updated', value)
 }
 
 function onChange(event: EcardChangeEvent) {
-  console.log("changed", event);
+  console.log('changed', event)
 }
 
 function onInputChange(value: string) {
-  console.log("input changed", value);
+  console.log('input changed', value)
 }
 
 function onStepChange(count: number, price: EcardDataValue) {
-  console.log("step changed", count, price);
+  console.log('step changed', count, price)
 }
 
 function onInputClick() {
-  console.log("input clicked");
+  console.log('input clicked')
 }
 ```
 
@@ -77,23 +77,23 @@ function onInputClick() {
 ```
 
 ```typescript
-import type { EcardInst } from "nutui-uniapp";
+import type { EcardInst } from 'nutui-uniapp'
 
-const ecard = ref<EcardInst | null>(null);
+const ecard = ref<EcardInst | null>(null)
 
 // 更新选中项
 function updateCurrentIndex() {
   ecard.value?.update({
     index: 1
-  });
+  })
 }
 
 // 更新输入值
 function updateInputValue() {
   ecard.value?.update({
     index: -1,
-    input: "123"
-  });
+    input: '123'
+  })
 }
 
 // 更新数量
@@ -101,7 +101,7 @@ function updateCount() {
   ecard.value?.update({
     index: 1,
     count: 2
-  });
+  })
 }
 ```
 
@@ -155,15 +155,15 @@ export interface EcardUpdateOptions {
   /**
    * 选中项（从0开始的索引，-1表示选中输入框，null表示不选中）
    */
-  index?: number | null;
+  index?: number | null
   /**
    * 其他面值（当index为-1或null时有效）
    */
-  input?: string;
+  input?: string
   /**
    * 数量
    */
-  count?: number;
+  count?: number
 }
 ```
 
@@ -174,7 +174,7 @@ export interface EcardInst {
    *
    * @param options 配置项
    */
-  update: (options: EcardUpdateOptions) => void;
+  update: (options: EcardUpdateOptions) => void
 }
 ```
 

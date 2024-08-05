@@ -63,7 +63,12 @@ function close() {
       </nut-cell>
       <nut-cell title="可关闭标签">
         <template #link>
-          <nut-tag v-if="show" type="primary" closeable @close="close">
+          <nut-tag
+            v-if="show"
+            type="primary"
+            closeable
+            @close="close"
+          >
             标签
           </nut-tag>
         </template>
@@ -111,7 +116,13 @@ function close() {
       </nut-cell>
       <nut-cell title="可关闭标签">
         <template #link>
-          <nut-tag v-if="show" type="primary" closeable disabled @close="close">
+          <nut-tag
+            v-if="show"
+            type="primary"
+            closeable
+            disabled
+            @close="close"
+          >
             标签
           </nut-tag>
         </template>

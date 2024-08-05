@@ -104,8 +104,13 @@ export default defineComponent ({
     <rich-text class="nut-sku-stepper-limit" :nodes="getExtraText" />
     <view class="nut-sku-stepper-count">
       <NutInputNumber
-        v-model="goodsCount" :min="stepperMin" :max="stepperMax" @add="(add as any)" @reduce="(reduce as any)"
-        @overlimit="overlimit" @change="(changeStepper as any)"
+        v-model="goodsCount"
+        :min="stepperMin"
+        :max="stepperMax"
+        @add="(add as any)"
+        @reduce="(reduce as any)"
+        @overlimit="overlimit"
+        @change="(changeStepper as any)"
       />
     </view>
   </view>

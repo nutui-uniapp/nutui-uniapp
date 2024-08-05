@@ -23,7 +23,12 @@ function testClick() {
       large尺寸
     </h2>
     <nut-cell size="large" title="我是标题" desc="描述文字" />
-    <nut-cell size="large" title="我是标题" sub-title="副标题描述" desc="描述文字" />
+    <nut-cell
+      size="large"
+      title="我是标题"
+      sub-title="副标题描述"
+      desc="描述文字"
+    />
 
     <h2 class="title">
       直接使用插槽
@@ -91,7 +96,12 @@ function testClick() {
     <h2 class="title">
       垂直居中
     </h2>
-    <nut-cell title="我是标题" sub-title="副标题描述" desc="描述文字" center />
+    <nut-cell
+      title="我是标题"
+      sub-title="副标题描述"
+      desc="描述文字"
+      center
+    />
   </view>
 </template>
 

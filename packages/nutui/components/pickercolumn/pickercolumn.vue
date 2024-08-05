@@ -8,7 +8,6 @@ import type { PickerTouchParams } from './types'
 
 const COMPONENT_NAME = 'nut-picker-column'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

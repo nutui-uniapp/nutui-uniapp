@@ -6,7 +6,6 @@ import { hiteggsEmits, hiteggsProps } from './hiteggs'
 
 const COMPONENT_NAME = 'nut-hiteggs'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

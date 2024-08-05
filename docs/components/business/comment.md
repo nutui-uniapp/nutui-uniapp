@@ -189,9 +189,9 @@ images 数组中存放的是图片对象。
 
 ```javascript
 const images = [{
-    "smallImgUrl": '', // 小图，列表展示时使用
-    "bigImgUrl": '', // 大图，大图展示使用
-    "imgUrl": "", // 兜底图
+  smallImgUrl: '', // 小图，列表展示时使用
+  bigImgUrl: '', // 大图，大图展示使用
+  imgUrl: '', // 兜底图
 }]
 ```
 
@@ -199,8 +199,8 @@ const images = [{
 
 ```javascript
 const videos = [{
-    "mainUrl": "", // 视频遮罩图片
-    "videoUrl": "", // 视频链接
+  mainUrl: '', // 视频遮罩图片
+  videoUrl: '', // 视频链接
 }]
 ```
 
@@ -210,14 +210,14 @@ const videos = [{
 
 ```javascript
 const info = {
-  "content": "",  // 评论详情
-  "nickName": "", // 评论人的姓名
-  "score": 5, // 评论星星数
-  "avatar": "",  // 评论人头像
-  "time": "", // 评论时间
-  "size": "", // 评论人购买的商品规格
-  "replay":23, // 此评论的回复数
-  "like":1, // 此评论的点赞数
+  content: '', // 评论详情
+  nickName: '', // 评论人的姓名
+  score: 5, // 评论星星数
+  avatar: '', // 评论人头像
+  time: '', // 评论时间
+  size: '', // 评论人购买的商品规格
+  replay: 23, // 此评论的回复数
+  like: 1, // 此评论的点赞数
 }
 ```
 
@@ -227,9 +227,9 @@ const info = {
 
 ```javascript
 const follow = {
-  "days": 0, // 购买多少天后进行追评
-  "content": "", // 追评内容
-  "images": [] // 追评图片
+  days: 0, // 购买多少天后进行追评
+  content: '', // 追评内容
+  images: [] // 追评图片
 }
 ```
 

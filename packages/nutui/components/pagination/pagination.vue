@@ -7,7 +7,6 @@ import { paginationEmits, paginationProps } from './pagination'
 
 const COMPONENT_NAME = 'nut-pagination'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

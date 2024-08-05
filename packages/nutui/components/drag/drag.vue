@@ -7,7 +7,6 @@ import { dragProps } from './drag'
 
 const COMPONENT_NAME = 'nut-drag'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

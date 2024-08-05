@@ -12,7 +12,6 @@ import type { InputFormatTrigger, InputTarget } from './types'
 
 const COMPONENT_NAME = 'nut-input'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

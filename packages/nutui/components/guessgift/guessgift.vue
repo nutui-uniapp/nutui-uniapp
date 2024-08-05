@@ -7,7 +7,6 @@ import { guessgiftEmits, guessgiftProps } from './guessgift'
 
 const COMPONENT_NAME = 'nut-guess-gift'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -7,7 +7,6 @@ import { GRID_KEY, gridProps } from './grid'
 
 const COMPONENT_NAME = 'nut-grid'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

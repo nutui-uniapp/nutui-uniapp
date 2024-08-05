@@ -8,7 +8,6 @@ import { navbarEmits, navbarProps } from './navbar'
 
 const COMPONENT_NAME = 'nut-navbar'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {
@@ -153,7 +152,12 @@ watch(
       </view>
 
       <view class="nut-navbar__title">
-        <view v-if="props.title" class="text" :style="textStyles" @click="handleCenter">
+        <view
+          v-if="props.title"
+          class="text"
+          :style="textStyles"
+          @click="handleCenter"
+        >
           {{ props.title }}
         </view>
 

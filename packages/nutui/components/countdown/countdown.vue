@@ -7,7 +7,6 @@ import { countdownEmits, countdownProps } from './countdown'
 
 const COMPONENT_NAME = 'nut-countdown'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

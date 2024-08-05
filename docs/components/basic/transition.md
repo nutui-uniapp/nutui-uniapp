@@ -11,7 +11,7 @@
 ```html
 <template>
  <nut-transition
-      :show="showValue" name="fade" :duration="200" 
+      :show="showValue" name="fade" :duration="200"
     >
       <div>
         内容

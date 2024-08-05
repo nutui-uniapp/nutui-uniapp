@@ -41,12 +41,23 @@ function finish(e: any) {
     <h2 class="title">
       细边框
     </h2>
-    <nut-code-input v-model="state.val2" mode="box" :space="0" :maxlength="4" hairline />
+    <nut-code-input
+      v-model="state.val2"
+      mode="box"
+      :space="0"
+      :maxlength="4"
+      hairline
+    />
 
     <h2 class="title">
       调整颜色
     </h2>
-    <nut-code-input v-model="state.val3" hairline custom-color="#f56c6c" :border-color="`#f56c6c` as any" />
+    <nut-code-input
+      v-model="state.val3"
+      hairline
+      custom-color="#f56c6c"
+      :border-color="`#f56c6c` as any"
+    />
 
     <h2 class="title">
       用"●"替代输入内容

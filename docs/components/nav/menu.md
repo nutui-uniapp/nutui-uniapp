@@ -51,7 +51,7 @@ export default {
 
 启用 `scroll-fixed` 属性可以滚动一定距离后变更为 `fixed` 定位
 
-> 自 `1.7.13` 开始，必须配合 `scroll-top` 属性使用，需要将 
+> 自 `1.7.13` 开始，必须配合 `scroll-top` 属性使用，需要将
 > [onPageScroll](https://uniapp.dcloud.net.cn/tutorial/page.html#onpagescroll) 的 scrollTop 传给组件
 
 > 对于 `1.7.12` 及以下的版本，由于uniapp中组件单独声明 `onPageScroll` 无效，需要手动在页面中声明一次 `onPageScroll` 后组件内部
@@ -80,11 +80,11 @@ export default {
 ```
 
 ```typescript
-const scrollTop = ref(0);
+const scrollTop = ref(0)
 
 onPageScroll((res) => {
-  scrollTop.value = res.scrollTop;
-});
+  scrollTop.value = res.scrollTop
+})
 ```
 
 ### 自定义菜单内容

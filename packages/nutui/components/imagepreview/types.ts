@@ -22,8 +22,8 @@ export interface ImagePreviewOptions {
   maxZoom?: number
   minZoom?: number
   isLoop?: boolean
-  close?(): void
-  change?(index: number): void
+  close?: () => void
+  change?: (index: number) => void
 }
 
 export const baseProps = {

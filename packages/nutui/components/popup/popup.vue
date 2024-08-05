@@ -7,7 +7,6 @@ import { usePopup } from './use-popup'
 
 const COMPONENT_NAME = 'nut-popup'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

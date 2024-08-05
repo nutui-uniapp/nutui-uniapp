@@ -111,7 +111,12 @@ export default {
     </h2>
 
     <nut-cell>
-      <nut-countdown :end-time="end" :paused="paused" @on-paused="onpaused" @on-restart="onrestart" />
+      <nut-countdown
+        :end-time="end"
+        :paused="paused"
+        @on-paused="onpaused"
+        @on-restart="onrestart"
+      />
       <div style="position: absolute; top: 9px; right: 10px">
         <nut-button type="primary" size="small" @click="toggle">
           {{ paused ? 'start' : 'stop' }}
@@ -142,7 +147,12 @@ export default {
       手动控制
     </h2>
     <nut-cell>
-      <nut-countdown ref="Countdown" time="20000" :auto-start="false" format="ss:SS" />
+      <nut-countdown
+        ref="Countdown"
+        time="20000"
+        :auto-start="false"
+        format="ss:SS"
+      />
     </nut-cell>
 
     <nut-grid :column-num="3">

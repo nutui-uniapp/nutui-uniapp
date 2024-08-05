@@ -8,7 +8,6 @@ import { calendarEmits, calendarProps } from './calendar'
 
 const COMPONENT_NAME = 'nut-calendar'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

@@ -8,7 +8,6 @@ import { overlayEmits, overlayProps } from './overlay'
 
 const COMPONENT_NAME = 'nut-overlay'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

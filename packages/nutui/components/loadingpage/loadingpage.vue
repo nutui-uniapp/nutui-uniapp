@@ -7,7 +7,6 @@ import { loadingpageProps } from './loadingpage'
 
 const COMPONENT_NAME = 'nut-loading-page'
 
-// eslint-disable-next-line vue/define-macros-order
 defineOptions({
   name: COMPONENT_NAME,
   options: {

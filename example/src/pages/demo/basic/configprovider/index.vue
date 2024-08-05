@@ -134,7 +134,12 @@ export default {
           <nut-range v-model="formData2.range" hidden-tag />
         </nut-form-item>
         <nut-form-item label="文件上传">
-          <nut-uploader v-model:file-list="formData2.defaultFileList" url="http://服务地址" maximum="3" multiple />
+          <nut-uploader
+            v-model:file-list="formData2.defaultFileList"
+            url="http://服务地址"
+            maximum="3"
+            multiple
+          />
         </nut-form-item>
         <nut-form-item label="地址">
           <input

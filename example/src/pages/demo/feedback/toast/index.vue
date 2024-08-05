@@ -135,7 +135,12 @@ function showWarningProps() {
     <h2 class="title">
       Props用法
     </h2>
-    <nut-toast v-model:visible="toastState.visible" :type="toastState.type" :msg="toastState.msg" selector="xx2" />
+    <nut-toast
+      v-model:visible="toastState.visible"
+      :type="toastState.type"
+      :msg="toastState.msg"
+      selector="xx2"
+    />
     <nut-cell title="Success 成功提示" is-link @click="showSuccessProps" />
     <nut-cell title="Error 错误提示" is-link @click="showErrorProps" />
     <nut-cell title="Warning 警告提示" is-link @click="showWarningProps" />
