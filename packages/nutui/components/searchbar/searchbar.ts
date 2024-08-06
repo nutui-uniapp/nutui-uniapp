@@ -13,7 +13,7 @@ import {
 } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType, InputConfirmType, InputType } from '../input'
-import type { SearchbarShape } from './type'
+import type { SearchbarShape } from './types'
 
 export const searchbarProps = {
   ...commonProps,

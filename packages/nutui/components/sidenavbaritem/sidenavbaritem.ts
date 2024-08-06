@@ -14,10 +14,10 @@ export const sidenavbaritemProps = {
   ikey: String,
 }
 
-export type SideNavbaritemProps = ExtractPropTypes<typeof sidenavbaritemProps>
+export type SideNavbarItemProps = ExtractPropTypes<typeof sidenavbaritemProps>
 
 export const sidenavbaritemEmits = {
   [CLICK_EVENT]: () => true,
 }
 
-export type SideNavbaritemEmits = typeof sidenavbaritemEmits
+export type SideNavbarItemEmits = typeof sidenavbaritemEmits

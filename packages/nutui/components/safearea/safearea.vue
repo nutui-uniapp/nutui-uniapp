@@ -1,33 +1,30 @@
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed } from 'vue'
 import { getMainClass } from '../_utils'
 import { safeareaProps } from './safearea'
 
-const props = defineProps(safeareaProps)
+const COMPONENT_NAME = 'nut-safe-area'
 
-const classes = computed(() => {
-  return getMainClass(props, componentName, [
-   `${componentName}-position-${props.position}`,
-  ])
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-safe-area`
-
-export default defineComponent({
-  name: componentName,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(safeareaProps)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME, [
+   `${COMPONENT_NAME}-position-${props.position}`,
+  ])
+})
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle" />
+  <view :class="classes" :style="props.customStyle" />
 </template>
 
 <style lang="scss">

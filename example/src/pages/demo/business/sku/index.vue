@@ -34,7 +34,7 @@ export default defineComponent({
       showAddressPopup: false,
     })
 
-    const data = reactive<Data>({
+    const data: Data = reactive({
       skuData: [],
       goodsInfo: {},
       imagePathMap: {},

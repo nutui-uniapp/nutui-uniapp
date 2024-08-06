@@ -1,1 +1,1 @@
-export type * from './skeleton'
+export * from './skeleton'

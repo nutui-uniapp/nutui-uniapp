@@ -39,7 +39,7 @@ const prevTabIndex = ref(0)
 const tabName = ref(['province', 'city', 'country', 'town'])
 const scrollDis = ref([0, 0, 0, 0])
 const scrollTop = ref(0)
-const regionData = reactive<Array<AddressRegionData[]>>([])
+const regionData: Array<AddressRegionData[]> = reactive([])
 
 const regionList = computed(() => {
   switch (tabIndex.value) {

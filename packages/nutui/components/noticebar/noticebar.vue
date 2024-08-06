@@ -30,7 +30,7 @@ const { getSelectorNodeInfo } = useSelectorQuery(instance)
 const wrap = ref<HTMLElement | null>(null)
 const content = ref<HTMLElement | null>(null)
 
-const state = reactive<NoticebarState>({
+const state: NoticebarState = reactive({
   wrapWidth: 0,
   firstRound: true,
   duration: 0,

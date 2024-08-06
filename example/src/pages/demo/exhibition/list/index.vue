@@ -3,7 +3,7 @@ import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   setup() {
-    const state = reactive<{ count: any[] }>({
+    const state: { count: any[] } = reactive({
       count: Array.from({ length: 100 }).fill(0),
     })
 

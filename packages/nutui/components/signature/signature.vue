@@ -1,13 +1,26 @@
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
 import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
 import { signatureEmits, signatureProps } from './signature'
-import { componentName, useSignature } from './use-signature'
+import { useSignature } from './use-signature'
+
+const COMPONENT_NAME = 'nut-signature'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(signatureProps)
 
 const emit = defineEmits(signatureEmits)
+
+const { translate } = useTranslate(COMPONENT_NAME)
+
 const {
   classes,
   spcanvas,
@@ -21,21 +34,8 @@ const {
 } = useSignature(props, emit)
 </script>
 
-<script lang="ts">
-const { translate } = useTranslate(componentName)
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-
-})
-</script>
-
 <template>
-  <div :class="classes" :style="customStyle">
+  <div :class="classes" :style="props.customStyle">
     <div class="nut-signature-inner spcanvas_WEAPP">
       <canvas
         :id="canvasSetId"
@@ -49,9 +49,11 @@ export default defineComponent({
         @touchleave="leaveEventHandler"
       />
     </div>
+
     <NutButton custom-class="nut-signature-btn" type="default" @click="clear()">
       {{ translate('reSign') }}
     </NutButton>
+
     <NutButton custom-class="nut-signature-btn" type="primary" @click="confirm()">
       {{ translate('confirm') }}
     </NutButton>

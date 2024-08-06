@@ -31,7 +31,7 @@ interface AddressResult extends AddressList {
 }
 export default defineComponent({
   setup() {
-    const address = reactive<any>({
+    const address: any = reactive({
       province: [
         { id: 1, name: '北京', title: 'B' },
         { id: 2, name: '广西', title: 'G' },

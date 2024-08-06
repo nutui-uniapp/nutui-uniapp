@@ -17,10 +17,10 @@ export const subsidenavbarProps = {
   open: truthProp,
 }
 
-export type SubSidenavbarProps = ExtractPropTypes<typeof subsidenavbarProps>
+export type SubSideNavbarProps = ExtractPropTypes<typeof subsidenavbarProps>
 
 export const subsidenavbarEmits = {
   titleClick: () => true,
 }
 
-export type SubSidenavbarEmits = typeof subsidenavbarEmits
+export type SubSideNavbarEmits = typeof subsidenavbarEmits

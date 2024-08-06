@@ -24,6 +24,3 @@ export const shakediceEmits = {
 }
 
 export type ShakeDiceEmits = typeof shakediceEmits
-export interface ShakeDiceInst {
-  shake: () => true
-}

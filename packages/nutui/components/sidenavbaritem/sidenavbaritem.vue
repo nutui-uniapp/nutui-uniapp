@@ -1,24 +1,42 @@
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue'
-import { CLICK_EVENT, PREFIX } from '../_constants'
+import type { CSSProperties } from 'vue'
+import { computed } from 'vue'
+import { CLICK_EVENT } from '../_constants'
 import { useInject } from '../_hooks'
-import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
+import type { SideNavbarProps } from '../sidenavbar'
+import { SIDE_NAVBAR_KEY } from '../sidenavbar'
 import { getMainClass, getMainStyle } from '../_utils'
 import { sidenavbaritemEmits, sidenavbaritemProps } from './sidenavbaritem'
+
+const COMPONENT_NAME = 'nut-side-navbar-item'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(sidenavbaritemProps)
 
 const emit = defineEmits(sidenavbaritemEmits)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
-const Parent = useInject<{ props: Required<SidenavbarProps> }>(SIDEN_NAVBAR_KEY)
+
+const { parent } = useInject<{ props: Required<SideNavbarProps> }>(SIDE_NAVBAR_KEY)
 
 const styles = computed(() => {
-  return getMainStyle(props, {
-    paddingLeft: `${Number(Parent.parent?.props?.offset) * 2}px`,
-  })
+  const value: CSSProperties = {}
+
+  if (parent != null) {
+    value.paddingLeft = `${Number(parent.props.offset) * 2}px`
+  }
+
+  return getMainStyle(props, value)
 })
 
 function handleClick() {
@@ -26,28 +44,15 @@ function handleClick() {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-side-navbar-item`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view
     :class="classes"
     :style="styles"
-    :ikey="ikey"
+    :ikey="props.ikey"
     @click.stop="handleClick"
   >
     <text class="nut-side-navbar-item__title">
-      {{ title }}
+      {{ props.title }}
     </text>
   </view>
 </template>

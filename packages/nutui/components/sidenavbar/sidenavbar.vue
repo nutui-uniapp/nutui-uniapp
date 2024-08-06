@@ -1,35 +1,32 @@
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed } from 'vue'
 import { useProvide } from '../_hooks'
 import { getMainClass } from '../_utils'
-import { SIDEN_NAVBAR_KEY, sidenavbarProps } from './sidenavbar'
+import { SIDE_NAVBAR_KEY, sidenavbarProps } from './sidenavbar'
 
-const props = defineProps(sidenavbarProps)
+const COMPONENT_NAME = 'nut-side-navbar'
 
-const componentName = `${PREFIX}-side-navbar`
-
-useProvide(SIDEN_NAVBAR_KEY, `${componentName}-item`)({ props })
-
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-</script>
-
-<script lang="ts">
-export default defineComponent({
-  name: `${PREFIX}-side-navbar`,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(sidenavbarProps)
+
+useProvide(SIDE_NAVBAR_KEY, `${COMPONENT_NAME}-item`)({ props })
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
 </script>
 
 <template>
   <!-- TODO 侧标导航样式有问题 -->
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <view class="nut-side-navbar__content">
       <view class="nut-side-navbar__content__list">
         <slot />

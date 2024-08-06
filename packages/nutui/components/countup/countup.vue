@@ -24,7 +24,7 @@ const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME)
 })
 
-const data = reactive<CountUpData>({
+const data: CountUpData = reactive({
   valFlag: false,
   current: 0,
   sortFlag: 'add',
@@ -33,16 +33,15 @@ const data = reactive<CountUpData>({
   to0_10: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
   to10_0: [0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1],
   timer: null,
-  totalCount: 0, // 正整数
-  pointNum: 0, // 小数位
-  numberVal: 0, // 数字
-  num_total_len: 0, // 数字长度
-  relNum: 0, // 去除小数点
+  totalCount: 0,
+  pointNum: 0,
+  numberVal: 0,
+  num_total_len: 0,
+  relNum: 0,
   customNumber: 1,
   prizeLevelTrun: 0,
   prizeY: [],
   prizeYPrev: [],
-  // machineTransition: 'none',
   finshMachine: 0,
   notPrize: [],
   typeMachine: '',

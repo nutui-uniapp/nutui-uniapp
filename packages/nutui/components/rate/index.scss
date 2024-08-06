@@ -11,12 +11,16 @@
       margin-right: 0;
     }
 
+    &--disabled {
+      opacity: 0.6;
+    }
+
     &__icon {
       flex-shrink: 0;
       color: $rate-icon-color;
       cursor: pointer;
 
-      &--disabled {
+      &--void {
         color: $rate-icon-void-color;
       }
 
@@ -28,6 +32,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 1;
         display: flex;
         width: 50%;
         overflow: hidden;
