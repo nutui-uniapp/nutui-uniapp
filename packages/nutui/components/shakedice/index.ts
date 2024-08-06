@@ -1,1 +1,2 @@
-export type * from './shakedice'
+export * from './types'
+export * from './shakedice'

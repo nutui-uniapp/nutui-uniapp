@@ -1,91 +1,100 @@
 <script lang="ts" setup>
-import { computed, defineComponent, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import type { CSSProperties } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { getMainClass } from '../_utils'
 import { shakediceEmits, shakediceProps } from './shakedice'
 
-const props = defineProps(shakediceProps)
+const COMPONENT_NAME = 'nut-shakedice'
 
-const emit = defineEmits(shakediceEmits)
-defineExpose({ shake })
-const dice = ref<number>(6)
-const clickTag = ref<boolean>(false)
-const animationStyle = ref({})
-const isShake = ref(false)
-const transformStyle = ref({
-  transform: '',
-})
-
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-watch(
-  () => isShake.value,
-  (value) => {
-    if (value) {
-      const params = {
-        animation: `rotate ${props.time}s infinite linear`,
-      }
-      animationStyle.value = { ...animationStyle.value, ...params }
-      setTimeout(() => {
-        isShake.value = false
-        animationStyle.value = { animation: 'none' }
-        const posible: any = [
-          { value: 1, x: 0, y: 0 },
-          { value: 1, x: 0, y: 0 },
-          { value: 2, x: 90, y: 0 },
-          { value: 3, x: 0, y: -90 },
-          { value: 4, x: 0, y: 90 },
-          { value: 5, x: -90, y: 0 },
-          { value: 6, x: 0, y: 180 },
-        ]
-        const _result = posible[props.id]
-        setTimeout(() => {
-          transformStyle.value.transform = `rotateX(${_result.x}deg) rotateY(${_result.y}deg)`
-        }, 0)
-        emit('end')
-      }, props.speed)
-    }
-    else {
-      animationStyle.value = {}
-    }
-  },
-)
-function shake() {
-  if (clickTag.value)
-    return false
-  clickTag.value = true
-  isShake.value = true
-  setTimeout(() => {
-    clickTag.value = false
-  }, props.speed)
-}
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-shakedice`
-
-export default defineComponent({
-  name: componentName,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(shakediceProps)
+
+const emit = defineEmits(shakediceEmits)
+
+const clicked = ref(false)
+const isShaking = ref(false)
+
+const animationStyles = ref<CSSProperties>({
+  animation: 'none',
+})
+const transformStyles = ref<CSSProperties>({
+  transform: 'none',
+})
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+function getShakeResult(want: number) {
+  const possibles = [
+    { value: 1, x: 0, y: 0 },
+    { value: 1, x: 0, y: 0 },
+    { value: 2, x: 90, y: 0 },
+    { value: 3, x: 0, y: -90 },
+    { value: 4, x: 0, y: 90 },
+    { value: 5, x: -90, y: 0 },
+    { value: 6, x: 0, y: 180 },
+  ]
+
+  const finalWant = Math.max(0, Math.min(possibles.length - 1, want))
+
+  return possibles[finalWant]!
+}
+
+watch(isShaking, (value) => {
+  if (!value) {
+    animationStyles.value.animation = 'none'
+    return
+  }
+
+  animationStyles.value.animation = `rotate ${props.time}s infinite linear`
+
+  setTimeout(() => {
+    clicked.value = false
+    isShaking.value = false
+
+    const result = getShakeResult(props.id)
+
+    setTimeout(() => {
+      transformStyles.value.transform = `rotateX(${result.x}deg) rotateY(${result.y}deg)`
+    }, 0)
+
+    emit('end')
+  }, props.speed)
+})
+
+function shake() {
+  if (clicked.value)
+    return false
+
+  clicked.value = true
+  isShaking.value = true
+}
+
+defineExpose({
+  shake,
+})
 </script>
 
 <template>
-  <div :class="classes" :style="[animationStyle, transformStyle, customStyle]">
-    <div
-      v-for="(item, index) in new Array(dice)"
-      :key="index"
-      class="page"
-      :class="[`page${index + 1}`]"
+  <view :class="classes" :style="[animationStyles, transformStyles, props.customStyle]">
+    <view
+      v-for="it in 6"
+      :key="it"
+      class="nut-shakedice__page"
+      :class="`is-page-${it}`"
     >
-      <text v-for="(item2, index2) in new Array(index + 1)" :key="index2" />
-    </div>
-  </div>
+      <text v-for="i in it" :key="i" class="nut-shakedice__dot" />
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
