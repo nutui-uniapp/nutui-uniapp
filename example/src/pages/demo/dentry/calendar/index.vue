@@ -33,7 +33,7 @@ export default {
   props: {},
   setup() {
     const calendarRef = ref<any>(null)
-    const state = reactive<TestCalendarState>({
+    const state: TestCalendarState = reactive({
       isVisible: false,
       date: '2022-02-04',
       dateWeek: '',

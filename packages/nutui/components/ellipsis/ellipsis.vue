@@ -37,7 +37,7 @@ let maxHeight = 0 // 超出的最大高度
 let lineHeight = 0 // 当行的最大高度
 let originHeight = 0 // 原始高度
 
-const ellipsis = reactive<EllipsisedValue>({})
+const ellipsis: EllipsisedValue = reactive({})
 
 const widthRef = ref('auto')
 

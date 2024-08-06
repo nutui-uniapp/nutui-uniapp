@@ -21,7 +21,7 @@ const emit = defineEmits(hiteggsEmits)
 
 const hitIndex = ref()
 const hitClick = ref(false)
-const arr = reactive<any>([])
+const arr: any[] = reactive([])
 
 const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME)

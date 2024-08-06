@@ -16,7 +16,7 @@ export type DeepPartial<T> = {
 
 export { ZhCNLang, EnUSLang, IdIDLang, ZhTWLang }
 const currentLang = ref<keyof Lang>('zh-CN')
-const langs = reactive<Lang>({
+const langs: Lang  = reactive({
   'zh-CN': ZhCNLang(),
   'en-US': EnUSLang(),
 })
