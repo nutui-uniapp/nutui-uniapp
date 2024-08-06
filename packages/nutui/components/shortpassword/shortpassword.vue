@@ -1,108 +1,119 @@
 <script lang="ts" setup>
-import { computed, defineComponent, ref, watch } from 'vue'
-import { CLOSE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import type { CSSProperties } from 'vue'
+import { computed, ref, watch } from 'vue'
 import NutIcon from '../icon/icon.vue'
-import NutPopUp from '../popup/popup.vue'
+import NutPopup from '../popup/popup.vue'
+import { CLOSE_EVENT, FOCUS_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useTranslate } from '../../locale'
 import { getMainClass } from '../_utils'
 import { shortpasswordEmits, shortpasswordProps } from './shortpassword'
 
-const props = defineProps(shortpasswordProps)
-const emit = defineEmits(shortpasswordEmits)
-// const instance = getCurrentInstance() as any
-// const eventChannel = instance?.ctx.getOpenerEventChannel()
-const realInput = ref(props.modelValue)
-const comLen = computed(() => range(Number(props.length)))
-const show = ref(props.visible)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-function focus(event: any) {
-  event.stopPropagation()
-  emit(FOCUS_EVENT)
-}
-watch(
-  () => props.visible,
-  (value) => {
-    show.value = value
-  },
-)
-watch(
-  () => props.modelValue,
-  (value) => {
-    realInput.value = value
+const COMPONENT_NAME = 'nut-short-password'
 
-    if (String(value).length === comLen.value)
-      emit('complete', value!)
-  },
-)
-function close() {
-  emit(UPDATE_VISIBLE_EVENT, false)
-  emit(CLOSE_EVENT)
-}
-function range(val: number) {
-  return Math.min(Math.max(4, val), 6)
-}
-function onTips() {
-  emit('tips')
-}
-// onMounted(() => {
-//   eventChannel.once((getCurrentInstance() as any).router.onReady, () => {})
-// })
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-short-password`
-const { translate } = useTranslate(componentName)
-export default defineComponent({
-  name: componentName,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
-  }
-  ,
+  },
 })
+
+const props = defineProps(shortpasswordProps)
+
+const emit = defineEmits(shortpasswordEmits)
+
+const { translate } = useTranslate(COMPONENT_NAME)
+
+const innerVisible = ref(props.visible)
+const inputValue = ref(props.modelValue)
+
+const innerValue = computed(() => String(inputValue.value))
+
+const finalLength = computed(() => {
+  const numberLength = Number(props.length)
+
+  return Math.min(Math.max(4, numberLength), 6)
+})
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+const popupStyles: CSSProperties = {
+  top: '45%',
+  padding: '30px 24px 20px 24px',
+  textAlign: 'center',
+  borderRadius: '12px',
+}
+
+watch(() => props.visible, (value) => {
+  innerVisible.value = value
+})
+
+watch(() => props.modelValue, (value) => {
+  inputValue.value = value
+
+  if (String(value).length >= finalLength.value)
+    emit('complete', value!)
+})
+
+function focus() {
+  emit(FOCUS_EVENT)
+}
+
+function close() {
+  emit(UPDATE_VISIBLE_EVENT, false)
+  emit(CLOSE_EVENT)
+}
+
+function onTipsClick() {
+  emit('tips')
+}
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
-    <NutPopUp
-      v-model:visible="show"
-      :custom-style="{
-        padding: '30px 24px 20px 24px',
-        borderRadius: '12px',
-        textAlign: 'center',
-        top: '45%',
-      }"
+  <view :class="classes" :style="props.customStyle">
+    <NutPopup
+      v-model:visible="innerVisible"
+      :custom-style="popupStyles"
       :closeable="true"
-      :close-on-click-overlay="closeOnClickOverlay"
+      :close-on-click-overlay="props.closeOnClickOverlay"
       @click-close-icon="close"
       @click-overlay="close"
     >
       <view class="nut-short-password-title">
-        {{ title || translate('title') }}
+        {{ props.title || translate('title') }}
       </view>
+
       <view class="nut-short-password-subtitle">
-        {{ desc || translate('desc') }}
+        {{ props.desc || translate('desc') }}
       </view>
+
       <view class="nut-short-password-wrapper">
-        <view class="nut-short-password__list" @touchstart="focus">
-          <view v-for="(sublen, index) in new Array(comLen)" :key="index" class="nut-short-password__item">
-            <view v-if="String(realInput).length > index" class="nut-short-password__item-icon" />
+        <view class="nut-short-password__list" @tap="focus">
+          <view v-for="it in finalLength" :key="it" class="nut-short-password__item">
+            <view v-if="it - 1 < innerValue.length" class="nut-short-password__item-icon" />
           </view>
         </view>
       </view>
+
       <view class="nut-short-password__message">
         <view class="nut-short-password--error">
-          {{ errorMsg }}
+          {{ props.errorMsg }}
         </view>
-        <view v-if="tips || translate('tips')" class="nut-short-password--forget" @click="onTips">
-          <NutIcon name="tips" custom-class="icon" size="11px" />
-          <view>{{ tips || translate('tips') }}</view>
+
+        <view
+          v-if="props.tips || translate('tips')"
+          class="nut-short-password--forget"
+          @click="onTipsClick"
+        >
+          <NutIcon custom-class="icon" name="tips" size="11px" />
+
+          <view>{{ props.tips || translate('tips') }}</view>
         </view>
       </view>
-    </NutPopUp>
+    </NutPopup>
   </view>
 </template>
 
