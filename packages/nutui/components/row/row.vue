@@ -1,17 +1,29 @@
 <script lang="ts" setup>
-import { computed, defineComponent, provide } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, provide } from 'vue'
 import { getMainClass } from '../_utils'
 import { rowProps } from './row'
+
+const COMPONENT_NAME = 'nut-row'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(rowProps)
 
 provide('gutter', props.gutter)
+
 function getClass(prefix: string, type: string) {
   return prefix ? (type ? `nut-row-${prefix}-${type}` : '') : `nut-row-${type}`
 }
+
 const classes = computed(() => {
-  return getMainClass(props, componentName, [
+  return getMainClass(props, COMPONENT_NAME, [
     getClass('', props.type),
     getClass('justify', props.justify),
     getClass('align', props.align),
@@ -20,21 +32,8 @@ const classes = computed(() => {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-row`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <slot />
   </view>
 </template>

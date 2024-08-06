@@ -114,5 +114,5 @@ function close() {
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
