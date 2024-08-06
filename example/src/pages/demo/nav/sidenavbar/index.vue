@@ -48,7 +48,7 @@ export default defineComponent({
     </nut-cell>
     <nut-popup
       v-model:visible="show1"
-      z-index="3000"
+      :z-index="3000"
       position="right"
       :custom-style="{ width, height }"
     >
@@ -70,7 +70,7 @@ export default defineComponent({
     </nut-cell>
     <nut-popup
       v-model:visible="show2"
-      z-index="3000"
+      :z-index="3000"
       position="left"
       :custom-style="{ width, height }"
     >
@@ -94,7 +94,7 @@ export default defineComponent({
       </nut-cell>
       <nut-popup
         v-model:visible="show3"
-        z-index="3000"
+        :z-index="3000"
         position="right"
         :custom-style="{ width, height }"
       >
