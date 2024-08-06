@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp } from '../_utils'
 
-export const SIDEN_NAVBAR_KEY = Symbol('sidennavbar')
+export const SIDE_NAVBAR_KEY = Symbol('sidenavbar')
 
 export const sidenavbarProps = {
   ...commonProps,
@@ -11,4 +11,4 @@ export const sidenavbarProps = {
   offset: makeNumericProp(15),
 }
 
-export type SidenavbarProps = ExtractPropTypes<typeof sidenavbarProps>
+export type SideNavbarProps = ExtractPropTypes<typeof sidenavbarProps>
