@@ -6,48 +6,44 @@
   overflow: hidden;
   vertical-align: middle;
 
-  .nut-skeleton-content {
+  $block: &;
+
+  &-content {
     display: flex;
 
-    /* stylelint-disable selector-class-pattern */
-    .avatarClass {
+    #{$block}__avatar {
       margin-right: 20px;
       background-color: $skeleton-content-avatar-background-color;
     }
 
-    .nut-skeleton-content__line {
+    #{$block}-content__line {
       display: flex;
       flex-direction: column;
 
-      .nut-skeleton-blockTitle,
-      .nut-skeleton-blockLine {
+      #{$block}__title,
+      #{$block}__line {
         width: 100%;
         margin-bottom: 10px;
         background-color: $skeleton-content-line-background-color;
       }
 
-      .nut-skeleton-blockTitle {
+      #{$block}__title {
         width: 30%;
       }
 
-      .blockLine ~ .blockLine:last-of-type {
-        width: 70%;
-      }
-
-      .nut-skeleton-blockTitle:last-of-type,
-      .nut-skeleton-blockLine:last-of-type {
+      #{$block}__title:last-of-type,
+      #{$block}__line:last-of-type {
         margin-bottom: 0;
       }
 
-      .nut-skeleton-blockTitle--round,
-      .nut-skeleton-blockLine--round {
+      #{$block}__title--round,
+      #{$block}__line--round {
         border-radius: 10px;
       }
     }
-    /* stylelint-enable selector-class-pattern */
   }
 
-  .nut-skeleton-animation {
+  &-animation {
     position: absolute;
     top: 0;
     left: 0;
