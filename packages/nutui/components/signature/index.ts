@@ -1,1 +1,1 @@
-export type * from './signature'
+export * from './signature'
