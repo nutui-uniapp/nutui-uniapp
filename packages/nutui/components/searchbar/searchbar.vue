@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, reactive, toRef, useSlots } from 'vue'
+import { computed, reactive, toRef, useSlots } from 'vue'
 import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
-import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
 import { useTranslate } from '../../locale'
 import { getMainClass, getMainStyle } from '../_utils'
@@ -10,11 +10,24 @@ import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
 import { searchbarEmits, searchbarProps } from './searchbar'
 
+const COMPONENT_NAME = 'nut-searchbar'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(searchbarProps)
 
 const emit = defineEmits(searchbarEmits)
 
 const slots = useSlots()
+
+const { translate } = useTranslate(COMPONENT_NAME)
 
 const formContext = useFormContext()
 const formItemContext = useFormItemContext()
@@ -43,7 +56,7 @@ const innerMaxLength = computed(() => {
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
+  return getMainClass(props, COMPONENT_NAME, {
     'safe-area-inset-bottom': props.safeAreaInsetBottom,
   })
 })
@@ -135,20 +148,6 @@ function handleRightIconClick(event: any) {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-searchbar`
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view :class="classes" :style="styles">
     <view
@@ -158,10 +157,12 @@ export default defineComponent({
     >
       <slot name="leftout" />
     </view>
+
     <view class="nut-searchbar__search-input" :class="[props.shape]" :style="inputWrapperStyles">
       <view v-if="slots.leftin" class="nut-searchbar__search-icon nut-searchbar__iptleft-search-icon">
         <slot name="leftin" />
       </view>
+
       <view class="nut-searchbar__input-inner" :class="{ 'nut-searchbar__input-inner-absolute': slots.rightin }">
         <form
           class="nut-searchbar__input-form"
@@ -190,6 +191,7 @@ export default defineComponent({
           >
         </form>
       </view>
+
       <view
         class="nut-searchbar__input-inner-icon"
         :class="{ 'nut-searchbar__input-inner-icon-absolute': slots.rightin }"
@@ -203,8 +205,10 @@ export default defineComponent({
           <template v-if="slots['clear-icon']">
             <slot name="clear-icon" />
           </template>
+
           <NutIcon v-else :name="props.clearIcon" />
         </view>
+
         <view
           v-if="slots.rightin"
           class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon"
@@ -214,6 +218,7 @@ export default defineComponent({
         </view>
       </view>
     </view>
+
     <view v-if="slots.rightout" class="nut-searchbar__search-icon nut-searchbar__right-search-icon">
       <slot name="rightout" />
     </view>
