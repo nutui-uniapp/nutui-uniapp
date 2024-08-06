@@ -93,7 +93,7 @@ function onTipsClick() {
       <view class="nut-short-password-wrapper">
         <view class="nut-short-password__list" @tap="focus">
           <view v-for="it in finalLength" :key="it" class="nut-short-password__item">
-            <view v-if="it - 1 < innerValue.length" class="nut-short-password__item-icon" />
+            <view v-if="it <= innerValue.length" class="nut-short-password__item-icon" />
           </view>
         </view>
       </view>
