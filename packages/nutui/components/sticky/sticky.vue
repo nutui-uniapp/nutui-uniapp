@@ -172,7 +172,7 @@ async function checkSupportCssSticky() {
 
   // 如果安卓版本高于8.0，依然认为是支持css sticky的(因为安卓7在某些机型，可能不支持sticky)
   const systemInfo = uni.getSystemInfoSync()
-  if (systemInfo.platform.toLowerCase() === 'android' && Number.parseInt(systemInfo.system.split(' ')[1]) > 8)
+  if (systemInfo.osName === 'android' && Number.parseInt(systemInfo.osVersion) > 8)
     cssSticky.value = true
 
   // APP-Vue和微信平台，通过computedStyle判断是否支持css sticky
@@ -181,7 +181,7 @@ async function checkSupportCssSticky() {
   // #endif
 
   // ios上，从ios6开始，都是支持css sticky的
-  if (systemInfo.platform.toLowerCase() === 'ios')
+  if (systemInfo.osName === 'ios')
     cssSticky.value = true
 
   // nvue，是支持css sticky的
