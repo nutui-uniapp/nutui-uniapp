@@ -4,16 +4,16 @@ import { commonProps, isH5, makeNumericProp, makeStringProp } from '../_utils'
 export const stickyProps = {
   ...commonProps,
   /**
+   * @description 吸顶距离
+   */
+  offsetTop: makeNumericProp(0),
+  /**
    * @description 吸附时的层级
    */
   zIndex: {
     type: [Number, String],
     default: 2000,
   },
-  /**
-   * @description 吸顶距离
-   */
-  offsetTop: makeNumericProp(0),
   /**
    * @description 导航栏高度，自定义导航栏时，需要传入此值
    * - H5端的导航栏属于“自定义”导航栏的范畴，因为它是非原生的，与普通元素一致
