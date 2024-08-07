@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, provide, ref, toRef } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
@@ -10,7 +10,7 @@ const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-const name = ref<string>('')
+const name = ref('')
 
 function update(value: string) {
   name.value = value
@@ -43,5 +43,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

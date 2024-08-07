@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, watch } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
+import type { SwipeDirection, SwipePosition } from './types'
 import { swipeEmits, swipeProps } from './swipe'
-import type { SwipeDirection, SwipePosition } from './type'
 
 const props = defineProps(swipeProps)
 
@@ -12,19 +12,23 @@ const emit = defineEmits(swipeEmits)
 
 const instance = getCurrentInstance()!
 
+const parent = inject('swipeGroup', null) as any
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-const refRandomId = getRandomId()
+const randomId = getRandomId()
 
-const leftRefId = `leftRef-${refRandomId}`
-const leftRefWidth = ref<number>(0)
+// eslint-disable-next-line ts/no-use-before-define
+const leftElId = `${componentName}-left-${randomId}`
+const leftElWidth = ref(0)
 
-const rightRefId = `rightRef-${refRandomId}`
-const rightRefWidth = ref<number>(0)
+// eslint-disable-next-line ts/no-use-before-define
+const rightElId = `${componentName}-right-${randomId}`
+const rightElWidth = ref(0)
 
-async function getRefWidth(elementId: string) {
+async function getElementWidth(elementId: string) {
   const rect = await useRect(elementId, instance)
 
   return rect.width || 0
@@ -32,25 +36,20 @@ async function getRefWidth(elementId: string) {
 
 async function initWidth() {
   const [leftWidth, rightWidth] = await Promise.all([
-    getRefWidth(leftRefId),
-    getRefWidth(rightRefId),
+    getElementWidth(leftElId),
+    getElementWidth(rightElId),
   ])
 
-  leftRefWidth.value = leftWidth
-  rightRefWidth.value = rightWidth
+  leftElWidth.value = leftWidth
+  rightElWidth.value = rightWidth
 }
 
-const parent = inject('swipeGroup', null) as any
+watch(() => parent?.name.value, (value) => {
+  if (props.name !== value && parent && parent.lock.value)
+    close()
+})
 
-watch(
-  () => parent?.name?.value,
-  (name) => {
-    if (props.name !== name && parent && parent.lock.value)
-      close()
-  },
-)
-
-const opened = ref<boolean>(false)
+const opened = ref(false)
 
 let direction: SwipeDirection = ''
 let oldDirection: SwipeDirection = ''
@@ -73,7 +72,7 @@ function open(dir: SwipeDirection = '') {
     return
 
   if (dir)
-    state.offset = dir === 'left' ? -rightRefWidth.value : leftRefWidth.value
+    state.offset = dir === 'left' ? -rightElWidth.value : leftElWidth.value
 
   opened.value = true
 
@@ -115,16 +114,16 @@ function updateOffset(deltaX: number) {
   switch (direction) {
     case 'left': {
       if (opened.value && oldDirection === direction)
-        offset = -rightRefWidth.value
+        offset = -rightElWidth.value
       else
-        offset = Math.abs(deltaX) > rightRefWidth.value ? -rightRefWidth.value : deltaX
+        offset = Math.abs(deltaX) > rightElWidth.value ? -rightElWidth.value : deltaX
       break
     }
     case 'right': {
       if (opened.value && oldDirection === direction)
-        offset = leftRefWidth.value
+        offset = leftElWidth.value
       else
-        offset = Math.abs(deltaX) > leftRefWidth.value ? leftRefWidth.value : deltaX
+        offset = Math.abs(deltaX) > leftElWidth.value ? leftElWidth.value : deltaX
       break
     }
   }
@@ -169,21 +168,21 @@ function onTouchEnd() {
   oldDirection = direction
   switch (direction) {
     case 'left': {
-      if (Math.abs(state.offset) <= rightRefWidth.value / 2) {
+      if (Math.abs(state.offset) <= rightElWidth.value / 2) {
         close()
       }
       else {
-        state.offset = -rightRefWidth.value
+        state.offset = -rightElWidth.value
         open()
       }
       break
     }
     case 'right': {
-      if (Math.abs(state.offset) <= leftRefWidth.value / 2) {
+      if (Math.abs(state.offset) <= leftElWidth.value / 2) {
         close()
       }
       else {
-        state.offset = leftRefWidth.value
+        state.offset = leftElWidth.value
         open()
       }
       break
@@ -228,7 +227,7 @@ export default defineComponent({
       @touchend="onTouchEnd"
       @touchcancel="onTouchEnd"
     >
-      <view :id="leftRefId" class="nut-swipe__left" @click="handleClick('left')">
+      <view :id="leftElId" class="nut-swipe__left" @click="handleClick('left')">
         <slot name="left" />
       </view>
 
@@ -236,7 +235,7 @@ export default defineComponent({
         <slot name="default" />
       </view>
 
-      <view :id="rightRefId" class="nut-swipe__right" @click="handleClick('right')">
+      <view :id="rightElId" class="nut-swipe__right" @click="handleClick('right')">
         <slot name="right" />
       </view>
     </view>
