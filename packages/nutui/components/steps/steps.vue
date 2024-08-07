@@ -1,11 +1,22 @@
 <script lang="ts" setup>
 import type { ComponentInternalInstance } from 'vue'
-import { computed, defineComponent, provide, reactive } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, provide, reactive } from 'vue'
 import { getMainClass } from '../_utils'
 import { stepsEmits, stepsProps } from './steps'
 
+const COMPONENT_NAME = 'nut-steps'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(stepsProps)
+
 const emit = defineEmits(stepsEmits)
 
 const state = reactive({
@@ -13,14 +24,14 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}-${props.direction}`]: true,
-    [`${componentName}-dot`]: !!props.progressDot,
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}-${props.direction}`]: true,
+    [`${COMPONENT_NAME}-dot`]: props.progressDot,
   })
 })
 
 function relation(child: ComponentInternalInstance) {
-  child && state.children.push(child as any)
+  child && state.children.push(child)
 }
 
 function onEmit(index: number) {
@@ -35,21 +46,8 @@ provide('parent', {
 })
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-steps`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
+  <view :class="classes" :style="props.customStyle">
     <slot />
   </view>
 </template>

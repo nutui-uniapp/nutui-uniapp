@@ -1,31 +1,37 @@
 <script lang="ts" setup>
-import { computed, defineComponent, onMounted, ref } from 'vue'
-import { PREFIX } from '../_constants'
-import { TypeOfFun } from '../_utils'
+import { computed, onMounted, ref } from 'vue'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
+import { TypeOfFun } from '../_utils'
+
+const COMPONENT_NAME = 'nut-sku-stepper'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps({
   modelValue: {
     type: [Number, String],
   },
-
-  // 购买数量最大值
-  stepperMax: {
-    type: [Number, String],
-    default: 99999,
-  },
-
+  // 购买数量最小值
   stepperMin: {
     type: [Number, String],
     default: 1,
   },
-
+  stepperMax: {
+    type: [Number, String],
+    default: 99999,
+  },
   // stepper 前文案提示
   stepperExtraText: {
     type: [Function, Boolean],
     default: false,
   },
-
   // 数量选择左侧文案
   stepperTitle: {
     type: String,
@@ -35,23 +41,19 @@ const props = defineProps({
 
 const emit = defineEmits(['click', 'changeSku', 'changeStepper', 'clickBtnOptions', 'overLimit', 'reduce', 'add'])
 
-defineExpose({
-  reset,
-})
-
-const goodsCount = ref(props.stepperMin)
+const innerCount = ref(props.stepperMin)
 
 onMounted(() => {
-  goodsCount.value = props.stepperMin
+  innerCount.value = props.stepperMin
 })
 
-const getExtraText = computed(() => {
+const extraText = computed(() => {
   const { stepperExtraText } = props
 
   if (stepperExtraText && TypeOfFun(stepperExtraText) === 'function')
     return (stepperExtraText as any)()
 
-  else return ''
+  return ''
 })
 
 // 修改购买数量 add 加  reduce 减
@@ -67,46 +69,40 @@ function reduce(value: any) {
 function overlimit(e: Event, action: string) {
   emit('overLimit', {
     action,
-    value: Number.parseInt(`${goodsCount.value}`),
+    value: Number.parseInt(`${innerCount.value}`),
   })
 }
+
 // stepper 发生了改变
 function changeStepper(value: number) {
-  goodsCount.value = value
+  innerCount.value = value
 
   emit('changeStepper', value)
 }
 
 // 重置值
 function reset() {
-  goodsCount.value = props.stepperMin
+  innerCount.value = props.stepperMin
 }
-</script>
 
-<script  lang="ts">
-const componentName = `${PREFIX}-sku-stepper`
-
-export default defineComponent ({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  reset,
 })
 </script>
 
 <template>
   <view class="nut-sku-stepper">
     <view class="nut-sku-stepper-title">
-      {{ stepperTitle }}
+      {{ props.stepperTitle }}
     </view>
-    <rich-text class="nut-sku-stepper-limit" :nodes="getExtraText" />
+
+    <rich-text class="nut-sku-stepper-limit" :nodes="extraText" />
+
     <view class="nut-sku-stepper-count">
       <NutInputNumber
-        v-model="goodsCount"
-        :min="stepperMin"
-        :max="stepperMax"
+        v-model="innerCount"
+        :min="props.stepperMin"
+        :max="props.stepperMax"
         @add="(add as any)"
         @reduce="(reduce as any)"
         @overlimit="overlimit"
@@ -137,12 +133,12 @@ export default defineComponent ({
   }
 }
 
-.nut-sku{
+.nut-sku {
   &-stepper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right:  30px;
+    padding-right: 30px;
     margin: 10px 0 30px;
 
     &-title {

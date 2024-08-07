@@ -1,16 +1,26 @@
 <script lang="ts" setup>
-import { computed, defineComponent, provide, ref, toRef } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed, provide, ref, toRef } from 'vue'
 import { getMainClass } from '../_utils'
 import { swipegroupProps } from './swipegroup'
+
+const COMPONENT_NAME = 'nut-swipe-group'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(swipegroupProps)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
-const name = ref<string>('')
+const name = ref('')
 
 function update(value: string) {
   name.value = value
@@ -20,19 +30,6 @@ provide('swipeGroup', {
   update,
   lock: toRef(props, 'lock'),
   name,
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-swipe-group`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 

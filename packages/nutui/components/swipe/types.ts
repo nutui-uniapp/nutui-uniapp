@@ -27,7 +27,7 @@ export interface SwipeInst {
    */
   open: (direction?: SwipeDirection) => void
   /**
-   * 收起单元格侧边栏，同上
+   * 收起单元格侧边栏
    */
   close: () => void
 }

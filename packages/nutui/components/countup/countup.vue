@@ -470,7 +470,9 @@ onUnmounted(() => {
   data.timer = null
 })
 
-defineExpose({ machineLuck })
+defineExpose({
+  machineLuck,
+})
 </script>
 
 <template>

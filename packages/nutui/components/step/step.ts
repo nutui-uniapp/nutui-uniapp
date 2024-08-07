@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber } from '../_utils'
+import { commonProps } from '../_utils'
 
 export const stepProps = {
   ...commonProps,
@@ -14,9 +14,3 @@ export const stepProps = {
 }
 
 export type StepProps = ExtractPropTypes<typeof stepProps>
-
-export const stepEmits = {
-  clickStep: (val: number) => isNumber(val),
-}
-
-export type StepEmits = typeof stepEmits

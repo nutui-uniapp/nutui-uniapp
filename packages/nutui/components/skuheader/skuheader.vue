@@ -1,59 +1,55 @@
 <script lang="ts" setup>
-import { defineComponent, useSlots } from 'vue'
-import { useTranslate } from '../../locale'
-import { isH5 } from '../_utils'
-import { PREFIX } from '../_constants'
+import { useSlots } from 'vue'
 import NutPrice from '../price/price.vue'
+import { useTranslate } from '../../locale'
 
-defineProps({
-  /**
-   * @description 商品
-   */
-  goods: {
-    type: Object,
-    default: () => {},
-  },
-})
+const COMPONENT_NAME = 'nut-sku-header'
 
-const slots = useSlots()
-const getSlots = (name: string) => slots[name]
-</script>
-
-<script  lang="ts">
-const componentName = `${PREFIX}-sku-header`
-const { translate } = useTranslate(componentName)
-export default defineComponent ({
-  name: componentName,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps({
+  /**
+   * @description 商品
+   */
+  goods: {
+    type: Object,
+    default: () => ({}),
+  },
+})
+
+const slots = useSlots()
+
+const { translate } = useTranslate(COMPONENT_NAME)
 </script>
 
 <template>
   <view class="nut-sku-header">
-    <image v-if="!isH5" class="nut-sku-header-img" :src="goods.imagePath" />
-    <image v-else class="nut-sku-header-img" :src="goods.imagePath" />
+    <image class="nut-sku-header-img" :src="props.goods.imagePath" />
+
     <view class="nut-sku-header-right">
-      <template v-if="getSlots('skuHeaderPrice')">
-        <slot name="skuHeaderPrice" />
-      </template>
+      <slot v-if="slots.skuHeaderPrice" name="skuHeaderPrice" />
+
       <NutPrice
         v-else
-        :price="goods.price"
+        :price="props.goods.price"
         :need-symbol="true"
         :thousands="false"
       />
 
-      <template v-if="getSlots('skuHeaderExtra')">
-        <slot name="skuHeaderExtra" />
+      <slot v-if="slots.skuHeaderExtra" name="skuHeaderExtra" />
+
+      <template v-else>
+        <view v-if="props.goods.skuId" class="nut-sku-header-right-extra">
+          {{ translate('skuId') }}&nbsp;:&nbsp;{{ props.goods.skuId }}
+        </view>
       </template>
-      <view v-if="goods.skuId && !getSlots('skuHeaderExtra')" class="nut-sku-header-right-extra">
-        {{ translate('skuId')
-        }}&nbsp;:&nbsp;{{ goods.skuId }}
-      </view>
     </view>
   </view>
 </template>

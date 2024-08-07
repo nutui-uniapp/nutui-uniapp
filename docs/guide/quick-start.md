@@ -274,7 +274,7 @@ const toast = useToast()
 
 ::: info 其他
 关于 uniapp 的内置组件（例如 text、view、image 等）若需要类型提示，推荐使用 
-[@uni-helper/uni-app-types](https://github.com/uni-helper/uni-app-types?tab=readme-ov-file#%E9%85%8D%E7%BD%AE)
+[@uni-helper/uni-app-types](https://github.com/uni-helper/uni-types/tree/main/packages/uni-app-types)
 插件，按照其官方文档配置即可，需要注意你的 `vue-tsc` 依赖版本 和 `volar` 插件版本
 :::
 
