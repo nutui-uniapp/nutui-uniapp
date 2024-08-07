@@ -6,7 +6,10 @@ export const stickyProps = {
   /**
    * @description 吸附时的层级
    */
-  zIndex: [Number, String],
+  zIndex: {
+    type: [Number, String],
+    default: 2000,
+  },
   /**
    * @description 吸顶距离
    */
@@ -24,10 +27,6 @@ export const stickyProps = {
    * @description 吸顶区域的背景颜色
    */
   bgColor: makeStringProp('transparent'),
-  /**
-   * @description 自定义标识，用于区分是哪一个组件
-   */
-  index: [String, Number],
 }
 
 export type StickyProps = ExtractPropTypes<typeof stickyProps>
