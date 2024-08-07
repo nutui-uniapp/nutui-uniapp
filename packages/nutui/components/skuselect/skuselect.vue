@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { defineComponent, onMounted, ref, watch } from 'vue'
-import { PREFIX } from '../_constants'
+import { onMounted, ref, watch } from 'vue'
 
 interface SkuInfo {
   name: string
@@ -9,6 +8,18 @@ interface SkuInfo {
   disable: boolean
   [props: string]: any
 }
+
+const COMPONENT_NAME = 'nut-sku-select'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps({
   sku: {
     type: Array,
@@ -20,13 +31,9 @@ const emit = defineEmits(['selectSku'])
 
 const skuInfo = ref<SkuInfo[]>([])
 
-watch(
-  () => props.sku,
-  (value) => {
-    skuInfo.value = [].slice.call(value)
-  },
-  { deep: true },
-)
+watch(() => props.sku, (value) => {
+  skuInfo.value = [].slice.call(value)
+}, { deep: true })
 
 onMounted(() => {
   if (props.sku.length > 0)
@@ -47,25 +54,13 @@ function changeSaleChild(attrItem: any, index: any, parentItem: any, parentIndex
 }
 </script>
 
-<script  lang="ts">
-const componentName = `${PREFIX}-sku-select`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view class="nut-sku-select">
     <view v-for="(item, index) in skuInfo" :key="item.id" class="nut-sku-select-item">
       <view class="nut-sku-select-item-title">
         {{ item.name }}
       </view>
+
       <view class="nut-sku-select-item-skus">
         <view
           v-for="(itemAttr, itemAttrIndex) in item.list"
@@ -159,6 +154,5 @@ export default defineComponent({
       }
     }
   }
-
 }
 </style>
