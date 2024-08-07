@@ -1,18 +1,16 @@
-/* stylelint-disable keyframes-name-pattern */
 .nut-animate {
   .nut-animate__container {
     display: inline-block;
   }
 
   /* Animation css */
-  [class*='nut-animate-'] {
+  [class*="nut-animate-"] {
     animation-duration: 0.5s;
     animation-timing-function: ease-out;
     animation-fill-mode: both;
   }
 
   // 抖动
-  
   .nut-animate-shake {
     animation-name: shake;
   }
@@ -23,7 +21,6 @@
   }
 
   // 漂浮
-
   .nut-animate-float {
     position: relative;
     animation-name: float-pop;
@@ -114,13 +111,10 @@
   // 心跳
   @keyframes ripple {
     0% {
-      // box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.4);
-
       transform: scale(1);
     }
 
     50% {
-      // box-shadow: 0 1em 1em rgba(0, 0, 0, 0.4);
       transform: scale(1.1);
     }
   }
@@ -141,6 +135,7 @@
   }
 
   // 右侧向左侧划入
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-right {
     0% {
       opacity: 0;
@@ -154,6 +149,7 @@
   }
 
   // 左侧向右侧划入
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-left {
     0% {
       opacity: 0;
@@ -167,6 +163,7 @@
   }
 
   // 上面向下面划入
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-top {
     0% {
       opacity: 0;
@@ -180,6 +177,7 @@
   }
 
   // 下面向上面划入
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes slide-bottom {
     0% {
       opacity: 0;
@@ -193,6 +191,7 @@
   }
 
   // 漂浮 float
+  // stylelint-disable-next-line keyframes-name-pattern
   @keyframes float-pop {
     0% {
       top: 0;
@@ -256,7 +255,7 @@
       height: 60 * 1px;
       margin-top: calc(-30 / 2) * 1px;
       margin-right: calc(-60 / 2) * 1px;
-      content: '';
+      content: "";
       border: 4 * 1px solid rgb(255 255 255 / 60%);
       border-radius: calc(60 / 2) * 1px;
       transform: scale(0);
@@ -295,7 +294,7 @@
       left: 0;
       width: 100 * 1px;
       height: 60 * 1px;
-      content: '';
+      content: "";
       background-image: linear-gradient(106deg, rgb(232 224 255 / 0%) 24%, #e8e0ff 91%);
       filter: blur(3 * 1px);
       opacity: 0.73;

@@ -1,4 +1,4 @@
-@import '../radiogroup/index';
+@import "../radiogroup/index";
 
 .nut-theme-dark {
   .nut-radio {
@@ -58,10 +58,11 @@
 
       &::after {
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        content: '';
+        content: "";
         background-color: $radio-label-button-background;
         border-radius: $radio-button-border-radius;
         opacity: 0.05;

@@ -1,4 +1,3 @@
-/* stylelint-disable font-family-no-missing-generic-family-keyword */
 .nut-theme-dark {
   .nut-category {
     &__cateList {
@@ -41,7 +40,6 @@
     justify-content: center;
     width: 100px;
     height: 50px;
-    font-family: PingFangSC;
     font-size: 13px;
     font-weight: normal;
     color: $category-list-item-color;
@@ -59,7 +57,7 @@
       left: 0;
       width: 5px;
       height: 18px;
-      content: '';
+      content: "";
       background: $category-list-item-checked-img-bg-color;
     }
   }

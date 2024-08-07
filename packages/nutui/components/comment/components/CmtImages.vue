@@ -140,8 +140,7 @@ export default defineComponent({
       // }
 
       &--video {
-
-        /* stylelint-disable-next-line rule-empty-line-before */
+        // stylelint-disable-next-line rule-empty-line-before
         image {
           position: absolute;
           top: 50%;
@@ -199,7 +198,7 @@ export default defineComponent({
     &::after {
       display: block;
       width: 105px;
-      content: '';
+      content: "";
     }
   }
 
@@ -219,7 +218,7 @@ export default defineComponent({
       top: 11px;
       left: 15px;
       display: block;
-      content: '';
+      content: "";
       border-top: 9px solid transparent;
       border-bottom: 9px solid transparent;
       border-left: 15px solid #fff;
