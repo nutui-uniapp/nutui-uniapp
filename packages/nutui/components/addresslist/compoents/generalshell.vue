@@ -269,7 +269,10 @@ export default defineComponent({
 
     &__mask {
       position: absolute;
-      inset: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: 2001;
       display: flex;
       align-items: center;
@@ -321,7 +324,10 @@ export default defineComponent({
 
   .nut-address-list__mask-bottom {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 2000;
     background-color: transparent;
   }

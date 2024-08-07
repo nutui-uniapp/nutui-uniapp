@@ -75,6 +75,7 @@
 
     &--horizontal#{&}--reverse {
       flex-direction: row-reverse;
+
       #{$block}__text {
         margin: 0 $grid-item-text-margin 0 0;
       }
@@ -89,7 +90,7 @@
         left: 50%;
         width: 100%;
         height: 100%;
-        content: ' ';
+        content: "";
         background-color: $black;
         border: inherit;
         border-color: $black;

@@ -1,4 +1,4 @@
-@import '../cell/index';
+@import "../cell/index";
 
 .nut-theme-dark {
   .nut-form-item {
@@ -23,7 +23,7 @@
     left: 16px;
     box-sizing: border-box;
     pointer-events: none;
-    content: ' ';
+    content: "";
     transform: scaleX(0);
   }
 

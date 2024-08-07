@@ -1,4 +1,3 @@
-/* stylelint-disable font-family-no-missing-generic-family-keyword */
 .nut-theme-dark {
   .nut-countup {
     color: $dark-color;
@@ -10,7 +9,6 @@
 .nut-countup {
   display: block;
   padding: 5px 20px;
-  font-family: PingFangSC-Regular;
   font-weight: bold;
   color: #000;
 
@@ -30,7 +28,6 @@
 
       .nut-countup__number-item__span {
         display: block;
-        font-family: PingFangSC-Regular;
       }
     }
   }
@@ -58,9 +55,7 @@
 
     .nut-countup__numberimg__item {
       position: absolute;
-      display: block;
       display: inline-block;
-      font-family: PingFangSC-Regular;
       background-repeat: no-repeat;
       background-position: 0 0;
       transition: none;

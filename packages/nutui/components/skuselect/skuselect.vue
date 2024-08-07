@@ -140,10 +140,11 @@ export default defineComponent({
 
             &::after {
               position: absolute;
-              inset: 0;
+              top: 0;
+              left: 0;
               width: 100%;
               height: 100%;
-              content: '';
+              content: "";
               background-color: $sku-item-active-bg;
               border-radius: 15px;
               opacity: 0.15;
