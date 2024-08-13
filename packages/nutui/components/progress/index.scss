@@ -16,8 +16,6 @@
       background: $progress-inner-background-color;
       border-radius: $progress-outer-border-radius;
       transition: all 0.4s;
-
-      // position: relative;
     }
 
     .nut-progress-text {
@@ -36,8 +34,11 @@
     .nut-active {
       &::before {
         position: absolute;
-        inset: 0;
-        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: "";
         border-radius: $progress-outer-border-radius;
         animation: progressActive 2s ease-in-out infinite;
       }
@@ -64,7 +65,6 @@
       height: $progress-small-height;
 
       .nut-progress-text {
-        // top: $progress-small-text-top;
         top: 50%;
         padding: $progress-small-text-padding;
         font-size: $progress-small-text-font-size;

@@ -39,7 +39,10 @@
     ],
     "no-descending-specificity": null,
     "no-empty-source": null,
-    "keyframes-name-pattern": "^[a-z]+([A-Z][a-z]*)*$"
+    "keyframes-name-pattern": "^[a-z]+([A-Z][a-z]*)*$",
+    "declaration-block-no-redundant-longhand-properties": [true, {
+      "ignoreShorthands": ["inset"]
+    }]
   },
   "ignoreFiles": [
     "node_modules",

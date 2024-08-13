@@ -102,6 +102,7 @@ export default {
       msg="忘记密码"
       type="text"
       :cover="state.cover"
+      :z-index="5000"
     />
     <nut-short-password
       v-model="state.value4"

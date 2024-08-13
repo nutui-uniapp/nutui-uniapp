@@ -109,8 +109,8 @@ export default defineComponent ({
   }
 }
 
-.nut-comment{
-    &-bottom {
+.nut-comment {
+  &-bottom {
     display: flex;
     justify-content: space-between;
     margin-right: 5px;
@@ -120,7 +120,7 @@ export default defineComponent ({
       flex: 1;
       margin-right: 10px;
 
-      /* stylelint-disable-next-line at-rule-no-unknown */
+      // stylelint-disable-next-line at-rule-no-unknown
       @include oneline-ellipsis;
     }
 
@@ -161,7 +161,7 @@ export default defineComponent ({
             right: 0;
             width: 0;
             height: 0;
-            content: '';
+            content: "";
             border-top: 10px solid transparent;
             border-right: 0 solid transparent;
             border-bottom: 10px solid $white;
@@ -174,7 +174,7 @@ export default defineComponent ({
             right: -1px;
             width: 0;
             height: 0;
-            content: '';
+            content: "";
             border-top: 10px solid transparent;
             border-right: 0 solid transparent;
             border-bottom: 10px solid rgb(114 113 113 / 10%);
