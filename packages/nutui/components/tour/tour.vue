@@ -11,7 +11,7 @@ import { tourEmits, tourProps } from './tour'
 const props = defineProps(tourProps)
 
 const emit = defineEmits(tourEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 const refRandomId = getRandomId()
 const state = reactive({
   showTour: props.modelValue,

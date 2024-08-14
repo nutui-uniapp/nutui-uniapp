@@ -18,7 +18,7 @@ defineOptions({
 
 const props = defineProps(barrageProps)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 

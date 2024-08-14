@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { getMainClass, getMainStyle, isH5, isMpWeixin } from '../_utils'
 import { PREFIX } from '../_constants'
@@ -9,8 +8,8 @@ import type { TPrizeItem } from './type'
 const props = defineProps(turntableProps)
 
 const emit = defineEmits(turntableEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
-defineExpose({ rotateTurn })
+const instance = getCurrentInstance()!
+
 const {
   width,
   height,
@@ -199,6 +198,10 @@ onMounted(() => {
     // #endif
     init()
   }, 800)
+})
+
+defineExpose({
+  rotateTurn,
 })
 </script>
 

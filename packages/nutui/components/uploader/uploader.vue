@@ -215,7 +215,11 @@ const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-defineExpose({ submit, chooseImage, clearUploadQueue })
+defineExpose({
+  submit,
+  chooseImage,
+  clearUploadQueue,
+})
 </script>
 
 <script lang="ts">

@@ -20,7 +20,7 @@ const props = defineProps(guessgiftProps)
 
 const emit = defineEmits(guessgiftEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { query } = useSelectorQuery(instance)
 

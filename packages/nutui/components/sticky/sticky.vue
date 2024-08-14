@@ -18,7 +18,7 @@ defineOptions({
 
 const props = defineProps(stickyProps)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const elementId = `${COMPONENT_NAME}-${getRandomId()}`
 

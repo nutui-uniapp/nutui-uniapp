@@ -24,7 +24,7 @@ const props = defineProps(popoverProps)
 
 const emit = defineEmits(popoverEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const popoverID = `popoverRef${getRandomId()}`
 const popoverContentID = `popoverContentRef${getRandomId()}`

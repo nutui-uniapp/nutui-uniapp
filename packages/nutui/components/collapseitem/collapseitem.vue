@@ -21,7 +21,7 @@ const props = defineProps(collapseitemProps)
 
 const slots = useSlots()
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 

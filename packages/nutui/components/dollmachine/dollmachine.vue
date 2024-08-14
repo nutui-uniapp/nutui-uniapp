@@ -19,7 +19,7 @@ const props = defineProps(dollmachineProps)
 
 const emit = defineEmits(dollmachineEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const giftPrize = ref()
 const machineBoxDom = ref()

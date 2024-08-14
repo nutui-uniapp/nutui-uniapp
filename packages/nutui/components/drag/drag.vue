@@ -18,7 +18,7 @@ defineOptions({
 
 const props = defineProps(dragProps)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const myDrag = ref()
 const myDragID = `myDrag${getRandomId()}`

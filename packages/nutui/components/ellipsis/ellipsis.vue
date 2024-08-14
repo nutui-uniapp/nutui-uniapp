@@ -22,7 +22,7 @@ const props = defineProps(ellipsisProps)
 
 const emit = defineEmits(ellipsisEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { query } = useSelectorQuery(instance)
 

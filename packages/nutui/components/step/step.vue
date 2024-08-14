@@ -19,7 +19,7 @@ const props = defineProps(stepProps)
 
 const slots = useSlots()
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const parent = inject('parent') as any
 

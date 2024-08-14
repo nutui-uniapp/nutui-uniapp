@@ -21,7 +21,7 @@ const props = defineProps(navbarProps)
 
 const emit = defineEmits(navbarEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { border, fixed, safeAreaInsetTop, placeholder, zIndex } = toRefs(props)
 

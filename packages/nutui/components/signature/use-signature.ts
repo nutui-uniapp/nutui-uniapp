@@ -8,7 +8,7 @@ import type { SignatureEmits, SignatureProps } from './signature'
 const COMPONENT_NAME = 'nut-signature'
 
 export function useSignature(props: SignatureProps, emit: SetupContext<SignatureEmits>['emit']) {
-  const instance = getCurrentInstance() as ComponentInternalInstance
+  const instance = getCurrentInstance()!
 
   const { query } = useSelectorQuery(instance)
 

@@ -11,7 +11,7 @@ import { useTabContentTouch } from './hooks'
 
 const props = defineProps(tabsProps)
 const emit = defineEmits(tabsEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 const { getSelectorNodeInfo, getSelectorNodeInfos } = useSelectorQuery(instance)
 const refRandomId = getRandomId()
 const container = ref(null)

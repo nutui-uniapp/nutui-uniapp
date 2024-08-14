@@ -8,7 +8,7 @@ import { tabbarEmits, tabbarProps } from './tabbar'
 
 const props = defineProps(tabbarProps)
 const emit = defineEmits(tabbarEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
 const { bottom, placeholder, safeAreaInsetBottom } = toRefs(props)

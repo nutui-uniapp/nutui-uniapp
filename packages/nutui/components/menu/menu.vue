@@ -19,7 +19,7 @@ defineOptions({
 
 const props = defineProps(menuProps)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const barId = `nut-menu__bar${getRandomId()}`
 

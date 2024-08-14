@@ -28,7 +28,7 @@ function relation(child: ComponentInternalInstance): void {
     state.index = (props.name ? props.name : index) as number
   }
 }
-relation(getCurrentInstance() as ComponentInternalInstance)
+relation(getCurrentInstance()!)
 const active = computed(() => state.index === parent?.modelValue)
 function change() {
   const key = props.name ? props.name : state.index

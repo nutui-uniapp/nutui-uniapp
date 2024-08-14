@@ -20,7 +20,7 @@ const props = defineProps(elevatorProps)
 
 const emit = defineEmits(elevatorEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const spaceHeight = 23
 

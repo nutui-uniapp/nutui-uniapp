@@ -23,7 +23,7 @@ const props = defineProps(noticebarProps)
 
 const emit = defineEmits(noticebarEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 

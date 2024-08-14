@@ -26,7 +26,7 @@ const emit = defineEmits(rangeEmits)
 
 const slots = useSlots()
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const formContext = useFormContext()
 const formItemContext = useFormItemContext()
