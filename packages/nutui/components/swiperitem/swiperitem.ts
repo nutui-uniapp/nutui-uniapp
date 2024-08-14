@@ -6,7 +6,3 @@ export const swiperItemProps = {
 }
 
 export type SwiperItemProps = ExtractPropTypes<typeof swiperItemProps>
-
-export interface SwiperItemInst {
-  setOffset: (offset: number) => void
-}

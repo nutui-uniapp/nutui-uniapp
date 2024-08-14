@@ -1,1 +1,2 @@
-export type * from './swiperitem'
+export * from './types'
+export * from './swiperitem'
