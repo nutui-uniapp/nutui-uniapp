@@ -1,7 +1,7 @@
-// For this project development
-import '@vue/runtime-core'
+/* eslint-disable */
+// @ts-nocheck
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   // GlobalComponents for Volar
   export interface GlobalComponents {
     NutActionSheet: typeof import('./components/actionsheet/actionsheet.vue')['default']
