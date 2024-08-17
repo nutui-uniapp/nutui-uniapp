@@ -113,10 +113,7 @@ declare module 'vue' {
     NutShakeDice: typeof import('./components/shakedice/shakedice.vue')['default']
     NutTurnTable: typeof import('./components/turntable/turntable.vue')['default']
     NutLoadingPage: typeof import('./components/loadingpage/loadingpage.vue')['default']
-
   }
-
-  // interface ComponentCustomProperties {}
 }
 
-export { }
+export {}
