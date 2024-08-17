@@ -1,3 +1,19 @@
+## [1.7.15](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.14...v1.7.15) (2024-08-17)
+
+### Bug Fixes
+
+* 修复部分机型不支持css inset ([#400](https://github.com/nutui-uniapp/nutui-uniapp/issues/400)) ([f282aad](https://github.com/nutui-uniapp/nutui-uniapp/commit/f282aad819bad85060f2ec6b4302df9c7e1ad61c))
+* **number-keyboard:** 修复部分机型不支持inset ([#396](https://github.com/nutui-uniapp/nutui-uniapp/issues/396)) ([d06336e](https://github.com/nutui-uniapp/nutui-uniapp/commit/d06336e2996fbe264b56de7d8e142c9a5368ddea))
+* **range:** 修复可能存在flex-shrink为0时的样式异常 ([0f3ced7](https://github.com/nutui-uniapp/nutui-uniapp/commit/0f3ced77bdb2edc0c3bbd1691af8a6916cc39da3))
+* **short-password:** 修复部分机型不支持inset ([#397](https://github.com/nutui-uniapp/nutui-uniapp/issues/397)) ([7d4eb7e](https://github.com/nutui-uniapp/nutui-uniapp/commit/7d4eb7ed4caf13a0ff9b76411602e0e359a8a359))
+* **short-password:** 修复忘记密码文本对齐问题 ([#393](https://github.com/nutui-uniapp/nutui-uniapp/issues/393)) ([bb000ae](https://github.com/nutui-uniapp/nutui-uniapp/commit/bb000ae7dc1add2f58a5a1927c9a12339f8dcbe9))
+* **sticky:** 修复降级为fixed实现时效果异常 ([#402](https://github.com/nutui-uniapp/nutui-uniapp/issues/402)) ([15f8338](https://github.com/nutui-uniapp/nutui-uniapp/commit/15f83380e467dfbd3fad6cfe77e157668b024260))
+* update type declaration from '@vue/runtime-core' to 'vue' for Vu… ([#407](https://github.com/nutui-uniapp/nutui-uniapp/issues/407)) ([14d9d78](https://github.com/nutui-uniapp/nutui-uniapp/commit/14d9d785b71b0a8be3437b286f42b2fda5340d42))
+
+### Features
+
+* **form:** 为form组件的validate方法的返回添加类型声明 ([#389](https://github.com/nutui-uniapp/nutui-uniapp/issues/389)) ([b3e2f3b](https://github.com/nutui-uniapp/nutui-uniapp/commit/b3e2f3b6e93f96f9cbf0cdf3b186b6d4a6fcb4ec))
+
 ## [1.7.14](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.13...v1.7.14) (2024-08-05)
 
 ### Bug Fixes
