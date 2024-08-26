@@ -1,53 +1,81 @@
-<script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, toRefs, watch } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onMounted, provide, reactive, ref, watch } from 'vue'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass } from '../_utils'
-import { tabbarEmits, tabbarProps } from './tabbar'
+import { TABBAR_CONTEXT_KEY, tabbarEmits, tabbarProps } from './tabbar'
+import type { TabbarContext } from './types'
 
 const props = defineProps(tabbarProps)
+
 const emit = defineEmits(tabbarEmits)
-const instance = getCurrentInstance() as ComponentInternalInstance
+
+const instance = getCurrentInstance()!
+
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
-const { bottom, placeholder, safeAreaInsetBottom } = toRefs(props)
-const mdValue = reactive({
-  val: props.modelValue,
-  children: [],
-})
-const height = ref()
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    'nut-tabbar-bottom': bottom.value,
-    'nut-tabbar-safebottom': safeAreaInsetBottom.value,
+    'nut-tabbar-bottom': props.bottom,
+    'nut-tabbar-safebottom': props.safeAreaInsetBottom,
   })
 })
-function changeIndex(index: number, active: number | string) {
-  emit(UPDATE_MODEL_EVENT, active)
-  parentData.modelValue = active
 
-  emit('tabSwitch', parentData.children[index], active)
-}
-let parentData = reactive({
-  children: mdValue.children,
-  size: props.size,
-  modelValue: mdValue.val,
-  unactiveColor: props.unactiveColor,
+const wrapperClasses = computed(() => {
+  return {
+    'nut-tabbar__placeholder': props.bottom && props.placeholder,
+  }
+})
+
+const trulyHeight = ref<number>()
+
+const wrapperStyles = computed(() => {
+  const value: CSSProperties = {}
+
+  if (trulyHeight.value != null) {
+    value.height = `${trulyHeight.value}px`
+  }
+
+  return value
+})
+
+const parentData: TabbarContext = reactive({
+  modelValue: props.modelValue,
   activeColor: props.activeColor,
-  dot: props.dot,
+  unactiveColor: props.unactiveColor,
+  children: [],
   changeIndex,
 })
-provide('parent', parentData)
-watch(
-  () => props.modelValue,
-  (value) => {
-    parentData.modelValue = value
-  },
-)
+
+provide(TABBAR_CONTEXT_KEY, parentData)
+
+watch(() => props.modelValue, (value) => {
+  parentData.modelValue = value
+})
+
+watch(() => [props.activeColor, props.unactiveColor], ([activeColor, unactiveColor]) => {
+  parentData.activeColor = activeColor
+  parentData.unactiveColor = unactiveColor
+})
+
+function changeIndex(index: number, active: number | string) {
+  parentData.modelValue = active
+
+  emit(UPDATE_MODEL_EVENT, active)
+  emit('tabSwitch', parentData.children[index], active)
+}
+
+async function fetchTrulyHeight() {
+  const node = await getSelectorNodeInfo('.nut-tabbar')
+
+  trulyHeight.value = node.height
+}
+
 onMounted(() => {
-  if (bottom.value && placeholder.value) {
-    setTimeout(async () => {
-      height.value = (await getSelectorNodeInfo('.nut-tabbar')).height
+  if (props.bottom && props.placeholder) {
+    setTimeout(() => {
+      fetchTrulyHeight()
     }, 500)
   }
 })
@@ -67,16 +95,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="{ 'nut-tabbar__placeholder': bottom && placeholder }" :style="{ height: `${height}px` }">
-    <view
-      :class="classes"
-      :style="customStyle"
-    >
+  <view :class="wrapperClasses" :style="wrapperStyles">
+    <view :class="classes" :style="props.customStyle">
       <slot />
     </view>
-  </div>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

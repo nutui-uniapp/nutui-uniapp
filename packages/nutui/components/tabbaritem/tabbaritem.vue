@@ -1,54 +1,88 @@
-<script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, reactive, useSlots } from 'vue'
+<script lang="ts" setup>
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, getCurrentInstance, inject, onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
 import { PREFIX } from '../_constants'
 import NutBadge from '../badge/badge.vue'
 import NutIcon from '../icon/icon.vue'
-import type { provideData } from '../tabbar/type'
+import type { TabbarContext } from '../tabbar/types'
 import { getMainClass, getMainStyle } from '../_utils'
+import { TABBAR_CONTEXT_KEY } from '../tabbar'
 import { tabbaritemProps } from './tabbaritem'
 
 const props = defineProps(tabbaritemProps)
+
 const slots = useSlots()
 
-function isHaveSlot(slot: string) {
-  return slots[slot]
-}
-const parent = inject<provideData>('parent')
-const state = reactive({
-  unactiveColor: parent?.unactiveColor, // 未选中的颜色
-  activeColor: parent?.activeColor, // 选中的颜色
-  active: parent?.modelValue, // 是否选中
-  index: 0,
+const instance = getCurrentInstance()
+
+const tabbarContext = inject<TabbarContext>(TABBAR_CONTEXT_KEY)
+
+const innerIndex = ref(-1)
+
+const innerValue = computed(() => {
+  if (props.name != null) {
+    return props.name
+  }
+
+  return innerIndex.value
 })
-function relation(child: ComponentInternalInstance): void {
-  if (child.proxy) {
-    parent?.children.push(child.proxy)
-    const index = parent?.children.indexOf(child.proxy)
-    state.index = (props.name ? props.name : index) as number
+
+const isActive = computed(() => {
+  if (tabbarContext == null) {
+    return false
   }
-}
-relation(getCurrentInstance() as ComponentInternalInstance)
-const active = computed(() => state.index === parent?.modelValue)
-function change() {
-  const key = props.name ? props.name : state.index
-  let indexValue = null
-  if (props.name) {
-    indexValue = parent?.children.findIndex((item: { name: string | number }) => {
-      return item.name === key
-    })
-  }
-  parent?.changeIndex(indexValue !== null ? +indexValue! : +key, state.index)
-}
+
+  return innerValue.value === tabbarContext.modelValue
+})
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    'nut-tabbar-item__icon--unactive': !active.value,
+    'nut-tabbar-item__icon--unactive': !isActive.value,
   })
 })
+
 const styles = computed(() => {
-  return getMainStyle(props, {
-    color: active.value ? state.activeColor : state.unactiveColor,
-  })
+  const value: CSSProperties = {}
+
+  if (tabbarContext != null) {
+    value.color = isActive.value ? tabbarContext.activeColor : tabbarContext.unactiveColor
+  }
+
+  return getMainStyle(props, value)
+})
+
+function triggerChange() {
+  if (tabbarContext == null) {
+    return
+  }
+
+  tabbarContext.changeIndex(innerIndex.value, innerValue.value)
+}
+
+function bindContext() {
+  if (tabbarContext == null || instance == null || instance.proxy == null) {
+    return
+  }
+
+  tabbarContext.children.push(instance.proxy)
+
+  innerIndex.value = tabbarContext.children.indexOf(instance.proxy)
+}
+
+function unbindContext() {
+  if (tabbarContext == null) {
+    return
+  }
+
+  tabbarContext.children.splice(innerIndex.value, 1)
+}
+
+onMounted(() => {
+  bindContext()
+})
+
+onBeforeUnmount(() => {
+  unbindContext()
 })
 </script>
 
@@ -66,37 +100,46 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
-    :class="classes"
-    :style="styles"
-    @click="change()"
-  >
-    <NutBadge v-bind="props">
+  <view :class="classes" :style="styles" @click="triggerChange()">
+    <NutBadge
+      :value="props.value"
+      :custom-color="props.customColor"
+      :top="props.top"
+      :right="props.right"
+      :max="props.max"
+      :dot="props.dot"
+      :bubble="props.bubble"
+      :hidden="props.hidden"
+      :z-index="props.zIndex"
+    >
       <view class="nut-tabbar-item_icon-box">
-        <div v-if="isHaveSlot('icon')" class="nut-tabbar-item_icon-box_icon">
-          <slot name="icon" :active="active" />
-        </div>
-        <view v-if="icon && !isHaveSlot('icon')">
-          <NutIcon :name="icon" custom-class="nut-popover-item-img" />
+        <view v-if="slots.icon" class="nut-tabbar-item_icon-box_icon">
+          <slot name="icon" :active="isActive" />
         </view>
+
+        <template v-else>
+          <view v-if="props.icon">
+            <NutIcon custom-class="nut-popover-item-img" :name="props.icon" />
+          </view>
+        </template>
 
         <view
           class="nut-tabbar-item_icon-box_nav-word"
-          :class="[
-            { 'nut-tabbar-item_icon-box_big-word': !icon && !isHaveSlot('icon') },
-          ]"
+          :class="{ 'nut-tabbar-item_icon-box_big-word': !props.icon && !slots.icon }"
         >
-          <slot>
-            <view v-if="tabTitle">
-              {{ tabTitle }}
+          <slot v-if="slots.default" />
+
+          <template v-else>
+            <view v-if="props.tabTitle">
+              {{ props.tabTitle }}
             </view>
-          </slot>
+          </template>
         </view>
       </view>
     </NutBadge>
-  </div>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
