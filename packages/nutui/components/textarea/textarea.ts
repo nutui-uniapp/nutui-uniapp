@@ -4,7 +4,7 @@ import type { ClassType } from '../_utils'
 import { commonProps, isString, makeNumberProp, makeStringProp, nullableBooleanProp, truthProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
-import type { TextareaAdjustKeyboardTo, TextareaAutosizeObject, TextareaConfirmType } from './type'
+import type { TextareaAdjustKeyboardTo, TextareaAutosizeObject, TextareaConfirmType } from './types'
 
 export const textareaProps = {
   ...commonProps,
