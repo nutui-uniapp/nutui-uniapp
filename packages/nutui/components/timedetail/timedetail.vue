@@ -1,17 +1,26 @@
-<!-- eslint-disable padded-blocks -->
 <script lang="ts" setup>
-import { computed, defineComponent, inject, reactive } from 'vue'
-import { PREFIX, SELECT_EVENT } from '../_constants'
+import { computed, inject, reactive } from 'vue'
+import { SELECT_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { timedetailEmits, timedetailProps } from './timedetail'
 
+const COMPONENT_NAME = 'nut-time-detail'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(timedetailProps)
+
 const emit = defineEmits(timedetailEmits)
-/* eslint-disable eqeqeq */
 
 const currentKey = inject('currentKey')
 const currentTime = inject('currentTime')
-const _muti = inject('muti')
 
 const state = reactive({
   currentKey,
@@ -19,53 +28,42 @@ const state = reactive({
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName)
+  return getMainClass(props, COMPONENT_NAME)
 })
 
-function getClass(item: string) {
-  const find = state.currentTime.find((item: any) => item.key == state.currentKey)
-  if (find) {
-    return {
-      'nut-time-detail__detail__list__item': true,
-      'nut-time-detail__detail__list__item--curr': find.list.filter((value: string) => value === item).length > 0,
-    }
+/* eslint-disable eqeqeq */
+function getItemClasses(item: string) {
+  const target = state.currentTime?.find(item => item.key == state.currentKey)
+
+  if (target == null) {
+    return {}
+  }
+
+  return {
+    'nut-time-detail__detail__list__item': true,
+    'nut-time-detail__detail__list__item--curr': target.list.filter((value: string) => value === item).length > 0,
   }
 }
 
 const renderData = computed(() => {
-  return props?.times?.find(time => time.key == state.currentKey).list
+  return props.times.find(item => item.key == state.currentKey)?.list || []
 })
+/* eslint-enable eqeqeq */
 
-function handleTime(time: string) {
+function handleItemClick(time: string) {
   emit(SELECT_EVENT, time)
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-time-detail`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    // #ifndef H5
-    styleIsolation: 'shared',
-    // #endif
-  },
-})
-</script>
-
 <template>
-  <view :class="classes" :style="customStyle">
-    <view class="nut-time-detail__detail nut-time-detail__detail--moring">
-      <!-- <view class="nut-time-detail__detail__time">上午</view> -->
+  <view :class="classes" :style="props.customStyle">
+    <view class="nut-time-detail__detail">
       <view class="nut-time-detail__detail__list">
         <view
           v-for="item in renderData"
           :key="item"
-          :class="getClass(item)"
-          @click="handleTime(item)"
+          :class="getItemClasses(item)"
+          @click="handleItemClick(item)"
         >
           {{ item }}
         </view>
