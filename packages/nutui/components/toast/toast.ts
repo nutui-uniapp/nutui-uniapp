@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, isBoolean, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 import { CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import type { ToastOptions, ToastSize, ToastType } from './type'
+import type { ToastOptions, ToastSize, ToastType } from './types'
 
 export const toastDefaultOptionsKey = '__TOAST_OPTIONS__'
 

@@ -1,12 +1,23 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue'
-import { computed, defineComponent, inject, onUnmounted, ref, watch } from 'vue'
+import { computed, inject, onUnmounted, ref, watch } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
+import { CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
-import { CLOSED_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import type { ToastOptions, ToastType } from './types'
 import { toastDefaultOptions, toastDefaultOptionsKey, toastEmits, toastProps } from './toast'
-import type { ToastOptions, ToastType } from './type'
+
+const COMPONENT_NAME = 'nut-toast'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(toastProps)
 
@@ -118,7 +129,7 @@ const hasIcon = computed<boolean>(() => {
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
+  return getMainClass(props, COMPONENT_NAME, {
     [`nut-toast-${toastOptions.value.size}`]: true,
     'nut-toast-cover': toastOptions.value.cover,
     'nut-toast-center': toastOptions.value.center,
@@ -200,19 +211,6 @@ defineExpose({
   warning: showWarning,
   loading: showLoading,
   hide,
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-toast`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
 </script>
 
