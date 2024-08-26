@@ -24,9 +24,9 @@ const instance = getCurrentInstance()!
 
 const { getSelectorNodeInfo } = useSelectorQuery(instance)
 
-const refRandomId = getRandomId()
+const elId = getRandomId()
 
-const target = `#nut-collapse__item-${refRandomId}`
+const target = `#nut-collapse__item-${elId}`
 
 const currentHeight = ref<string>('auto')
 
@@ -178,7 +178,7 @@ watch(expanded, toggle)
         height: wrapperHeight,
       }"
     >
-      <view :id="`nut-collapse__item-${refRandomId}`" class="nut-collapse__item-wrapper__content">
+      <view :id="`nut-collapse__item-${elId}`" class="nut-collapse__item-wrapper__content">
         <slot />
       </view>
     </view>

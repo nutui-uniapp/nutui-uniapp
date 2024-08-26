@@ -25,10 +25,10 @@ const instance = getCurrentInstance()!
 
 const { query } = useSelectorQuery(instance)
 
-const refRandomId = getRandomId()
-const rootId = `root${refRandomId}`
-const symbolContainId = `symbolContain${refRandomId}`
-const rootContainId = `rootContain${refRandomId}`
+const elId = getRandomId()
+const rootId = `root${elId}`
+const symbolContainId = `symbolContain${elId}`
+const rootContainId = `rootContain${elId}`
 
 const contentCopy = ref(props.content)
 

@@ -29,12 +29,12 @@ const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME)
 })
 
-const randomId = getRandomId()
+const elId = getRandomId()
 
-const leftElId = `${COMPONENT_NAME}-left-${randomId}`
+const leftElId = `${COMPONENT_NAME}-left-${elId}`
 const leftElWidth = ref(0)
 
-const rightElId = `${COMPONENT_NAME}-right-${randomId}`
+const rightElId = `${COMPONENT_NAME}-right-${elId}`
 const rightElWidth = ref(0)
 
 async function getElementWidth(elementId: string) {
