@@ -1,5 +1,5 @@
 import { omit } from '../_utils'
-import type { AcceptType, FileType, SizeType } from './type'
+import type { AcceptType, FileType, SizeType } from './types'
 import type { UploaderProps } from './uploader'
 
 interface UniChooseFileSuccessCallbackResult {
@@ -132,10 +132,9 @@ export function chooseFile({
   return new Promise((resolve, reject) => {
     // chooseMedia 目前只支持微信小程序原生，其余端全部使用 chooseImage API
     // #ifdef MP-WEIXIN
-
     uni.chooseMedia({
       /** 最多可以选择的文件个数 */
-      count: multiple ? Number(props.maximum) * 1 - fileList.length : 1,
+      count: multiple ? Number(props.maximum) - fileList.length : 1,
       /** 文件类型 */
       mediaType: props.mediaType,
       /** 图片和视频选择的来源 */
@@ -157,7 +156,7 @@ export function chooseFile({
     if (accept === 'image') {
       uni.chooseImage({
         // 选择数量
-        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+        count: props.multiple ? Number(props.maximum) - props.fileList.length : 1,
         // 可以指定是原图还是压缩图，默认二者都有
         sizeType,
         sourceType: props.sourceType,
@@ -180,7 +179,7 @@ export function chooseFile({
       uni.chooseFile({
         type: 'all',
         // 选择数量
-        count: props.multiple ? (props.maximum as number) * 1 - props.fileList.length : 1,
+        count: props.multiple ? Number(props.maximum) - props.fileList.length : 1,
         // 可以指定是原图还是压缩图，默认二者都有
         sizeType,
         sourceType: props.sourceType,
@@ -190,7 +189,6 @@ export function chooseFile({
         fail: reject,
       })
     }
-
     // #endif
   })
 }
@@ -236,5 +234,7 @@ export function createUploader(options: UploadOptions) {
     })
   }
 
-  return { upload }
+  return {
+    upload,
+  }
 }
