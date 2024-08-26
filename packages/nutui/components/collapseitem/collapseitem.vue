@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'

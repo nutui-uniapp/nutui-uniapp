@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { getMainClass } from '../_utils'
 import { dollmachineEmits, dollmachineProps } from './dollmachine'

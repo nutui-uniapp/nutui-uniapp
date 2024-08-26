@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import NutIcon from '../icon/icon.vue'

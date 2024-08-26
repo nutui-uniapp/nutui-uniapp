@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass } from '../_utils'

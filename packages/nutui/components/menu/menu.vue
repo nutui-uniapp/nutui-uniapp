@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, ref } from 'vue'
 import { useProvide, useRect } from '../_hooks'
 import NutIcon from '../icon/icon.vue'

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance, Ref, VNode } from 'vue'
+import type { CSSProperties, Ref, VNode } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
 import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'

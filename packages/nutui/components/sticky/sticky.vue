@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import { getMainClass, getMainStyle, getPx, getRandomId, pxCheck } from '../_utils'
 import { useRect } from '../_hooks'

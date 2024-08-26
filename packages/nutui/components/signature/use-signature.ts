@@ -1,4 +1,4 @@
-import type { ComponentInternalInstance, SetupContext } from 'vue'
+import type { SetupContext } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { CLEAR_EVENT, CONFIRM_EVENT } from '../_constants'
 import { useSelectorQuery } from '../_hooks'

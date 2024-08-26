@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive } from 'vue'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
