@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue'
-import { computed, inject, onUnmounted, ref, watch } from 'vue'
+import { computed, inject, onUnmounted, ref, useSlots, watch } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
 import { CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
@@ -23,7 +23,9 @@ const props = defineProps(toastProps)
 
 const emit = defineEmits(toastEmits)
 
-const innerVisible = ref<boolean>(false)
+const slots = useSlots()
+
+const innerVisible = ref(false)
 
 const typeIcons: Record<ToastType, string> = {
   text: '',
@@ -33,7 +35,7 @@ const typeIcons: Record<ToastType, string> = {
   loading: 'loading',
 }
 
-const toastOptionsKey: string = `${toastDefaultOptionsKey}${props.selector || ''}`
+const toastOptionsKey = `${toastDefaultOptionsKey}${props.selector || ''}`
 const injectToastOptions: Ref<ToastOptions> = inject(toastOptionsKey, ref(cloneDeep(toastDefaultOptions)))
 
 const toastOptions = ref<ToastOptions>(cloneDeep(props))
@@ -227,7 +229,7 @@ defineExpose({
       :style="wrapperStyles"
       @click="onCoverClick"
     >
-      <template v-if="$slots.default">
+      <template v-if="slots.default">
         <slot />
       </template>
 
