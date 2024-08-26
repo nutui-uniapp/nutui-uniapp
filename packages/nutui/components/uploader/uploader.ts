@@ -8,7 +8,7 @@ import {
   nullableBooleanProp,
   truthProp,
 } from '../_utils'
-import type { AcceptType, FileItem, MediaType, SizeType, SourceType } from './type'
+import type { AcceptType, FileItem, MediaType, SizeType, SourceType } from './types'
 import type { UploadOptions } from './use-uploader'
 
 export const uploaderProps = {
@@ -150,20 +150,3 @@ export const uploaderEmits = {
 }
 
 export type UploaderEmits = typeof uploaderEmits
-
-export interface UploaderInst {
-  /**
-   * @description 手动上传模式，执行上传操作
-   */
-  submit: () => void
-  /**
-   * @description 调用选择文件的方法，效果等同于点击 nut-uploader 组件
-   */
-  chooseImage: () => void
-  /**
-   * @description 清空已选择的文件队列（该方法一般配合在手动模式上传时使用）
-   * @param index
-   * @returns
-   */
-  clearUploadQueue: (index: number) => void
-}

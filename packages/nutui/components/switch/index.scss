@@ -8,7 +8,7 @@
 
 .nut-switch {
   display: inline-flex;
-  flex: 0 0 auto; // 防止被压缩
+  flex-shrink: 0;
   align-items: center;
   cursor: pointer;
   background-color: $primary-color;

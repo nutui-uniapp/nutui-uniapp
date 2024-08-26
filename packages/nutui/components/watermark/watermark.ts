@@ -1,6 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
-import { CLICK_EVENT } from '../_constants'
 
 export const watermarkProps = {
   ...commonProps,
@@ -78,9 +77,3 @@ export const watermarkProps = {
 }
 
 export type WaterMarkProps = ExtractPropTypes<typeof watermarkProps>
-
-export const watermarkEmits = {
-  [CLICK_EVENT]: (val: Event) => val instanceof Object,
-}
-
-export type WaterMarkEmits = typeof watermarkEmits

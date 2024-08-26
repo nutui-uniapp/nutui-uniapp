@@ -35,8 +35,6 @@
     width: $uploader-picture-width;
     height: $uploader-picture-height;
     background: $uploader-background;
-
-
   }
 
   &__input {
@@ -73,6 +71,7 @@
       z-index: 99;
 
       /* #endif */
+
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -80,7 +79,6 @@
       width: 100%;
       height: 100%;
       background: rgb(0 0 0 / 60%);
-
 
       &__msg {
         margin-top: 6px;

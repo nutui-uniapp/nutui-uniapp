@@ -80,7 +80,7 @@
         width: 0;
         height: 0;
         overflow: hidden;
-        content: " ";
+        content: "";
         border-radius: $tabs-titles-item-line-border-radius;
         opacity: $tabs-titles-item-line-opacity;
         transition: width 0.3s ease;
@@ -94,7 +94,7 @@
         .nut-tabs__titles-item__line {
           width: $tabs-horizontal-titles-item-active-line-width;
           height: 3px;
-          content: " ";
+          content: "";
           background: $tabs-horizontal-tab-line-color;
         }
       }
@@ -138,8 +138,6 @@
             font-size: 12px;
             color: $tabs-tab-smile-color;
           }
-
-
         }
 
         &-left {

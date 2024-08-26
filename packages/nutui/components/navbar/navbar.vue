@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import NutIcon from '../icon/icon.vue'
@@ -21,7 +21,7 @@ const props = defineProps(navbarProps)
 
 const emit = defineEmits(navbarEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { border, fixed, safeAreaInsetTop, placeholder, zIndex } = toRefs(props)
 

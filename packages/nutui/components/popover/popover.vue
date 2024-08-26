@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
 import { getMainClass, getMainStyle, getRandomId } from '../_utils'
 import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useRect } from '../_hooks'
@@ -24,7 +24,7 @@ const props = defineProps(popoverProps)
 
 const emit = defineEmits(popoverEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const popoverID = `popoverRef${getRandomId()}`
 const popoverContentID = `popoverContentRef${getRandomId()}`

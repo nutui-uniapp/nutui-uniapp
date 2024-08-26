@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { getMainClass } from '../_utils'
 import { dollmachineEmits, dollmachineProps } from './dollmachine'
@@ -19,7 +18,7 @@ const props = defineProps(dollmachineProps)
 
 const emit = defineEmits(dollmachineEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const giftPrize = ref()
 const machineBoxDom = ref()

@@ -4,10 +4,12 @@ import { useTouch } from '../_hooks'
 import { getRandomId } from '../_utils'
 
 type TouchPosition = 'left' | 'right' | 'top' | 'bottom' | ''
+
 export function useTabContentTouch(props: any, tabMethods: any, uni?: ComponentInternalInstance, useRect?: any) {
   const tabsContentRef = ref<HTMLElement>()
   const tabsContentID = `tabsContentRef-${getRandomId()}`
   const tabsContentRefRect = ref({ width: 0, height: 0 })
+
   const initUniWidth = async () => {
     if (uni) {
       const rect = await useRect(tabsContentID, uni)
@@ -26,14 +28,19 @@ export function useTabContentTouch(props: any, tabMethods: any, uni?: ComponentI
       initUniWidth()
     }, 100)
   })
+
+  const touch = useTouch()
+
   const touchState = reactive({
     offset: 0,
     moving: false,
   })
-  const touch = useTouch()
+
   let position: TouchPosition = ''
-  const setoffset = (deltaX: number, deltaY: number) => {
+
+  const setOffset = (deltaX: number, deltaY: number) => {
     let offset = deltaX
+
     if (props.direction === 'horizontal') {
       position = deltaX > 0 ? 'right' : 'left'
       // 计算拖拽 百分比
@@ -45,43 +52,53 @@ export function useTabContentTouch(props: any, tabMethods: any, uni?: ComponentI
       // 计算拖拽 百分比
       offset = (Math.abs(offset) / tabsContentRefRect.value?.height) * 100
     }
+
     // 拖拽阈值 85%
     if (offset > 85)
       offset = 85
 
     switch (position) {
       case 'left':
-      case 'top':
+      case 'top':{
         // 起始tab拖拽拦截
         if (tabMethods.isEnd()) {
           offset = 0
           touchState.moving = false
         }
         break
+      }
       case 'right':
-      case 'bottom':
+      case 'bottom':{
         offset = -offset
+
         // 末位tab拖拽拦截
         if (tabMethods.isBegin()) {
           offset = 0
           touchState.moving = false
         }
         break
+      }
     }
+
     touchState.offset = offset
   }
+
   const touchMethods = {
     onTouchStart(event: Event) {
       if (!props.swipeable)
         return
+
       touch.start(event)
     },
     onTouchMove(event: Event) {
       if (!props.swipeable)
         return
+
       touch.move(event)
+
       touchState.moving = true
-      setoffset(touch.deltaX.value, touch.deltaY.value)
+
+      setOffset(touch.deltaX.value, touch.deltaY.value)
 
       if (props.direction === 'horizontal' && touch.isHorizontal()) {
         event.preventDefault()
@@ -101,17 +118,21 @@ export function useTabContentTouch(props: any, tabMethods: any, uni?: ComponentI
             // 大于 35%阈值 切换至下一 Tab
             if (touchState.offset > 35)
               tabMethods.next()
-
             break
           case 'right':
           case 'bottom':
             if (touchState.offset < -35)
               tabMethods.prev()
-
             break
         }
       }
     },
   }
-  return { touchMethods, touchState, tabsContentRef, tabsContentID }
+
+  return {
+    tabsContentRef,
+    tabsContentID,
+    touchState,
+    touchMethods,
+  }
 }

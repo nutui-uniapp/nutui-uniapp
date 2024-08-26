@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { useRect } from '../_hooks'
 import { getMainClass, getMainStyle, getRandomId } from '../_utils'
@@ -18,7 +17,7 @@ defineOptions({
 
 const props = defineProps(dragProps)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const myDrag = ref()
 const myDragID = `myDrag${getRandomId()}`

@@ -58,8 +58,8 @@
   &-cover {
     #{$block}-wrapper {
       height: 100%;
-      background: $toast-cover-bg-color;
       pointer-events: auto;
+      background: $toast-cover-bg-color;
     }
 
     &:not(#{$block}-center) {
@@ -92,15 +92,6 @@
     border-radius: $toast-inner-border-radius;
   }
 
-  &-icon-wrapper {
-    display: flex;
-    justify-content: center;
-
-    .nut-icon-loading {
-      animation: none;
-    }
-  }
-
   &-loading {
     #{$block}-icon-wrapper {
       align-self: center;
@@ -114,6 +105,13 @@
   }
 
   &-icon-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .nut-icon-loading {
+      animation: none;
+    }
+
     & + #{$block}-title,
     & + #{$block}-text {
       margin-top: 12px;

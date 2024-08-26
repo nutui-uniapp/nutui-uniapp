@@ -1,26 +1,37 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent } from 'vue'
-import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
+import { computed } from 'vue'
 import NutIcon from '../icon/icon.vue'
+import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
 import { tagEmits, tagProps } from './tag'
+
+const COMPONENT_NAME = 'nut-tag'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(tagProps)
 
 const emit = defineEmits(tagEmits)
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--${props.type}`]: props.type,
-    [`${componentName}--plain`]: props.plain,
-    [`${componentName}--round`]: props.round,
-    [`${componentName}--mark`]: props.mark,
-    [`${componentName}--disabled`]: props.disabled,
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--${props.type}`]: props.type,
+    [`${COMPONENT_NAME}--plain`]: props.plain,
+    [`${COMPONENT_NAME}--round`]: props.round,
+    [`${COMPONENT_NAME}--mark`]: props.mark,
+    [`${COMPONENT_NAME}--disabled`]: props.disabled,
   })
 })
 
-const styles = computed<string>(() => {
+const styles = computed(() => {
   const value: CSSProperties = {}
 
   if (props.textColor)
@@ -56,27 +67,14 @@ function onCloseClick(event: any) {
 }
 </script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-tag`
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
-</script>
-
 <template>
   <view :class="classes" :style="styles" @tap="onClick">
     <slot />
 
     <NutIcon
       v-if="props.closeable"
-      name="close"
       custom-class="nut-tag--close"
+      name="close"
       :size="props.closeIconSize"
       @tap.stop="onCloseClick"
     />

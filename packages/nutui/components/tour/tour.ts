@@ -1,15 +1,18 @@
 import type { ExtractPropTypes } from 'vue'
 import type { PopoverLocation, PopoverTheme } from '../popover/types'
-import { commonProps, isBoolean, isNumber, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import {
+  commonProps,
+  isBoolean,
+  isNumber,
+  makeArrayProp,
+  makeNumberProp,
+  makeNumericProp,
+  makeStringProp,
+  truthProp,
+} from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import type { TourStepOptions } from './types'
 
-export interface StepOptions {
-  target: string
-  content?: string
-  location?: PopoverLocation
-  popoverOffset?: number[]
-  arrowOffset?: number
-}
 export const tourProps = {
   ...commonProps,
   /**
@@ -26,7 +29,7 @@ export const tourProps = {
    * - 类型为 `StepOptions[]`
    * - 默认
    */
-  steps: makeArrayProp<StepOptions>([]),
+  steps: makeArrayProp<TourStepOptions>([]),
   /**
    * @description 弹出层位置,同 Popopver 的location 属性
    * - 默认值为 `'bottom'`

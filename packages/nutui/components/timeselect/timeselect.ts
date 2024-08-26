@@ -28,7 +28,6 @@ export const timeselectProps = {
    * @description 背景是否锁定
    */
   lockScroll: truthProp,
-  muti: Boolean,
 }
 
 export type TimeSelectProps = ExtractPropTypes<typeof timeselectProps>
@@ -36,7 +35,6 @@ export type TimeSelectProps = ExtractPropTypes<typeof timeselectProps>
 export const timeselectEmits = {
   [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
   [SELECT_EVENT]: (val: any) => val instanceof Object,
-
 }
 
 export type TimeSelectEmits = typeof timeselectEmits

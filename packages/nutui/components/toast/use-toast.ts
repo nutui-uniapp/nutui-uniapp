@@ -1,6 +1,6 @@
 import { provide, ref } from 'vue'
 import { cloneDeep } from '../_utils'
-import type { ToastInst, ToastOptions, ToastType } from './type'
+import type { ToastInst, ToastOptions, ToastType } from './types'
 import { toastDefaultOptions, toastDefaultOptionsKey } from './toast'
 
 export function useToast(selector: string = ''): ToastInst {

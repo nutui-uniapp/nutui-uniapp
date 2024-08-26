@@ -17,11 +17,11 @@
   font-size: $textarea-font;
   background: $white;
 
-  &--disabled {
-    .nut-textarea__textarea,
+  $block: &;
 
-    // TODO PR原版类名错误
-    .nut-textarea__limit {
+  &--disabled {
+    #{$block}__textarea,
+    #{$block}__limit {
       color: $textarea-disabled-color !important;
       cursor: not-allowed;
     }
@@ -50,10 +50,6 @@
     background-color: transparent;
     border: none;
     outline: none;
-
-    .taro-textarea {
-      font-size: 14px;
-    }
   }
 
   &__ali {

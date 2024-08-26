@@ -1,7 +1,18 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
-import { defineComponent } from 'vue'
-import { CLICK_EVENT, PREFIX } from '../_constants'
+import { computed } from 'vue'
+import { CLICK_EVENT } from '../_constants'
+
+const COMPONENT_NAME = 'nut-sku-operate'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps({
   // 底部按钮配置  confirm cart  buy
@@ -13,7 +24,6 @@ const props = defineProps({
     type: String,
     default: '',
   },
-
   // 立即购买文案
   buyText: {
     type: String,
@@ -24,12 +34,10 @@ const props = defineProps({
     type: String,
     default: '加入购物车',
   },
-
   confirmText: {
     type: String,
     default: '确定',
   },
-
   showDefaultOperate: {
     type: Boolean,
     default: true,
@@ -38,51 +46,36 @@ const props = defineProps({
 
 const emit = defineEmits([CLICK_EVENT, 'changeSku', 'changeBuyCount', 'clickBtnOperate'])
 
-function getBtnDesc(type: string) {
-  const mapD: { [props: string]: string } = {
+const buttonTextMap = computed<Record<string, string>>(() => {
+  return {
     confirm: props.confirmText,
     cart: props.addCartText,
     buy: props.buyText,
   }
-
-  return mapD[type]
-}
-
-function clickBtnOperate(btn: string) {
-  emit('clickBtnOperate', btn)
-}
-</script>
-
-<script  lang="ts">
-const componentName = `${PREFIX}-sku-operate`
-
-export default defineComponent ({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
 })
+
+function handleButtonClick(button: string) {
+  emit('clickBtnOperate', button)
+}
 </script>
 
 <template>
-  <view v-if="btnOptions.length > 0" class="nut-sku-operate">
-    <view v-if="btnExtraText" class="nut-sku-operate-desc">
-      {{ btnExtraText }}
+  <view v-if="props.btnOptions.length > 0" class="nut-sku-operate">
+    <view v-if="props.btnExtraText" class="nut-sku-operate-desc">
+      {{ props.btnExtraText }}
     </view>
 
     <slot name="operateBtn" />
 
-    <view v-if="showDefaultOperate" class="nut-sku-operate-btn">
+    <view v-if="props.showDefaultOperate" class="nut-sku-operate-btn">
       <view
-        v-for="(btn, i) in btnOptions"
-        :key="i"
+        v-for="(item, index) in props.btnOptions"
+        :key="index"
         class="nut-sku-operate-btn-item"
-        :class="[`nut-sku-operate-btn-${btn}`]"
-        @click="clickBtnOperate(btn)"
+        :class="[`nut-sku-operate-btn-${item}`]"
+        @click="handleButtonClick(item)"
       >
-        {{ getBtnDesc(btn) }}
+        {{ buttonTextMap[item] }}
       </view>
     </view>
   </view>

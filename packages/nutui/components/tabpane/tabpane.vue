@@ -1,44 +1,55 @@
 <script lang="ts" setup>
 import type { CSSProperties, ComputedRef } from 'vue'
-import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
+import { computed } from 'vue'
 import { useInject } from '../_hooks'
 import { TAB_KEY } from '../tabs'
 import { getMainClass, getMainStyle } from '../_utils'
-import { tabpaneEmits, tabpaneProps } from './tabpane'
+import { tabpaneProps } from './tabpane'
 
-const props = defineProps(tabpaneProps)
-defineEmits(tabpaneEmits)
-const { parent } = useInject<{ activeKey: ComputedRef<string>, autoHeight: ComputedRef<boolean>, animatedTime: ComputedRef<string | number> }>(TAB_KEY)
+const COMPONENT_NAME = 'nut-tab-pane'
 
-const paneStyle = computed(() => {
-  const style: CSSProperties = {
-    display:
-      parent?.animatedTime.value === 0 && props.paneKey !== parent.activeKey.value ? 'none' : undefined,
-  }
-  return getMainStyle(props, style)
-})
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    inactive: String(props.paneKey) !== parent?.activeKey.value && parent?.autoHeight.value,
-  })
-})
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-tab-pane`
-export default defineComponent({
-  name: componentName,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(tabpaneProps)
+
+const { parent } = useInject<{
+  activeKey: ComputedRef<string>
+  autoHeight: ComputedRef<boolean>
+  animatedTime: ComputedRef<string | number>
+}>(TAB_KEY)
+
+const classes = computed(() => {
+  const value: Record<string, boolean> = {}
+
+  if (parent != null) {
+    value.inactive = String(props.paneKey) !== parent.activeKey.value && parent.autoHeight.value
+  }
+
+  return getMainClass(props, COMPONENT_NAME, value)
+})
+
+const styles = computed(() => {
+  const value: CSSProperties = {}
+
+  if (parent != null) {
+    if (parent.animatedTime.value === 0 && props.paneKey !== parent.activeKey.value) {
+      value.display = 'none'
+    }
+  }
+
+  return getMainStyle(props, value)
+})
 </script>
 
 <template>
-  <view :style="paneStyle" :class="classes">
+  <view :class="classes" :style="styles">
     <slot />
   </view>
 </template>

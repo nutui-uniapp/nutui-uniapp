@@ -89,7 +89,3 @@ export const turntableEmits = {
 }
 
 export type TurnTableEmits = typeof turntableEmits
-
-export interface TurnTableInst {
-  rotateTurn: () => void
-}

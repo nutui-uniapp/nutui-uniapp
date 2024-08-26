@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { useRect, useSelectorQuery } from '../_hooks'
 import { cloneDeep, getMainClass, getRandomId } from '../_utils'
@@ -20,11 +19,11 @@ const props = defineProps(guessgiftProps)
 
 const emit = defineEmits(guessgiftEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { query } = useSelectorQuery(instance)
 
-const randomId = getRandomId()
+const elId = getRandomId()
 
 const bowlList = reactive([1, 2, 3])
 
@@ -203,7 +202,7 @@ function raise(index: number) {
 
   watch(() => bowlList, (val) => {
     val.forEach(async (item, index) => {
-      const rect = await useRect(`${randomId}-${index}`, instance)
+      const rect = await useRect(`${elId}-${index}`, instance)
 
       bowlEle.push(rect)
     })
@@ -219,7 +218,7 @@ defineExpose({
   <view ref="bowlBox" :class="classes" :style="props.customStyle">
     <view
       v-for="(item, idx) of bowlList"
-      :id="`${randomId}-${idx}`"
+      :id="`${elId}-${idx}`"
       :key="`bowl${item}`"
       class="bowl-item"
       :style="{ top: bowlRaiseIndex === idx ? bowlRaiseIndexTop : '0' }"

@@ -35,8 +35,8 @@ const {
 </script>
 
 <template>
-  <div :class="classes" :style="props.customStyle">
-    <div class="nut-signature-inner spcanvas_WEAPP">
+  <view :class="classes" :style="props.customStyle">
+    <view class="nut-signature-inner spcanvas_WEAPP">
       <canvas
         :id="canvasSetId"
         ref="spcanvas"
@@ -48,7 +48,7 @@ const {
         @touchend="endEventHandler"
         @touchleave="leaveEventHandler"
       />
-    </div>
+    </view>
 
     <NutButton custom-class="nut-signature-btn" type="default" @click="clear()">
       {{ translate('reSign') }}
@@ -57,7 +57,7 @@ const {
     <NutButton custom-class="nut-signature-btn" type="primary" @click="confirm()">
       {{ translate('confirm') }}
     </NutButton>
-  </div>
+  </view>
 </template>
 
 <style lang="scss">

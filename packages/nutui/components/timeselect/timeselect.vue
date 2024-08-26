@@ -1,19 +1,35 @@
-<!-- eslint-disable padded-blocks -->
 <script lang="ts" setup>
-import { computed, defineComponent, provide } from 'vue'
-import { PREFIX, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { computed, provide, useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import { useTranslate } from '../../locale'
+import { SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { timeselectEmits, timeselectProps } from './timeselect'
 
-const props = defineProps(timeselectProps)
-const emit = defineEmits(timeselectEmits)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
+const COMPONENT_NAME = 'nut-time-select'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
 })
 
-const popStyle = computed(() => {
+const props = defineProps(timeselectProps)
+
+const emit = defineEmits(timeselectEmits)
+
+const slots = useSlots()
+
+const { translate } = useTranslate(COMPONENT_NAME)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+const popupStyles = computed(() => {
   return {
     width: '100%',
     height: props.height,
@@ -21,57 +37,43 @@ const popStyle = computed(() => {
 })
 
 const currentKey = computed(() => props.currentKey)
-
 const currentTime = computed(() => props.currentTime)
-
-const muti = computed(() => props.muti)
-
-function close() {
-  emit(UPDATE_VISIBLE_EVENT, false)
-  emit(SELECT_EVENT, currentTime.value)
-}
 
 provide('currentKey', currentKey)
 provide('currentTime', currentTime)
-provide('muti', muti)
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-time-select`
-const { translate } = useTranslate(componentName)
+function handleClose() {
+  emit(UPDATE_VISIBLE_EVENT, false)
 
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
+  emit(SELECT_EVENT, currentTime.value)
+}
 </script>
 
 <template>
   <NutPopup
+    :custom-style="popupStyles"
+    :visible="props.visible"
     position="bottom"
     closeable
     round
-    :visible="visible"
-    :custom-style="popStyle"
-    :lock-scroll="lockScroll"
-    @click-overlay="close"
-    @click-close-icon="close"
+    :lock-scroll="props.lockScroll"
+    @click-overlay="handleClose"
+    @click-close-icon="handleClose"
   >
-    <view :class="classes" :style="customStyle">
+    <view :class="classes" :style="props.customStyle">
       <view class="nut-time-select__title">
         <view class="nut-time-select__title__fixed">
-          <span v-if="!$slots.title">{{ title || translate('pickupTime') }}</span>
-          <slot v-else name="title" />
+          <slot v-if="slots.title" name="title" />
+
+          <text v-else>{{ props.title || translate('pickupTime') }}</text>
         </view>
       </view>
+
       <view class="nut-time-select__content">
         <view class="nut-time-select__content__pannel">
           <slot name="pannel" />
         </view>
+
         <view class="nut-time-select__content__detail">
           <slot name="detail" />
         </view>

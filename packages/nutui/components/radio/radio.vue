@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type ComputedRef, useSlots } from 'vue'
-import { computed, toRef } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed, toRef, useSlots } from 'vue'
 import NutIcon from '../icon/icon.vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'

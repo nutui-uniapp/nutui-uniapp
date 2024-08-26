@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { CLICK_EVENT } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
@@ -22,14 +21,14 @@ const props = defineProps(ellipsisProps)
 
 const emit = defineEmits(ellipsisEmits)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { query } = useSelectorQuery(instance)
 
-const refRandomId = getRandomId()
-const rootId = `root${refRandomId}`
-const symbolContainId = `symbolContain${refRandomId}`
-const rootContainId = `rootContain${refRandomId}`
+const elId = getRandomId()
+const rootId = `root${elId}`
+const symbolContainId = `symbolContain${elId}`
+const rootContainId = `rootContain${elId}`
 
 const contentCopy = ref(props.content)
 

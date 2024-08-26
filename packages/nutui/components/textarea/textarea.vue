@@ -1,18 +1,37 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, nextTick, toRef } from 'vue'
-import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
-import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
-import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { computed, nextTick, toRef } from 'vue'
+import type {
+  TextareaConfirmType,
+  TextareaOnBlurEvent,
+  TextareaOnConfirmEvent,
+  TextareaOnFocusEvent,
+  TextareaOnInputEvent,
+} from '@uni-helper/uni-app-types'
 import { useTranslate } from '../../locale'
+import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
-import type { InputTarget } from '../input/types'
 import { useFormItemContext } from '../formitem'
+import type { InputTarget } from '../input/types'
 import { textareaEmits, textareaProps } from './textarea'
+
+const COMPONENT_NAME = 'nut-textarea'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(textareaProps)
 
 const emit = defineEmits(textareaEmits)
+
+const { translate } = useTranslate(COMPONENT_NAME)
 
 const formContext = useFormContext()
 const formItemContext = useFormItemContext()
@@ -25,13 +44,13 @@ function stringModelValue() {
   return String(props.modelValue)
 }
 
-const innerValue = computed<string>(() => {
+const innerValue = computed(() => {
   return stringModelValue()
 })
 
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`${componentName}--disabled`]: formDisabled.value,
+  return getMainClass(props, COMPONENT_NAME, {
+    [`${COMPONENT_NAME}--disabled`]: formDisabled.value,
   })
 })
 
@@ -42,7 +61,7 @@ const textareaClasses = computed(() => {
 })
 
 const textareaStyles = computed(() => {
-  const style: CSSProperties = {
+  const value: CSSProperties = {
     textAlign: props.textAlign,
   }
 
@@ -50,13 +69,13 @@ const textareaStyles = computed(() => {
     const { minHeight, maxHeight } = props.autosize
 
     if (minHeight != null)
-      style.minHeight = pxCheck(minHeight)
+      value.minHeight = pxCheck(minHeight)
 
     if (maxHeight != null)
-      style.maxHeight = pxCheck(maxHeight)
+      value.maxHeight = pxCheck(maxHeight)
   }
 
-  return [props.textareaStyle, style]
+  return [props.textareaStyle, value]
 })
 
 const innerMaxLength = computed(() => {
@@ -66,71 +85,71 @@ const innerMaxLength = computed(() => {
   return Number(props.maxLength)
 })
 
-function updateValue(value: string, evt: any) {
+function updateValue(value: string, event: any) {
   if (innerMaxLength.value > 0 && value.length > innerMaxLength.value)
     value = value.slice(0, innerMaxLength.value)
 
-  emit(UPDATE_MODEL_EVENT, value, evt)
-  emit(CHANGE_EVENT, value, evt)
+  emit(UPDATE_MODEL_EVENT, value, event)
+  emit(CHANGE_EVENT, value, event)
 
   if (formItemContext !== undefined && formItemContext.triggers.value.change)
     formItemContext.validate('change')
 }
 
-function _onInput(evt: TextareaOnInputEvent) {
-  updateValue(evt.detail.value, evt)
+function _onInput(event: TextareaOnInputEvent) {
+  updateValue(event.detail.value, event)
 
   nextTick(() => {
-    emit(INPUT_EVENT, innerValue.value, evt)
+    emit(INPUT_EVENT, innerValue.value, event)
   })
 }
 
-function handleInput(evt: any) {
+function handleInput(event: any) {
   if (isH5) {
-    const target = evt.target as InputTarget
+    const target = event.target as InputTarget
 
     if (!target.composing)
-      _onInput(evt)
+      _onInput(event)
   }
   else {
-    _onInput(evt)
+    _onInput(event)
   }
 }
 
-function handleFocus(evt: TextareaOnFocusEvent) {
+function handleFocus(event: TextareaOnFocusEvent) {
   if (formDisabled.value || props.readonly)
     return
 
-  emit(FOCUS_EVENT, evt)
+  emit(FOCUS_EVENT, event)
 }
 
-function handleBlur(evt: TextareaOnBlurEvent) {
+function handleBlur(event: TextareaOnBlurEvent) {
   if (formDisabled.value || props.readonly)
     return
 
-  updateValue(evt.detail.value, evt)
+  updateValue(event.detail.value, event)
 
-  emit(BLUR_EVENT, evt)
+  emit(BLUR_EVENT, event)
 
   if (formItemContext !== undefined && formItemContext.triggers.value.blur)
     formItemContext.validate('blur')
 }
 
-function handleConfirm(evt: TextareaOnConfirmEvent) {
-  emit(CONFIRM_EVENT, evt)
+function handleConfirm(event: TextareaOnConfirmEvent) {
+  emit(CONFIRM_EVENT, event)
 }
 
-function startComposing(evt: any) {
+function startComposing(event: any) {
   if (isH5) {
-    const target = evt.target as InputTarget
+    const target = event.target as InputTarget
 
     target.composing = true
   }
 }
 
-function endComposing(evt: any) {
+function endComposing(event: any) {
   if (isH5) {
-    const target = evt.target as InputTarget
+    const target = event.target as InputTarget
 
     if (target.composing) {
       target.composing = false
@@ -138,21 +157,6 @@ function endComposing(evt: any) {
     }
   }
 }
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-textarea`
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: componentName,
-  inheritAttrs: false,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
-})
 </script>
 
 <template>
@@ -172,6 +176,7 @@ export default defineComponent({
       :auto-height="!!props.autosize"
       :disable-default-padding="props.disableDefaultPadding"
     />
+
     <textarea
       v-else
       class="nut-textarea__textarea"
@@ -206,6 +211,7 @@ export default defineComponent({
       @compositionend="endComposing"
       @confirm="handleConfirm"
     />
+
     <view v-if="props.limitShow && innerMaxLength > 0" class="nut-textarea__limit">
       {{ innerValue.length }}/{{ innerMaxLength }}
     </view>

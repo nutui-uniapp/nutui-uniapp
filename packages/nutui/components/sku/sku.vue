@@ -1,44 +1,52 @@
 <script lang="ts" setup>
-import { computed, defineComponent, ref, useSlots, watch } from 'vue'
-import { CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { computed, ref, useSlots, watch } from 'vue'
 import NutPopup from '../popup/popup.vue'
-import { useTranslate } from '../../locale'
 import SkuHeader from '../skuheader/skuheader.vue'
 import SkuOperate from '../skuoperate/skuoperate.vue'
 import SkuStepper from '../skustepper/skustepper.vue'
 import SkuSelect from '../skuselect/skuselect.vue'
+import { CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
 import { skuEmits, skuProps } from './sku'
+
+const COMPONENT_NAME = 'nut-sku'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
 
 const props = defineProps(skuProps)
 
 const emit = defineEmits(skuEmits)
 
-defineExpose({
-  resetCount,
-})
-
 const slots = useSlots()
-const showPopup = ref(props.visible)
-const skuStepperRef = ref()
-const goodsCount = ref(props.stepperMin)
-const classes = computed(() => {
-  return getMainClass(props, componentName)
-})
-watch(
-  () => props.visible,
-  (value) => {
-    showPopup.value = value
-  },
-)
 
-watch(
-  () => showPopup.value,
-  (value) => {
-    if (value === false)
-      close()
-  },
-)
+const { translate } = useTranslate(COMPONENT_NAME)
+
+const skuStepperRef = ref<InstanceType<typeof SkuStepper> | null>(null)
+
+const innerVisible = ref(props.visible)
+
+const innerCount = ref(props.stepperMin)
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+watch(() => props.visible, (value) => {
+  innerVisible.value = value
+})
+
+watch(innerVisible, (value) => {
+  if (!value)
+    close()
+})
 
 // 商品规格 sku 选择
 function selectSku(skus: any) {
@@ -47,7 +55,7 @@ function selectSku(skus: any) {
 
 // 数量计步器变化
 function changeStepper(value: number) {
-  goodsCount.value = value
+  innerCount.value = value
 
   emit('changeStepper', value)
 }
@@ -70,7 +78,7 @@ function stepperOverLimit(count: any) {
 function clickBtnOperate(btn: string) {
   emit('clickBtnOperate', {
     type: btn,
-    value: goodsCount.value,
+    value: innerCount.value,
   })
 }
 
@@ -85,7 +93,7 @@ function closePopup(type: string) {
   if (type === 'close')
     emit(CLOSE_EVENT)
 
-  showPopup.value = false
+  innerVisible.value = false
 }
 
 function close() {
@@ -93,86 +101,74 @@ function close() {
 }
 
 function resetCount() {
-  skuStepperRef.value.reset()
+  skuStepperRef.value?.reset()
 }
 
-const getSlots = (name: string) => slots[name]
-
-const hasSkuOperateSlot = getSlots('skuOperate') != null
-</script>
-
-<script lang="ts">
-const componentName = `${PREFIX}-sku`
-const { translate } = useTranslate(componentName)
-
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+defineExpose({
+  resetCount,
 })
 </script>
 
 <template>
   <NutPopup
-    v-model:visible="showPopup"
-    safe-area-inset-bottom
-    position="bottom"
-    closeable
-    round
+    v-model:visible="innerVisible"
     custom-style="height: 75%"
+    position="bottom"
+    round
+    closeable
+    safe-area-inset-bottom
     @click-close-icon="closePopup('icon')"
     @click-overlay="closePopup('overlay')"
     @close="closePopup('close')"
   >
-    <view :class="classes" :style="customStyle">
-      <slot name="skuHeader">
-        <SkuHeader :goods="goods">
-          <template #skuHeaderPrice>
-            <slot name="skuHeaderPrice" />
-          </template>
+    <view :class="classes" :style="props.customStyle">
+      <slot v-if="slots.skuHeader" name="skuHeader" />
 
-          <template #skuHeaderExtra>
-            <slot name="skuHeaderExtra" />
-          </template>
-        </SkuHeader>
-      </slot>
+      <SkuHeader v-else :goods="props.goods">
+        <template #skuHeaderPrice>
+          <slot name="skuHeaderPrice" />
+        </template>
 
-      <scroll-view scroll-y class="nut-sku-content">
+        <template #skuHeaderExtra>
+          <slot name="skuHeaderExtra" />
+        </template>
+      </SkuHeader>
+
+      <scroll-view class="nut-sku-content" :scroll-y="true">
         <view class="nut-sku-content-wrapper">
           <slot name="skuSelectTop" />
 
-          <slot name="skuSelect" />
-          <SkuSelect v-if="!getSlots('sku-select')" :sku="sku" @select-sku="selectSku" />
+          <slot v-if="slots.skuSelect" name="skuSelect" />
 
-          <slot name="skuStepper">
-            <SkuStepper
-              ref="skuStepperRef"
-              :goods="goods"
-              :stepper-title="stepperTitle || translate('buyNumber')"
-              :stepper-max="stepperMax"
-              :stepper-min="stepperMin"
-              :stepper-extra-text="stepperExtraText"
-              @add="add"
-              @reduce="reduce"
-              @change-stepper="changeStepper"
-              @over-limit="stepperOverLimit"
-            />
-          </slot>
+          <SkuSelect v-else :sku="props.sku" @select-sku="selectSku" />
+
+          <slot v-if="slots.skuStepper" name="skuStepper" />
+
+          <SkuStepper
+            v-else
+            ref="skuStepperRef"
+            :goods="props.goods"
+            :stepper-title="props.stepperTitle || translate('buyNumber')"
+            :stepper-min="props.stepperMin"
+            :stepper-max="props.stepperMax"
+            :stepper-extra-text="props.stepperExtraText"
+            @add="add"
+            @reduce="reduce"
+            @change-stepper="changeStepper"
+            @over-limit="stepperOverLimit"
+          />
 
           <slot name="skuStepperBottom" />
         </view>
       </scroll-view>
 
       <SkuOperate
-        :btn-extra-text="btnExtraText"
-        :btn-options="btnOptions"
-        :buy-text="buyText || translate('buyNow')"
-        :add-cart-text="addCartText || translate('addToCart')"
-        :confirm-text="confirmText || translate('confirm')"
-        :show-default-operate="!hasSkuOperateSlot"
+        :btn-extra-text="props.btnExtraText"
+        :btn-options="props.btnOptions"
+        :buy-text="props.buyText || translate('buyNow')"
+        :add-cart-text="props.addCartText || translate('addToCart')"
+        :confirm-text="props.confirmText || translate('confirm')"
+        :show-default-operate="!slots.skuOperate"
         @click-btn-operate="clickBtnOperate"
       >
         <template #operateBtn>

@@ -6,7 +6,8 @@ import type { NutAnimationName, NutAnimationtimingFunction } from './types'
 export const transitionProps = {
   ...commonProps,
   /**
-   * @description 内置动画名称，可选值为 `fade` `fade-up` `fade-down` f`ade-left` `fade-right` `slide-up` `slide-down` `slide-left` `slide-right`
+   * @description 内置动画名称，可选值为
+   * `fade` `fade-up` `fade-down` `fade-left` `fade-right` `slide-up` `slide-down` `slide-left` `slide-right`
    */
   name: makeStringProp<NutAnimationName>('fade'),
   /**
@@ -21,6 +22,9 @@ export const transitionProps = {
    * @description 动画函数
    */
   timingFunction: makeStringProp<NutAnimationtimingFunction>('ease'),
+  /**
+   * @description 关闭后是否销毁内容
+   */
   destroyOnClose: Boolean,
   /**
    * @description 进入动画前的类名
@@ -48,6 +52,8 @@ export const transitionProps = {
   leaveToClass: String,
 }
 
+export type TransitionProps = ExtractPropTypes<typeof transitionProps>
+
 export const transitionEmits = {
   beforeEnter: () => true,
   enter: () => true,
@@ -58,5 +64,4 @@ export const transitionEmits = {
   [CLICK_EVENT]: (evt: MouseEvent) => evt instanceof Object,
 }
 
-export type TransitionProps = ExtractPropTypes<typeof transitionProps>
 export type TransitionEmits = typeof transitionEmits

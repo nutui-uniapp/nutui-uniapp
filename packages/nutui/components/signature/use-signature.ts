@@ -1,4 +1,4 @@
-import type { ComponentInternalInstance, SetupContext } from 'vue'
+import type { SetupContext } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { CLEAR_EVENT, CONFIRM_EVENT } from '../_constants'
 import { useSelectorQuery } from '../_hooks'
@@ -8,7 +8,7 @@ import type { SignatureEmits, SignatureProps } from './signature'
 const COMPONENT_NAME = 'nut-signature'
 
 export function useSignature(props: SignatureProps, emit: SetupContext<SignatureEmits>['emit']) {
-  const instance = getCurrentInstance() as ComponentInternalInstance
+  const instance = getCurrentInstance()!
 
   const { query } = useSelectorQuery(instance)
 

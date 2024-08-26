@@ -1,6 +1,7 @@
-import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, isString, makeNumericProp, makeStringProp } from '../_utils'
+import type { ExtractPropTypes, InjectionKey } from 'vue'
+import { commonProps, isNumber, isString, makeNumericProp } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
+import type { TabbarContext } from './types'
 
 export const tabbarProps = {
   ...commonProps,
@@ -13,13 +14,13 @@ export const tabbarProps = {
    */
   bottom: Boolean,
   /**
-   * @description icon未激活的颜色
-   */
-  unactiveColor: String,
-  /**
    * @description icon激活的颜色
    */
   activeColor: String,
+  /**
+   * @description icon未激活的颜色
+   */
+  unactiveColor: String,
   /**
    * @description 是否开启iphone系列全面屏底部安全区适配
    */
@@ -28,14 +29,6 @@ export const tabbarProps = {
    * @description 固定在底部时，是否在标签位置生成一个等高的占位元素
    */
   placeholder: Boolean,
-  /**
-   * @description icon的尺寸
-   */
-  size: makeStringProp('20px'),
-  /**
-   * @description 是否显示小红点
-   */
-  dot: Boolean,
 }
 
 export type TabBarProps = ExtractPropTypes<typeof tabbarProps>
@@ -46,3 +39,5 @@ export const tabbarEmits = {
 }
 
 export type TabBarEmits = typeof tabbarEmits
+
+export const TABBAR_CONTEXT_KEY: InjectionKey<TabbarContext> = Symbol('TABBAR_CONTEXT')

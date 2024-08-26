@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
@@ -20,6 +21,8 @@ defineOptions({
 const props = defineProps(dialogProps)
 
 const emit = defineEmits(dialogEmits)
+
+const slots = useSlots()
 
 const { translate } = useTranslate(COMPONENT_NAME)
 
@@ -58,8 +61,8 @@ defineExpose({
     @click-close-icon="closed"
   >
     <view :class="classes" :style="props.customStyle">
-      <view v-if="$slots.header || dialogStatus.title" class="nut-dialog__header">
-        <slot v-if="$slots.header" name="header" />
+      <view v-if="slots.header || dialogStatus.title" class="nut-dialog__header">
+        <slot v-if="slots.header" name="header" />
 
         <template v-else>
           {{ dialogStatus.title || props.title }}
@@ -67,7 +70,8 @@ defineExpose({
       </view>
 
       <view class="nut-dialog__content" :style="contentStyle">
-        <slot v-if="$slots.default" name="default" />
+        <slot v-if="slots.default" name="default" />
+
         <rich-text v-else-if="typeof content === 'string'" :nodes="dialogStatus.content || props.content" />
       </view>
 
@@ -76,7 +80,7 @@ defineExpose({
         class="nut-dialog__footer"
         :class="{ [props.footerDirection]: dialogStatus.footerDirection }"
       >
-        <slot v-if="$slots.footer" name="footer" />
+        <slot v-if="slots.footer" name="footer" />
 
         <template v-else>
           <NutButton

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
 import { computed, getCurrentInstance, onMounted, reactive } from 'vue'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
@@ -24,7 +23,7 @@ const emit = defineEmits(infiniteloadingEmits)
 
 const { translate } = useTranslate(COMPONENT_NAME)
 
-const instance = getCurrentInstance() as ComponentInternalInstance
+const instance = getCurrentInstance()!
 
 const { query } = useSelectorQuery(instance)
 

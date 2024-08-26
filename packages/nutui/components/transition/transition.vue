@@ -1,24 +1,23 @@
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
 import { transitionEmits, transitionProps } from './transition'
 import { useTransition } from './use-transition'
 
-const props = defineProps(transitionProps)
-const emits = defineEmits(transitionEmits)
-const { display, classes, clickHandler, styles } = useTransition(props, emits)
-</script>
+const COMPONENT_NAME = 'nut-transition'
 
-<script lang="ts">
-const componentName = `${PREFIX}-transition`
-export default defineComponent({
-  name: componentName,
+defineOptions({
+  name: COMPONENT_NAME,
   options: {
     virtualHost: true,
     addGlobalClass: true,
     styleIsolation: 'shared',
   },
 })
+
+const props = defineProps(transitionProps)
+
+const emit = defineEmits(transitionEmits)
+
+const { display, classes, styles, clickHandler } = useTransition(props, emit)
 </script>
 
 <template>
