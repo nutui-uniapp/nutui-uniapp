@@ -1,6 +1,10 @@
 export interface TPrizeItem {
-  id: string | number
+  id: number | string
   prizeName: string
   prizeColor: string
   prizeImg: string
+}
+
+export interface TurnTableInst {
+  rotateTurn: () => void
 }

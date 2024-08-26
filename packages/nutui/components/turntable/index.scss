@@ -6,19 +6,15 @@
   text-align: center;
   transform: translate(-50%, -50%);
 
-  // transform: translateZ(0);
   .pointer {
     position: absolute;
     top: 50%;
-
-    // left: calc(50% - 35px);
-    // top: calc(50% - 40px);
     left: 50%;
     z-index: 99;
     transform: translate(-43.75%, -50%);
   }
-// stylelint-disable selector-class-pattern
 
+  // stylelint-disable-next-line selector-class-pattern
   .drawTable-name {
     position: absolute;
     top: 20px;
@@ -29,15 +25,14 @@
     text-align: center;
   }
 
+  // stylelint-disable-next-line selector-class-pattern
   .drawTable-img {
     position: absolute;
     top: 60px;
-
-    /* 要居中就要50% - 宽度 / 2 */
     left: calc(50% - 30px / 2);
     width: 30px;
     height: 30px;
-    
+
     image {
       display: inline-block;
       width: 100%;
@@ -52,8 +47,7 @@
     width: 100%;
     height: 100%;
 
-    
-// stylelint-disable selector-id-pattern
+    // stylelint-disable-next-line selector-id-pattern
     #canvasWx {
       width: 100%;
       height: 100%;
