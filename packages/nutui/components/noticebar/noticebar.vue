@@ -1,6 +1,17 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
-import { computed, getCurrentInstance, onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import type { CSSProperties } from 'vue'
+import {
+  computed,
+  getCurrentInstance,
+  onActivated,
+  onDeactivated,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  useSlots,
+  watch,
+} from 'vue'
 import { getMainClass, isObject, pxCheck } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 import NutIcon from '../icon/icon.vue'
@@ -22,6 +33,8 @@ defineOptions({
 const props = defineProps(noticebarProps)
 
 const emit = defineEmits(noticebarEmits)
+
+const slots = useSlots()
 
 const instance = getCurrentInstance()!
 
@@ -303,7 +316,7 @@ onUnmounted(() => {
       </view>
 
       <view
-        v-if="props.closeMode || $slots.rightIcon"
+        v-if="props.closeMode || slots.rightIcon"
         class="nut-noticebar__page-righticon"
         @click.stop="onClickIcon"
       >
@@ -312,8 +325,6 @@ onUnmounted(() => {
         </slot>
       </view>
     </view>
-
-    <!-- TODO uniapp拿不到 slots -->
 
     <view
       v-if="state.scrollList.length > 0 && props.direction === 'vertical' && state.showNoticebar"

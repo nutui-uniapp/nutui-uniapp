@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import NutPopup from '../popup/popup.vue'
 import { getMainClass, getMainStyle } from '../_utils'
 import { notifyEmits, notifyProps } from './notify'
@@ -19,6 +19,8 @@ defineOptions({
 const props = defineProps(notifyProps)
 
 const emit = defineEmits(notifyEmits)
+
+const slots = useSlots()
 
 const safeHeight = props.safeHeight ? props.safeHeight : uni.getSystemInfoSync().statusBarHeight
 
@@ -59,9 +61,7 @@ defineExpose({
       :style="styles"
       @click="clickCover"
     >
-      <template v-if="$slots.default">
-        <slot />
-      </template>
+      <slot v-if="slots.default" />
 
       <template v-else>
         {{ notifyStatus.msg }}

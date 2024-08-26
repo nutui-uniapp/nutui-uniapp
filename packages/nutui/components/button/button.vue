@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import NutIcon from '../icon/icon.vue'
 import { CLICK_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
@@ -22,6 +22,8 @@ defineOptions({
 const props = defineProps(buttonProps)
 
 const emit = defineEmits(buttonEmits)
+
+const slots = useSlots()
 
 const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME, {
@@ -107,9 +109,9 @@ function handleClick(event: any) {
     <view class="nut-button__wrap">
       <NutIcon v-if="props.loading" name="loading" class="nut-icon-loading" />
 
-      <slot v-if="$slots.icon && !props.loading" name="icon" />
+      <slot v-if="slots.icon && !props.loading" name="icon" />
 
-      <view v-if="$slots.default" :class="{ 'nut-button__text': $slots.icon || props.loading }">
+      <view v-if="slots.default" :class="{ 'nut-button__text': slots.icon || props.loading }">
         <slot />
       </view>
     </view>

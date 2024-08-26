@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { type ComponentInternalInstance, useSlots } from 'vue'
-import { computed, getCurrentInstance, inject, reactive } from 'vue'
+import { computed, getCurrentInstance, inject, reactive, useSlots } from 'vue'
 import { getMainClass } from '../_utils'
 import { stepProps } from './step'
 

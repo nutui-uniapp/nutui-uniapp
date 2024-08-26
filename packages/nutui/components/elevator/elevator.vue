@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { ComponentInternalInstance } from 'vue'
-import { computed, getCurrentInstance, nextTick, onMounted, reactive, toRefs, watch } from 'vue'
+import { computed, getCurrentInstance, nextTick, onMounted, reactive, toRefs, useSlots, watch } from 'vue'
 import { getMainClass, pxCheck } from '../_utils'
 import { elevatorEmits, elevatorProps } from './elevator'
 import type { ElevatorData } from './types'
@@ -19,6 +18,8 @@ defineOptions({
 const props = defineProps(elevatorProps)
 
 const emit = defineEmits(elevatorEmits)
+
+const slots = useSlots()
 
 const instance = getCurrentInstance()!
 
@@ -238,7 +239,7 @@ defineExpose({
             }"
             @click="handleClickItem(item[props.acceptKey], subitem)"
           >
-            <rich-text v-if="!$slots.default" :nodes="subitem.name" />
+            <rich-text v-if="!slots.default" :nodes="subitem.name" />
 
             <slot v-else :item="subitem" />
           </view>

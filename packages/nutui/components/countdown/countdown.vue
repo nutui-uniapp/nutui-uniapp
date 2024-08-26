@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onBeforeMount, reactive, watch } from 'vue'
+import { computed, onBeforeMount, reactive, useSlots, watch } from 'vue'
 import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'
 import { INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import requestAniFrame from '../_utils/raf'
@@ -20,19 +20,30 @@ const props = defineProps(countdownProps)
 
 const emit = defineEmits(countdownEmits)
 
+const slots = useSlots()
+
 const state = reactive({
-  restTime: 0, // 倒计时剩余时间时间
+  // 倒计时剩余时间时间
+  restTime: 0,
   timer: null,
-  counting: !props.paused && props.autoStart, // 是否处于倒计时中
-  handleEndTime: Date.now(), // 最终截止时间
-  diffTime: 0, // 设置了 startTime 时，与 date.now() 的差异
+  // 是否处于倒计时中
+  counting: !props.paused && props.autoStart,
+  // 最终截止时间
+  handleEndTime: Date.now(),
+  // 设置了 startTime 时，与 date.now() 的差异
+  diffTime: 0,
 })
 
 const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME)
 })
 
-// 将倒计时剩余时间格式化   参数： t  时间戳  type custom 自定义类型
+/**
+ * 将倒计时剩余时间格式化
+ *
+ * @param t 时间戳
+ * @param type custom 自定义类型
+ */
 function formatRemainTime(t: number, type?: string) {
   const ts = t
   const rest = {
@@ -96,12 +107,13 @@ function parseFormat(time: { d: number, h: number, m: number, s: number, ms: num
   return format
 }
 
-// 倒计时 interval
 function initTime() {
   state.handleEndTime = props.endTime as number
-  state.diffTime = Date.now() - getTimeStamp(props.startTime) // 时间差
+  state.diffTime = Date.now() - getTimeStamp(props.startTime)
+
   if (!state.counting)
     state.counting = true
+
   tick()
 }
 
@@ -123,13 +135,14 @@ function tick() {
   }
 
   if (isH5) {
-    (state.timer as any) = requestAnimationFrame(() => {
+    // @ts-expect-error whatever
+    state.timer = requestAnimationFrame(() => {
       if (state.counting)
         countdown()
     })
   }
   else {
-    (state.timer as any) = requestAniFrame(() => {
+    state.timer = requestAniFrame(() => {
       if (state.counting)
         countdown()
     })
@@ -153,9 +166,11 @@ function start() {
  */
 function pause() {
   if (isH5)
-    cancelAnimationFrame(state.timer as any)
+    // @ts-expect-error whatever
+    cancelAnimationFrame(state.timer)
   else
-    clearTimeout(state.timer as any)
+    // @ts-expect-error whatever
+    clearTimeout(state.timer)
 
   state.counting = false
   emit('onPaused', state.restTime)
@@ -172,7 +187,7 @@ function reset() {
 }
 
 const renderTime = computed(() => {
-  return formatRemainTime(state.restTime)
+  return formatRemainTime(state.restTime) as string
 })
 
 onBeforeMount(() => {
@@ -233,13 +248,9 @@ defineExpose({
 
 <template>
   <view :class="classes" :style="props.customStyle">
-    <template v-if="$slots.default">
-      <slot />
-    </template>
+    <slot v-if="slots.default" />
 
-    <template v-else>
-      <rich-text class="nut-countdown__content" :nodes="renderTime as string" />
-    </template>
+    <rich-text v-else class="nut-countdown__content" :nodes="renderTime" />
   </view>
 </template>
 

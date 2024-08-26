@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { badgeProps } from './badge'
 
@@ -15,6 +15,8 @@ defineOptions({
 })
 
 const props = defineProps(badgeProps)
+
+const slots = useSlots()
 
 const classes = computed(() => {
   return getMainClass(props, COMPONENT_NAME)
@@ -44,7 +46,7 @@ const content = computed(() => {
 
 <template>
   <view :class="classes">
-    <view v-if="!props.hidden && !props.dot && $slots.icon" class="nut-badge__icon" :style="styles">
+    <view v-if="!props.hidden && !props.dot && slots.icon" class="nut-badge__icon" :style="styles">
       <slot name="icon" />
     </view>
 
