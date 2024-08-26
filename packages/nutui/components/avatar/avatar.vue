@@ -126,7 +126,7 @@ const styles = computed(() => {
 </script>
 
 <template>
-  <view :style="styles" :class="classes">
+  <view :class="classes" :style="styles">
     <slot />
   </view>
 </template>

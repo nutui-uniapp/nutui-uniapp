@@ -2,8 +2,6 @@ import type { ExtractPropTypes, RendererElement, RendererNode, VNode } from 'vue
 import { commonProps, isString, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, CLICK_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 
-export const TAB_KEY = Symbol('tabs')
-
 export const tabsProps = {
   ...commonProps,
   /**
@@ -69,6 +67,8 @@ export const tabsEmits = {
 }
 
 export type TabsEmits = typeof tabsEmits
+
+export const TAB_KEY = Symbol('tabs')
 
 export class Title {
   title = ''

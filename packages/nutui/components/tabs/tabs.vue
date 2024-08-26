@@ -1,32 +1,55 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref, VNode } from 'vue'
-import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
-import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
+import { computed, getCurrentInstance, nextTick, onActivated, onMounted, ref, useSlots, watch } from 'vue'
+import NutIcon from '../icon/icon.vue'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
-import NutIcon from '../icon/icon.vue'
 import { TAB_KEY, Title, tabsEmits, tabsProps } from './tabs'
 import { useTabContentTouch } from './hooks'
 
+const COMPONENT_NAME = 'nut-tabs'
+
+defineOptions({
+  name: COMPONENT_NAME,
+  options: {
+    virtualHost: true,
+    addGlobalClass: true,
+    styleIsolation: 'shared',
+  },
+})
+
 const props = defineProps(tabsProps)
+
 const emit = defineEmits(tabsEmits)
+
+const slots = useSlots()
+
 const instance = getCurrentInstance()!
+
 const { getSelectorNodeInfo, getSelectorNodeInfos } = useSelectorQuery(instance)
-const refRandomId = getRandomId()
+
+const elId = getRandomId()
+
 const container = ref(null)
+
 const { internalChildren } = useProvide(TAB_KEY, `${PREFIX}-tabs`)({
   activeKey: computed(() => props.modelValue || 0),
   autoHeight: computed(() => props.autoHeight),
   animatedTime: computed(() => props.animatedTime),
 })
+
 const titles: Ref<Title[]> = ref([])
+
 function renderTitles(vnodes: VNode[]) {
-  vnodes.forEach((vnode: VNode, index: number) => {
+  vnodes.forEach((vnode, index) => {
     let type = vnode.type
     type = (type as any).name || type
+
     if (type === 'nut-tab-pane') {
       const title = new Title()
+
       if (vnode.props?.title || vnode.props?.['pane-key'] || vnode.props?.paneKey) {
         const paneKeyType = TypeOfFun(vnode.props?.['pane-key'])
         const paneIndex
@@ -34,6 +57,7 @@ function renderTitles(vnodes: VNode[]) {
         const camelPaneKeyType = TypeOfFun(vnode.props?.paneKey)
         const camelPaneIndex
               = camelPaneKeyType === 'number' || camelPaneKeyType === 'string' ? String(vnode.props?.paneKey) : null
+
         title.title = vnode.props?.title
         title.paneKey = paneIndex || camelPaneIndex || String(index)
         title.disabled = vnode.props?.disabled
@@ -51,74 +75,69 @@ function renderTitles(vnodes: VNode[]) {
 }
 
 const currentIndex = ref((props.modelValue as number) || 0)
+
 function findTabsIndex(value: string | number) {
-  const index = titles.value.findIndex(item => item.paneKey === String(value))
-  // if (titles.value.length === 0)
-  //   console.warn('[NutUI] <Tabs> 当前未找到 TabPane 组件元素 , 请检查 .')
-
-  // else if (index === -1)
-  //   console.warn('[NutUI] <Tabs> 请检查 v-model 值是否为 paneKey ,如 paneKey 未设置，请采用下标控制 .')
-
-  // else
-  currentIndex.value = index
+  currentIndex.value = titles.value.findIndex(item => item.paneKey === String(value))
 }
-const getScrollX = computed(() => {
+
+const innerScrollX = computed(() => {
   return props.titleScroll && props.direction === 'horizontal'
 })
-const getScrollY = computed(() => {
+
+const innerScrollY = computed(() => {
   return props.titleScroll && props.direction === 'vertical'
 })
-const titleRef = ref([]) as Ref<HTMLElement[]>
+
 const scrollLeft = ref(0)
 const scrollTop = ref(0)
 const scrollWithAnimation = ref(false)
+
 const navRectRef = ref()
 const titleRectRef = ref<UniApp.NodeInfo[]>([])
+
 const canShowLabel = ref(false)
+
 function scrollIntoView() {
   if (!props.titleScroll)
     return
+
   raf(() => {
     Promise.all([
-      getSelectorNodeInfo(`#nut-tabs__titles_${refRandomId}`),
-      getSelectorNodeInfos(`#nut-tabs__titles_${refRandomId} .nut-tabs__titles-item`),
+      getSelectorNodeInfo(`#nut-tabs__titles_${elId}`),
+      getSelectorNodeInfos(`#nut-tabs__titles_${elId} .nut-tabs__titles-item`),
     ]).then(([navRect, titleRects]) => {
       navRectRef.value = navRect
       titleRectRef.value = titleRects
 
       if (navRectRef.value) {
         if (props.direction === 'vertical') {
-          const titlesTotalHeight = titleRects.reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.height!, 0)
-          if (titlesTotalHeight > navRectRef.value?.height)
-            canShowLabel.value = true
+          const titlesTotalHeight = titleRects.reduce((prev, curr) => prev + curr.height!, 0)
 
-          else
-            canShowLabel.value = false
+          canShowLabel.value = titlesTotalHeight > navRectRef.value?.height
         }
         else {
-          const titlesTotalWidth = titleRects.reduce((prev: number, curr: UniApp.NodeInfo) => prev + curr.width!, 0)
-          if (titlesTotalWidth > navRectRef.value?.width)
-            canShowLabel.value = true
+          const titlesTotalWidth = titleRects.reduce((prev, curr) => prev + curr.width!, 0)
 
-          else
-            canShowLabel.value = false
+          canShowLabel.value = titlesTotalWidth > navRectRef.value?.width
         }
       }
 
-      const titleRect: UniApp.NodeInfo = titleRectRef.value[currentIndex.value]
+      const titleRect = titleRectRef.value[currentIndex.value]
 
-      let to = 0
+      let to: number
       if (props.direction === 'vertical') {
         const top = titleRects
           .slice(0, currentIndex.value)
-          .reduce((prev: number, curr) => prev + curr.height!, 0)
+          .reduce((prev, curr) => prev + curr.height!, 0)
+
         to = top - (navRectRef.value?.height - titleRect.height!) / 2
       }
       else {
         const left = titleRects
           .slice(0, currentIndex.value)
-          .reduce((prev: number, curr) => prev + curr.width!, 0)
-        // eslint-disable-next-line  ts/no-non-null-asserted-optional-chain
+          .reduce((prev, curr) => prev + curr.width!, 0)
+
+        // eslint-disable-next-line ts/no-non-null-asserted-optional-chain
         to = left - (navRectRef.value?.width - titleRect?.width!) / 2
       }
 
@@ -133,6 +152,7 @@ function scrollIntoView() {
 
 function scrollDirection(to: number, direction: 'horizontal' | 'vertical') {
   let count = 0
+
   const from = direction === 'horizontal' ? scrollLeft.value : scrollTop.value
   const frames = 1
 
@@ -148,36 +168,40 @@ function scrollDirection(to: number, direction: 'horizontal' | 'vertical') {
 
   animate()
 }
+
 function init(vnodes: VNode[] = internalChildren.map(item => item.vnode)) {
   titles.value = []
+
   vnodes = vnodes?.filter(item => typeof item.children !== 'string')
 
   if (vnodes && vnodes.length)
     renderTitles(vnodes)
 
   findTabsIndex(props.modelValue)
+
   setTimeout(() => {
     scrollIntoView()
   }, 500)
 }
 
-watch(
-  () => internalChildren.map(item => item.props),
-  (vnodes: any[]) => {
-    init(internalChildren as any)
-  },
-  { deep: true, immediate: true },
-)
+watch(() => internalChildren.map(item => item.props), () => {
+  init(internalChildren as any)
+}, { deep: true, immediate: true })
 
-watch(
-  () => props.modelValue,
-  (value: string | number) => {
-    findTabsIndex(value)
-    scrollIntoView()
-  },
-)
-onMounted(init)
-onActivated(init)
+watch(() => props.modelValue, (value) => {
+  findTabsIndex(value)
+
+  scrollIntoView()
+})
+
+onMounted(() => {
+  init()
+})
+
+onActivated(() => {
+  init()
+})
+
 const tabMethods = {
   isBegin: () => {
     return currentIndex.value === 0
@@ -187,11 +211,14 @@ const tabMethods = {
   },
   next: () => {
     currentIndex.value += 1
+
     const nextDisabled = titles.value[currentIndex.value].disabled
+
     if (tabMethods.isEnd() && nextDisabled) {
       tabMethods.prev()
       return
     }
+
     if (nextDisabled && currentIndex.value < titles.value.length - 1) {
       tabMethods.next()
       return
@@ -201,15 +228,19 @@ const tabMethods = {
   },
   prev: () => {
     currentIndex.value -= 1
+
     const prevDisabled = titles.value[currentIndex.value].disabled
+
     if (tabMethods.isBegin() && prevDisabled) {
       tabMethods.next()
       return
     }
+
     if (prevDisabled && currentIndex.value > 0) {
       tabMethods.prev()
       return
     }
+
     tabMethods.updateValue(titles.value[currentIndex.value])
   },
   updateValue: (item: Title) => {
@@ -218,121 +249,162 @@ const tabMethods = {
   },
   tabChange: (item: Title, index: number) => {
     emit(CLICK_EVENT, item)
+
     if (item.disabled || currentIndex.value === index)
       return
 
     currentIndex.value = index
     tabMethods.updateValue(item)
   },
-  setTabItemRef: (el: HTMLElement, index: number) => {
-    titleRef.value[index] = el
-  },
 }
+
 const { tabChange } = tabMethods
-const { touchState, touchMethods, tabsContentID, tabsContentRef } = useTabContentTouch(props, tabMethods, instance, useRect)
-const contentStyle = computed(() => {
-  let offsetPercent = currentIndex.value * 100
-  if (touchState.moving)
-    offsetPercent += touchState.offset
+const {
+  touchState,
+  touchMethods,
+  tabsContentID,
+  tabsContentRef,
+} = useTabContentTouch(props, tabMethods, instance, useRect)
 
-  let style: CSSProperties = {
-    transform:
-          props.direction === 'horizontal'
-            ? `translate3d(-${offsetPercent}%, 0, 0)`
-            : `translate3d( 0,-${offsetPercent}%, 0)`,
-    transitionDuration: touchState.moving ? undefined : `${props.animatedTime}ms`,
-  }
-  if (props.animatedTime === 0)
-    style = {}
-
-  return style
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME, {
+    [props.direction]: true,
+  })
 })
-const tabsNavStyle = computed(() => {
+
+const tabsNavClasses = computed(() => {
+  return {
+    [props.type]: true,
+    [props.size]: true,
+    scrollable: props.titleScroll,
+  }
+})
+
+const tabsNavStyles = computed(() => {
   return {
     background: props.background,
   }
 })
-const tabsActiveStyle = computed(() => {
+
+const tabsInnerClasses = computed(() => {
   return {
-    color: props.type === 'smile' ? props.customColor : '',
-    background: props.type === 'line' ? props.customColor : '',
+    'nut-tabs__titles-left': props.align === 'left',
   }
 })
-const titleStyle = computed(() => {
-  if (!props.titleGutter)
-    return {}
-  const px = pxCheck(props.titleGutter)
-  if (props.direction === 'vertical')
-    return { paddingTop: px, paddingBottom: px }
 
-  return { paddingLeft: px, paddingRight: px }
+function getTitleClasses(item: Title) {
+  return {
+    'nut-tabs-active': item.paneKey === String(props.modelValue),
+    'disabled': item.disabled,
+    'nut-tabs__titles-item-left': props.align === 'left',
+  }
+}
+
+const titleStyles = computed(() => {
+  const value: CSSProperties = {}
+
+  if (props.titleGutter) {
+    const finalValue = pxCheck(props.titleGutter)
+
+    if (props.direction === 'vertical') {
+      value.paddingTop = finalValue
+      value.paddingBottom = finalValue
+    }
+    else {
+      value.paddingLeft = finalValue
+      value.paddingRight = finalValue
+    }
+  }
+
+  return value
 })
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [props.direction]: true,
-  })
+
+const titleTextClasses = computed(() => {
+  return {
+    ellipsis: props.ellipsis,
+  }
 })
-</script>
 
-<script lang="ts">
-const componentName = `${PREFIX}-tabs`
+const tabsActiveStyles = computed(() => {
+  const value: CSSProperties = {}
 
-export default defineComponent({
-  name: componentName,
-  options: {
-    virtualHost: true,
-    addGlobalClass: true,
-    styleIsolation: 'shared',
-  },
+  if (props.type === 'smile') {
+    value.color = props.customColor
+  }
+
+  if (props.type === 'line') {
+    value.background = props.customColor
+  }
+
+  return value
+})
+
+const contentStyles = computed(() => {
+  const value: CSSProperties = {}
+
+  const offset = currentIndex.value * 100 + (touchState.moving ? touchState.offset : 0)
+
+  if (props.animatedTime !== 0) {
+    value.transform = props.direction === 'horizontal'
+      ? `translate3d(-${offset}%, 0, 0)`
+      : `translate3d( 0,-${offset}%, 0)`
+
+    if (!touchState.moving) {
+      value.transitionDuration = `${props.animatedTime}ms`
+    }
+  }
+
+  return value
 })
 </script>
 
 <template>
-  <view ref="container" :style="customStyle" :class="classes">
+  <view ref="container" :class="classes" :style="props.customStyle">
     <scroll-view
-      :id="`nut-tabs__titles_${refRandomId}`"
-      :scroll-x="getScrollX"
-      :scroll-y="getScrollY"
-      :scroll-with-animation="scrollWithAnimation"
+      :id="`nut-tabs__titles_${elId}`"
+      class="nut-tabs__titles"
+      :class="tabsNavClasses"
+      :style="tabsNavStyles"
+      :enable-flex="true"
+      :scroll-x="innerScrollX"
+      :scroll-y="innerScrollY"
       :scroll-left="scrollLeft"
       :scroll-top="scrollTop"
-      :enable-flex="true"
-      class="nut-tabs__titles"
-      :class="{ [type]: type, scrollable: titleScroll, [size]: size }"
-      :style="tabsNavStyle"
+      :scroll-with-animation="scrollWithAnimation"
     >
-      <view class="nut-tabs__list" :class="{ 'nut-tabs__titles-left': align === 'left' }">
-        <slot v-if="$slots.titles" name="titles" />
+      <view class="nut-tabs__list" :class="tabsInnerClasses">
+        <slot v-if="slots.titles" name="titles" />
+
         <template v-else>
           <view
             v-for="(item, index) in titles"
             :key="item.paneKey"
             class="nut-tabs__titles-item uni"
-            :style="titleStyle"
-            :class="{
-              'nut-tabs-active': item.paneKey === String(modelValue),
-              'disabled': item.disabled,
-              'nut-tabs__titles-item-left': align === 'left',
-            }"
+            :class="getTitleClasses(item)"
+            :style="titleStyles"
             @click="tabChange(item, index)"
           >
-            <view v-if="type === 'line'" class="nut-tabs__titles-item__line" :style="tabsActiveStyle" />
-            <view v-if="type === 'smile'" class="nut-tabs__titles-item__smile" :style="tabsActiveStyle">
-              <NutIcon name="joy-smile" :custom-color="customColor" />
+            <view v-if="props.type === 'line'" class="nut-tabs__titles-item__line" :style="tabsActiveStyles" />
+
+            <view v-if="props.type === 'smile'" class="nut-tabs__titles-item__smile" :style="tabsActiveStyles">
+              <NutIcon name="joy-smile" :custom-color="props.customColor" />
             </view>
-            <view class="nut-tabs__titles-item__text" :class="{ ellipsis }">
+
+            <view class="nut-tabs__titles-item__text" :class="titleTextClasses">
               {{ item.title }}
             </view>
           </view>
-          <view v-if="canShowLabel && titleScroll" class="nut-tabs__titles-placeholder" />
+
+          <view v-if="canShowLabel && props.titleScroll" class="nut-tabs__titles-placeholder" />
         </template>
       </view>
     </scroll-view>
+
     <view
       :id="tabsContentID"
       ref="tabsContentRef"
       class="nut-tabs__content"
-      :style="contentStyle"
+      :style="contentStyles"
       @touchstart="touchMethods.onTouchStart"
       @touchmove="touchMethods.onTouchMove"
       @touchend="touchMethods.onTouchEnd"
