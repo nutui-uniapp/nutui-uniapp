@@ -1,7 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "module": "esnext",
+    "module": "ESNext",
     "types": [
       "vite/client"
     ]
@@ -9,8 +9,8 @@
   "include": [
     "**/*.ts",
     "**/*.d.ts",
-    "../docs/.vitepress/**/*.ts",
-    "../docs/.vitepress/**/*.vue"
+    ".vitepress/**/*.ts",
+    ".vitepress/**/*.vue"
   ],
   "exclude": [
     "**/dist/**",
