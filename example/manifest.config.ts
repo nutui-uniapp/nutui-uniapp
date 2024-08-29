@@ -6,7 +6,6 @@ export default defineManifestConfig({
   'description': '',
   'versionName': '1.0.0',
   'versionCode': '100',
-  'transformPx': false,
   'mp-weixin': {
     appid: 'wxd4e6c25454525507',
     setting: {
@@ -14,7 +13,6 @@ export default defineManifestConfig({
       es6: true,
       minified: true,
       postcss: true,
-
     },
     libVersion: '3.0.0',
     usingComponents: true,
