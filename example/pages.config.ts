@@ -1,4 +1,3 @@
-// pages.config.ts
 import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
 
 export default defineUniPages({
@@ -8,7 +7,6 @@ export default defineUniPages({
   //   custom: {
   //     '^nut-(.*)?-(.*)': 'uniapp-nutui/components/$1$2/$1$2.vue',
   //     '^nut-(.*)': 'uniapp-nutui/components/$1/$1.vue',
-
   //   },
   // },
   pages: [

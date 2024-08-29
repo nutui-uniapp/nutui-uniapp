@@ -1,4 +1,16 @@
-# Logs
+# 其他包管理器LOCK文件
+package-lock.json
+yarn.lock
+
+# 本地文件
+.env.local
+.env.*.local
+*.local
+
+# 缓存文件
+.stylelintcache
+
+# 日志文件
 logs
 *.log
 npm-debug.log*
@@ -6,33 +18,22 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-stats.html
 
+# 制品文件
 node_modules
-uni_modules
-!uni_modules/package.json
 dist
-dev-dist
-locale
-cache
-*.local
-dist.zip
+dist-ssr
 
-# Editor directories and files
+# IDE文件
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+.project
 .idea
+.hbuilderx
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.stylelintcache
-
-example/src/components.d.ts
-example/src/pages.json
-
-packages/nutui/web-types.json
-packages/nutui/tags.json
-packages/nutui/attributes.json

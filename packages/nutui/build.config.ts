@@ -13,5 +13,8 @@ export default defineBuildConfig({
   rollup: {
     emitCJS: true,
   },
-  externals: ['vue', '@uni-helper/vite-plugin-uni-components'],
+  externals: [
+    'vue',
+    '@uni-helper/vite-plugin-uni-components',
+  ],
 })

@@ -6,17 +6,19 @@
       "@uni-helper/uni-app-types"
     ]
   },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@uni-helper/uni-app-types/volar-plugin"
+    ]
+  },
   "include": [
     "**/*.ts",
     "**/*.d.ts",
-    "**/*.vue",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.vue"
   ],
   "exclude": [
     "**/dist/**",
     "**/locale/**"
-  ],
-  "vueCompilerOptions": {
-    "plugins": ["@uni-helper/uni-app-types/volar-plugin"]
-  }
+  ]
 }
