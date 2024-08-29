@@ -1,6 +1,13 @@
 import fs from 'fs-extra'
 
-fs.removeSync('docs/.vitepress/dist/ui')
-fs.ensureDirSync('docs/.vitepress/dist/ui')
+async function build() {
+  const sourceDir = 'example/dist/build/h5'
+  const destDir = 'docs/.vitepress/dist/ui'
 
-fs.copySync('example/dist/build/h5', 'docs/.vitepress/dist/ui')
+  await fs.remove(destDir)
+  await fs.ensureDir(destDir)
+
+  await fs.copy(sourceDir, destDir)
+}
+
+build()
