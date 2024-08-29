@@ -1,15 +1,10 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "types": [
       "@dcloudio/types",
@@ -18,16 +13,16 @@
     ],
     "sourceMap": true
   },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@uni-helper/uni-app-types/volar-plugin"
+    ]
+  },
   "include": [
-    "node_modules/nutui-uniapp/global.d.ts",
-    "src/**/*.vue",
     "src/**/*.ts",
-    "src/pages/demo/business/category/data.js",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/utils/touchEmulator.js"
-  ],
-  "vueCompilerOptions": {
-    "plugins": ["@uni-helper/uni-app-types/volar-plugin"]
-  }
+    "src/**/*.vue",
+    "src/pages/demo/business/category/data.js"
+  ]
 }
