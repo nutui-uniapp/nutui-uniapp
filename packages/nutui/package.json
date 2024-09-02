@@ -57,7 +57,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "@uni-helper/uni-app-types": ">=0.5.12",
+    "@uni-helper/uni-app-types": "^1.0.0-alpha.3",
     "vue": ">=3.2.0"
   }
 }

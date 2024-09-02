@@ -270,8 +270,8 @@ importers:
   packages/nutui:
     dependencies:
       '@uni-helper/uni-app-types':
-        specifier: '>=0.5.12'
-        version: 0.5.13(typescript@5.5.4)
+        specifier: ^1.0.0-alpha.3
+        version: 1.0.0-alpha.3(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
       vue:
         specifier: '>=3.2.0'
         version: 3.4.38(typescript@5.5.4)
@@ -2570,12 +2570,6 @@ packages:
   '@typescript-eslint/visitor-keys@8.3.0':
     resolution: {integrity: sha512-RmZwrTbQ9QveF15m/Cl28n0LXD6ea2CjkhH5rQ55ewz3H24w+AMCJHPVYaZ8/0HoG8Z3cLLFFycRXxeO2tz9FA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@uni-helper/uni-app-types@0.5.13':
-    resolution: {integrity: sha512-NIKHv9Zof7sxsznjH+LRB2VM8ncEyfpkwRVLm7u2N1X3e1RFWvABH+bttfu+d8FIP6JzksBNOQwsyZjDnLN0fw==}
-    engines: {node: '>=14.18'}
-    peerDependencies:
-      typescript: ^4.8.0 || ^5.0.0
 
   '@uni-helper/uni-app-types@1.0.0-alpha.3':
     resolution: {integrity: sha512-lhSpVroEUxzre1vzKAckg85CFLUpn6vw9L2FDO1d8cd9JtMstlXkYmIn/Oz8tqzXxQ1sOgd3YcwoQmkXsw+Oxw==}
@@ -10554,12 +10548,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.3.0
       eslint-visitor-keys: 3.4.3
-
-  '@uni-helper/uni-app-types@0.5.13(typescript@5.5.4)':
-    dependencies:
-      '@dcloudio/types': 3.4.12
-      typescript: 5.5.4
-      vue3: vue@3.4.38(typescript@5.5.4)
 
   '@uni-helper/uni-app-types@1.0.0-alpha.3(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
