@@ -1,9 +1,16 @@
 # 快速上手
 
-> nutui-uniapp 提供了 `npm` 和 `uni_modules` 两种方式使用组件。
+nutui-uniapp 提供了 [npm](#npm方式) 和 [uni-modules](#uni-modules方式) 两种方式使用组件
 
-::: warning 提示
-为了能够获得良好的开发体验，强烈建议使用[CLI](https://uniapp.dcloud.net.cn/quickstart-cli.html#install-vue-cli)创建项目。
+::: info 提示
+为了能够获得良好的开发体验，强烈建议使用 `CLI` 创建项目并使用 `NPM` 方式使用组件，
+你可以通过 [官方CLI](https://uniapp.dcloud.net.cn/quickstart-cli.html)
+或者是 [create-uni](https://github.com/uni-helper/create-uni) 创建项目
+
+---
+
+我们也提供了一个功能丰富的起始模板 [uniapp-template](https://github.com/yang1206/uniapp-template)
+和一个最小组件集成仓库 [nutui-uniapp-simple-demo](https://github.com/nutui-uniapp/nutui-uniapp-simple-demo)
 :::
 
 ## NPM方式
@@ -64,30 +71,47 @@ npm install nutui-uniapp
 
   > vite.config.ts
 
-    ```typescript
-    import { defineConfig } from 'vite'
-    import UniApp from '@dcloudio/vite-plugin-uni'
-    import Components from '@uni-helper/vite-plugin-uni-components'
-    import { NutResolver } from 'nutui-uniapp'
+    ```ts
+    import { defineConfig } from "vite";
+    import UniApp from "@dcloudio/vite-plugin-uni";
+    import UniComponents from "@uni-helper/vite-plugin-uni-components";
+    import { NutResolver } from "nutui-uniapp";
 
-    // https://vitejs.dev/config
-    exportdefault defineConfig({
+    export default defineConfig({
       // ...
       plugins: [
         // ...
-        Components({
-          resolvers: [NutResolver()],
+        // 确保放在 `UniApp()` 之前
+        UniComponents({
+          resolvers: [
+            NutResolver()
+          ]
         }),
-        // 注意，UniApp插件一定要放到后面！
         UniApp()
       ]
-    })
+    });
     ```
 
-  > 如果使用 `pnpm` 管理依赖，请在项目根目录下的 `.npmrc` 文件中添加如下内容，详细请参考 [issue 389](https://github.com/antfu/unplugin-vue-components/issues/389)
+  > 如果使用 `pnpm` 管理依赖，请在项目根目录下的
+  `.npmrc` 文件中添加如下内容，详细请参考 [issue 389](https://github.com/antfu/unplugin-vue-components/issues/389)
 
     ```bash
     shamefully-hoist=true # or public-hoist-pattern[]=@vue*
+    ```
+
+- 类型提示
+
+  > tsconfig.json（需要[IDE 支持](https://cn.vuejs.org/guide/typescript/overview.html#ide-support)）
+
+    ```json5
+    {
+      "compilerOptions": {
+        // ...
+        "types": [
+          "nutui-uniapp/global.d.ts"
+        ]
+      }
+    }
     ```
 
 ##### easycom方式
@@ -106,19 +130,6 @@ npm install nutui-uniapp
         }
       }
       // ...
-    }
-    ```
-
-- 类型提示
-
-  > tsconfig.json（需要[IDE 支持](https://cn.vuejs.org/guide/typescript/overview.html#ide-support)）
-
-    ```json5
-    {
-      "compilerOptions": {
-        // ...
-        "types": ["nutui-uniapp/global.d.ts"]
-      }
     }
     ```
 
@@ -149,11 +160,11 @@ npm install nutui-uniapp
   > App.vue
 
     ```html
-    <!-- 注意这里的 lang="scss" -->
+    <!-- 注意这里的 lang="scss"，并且没有 scoped -->
     <style lang="scss">
-      @import "nutui-uniapp/styles/index.scss";
+    @import "nutui-uniapp/styles/index.scss";
 
-      // ...
+    // ...
     </style>
     ```
 
@@ -169,11 +180,10 @@ npm install nutui-uniapp
 
   - vite.config.ts
 
-    ```typescript
-    import { defineConfig } from 'vite'
+    ```ts
+    import { defineConfig } from "vite";
 
-    // https://vitejs.dev/config
-    exportdefault defineConfig({
+    export default defineConfig({
       // ...
       css: {
         preprocessorOptions: {
@@ -182,7 +192,7 @@ npm install nutui-uniapp
           }
         }
       }
-    })
+    });
     ```
 
 #### API导入
@@ -215,42 +225,39 @@ npm install nutui-uniapp
 
   > vite.config.ts
 
-    ```typescript
-    import { defineConfig } from 'vite'
-    import AutoImport from 'unplugin-auto-import/vite'
+    ```ts
+    import { defineConfig } from "vite";
+    import AutoImport from "unplugin-auto-import/vite";
 
-    // https://vitejs.dev/config
-    exportdefault defineConfig({
+    export default defineConfig({
       // ...
       plugins: [
         // ...
         AutoImport({
           imports: [
-            'vue',
-            'uni-app',
-            'pinia',
+            "vue",
             {
-              'nutui-uniapp/composables': [
+              "nutui-uniapp/composables": [
                 // 在这里添加需要自动导入的API
-                'useToast'
+                "useToast"
               ]
             }
           ]
         })
       ]
-    })
+    });
     ```
 
 - 使用
 
-  ```typescript
+  ```ts
   // 现在无需手动导入即可直接使用
   const toast = useToast()
   ```
 
 ##### 手动导入
 
-```typescript
+```ts
 // nutui-uniapp提供的组合式函数都在composables模块下
 import { useToast } from 'nutui-uniapp/composables'
 
@@ -273,12 +280,18 @@ const toast = useToast()
 ```
 
 ::: info 其他
-关于 uniapp 的内置组件（例如 text、view、image 等）若需要类型提示，推荐使用 
+关于 uniapp 的内置组件（例如 text、view、image 等）若需要类型提示，推荐使用
 [@uni-helper/uni-app-types](https://github.com/uni-helper/uni-types/tree/main/packages/uni-app-types)
 插件，按照其官方文档配置即可，需要注意你的 `vue-tsc` 依赖版本 和 `volar` 插件版本
 :::
 
 ## uni_modules方式
+
+::: warning 提示
+nutui-uniapp虽然提供了uni_modules，但是组件库在HBuilderX中编译存在许多的问题，所以我们强烈建议使用Vite
+CLI创建项目并且通过NPM方式使用组件，
+它经过了我们的测试，还可以使用 [uni-helper](https://github.com/uni-helper) 团队带来的一系列优秀的库和Vite生态中的部分插件
+:::
 
 ### 下载
 
@@ -286,29 +299,65 @@ const toast = useToast()
 
 前往 uniapp 插件市场下载 [nutui-uniapp](https://ext.dcloud.net.cn/plugin?id=13491)
 
-::: warning
-nutui-uniapp提供了npm和uni_modules两种方式使用组件。虽然提供了uni_modules，但是组件库在HBuilderX中编译存在许多的问题，所以我们强烈建议使用Vite CLI创建项目，它经过了我们的测试，还可以使用[uni-helper](https://github.com/uni-helper)团队带来的一系列优秀的库和Vite生态中的部分插件，你可以通过[官方CLI](https://uniapp.dcloud.net.cn/quickstart-cli.html)或是[create-uni](https://github.com/uni-helper/create-uni)创建项目，如果你需要一个功能丰富的起始模板，可以使用我们的[uniapp-template](https://github.com/yang1206/uniapp-template)
-:::
-
 ### 配置
 
 ---
 
 #### 组件导入
 
-> 与上述npm方式中的[easycom方式](#easycom方式)相同
+- 配置easycom
+
+  > pages.json（若原本已存在easycom字段，则添加easycom.custom字段中的内容）
+
+    ```json5
+    {
+      "easycom": {
+        "autoscan": true,
+        "custom": {
+          "^nut-(.*)?-(.*)": "@/uni_modules/nutui-uni/components/$1$2/$1$2.vue",
+          "^nut-(.*)": "@/uni_modules/nutui-uni/components/$1/$1.vue"
+        }
+      }
+      // ...
+    }
+    ```
 
 #### 样式引入
 
-> 与上述npm方式中的[样式引入](#样式引入)相同，样式变量部分请使用uni.scss方式
+- 安装sass插件
+
+  - HBuilderX项目：安装 [scss/sass编译](https://ext.dcloud.net.cn/plugin?id=2046) 插件
+
+  - CLI项目：安装 `sass` 依赖
+
+- 全局样式
+
+  > App.vue
+
+    ```html
+    <!-- 注意这里的 lang="scss"，并且没有 scoped -->
+    <style lang="scss">
+    @import "@/uni_modules/nutui-uni/styles/index.scss";
+
+    // ...
+    </style>
+    ```
+
+- 样式变量
+
+  > uni.scss
+
+    ```scss
+    @import "@/uni_modules/nutui-uni/styles/variables.scss";
+    ```
 
 #### API导入
 
 > 自 `1.7.5` 开始 `nutui-uniapp` 提供了一些组合式函数
 
-```typescript
+```ts
 // nutui-uniapp提供的组合式函数都在composables目录下
-import { useToast } from '/uni_modules/nutui-uni/components/composables'
+import { useToast } from '@/uni_modules/nutui-uni/components/composables'
 
 const toast = useToast()
 ```
