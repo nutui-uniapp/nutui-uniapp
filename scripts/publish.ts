@@ -5,9 +5,7 @@ import { version } from '../package.json'
 function publish() {
   execSync('npm run build:all', { stdio: 'inherit' })
 
-  const command = 'cd packages/nutui && npm publish'
-
-  execSync(command, { stdio: 'inherit' })
+  execSync('cd packages/nutui && npm publish', { stdio: 'inherit' })
 
   consola.success(`Published npm package version ${version}`)
 }
