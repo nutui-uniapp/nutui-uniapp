@@ -30,6 +30,7 @@ export default antfu({
     },
   },
   ignores: [
+    'scripts/uni/lodash/**/*',
     'packages/nutui/styles/**/*',
   ],
 })
