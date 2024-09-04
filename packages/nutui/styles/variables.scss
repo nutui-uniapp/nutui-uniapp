@@ -360,7 +360,7 @@ $notify-text-color: var(--nut-notify-text-color, $white) !default;
 $notify-padding: var(--nut-notify-padding, 12px 0) !default;
 $notify-font-size: var(--nut-notify-font-size, 14px) !default;
 $notify-height: var(--nut-notify-height, 44px) !default;
-$notify-line-height: var(--nut-notify-line-height, auto) !default;
+$notify-line-height: var(--nut-notify-line-height, 1.25) !default;
 $notify-base-background-color: var(
   --nut-notify-base-background-color,
   linear-gradient(135deg, $primary-color 0%, $primary-color-end 100%)

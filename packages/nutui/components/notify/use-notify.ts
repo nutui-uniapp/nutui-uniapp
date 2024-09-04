@@ -1,88 +1,62 @@
-import { type SetupContext, onUnmounted, ref, watch } from 'vue'
-import { UPDATE_VISIBLE_EVENT } from '../_constants'
-import type { NotifyEmits, NotifyProps } from './notify'
-import type { NotifyOptions } from './type'
+import { provide, ref } from 'vue'
+import { cloneDeep } from '../_utils'
+import type { NotifyInst, NotifyOptions, NotifyType } from './types'
+import { notifyDefaultOptions, notifyDefaultOptionsKey } from './notify'
 
-export function useNotify(props: NotifyProps, emit: SetupContext<NotifyEmits>['emit']) {
-  const clickCover = () => {
-    props.onClick && props.onClick()
-  }
-  let timer: NodeJS.Timeout | null | undefined
+export function useNotify(selector = ''): NotifyInst {
+  const notifyOptionsKey = `${notifyDefaultOptionsKey}${selector || ''}`
+  const notifyOptions = ref<NotifyOptions>(cloneDeep(notifyDefaultOptions))
 
-  const clearTimer = () => {
-    if (timer) {
-      timer && clearTimeout(timer)
-      timer = null
-    }
-  }
-  // watch show popup
-  const isShowPopup = ref<boolean>(false)
+  provide(notifyOptionsKey, notifyOptions)
 
-  const notifyStatus = ref<NotifyOptions>({
-    type: props.type,
-    msg: props.msg,
-    customColor: props.customColor,
-    background: props.background,
-    duration: props.duration,
-    position: props.position,
-    safeAreaInsetTop: props.safeAreaInsetTop,
-  })
-
-  const errorMsg = (msg: string) => {
-    if (!msg) {
-      console.warn('[NutUI Notify]: msg不能为空')
-      /* eslint-disable no-useless-return */
-      return
-    }
+  function show(type: NotifyType, msg: string, options?: NotifyOptions) {
+    notifyOptions.value = Object.assign({
+      visible: true,
+      type,
+      msg,
+    }, options)
   }
 
-  const hideNotify = () => {
-    isShowPopup.value = false
-    emit(UPDATE_VISIBLE_EVENT, false)
+  function legacyShow(options: NotifyOptions) {
+    show(notifyDefaultOptions.type, options.msg || notifyDefaultOptions.msg, options)
   }
 
-  const showNotify = (option: NotifyOptions) => {
-    errorMsg(option.msg)
-    notifyStatus.value = {
-      type: option.type || props.type,
-      position: option.position || props.position,
-      msg: option.msg || props.msg,
-      customColor: option.customColor || props.customColor,
-      background: option.background || props.background,
-      duration: option.duration || props.duration,
-      safeAreaInsetTop: option.safeAreaInsetTop || props.safeAreaInsetTop,
-
-    }
-
-    clearTimer()
-    isShowPopup.value = true
-    if (notifyStatus.value.duration && notifyStatus.value.duration > 0)
-      timer = setTimeout(hideNotify, notifyStatus.value.duration)
+  function showPrimary(msg: string, options?: NotifyOptions) {
+    show('primary', msg, options)
   }
 
-  watch(
-    () => props.visible,
-    (newVal: boolean) => {
-      isShowPopup.value = newVal
-      const DURATION: number = notifyStatus.value.duration!
-      if (newVal && DURATION) {
-        timer = setTimeout(() => {
-          hideNotify()
-        }, DURATION)
-      }
-    },
-    { immediate: true },
-  )
+  function showSuccess(msg: string, options?: NotifyOptions) {
+    show('success', msg, options)
+  }
 
-  onUnmounted(() => {
-    clearTimer()
-  })
+  function showDanger(msg: string, options?: NotifyOptions) {
+    show('danger', msg, options)
+  }
+
+  function showWarning(msg: string, options?: NotifyOptions) {
+    show('warning', msg, options)
+  }
+
+  function showCustom(msg: string, options?: NotifyOptions) {
+    show('custom', msg, options)
+  }
+
+  function hide() {
+    notifyOptions.value = Object.assign(cloneDeep(notifyOptions.value), {
+      visible: false,
+    })
+  }
 
   return {
-    clickCover,
-    showNotify,
-    hideNotify,
-    notifyStatus,
-    isShowPopup,
+    showNotify: legacyShow,
+    hideNotify: hide,
+
+    show,
+    primary: showPrimary,
+    success: showSuccess,
+    danger: showDanger,
+    warning: showWarning,
+    custom: showCustom,
+    hide,
   }
 }

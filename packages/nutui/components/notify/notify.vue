@@ -1,37 +1,205 @@
-<script setup lang="ts">
-import { computed, defineComponent } from 'vue'
-import { PREFIX } from '../_constants'
-import NutPopUp from '../popup/popup.vue'
-import { getMainClass, getMainStyle } from '../_utils'
-import { notifyEmits, notifyProps } from './notify'
-import { useNotify } from './use-notify'
+<script lang="ts" setup>
+import type { CSSProperties, Ref } from 'vue'
+import { computed, defineComponent, inject, onBeforeUnmount, ref, useSlots, watch } from 'vue'
+import NutPopup from '../popup/popup.vue'
+import { CLICK_EVENT, CLOSED_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
+import type { NotifyOptions, NotifyType } from './types'
+import { notifyDefaultOptions, notifyDefaultOptionsKey, notifyEmits, notifyProps } from './notify'
 
 const props = defineProps(notifyProps)
 
 const emit = defineEmits(notifyEmits)
 
-const safeHeight = props.safeHeight ? props.safeHeight : uni.getSystemInfoSync().statusBarHeight
+const slots = useSlots()
 
-const { isShowPopup, clickCover, notifyStatus, showNotify, hideNotify } = useNotify(props, emit)
+const notifyOptionsKey = `${notifyDefaultOptionsKey}${props.selector || ''}`
+const injectNotifyOptions: Ref<NotifyOptions> = inject(notifyOptionsKey, ref(cloneDeep(notifyDefaultOptions)))
 
-defineExpose({ showNotify, hideNotify })
+const innerVisible = ref(false)
+
+const notifyOptions = ref<NotifyOptions>(cloneDeep(props))
+
+const classes = computed(() => {
+  const { type, className } = notifyOptions.value
+
+  const value = {
+    [`nut-notify--${type}`]: true,
+  }
+
+  if (className) {
+    value[className] = true
+  }
+
+  return getMainClass(props, componentName, value)
+})
 
 const styles = computed(() => {
-  return getMainStyle(props, {
-    color: notifyStatus.value.customColor || props.customColor,
-    background: notifyStatus.value.background || props.background,
-  })
+  const value: CSSProperties = {}
+
+  const { customColor, background } = notifyOptions.value
+
+  if (customColor) {
+    value.color = customColor
+  }
+
+  if (background) {
+    value.background = background
+  }
+
+  return getMainStyle(props, value)
 })
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [props.className]: true,
-    [`nut-notify--${notifyStatus.value.type || props.type}`]: true,
-  })
+
+const wrapperStyles = computed(() => {
+  const value: CSSProperties = {}
+
+  const { position, safeAreaInsetTop, safeAreaInsetBottom, safeHeight } = notifyOptions.value
+
+  if (position === 'top') {
+    if (safeAreaInsetTop) {
+      if (safeHeight) {
+        value.top = pxCheck(safeHeight)
+      }
+      else {
+        value.top = `${uni.getSystemInfoSync().statusBarHeight}px`
+      }
+    }
+  }
+  else if (position === 'bottom') {
+    if (safeAreaInsetBottom) {
+      if (safeHeight) {
+        value.bottom = pxCheck(safeHeight)
+      }
+    }
+  }
+
+  return value
+})
+
+let timer: NodeJS.Timeout | null = null
+
+function startTimer() {
+  timer = setTimeout(() => {
+    hide()
+  }, notifyOptions.value.duration)
+}
+
+function destroyTimer() {
+  if (timer == null)
+    return
+
+  clearTimeout(timer)
+  timer = null
+}
+
+function show(type: NotifyType, msg: string, options?: NotifyOptions) {
+  destroyTimer()
+
+  notifyOptions.value = Object.assign(cloneDeep(notifyDefaultOptions), {
+    visible: true,
+    type,
+    msg,
+  }, options)
+
+  innerVisible.value = true
+
+  if (notifyOptions.value.duration! > 0)
+    startTimer()
+}
+
+function legacyShow(options: NotifyOptions) {
+  show(notifyDefaultOptions.type, options.msg || notifyDefaultOptions.msg, options)
+}
+
+function showPrimary(msg: string, options?: NotifyOptions) {
+  show('primary', msg, options)
+}
+
+function showSuccess(msg: string, options?: NotifyOptions) {
+  show('success', msg, options)
+}
+
+function showDanger(msg: string, options?: NotifyOptions) {
+  show('danger', msg, options)
+}
+
+function showWarning(msg: string, options?: NotifyOptions) {
+  show('warning', msg, options)
+}
+
+function showCustom(msg: string, options?: NotifyOptions) {
+  show('custom', msg, options)
+}
+
+function hide() {
+  destroyTimer()
+
+  innerVisible.value = false
+  notifyOptions.value.visible = false
+
+  emit(UPDATE_VISIBLE_EVENT, false)
+  emit(CLOSE_EVENT)
+
+  if (notifyOptions.value.onClose) {
+    notifyOptions.value.onClose()
+  }
+}
+
+function handleClosed() {
+  emit(CLOSED_EVENT)
+
+  if (notifyOptions.value.onClosed) {
+    notifyOptions.value.onClosed()
+  }
+}
+
+function handleClick() {
+  emit(CLICK_EVENT)
+
+  if (notifyOptions.value.onClick) {
+    notifyOptions.value.onClick()
+  }
+}
+
+watch(() => props, (value) => {
+  notifyOptions.value = Object.assign(cloneDeep(notifyDefaultOptions), value)
+
+  if (value.visible)
+    show(notifyOptions.value.type!, notifyOptions.value.msg!, notifyOptions.value)
+  else
+    hide()
+}, { deep: true })
+
+watch(injectNotifyOptions, (value) => {
+  notifyOptions.value = Object.assign(cloneDeep(notifyDefaultOptions), value)
+
+  if (value.visible)
+    show(notifyOptions.value.type!, notifyOptions.value.msg!, notifyOptions.value)
+  else
+    hide()
+})
+
+onBeforeUnmount(() => {
+  destroyTimer()
+})
+
+defineExpose({
+  showNotify: legacyShow,
+  hideNotify: hide,
+
+  show,
+  primary: showPrimary,
+  success: showSuccess,
+  danger: showDanger,
+  warning: showWarning,
+  custom: showCustom,
+  hide,
 })
 </script>
 
 <script lang="ts">
 const componentName = `${PREFIX}-notify`
+
 export default defineComponent({
   name: componentName,
   options: {
@@ -43,30 +211,30 @@ export default defineComponent({
 </script>
 
 <template>
-  <NutPopUp
-    v-model:visible="isShowPopup"
-    :custom-style="notifyStatus.safeAreaInsetTop ? `top:${safeHeight}px` : ''"
-    safe-area-inset-bottom
-    safe-area-inset-top
-    :z-index="99999999"
-    :position="notifyStatus.position"
+  <NutPopup
+    v-model:visible="innerVisible"
+    :custom-style="wrapperStyles"
+    :position="notifyOptions.position"
     :overlay="false"
+    :z-index="notifyOptions.zIndex"
+    :safe-area-inset-top="false"
+    :safe-area-inset-bottom="false"
+    @closed="handleClosed"
   >
-    <div
+    <view
       :class="classes"
       :style="styles"
-      @click="clickCover"
+      @click="handleClick"
     >
-      <template v-if="$slots.default">
-        <slot />
-      </template>
+      <slot v-if="slots.default" />
+
       <template v-else>
-        {{ notifyStatus.msg }}
+        {{ notifyOptions.msg }}
       </template>
-    </div>
-  </NutPopUp>
+    </view>
+  </NutPopup>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
