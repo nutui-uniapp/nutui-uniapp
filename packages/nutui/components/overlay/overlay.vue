@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, watchEffect } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import { CLICK_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'

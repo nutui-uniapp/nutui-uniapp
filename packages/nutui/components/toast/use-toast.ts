@@ -3,10 +3,10 @@ import { cloneDeep } from '../_utils'
 import type { ToastInst, ToastOptions, ToastType } from './types'
 import { toastDefaultOptions, toastDefaultOptionsKey } from './toast'
 
-export function useToast(selector: string = ''): ToastInst {
+export function useToast(selector = ''): ToastInst {
+  const toastOptionsKey = `${toastDefaultOptionsKey}${selector || ''}`
   const toastOptions = ref<ToastOptions>(cloneDeep(toastDefaultOptions))
 
-  const toastOptionsKey: string = `${toastDefaultOptionsKey}${selector || ''}`
   provide(toastOptionsKey, toastOptions)
 
   function show(type: ToastType, msg: string, options?: ToastOptions) {
