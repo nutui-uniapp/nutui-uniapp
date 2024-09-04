@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue'
 import { computed, defineComponent, inject, onBeforeUnmount, ref, useSlots, watch } from 'vue'
 import NutTransition from '../transition/transition.vue'
