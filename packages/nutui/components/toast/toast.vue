@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import type { CSSProperties, Ref } from 'vue'
-import { computed, defineComponent, inject, onUnmounted, ref, watch } from 'vue'
+import { computed, defineComponent, inject, onBeforeUnmount, ref, useSlots, watch } from 'vue'
 import NutTransition from '../transition/transition.vue'
 import NutIcon from '../icon/icon.vue'
-import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLOSED_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
+import type { ToastOptions, ToastType } from './types'
 import { toastDefaultOptions, toastDefaultOptionsKey, toastEmits, toastProps } from './toast'
-import type { ToastOptions, ToastType } from './type'
 
 const props = defineProps(toastProps)
 
 const emit = defineEmits(toastEmits)
 
-const innerVisible = ref<boolean>(false)
+const slots = useSlots()
+
+const toastOptionsKey = `${toastDefaultOptionsKey}${props.selector || ''}`
+const injectToastOptions: Ref<ToastOptions> = inject(toastOptionsKey, ref(cloneDeep(toastDefaultOptions)))
 
 const typeIcons: Record<ToastType, string> = {
   text: '',
@@ -22,10 +25,70 @@ const typeIcons: Record<ToastType, string> = {
   loading: 'loading',
 }
 
-const toastOptionsKey: string = `${toastDefaultOptionsKey}${props.selector || ''}`
-const injectToastOptions: Ref<ToastOptions> = inject(toastOptionsKey, ref(cloneDeep(toastDefaultOptions)))
+const innerVisible = ref(false)
 
 const toastOptions = ref<ToastOptions>(cloneDeep(props))
+
+const iconName = computed(() => {
+  const { icon, type } = toastOptions.value
+
+  return icon || typeIcons[type!]
+})
+
+const hasIcon = computed(() => {
+  return Boolean(iconName.value)
+})
+
+const classes = computed(() => {
+  const { size, cover, center, type, loadingRotate } = toastOptions.value
+
+  return getMainClass(props, componentName, {
+    [`nut-toast-${size}`]: true,
+    'nut-toast-cover': cover,
+    'nut-toast-center': center,
+    'nut-toast-loading': type === 'loading',
+    'nut-toast-loading-rotate': loadingRotate,
+    'nut-toast-has-icon': hasIcon.value,
+  })
+})
+
+const styles = computed(() => {
+  return getMainStyle(props, {
+    zIndex: toastOptions.value.zIndex,
+  })
+})
+
+const wrapperStyles = computed(() => {
+  const value: CSSProperties = {}
+
+  const { cover, coverColor, center, bottom } = toastOptions.value
+
+  if (cover) {
+    value.backgroundColor = coverColor
+  }
+  else {
+    if (!center)
+      value.bottom = pxCheck(bottom!)
+  }
+
+  return value
+})
+
+const innerStyles = computed(() => {
+  const { textAlignCenter, bgColor, cover, center, bottom } = toastOptions.value
+
+  const value: CSSProperties = {
+    textAlign: textAlignCenter ? 'center' : 'left',
+    backgroundColor: bgColor,
+  }
+
+  if (cover) {
+    if (!center)
+      value.bottom = pxCheck(bottom!)
+  }
+
+  return value
+})
 
 let timer: NodeJS.Timeout | null = null
 
@@ -90,77 +153,25 @@ function hide() {
   emit(UPDATE_VISIBLE_EVENT, false)
   emit(CLOSE_EVENT)
 
-  toastOptions.value.onClose?.()
+  if (toastOptions.value.onClose) {
+    toastOptions.value.onClose()
+  }
 }
 
-function onAfterLeave() {
+function handleAfterLeave() {
   emit(CLOSED_EVENT)
 
-  toastOptions.value.onClosed?.()
+  if (toastOptions.value.onClosed) {
+    toastOptions.value.onClosed()
+  }
 }
 
-function onCoverClick() {
+function handleCoverClick() {
   if (!toastOptions.value.closeOnClickOverlay)
     return
 
   hide()
 }
-
-const iconName = computed<string>(() => {
-  if (toastOptions.value.icon)
-    return toastOptions.value.icon
-
-  return typeIcons[toastOptions.value.type!]
-})
-
-const hasIcon = computed<boolean>(() => {
-  return Boolean(iconName.value)
-})
-
-const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    [`nut-toast-${toastOptions.value.size}`]: true,
-    'nut-toast-cover': toastOptions.value.cover,
-    'nut-toast-center': toastOptions.value.center,
-    'nut-toast-loading': toastOptions.value.type === 'loading',
-    'nut-toast-loading-rotate': toastOptions.value.loadingRotate,
-    'nut-toast-has-icon': hasIcon.value,
-  })
-})
-
-const styles = computed(() => {
-  return getMainStyle(props, {
-    zIndex: toastOptions.value.zIndex,
-  })
-})
-
-const wrapperStyles = computed<CSSProperties>(() => {
-  const value: CSSProperties = {}
-
-  if (toastOptions.value.cover) {
-    value.backgroundColor = toastOptions.value.coverColor
-  }
-  else {
-    if (!toastOptions.value.center)
-      value.bottom = pxCheck(toastOptions.value.bottom!)
-  }
-
-  return value
-})
-
-const innerStyles = computed<CSSProperties>(() => {
-  const value: CSSProperties = {
-    textAlign: toastOptions.value.textAlignCenter ? 'center' : 'left',
-    backgroundColor: toastOptions.value.bgColor,
-  }
-
-  if (toastOptions.value.cover) {
-    if (!toastOptions.value.center)
-      value.bottom = pxCheck(toastOptions.value.bottom!)
-  }
-
-  return value
-})
 
 watch(() => props, (value) => {
   toastOptions.value = Object.assign(cloneDeep(toastDefaultOptions), value)
@@ -180,7 +191,7 @@ watch(injectToastOptions, (value) => {
     hide()
 })
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   destroyTimer()
 })
 
@@ -222,14 +233,14 @@ export default defineComponent({
     :custom-style="styles"
     :show="innerVisible"
     name="fade"
-    @after-leave="onAfterLeave"
+    @after-leave="handleAfterLeave"
   >
     <view
       class="nut-toast-wrapper"
       :style="wrapperStyles"
-      @click="onCoverClick"
+      @click="handleCoverClick"
     >
-      <template v-if="$slots.default">
+      <template v-if="slots.default">
         <slot />
       </template>
 

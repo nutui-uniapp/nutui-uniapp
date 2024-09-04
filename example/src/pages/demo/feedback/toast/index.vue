@@ -137,9 +137,9 @@ function showWarningProps() {
     </h2>
     <nut-toast
       v-model:visible="toastState.visible"
+      selector="xx2"
       :type="toastState.type"
       :msg="toastState.msg"
-      selector="xx2"
     />
     <nut-cell title="Success 成功提示" is-link @click="showSuccessProps" />
     <nut-cell title="Error 错误提示" is-link @click="showErrorProps" />
