@@ -1,3 +1,17 @@
+## [1.7.16](https://github.com/xiaohe0601/nutui-uniapp/compare/v1.7.15...v1.7.16) (2024-09-04)
+
+
+### Bug Fixes
+
+* **popover,shakedice,tour:** fix scss warning ([#413](https://github.com/xiaohe0601/nutui-uniapp/issues/413)) ([28df492](https://github.com/xiaohe0601/nutui-uniapp/commit/28df492f6daa00da26e72f619e8f2d5073489785))
+
+
+### Features
+
+* **notify:** 新增useNotify ([873b454](https://github.com/xiaohe0601/nutui-uniapp/commit/873b4545ec277b6227ea90d23d8880d0d531edb8))
+
+
+
 ## [1.7.15](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.14...v1.7.15) (2024-08-17)
 
 ### Bug Fixes
