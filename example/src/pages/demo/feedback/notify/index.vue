@@ -1,174 +1,145 @@
-<script lang="ts">
-import { reactive, ref } from 'vue'
-import { isH5 } from '@uni-helper/uni-env'
-import type { NotifyInst, NotifyType } from 'nutui-uniapp'
-import { useAppStore } from '@/store'
+<script lang="ts" setup>
+import type { NotifyInst, NotifyProps } from 'nutui-uniapp'
 
-const { customBarHeight } = storeToRefs(useAppStore())
+const notify = useNotify()
 
-export default {
-  setup() {
-    // eslint-disable-next-line no-console
-    const onClosed = () => console.log('closed')
-    // eslint-disable-next-line no-console
-    const onClick = () => console.log('click')
+function showPrimary() {
+  notify.primary('主要通知')
+}
 
-    const notifyRef = ref<NotifyInst>()
-    const typeRef = ref<NotifyInst>()
-    const baseState = {
-      state: reactive({
-        show: false,
-        desc: '基础用法',
-      }),
-      methods: {
-        cellClick() {
-          baseState.state.show = true
-        },
-      },
-    }
+function showSuccess() {
+  notify.success('成功通知')
+}
 
-    function notifyStateClick(type: any, desc: string) {
-      typeRef.value?.showNotify({
-        type,
-        msg: desc,
-        duration: 1500,
-      })
-    }
+function showDanger() {
+  notify.danger('危险通知')
+}
 
-    const customState = {
-      state: reactive({
-        show: false,
-        desc: '',
-        type: 'primary' as NotifyType,
-        duration: 3000,
-      }),
-      methods: {
-        cellClick(type: NotifyType, desc: string, duration: number) {
-          customState.state.show = true
-          customState.state.type = type
-          customState.state.desc = desc
-          customState.state.duration = duration
-        },
-      },
-    }
-    const show = ref(false)
-    const show1 = ref(false)
+function showWarning() {
+  notify.warning('警告通知')
+}
 
-    const showNotify = () => {
-      show.value = true
-      setTimeout(() => {
-        show.value = false
-      }, 2000)
-    }
-    const showNotify1 = () => {
-      show1.value = true
-    }
-    const showRefNotify = () => {
-      notifyRef.value?.showNotify({
-        type: 'danger',
-        msg: '使用ref调用,2秒后消失',
-        position: 'bottom',
-        background: 'skyblue',
-      })
+function hide() {
+  notify.hide()
+}
 
-      setTimeout(() => {
-        notifyRef.value?.hideNotify()
-      }, 2000)
-    }
-    return {
-      baseState,
-      typeRef,
-      customState,
-      onClosed,
-      onClick,
-      show,
-      show1,
-      showNotify,
-      showNotify1,
-      isH5,
-      notifyRef,
-      showRefNotify,
-      notifyStateClick,
-      customBarHeight,
-    }
-  },
+function showCustomStyle() {
+  notify.custom('自定义样式', {
+    customColor: '#ad0000',
+    background: '#ffe1e1',
+  })
+}
+
+function showCustomDuration() {
+  notify.primary('自定义时长5s', {
+    duration: 5000,
+  })
+}
+
+function showCustomPosition() {
+  notify.primary('自定义位置', {
+    position: 'bottom',
+  })
+}
+
+const notifyRef = ref<NotifyInst | null>(null)
+
+function showPrimaryRef() {
+  notifyRef.value?.primary('主要通知')
+}
+
+function showSuccessRef() {
+  notifyRef.value?.success('成功通知')
+}
+
+function showDangerRef() {
+  notifyRef.value?.danger('危险通知')
+}
+
+function showWarningRef() {
+  notifyRef.value?.warning('警告通知')
+}
+
+const notifyState = ref<Pick<NotifyProps, 'visible' | 'type' | 'msg'>>({
+  visible: false,
+  type: 'primary',
+  msg: '',
+})
+
+function showPrimaryProps() {
+  notifyState.value = {
+    visible: true,
+    type: 'primary',
+    msg: '主要通知',
+  }
+}
+
+function showSuccessProps() {
+  notifyState.value = {
+    visible: true,
+    type: 'success',
+    msg: '成功通知',
+  }
+}
+
+function showDangerProps() {
+  notifyState.value = {
+    visible: true,
+    type: 'danger',
+    msg: '危险通知',
+  }
+}
+
+function showWarningProps() {
+  notifyState.value = {
+    visible: true,
+    type: 'warning',
+    msg: '警告通知',
+  }
 }
 </script>
 
 <template>
-  <div class="demo">
-    <nut-cell-group :title="baseState.state.desc">
-      <nut-cell is-link @click="baseState.methods.cellClick">
-        {{ baseState.state.desc }}
-      </nut-cell>
-      <nut-notify
-        v-model:visible="baseState.state.show"
-        :msg="baseState.state.desc"
-        @click="onClick"
-        @closed="onClosed"
-      />
-    </nut-cell-group>
+  <div class="demo h-100vh!">
+    <h2 class="title">
+      组合式函数用法
+    </h2>
+    <nut-notify />
+    <nut-cell title="主要通知" is-link @click="showPrimary" />
+    <nut-cell title="成功通知" is-link @click="showSuccess" />
+    <nut-cell title="危险通知" is-link @click="showDanger" />
+    <nut-cell title="警告通知" is-link @click="showWarning" />
+    <nut-cell title="手动关闭通知" is-link @click="hide" />
 
-    <nut-cell-group title="ref调用">
-      <nut-cell is-link @click="showRefNotify">
-        ref调用
-      </nut-cell>
-      <nut-notify ref="notifyRef" />
-    </nut-cell-group>
+    <h2 class="title">
+      自定义样式
+    </h2>
+    <nut-cell title="自定义样式" is-link @click="showCustomStyle" />
+    <nut-cell title="自定义时长5s" is-link @click="showCustomDuration" />
+    <nut-cell title="自定义位置" is-link @click="showCustomPosition" />
 
-    <nut-cell-group title="通知类型">
-      <nut-notify
-        ref="typeRef"
-        @click="onClick"
-        @closed="onClosed"
-      />
-      <nut-cell is-link @click="notifyStateClick('primary', '主要通知')">
-        主要通知
-      </nut-cell>
-      <nut-cell is-link @click="notifyStateClick('success', '成功通知')">
-        成功通知
-      </nut-cell>
-      <nut-cell is-link @click="notifyStateClick('danger', '危险通知')">
-        危险通知
-      </nut-cell>
-      <nut-cell is-link @click="notifyStateClick('warning', '警告通知')">
-        警告通知
-      </nut-cell>
-    </nut-cell-group>
-    <nut-cell-group title="自定义样式">
-      <nut-notify
-        v-model:visible="customState.state.show"
-        custom-color="#ad0000"
-        background="#ffe1e1"
-        :type="customState.state.type"
-        :msg="customState.state.desc"
-        :duration="customState.state.duration"
-        @click="onClick"
-        @closed="onClosed"
-      />
-      <nut-cell is-link @click="customState.methods.cellClick('primary', '自定义背景色和字体颜色', 1000)">
-        自定义背景色和字体颜色
-      </nut-cell>
-      <nut-cell is-link @click="customState.methods.cellClick('primary', '自定义时长5s', 5000)">
-        自定义时长5s
-      </nut-cell>
-    </nut-cell-group>
-    <nut-cell-group title="组件调用">
-      <nut-cell is-link @click="showNotify">
-        组件调用
-      </nut-cell>
-      <nut-notify v-model:visible="show">
-        <span>Content</span>
-      </nut-notify>
-    </nut-cell-group>
-    <nut-cell-group title="留出顶部安全距离">
-      <nut-cell is-link @click="showNotify1">
-        留出顶部安全距离
-      </nut-cell>
-      <nut-notify v-model:visible="show1" :duration="5000" safe-area-inset-top>
-        <span>Content</span>
-      </nut-notify>
-    </nut-cell-group>
+    <h2 class="title">
+      Ref用法
+    </h2>
+    <nut-notify ref="notifyRef" selector="xx1" />
+    <nut-cell title="主要通知" is-link @click="showPrimaryRef" />
+    <nut-cell title="成功通知" is-link @click="showSuccessRef" />
+    <nut-cell title="危险通知" is-link @click="showDangerRef" />
+    <nut-cell title="警告通知" is-link @click="showWarningRef" />
+
+    <h2 class="title">
+      Props用法
+    </h2>
+    <nut-notify
+      v-model:visible="notifyState.visible"
+      selector="xx2"
+      :type="notifyState.type"
+      :msg="notifyState.msg"
+    />
+    <nut-cell title="主要通知" is-link @click="showPrimaryProps" />
+    <nut-cell title="成功通知" is-link @click="showSuccessProps" />
+    <nut-cell title="危险通知" is-link @click="showDangerProps" />
+    <nut-cell title="警告通知" is-link @click="showWarningProps" />
   </div>
 </template>
 

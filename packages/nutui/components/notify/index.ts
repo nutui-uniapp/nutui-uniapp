@@ -1,3 +1,2 @@
-export type * from './notify'
-export type * from './type'
-export type * from './use-notify'
+export * from './types'
+export * from './notify'

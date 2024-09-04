@@ -37,6 +37,7 @@ export default defineConfig({
         'uni-app',
         {
           'nutui-uniapp/composables': [
+            'useNotify',
             'useToast',
           ],
         },

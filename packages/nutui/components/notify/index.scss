@@ -1,23 +1,10 @@
-@import '../popup/index';
-
-.nut-fade-enter-active {
-  transition: opacity 1s;
-}
-
-.nut-fade-leave-active {
-  transition: opacity 1s;
-}
-
-.nut-fade-enter-from,
-.nut-fade-leave-to {
-  opacity: 0;
-}
+@import "../popup/index";
 
 .nut-notify {
   box-sizing: border-box;
   display: block;
   width: 100%;
-  height: $notify-height;
+  min-height: $notify-height;
   padding: $notify-padding;
   font-size: $notify-font-size;
   line-height: $notify-line-height;
@@ -44,10 +31,5 @@
 
   &--warning {
     background: $notify-warning-background-color;
-  }
-
-  view {
-    width: 100%;
-    text-align: center;
   }
 }
