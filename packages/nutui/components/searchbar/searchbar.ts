@@ -96,9 +96,8 @@ export const searchbarEmits = {
   [FOCUS_EVENT]: (val: string, event: InputOnFocusEvent) => (isString(val) || val === undefined) && event instanceof Object,
   [CLEAR_EVENT]: (val: string) => (isString(val) || val === undefined),
   [SEARCH_EVENT]: (val: string) => (isString(val) || val === undefined),
+
   clickInput: (val: string, event: Event) => (isString(val) || val === undefined) && event instanceof Object,
-  clickLeftIcon: (val: string, event: Event) => (isString(val) || val === undefined) && event instanceof Object,
-  clickRightIcon: (val: string, event: Event) => (isString(val) || val === undefined) && event instanceof Object,
 }
 
 export type SearchbarEmits = typeof searchbarEmits

@@ -140,8 +140,6 @@ function onSearch(value: string) {
 | clear            | 点击清空时触发      | `val`        |
 | search           | 按下 ENTER 键时触发 | `val`        |
 | click-input      | 点击输入区域时触发  | `val, event` |
-| click-left-icon  | 点击左侧图标时触发  | `val, event` |
-| click-right-icon | 点击右侧图标时触发  | `val, event` |
 
 ### Slots
 
