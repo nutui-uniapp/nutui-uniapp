@@ -2,7 +2,7 @@
 import type { CSSProperties, Ref, VNode } from 'vue'
 import { computed, getCurrentInstance, nextTick, onActivated, onMounted, ref, useSlots, watch } from 'vue'
 import NutIcon from '../icon/icon.vue'
-import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { CHANGE_EVENT, CLICK_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
 import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
@@ -34,7 +34,7 @@ const elId = getRandomId()
 
 const container = ref(null)
 
-const { internalChildren } = useProvide(TAB_KEY, `${PREFIX}-tabs`)({
+const { internalChildren } = useProvide(TAB_KEY, 'nut-tabs')({
   activeKey: computed(() => props.modelValue || 0),
   autoHeight: computed(() => props.autoHeight),
   animatedTime: computed(() => props.animatedTime),
