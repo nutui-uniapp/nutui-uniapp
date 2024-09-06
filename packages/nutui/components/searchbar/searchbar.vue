@@ -138,14 +138,6 @@ function handleSubmit() {
 function handleInputClick(event: any) {
   emit('clickInput', innerValue.value, event)
 }
-
-function handleLeftIconClick(event: any) {
-  emit('clickLeftIcon', innerValue.value, event)
-}
-
-function handleRightIconClick(event: any) {
-  emit('clickRightIcon', innerValue.value, event)
-}
 </script>
 
 <template>
@@ -153,7 +145,6 @@ function handleRightIconClick(event: any) {
     <view
       v-if="slots.leftout"
       class="nut-searchbar__search-icon nut-searchbar__left-search-icon"
-      @click="handleLeftIconClick"
     >
       <slot name="leftout" />
     </view>
@@ -212,7 +203,6 @@ function handleRightIconClick(event: any) {
         <view
           v-if="slots.rightin"
           class="nut-searchbar__search-icon nut-searchbar__iptright-search-icon"
-          @click="handleRightIconClick"
         >
           <slot name="rightin" />
         </view>
