@@ -48,6 +48,10 @@ export const cellProps = {
    * @description 左侧图标
    */
   icon: String,
+  /**
+   * @description 标题宽度
+   */
+  titleWidth: makeNumericProp(undefined),
 }
 
 export type CellProps = ExtractPropTypes<typeof cellProps>
