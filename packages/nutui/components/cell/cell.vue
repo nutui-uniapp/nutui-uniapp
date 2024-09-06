@@ -1,7 +1,7 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, useSlots } from 'vue'
-import Icon from '../icon/icon.vue'
+import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { cellEmits, cellProps } from './cell'
@@ -14,9 +14,9 @@ const slots = useSlots()
 
 const classes = computed(() => {
   return getMainClass(props, componentName, {
-    [`${componentName}--clickable`]: props.isLink || props.to || props.clickable,
     [`${componentName}--center`]: props.center,
     [`${componentName}--large`]: props.size === 'large',
+    [`${componentName}--clickable`]: props.isLink || props.to || props.clickable,
   })
 })
 
@@ -27,6 +27,30 @@ const styles = computed(() => {
     value.borderRadius = pxCheck(props.roundRadius)
 
   return getMainStyle(props, value)
+})
+
+const titleStyles = computed(() => {
+  const value: CSSProperties = {}
+
+  if (props.titleWidth != null) {
+    value.flex = '0 0 auto'
+    value.width = pxCheck(props.titleWidth)
+    value.minWidth = 0
+  }
+
+  return value
+})
+
+const descClasses = computed<Record<string, boolean>>(() => {
+  return {
+    [`${componentName}__value--alone`]: !(props.title || props.subTitle || slots.title),
+  }
+})
+
+const descStyles = computed<CSSProperties>(() => {
+  return {
+    textAlign: props.descTextAlign,
+  }
 })
 
 function handleClick(event: any) {
@@ -63,10 +87,10 @@ export default defineComponent({
       <view v-if="props.icon || slots.icon" class="nut-cell__icon">
         <slot v-if="slots.icon" name="icon" />
 
-        <Icon v-else custom-class="nut-cell__icon__inner" :name="props.icon" />
+        <NutIcon v-else custom-class="nut-cell__icon__inner" :name="props.icon" />
       </view>
 
-      <view v-if="props.title || props.subTitle || slots.title" class="nut-cell__title">
+      <view v-if="props.title || props.subTitle || slots.title" class="nut-cell__title" :style="titleStyles">
         <slot v-if="slots.title" name="title" />
 
         <view v-else class="title">
@@ -81,8 +105,8 @@ export default defineComponent({
       <view
         v-if="props.desc || slots.desc"
         class="nut-cell__value"
-        :class="{ 'nut-cell__value--alone': !(props.title || props.subTitle || slots.title) }"
-        :style="{ textAlign: props.descTextAlign }"
+        :class="descClasses"
+        :style="descStyles"
       >
         <slot v-if="slots.desc" name="desc" />
 
@@ -94,7 +118,7 @@ export default defineComponent({
       <slot v-if="slots.link" name="link" />
 
       <template v-else>
-        <Icon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
+        <NutIcon v-if="props.isLink || props.to" custom-class="nut-cell__link" name="right" />
       </template>
     </template>
   </view>
