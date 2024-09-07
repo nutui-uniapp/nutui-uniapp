@@ -35,6 +35,7 @@ export default antfu({
     'packages/nutui/attributes.json',
     'packages/nutui/tags.json',
     'packages/nutui/web-types.json',
+    'docs/dev-dist/**',
     'example/src/manifest.json',
     'example/src/pages.json',
   ],
