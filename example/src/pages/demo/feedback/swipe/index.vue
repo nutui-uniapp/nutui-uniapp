@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { SwipeInts } from 'nutui-uniapp'
+import type { SwipeInst } from 'nutui-uniapp'
 import { ref } from 'vue'
 
-const swipe = ref<SwipeInts | null>(null)
+const swipe = ref<SwipeInst | null>(null)
 
 const checked = ref<boolean>(false)
 
