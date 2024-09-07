@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, toRef } from 'vue'
-import { getMainClass, getRandomId, pxCheck } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
+import { getMainClass, getRandomId, pxCheck } from '../_utils'
 import { useFormDisabled } from '../form/form'
+import NutIcon from '../icon/icon.vue'
 import { rateEmits, rateProps } from './rate'
 
 const props = defineProps(rateProps)

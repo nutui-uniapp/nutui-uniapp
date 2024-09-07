@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import { computed, defineComponent, reactive, watch } from 'vue'
-import { getMainClass, getPropByPath, isObject, isPromise } from '../_utils'
 import { PREFIX } from '../_constants'
+import { useProvide } from '../_hooks'
+import { getMainClass, getPropByPath, isObject, isPromise } from '../_utils'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemRule } from '../formitem/types'
-import { useProvide } from '../_hooks'
 import { FORM_KEY, formEmits, formProps } from './form'
 import type { ErrorMessage, FormRule, FormRules } from './types'
 
@@ -142,7 +142,6 @@ async function checkRule(item: FormRule): Promise<ErrorMessage | boolean> {
 /**
  * 校验
  * @param customProp 指定校验，用于用户自定义场景时触发，例如 blur、change 事件
- * @returns
  */
 function validate(customProp = ''): Promise<{ valid: boolean, errors: ErrorMessage[] }> {
   return new Promise((resolve, reject) => {

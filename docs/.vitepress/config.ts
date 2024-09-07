@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
+import { defineConfig } from 'vitepress'
 import { version } from '../../package.json'
 import { components, guides, navComponents } from './items'
 import { pwa } from './scripts/pwa'

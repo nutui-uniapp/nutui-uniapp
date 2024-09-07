@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
-import requestAniFrame from '../_utils/raf'
 import { getMainClass, getMainStyle } from '../_utils'
+import requestAniFrame from '../_utils/raf'
 import { animateEmits, animateProps } from './animate'
 
 const props = defineProps(animateProps)

@@ -1,5 +1,5 @@
-import type { CascaderConfig, CascaderOption, CascaderValue } from './types'
 import { eachTree, formatTree } from './helper'
+import type { CascaderConfig, CascaderOption, CascaderValue } from './types'
 
 class Tree {
   nodes: CascaderOption[]

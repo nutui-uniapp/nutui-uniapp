@@ -2,8 +2,8 @@
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import NutPopUp from '../popup/popup.vue'
 import NutCascaderItem from '../cascaderitem/cascaderitem.vue'
+import NutPopUp from '../popup/popup.vue'
 import { cascaderEmits, cascaderProps } from './cascader'
 import type { CascaderOption, CascaderValue } from './types'
 

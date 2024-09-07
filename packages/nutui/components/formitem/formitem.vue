@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, useSlots } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
+import { useInject } from '../_hooks'
+import { getMainClass, pxCheck } from '../_utils'
 import NutCell from '../cell/cell.vue'
 import { FORM_KEY } from '../form/form'
-import { useInject } from '../_hooks'
-import type { FormItemRule } from './types'
 import type { FormItemProps } from './formitem'
 import { formitemProps } from './formitem'
+import type { FormItemRule } from './types'
 
 const props = defineProps(formitemProps)
 const slots = useSlots()

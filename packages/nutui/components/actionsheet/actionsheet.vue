@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, defineComponent, useSlots } from 'vue'
-import NutPopup from '../popup/popup.vue'
-import NutIcon from '../icon/icon.vue'
 import { CANCEL_EVENT, CHOOSE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
-import { type ActionSheetOption, actionsheetEmits, actionsheetProps } from './actionsheet'
+import NutIcon from '../icon/icon.vue'
+import NutPopup from '../popup/popup.vue'
+import type { ActionSheetOption } from './actionsheet'
+import { actionsheetEmits, actionsheetProps } from './actionsheet'
 
 const props = defineProps(actionsheetProps)
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue'
 import type { AddressExistRegionData, AddressRegionData, AddressType } from 'nutui-uniapp'
+import { defineComponent, reactive, ref, toRefs } from 'vue'
 
 /* eslint-disable no-console */
 interface CalBack {

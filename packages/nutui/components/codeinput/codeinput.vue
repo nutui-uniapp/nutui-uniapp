@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { type CSSProperties, nextTick } from 'vue'
-import { computed, defineComponent, ref, watch } from 'vue'
-import { getMainClass, getPx } from '../_utils'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, nextTick, ref, watch } from 'vue'
 import { CHANGE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass, getPx } from '../_utils'
 import { codeinputEmits, codeinputProps } from './codeinput'
 
 const props = defineProps(codeinputProps)

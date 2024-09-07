@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
+import { commonProps, isString, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export interface stateProps {
   wrapWidth: number

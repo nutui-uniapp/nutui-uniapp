@@ -1,10 +1,10 @@
 <!-- eslint-disable padded-blocks -->
 <script setup lang="ts">
 import { computed, defineComponent, toRef } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
+import { getMainClass, pxCheck } from '../_utils'
 import { useFormDisabled } from '../form/form'
+import NutIcon from '../icon/icon.vue'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
 
 const props = defineProps(inputnumberProps)

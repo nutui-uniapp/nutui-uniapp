@@ -60,7 +60,7 @@
     "@uni-helper/uni-env": "^0.1.4",
     "nutui-uniapp": "workspace:^",
     "pinia": "^2.2.2",
-    "vue": "^3.4.38",
+    "vue": "~3.4.38",
     "vue-i18n": "^9.14.0"
   },
   "devDependencies": {
@@ -78,13 +78,13 @@
     "@uni-helper/vite-plugin-uni-pages": "^0.2.27",
     "@unocss/eslint-config": "^0.62.3",
     "@unocss/preset-rem-to-px": "^0.62.3",
-    "@vue/runtime-core": "^3.4.38",
+    "@vue/runtime-core": "~3.4.38",
     "@vue/tsconfig": "^0.5.1",
-    "sass": "^1.77.8",
+    "sass": "^1.78.0",
     "typescript": "^5.5.4",
     "unocss": "^0.62.3",
     "unplugin-auto-import": "^0.18.2",
-    "vite": "^5.4.2",
-    "vue-tsc": "^2.1.4"
+    "vite": "^5.4.3",
+    "vue-tsc": "^2.1.6"
   }
 }

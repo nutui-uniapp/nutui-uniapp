@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, defineComponent, watch } from 'vue'
-import { getMainClass } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useProvide } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { CHECKBOX_KEY } from '../checkbox'
 import { checkboxgroupEmits, checkboxgroupProps } from './checkboxgroup'
 

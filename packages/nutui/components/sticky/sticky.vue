@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import type { ComponentInternalInstance, CSSProperties } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import { PREFIX } from '../_constants'
-import { getMainClass, getMainStyle, getPx, getRandomId, pxCheck } from '../_utils'
 import { useRect } from '../_hooks'
+import { getMainClass, getMainStyle, getPx, getRandomId, pxCheck } from '../_utils'
 import { stickyProps } from './sticky'
 
 const props = defineProps(stickyProps)

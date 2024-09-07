@@ -1,7 +1,7 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import type { ButtonLang, ButtonOnAddgroupappEvent, ButtonOnAgreeprivacyauthorizationEvent, ButtonOnChooseaddressEvent, ButtonOnChooseavatarEvent, ButtonOnChooseinvoicetitleEvent, ButtonOnErrorEvent, ButtonOnGetphonenumberEvent, ButtonOnLaunchappEvent, ButtonOnLoginEvent, ButtonOnOpensettingEvent, ButtonOnSubscribeEvent, ButtonOpenType } from '@uni-helper/uni-app-types'
-import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 import type { ButtonFormType, ButtonShape, ButtonSize, ButtonType } from './type'
 
 export const buttonProps = {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
+import { getMainClass, pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
 import { emptyProps } from './empty'
 

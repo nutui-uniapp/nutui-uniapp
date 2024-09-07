@@ -2,10 +2,10 @@
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
-import NutPopover from '../popover/popover.vue'
 import { useRect } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
+import NutIcon from '../icon/icon.vue'
+import NutPopover from '../popover/popover.vue'
 import { tourEmits, tourProps } from './tour'
 
 const props = defineProps(tourProps)

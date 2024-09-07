@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, type Ref, type VNode, computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
-import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
+import type { ComponentInternalInstance, CSSProperties, Ref, VNode } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
+import { getMainClass, getRandomId, pxCheck, TypeOfFun } from '../_utils'
+import raf from '../_utils/raf'
 import NutIcon from '../icon/icon.vue'
-import { TAB_KEY, Title, tabsEmits, tabsProps } from './tabs'
 import { useTabContentTouch } from './hooks'
+import { TAB_KEY, tabsEmits, tabsProps, Title } from './tabs'
 
 const props = defineProps(tabsProps)
 const emit = defineEmits(tabsEmits)

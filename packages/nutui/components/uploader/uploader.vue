@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, ref, toRef, watch } from 'vue'
 import { PREFIX } from '../_constants'
-import { useTranslate } from '../../locale'
-import NutProgress from '../progress/progress.vue'
-import NutIcon from '../icon/icon.vue'
-import NutButton from '../button/button.vue'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
+import NutButton from '../button/button.vue'
 import { useFormDisabled } from '../form/form'
-import { uploaderEmits, uploaderProps } from './uploader'
-import { type ChooseFile, type OnProgressUpdateResult, type UploadFileSuccessCallbackResult, type UploadOptions, chooseFile, createUploader } from './use-uploader'
+import NutIcon from '../icon/icon.vue'
+import NutProgress from '../progress/progress.vue'
 import type { FileItem } from './type'
+import { uploaderEmits, uploaderProps } from './uploader'
+import type { ChooseFile, OnProgressUpdateResult, UploadFileSuccessCallbackResult, UploadOptions } from './use-uploader'
+import { chooseFile, createUploader } from './use-uploader'
 
 const props = defineProps(uploaderProps)
 const emit = defineEmits(uploaderEmits)

@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import type { PopoverLocation, PopoverTheme } from '../popover/type'
-import { commonProps, isBoolean, isNumber, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isBoolean, isNumber, makeArrayProp, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import type { PopoverLocation, PopoverTheme } from '../popover/type'
 
 export interface StepOptions {
   target: string

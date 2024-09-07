@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, defineComponent, useSlots } from 'vue'
-import { getMainClass } from '../_utils'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { cellgroupProps } from './cellgroup'
 
 const props = defineProps(cellgroupProps)

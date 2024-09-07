@@ -2,8 +2,8 @@
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { CLICK_EVENT, CLOSE_EVENT, PREFIX } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { tagEmits, tagProps } from './tag'
 
 const props = defineProps(tagProps)

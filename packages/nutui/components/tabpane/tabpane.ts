@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeNumericProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, makeNumericProp } from '../_utils'
 
 export const tabpaneProps = {
   ...commonProps,

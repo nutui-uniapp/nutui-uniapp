@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive } from 'vue'
-import { getMainClass, myFixed } from '../_utils'
 import { PREFIX } from '../_constants'
+import { getMainClass, myFixed } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import { trendarrowProps } from './trendarrow'
 
@@ -21,10 +21,7 @@ const calcRate = computed(() => {
   if (!showZero && rate === 0)
     return '--'
 
-  const resultRate = `${showSign && rate !== 0 ? (state.rateTrend ? '+' : '-') : ''}${myFixed(
-        Number(absRate),
-        digits,
-      )}%`
+  const resultRate = `${showSign && rate !== 0 ? (state.rateTrend ? '+' : '-') : ''}${myFixed(Number(absRate), digits)}%`
 
   return resultRate
 })

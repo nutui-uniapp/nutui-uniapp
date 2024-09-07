@@ -1,6 +1,7 @@
-import { type CSSProperties, type SetupContext, computed, onMounted, ref, watch } from 'vue'
-import { funInterceptor, getMainClass } from '../_utils'
+import type { CSSProperties, SetupContext } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { funInterceptor, getMainClass } from '../_utils'
 import type { DialogEmits, DialogProps } from './dialog'
 import type { DialogOptions } from './type'
 

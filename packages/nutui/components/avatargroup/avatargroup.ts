@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import type { AvatarShape, AvatarSize } from '../avatar'
 import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
+import type { AvatarShape, AvatarSize } from '../avatar'
 
 export const AVATAR_GROUP_KEY = Symbol('avatarGroup')
 

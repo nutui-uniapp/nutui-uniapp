@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, onMounted, ref } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { PREFIX } from '../_constants'
-import NutIcon from '../icon/icon.vue'
-import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
 import { useInject } from '../_hooks'
 import { getMainClass } from '../_utils'
+import NutIcon from '../icon/icon.vue'
+import type { SidenavbarProps } from '../sidenavbar'
+import { SIDEN_NAVBAR_KEY } from '../sidenavbar'
 import { subsidenavbarEmits, subsidenavbarProps } from './subsidenavbar'
 
 const props = defineProps(subsidenavbarProps)

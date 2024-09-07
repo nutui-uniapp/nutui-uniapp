@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeNumberProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, makeNumberProp } from '../_utils'
 
 export const turntableProps = {
   ...commonProps,

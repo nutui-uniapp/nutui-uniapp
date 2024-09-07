@@ -4,9 +4,9 @@ import { CLICK_EVENT, PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import { commentEmits, commentProps } from './comment'
+import ComentBottom from './components/CmtBottom.vue'
 import CommentHeader from './components/CmtHeader.vue'
 import ComentImages from './components/CmtImages.vue'
-import ComentBottom from './components/CmtBottom.vue'
 
 const props = defineProps(commentProps)
 const emit = defineEmits(commentEmits)

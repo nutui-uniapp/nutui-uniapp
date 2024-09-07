@@ -8,7 +8,7 @@ const props = defineProps(safeareaProps)
 
 const classes = computed(() => {
   return getMainClass(props, componentName, [
-   `${componentName}-position-${props.position}`,
+    `${componentName}-position-${props.position}`,
   ])
 })
 </script>

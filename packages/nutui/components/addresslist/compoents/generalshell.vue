@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { defineComponent, ref } from 'vue'
+import { PREFIX } from '../../_constants'
 import NutButton from '../../button/button.vue'
 import NutSwipe from '../../swipe/swipe.vue'
-import { PREFIX } from '../../_constants'
 import ItemContents from './Itemcontents.vue'
 
 const props = defineProps({

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onMounted, reactive } from 'vue'
 import { PREFIX } from '../_constants'
+import { useSelectorQuery } from '../_hooks'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
-import { useSelectorQuery } from '../_hooks'
 import { infiniteloadingEmits, infiniteloadingProps } from './infiniteloading'
 
 const props = defineProps(infiniteloadingProps)

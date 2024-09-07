@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
-import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'
 import { INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'
 import requestAniFrame from '../_utils/raf'
 import { countdownEmits, countdownProps } from './countdown'
 

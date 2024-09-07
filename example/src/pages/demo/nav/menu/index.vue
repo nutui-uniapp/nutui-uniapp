@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import type { MenuItemInst } from 'nutui-uniapp'
+import { reactive, ref } from 'vue'
 
 const state = reactive({
   options1: [

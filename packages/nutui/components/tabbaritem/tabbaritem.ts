@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { badgeProps } from '../badge'
 import { commonProps } from '../_utils'
+import { badgeProps } from '../badge'
 
 export const tabbaritemProps = {
   ...commonProps,

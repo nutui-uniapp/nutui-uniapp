@@ -1,7 +1,6 @@
 <script lang="ts">
-import { computed, defineComponent, reactive, toRefs } from 'vue'
-
 import { isH5 } from '@uni-helper/uni-env'
+import { computed, defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
 

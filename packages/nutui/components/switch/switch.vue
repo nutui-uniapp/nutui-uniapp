@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, defineComponent, watch } from 'vue'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
 import { useFormDisabled } from '../form/form'
+import NutIcon from '../icon/icon.vue'
 import { switchEmits, switchProps } from './switch'
 
 const props = defineProps(switchProps)

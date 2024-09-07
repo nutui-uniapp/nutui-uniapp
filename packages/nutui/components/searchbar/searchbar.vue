@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { type CSSProperties, useSlots } from 'vue'
-import { computed, defineComponent, reactive, toRef } from 'vue'
 import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent, reactive, toRef, useSlots } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, PREFIX, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
-import { useTranslate } from '../../locale'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useTranslate } from '../../locale'
 import { useFormDisabled } from '../form/form'
+import NutIcon from '../icon/icon.vue'
 import { searchbarEmits, searchbarProps } from './searchbar'
 
 const props = defineProps(searchbarProps)

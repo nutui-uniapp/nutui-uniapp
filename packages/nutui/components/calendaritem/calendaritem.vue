@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
-import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
+import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { CHOOSE_EVENT, PREFIX, SELECT_EVENT } from '../_constants'
-import { useTranslate } from '../../locale'
+import { compareDate, date2Str, formatResultDate, getDay, getMainClass, getMonthDays, getMonthPreDay, getMonthWeek, getNumTwoBit, getWeekDate, getWhatDay, getYearWeek, isEqual, isH5 } from '../_utils'
 import requestAniFrame from '../_utils/raf'
+import { useTranslate } from '../../locale'
 import { calendaritemEmits, calendaritemProps } from './calendaritem'
 import type { CalendarTaroState, Day, MonthInfo } from './type'
 
@@ -292,7 +292,7 @@ function getDaysStatus(days: number, type: string, dateInfo: CalendarDateProp) {
   if (type === 'prev' && days >= 7)
     days -= 7
 
-  return Array.from(Array(days), (v, k) => {
+  return Array.from(Array.from({ length: days }), (v, k) => {
     return {
       day: String(k + 1),
       type,
@@ -310,7 +310,7 @@ function getPreDaysStatus(days: number, type: string, dateInfo: CalendarDateProp
   if (type === 'prev' && days >= 7)
     days -= 7
 
-  const months = Array.from(Array(preCurrMonthDays), (v, k) => {
+  const months = Array.from(Array.from({ length: preCurrMonthDays }), (v, k) => {
     return {
       day: String(k + 1),
       type,
@@ -626,8 +626,7 @@ function rangeTip() {
 }
 // 是否有 当前日期
 function isCurrDay(dateInfo: Day) {
-  const date = `${dateInfo.year}-${dateInfo.month}-${Number(dateInfo.day) < 10 ? `0${dateInfo.day}` : dateInfo.day
-    }`
+  const date = `${dateInfo.year}-${dateInfo.month}-${Number(dateInfo.day) < 10 ? `0${dateInfo.day}` : dateInfo.day}`
   return isEqual(date, date2Str(new Date()))
 }
 // 滚动处理事件

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type CSSProperties, type ComponentInternalInstance, type ComputedRef, computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import type { ComponentInternalInstance, ComputedRef, CSSProperties } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
 import { PREFIX } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { useRect } from '../_hooks'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { navbarEmits, navbarProps } from './navbar'
 
 const props = defineProps(navbarProps)

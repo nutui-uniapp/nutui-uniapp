@@ -1,4 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
+import { UPDATE_MODEL_EVENT } from '../_constants'
 import {
   commonProps,
   isNumber,
@@ -9,7 +10,6 @@ import {
   makeStringProp,
   truthProp,
 } from '../_utils'
-import { UPDATE_MODEL_EVENT } from '../_constants'
 import type { EcardChangeEvent, EcardDataItem, EcardDataValue } from './type'
 
 export const ecardProps = {

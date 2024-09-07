@@ -64,9 +64,7 @@ const style = computed(() => {
   const color = isObject(props.customColor) ? `url(%23${getRandomId()})` : transColor(props.customColor)
   const d = `M 50 50 m 0 -45 a 45 45 0 1 ${isWise} 0 90 a 45 45 0 1, ${isWise} 0 -90`
   const pa = `%3Cdefs%3E%3ClinearGradient id='${getRandomId()}' x1='100%25' y1='0%25' x2='0%25' y2='0%25'%3E${stopDom}%3C/linearGradient%3E%3C/defs%3E`
-  const path = `%3Cpath d='${d}' stroke-width='${strokeWidth}' stroke='${transColor(
-        props.pathColor,
-      )}' fill='none'/%3E`
+  const path = `%3Cpath d='${d}' stroke-width='${strokeWidth}' stroke='${transColor(props.pathColor)}' fill='none'/%3E`
   const path1 = `%3Cpath d='${d}' stroke-width='${strokeWidth}' stroke-dasharray='${offset},${perimeter}' stroke-linecap='round' stroke='${color}' fill='none'/%3E`
 
   return {

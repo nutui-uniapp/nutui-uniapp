@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, defineComponent, nextTick, ref } from 'vue'
 import type { InputOnInputEvent } from '@uni-helper/uni-app-types'
+import { computed, defineComponent, nextTick, ref } from 'vue'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutInputNumber from '../inputnumber/inputnumber.vue'
-import { getMainClass } from '../_utils'
 import { ecardEmits, ecardProps } from './ecard'
 import type { EcardDataItem, EcardDataValue, EcardUpdateOptions } from './type'
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
-import { getMainClass, getMainStyle, isH5, isMpWeixin } from '../_utils'
 import { PREFIX } from '../_constants'
+import { getMainClass, getMainStyle, isH5, isMpWeixin } from '../_utils'
 import { turntableEmits, turntableProps } from './turntable'
 import type { TPrizeItem } from './type'
 
@@ -59,11 +59,7 @@ const _rorateDeg = ref(360 / prizeList.length)
 function getRotateAngle(index: number, flag?: string) {
   const angle = (360 / prizeList.length) * index + 180 / prizeList.length
   return {
-    transform: `rotate(${angle}deg)${flag === 'canvas'
-    && isH5
-        ? ' scale(2)'
-        : ''
-      }`,
+    transform: `rotate(${angle}deg)${flag === 'canvas' && isH5 ? ' scale(2)' : ''}`,
   }
 }
 // 初始化圆形转盘canvas

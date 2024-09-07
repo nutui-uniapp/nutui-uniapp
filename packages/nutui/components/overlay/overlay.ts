@@ -1,6 +1,6 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { commonProps, isBoolean, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { commonProps, isBoolean, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export const overlayProps = {
   ...commonProps,

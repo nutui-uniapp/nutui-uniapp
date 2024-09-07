@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import type { ExtractPropTypes, Ref } from 'vue'
-import { commonProps, makeObjectProp, makeStringProp } from '../_utils'
 import { useInject } from '../_hooks'
+import { commonProps, makeObjectProp, makeStringProp } from '../_utils'
 import type { ErrorMessage, FormLabelPosition, FormRules, FormStarPosition } from './types'
 
 export const FORM_KEY = Symbol('Form')

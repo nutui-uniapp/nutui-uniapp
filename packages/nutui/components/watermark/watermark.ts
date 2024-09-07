@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export const watermarkProps = {
   ...commonProps,

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, defineComponent, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutIcon from '../icon/icon.vue'
-import { getMainClass } from '../_utils'
+import RenderColumn from './renderColumn'
 import { tableEmits, tableProps } from './table'
 import type { TableColumnProps } from './types'
-import RenderColumn from './renderColumn'
 
 const props = defineProps(tableProps)
 const emit = defineEmits(tableEmits)

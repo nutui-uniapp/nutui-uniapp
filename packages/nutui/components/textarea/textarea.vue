@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, nextTick, toRef } from 'vue'
-import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
-import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
 import { useFormDisabled } from '../form/form'
 import type { InputTarget } from '../input/type'

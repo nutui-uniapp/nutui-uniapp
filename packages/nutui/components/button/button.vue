@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
-import Icon from '../icon/icon.vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
+import Icon from '../icon/icon.vue'
 import { buttonEmits, buttonProps } from './button'
 
 const props = defineProps(buttonProps)

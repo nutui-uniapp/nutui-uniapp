@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { Interceptor } from '../_utils'
 import {
-  type Interceptor,
   commonProps,
   makeArrayProp,
   makeNumericProp,

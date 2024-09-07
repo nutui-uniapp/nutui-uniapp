@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, type VNode, nextTick } from 'vue'
-import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onDeactivated, reactive, watch } from 'vue'
-import { clamp, getRandomId } from '../_utils'
+import type { ComponentInternalInstance, VNode } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onBeforeUnmount, onDeactivated, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide, useRect, useTouch } from '../_hooks'
+import { clamp, getRandomId } from '../_utils'
 import requestAniFrame from '../_utils/raf'
 import { SWIPER_KEY, swiperEmits, swiperProps } from './swiper'
 

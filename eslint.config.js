@@ -31,5 +31,32 @@ export default antfu({
   },
   ignores: [
     'packages/nutui/styles/**/*',
+    'packages/nutui/attributes.json',
+    'packages/nutui/tags.json',
+    'packages/nutui/web-types.json',
+    'example/src/manifest.json',
+    'example/src/pages.json',
   ],
+}, {
+  rules: {
+    'unicorn/new-for-builtins': ['off'],
+    'unicorn/consistent-function-scoping': ['off'],
+    'perfectionist/sort-imports': ['error', {
+      internalPattern: ['@/**'],
+      newlinesBetween: 'never',
+      groups: [
+        ['builtin-type', 'builtin'],
+        ['external-type', 'external'],
+        ['parent-type', 'parent'],
+        ['sibling-type', 'sibling'],
+        ['index-type', 'index'],
+        ['internal-type', 'internal'],
+        'style',
+        ['side-effect', 'side-effect-style'],
+        'object',
+        'unknown',
+      ],
+    }],
+    'antfu/consistent-chaining': ['off'],
+  },
 })

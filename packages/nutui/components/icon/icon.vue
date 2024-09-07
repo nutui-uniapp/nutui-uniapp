@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { iconEmits, iconProps } from './icon'
 
 const props = defineProps(iconProps)

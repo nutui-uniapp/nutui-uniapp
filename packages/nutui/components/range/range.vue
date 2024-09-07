@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComponentInternalInstance } from 'vue'
+import type { ComponentInternalInstance, CSSProperties } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRef, useSlots } from 'vue'
-import { getRandomId, isEqualValue, preventDefault } from '../_utils'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
+import { getRandomId, isEqualValue, preventDefault } from '../_utils'
 import { useFormDisabled } from '../form/form'
-import type { RangeArrayValue, RangeValue } from './types'
 import { rangeEmits, rangeProps } from './range'
+import type { RangeArrayValue, RangeValue } from './types'
 
 const props = defineProps(rangeProps)
 

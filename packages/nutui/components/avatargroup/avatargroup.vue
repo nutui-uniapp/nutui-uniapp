@@ -3,8 +3,8 @@ import type { CSSProperties } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
-import NutAvatar from '../avatar/avatar.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import NutAvatar from '../avatar/avatar.vue'
 import { AVATAR_GROUP_KEY, avatargroupProps } from './avatargroup'
 
 const props = defineProps(avatargroupProps)

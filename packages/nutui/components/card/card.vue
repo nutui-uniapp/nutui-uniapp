@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
+import { getMainClass } from '../_utils'
 import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
-import { getMainClass } from '../_utils'
 import { cardProps } from './card'
 
 const props = defineProps(cardProps)

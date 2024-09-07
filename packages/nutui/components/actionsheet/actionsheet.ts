@@ -1,7 +1,7 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { popupProps } from '../popup/popup'
-import { commonProps, isBoolean, isNumber, makeArrayProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHOOSE_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { commonProps, isBoolean, isNumber, makeArrayProp, makeStringProp, truthProp } from '../_utils'
+import { popupProps } from '../popup/popup'
 
 export interface ActionSheetOption {
   disable?: boolean

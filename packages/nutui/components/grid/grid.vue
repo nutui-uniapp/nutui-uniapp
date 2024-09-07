@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
 import { useProvide } from '../_hooks'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { GRID_KEY, gridProps } from './grid'
 
 const props = defineProps(gridProps)

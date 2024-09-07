@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, makeNumberProp, makeStringProp } from '../_utils'
 import type { NutAnimationName, NutAnimationtimingFunction } from './types'
 
 export const transitionProps = {

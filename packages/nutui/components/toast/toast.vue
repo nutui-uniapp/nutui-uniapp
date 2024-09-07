@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue'
 import { computed, defineComponent, inject, onBeforeUnmount, ref, useSlots, watch } from 'vue'
-import NutTransition from '../transition/transition.vue'
-import NutIcon from '../icon/icon.vue'
-import { CLOSED_EVENT, CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CLOSE_EVENT, CLOSED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
-import type { ToastOptions, ToastType } from './types'
+import NutIcon from '../icon/icon.vue'
+import NutTransition from '../transition/transition.vue'
 import { toastDefaultOptions, toastDefaultOptionsKey, toastEmits, toastProps } from './toast'
+import type { ToastOptions, ToastType } from './types'
 
 const props = defineProps(toastProps)
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, useSlots } from 'vue'
 import { CHOOSE_EVENT, CLOSE_EVENT, PREFIX, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import NutCalendarItem from '../calendaritem/calendaritem.vue'
 import type { CalendarInst } from '../calendaritem/type'
 import NutPoPUp from '../popup/popup.vue'
-import NutCalendarItem from '../calendaritem/calendaritem.vue'
 import { calendarEmits, calendarProps } from './calendar'
 
 const props = defineProps(calendarProps)

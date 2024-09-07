@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, useSlots } from 'vue'
-import NutIcon from '../icon/icon.vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT, PREFIX } from '../_constants'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { cellEmits, cellProps } from './cell'
 
 const props = defineProps(cellProps)

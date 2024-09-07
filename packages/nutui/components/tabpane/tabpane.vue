@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type CSSProperties, type ComputedRef, computed, defineComponent } from 'vue'
+import type { ComputedRef, CSSProperties } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
-import { TAB_KEY } from '../tabs'
 import { getMainClass, getMainStyle } from '../_utils'
+import { TAB_KEY } from '../tabs'
 import { tabpaneEmits, tabpaneProps } from './tabpane'
 
 const props = defineProps(tabpaneProps)

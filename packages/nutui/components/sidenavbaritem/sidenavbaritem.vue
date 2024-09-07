@@ -2,8 +2,9 @@
 import { computed, defineComponent } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
-import { SIDEN_NAVBAR_KEY, type SidenavbarProps } from '../sidenavbar'
 import { getMainClass, getMainStyle } from '../_utils'
+import type { SidenavbarProps } from '../sidenavbar'
+import { SIDEN_NAVBAR_KEY } from '../sidenavbar'
 import { sidenavbaritemEmits, sidenavbaritemProps } from './sidenavbaritem'
 
 const props = defineProps(sidenavbaritemProps)

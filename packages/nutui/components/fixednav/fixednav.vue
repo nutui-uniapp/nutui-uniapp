@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { PREFIX, SELECTED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { useTranslate } from '../../locale'
-import NutOverlay from '../overlay/overlay.vue'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useTranslate } from '../../locale'
+import NutIcon from '../icon/icon.vue'
+import NutOverlay from '../overlay/overlay.vue'
 import { fixednavEmits, fixednavProps } from './fixednav'
 
 const props = defineProps(fixednavProps)

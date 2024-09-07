@@ -1,6 +1,6 @@
 <script lang="ts">
-import { reactive, ref, toRefs } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
+import { reactive, ref, toRefs } from 'vue'
 
 const activeColor = ref('red')
 export default {

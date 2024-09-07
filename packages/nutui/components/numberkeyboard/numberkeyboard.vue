@@ -3,9 +3,9 @@
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { CLOSE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
-import { getMainClass } from '../_utils'
 import { numberkeyboardEmits, numberkeyboardProps } from './numberkeyboard'
 
 export interface keys {

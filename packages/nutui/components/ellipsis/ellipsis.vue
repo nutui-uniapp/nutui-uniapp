@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { CLICK_EVENT, PREFIX } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
 import { getRandomId } from '../_utils'
@@ -138,8 +139,7 @@ async function verifyEllipsis() {
 }
 
 function assignContent() {
-  contantCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''
-    }${ellipsis.tailing || ''}`
+  contantCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''}${ellipsis.tailing || ''}`
 }
 // 计算省略号
 function tailorContent(left: number, right: number, type = '') {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { CSSProperties, ComputedRef } from 'vue'
+import type { ComputedRef, CSSProperties } from 'vue'
 import { computed, defineComponent, reactive } from 'vue'
 import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'
+import { getMainClass, getMainStyle } from '../_utils'
 import type { SwiperProps } from '../swiper/swiper'
 import { SWIPER_KEY } from '../swiper/swiper'
-import { getMainClass, getMainStyle } from '../_utils'
 import { swiperItemProps } from './swiperitem'
 
 const props = defineProps(swiperItemProps)

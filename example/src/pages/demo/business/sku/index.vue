@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
-import { Goods, Sku, imagePathMap } from './data'
+import { Goods, imagePathMap, Sku } from './data'
 
 interface Skus {
   id: number

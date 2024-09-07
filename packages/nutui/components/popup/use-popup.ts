@@ -1,10 +1,10 @@
 import type { SetupContext } from 'vue'
 import { computed, reactive, toRefs, watch } from 'vue'
-import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CLOSE_EVENT, CLOSED_EVENT, OPEN_EVENT, OPENED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { animationName } from '../_constants/types'
+import { useGlobalZIndex } from '../_hooks'
 import { getMainClass, getMainStyle } from '../_utils'
 import type { NutAnimationName } from '../transition'
-import { useGlobalZIndex } from '../_hooks'
 import type { PopupEmits, PopupProps } from './popup'
 
 const componentName = `${PREFIX}-popup`

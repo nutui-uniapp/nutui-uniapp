@@ -2,9 +2,9 @@
 <script setup lang="ts">
 import { computed, defineComponent, provide } from 'vue'
 import { PREFIX, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import NutPopup from '../popup/popup.vue'
-import { useTranslate } from '../../locale'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
+import NutPopup from '../popup/popup.vue'
 import { timeselectEmits, timeselectProps } from './timeselect'
 
 const props = defineProps(timeselectProps)

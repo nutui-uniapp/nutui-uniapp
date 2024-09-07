@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import type { FormInst, FormItemRule, FormItemRuleWithoutValidator } from 'nutui-uniapp'
+import { reactive, ref } from 'vue'
 
 /* eslint-disable no-console */
 const formData = reactive({

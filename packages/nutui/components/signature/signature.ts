@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isString, makeNumberProp, makeStringProp } from '../_utils'
 import { CLEAR_EVENT, CONFIRM_EVENT } from '../_constants'
+import { commonProps, isString, makeNumberProp, makeStringProp } from '../_utils'
 
 export const signatureProps = {
   ...commonProps,

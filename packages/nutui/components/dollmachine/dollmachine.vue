@@ -100,9 +100,7 @@ function startGame() {
   const heightBox = machineBoxDom.value.height
   const heightTools = machineToolsDom.value.height
   const heightOpe = machineOperateDom.value.height
-  ropeDomHeight.value.height = `${
-        heightBox - heightOpe - heightTools - 20
-      }px`
+  ropeDomHeight.value.height = `${heightBox - heightOpe - heightTools - 20}px`
 }
 function initGame() {
   ropeDomHeight.value.height = '20px'

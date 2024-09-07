@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isNumber, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
 
 export const paginationProps = {
   ...commonProps,

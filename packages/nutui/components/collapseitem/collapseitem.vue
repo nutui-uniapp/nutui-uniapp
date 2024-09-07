@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { type ComponentInternalInstance, computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
+import { computed, defineComponent, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { collapseitemProps } from './collapseitem'
 
 const props = defineProps(collapseitemProps)

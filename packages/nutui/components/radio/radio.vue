@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, defineComponent, toRef } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { PREFIX } from '../_constants'
-import NutIcon from '../icon/icon.vue'
-import { useFormDisabled } from '../form/form'
 import { useInject } from '../_hooks'
+import { getMainClass, pxCheck } from '../_utils'
+import { useFormDisabled } from '../form/form'
+import NutIcon from '../icon/icon.vue'
 import { RADIO_KEY, radioProps } from './radio'
 
 const props = defineProps(radioProps)
@@ -37,9 +37,7 @@ const color = computed(() => {
 })
 
 const getButtonClass = computed(() => {
-  return `${componentName}__button ${componentName}__button--${props.size} ${isCurValue.value && `${componentName}__button--active`} ${
-            disabled.value ? `${componentName}__button--disabled` : ''
-          }`
+  return `${componentName}__button ${componentName}__button--${props.size} ${isCurValue.value && `${componentName}__button--active`} ${disabled.value ? `${componentName}__button--disabled` : ''}`
 })
 
 const getLabelClass = computed(() => {

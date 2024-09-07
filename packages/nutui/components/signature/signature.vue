@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
-import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
+import NutButton from '../button/button.vue'
 import { signatureEmits, signatureProps } from './signature'
 import { componentName, useSignature } from './use-signature'
 

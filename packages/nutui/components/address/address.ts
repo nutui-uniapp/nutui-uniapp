@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { popupProps } from '../popup'
-import { commonProps, isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { commonProps, isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import { popupProps } from '../popup'
 import type { AddressExistRegionData, AddressRegionData, AddressType } from './type'
 
 export const addressProps = {

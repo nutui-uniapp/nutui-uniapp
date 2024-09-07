@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, defineComponent, ref, useSlots, watch } from 'vue'
 import { CLOSE_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
-import NutPopup from '../popup/popup.vue'
+import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
+import NutPopup from '../popup/popup.vue'
 import SkuHeader from '../skuheader/skuheader.vue'
 import SkuOperate from '../skuoperate/skuoperate.vue'
-import SkuStepper from '../skustepper/skustepper.vue'
 import SkuSelect from '../skuselect/skuselect.vue'
-import { getMainClass } from '../_utils'
+import SkuStepper from '../skustepper/skustepper.vue'
 import { skuEmits, skuProps } from './sku'
 
 const props = defineProps(skuProps)

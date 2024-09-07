@@ -1,6 +1,6 @@
 <script lang="ts">
-import { reactive, ref, toRefs } from 'vue'
 import type { PopoverLocation } from 'nutui-uniapp'
+import { reactive, ref, toRefs } from 'vue'
 
 export default {
   setup() {

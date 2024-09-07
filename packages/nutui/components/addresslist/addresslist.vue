@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import NutButton from '../button/button.vue'
-import { floatData, getMainClass } from '../_utils'
 import { PREFIX } from '../_constants'
+import { floatData, getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
-import GeneralShell from './compoents/generalshell.vue'
+import NutButton from '../button/button.vue'
 import { addresslistEmits, addresslistProps } from './addresslist'
+import GeneralShell from './compoents/generalshell.vue'
 
 const props = defineProps(addresslistProps)
 

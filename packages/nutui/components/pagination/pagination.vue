@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, toRefs, watchEffect } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import { useTranslate } from '../../locale'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
 import { paginationEmits, paginationProps } from './pagination'
 
 const props = defineProps(paginationProps)

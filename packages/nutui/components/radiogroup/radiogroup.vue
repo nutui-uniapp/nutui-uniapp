@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, defineComponent, readonly, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
-import { getMainClass } from '../_utils'
 import { useProvide } from '../_hooks'
+import { getMainClass } from '../_utils'
 import { RADIO_KEY } from '../radio'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
 

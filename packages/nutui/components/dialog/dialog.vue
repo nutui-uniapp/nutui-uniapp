@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
-import NutPopup from '../popup/popup.vue'
-import NutButton from '../button/button.vue'
 import { PREFIX } from '../_constants'
 import { useTranslate } from '../../locale'
+import NutButton from '../button/button.vue'
+import NutPopup from '../popup/popup.vue'
 import { dialogEmits, dialogProps } from './dialog'
 import { useDialog } from './use-dialog'
 

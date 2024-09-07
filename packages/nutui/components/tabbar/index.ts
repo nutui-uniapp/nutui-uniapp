@@ -1,2 +1,2 @@
-export * from './types'
 export * from './tabbar'
+export * from './types'

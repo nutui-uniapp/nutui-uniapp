@@ -3,7 +3,8 @@ import { computed, defineComponent, nextTick, onMounted, onUnmounted, reactive, 
 import { PREFIX } from '../_constants'
 import { useExtend } from '../_hooks'
 import { cloneDeep, getMainClass } from '../_utils'
-import { type IData, countupEmits, countupProps } from './countup'
+import type { IData } from './countup'
+import { countupEmits, countupProps } from './countup'
 
 const props = defineProps(countupProps)
 const emit = defineEmits(countupEmits)

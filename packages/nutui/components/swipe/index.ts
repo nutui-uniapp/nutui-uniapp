@@ -1,2 +1,2 @@
-export * from './types'
 export * from './swipe'
+export * from './types'

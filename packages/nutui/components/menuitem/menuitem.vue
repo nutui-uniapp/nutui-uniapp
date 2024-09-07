@@ -2,13 +2,14 @@
 import type { Ref } from 'vue'
 import { computed, defineComponent, reactive } from 'vue'
 import { CLOSE_EVENT, OPEN_EVENT, PREFIX } from '../_constants'
-import PopUp from '../popup/popup.vue'
-import Icon from '../icon/icon.vue'
-import { getMainClass, getMainStyle } from '../_utils'
 import { useInject } from '../_hooks'
-import { MENU_KEY } from '../menu/menu'
+import { getMainClass, getMainStyle } from '../_utils'
+import Icon from '../icon/icon.vue'
 import type { MenuProps } from '../menu'
-import { type MenuItemOption, menuitemEmits, menuitemProps } from './menuitem'
+import { MENU_KEY } from '../menu/menu'
+import PopUp from '../popup/popup.vue'
+import type { MenuItemOption } from './menuitem'
+import { menuitemEmits, menuitemProps } from './menuitem'
 
 const componentName = `${PREFIX}-menu-item`
 

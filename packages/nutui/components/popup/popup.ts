@@ -1,9 +1,9 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { overlayProps } from '../overlay/overlay'
-import { commonProps, isBoolean, makeStringProp, truthProp } from '../_utils'
+import { CLOSE_EVENT, CLOSED_EVENT, OPEN_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { Position } from '../_constants/types'
+import { commonProps, isBoolean, makeStringProp, truthProp } from '../_utils'
+import { overlayProps } from '../overlay/overlay'
 import type { NutAnimationName } from '../transition/types'
-import { CLOSED_EVENT, CLOSE_EVENT, OPENED_EVENT, OPEN_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 
 export const popupProps = {
   ...overlayProps,

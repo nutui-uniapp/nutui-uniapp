@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isBoolean, isNumber, isString, makeNumericProp, truthProp } from '../_utils'
 import { CLOSE_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { commonProps, isBoolean, isNumber, isString, makeNumericProp, truthProp } from '../_utils'
 
 export const shortpasswordProps = {
   ...commonProps,

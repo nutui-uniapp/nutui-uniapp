@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
 import type {
   BaseEvent,
   InputOnBlurEvent,
@@ -6,6 +5,8 @@ import type {
   InputOnFocusEvent,
   InputOnInputEvent,
 } from '@uni-helper/uni-app-types'
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
+import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { ClassType } from '../_utils'
 import {
   commonProps,
@@ -17,7 +18,6 @@ import {
   nullableBooleanProp,
   truthProp,
 } from '../_utils'
-import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType, InputConfirmType, InputFormatTrigger, InputMode, InputType } from './type'
 
 export const inputProps = {

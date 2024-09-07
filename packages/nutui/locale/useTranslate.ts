@@ -7,12 +7,6 @@ import { Locale, useCurrentLang } from './locale'
 // }
 
 export function useTranslate(compName: string) {
-  /**
-   * @param keyPath
-   * @param compName 组件名
-   * @param args
-   * @returns
-   */
   function translate(keyPath: string, ...args: unknown[]): string {
     // 依赖响应能力
     const { languages } = Locale
