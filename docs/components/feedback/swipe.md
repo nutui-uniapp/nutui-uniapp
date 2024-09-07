@@ -72,9 +72,9 @@
 ```
 
 ```typescript
-import type { SwipeInts, SwipeToggleEvent } from 'nutui-uniapp'
+import type { SwipeInst, SwipeToggleEvent } from 'nutui-uniapp'
 
-const swipe = ref<SwipeInts | null>(null)
+const swipe = ref<SwipeInst | null>(null)
 
 const checked = ref<boolean>(false)
 
