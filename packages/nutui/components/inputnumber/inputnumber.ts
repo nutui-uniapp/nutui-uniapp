@@ -1,6 +1,7 @@
+import type { BaseEvent, InputOnBlurEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import type { ExtractPropTypes } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import { commonProps, isNumber, isObject, makeNumericProp, nullableBooleanProp } from '../_utils'
+import { commonProps, makeNumericProp, nullableBooleanProp } from '../_utils'
 
 export const inputnumberProps = {
   ...commonProps,
@@ -41,16 +42,19 @@ export const inputnumberProps = {
    */
   readonly: Boolean,
 }
+
 export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const inputnumberEmits = {
-  [BLUR_EVENT]: (evt: Event) => evt instanceof Object,
-  [FOCUS_EVENT]: (evt: Event) => evt instanceof Object,
-  reduce: (evt: Event) => evt instanceof Object,
-  add: (evt: Event) => evt instanceof Object,
-  overlimit: (evt: Event, type: 'reduce' | 'add') => isObject(evt) && (type === 'reduce' || type === 'add'),
-  [CHANGE_EVENT]: (_val1: string | number, _val2?: any) => true,
-  [UPDATE_MODEL_EVENT]: (val1?: number | string, val2?: Event) => (isNumber(val1) || isObject(val2)) && val2 instanceof Object,
+  [UPDATE_MODEL_EVENT]: (value: number) => true,
+  [CHANGE_EVENT]: (value: number, event: BaseEvent) => true,
+  [FOCUS_EVENT]: (event: InputOnFocusEvent) => true,
+  [BLUR_EVENT]: (event: InputOnBlurEvent) => true,
+  reduce: (event: BaseEvent) => true,
+  add: (event: BaseEvent) => true,
+  overlimit: (event: BaseEvent, type: 'reduce' | 'add') => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type InputNumberEmits = typeof inputnumberEmits

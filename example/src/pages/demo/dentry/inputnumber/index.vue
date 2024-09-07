@@ -1,39 +1,26 @@
-<script lang="ts">
-import { reactive } from 'vue'
+<script lang="ts" setup>
+const value1 = ref(1)
+const value2 = ref(0)
+const value3 = ref(10)
+const value4 = ref(0)
+const value5 = ref(1)
+const value6 = ref(5.5)
+const value7 = ref(1)
+const value8 = ref(1)
+const value9 = ref(1)
 
-export default {
-  props: {},
-  setup() {
-    const state = reactive({
-      val1: 1,
-      val2: 0,
-      val3: 10,
-      val4: 0,
-      val5: 1,
-      val6: 5.5,
-      val7: 1,
-      val8: 1,
-      step: 1.1,
-    })
+function handleOverlimit() {
+  // eslint-disable-next-line no-console
+  console.log('超出限制事件触发')
+}
 
-    const onChange = (value: number | string) => {
-      /* eslint-disable no-console */
-      console.log('异步演示 2 秒后更改')
-      setTimeout(() => {
-        state.val8 = +value
-      }, 2000)
-    }
+function handleChange(value: number) {
+  // eslint-disable-next-line no-console
+  console.log('异步演示 2 秒后更改')
 
-    const overlimit = () => {
-      console.log('超出限制事件触发')
-    }
-
-    return {
-      state,
-      onChange,
-      overlimit,
-    }
-  },
+  setTimeout(() => {
+    value7.value = value
+  }, 2000)
 }
 </script>
 
@@ -43,59 +30,81 @@ export default {
       基础用法
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val1" />
+      <nut-input-number v-model="value1" />
     </nut-cell>
+
     <h2 class="title">
       步长设置
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val2" step="5" />
+      <nut-input-number v-model="value2" step="5" />
     </nut-cell>
+
     <h2 class="title">
       限制输入范围
     </h2>
     <nut-cell>
       <nut-input-number
-        v-model="state.val3"
+        v-model="value3"
         min="10"
         max="20"
-        @overlimit="overlimit"
+        @overlimit="handleOverlimit"
       />
     </nut-cell>
+
     <h2 class="title">
       禁用操作
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val4" disabled />
+      <nut-input-number v-model="value4" disabled />
     </nut-cell>
+
     <h2 class="title">
       只读禁用输入框
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val5" readonly />
+      <nut-input-number v-model="value5" readonly />
     </nut-cell>
+
     <h2 class="title">
       支持小数
     </h2>
     <nut-cell>
       <nut-input-number
-        v-model="state.val6"
+        v-model="value6"
         step="0.1"
         decimal-places="1"
         readonly
       />
     </nut-cell>
+
     <h2 class="title">
       支持异步修改
     </h2>
     <nut-cell>
-      <nut-input-number :model-value="state.val8" @change="onChange" />
+      <nut-input-number :model-value="value7" @change="handleChange" />
     </nut-cell>
+
     <h2 class="title">
       自定义按钮大小
     </h2>
     <nut-cell>
-      <nut-input-number v-model="state.val7" button-size="30" input-width="50" />
+      <nut-input-number v-model="value8" input-width="50" button-size="30" />
+    </nut-cell>
+
+    <h2 class="title">
+      自定义按钮图标
+    </h2>
+    <nut-cell>
+      <nut-input-number v-model="value9">
+        <template #leftIcon>
+          <nut-icon name="left" />
+        </template>
+
+        <template #rightIcon>
+          <nut-icon name="right" />
+        </template>
+      </nut-input-number>
     </nut-cell>
   </div>
 </template>

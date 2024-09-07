@@ -2,25 +2,20 @@
 
 ### 介绍
 
-通过点击按钮控制数字增减。
+通过点击按钮控制数字增减
 
 ### 基础用法
 
 初始化一个默认值
 
-``` html
+```html
 <template>
-  <nut-input-number v-model="value" />
+  <nut-input-number v-model="value"></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
+```
+
+```ts
+const value = ref(1);
 ```
 
 ### 步长设置
@@ -29,17 +24,8 @@
 
 ```html
 <template>
-  <nut-input-number v-model="value" step="5" />
+  <nut-input-number v-model="value" step="5"></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ### 限制输入范围
@@ -48,17 +34,8 @@
 
 ```html
 <template>
-  <nut-input-number v-model="value" min="10" max="20" />
+  <nut-input-number v-model="value" min="10" max="20"></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(10);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ### 禁用状态
@@ -67,17 +44,8 @@
 
 ```html
 <template>
-  <nut-input-number v-model="value" disabled />
+  <nut-input-number v-model="value" disabled></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ### 只读禁用输入框
@@ -86,36 +54,18 @@
 
 ```html
 <template>
-  <nut-input-number v-model="value" readonly />
+  <nut-input-number v-model="value" readonly></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ### 支持小数点
 
-设置步长 `step` 0.1  `decimal-places` 小数保留1位
+设置步长 `step` 0.1，`decimal-places` 小数保留 1 位
 
 ```html
 <template>
-  <nut-input-number v-model="value" step="0.1" decimal-places="1" />
+  <nut-input-number v-model="value" step="0.1" decimal-places="1"></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ### 支持异步修改
@@ -124,42 +74,26 @@
 
 ```html
 <template>
-  <nut-input-number :model-value="value" @change="onChange" />
+  <nut-input-number :model-value="asyncValue" @change="handleChange"></nut-input-number>
 </template>
-<script lang="ts">
-  import { reactive, toRefs } from 'vue';
-  export default {
-    setup() {
-      const state = reactive({
-        value: 1
-      });
-      const onChange = (value: number) => {
-        console.log('异步演示 2 秒后更改');
-        setTimeout(() => {
-          state.value = value;
-        }, 2000);
-      };
-      return { ...toRefs(state), onChange };
-    },
-  };
-</script>
+```
+
+```ts
+const asyncValue = ref(1);
+
+function handleChange(value: number) {
+  setTimeout(() => {
+    asyncValue.value = value;
+  }, 2000);
+}
 ```
 
 ### 自定义按钮大小
 
 ```html
 <template>
-  <nut-input-number v-model="value"  button-size="30" input-width="50" />
+  <nut-input-number v-model="value" input-width="50" button-size="30"></nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ### 自定义按钮图标
@@ -168,38 +102,30 @@
 <template>
   <nut-input-number v-model="value">
     <template #leftIcon>
-      <nut-icon  name="left"  />
+      <nut-icon name="left"></nut-icon>
     </template>
+
     <template #rightIcon>
-      <nut-icon  name="right"  />
+      <nut-icon name="right"></nut-icon>
     </template>
   </nut-input-number>
 </template>
-<script lang="ts">
-  import { ref } from 'vue';
-  export default {
-    setup() {
-      const value = ref(1);
-      return { value };
-    },
-  };
-</script>
 ```
 
 ## API
 
 ### Props
 
-| 参数           | 说明                       | 类型             | 默认值  |
-| -------------- | -------------------------- | ---------------- | ------- |
-| v-model        | 初始值                     | string \| number | -       |
-| input-width    | 输入框宽度                 | string           | ``      |
-| button-size    | 操作符+、-尺寸             | string           | ``      |
-| min            | 最小值限制                 | string \| number | `1`     |
-| max            | 最大值限制                 | string \| number | `9999`  |
-| step           | 步长                       | string \| number | `1`     |
-| decimal-places | 设置保留的小数位           | string \| number | `0`     |
-| disabled       | 禁用所有功能               | boolean          | `false` |
+| 参数             | 说明            | 类型               | 默认值     |
+|----------------|---------------|------------------|---------|
+| v-model        | 初始值           | string \| number | `0`     |
+| input-width    | 输入框宽度         | string \| number | -       |
+| button-size    | 操作符+、-尺寸      | string \| number | -       |
+| min            | 最小值限制         | string \| number | `1`     |
+| max            | 最大值限制         | string \| number | `9999`  |
+| step           | 步长            | string \| number | `1`     |
+| decimal-places | 设置保留的小数位      | string \| number | `0`     |
+| disabled       | 禁用所有功能        | boolean          | `false` |
 | readonly       | 只读状态禁用输入框操作行为 | boolean          | `false` |
 
 ### Attrs version
@@ -208,21 +134,21 @@
 
 ### Slots
 
-| 名称      | 说明           |
-| --------- | -------------- |
+| 名称        | 说明      |
+|-----------|---------|
 | leftIcon  | 自定义左侧按钮 |
 | rightIcon | 自定义右侧按钮 |
 
 ### Events
 
-| 事件名    | 说明                   | 回调参数                                      |
-| --------- | ---------------------- | --------------------------------------------- |
-| add       | 点击增加按钮时触发     | `(event: Event)`                              |
-| reduce    | 点击减少按钮时触发     | `(event: Event)`                              |
-| overlimit | 点击不可用的按钮时触发 | `(event: Event,type:string (reduce or add) )` |
-| change    | 值改变时触发           | `(value: number , event : Event)`             |
-| blur      | 输入框失去焦点时触发   | `(event: Event)`                              |
-| focus     | 输入框获得焦点时触发   | `(event: Event )`                             |
+| 事件名       | 说明          | 回调参数                                            |
+|-----------|-------------|-------------------------------------------------|
+| change    | 值改变时触发      | (value: number, event: `BaseEvent`)             |
+| focus     | 输入框获得焦点时触发  | (event: `InputOnFocusEvent`)                    |
+| blur      | 输入框失去焦点时触发  | (event: `InputOnBlurEvent`)                     |
+| reduce    | 点击减少按钮时触发   | (event: `BaseEvent`)                            |
+| add       | 点击增加按钮时触发   | (event: `BaseEvent`)                            |
+| overlimit | 点击不可用的按钮时触发 | (event: `BaseEvent`, type: `'reduce' \| 'add'`) |
 
 ## 主题定制
 
@@ -230,8 +156,8 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                     | 默认值                   |
-| ---------------------------------------- | ------------------------ |
+| 名称                                       | 默认值                      |
+|------------------------------------------|--------------------------|
 | --nut-inputnumber-icon-color             | var(--nut-title-color)   |
 | --nut-inputnumber-icon-void-color        | var(--nut-disable-color) |
 | --nut-inputnumber-icon-size              | 20px                     |
