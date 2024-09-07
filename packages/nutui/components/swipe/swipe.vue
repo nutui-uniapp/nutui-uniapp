@@ -3,8 +3,8 @@ import { computed, getCurrentInstance, inject, onMounted, reactive, ref, watch }
 import { CLICK_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
-import type { SwipeDirection, SwipePosition } from './types'
 import { swipeEmits, swipeProps } from './swipe'
+import type { SwipeDirection, SwipePosition } from './types'
 
 const COMPONENT_NAME = 'nut-swipe'
 

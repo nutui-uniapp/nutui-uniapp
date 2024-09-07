@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, reactive, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, myFixed } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { trendarrowProps } from './trendarrow'
 
 const COMPONENT_NAME = 'nut-trend-arrow'

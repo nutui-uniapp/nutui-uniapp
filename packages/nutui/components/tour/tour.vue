@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
-import NutPopover from '../popover/popover.vue'
 import { CHANGE_EVENT, CLOSE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
+import NutIcon from '../icon/icon.vue'
+import NutPopover from '../popover/popover.vue'
 import { tourEmits, tourProps } from './tour'
 
 const COMPONENT_NAME = 'nut-tour'

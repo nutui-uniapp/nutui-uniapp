@@ -1,17 +1,13 @@
 <script lang="ts" setup>
+import type { PickerViewOnChangeEvent } from '@uni-helper/uni-app-types'
 import type { CSSProperties } from 'vue'
 import { computed, reactive, ref, toRefs } from 'vue'
-import type { PickerViewOnChangeEvent } from '@uni-helper/uni-app-types'
-import type { PickerOption } from '../pickercolumn'
 import { pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
-
+import type { PickerOption } from '../pickercolumn'
 // #ifdef H5
-
 import NutPickerColumn from '../pickercolumn/pickercolumn.vue'
-
 // #endif
-
 import { pickerEmits, pickerProps } from './picker'
 import { usePicker } from './use-picker'
 

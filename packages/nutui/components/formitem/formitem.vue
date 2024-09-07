@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, onBeforeUnmount, onMounted, provide, ref, toRef, useSlots } from 'vue'
-import { useTranslate } from '../../locale'
 import { castArray, get, isEmpty, omit } from '../_plugins/lodash'
+import type { OptionalValue } from '../_types'
 import { getMainClass, getMainStyle, isPromise, pxCheck } from '../_utils'
+import { useTranslate } from '../../locale'
 import NutCell from '../cell/cell.vue'
 import { useFormContext } from '../form'
-import type { OptionalValue } from '../_types'
 import { FORM_ITEM_CONTEXT_KEY, formitemProps } from './formitem'
 import type {
   FormItemContext,

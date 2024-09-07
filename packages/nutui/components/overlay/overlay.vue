@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, watchEffect } from 'vue'
-import NutTransition from '../transition/transition.vue'
 import { CLICK_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useLockScroll } from '../_hooks'
 import { getMainClass, getMainStyle } from '../_utils'
+import NutTransition from '../transition/transition.vue'
 import { overlayEmits, overlayProps } from './overlay'
 
 const COMPONENT_NAME = 'nut-overlay'

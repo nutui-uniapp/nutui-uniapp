@@ -109,6 +109,6 @@ export function IdIDLang() {
     },
     formitem: {
       defaultErrorMessage: 'Verifikasi gagal',
-    }
+    },
   })
 }

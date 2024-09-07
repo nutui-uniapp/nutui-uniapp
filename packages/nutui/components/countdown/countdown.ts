@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, isString, makeNumericProp, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import { INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isNumber, isString, makeNumericProp, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 
 export const countdownProps = {
   ...commonProps,

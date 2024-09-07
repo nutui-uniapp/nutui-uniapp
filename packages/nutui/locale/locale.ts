@@ -1,10 +1,10 @@
 import { reactive, ref } from 'vue'
 import { deepAssign } from '../components/_utils'
-import { ZhCNLang } from './lang/zh-CN'
-import { EnUSLang } from './lang/en-US'
-import { ZhTWLang } from './lang/zh-TW'
-import { IdIDLang } from './lang/id-ID'
 import type { BaseLang } from './lang/baseLang'
+import { EnUSLang } from './lang/en-US'
+import { IdIDLang } from './lang/id-ID'
+import { ZhCNLang } from './lang/zh-CN'
+import { ZhTWLang } from './lang/zh-TW'
 
 // 组件默认语言设置
 export type langKeys = 'zh-CN' | 'en-US' | 'zh-tw' | 'id-id'
@@ -14,12 +14,14 @@ export type DeepPartial<T> = {
   [K in keyof T]?: T[K] extends Record<any, any> ? DeepPartial<T[K]> : T[K]
 }
 
-export { ZhCNLang, EnUSLang, IdIDLang, ZhTWLang }
+export { EnUSLang, IdIDLang, ZhCNLang, ZhTWLang }
+
 const currentLang = ref<keyof Lang>('zh-CN')
-const langs: Lang  = reactive({
+const langs: Lang = reactive({
   'zh-CN': ZhCNLang(),
   'en-US': EnUSLang(),
 })
+
 export const useCurrentLang = () => currentLang
 
 export const Locale = {

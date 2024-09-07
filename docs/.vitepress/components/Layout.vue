@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { useData, useRouter } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { computed, onMounted, watch } from 'vue'
-import { useData, useRouter } from 'vitepress'
 
 const { Layout } = DefaultTheme
 const { route, go } = useRouter()

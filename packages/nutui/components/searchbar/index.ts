@@ -1,2 +1,2 @@
-export * from './types'
 export * from './searchbar'
+export * from './types'

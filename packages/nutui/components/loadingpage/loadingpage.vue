@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import NutTransition from '../transition/transition.vue'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass } from '../_utils'
+import NutIcon from '../icon/icon.vue'
+import NutTransition from '../transition/transition.vue'
 import { loadingpageProps } from './loadingpage'
 
 const COMPONENT_NAME = 'nut-loading-page'

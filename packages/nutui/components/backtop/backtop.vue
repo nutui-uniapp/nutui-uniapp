@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
+import { computed, ref } from 'vue'
 import { CLICK_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { backtopEmits, backtopProps } from './backtop'
 
 const COMPONENT_NAME = 'nut-backtop'

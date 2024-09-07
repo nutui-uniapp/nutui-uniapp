@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
+import { useRect } from '../_hooks'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import NutIcon from '../icon/icon.vue'
-import { useRect } from '../_hooks'
 import { navbarEmits, navbarProps } from './navbar'
 
 const COMPONENT_NAME = 'nut-navbar'

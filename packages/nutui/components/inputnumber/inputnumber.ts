@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, isObject, makeNumericProp, nullableBooleanProp } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isNumber, isObject, makeNumericProp, nullableBooleanProp } from '../_utils'
 
 export const inputnumberProps = {
   ...commonProps,

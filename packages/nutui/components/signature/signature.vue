@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
+import NutButton from '../button/button.vue'
 import { signatureEmits, signatureProps } from './signature'
 import { useSignature } from './use-signature'
 

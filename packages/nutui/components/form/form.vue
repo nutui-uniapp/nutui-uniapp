@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, provide, toRef, watch } from 'vue'
 import { castArray } from '../_plugins/lodash'
+import type { Arrayable } from '../_types'
 import { getMainClass, getMainStyle } from '../_utils'
 import NutCellGroup from '../cellgroup/cellgroup.vue'
 import type { FormItemContext, FormItemValidateResult } from '../formitem'
-import type { Arrayable } from '../_types'
 import { FORM_CONTEXT_KEY, formEmits, formProps } from './form'
 import type { FormValidateResult } from './types'
 

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isString, makeArrayProp } from '../_utils'
 import { SELECT_EVENT } from '../_constants'
+import { commonProps, isString, makeArrayProp } from '../_utils'
 
 export const timedetailProps = {
   ...commonProps,

@@ -1,7 +1,7 @@
 import type { ComputedRef, ExtractPropTypes, InjectionKey, Ref } from 'vue'
 import { computed, inject } from 'vue'
-import { commonProps, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import type { OptionalBoolean, OptionalValue } from '../_types'
+import { commonProps, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import type { FormItemValidateResult } from '../formitem'
 import type { FormContext, FormLabelPosition, FormRules, FormStarPosition } from './types'
 

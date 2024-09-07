@@ -109,6 +109,6 @@ export function ZhTWLang() {
     },
     formitem: {
       defaultErrorMessage: '校驗不通過',
-    }
+    },
   })
 }

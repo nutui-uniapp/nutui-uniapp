@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { ComputedRef } from 'vue'
 import { computed, reactive, toRef, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { useInject } from '../_hooks'
+import { getMainClass, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
+import NutIcon from '../icon/icon.vue'
 import { CHECKBOX_KEY, checkboxEmits, checkboxProps } from './checkbox'
 
 const COMPONENT_NAME = 'nut-checkbox'

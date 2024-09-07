@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useSlots } from 'vue'
-import NutPopup from '../popup/popup.vue'
-import NutButton from '../button/button.vue'
 import { useTranslate } from '../../locale'
+import NutButton from '../button/button.vue'
+import NutPopup from '../popup/popup.vue'
 import { dialogEmits, dialogProps } from './dialog'
 import { useDialog } from './use-dialog'
 

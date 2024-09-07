@@ -1,4 +1,5 @@
 import type { UnwrapRef } from 'vue'
+import type { Arrayable, FieldPath, MaybeRef, RefsObject } from '../_types'
 import type {
   FormItemContext,
   FormItemLabelPosition,
@@ -6,7 +7,6 @@ import type {
   FormItemStarPosition,
   FormItemValidateResult,
 } from '../formitem/types'
-import type { Arrayable, FieldPath, MaybeRef, RefsObject } from '../_types'
 import type { FormProps } from './form'
 
 export type FormStarPosition = FormItemStarPosition

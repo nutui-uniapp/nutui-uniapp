@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useSlots } from 'vue'
-import NutPrice from '../price/price.vue'
 import { useTranslate } from '../../locale'
+import NutPrice from '../price/price.vue'
 
 const COMPONENT_NAME = 'nut-sku-header'
 

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { CLICK_EVENT } from '../_constants'
-import requestAniFrame from '../_utils/raf'
 import { getMainClass, getMainStyle } from '../_utils'
+import requestAniFrame from '../_utils/raf'
 import { animateEmits, animateProps } from './animate'
 
 const COMPONENT_NAME = 'nut-animate'

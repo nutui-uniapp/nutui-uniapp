@@ -1,2 +1,2 @@
-export * from './types'
 export * from './turntable'
+export * from './types'

@@ -1,8 +1,8 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { popupProps } from '../popup/popup'
+import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { Interceptor } from '../_utils'
 import { commonProps, isBoolean, makeStringProp, truthProp } from '../_utils'
-import { CANCEL_EVENT, CLOSED_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { popupProps } from '../popup/popup'
 import type { FooterDirection, TextAlign } from './types'
 
 export const dialogProps = {

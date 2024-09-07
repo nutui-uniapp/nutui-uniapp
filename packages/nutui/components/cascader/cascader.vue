@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import NutPopup from '../popup/popup.vue'
 import NutCascaderItem from '../cascaderitem/cascaderitem.vue'
+import NutPopup from '../popup/popup.vue'
 import { cascaderEmits, cascaderProps } from './cascader'
 import type { CascaderOption, CascaderValue } from './types'
 

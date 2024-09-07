@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { makeNumberProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import type {
   DateLike,
   DatePickerBaseEvent,

@@ -1,7 +1,7 @@
 import { provide, ref } from 'vue'
 import { cloneDeep } from '../_utils'
-import type { NotifyInst, NotifyOptions, NotifyType } from './types'
 import { notifyDefaultOptions, notifyDefaultOptionsKey } from './notify'
+import type { NotifyInst, NotifyOptions, NotifyType } from './types'
 
 export function useNotify(selector = ''): NotifyInst {
   const notifyOptionsKey = `${notifyDefaultOptionsKey}${selector || ''}`

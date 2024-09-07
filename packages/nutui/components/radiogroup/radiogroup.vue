@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, watch } from 'vue'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import { getMainClass } from '../_utils'
 import { useProvide } from '../_hooks'
-import { RADIO_KEY } from '../radio'
+import { getMainClass } from '../_utils'
 import { useFormItemContext } from '../formitem'
+import { RADIO_KEY } from '../radio'
 import { radiogroupEmits, radiogroupProps } from './radiogroup'
 
 const COMPONENT_NAME = 'nut-radio-group'

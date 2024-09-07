@@ -4,9 +4,9 @@ import { CLICK_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import { commentEmits, commentProps } from './comment'
+import CommentBottom from './components/CmtBottom.vue'
 import CommentHeader from './components/CmtHeader.vue'
 import CommentImages from './components/CmtImages.vue'
-import CommentBottom from './components/CmtBottom.vue'
 
 const COMPONENT_NAME = 'nut-comment'
 

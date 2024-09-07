@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, toRef } from 'vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
+import { getMainClass, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
+import NutIcon from '../icon/icon.vue'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
 
 const COMPONENT_NAME = 'nut-input-number'

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, watchEffect } from 'vue'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import { useTranslate } from '../../locale'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
 import { paginationEmits, paginationProps } from './pagination'
 
 const COMPONENT_NAME = 'nut-pagination'

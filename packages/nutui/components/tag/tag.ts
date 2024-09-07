@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
+import { commonProps, makeNumericProp, makeStringProp } from '../_utils'
 import type { TagType } from './types'
 
 export const tagProps = {

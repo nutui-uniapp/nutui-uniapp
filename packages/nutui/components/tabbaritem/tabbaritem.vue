@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, inject, onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
+import { getMainClass, getMainStyle } from '../_utils'
 import NutBadge from '../badge/badge.vue'
 import NutIcon from '../icon/icon.vue'
-import type { TabbarContext } from '../tabbar/types'
-import { getMainClass, getMainStyle } from '../_utils'
 import { TABBAR_CONTEXT_KEY } from '../tabbar'
+import type { TabbarContext } from '../tabbar/types'
 import { tabbaritemProps } from './tabbaritem'
 
 const COMPONENT_NAME = 'nut-tabbar-item'

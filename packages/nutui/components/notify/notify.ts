@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
+import { CLICK_EVENT, CLOSE_EVENT, CLOSED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { commonProps, isBoolean, makeNumberProp, makeNumericProp, makeStringProp } from '../_utils'
-import { CLICK_EVENT, CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { NotifyOptions, NotifyPosition, NotifyType } from './types'
 
 export const notifyDefaultOptionsKey = '__NOTIFY_OPTIONS__'

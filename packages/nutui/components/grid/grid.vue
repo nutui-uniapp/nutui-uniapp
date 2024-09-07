@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed } from 'vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { useProvide } from '../_hooks'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { GRID_KEY, gridProps } from './grid'
 
 const COMPONENT_NAME = 'nut-grid'

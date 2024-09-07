@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, makeArrayProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT } from '../_constants'
+import { commonProps, isNumber, makeArrayProp, makeStringProp } from '../_utils'
 
 export const categoryProps = {
   ...commonProps,

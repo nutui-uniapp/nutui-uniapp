@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, InjectionKey } from 'vue'
-import { commonProps, isNumber, isString, makeNumericProp } from '../_utils'
 import { UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isNumber, isString, makeNumericProp } from '../_utils'
 import type { TabbarContext } from './types'
 
 export const tabbarProps = {

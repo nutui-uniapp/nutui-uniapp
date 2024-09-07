@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, onMounted, ref } from 'vue'
+import { useInject } from '../_hooks'
+import { getMainClass } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import type { SideNavbarProps } from '../sidenavbar'
 import { SIDE_NAVBAR_KEY } from '../sidenavbar'
-import { useInject } from '../_hooks'
-import { getMainClass } from '../_utils'
 import { subsidenavbarEmits, subsidenavbarProps } from './subsidenavbar'
 
 const COMPONENT_NAME = 'nut-sub-side-navbar'

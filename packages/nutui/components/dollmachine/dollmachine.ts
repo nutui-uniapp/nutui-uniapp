@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeArrayProp, makeNumberProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, makeArrayProp, makeNumberProp } from '../_utils'
 
 export const dollmachineProps = {
   ...commonProps,

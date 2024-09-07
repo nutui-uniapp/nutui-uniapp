@@ -2,8 +2,8 @@
 import type { CSSProperties } from 'vue'
 import { computed, ref, watch } from 'vue'
 import { useProvide } from '../_hooks'
-import NutAvatar from '../avatar/avatar.vue'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import NutAvatar from '../avatar/avatar.vue'
 import { AVATAR_GROUP_KEY, avatargroupProps } from './avatargroup'
 
 const COMPONENT_NAME = 'nut-avatar-group'

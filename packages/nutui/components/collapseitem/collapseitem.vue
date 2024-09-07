@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, inject, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass, getRandomId } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { collapseitemProps } from './collapseitem'
 
 const COMPONENT_NAME = 'nut-collapse-item'

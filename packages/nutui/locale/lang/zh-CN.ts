@@ -109,6 +109,6 @@ export function ZhCNLang() {
     },
     formitem: {
       defaultErrorMessage: '校验不通过',
-    }
+    },
   })
 }

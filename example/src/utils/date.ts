@@ -1,7 +1,5 @@
 /**
  * 时间戳转换 或 获取当前时间的时间戳
- * @param timeStr
- * @returns
  */
 export function getTimeStamp(timeStr?: string | number) {
   if (!timeStr)
@@ -79,7 +77,7 @@ export function date2Str(date: Date, split?: string): string {
 
 /**
  * 返回日期格式字符串
- * @param {number} 0返回今天的日期、1返回明天的日期，2返回后天得日期，依次类推
+ * @param i 0返回今天的日期、1返回明天的日期，2返回后天得日期，依次类推
  * @return {string} '2014-12-31'
  */
 export function getDay(i: number): string {

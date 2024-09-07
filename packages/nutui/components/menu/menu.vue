@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, ref } from 'vue'
 import { useProvide, useRect } from '../_hooks'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, getRandomId } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { MENU_KEY, menuProps } from './menu'
 
 const COMPONENT_NAME = 'nut-menu'

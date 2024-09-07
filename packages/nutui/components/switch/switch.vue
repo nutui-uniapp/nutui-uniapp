@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
+import NutIcon from '../icon/icon.vue'
 import { switchEmits, switchProps } from './switch'
 
 const COMPONENT_NAME = 'nut-switch'

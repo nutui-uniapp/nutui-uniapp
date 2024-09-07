@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref, VNode } from 'vue'
 import { computed, getCurrentInstance, nextTick, onActivated, onMounted, ref, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
 import { CHANGE_EVENT, CLICK_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import { TypeOfFun, getMainClass, getRandomId, pxCheck } from '../_utils'
-import raf from '../_utils/raf'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
-import { TAB_KEY, Title, tabsEmits, tabsProps } from './tabs'
+import { getMainClass, getRandomId, pxCheck, TypeOfFun } from '../_utils'
+import raf from '../_utils/raf'
+import NutIcon from '../icon/icon.vue'
 import { useTabContentTouch } from './hooks'
+import { TAB_KEY, tabsEmits, tabsProps, Title } from './tabs'
 
 const COMPONENT_NAME = 'nut-tabs'
 

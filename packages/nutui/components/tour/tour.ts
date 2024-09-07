@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import type { PopoverLocation, PopoverTheme } from '../popover/types'
+import { CHANGE_EVENT, CLOSE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import {
   commonProps,
   isBoolean,
@@ -10,7 +10,7 @@ import {
   makeStringProp,
   truthProp,
 } from '../_utils'
-import { CHANGE_EVENT, CLOSE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import type { PopoverLocation, PopoverTheme } from '../popover/types'
 import type { TourStepOptions } from './types'
 
 export const tourProps = {

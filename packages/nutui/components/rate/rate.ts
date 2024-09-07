@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isNumber, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isNumber, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
 
 export const rateProps = {
   ...commonProps,

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { getMainClass } from '../_utils'
 import NutPrice from '../price/price.vue'
 import NutTag from '../tag/tag.vue'
-import { getMainClass } from '../_utils'
 import { cardProps } from './card'
 
 const COMPONENT_NAME = 'nut-card'

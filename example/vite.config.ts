@@ -1,14 +1,14 @@
 import { resolve } from 'node:path'
 import process from 'node:process'
-import { defineConfig } from 'vite'
 import UniApp from '@dcloudio/vite-plugin-uni'
-import AutoImport from 'unplugin-auto-import/vite'
 import UniComponents from '@uni-helper/vite-plugin-uni-components'
-import UniPages from '@uni-helper/vite-plugin-uni-pages'
-import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
 import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
-import UnoCSS from 'unocss/vite'
+import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
+import UniPages from '@uni-helper/vite-plugin-uni-pages'
 import { NutResolver } from 'nutui-uniapp'
+import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({

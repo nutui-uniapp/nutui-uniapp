@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComputedRef } from 'vue'
+import type { ComputedRef, CSSProperties } from 'vue'
 import { computed } from 'vue'
 import { useInject } from '../_hooks'
-import { TAB_KEY } from '../tabs'
 import { getMainClass, getMainStyle } from '../_utils'
+import { TAB_KEY } from '../tabs'
 import { tabpaneProps } from './tabpane'
 
 const COMPONENT_NAME = 'nut-tab-pane'

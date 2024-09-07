@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, onMounted, reactive } from 'vue'
-import { useTranslate } from '../../locale'
-import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
+import NutIcon from '../icon/icon.vue'
 import { infiniteloadingEmits, infiniteloadingProps } from './infiniteloading'
 
 const COMPONENT_NAME = 'nut-infiniteloading'

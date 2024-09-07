@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { commonProps, isNumber, makeNumericProp, makeObjectProp, nullableBooleanProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isNumber, makeNumericProp, makeObjectProp, nullableBooleanProp } from '../_utils'
 import type { RangeValue } from './types'
 
 export const rangeProps = {

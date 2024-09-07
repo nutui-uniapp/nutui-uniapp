@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { CSSProperties, Ref } from 'vue'
 import { computed, inject, onBeforeUnmount, ref, useSlots, watch } from 'vue'
-import NutPopup from '../popup/popup.vue'
-import { CLICK_EVENT, CLOSED_EVENT, CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CLICK_EVENT, CLOSE_EVENT, CLOSED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { cloneDeep, getMainClass, getMainStyle, pxCheck } from '../_utils'
-import type { NotifyOptions, NotifyType } from './types'
+import NutPopup from '../popup/popup.vue'
 import { notifyDefaultOptions, notifyDefaultOptionsKey, notifyEmits, notifyProps } from './notify'
+import type { NotifyOptions, NotifyType } from './types'
 
 const COMPONENT_NAME = 'nut-notify'
 

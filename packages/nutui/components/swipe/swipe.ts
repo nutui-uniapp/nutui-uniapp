@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isString, makeArrayProp } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { commonProps, isString, makeArrayProp } from '../_utils'
 import type { SwipePosition, SwipeToggleEvent } from './types'
 
 export const swipeProps = {

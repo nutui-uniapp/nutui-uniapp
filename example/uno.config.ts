@@ -1,6 +1,6 @@
-import { defineConfig, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss'
-import { presetUni } from '@uni-helper/unocss-preset-uni'
 import { isH5, isMp } from '@uni-helper/uni-env'
+import { presetUni } from '@uni-helper/unocss-preset-uni'
+import { defineConfig, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   presets: [

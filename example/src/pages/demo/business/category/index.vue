@@ -1,6 +1,5 @@
 <script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
-
 // @ts-expect-error TS7016
 import { categoryChild, categoryInfo, customCategory } from './data'
 

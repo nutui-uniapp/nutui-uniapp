@@ -12,10 +12,10 @@ import {
   useSlots,
   watch,
 } from 'vue'
-import { getMainClass, isObject, pxCheck } from '../_utils'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
 import { useSelectorQuery } from '../_hooks'
+import { getMainClass, isObject, pxCheck } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { noticebarEmits, noticebarProps } from './noticebar'
 import type { NoticebarState } from './types'
 

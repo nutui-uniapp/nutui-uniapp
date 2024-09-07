@@ -2,8 +2,8 @@ import type { SetupContext } from 'vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { CLICK_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
-import type { NutAnimations } from './types'
 import type { TransitionEmits, TransitionProps } from './transition'
+import type { NutAnimations } from './types'
 
 export interface IClassNames {
   enter: string

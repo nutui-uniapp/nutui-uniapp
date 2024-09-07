@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import type { CSSProperties } from 'vue'
 import { computed, reactive, toRef, useSlots } from 'vue'
-import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
-import { useTranslate } from '../../locale'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useTranslate } from '../../locale'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
+import NutIcon from '../icon/icon.vue'
 import { searchbarEmits, searchbarProps } from './searchbar'
 
 const COMPONENT_NAME = 'nut-searchbar'

@@ -1,5 +1,6 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import {
   commonProps,
   isString,
@@ -11,7 +12,6 @@ import {
   numericProp,
   truthProp,
 } from '../_utils'
-import { BLUR_EVENT, CHANGE_EVENT, CLEAR_EVENT, FOCUS_EVENT, SEARCH_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType, InputConfirmType, InputType } from '../input'
 import type { SearchbarShape } from './types'
 

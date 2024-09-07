@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from 'vue'
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
+import { computed, reactive, ref, watch } from 'vue'
 import { CHANGE_EVENT, CLOSE_EVENT, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { useTranslate } from '../../locale'
-import NutPopup from '../popup/popup.vue'
-import NutIcon from '../icon/icon.vue'
-import NutElevator from '../elevator/elevator.vue'
 import { getMainClass } from '../_utils'
 import requestAniFrame from '../_utils/raf'
+import { useTranslate } from '../../locale'
+import NutElevator from '../elevator/elevator.vue'
+import NutIcon from '../icon/icon.vue'
+import NutPopup from '../popup/popup.vue'
 import { addressEmits, addressProps } from './address'
 import type { AddressExistRegionData, AddressRegionData, CustomRegionData } from './types'
 

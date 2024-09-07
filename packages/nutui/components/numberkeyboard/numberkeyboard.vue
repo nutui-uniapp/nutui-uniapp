@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { CLOSE_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutPopup from '../popup/popup.vue'
-import { getMainClass } from '../_utils'
 import { numberkeyboardEmits, numberkeyboardProps } from './numberkeyboard'
 import type { NumberKeyboardKeyItem } from './types'
 

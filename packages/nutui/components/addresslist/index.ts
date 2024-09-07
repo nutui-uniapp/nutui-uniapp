@@ -1,2 +1,2 @@
-export * from './types'
 export * from './addresslist'
+export * from './types'

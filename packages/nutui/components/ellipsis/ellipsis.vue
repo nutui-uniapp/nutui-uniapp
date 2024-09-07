@@ -3,8 +3,8 @@ import { computed, getCurrentInstance, onMounted, reactive, ref } from 'vue'
 import { CLICK_EVENT } from '../_constants'
 import { useRect, useSelectorQuery } from '../_hooks'
 import { getRandomId } from '../_utils'
-import type { EllipsisedValue } from './types'
 import { ellipsisEmits, ellipsisProps } from './ellipsis'
+import type { EllipsisedValue } from './types'
 
 const COMPONENT_NAME = 'nut-ellipsis'
 
@@ -158,8 +158,7 @@ async function verifyEllipsis() {
 }
 
 function assignContent() {
-  contentCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''
-    }${ellipsis.tailing || ''}`
+  contentCopy.value = `${ellipsis.leading || ''}${ellipsis.leading ? props.symbol : ''}${props.expandText || ''}${ellipsis.tailing ? props.symbol : ''}${ellipsis.tailing || ''}`
 }
 
 // 计算省略号

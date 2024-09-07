@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, onMounted, reactive, ref, useSlots, watch } from 'vue'
-import NutButton from '../button/button.vue'
 import { floatData, getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
-import GeneralShell from './compoents/generalshell.vue'
+import NutButton from '../button/button.vue'
 import { addresslistEmits, addresslistProps } from './addresslist'
+import GeneralShell from './compoents/generalshell.vue'
 
 const COMPONENT_NAME = 'nut-address-list'
 

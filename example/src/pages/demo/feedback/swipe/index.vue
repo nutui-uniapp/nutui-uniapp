@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import type { SwipeInts } from 'nutui-uniapp'
+import { ref } from 'vue'
 
 const swipe = ref<SwipeInts | null>(null)
 

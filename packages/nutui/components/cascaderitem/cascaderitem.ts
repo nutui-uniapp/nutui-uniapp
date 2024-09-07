@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import type { CascaderOption, CascaderValue } from '../cascader/types'
-import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import type { CascaderOption, CascaderValue } from '../cascader/types'
 
 export const cascaderitemProps = {
   ...commonProps,

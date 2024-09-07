@@ -1,6 +1,6 @@
 <script lang="ts">
-import { reactive } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
+import { reactive } from 'vue'
 
 interface Item {
   name: string

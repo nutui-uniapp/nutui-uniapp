@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, ref, toRef, useSlots } from 'vue'
-import { getRandomId, isEqualValue, preventDefault } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { useRect, useTouch } from '../_hooks'
+import { getRandomId, isEqualValue, preventDefault } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
-import type { RangeArrayValue, RangeValue } from './types'
 import { rangeEmits, rangeProps } from './range'
+import type { RangeArrayValue, RangeValue } from './types'
 
 const COMPONENT_NAME = 'nut-range'
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { iconEmits, iconProps } from './icon'
 
 const COMPONENT_NAME = 'nut-icon'

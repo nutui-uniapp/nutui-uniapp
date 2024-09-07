@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, RendererElement, RendererNode, VNode } from 'vue'
-import { commonProps, isString, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { CHANGE_EVENT, CLICK_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, isString, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 
 export const tabsProps = {
   ...commonProps,

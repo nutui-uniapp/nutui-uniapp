@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, toRef } from 'vue'
-import NutIcon from '../icon/icon.vue'
-import { getMainClass, pxCheck } from '../_utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { getMainClass, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
+import NutIcon from '../icon/icon.vue'
 import { rateEmits, rateProps } from './rate'
 
 const COMPONENT_NAME = 'nut-rate'

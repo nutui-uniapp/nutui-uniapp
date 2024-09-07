@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, ref, toRef, useSlots, watch } from 'vue'
 import type { InputOnBlurEvent, InputOnConfirmEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
-import { getMainClass, isH5 } from '../_utils'
+import { computed, nextTick, onMounted, ref, toRef, useSlots, watch } from 'vue'
 import { BLUR_EVENT, CLEAR_EVENT, CLICK_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import NutIcon from '../icon/icon.vue'
+import { getMainClass, isH5 } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
+import NutIcon from '../icon/icon.vue'
 import { inputEmits, inputProps } from './input'
-import { formatNumber } from './util'
 import type { InputFormatTrigger, InputTarget } from './types'
+import { formatNumber } from './util'
 
 const COMPONENT_NAME = 'nut-input'
 

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
-import { getMainClass, getMainStyle, getRandomId } from '../_utils'
 import { CHOOSE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useRect } from '../_hooks'
+import { getMainClass, getMainStyle, getRandomId } from '../_utils'
 import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
-import type { PopoverRootPosition } from './types'
 import { popoverEmits, popoverProps } from './popover'
+import type { PopoverRootPosition } from './types'
 
 const COMPONENT_NAME = 'nut-popover'
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import NutTransition from '../transition/transition.vue'
-import NutOverlay from '../overlay/overlay.vue'
 import NutIcon from '../icon/icon.vue'
+import NutOverlay from '../overlay/overlay.vue'
+import NutTransition from '../transition/transition.vue'
 import { popupEmits, popupProps } from './popup'
 import { usePopup } from './use-popup'
 

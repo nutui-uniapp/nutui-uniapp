@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import type { PickerFieldNames, PickerOption } from '../pickercolumn'
-import { commonProps, makeArrayProp, makeNumericProp, makeObjectProp, makeStringProp, truthProp } from '../_utils'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, makeArrayProp, makeNumericProp, makeObjectProp, makeStringProp, truthProp } from '../_utils'
+import type { PickerFieldNames, PickerOption } from '../pickercolumn'
 import type { PickerBaseEvent, PickerChangeEvent } from './types'
 
 export const pickerProps = {

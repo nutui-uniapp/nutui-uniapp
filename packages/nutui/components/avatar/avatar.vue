@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, getCurrentInstance, ref, watch } from 'vue'
-import type { AvatarGroupProps } from '../avatargroup'
-import { AVATAR_GROUP_KEY } from '../avatargroup'
 import { useInject } from '../_hooks'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import type { AvatarGroupProps } from '../avatargroup'
+import { AVATAR_GROUP_KEY } from '../avatargroup'
 import { avatarProps } from './avatar'
 import type { AvatarFinalSize, AvatarShape, AvatarSize } from './types'
 import { avatarSize } from './types'

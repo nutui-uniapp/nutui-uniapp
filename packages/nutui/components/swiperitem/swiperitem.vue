@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CSSProperties, ComputedRef } from 'vue'
+import type { ComputedRef, CSSProperties } from 'vue'
 import { computed, reactive } from 'vue'
 import { useInject } from '../_hooks'
 import { getMainClass, getMainStyle } from '../_utils'

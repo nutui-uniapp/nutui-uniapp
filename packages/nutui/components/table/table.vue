@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots, watch } from 'vue'
-import NutIcon from '../icon/icon.vue'
-import { useTranslate } from '../../locale'
 import { getMainClass } from '../_utils'
-import type { TableColumnProps } from './types'
-import { tableEmits, tableProps } from './table'
+import { useTranslate } from '../../locale'
+import NutIcon from '../icon/icon.vue'
 import RenderColumn from './renderColumn'
+import { tableEmits, tableProps } from './table'
+import type { TableColumnProps } from './types'
 
 const COMPONENT_NAME = 'nut-table'
 

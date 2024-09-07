@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed } from 'vue'
-import NutIcon from '../icon/icon.vue'
 import { CLICK_EVENT, CLOSE_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import { tagEmits, tagProps } from './tag'
 
 const COMPONENT_NAME = 'nut-tag'

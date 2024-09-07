@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { CSSProperties } from 'vue'
-import { computed, nextTick, toRef } from 'vue'
 import type {
   TextareaConfirmType,
   TextareaOnBlurEvent,
@@ -8,9 +6,11 @@ import type {
   TextareaOnFocusEvent,
   TextareaOnInputEvent,
 } from '@uni-helper/uni-app-types'
-import { useTranslate } from '../../locale'
+import type { CSSProperties } from 'vue'
+import { computed, nextTick, toRef } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass, isH5, isMpAlipay, pxCheck } from '../_utils'
+import { useTranslate } from '../../locale'
 import { useFormContext, useFormDisabled } from '../form'
 import { useFormItemContext } from '../formitem'
 import type { InputTarget } from '../input/types'

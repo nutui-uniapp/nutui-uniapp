@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { NutAnimationName } from 'nutui-uniapp'
+import { ref } from 'vue'
 
 const showValue = ref(false)
 const transitionName = ref('')

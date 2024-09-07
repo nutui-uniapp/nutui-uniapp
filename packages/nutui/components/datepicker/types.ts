@@ -1,5 +1,5 @@
-import type { PickerOption } from '../pickercolumn'
 import type { PickerBaseEvent, PickerChangeEvent } from '../picker'
+import type { PickerOption } from '../pickercolumn'
 
 export type DateLike = number | string | Date
 

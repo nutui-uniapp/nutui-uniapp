@@ -1,7 +1,7 @@
 import type { ExtractPropTypes, InjectionKey, PropType } from 'vue'
 import { inject } from 'vue'
-import { commonProps, makeNumericProp, makeStringProp, nullableBooleanProp, truthProp } from '../_utils'
 import type { Arrayable, OptionalValue } from '../_types'
+import { commonProps, makeNumericProp, makeStringProp, nullableBooleanProp, truthProp } from '../_utils'
 import type { FormItemAlign, FormItemContext, FormItemLabelPosition, FormItemRule, FormItemStarPosition } from './types'
 
 export const formitemProps = {

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { ComputedRef } from 'vue'
 import { computed, toRef, useSlots } from 'vue'
-import NutIcon from '../icon/icon.vue'
+import { useInject } from '../_hooks'
 import { getMainClass, pxCheck } from '../_utils'
 import { useFormContext, useFormDisabled } from '../form'
-import { useInject } from '../_hooks'
+import NutIcon from '../icon/icon.vue'
 import { RADIO_KEY, radioProps } from './radio'
 
 const COMPONENT_NAME = 'nut-radio'

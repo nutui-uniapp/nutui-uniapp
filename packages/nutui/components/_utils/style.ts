@@ -51,7 +51,6 @@ export function getPx(value: string | number, unit = false) {
  * 对象转字符串，或者字符串转对象
  * @param {object | string} customStyle 需要转换的目标
  * @param {string} target 转换的目的，object-转为对象，string-转为字符串
- * @returns {object|string}
  */
 export function addStyle(customStyle: string | object, target = 'object') {
   // 字符串转字符串，对象转对象情形，直接返回
@@ -93,8 +92,8 @@ export function addStyle(customStyle: string | object, target = 'object') {
 
 /**
  * @description 去除空格
- * @param String str 需要去除空格的字符串
- * @param String pos both(左右)|left|right|all 默认both
+ * @param str 需要去除空格的字符串
+ * @param pos both(左右)|left|right|all 默认both
  */
 export function trim(str: string, pos = 'both') {
   str = String(str)

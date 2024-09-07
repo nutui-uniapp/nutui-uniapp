@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import { CHANGE_EVENT, CLOSE_EVENT, OPEN_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
+import { commonProps, makeArrayProp, makeNumberProp, makeStringProp } from '../_utils'
 import type { MenuItemOption } from './types'
 
 export const menuitemProps = {

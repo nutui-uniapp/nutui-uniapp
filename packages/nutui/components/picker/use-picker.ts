@@ -1,10 +1,10 @@
 import type { SetupContext } from 'vue'
 import { computed, nextTick, reactive, ref, toRefs, watch } from 'vue'
-import type { PickerOption } from '../pickercolumn'
 import { CANCEL_EVENT, CHANGE_EVENT, CONFIRM_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import { cloneDeep, getMainClass, isEqualValue } from '../_utils'
-import type { PickerColumnsType } from './types'
+import type { PickerOption } from '../pickercolumn'
 import type { PickerEmits, PickerProps } from './picker'
+import type { PickerColumnsType } from './types'
 
 const DEFAULT_FILED_NAMES = {
   text: 'text',

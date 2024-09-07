@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
 import type { TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
+import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { ClassType } from '../_utils'
 import { commonProps, isString, makeNumberProp, makeStringProp, nullableBooleanProp, truthProp } from '../_utils'
-import { BLUR_EVENT, CHANGE_EVENT, CONFIRM_EVENT, FOCUS_EVENT, INPUT_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
 import type { InputAlignType } from '../input'
 import type { TextareaAdjustKeyboardTo, TextareaAutosizeObject, TextareaConfirmType } from './types'
 

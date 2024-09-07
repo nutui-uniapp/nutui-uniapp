@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, onMounted, reactive, watch } from 'vue'
-import { funInterceptor, getMainClass } from '../_utils'
 import { CLOSE_EVENT } from '../_constants'
+import { funInterceptor, getMainClass } from '../_utils'
+import NutIcon from '../icon/icon.vue'
 import NutPopup from '../popup/popup.vue'
 import NutSwiper from '../swiper/swiper.vue'
 import NutSwiperItem from '../swiperitem/swiperitem.vue'
-import NutIcon from '../icon/icon.vue'
-import type { ImageInterface } from './types'
 import { imagepreviewEmits, imagepreviewProps } from './imagepreview'
+import type { ImageInterface } from './types'
 
 const COMPONENT_NAME = 'nut-image-preview'
 

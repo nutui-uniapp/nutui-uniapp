@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed } from 'vue'
-import NutAvatar from '../avatar/avatar.vue'
 import { getMainClass, pxCheck } from '../_utils'
+import NutAvatar from '../avatar/avatar.vue'
 import { skeletonProps } from './skeleton'
 
 const COMPONENT_NAME = 'nut-skeleton'

@@ -1,7 +1,7 @@
 <script lang="ts">
-import { ref } from 'vue'
 import { isH5 } from '@uni-helper/uni-env'
 import type { DialogInst, NutAnimationName } from 'nutui-uniapp'
+import { ref } from 'vue'
 
 export default {
   setup() {

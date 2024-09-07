@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, provide, useSlots } from 'vue'
-import NutPopup from '../popup/popup.vue'
-import { useTranslate } from '../../locale'
 import { SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
+import { useTranslate } from '../../locale'
+import NutPopup from '../popup/popup.vue'
 import { timeselectEmits, timeselectProps } from './timeselect'
 
 const COMPONENT_NAME = 'nut-time-select'

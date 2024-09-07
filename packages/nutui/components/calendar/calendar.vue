@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
 import { CHOOSE_EVENT, CLOSE_EVENT, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import NutCalendarItem from '../calendaritem/calendaritem.vue'
 import type { CalendarInst } from '../calendaritem/types'
 import NutPopup from '../popup/popup.vue'
-import NutCalendarItem from '../calendaritem/calendaritem.vue'
 import { calendarEmits, calendarProps } from './calendar'
 
 const COMPONENT_NAME = 'nut-calendar'

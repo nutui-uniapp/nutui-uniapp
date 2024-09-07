@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { commonProps, isBoolean, isNumber, isString, makeArrayProp, makeNumericProp } from '../_utils'
 import { CLOSE_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { commonProps, isBoolean, isNumber, isString, makeArrayProp, makeNumericProp } from '../_utils'
 
 export const skuProps = {
   ...commonProps,

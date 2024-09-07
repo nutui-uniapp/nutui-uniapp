@@ -145,7 +145,7 @@ function assignKey(to: ObjectIndex, from: ObjectIndex, key: string) {
     to[key] = val
 
   else
-
+    // eslint-disable-next-line unicorn/new-for-builtins
     to[key] = deepAssign(Object(to[key]), val)
 }
 

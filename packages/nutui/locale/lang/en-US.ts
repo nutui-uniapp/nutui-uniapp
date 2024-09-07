@@ -109,6 +109,6 @@ export function EnUSLang() {
     },
     formitem: {
       defaultErrorMessage: 'Verification failed',
-    }
+    },
   })
 }

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
-import NutInputNumber from '../inputnumber/inputnumber.vue'
 import { TypeOfFun } from '../_utils'
+import NutInputNumber from '../inputnumber/inputnumber.vue'
 
 const COMPONENT_NAME = 'nut-sku-stepper'
 

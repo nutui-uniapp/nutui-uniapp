@@ -1,5 +1,5 @@
-import fs from 'fs-extra'
 import { consola } from 'consola'
+import fs from 'fs-extra'
 
 async function transformLodash(sourceDir: string, destDir: string) {
   await fs.copy('scripts/uni/lodash', `${destDir}/components/_plugins/lodash`)

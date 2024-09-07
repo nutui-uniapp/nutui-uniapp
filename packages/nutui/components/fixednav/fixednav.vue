@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { SELECTED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { useTranslate } from '../../locale'
-import NutOverlay from '../overlay/overlay.vue'
-import NutIcon from '../icon/icon.vue'
 import { getMainClass, getMainStyle } from '../_utils'
+import { useTranslate } from '../../locale'
+import NutIcon from '../icon/icon.vue'
+import NutOverlay from '../overlay/overlay.vue'
 import { fixednavEmits, fixednavProps } from './fixednav'
 
 const COMPONENT_NAME = 'nut-fixed-nav'

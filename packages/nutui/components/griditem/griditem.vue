@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed } from 'vue'
-import { getMainClass, getMainStyle, pxCheck } from '../_utils'
 import { CLICK_EVENT } from '../_constants'
-import { GRID_KEY, type GridProps } from '../grid'
 import { useInject, useRouter } from '../_hooks'
+import { getMainClass, getMainStyle, pxCheck } from '../_utils'
+import type { GridProps } from '../grid'
+import { GRID_KEY } from '../grid'
 import { gridItemEmits, gridItemProps } from './griditem'
 
 const COMPONENT_NAME = 'nut-grid-item'
