@@ -53,14 +53,14 @@ function handleChange(value: number) {
     </nut-cell>
 
     <h2 class="title">
-      禁用操作
+      禁用状态
     </h2>
     <nut-cell>
       <nut-input-number v-model="value4" disabled />
     </nut-cell>
 
     <h2 class="title">
-      只读禁用输入框
+      禁用输入框
     </h2>
     <nut-cell>
       <nut-input-number v-model="value5" readonly />
@@ -74,7 +74,6 @@ function handleChange(value: number) {
         v-model="value6"
         step="0.1"
         decimal-places="1"
-        readonly
       />
     </nut-cell>
 
@@ -82,7 +81,7 @@ function handleChange(value: number) {
       支持异步修改
     </h2>
     <nut-cell>
-      <nut-input-number :model-value="value7" @change="handleChange" />
+      <nut-input-number :model-value="value7" readonly @change="handleChange" />
     </nut-cell>
 
     <h2 class="title">

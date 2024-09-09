@@ -10,14 +10,6 @@ export const inputnumberProps = {
    */
   modelValue: makeNumericProp(0),
   /**
-   * @description 输入框宽度
-   */
-  inputWidth: makeNumericProp(''),
-  /**
-   * @description 操作加减按钮的尺寸
-   */
-  buttonSize: makeNumericProp(''),
-  /**
    * @description 最小值限制
    */
   min: makeNumericProp(1),
@@ -30,6 +22,10 @@ export const inputnumberProps = {
    */
   step: makeNumericProp(1),
   /**
+   * @description 是否只能输入 step 的倍数
+   */
+  stepStrictly: Boolean,
+  /**
    * @description 设置保留的小数位
    */
   decimalPlaces: makeNumericProp(0),
@@ -41,6 +37,14 @@ export const inputnumberProps = {
    * @description 只读状态禁用输入框操作行为
    */
   readonly: Boolean,
+  /**
+   * @description 输入框宽度
+   */
+  inputWidth: makeNumericProp(''),
+  /**
+   * @description 操作加减按钮的尺寸
+   */
+  buttonSize: makeNumericProp(''),
 }
 
 export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
@@ -48,7 +52,7 @@ export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
 /* eslint-disable unused-imports/no-unused-vars */
 export const inputnumberEmits = {
   [UPDATE_MODEL_EVENT]: (value: number) => true,
-  [CHANGE_EVENT]: (value: number, event: BaseEvent) => true,
+  [CHANGE_EVENT]: (value: number, event?: BaseEvent) => true,
   [FOCUS_EVENT]: (event: InputOnFocusEvent) => true,
   [BLUR_EVENT]: (event: InputOnBlurEvent) => true,
   reduce: (event: BaseEvent) => true,
