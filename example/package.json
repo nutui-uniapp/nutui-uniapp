@@ -69,7 +69,7 @@
     "@dcloudio/uni-cli-shared": "3.0.0-4020420240722002",
     "@dcloudio/uni-stacktracey": "3.0.0-4020420240722002",
     "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722002",
-    "@iconify-json/tabler": "^1.2.0",
+    "@iconify-json/tabler": "^1.2.1",
     "@uni-helper/uni-app-types": "^1.0.0-alpha.3",
     "@uni-helper/unocss-preset-uni": "^0.2.9",
     "@uni-helper/vite-plugin-uni-components": "^0.1.0",
