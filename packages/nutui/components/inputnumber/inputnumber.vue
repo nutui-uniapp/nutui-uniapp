@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 import type { BaseEvent, InputOnBlurEvent, InputOnFocusEvent, InputOnInputEvent } from '@uni-helper/uni-app-types'
 import type { CSSProperties } from 'vue'
-import { computed, defineComponent, onMounted, toRef, useSlots, watch } from 'vue'
+import { computed, defineComponent, nextTick, onMounted, ref, toRef, useSlots, watch } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass, pxCheck } from '../_utils'
 import { useFormDisabled } from '../form/form'
 import NutIcon from '../icon/icon.vue'
 import { inputnumberEmits, inputnumberProps } from './inputnumber'
+
+type UpdateSource = '' | 'click' | 'input' | 'blur'
 
 const props = defineProps(inputnumberProps)
 
@@ -30,12 +32,8 @@ function toNumber(value: number | string) {
   return Number(value)
 }
 
-const innerNumberValue = computed(() => {
+const innerValue = computed(() => {
   return toNumber(props.modelValue)
-})
-
-const innerStringValue = computed(() => {
-  return String(props.modelValue)
 })
 
 const innerMinValue = computed(() => {
@@ -54,25 +52,25 @@ const innerDigits = computed(() => {
   return toNumber(props.decimalPlaces)
 })
 
-const allowReduce = computed(() => {
+const allowDecrease = computed(() => {
   if (formDisabled.value) {
     return false
   }
 
-  return innerNumberValue.value > innerMinValue.value
+  return innerValue.value > innerMinValue.value
 })
 
-const allowAdd = computed(() => {
+const allowIncrease = computed(() => {
   if (formDisabled.value) {
     return false
   }
 
-  return innerNumberValue.value < innerMaxValue.value
+  return innerValue.value < innerMaxValue.value
 })
 
-const leftClasses = computed(() => {
+const decreaseClasses = computed(() => {
   return {
-    [`${componentName}__icon--disabled`]: !allowReduce.value,
+    [`${componentName}__icon--disabled`]: !allowDecrease.value,
   }
 })
 
@@ -91,14 +89,45 @@ const inputStyles = computed(() => {
   return value
 })
 
-const rightClasses = computed(() => {
+const increaseClasses = computed(() => {
   return {
-    [`${componentName}__icon--disabled`]: !allowAdd.value,
+    [`${componentName}__icon--disabled`]: !allowIncrease.value,
   }
 })
 
+const inputValue = ref('')
+
+let updateSource: UpdateSource = ''
+
+function precisionValue(value: number, type: 'number'): number
+function precisionValue(value: number, type: 'string'): string
+function precisionValue(value: number, type: 'number' | 'string') {
+  const fixedValue = value.toFixed(innerDigits.value)
+
+  if (type === 'string') {
+    return fixedValue
+  }
+
+  return Number(fixedValue)
+}
+
+function updateInputValue(value: number) {
+  const finalValue = precisionValue(value, 'string')
+
+  if (finalValue !== inputValue.value) {
+    inputValue.value = finalValue
+  }
+  else {
+    inputValue.value = ''
+
+    nextTick(() => {
+      inputValue.value = finalValue
+    })
+  }
+}
+
 function formatValue(value: number | string) {
-  const trulyValue = Math.max(
+  let trulyValue = Math.max(
     innerMinValue.value,
     Math.min(
       innerMaxValue.value,
@@ -106,15 +135,24 @@ function formatValue(value: number | string) {
     ),
   )
 
-  return Number(trulyValue.toFixed(innerDigits.value))
+  if (props.stepStrictly) {
+    trulyValue = Math.round(trulyValue / innerStepValue.value) * innerStepValue.value
+  }
+
+  return precisionValue(trulyValue, 'number')
 }
 
-function emitChange(value: number | string, event: BaseEvent) {
+function emitChange(source: UpdateSource, value: number | string, event?: BaseEvent) {
+  updateSource = source
+
   const formattedValue = formatValue(value)
 
-  emit(UPDATE_MODEL_EVENT, formattedValue)
+  if (['', 'blur'].includes(updateSource)) {
+    updateInputValue(formattedValue)
+  }
 
-  if (formattedValue !== innerNumberValue.value) {
+  if (formattedValue !== props.modelValue) {
+    emit(UPDATE_MODEL_EVENT, formattedValue)
     emit(CHANGE_EVENT, formattedValue, event)
   }
 }
@@ -123,45 +161,42 @@ function handleInput(event: InputOnInputEvent) {
   if (formDisabled.value || props.readonly)
     return
 
-  const finalValue = Number(event.detail.value)
-
-  emit(UPDATE_MODEL_EVENT, finalValue)
-  emit(CHANGE_EVENT, finalValue, event)
+  emitChange('input', event.detail.value, event)
 }
 
-function handleReduce(event: BaseEvent) {
+function handleDecrease(event: BaseEvent) {
   if (formDisabled.value)
     return
 
   emit('reduce', event)
 
-  const finalValue = innerNumberValue.value - innerStepValue.value
+  const finalValue = innerValue.value - innerStepValue.value
 
-  if (allowReduce.value && finalValue >= innerMinValue.value) {
-    emitChange(finalValue, event)
+  if (allowDecrease.value && finalValue >= innerMinValue.value) {
+    emitChange('click', finalValue, event)
   }
   else {
-    emitChange(innerMinValue.value, event)
-
     emit('overlimit', event, 'reduce')
+
+    emitChange('click', innerMinValue.value, event)
   }
 }
 
-function handleAdd(event: BaseEvent) {
+function handleIncrease(event: BaseEvent) {
   if (formDisabled.value)
     return
 
   emit('add', event)
 
-  const finalValue = innerNumberValue.value + innerStepValue.value
+  const finalValue = innerValue.value + innerStepValue.value
 
-  if (allowAdd.value && finalValue <= innerMaxValue.value) {
-    emitChange(finalValue, event)
+  if (allowIncrease.value && finalValue <= innerMaxValue.value) {
+    emitChange('click', finalValue, event)
   }
   else {
-    emitChange(innerMaxValue.value, event)
-
     emit('overlimit', event, 'add')
+
+    emitChange('click', innerMaxValue.value, event)
   }
 }
 
@@ -176,20 +211,31 @@ function handleBlur(event: InputOnBlurEvent) {
   if (formDisabled.value || props.readonly)
     return
 
-  emitChange(event.detail.value, event)
-
   emit(BLUR_EVENT, event)
+
+  emitChange('blur', event.detail.value, event)
 }
 
 function correctValue() {
-  const formattedValue = formatValue(props.modelValue)
-
-  if (formattedValue !== toNumber(props.modelValue)) {
-    emit(UPDATE_MODEL_EVENT, formattedValue)
-  }
+  emitChange('', props.modelValue)
 }
 
-watch(() => [props.min, props.max, props.decimalPlaces], () => {
+watch(() => props.modelValue, () => {
+  if (updateSource === 'input') {
+    updateSource = ''
+    return
+  }
+
+  correctValue()
+})
+
+watch(() => [
+  props.min,
+  props.max,
+  props.step,
+  props.stepStrictly,
+  props.decimalPlaces,
+], () => {
   correctValue()
 })
 
@@ -215,8 +261,8 @@ export default defineComponent({
   <view :class="classes" :style="props.customStyle">
     <view
       class="nut-input-number__icon nut-input-number__left"
-      :class="leftClasses"
-      @click="handleReduce"
+      :class="decreaseClasses"
+      @click="handleDecrease"
     >
       <slot v-if="slots.leftIcon" name="leftIcon" />
 
@@ -224,16 +270,16 @@ export default defineComponent({
     </view>
 
     <view v-if="props.readonly" class="nut-input-number__text--readonly">
-      {{ innerStringValue }}
+      {{ inputValue }}
     </view>
 
     <template v-else>
       <!-- #ifdef H5 -->
       <input
+        v-model="inputValue"
         v-bind="$attrs"
         class="nut-input-number__text--input"
         :style="inputStyles"
-        :value="innerStringValue"
         type="number"
         :min="props.min"
         :max="props.max"
@@ -246,9 +292,9 @@ export default defineComponent({
 
       <!-- #ifndef H5 -->
       <input
+        v-model="inputValue"
         class="nut-input-number__text--input"
         :style="inputStyles"
-        :value="innerStringValue"
         type="number"
         :min="props.min"
         :max="props.max"
@@ -262,8 +308,8 @@ export default defineComponent({
 
     <view
       class="nut-input-number__icon nut-input-number__right"
-      :class="rightClasses"
-      @click="handleAdd"
+      :class="increaseClasses"
+      @click="handleIncrease"
     >
       <slot v-if="slots.rightIcon" name="rightIcon" />
 
