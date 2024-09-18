@@ -270,7 +270,7 @@ importers:
   packages/nutui:
     dependencies:
       '@uni-helper/uni-app-types':
-        specifier: ^1.0.0-alpha.3
+        specifier: ^1.0.0-alpha.4
         version: 1.0.0-alpha.4(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
       lodash-es:
         specifier: ^4.17.21
