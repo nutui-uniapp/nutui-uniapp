@@ -1,3 +1,18 @@
+## [1.7.17](https://github.com/xiaohe0601/nutui-uniapp/compare/v1.7.16...v1.7.17) (2024-09-18)
+
+
+### Bug Fixes
+
+* **inputnumber:** 新增step-strictly属性 ([#421](https://github.com/xiaohe0601/nutui-uniapp/issues/421)) ([c0a3c47](https://github.com/xiaohe0601/nutui-uniapp/commit/c0a3c47099f19db14716704d5ba2b52dc31541ec))
+* **inputnumber:** 修复失焦后未正确按照最大/最小值修改输入值 ([#420](https://github.com/xiaohe0601/nutui-uniapp/issues/420)) ([be3059f](https://github.com/xiaohe0601/nutui-uniapp/commit/be3059f5e82e713a7df5f33eb31cc8fc89b7766a))
+
+
+### Features
+
+* **cell:** 新增title-width属性 ([#418](https://github.com/xiaohe0601/nutui-uniapp/issues/418)) ([3079495](https://github.com/xiaohe0601/nutui-uniapp/commit/3079495a522af1ae75073efa0830dde43835bd00))
+
+
+
 ## [1.7.16](https://github.com/xiaohe0601/nutui-uniapp/compare/v1.7.15...v1.7.16) (2024-09-04)
 
 
