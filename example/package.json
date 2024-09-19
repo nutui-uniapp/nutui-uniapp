@@ -80,7 +80,7 @@
     "@unocss/preset-rem-to-px": "^0.62.4",
     "@vue/runtime-core": "~3.4.38",
     "@vue/tsconfig": "^0.5.1",
-    "sass": "^1.79.1",
+    "sass": "~1.78.0",
     "typescript": "~5.5.4",
     "unocss": "^0.62.4",
     "unplugin-auto-import": "^0.18.3",
