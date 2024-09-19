@@ -70,7 +70,7 @@
     "markdownlint-cli": "^0.41.0",
     "postcss": "^8.4.47",
     "postcss-html": "^1.7.0",
-    "sass": "^1.79.1",
+    "sass": "~1.78.0",
     "simple-git-hooks": "^2.11.1",
     "stylelint": "^16.9.0",
     "stylelint-config-html": "^1.1.0",
