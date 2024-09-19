@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Need Reproduce
-        if: github.event.label.name == 'Need Reproduce'
+        if: github.event.label.name == '🖱️ need reproduce'
         uses: actions-cool/issues-helper@v3
         with:
           actions: create-comment

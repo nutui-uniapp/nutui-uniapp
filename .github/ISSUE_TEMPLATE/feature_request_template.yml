@@ -1,7 +1,7 @@
 name: 🚀 新功能请求 Feature Request
 description: 对组件库或者仓库本身的建议和想法。
 title: '[FR]: '
-labels: [Feature Request]
+labels: [🚀 feature request]
 body:
   - type: markdown
     attributes:
