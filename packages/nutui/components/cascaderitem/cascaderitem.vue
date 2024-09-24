@@ -29,9 +29,7 @@ const emit = defineEmits(cascaderitemEmits)
 const { translate } = useTranslate(COMPONENT_NAME)
 
 const classes = computed(() => {
-  return getMainClass(props, COMPONENT_NAME, {
-    'nut-cascader': true,
-  })
+  return getMainClass(props, COMPONENT_NAME)
 })
 
 const configs = computed(() => ({
@@ -46,9 +44,9 @@ const configs = computed(() => ({
 const tabsCursor = ref(0)
 const initLoading = ref(false)
 
-const innerValue = ref<CascaderValue>(props.modelValue as CascaderValue)
+const innerValue = ref(props.modelValue as CascaderValue)
 
-const tree = ref<Tree>(new Tree([], {}))
+const tree = ref(new Tree([], {}))
 
 const panes = ref<CascaderPane[]>([])
 
@@ -67,8 +65,9 @@ async function init() {
 
   let { options } = props
 
-  if (configs.value.convertConfig)
+  if (configs.value.convertConfig) {
     options = convertListToOptions(options as CascaderOption[], configs.value.convertConfig as ConvertConfig)
+  }
 
   tree.value = new Tree(options as CascaderOption[], {
     value: configs.value.valueKey,
@@ -156,8 +155,9 @@ const methods = {
 async function syncValue() {
   const currentValue = innerValue.value
 
-  if (currentValue === undefined || !tree.value.nodes.length)
+  if (currentValue === undefined || !tree.value.nodes.length) {
     return
+  }
 
   if (currentValue.length === 0) {
     tabsCursor.value = 0
@@ -246,43 +246,35 @@ function emitChange(pathNodes: CascaderOption[]) {
 
   innerValue.value = emitValue
 
+  emit(UPDATE_MODEL_EVENT, emitValue)
   emit(CHANGE_EVENT, emitValue, pathNodes)
-  emit(UPDATE_MODEL_EVENT, emitValue, pathNodes)
 }
 
 function formatTabTitle(pane: CascaderPane) {
   return pane.selectedNode ? pane.selectedNode.text : translate('select')
 }
 
-watch(
-  [configs, () => props.options],
-  () => {
-    init()
-  },
-  {
-    deep: true,
-    immediate: true,
-  },
-)
+watch(() => [configs.value, props.options], () => {
+  init()
+}, {
+  deep: true,
+  immediate: true,
+})
 
-watch(
-  () => props.modelValue,
-  (value) => {
-    if (value !== innerValue.value) {
-      innerValue.value = value as CascaderValue
+watch(() => props.modelValue, (value) => {
+  if (value !== innerValue.value) {
+    innerValue.value = value as CascaderValue
 
-      syncValue()
-    }
-  },
-)
-watch(
-  () => props.visible,
-  (val) => {
-    // TODO: value为空时，保留上次选择记录，修复单元测试问题
-    if (val && Array.isArray(innerValue.value) && innerValue.value.length > 0)
-      syncValue()
-  },
-)
+    syncValue()
+  }
+})
+
+watch(() => props.visible, (value) => {
+  // TODO: value为空时，保留上次选择记录，修复单元测试问题
+  if (value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
+    syncValue()
+  }
+})
 </script>
 
 <template>
@@ -291,19 +283,19 @@ watch(
     :custom-class="classes"
     :custom-style="props.customStyle"
     :type="props.titleType"
-    :ellipsis="props.titleEllipsis"
-    :title-gutter="props.titleGutter"
     :size="props.titleSize"
+    :title-gutter="props.titleGutter"
+    :ellipsis="props.titleEllipsis"
     title-scroll
     @click="methods.handleTabClick"
   >
     <template v-if="!initLoading && panes.length">
       <NutTabPane v-for="(pane, index) in panes" :key="index" :title="formatTabTitle(pane)">
-        <view role="menu" class="nut-cascader-pane">
-          <scroll-view :scroll-y="true" style="height: 100%">
+        <view class="nut-cascader-pane" role="menu">
+          <scroll-view style="height: 100%" :scroll-y="true">
             <template v-for="node in pane.nodes" :key="node.value">
               <view
-                class="nut-cascader-item"
+                class="nut-cascader-item__inner"
                 :class="{ active: methods.isSelected(pane, node), disabled: node.disabled }"
                 role="menuitemradio"
                 :aria-checked="methods.isSelected(pane, node)"

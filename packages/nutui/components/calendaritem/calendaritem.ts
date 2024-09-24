@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { CHOOSE_EVENT, SELECT_EVENT } from '../_constants'
-import { commonProps, getDay, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import { commonProps, getDay, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 
 export const calendaritemProps = {
   ...commonProps,
@@ -87,11 +87,13 @@ export const calendaritemProps = {
 
 export type CalendarItemProps = ExtractPropTypes<typeof calendaritemProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const calendaritemEmits = {
-  [CHOOSE_EVENT]: (val: string | object) => isString(val) || val instanceof Object,
-  close: () => true,
+  [CHOOSE_EVENT]: (value: string | object) => true,
+  [SELECT_EVENT]: (value: any) => true,
   update: () => true,
-  [SELECT_EVENT]: (val: any) => val,
+  close: () => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type CalendarItemEmits = typeof calendaritemEmits

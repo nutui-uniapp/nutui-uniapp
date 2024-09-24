@@ -1,17 +1,21 @@
 .nut-theme-dark {
   .nut-calendar {
-    color: $dark-color;
-    background: $dark-background;
+    $block: &;
 
-    .nut-calendar__header {
+    &-item {
       color: $dark-color;
       background: $dark-background;
     }
 
-    .nut-calendar__content {
-      .nut-calendar__panel {
-        .nut-calendar__days {
-          .nut-calendar__day {
+    &__header {
+      color: $dark-color;
+      background: $dark-background;
+    }
+
+    &__content {
+      #{$block}__panel {
+        #{$block}__days {
+          #{$block}__day {
             &--disabled {
               color: $dark-calendar-disabled !important;
             }
@@ -27,7 +31,7 @@
       }
     }
 
-    .nut-calendar__footer {
+    &__footer {
       color: $dark-color;
       background: $dark-background2;
     }
@@ -35,19 +39,23 @@
 }
 
 .nut-calendar {
-  position: relative;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  font-size: 16px;
-  color: #333;
-  background-color: $white;
+  $block: &;
 
-  &.nut-calendar--nopop {
-    .nut-calendar__header {
-      .nut-calendar__header-title {
+  &-item {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    font-size: 16px;
+    color: #333;
+    background-color: $white;
+  }
+
+  &#{$block}--nopop {
+    #{$block}__header {
+      #{$block}__header-title {
         font-size: $calendar-base-font;
       }
     }
@@ -61,31 +69,30 @@
     display: none;
   }
 
-  // 头部导航
-  .nut-calendar__header {
+  &__header {
     display: flex;
     flex-direction: column;
     padding-top: 1px;
     text-align: center;
     background-color: $white;
 
-    .nut-calendar__header-title {
+    &-title {
       font-size: $calendar-title-font;
       font-weight: $calendar-title-font-weight;
       line-height: 44px;
     }
 
-    .nut-calendar__header-slot {
+    &-slot {
       min-height: 24px;
     }
 
-    .nut-calendar__header-subtitle {
+    &-subtitle {
       padding: 7px 0;
       font-size: $calendar-sub-title-font;
       line-height: 22px;
     }
 
-    .nut-calendar__weekdays {
+    #{$block}__weekdays {
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -93,7 +100,7 @@
       border-radius: 0 0 12px 12px;
       box-shadow: 0 4px 10px 0 rgba($color: #000, $alpha: 6%);
 
-      .nut-calendar__weekday {
+      #{$block}__weekday {
         &.weekend {
           color: $calendar-day67-font-color;
         }
@@ -101,32 +108,31 @@
     }
   }
 
-  // 月份
-  .nut-calendar__content {
+  &__content {
     display: block;
     flex: 1;
     width: 100%;
     overflow-y: auto;
 
-    .nut-calendar__panel {
+    #{$block}__panel {
       position: relative;
       box-sizing: border-box;
       display: block;
       width: 100%;
       height: auto;
 
-      .nut-calendar__body {
+      #{$block}__body {
         display: block;
       }
 
-      .nut-calendar__month {
+      #{$block}__month {
         display: flex;
         flex-direction: column;
         text-align: center;
       }
 
       view:nth-of-type(2) {
-        .nut-calendar__month-title {
+        #{$block}__month-title {
           padding-top: 0;
         }
       }
@@ -143,17 +149,17 @@
         text-align: center;
       }
 
-      .nut-calendar__month-title {
+      #{$block}__month-title {
         height: 23px;
         margin: 8px 0;
         font-size: $calendar-month-title-font-size;
         line-height: 23px;
       }
 
-      .nut-calendar__days {
+      #{$block}__days {
         overflow: hidden;
 
-        .nut-calendar__day {
+        #{$block}__day {
           position: relative;
           display: flex;
           flex-direction: column;
@@ -168,12 +174,12 @@
             color: $calendar-day67-font-color;
           }
 
-          .nut-calendar__day-tips {
+          #{$block}__day-tips {
             position: absolute;
             width: 100%;
           }
 
-          .nut-calendar__day-tips--curr {
+          #{$block}__day-tips--curr {
             position: absolute;
             bottom: 6px;
             width: 100%;
@@ -181,7 +187,7 @@
             line-height: 14px;
           }
 
-          .nut-calendar__day-tip {
+          #{$block}__day-tip {
             position: absolute;
             bottom: 6px;
             width: 100%;
@@ -190,11 +196,11 @@
             color: $calendar-primary-color;
           }
 
-          .nut-calendar__day-tips--top {
+          #{$block}__day-tips--top {
             top: 6px;
           }
 
-          .nut-calendar__day-tips--bottom {
+          #{$block}__day-tips--bottom {
             bottom: 6px;
           }
 
@@ -203,15 +209,15 @@
             background-color: $calendar-primary-color;
             border-radius: $calendar-day-active-border-radius;
 
-            .nut-calendar__day-tips {
+            #{$block}__day-tips {
               visibility: hidden;
             }
 
-            .nut-calendar__day-tips--curr {
+            #{$block}__day-tips--curr {
               visibility: hidden;
             }
 
-            .nut-calendar__day-tip {
+            #{$block}__day-tip {
               color: $white;
             }
           }
@@ -235,7 +241,7 @@
             }
           }
 
-          .nut-calendar__day-value {
+          #{$block}__day-value {
             padding: 2px 0;
             font-size: $calendar-day-font;
           }
@@ -244,14 +250,13 @@
     }
   }
 
-  // 底部导航
-  .nut-calendar__footer {
+  &__footer {
     display: flex;
     width: 100%;
     height: 62px;
     background-color: $white;
 
-    .nut-calendar__confirm {
+    #{$block}__confirm {
       width: 100%;
       height: 44px;
       margin: 10px 18px;

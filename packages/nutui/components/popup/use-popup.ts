@@ -1,13 +1,13 @@
 import type { SetupContext } from 'vue'
 import { computed, reactive, toRefs, watch } from 'vue'
-import { CLOSE_EVENT, CLOSED_EVENT, OPEN_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { CLOSE_EVENT, CLOSED_EVENT, OPEN_EVENT, OPENED_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { animationName } from '../_constants/types'
 import { useGlobalZIndex } from '../_hooks'
 import { getMainClass, getMainStyle } from '../_utils'
 import type { NutAnimationName } from '../transition'
 import type { PopupEmits, PopupProps } from './popup'
 
-const COMPONENT_NAME = 'nut-popup'
+const componentName = `${PREFIX}-popup`
 
 export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit']) {
   const state = reactive({
@@ -17,7 +17,7 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
   })
 
   const classes = computed(() => {
-    return getMainClass(props, COMPONENT_NAME, {
+    return getMainClass(props, componentName, {
       round: props.round,
       [`nut-popup--${props.position}`]: true,
       [`nut-popup--${props.position}--safebottom`]: props.position === 'bottom' && props.safeAreaInsetBottom,

@@ -1,6 +1,15 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import { computed, ref, useSlots, watch } from 'vue'
+import {
+  CHANGE_EVENT,
+  CLOSE_EVENT,
+  CLOSED_EVENT,
+  OPEN_EVENT,
+  OPENED_EVENT,
+  UPDATE_MODEL_EVENT,
+  UPDATE_VISIBLE_EVENT,
+} from '../_constants'
+import { getMainClass } from '../_utils'
 import NutCascaderItem from '../cascaderitem/cascaderitem.vue'
 import NutPopup from '../popup/popup.vue'
 import { cascaderEmits, cascaderProps } from './cascader'
@@ -21,7 +30,9 @@ const props = defineProps(cascaderProps)
 
 const emit = defineEmits(cascaderEmits)
 
-const innerValue = ref<CascaderValue>(props.modelValue as CascaderValue)
+const slots = useSlots()
+
+const innerValue = ref(props.modelValue as CascaderValue)
 
 const innerVisible = computed({
   get() {
@@ -32,51 +43,107 @@ const innerVisible = computed({
   },
 })
 
-function onChange(value: CascaderValue, pathNodes: CascaderOption[]) {
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+const popClasses = computed(() => {
+  return `${COMPONENT_NAME}__popup ${props.popClass}`
+})
+
+const overlayClasses = computed(() => {
+  return `${COMPONENT_NAME}__overlay ${props.overlayClass}`
+})
+
+function handleChange(value: CascaderValue, pathNodes: CascaderOption[]) {
   innerValue.value = value
   innerVisible.value = false
 
-  emit(CHANGE_EVENT, value, pathNodes)
   emit(UPDATE_MODEL_EVENT, value)
+  emit(CHANGE_EVENT, value, pathNodes)
 }
 
-function onPathChange(pathNodes: CascaderOption[]) {
+function handlePathChange(pathNodes: CascaderOption[]) {
   emit('pathChange', pathNodes)
 }
 
-watch(
-  () => props.modelValue,
-  (value) => {
-    if (value !== innerValue.value)
-      innerValue.value = value as CascaderValue
-  },
-)
+function handleOpen() {
+  emit(OPEN_EVENT)
+}
+
+function handleOpened() {
+  emit(OPENED_EVENT)
+}
+
+function handleClose() {
+  emit(CLOSE_EVENT)
+}
+
+function handleClosed() {
+  emit(CLOSED_EVENT)
+}
+
+watch(() => props.modelValue, (value) => {
+  if (value !== innerValue.value) {
+    innerValue.value = value as CascaderValue
+  }
+})
 </script>
 
 <template>
-  <template v-if="props.poppable">
-    <NutPopup
-      v-model:visible="innerVisible"
-      :custom-class="props.customClass"
-      :custom-style="props.customStyle"
-      position="bottom"
-      :z-index="props.zIndex"
-      pop-class="nut-cascader__popup"
-      round
-      :closeable="props.closeable"
-      :close-icon="props.closeIcon"
-      :destroy-on-close="false"
-      :close-icon-position="props.closeIconPosition"
-      :lock-scroll="props.lockScroll"
-    >
-      <slot name="title">
-        <template v-if="props.title">
-          <rich-text class="nut-cascader__bar" :nodes="props.title" />
-        </template>
-      </slot>
+  <view :class="classes" :style="props.customStyle">
+    <template v-if="props.poppable">
+      <NutPopup
+        v-model:visible="innerVisible"
+        :custom-class="popClasses"
+        :custom-style="props.popStyle"
+        :overlay-class="overlayClasses"
+        :overlay-style="props.overlayStyle"
+        position="bottom"
+        round
+        :closeable="props.closeable"
+        :close-icon="props.closeIcon"
+        :close-icon-position="props.closeIconPosition"
+        :z-index="props.zIndex"
+        :lock-scroll="props.lockScroll"
+        :overlay="props.overlay"
+        :close-on-click-overlay="props.closeOnClickOverlay"
+        :destroy-on-close="false"
+        @open="handleOpen"
+        @opened="handleOpened"
+        @close="handleClose"
+        @closed="handleClosed"
+      >
+        <slot v-if="slots.title" name="title" />
 
+        <template v-else>
+          <rich-text v-if="props.title" class="nut-cascader__bar" :nodes="props.title" />
+        </template>
+
+        <NutCascaderItem
+          :model-value="innerValue"
+          :visible="innerVisible"
+          :options="props.options"
+          :lazy="props.lazy"
+          :lazy-load="props.lazyLoad"
+          :value-key="props.valueKey"
+          :text-key="props.textKey"
+          :children-key="props.childrenKey"
+          :convert-config="props.convertConfig"
+          :title-type="props.titleType"
+          :title-size="props.titleSize"
+          :title-gutter="props.titleGutter"
+          :title-ellipsis="props.titleEllipsis"
+          @change="handleChange"
+          @path-change="handlePathChange"
+        />
+      </NutPopup>
+    </template>
+
+    <template v-else>
       <NutCascaderItem
         :model-value="innerValue"
+        :visible="innerVisible"
         :options="props.options"
         :lazy="props.lazy"
         :lazy-load="props.lazyLoad"
@@ -84,36 +151,15 @@ watch(
         :text-key="props.textKey"
         :children-key="props.childrenKey"
         :convert-config="props.convertConfig"
-        :visible="innerVisible"
-        :title-ellipsis="props.titleEllipsis"
-        :title-gutter="props.titleGutter"
-        :title-size="props.titleSize"
         :title-type="props.titleType"
-        @change="onChange"
-        @path-change="onPathChange"
+        :title-size="props.titleSize"
+        :title-gutter="props.titleGutter"
+        :title-ellipsis="props.titleEllipsis"
+        @change="handleChange"
+        @path-change="handlePathChange"
       />
-    </NutPopup>
-  </template>
-
-  <template v-else>
-    <NutCascaderItem
-      :model-value="innerValue"
-      :options="props.options"
-      :lazy="props.lazy"
-      :lazy-load="props.lazyLoad"
-      :value-key="props.valueKey"
-      :text-key="props.textKey"
-      :children-key="props.childrenKey"
-      :convert-config="props.convertConfig"
-      :visible="innerVisible"
-      :title-ellipsis="props.titleEllipsis"
-      :title-gutter="props.titleGutter"
-      :title-size="props.titleSize"
-      :title-type="props.titleType"
-      @change="onChange"
-      @path-change="onPathChange"
-    />
-  </template>
+    </template>
+  </view>
 </template>
 
 <style lang="scss">

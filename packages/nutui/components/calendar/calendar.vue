@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
-import { CHOOSE_EVENT, CLOSE_EVENT, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
+import {
+  CHOOSE_EVENT,
+  CLOSE_EVENT,
+  CLOSED_EVENT,
+  OPEN_EVENT,
+  OPENED_EVENT,
+  SELECT_EVENT,
+  UPDATE_VISIBLE_EVENT,
+} from '../_constants'
+import { getMainClass } from '../_utils'
 import NutCalendarItem from '../calendaritem/calendaritem.vue'
 import type { CalendarInst } from '../calendaritem/types'
 import NutPopup from '../popup/popup.vue'
@@ -23,13 +32,31 @@ const emit = defineEmits(calendarEmits)
 
 const slots = useSlots()
 
-const visible = computed({
+const innerVisible = computed({
   get() {
     return props.visible
   },
-  set(val) {
-    emit('update:visible', val)
+  set(value) {
+    emit('update:visible', value)
   },
+})
+
+const classes = computed(() => {
+  return getMainClass(props, COMPONENT_NAME)
+})
+
+const popClasses = computed(() => {
+  return `${COMPONENT_NAME}__popup ${props.popClass}`
+})
+
+const popStyles = computed(() => {
+  return [{
+    height: '85vh',
+  }, props.popStyle]
+})
+
+const overlayClasses = computed(() => {
+  return `${COMPONENT_NAME}__overlay ${props.overlayClass}`
 })
 
 const calendarRef = ref<CalendarInst | null>(null)
@@ -42,42 +69,58 @@ function initPosition() {
   calendarRef.value?.initPosition()
 }
 
-function update() {
-  emit(UPDATE_VISIBLE_EVENT, false)
-}
-
 function close() {
-  emit(CLOSE_EVENT)
   emit(UPDATE_VISIBLE_EVENT, false)
+  emit(CLOSE_EVENT)
 }
 
 function choose(param: string | object) {
   close()
-  emit(CHOOSE_EVENT, param)
-}
 
-function opened() {
-  if (props.defaultValue) {
-    if (Array.isArray(props.defaultValue)) {
-      if (props.defaultValue?.length)
-        calendarRef.value?.scrollToDate(props.defaultValue?.[0])
-    }
-    else {
-      calendarRef.value?.scrollToDate(props.defaultValue)
-    }
-  }
+  emit(CHOOSE_EVENT, param)
 }
 
 function select(param: string) {
   emit(SELECT_EVENT, param)
 }
 
-function onClickCloseIcon() {
+function update() {
+  emit(UPDATE_VISIBLE_EVENT, false)
+}
+
+function handleCloseIconClick() {
   emit('clickCloseIcon')
 }
 
-function onClickOverlay() {
+function handleOverlayClick() {
   emit('clickOverlay')
+}
+
+function handleOpen() {
+  emit(OPEN_EVENT)
+}
+
+function handleOpened() {
+  emit(OPENED_EVENT)
+
+  if (props.defaultValue) {
+    if (Array.isArray(props.defaultValue)) {
+      if (props.defaultValue.length > 0) {
+        scrollToDate(props.defaultValue[0])
+      }
+    }
+    else {
+      scrollToDate(props.defaultValue)
+    }
+  }
+}
+
+function handleClose() {
+  emit(CLOSE_EVENT)
+}
+
+function handleClosed() {
+  emit(CLOSED_EVENT)
 }
 
 defineExpose({
@@ -87,116 +130,131 @@ defineExpose({
 </script>
 
 <template>
-  <NutPopup
-    v-if="props.poppable"
-    v-bind="props"
-    v-model:visible="visible"
-    :custom-style="{ height: '85vh' }"
-    position="bottom"
-    round
-    closeable
-    :destroy-on-close="false"
-    @opened="opened"
-    @click-close-icon="onClickCloseIcon"
-    @click-overlay="onClickOverlay"
-  >
-    <NutCalendarItem
-      ref="calendarRef"
-      :custom-class="props.customClass"
-      :custom-style="props.customStyle"
-      :visible="visible"
-      :type="props.type"
-      :is-auto-back-fill="props.isAutoBackFill"
-      :poppable="props.poppable"
-      :title="props.title"
-      :default-value="props.defaultValue"
-      :start-date="props.startDate"
-      :end-date="props.endDate"
-      :confirm-text="props.confirmText"
-      :start-text="props.startText"
-      :end-text="props.endText"
-      :show-today="props.showToday"
-      :show-title="props.showTitle"
-      :show-sub-title="props.showSubTitle"
-      :to-date-animation="props.toDateAnimation"
-      :first-day-of-week="props.firstDayOfWeek"
-      :disabled-date="props.disabledDate"
-      :footer-slot="props.footerSlot"
-      :btn-slot="props.btnSlot"
-      @update="update"
-      @close="close"
-      @choose="choose"
-      @select="select"
-    >
-      <template v-if="slots.btn" #btn>
-        <slot name="btn" />
-      </template>
+  <view :class="classes" :style="props.customStyle">
+    <template v-if="props.poppable">
+      <NutPopup
+        v-model:visible="innerVisible"
+        :custom-class="popClasses"
+        :custom-style="popStyles"
+        :overlay-class="overlayClasses"
+        :overlay-style="props.overlayStyle"
+        position="bottom"
+        round
+        :closeable="props.closeable"
+        :close-icon="props.closeIcon"
+        :close-icon-position="props.closeIconPosition"
+        :z-index="props.zIndex"
+        :lock-scroll="props.lockScroll"
+        :overlay="props.overlay"
+        :close-on-click-overlay="props.closeOnClickOverlay"
+        :destroy-on-close="false"
+        @click-close-icon="handleCloseIconClick"
+        @click-overlay="handleOverlayClick"
+        @open="handleOpen"
+        @opened="handleOpened"
+        @close="handleClose"
+        @closed="handleClosed"
+      >
+        <NutCalendarItem
+          ref="calendarRef"
+          :custom-class="props.customClass"
+          :custom-style="props.customStyle"
+          :visible="innerVisible"
+          :type="props.type"
+          :is-auto-back-fill="props.isAutoBackFill"
+          :poppable="props.poppable"
+          :title="props.title"
+          :default-value="props.defaultValue"
+          :start-date="props.startDate"
+          :end-date="props.endDate"
+          :confirm-text="props.confirmText"
+          :start-text="props.startText"
+          :end-text="props.endText"
+          :show-today="props.showToday"
+          :show-title="props.showTitle"
+          :show-sub-title="props.showSubTitle"
+          :to-date-animation="props.toDateAnimation"
+          :first-day-of-week="props.firstDayOfWeek"
+          :disabled-date="props.disabledDate"
+          :footer-slot="props.footerSlot"
+          :btn-slot="props.btnSlot"
+          @choose="choose"
+          @select="select"
+          @update="update"
+          @close="close"
+        >
+          <template v-if="slots.btn" #btn>
+            <slot name="btn" />
+          </template>
 
-      <template v-if="slots.day" #day="{ date }">
-        <slot name="day" :date="date" />
-      </template>
+          <template v-if="slots.day" #day="{ date }">
+            <slot name="day" :date="date" />
+          </template>
 
-      <template v-if="slots.topInfo" #topInfo="{ date }">
-        <slot name="topInfo" :date="date" />
-      </template>
+          <template v-if="slots.topInfo" #topInfo="{ date }">
+            <slot name="topInfo" :date="date" />
+          </template>
 
-      <template v-if="slots.bottomInfo" #bottomInfo="{ date }">
-        <slot name="bottomInfo" :date="date" />
-      </template>
+          <template v-if="slots.bottomInfo" #bottomInfo="{ date }">
+            <slot name="bottomInfo" :date="date" />
+          </template>
 
-      <template v-if="slots.footer" #footer="{ date }">
-        <slot name="footer" :date="date" />
-      </template>
-    </NutCalendarItem>
-  </NutPopup>
-
-  <NutCalendarItem
-    v-else
-    ref="calendarRef"
-    :custom-class="props.customClass"
-    :custom-style="props.customStyle"
-    :type="props.type"
-    :is-auto-back-fill="props.isAutoBackFill"
-    :poppable="props.poppable"
-    :title="props.title"
-    :default-value="props.defaultValue"
-    :start-date="props.startDate"
-    :end-date="props.endDate"
-    :confirm-text="props.confirmText"
-    :start-text="props.startText"
-    :end-text="props.endText"
-    :show-today="props.showToday"
-    :show-title="props.showTitle"
-    :show-sub-title="props.showSubTitle"
-    :to-date-animation="props.toDateAnimation"
-    :first-day-of-week="props.firstDayOfWeek"
-    :disabled-date="props.disabledDate"
-    :footer-slot="props.footerSlot"
-    :btn-slot="props.btnSlot"
-    @close="close"
-    @choose="choose"
-    @select="select"
-  >
-    <template v-if="slots.btn" #btn>
-      <slot name="btn" />
+          <template v-if="slots.footer" #footer="{ date }">
+            <slot name="footer" :date="date" />
+          </template>
+        </NutCalendarItem>
+      </NutPopup>
     </template>
 
-    <template v-if="slots.day" #day="{ date }">
-      <slot name="day" :date="date" />
-    </template>
+    <template v-else>
+      <NutCalendarItem
+        ref="calendarRef"
+        :custom-class="props.customClass"
+        :custom-style="props.customStyle"
+        :type="props.type"
+        :is-auto-back-fill="props.isAutoBackFill"
+        :poppable="props.poppable"
+        :title="props.title"
+        :default-value="props.defaultValue"
+        :start-date="props.startDate"
+        :end-date="props.endDate"
+        :confirm-text="props.confirmText"
+        :start-text="props.startText"
+        :end-text="props.endText"
+        :show-today="props.showToday"
+        :show-title="props.showTitle"
+        :show-sub-title="props.showSubTitle"
+        :to-date-animation="props.toDateAnimation"
+        :first-day-of-week="props.firstDayOfWeek"
+        :disabled-date="props.disabledDate"
+        :footer-slot="props.footerSlot"
+        :btn-slot="props.btnSlot"
+        @choose="choose"
+        @select="select"
+        @close="close"
+      >
+        <template v-if="slots.btn" #btn>
+          <slot name="btn" />
+        </template>
 
-    <template v-if="slots.topInfo" #topInfo="{ date }">
-      <slot name="topInfo" :date="date" />
-    </template>
+        <template v-if="slots.day" #day="{ date }">
+          <slot name="day" :date="date" />
+        </template>
 
-    <template v-if="slots.bottomInfo" #bottomInfo="{ date }">
-      <slot name="bottomInfo" :date="date" />
-    </template>
+        <template v-if="slots.topInfo" #topInfo="{ date }">
+          <slot name="topInfo" :date="date" />
+        </template>
 
-    <template v-if="slots.footer" #footer="{ date }">
-      <slot name="footer" :date="date" />
+        <template v-if="slots.bottomInfo" #bottomInfo="{ date }">
+          <slot name="bottomInfo" :date="date" />
+        </template>
+
+        <template v-if="slots.footer" #footer="{ date }">
+          <slot name="footer" :date="date" />
+        </template>
+      </NutCalendarItem>
     </template>
-  </NutCalendarItem>
+  </view>
 </template>
 
 <style lang="scss">

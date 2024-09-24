@@ -8,6 +8,7 @@ export interface CascaderConfig {
   text?: string
   children?: string
 }
+
 export interface CascaderTabs {
   title: string
   paneKey: string

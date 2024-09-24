@@ -1,6 +1,14 @@
-import type { ExtractPropTypes } from 'vue'
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { commonProps, isBoolean, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
+import {
+  CHANGE_EVENT,
+  CLOSE_EVENT,
+  CLOSED_EVENT,
+  OPEN_EVENT,
+  OPENED_EVENT,
+  UPDATE_MODEL_EVENT,
+  UPDATE_VISIBLE_EVENT,
+} from '../_constants'
+import { commonProps, makeArrayProp, makeNumericProp, makeStringProp, truthProp } from '../_utils'
 import { popupProps } from '../popup/popup'
 import type { CascaderOption, CascaderValue } from './types'
 
@@ -44,46 +52,55 @@ export const cascaderProps = {
    */
   convertConfig: Object,
   /**
-   * @description 标题
-   */
-  title: String,
-  /**
-   * @description 取消按钮位置，继承 `Popup` 组件
-   */
-  closeIconPosition: makeStringProp<'top-right' | 'bottom-right' | 'bottom-left' | 'top-left'>('top-right'),
-  /**
-   * @description 是否显示关闭按钮，继承 `Popup` 组件
-   */
-  closeable: Boolean,
-  /**
    * @description 是否需要弹层展示（设置为 `false` 后，`title` 失效）
    */
   poppable: truthProp,
   /**
-   * @description 标签间隙
+   * @description 标题
    */
-  titleGutter: makeNumericProp(0),
+  title: String,
+  /**
+   * @description 选中底部展示样式 可选值: 'line', 'smile'
+   */
+  titleType: makeStringProp<'line' | 'card' | 'smile'>('line'),
   /**
    * @description 标签栏字体尺寸大小 可选值: 'large', 'normal', 'small'
    */
   titleSize: makeStringProp<'large' | 'normal' | 'small'>('normal'),
   /**
+   * @description 标签间隙
+   */
+  titleGutter: makeNumericProp(0),
+  /**
    * @description 是否省略过长的标题文字
    */
   titleEllipsis: truthProp,
   /**
-   * @description 选中底部展示样式 可选值: 'line', 'smile'
+   * @description 自定义弹窗样式
    */
-  titleType: makeStringProp<'line' | 'card' | 'smile'>('line'),
+  popStyle: {
+    type: [String, Object, Array] as PropType<StyleValue>,
+    default: '',
+  },
+  /**
+   * @description 遮罩显示时的背景是否锁定
+   */
+  lockScroll: truthProp,
 }
 
 export type CascaderProps = ExtractPropTypes<typeof cascaderProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const cascaderEmits = {
-  [UPDATE_MODEL_EVENT]: (val: CascaderValue) => Array.isArray(val),
-  [CHANGE_EVENT]: (val: CascaderValue, val2: CascaderOption[]) => Array.isArray(val) && Array.isArray(val2),
-  [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
-  pathChange: (val: CascaderOption[]) => Array.isArray(val),
+  [UPDATE_MODEL_EVENT]: (value: CascaderValue) => true,
+  [UPDATE_VISIBLE_EVENT]: (value: boolean) => true,
+  [CHANGE_EVENT]: (value: CascaderValue, nodes: CascaderOption[]) => true,
+  pathChange: (nodes: CascaderOption[]) => true,
+  [OPEN_EVENT]: () => true,
+  [OPENED_EVENT]: () => true,
+  [CLOSE_EVENT]: () => true,
+  [CLOSED_EVENT]: () => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type CascaderEmits = typeof cascaderEmits

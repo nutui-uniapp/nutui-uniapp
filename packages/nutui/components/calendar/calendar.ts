@@ -1,6 +1,14 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import { CHOOSE_EVENT, CLOSE_EVENT, SELECT_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { commonProps, getDay, isBoolean, isString, makeNumberProp, makeStringProp, truthProp } from '../_utils'
+import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
+import {
+  CHOOSE_EVENT,
+  CLOSE_EVENT,
+  CLOSED_EVENT,
+  OPEN_EVENT,
+  OPENED_EVENT,
+  SELECT_EVENT,
+  UPDATE_VISIBLE_EVENT,
+} from '../_constants'
+import { commonProps, getDay, makeNumberProp, makeStringProp, truthProp } from '../_utils'
 import { popupProps } from '../popup/popup'
 
 export const calendarProps = {
@@ -85,17 +93,33 @@ export const calendarProps = {
    * @description 是否使用 btn 插槽，如果使用,此值必须为 true
    */
   btnSlot: Boolean,
+  /**
+   * @description 自定义弹窗样式
+   */
+  popStyle: {
+    type: [String, Object, Array] as PropType<StyleValue>,
+    default: '',
+  },
+  /**
+   * @description 遮罩显示时的背景是否锁定
+   */
+  lockScroll: truthProp,
 }
 
 export type CalendarProps = ExtractPropTypes<typeof calendarProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const calendarEmits = {
-  [CHOOSE_EVENT]: (val: string | object) => isString(val) || val instanceof Object,
-  [CLOSE_EVENT]: () => true,
-  [UPDATE_VISIBLE_EVENT]: (val: boolean) => isBoolean(val),
-  [SELECT_EVENT]: (val: any) => val,
+  [UPDATE_VISIBLE_EVENT]: (value: boolean) => true,
+  [CHOOSE_EVENT]: (value: string | object) => true,
+  [SELECT_EVENT]: (value: any) => true,
   clickCloseIcon: () => true,
   clickOverlay: () => true,
+  [OPEN_EVENT]: () => true,
+  [OPENED_EVENT]: () => true,
+  [CLOSE_EVENT]: () => true,
+  [CLOSED_EVENT]: () => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type CalendarEmits = typeof calendarEmits

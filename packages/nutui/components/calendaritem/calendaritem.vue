@@ -506,8 +506,9 @@ function initData() {
   else if (props.type === 'week' && Array.isArray(state.currDate)) {
     if (state.currDate.length > 0) {
       const [y, m, d] = splitDate(state.currDate[0])
-      const weekArr = getWeekDate(y, m, d, props.firstDayOfWeek)
-      state.currDate = weekArr
+
+      state.currDate = getWeekDate(y, m, d, props.firstDayOfWeek)
+
       if (propStartDate && compareDate(state.currDate[0], propStartDate))
         state.currDate.splice(0, 1, propStartDate)
 
@@ -625,8 +626,8 @@ function setDefaultRange(monthsNum: number, current: number) {
   else {
     state.defaultRange = [0, monthsNum + 2]
   }
-  const defaultScrollTop = state.monthsData[state.defaultRange[0]].cssScrollHeight
-  state.translateY = defaultScrollTop
+
+  state.translateY = state.monthsData[state.defaultRange[0]].cssScrollHeight
 }
 
 // 区间选择&&当前月&&选中态
@@ -695,6 +696,15 @@ function resetRender() {
   initData()
 }
 
+// 监听 默认值更改
+watch(() => props.defaultValue, (value) => {
+  if (value) {
+    if (props.poppable) {
+      resetRender()
+    }
+  }
+})
+
 onMounted(() => {
   // 初始化数据
   uni.getSystemInfo({
@@ -716,17 +726,6 @@ onMounted(() => {
   })
 })
 
-// 监听 默认值更改
-watch(
-  () => props.defaultValue,
-  (val) => {
-    if (val) {
-      if (props.poppable)
-        resetRender()
-    }
-  },
-)
-
 defineExpose({
   scrollToDate,
   initPosition,
@@ -734,12 +733,7 @@ defineExpose({
 </script>
 
 <template>
-  <view
-    class="nut-calendar"
-    :class="classes"
-    :style="props.customStyle"
-  >
-    <!-- header -->
+  <view :class="classes" :style="props.customStyle">
     <view class="nut-calendar__header">
       <view v-if="props.showTitle" class="nut-calendar__header-title">
         {{ props.title || translate('title') }}
@@ -765,7 +759,6 @@ defineExpose({
       </view>
     </view>
 
-    <!-- content -->
     <scroll-view
       ref="months"
       class="nut-calendar__content"
@@ -850,7 +843,6 @@ defineExpose({
       </view>
     </scroll-view>
 
-    <!-- footer -->
     <view v-if="props.poppable && !props.isAutoBackFill" class="nut-calendar__footer">
       <slot v-if="props.footerSlot" name="footer" :date="state.chooseData" />
 

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import NutIcon from '../icon/icon.vue'
 import NutOverlay from '../overlay/overlay.vue'
 import NutTransition from '../transition/transition.vue'
@@ -12,9 +13,7 @@ defineOptions({
   options: {
     virtualHost: true,
     addGlobalClass: true,
-    // #ifndef H5
     styleIsolation: 'shared',
-    // #endif
   },
 })
 
@@ -34,30 +33,33 @@ const {
   onOpened,
   onClosed,
 } = usePopup(props, emit)
+
+const innerDuration = computed(() => {
+  return Number(props.duration)
+})
 </script>
 
 <template>
   <NutOverlay
     v-if="props.overlay"
-    v-bind="$attrs"
-    :visible="props.visible"
-    :close-on-click-overlay="props.closeOnClickOverlay"
-    :z-index="innerIndex"
-    :lock-scroll="props.lockScroll"
-    :duration="props.duration"
     :overlay-class="props.overlayClass"
     :overlay-style="props.overlayStyle"
+    :visible="props.visible"
+    :z-index="innerIndex"
+    :duration="innerDuration"
+    :lock-scroll="props.lockScroll"
+    :close-on-click-overlay="props.closeOnClickOverlay"
     :destroy-on-close="props.destroyOnClose"
     @click="onClickOverlay"
   />
 
   <NutTransition
-    :name="transitionName"
     :custom-class="classes"
-    :show="props.visible"
-    :destroy-on-close="props.destroyOnClose"
     :custom-style="popStyle"
-    :duration="Number(props.duration)"
+    :name="transitionName"
+    :show="props.visible"
+    :duration="innerDuration"
+    :destroy-on-close="props.destroyOnClose"
     @after-enter="onOpened"
     @after-leave="onClosed"
     @click="onClick"
