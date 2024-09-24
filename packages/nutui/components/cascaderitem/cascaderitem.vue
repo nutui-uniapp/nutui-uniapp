@@ -1,26 +1,24 @@
-<script setup lang="ts">
-import type { Ref } from 'vue'
+<script lang="ts" setup>
 import { computed, defineComponent, ref, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
 import { convertListToOptions } from '../cascader/helper'
 import Tree from '../cascader/tree'
-import type { CascaderOption, CascaderPane, CascaderTabs, CascaderValue, convertConfig } from '../cascader/types'
+import type { CascaderOption, CascaderPane, CascaderTabs, CascaderValue, ConvertConfig } from '../cascader/types'
 import NutIcon from '../icon/icon.vue'
 import NutTabPane from '../tabpane/tabpane.vue'
 import NutTabs from '../tabs/tabs.vue'
 import { cascaderitemEmits, cascaderitemProps } from './cascaderitem'
 
 const props = defineProps(cascaderitemProps)
+
 const emit = defineEmits(cascaderitemEmits)
-const componentName = `${PREFIX}-calendar-item`
-const { translate } = useTranslate(componentName)
+
 const classes = computed(() => {
-  return getMainClass(props, componentName, {
-    'nut-cascader': true,
-  })
+  return getMainClass(props, componentName)
 })
+
 const configs = computed(() => ({
   lazy: props.lazy,
   lazyLoad: props.lazyLoad,
@@ -32,15 +30,21 @@ const configs = computed(() => ({
 
 const tabsCursor = ref(0)
 const initLoading = ref(false)
-const innerValue: Ref<CascaderValue> = ref(props.modelValue as CascaderValue)
-const tree: Ref<Tree> = ref(new Tree([], {}))
-const panes: Ref<CascaderPane[]> = ref([])
-const isLazy = computed(() => configs.value.lazy && Boolean(configs.value.lazyLoad))
 
+const innerValue = ref(props.modelValue as CascaderValue)
+
+const tree = ref(new Tree([], {}))
+
+const panes = ref<CascaderPane[]>([])
+
+const isLazy = computed(() => configs.value.lazy && Boolean(configs.value.lazyLoad))
 const lazyLoadMap = new Map()
+
 let currentProcessNode: CascaderOption | null
+
 async function init() {
   lazyLoadMap.clear()
+
   panes.value = []
   tabsCursor.value = 0
   initLoading.value = false
@@ -48,8 +52,9 @@ async function init() {
 
   let { options } = props
 
-  if (configs.value.convertConfig)
-    options = convertListToOptions(options as CascaderOption[], configs.value.convertConfig as convertConfig)
+  if (configs.value.convertConfig) {
+    options = convertListToOptions(options as CascaderOption[], configs.value.convertConfig as ConvertConfig)
+  }
 
   tree.value = new Tree(options as CascaderOption[], {
     value: configs.value.valueKey,
@@ -67,14 +72,79 @@ async function init() {
   }
 
   panes.value = [{ nodes: tree.value.nodes, selectedNode: null }]
+
   syncValue()
+}
+
+const methods = {
+  // 选中一个节点，静默模式不触发事件
+  async handleNode(node: CascaderOption, silent?: boolean) {
+    const { disabled, loading } = node
+
+    if ((!silent && disabled) || !panes.value[tabsCursor.value])
+      return
+
+    if (tree.value.isLeaf(node, isLazy.value)) {
+      node.leaf = true
+      panes.value[tabsCursor.value].selectedNode = node
+      panes.value = panes.value.slice(0, (node.level as number) + 1)
+
+      if (!silent) {
+        const pathNodes = panes.value.map(pane => pane.selectedNode)
+
+        emitChange(pathNodes as CascaderOption[])
+        emit('pathChange', pathNodes as CascaderOption[])
+      }
+      return
+    }
+
+    if (tree.value.hasChildren(node, isLazy.value)) {
+      const level = (node.level as number) + 1
+
+      panes.value[tabsCursor.value].selectedNode = node
+      panes.value = panes.value.slice(0, level)
+      panes.value.push({
+        nodes: node.children || [],
+        selectedNode: null,
+      })
+
+      tabsCursor.value = level
+
+      if (!silent) {
+        const pathNodes = panes.value.map(pane => pane.selectedNode)
+        emit('pathChange', pathNodes as CascaderOption[])
+      }
+      return
+    }
+
+    currentProcessNode = node
+
+    if (loading)
+      return
+
+    await invokeLazyLoad(node)
+
+    if (currentProcessNode === node) {
+      panes.value[tabsCursor.value].selectedNode = node
+      methods.handleNode(node, silent)
+    }
+  },
+  handleTabClick(tab: CascaderTabs) {
+    currentProcessNode = null
+    tabsCursor.value = Number(tab.paneKey)
+  },
+
+  isSelected(pane: CascaderPane, node: CascaderOption) {
+    return pane?.selectedNode?.value === node.value
+  },
 }
 
 async function syncValue() {
   const currentValue = innerValue.value
 
-  if (currentValue === undefined || !tree.value.nodes.length)
+  if (currentValue === undefined || !tree.value.nodes.length) {
     return
+  }
 
   if (currentValue.length === 0) {
     tabsCursor.value = 0
@@ -162,110 +232,45 @@ function emitChange(pathNodes: CascaderOption[]) {
   const emitValue = pathNodes.map(node => node.value)
 
   innerValue.value = emitValue
+
+  emit(UPDATE_MODEL_EVENT, emitValue)
   emit(CHANGE_EVENT, emitValue, pathNodes)
-  emit(UPDATE_MODEL_EVENT, emitValue, pathNodes)
 }
 
 function formatTabTitle(pane: CascaderPane) {
   return pane.selectedNode ? pane.selectedNode.text : translate('select')
 }
 
-const methods = {
-  // 选中一个节点，静默模式不触发事件
-  async handleNode(node: CascaderOption, silent?: boolean) {
-    const { disabled, loading } = node
+watch(() => [configs.value, props.options], () => {
+  init()
+}, {
+  deep: true,
+  immediate: true,
+})
 
-    if ((!silent && disabled) || !panes.value[tabsCursor.value])
-      return
+watch(() => props.modelValue, (value) => {
+  if (value !== innerValue.value) {
+    innerValue.value = value as CascaderValue
 
-    if (tree.value.isLeaf(node, isLazy.value)) {
-      node.leaf = true
-      panes.value[tabsCursor.value].selectedNode = node
-      panes.value = panes.value.slice(0, (node.level as number) + 1)
+    syncValue()
+  }
+})
 
-      if (!silent) {
-        const pathNodes = panes.value.map(pane => pane.selectedNode)
-
-        emitChange(pathNodes as CascaderOption[])
-        emit('pathChange', pathNodes as CascaderOption[])
-      }
-      return
-    }
-
-    if (tree.value.hasChildren(node, isLazy.value)) {
-      const level = (node.level as number) + 1
-
-      panes.value[tabsCursor.value].selectedNode = node
-      panes.value = panes.value.slice(0, level)
-      panes.value.push({
-        nodes: node.children || [],
-        selectedNode: null,
-      })
-
-      tabsCursor.value = level
-
-      if (!silent) {
-        const pathNodes = panes.value.map(pane => pane.selectedNode)
-        emit('pathChange', pathNodes as CascaderOption[])
-      }
-      return
-    }
-
-    currentProcessNode = node
-
-    if (loading)
-      return
-
-    await invokeLazyLoad(node)
-
-    if (currentProcessNode === node) {
-      panes.value[tabsCursor.value].selectedNode = node
-      methods.handleNode(node, silent)
-    }
-  },
-  handleTabClick(tab: CascaderTabs) {
-    currentProcessNode = null
-    tabsCursor.value = Number(tab.paneKey)
-  },
-
-  isSelected(pane: CascaderPane, node: CascaderOption) {
-    return pane?.selectedNode?.value === node.value
-  },
-}
-
-watch(
-  [configs, () => props.options],
-  () => {
-    init()
-  },
-  {
-    deep: true,
-    immediate: true,
-  },
-)
-watch(
-  () => props.modelValue,
-  (value) => {
-    if (value !== innerValue.value) {
-      innerValue.value = value as CascaderValue
-      syncValue()
-    }
-  },
-)
-watch(
-  () => props.visible,
-  (val) => {
-    // console.log('watch: props.visible', val);
-    // TODO: value为空时，保留上次选择记录，修复单元测试问题
-    if (val && Array.isArray(innerValue.value) && innerValue.value.length > 0)
-      syncValue()
-  },
-)
+watch(() => props.visible, (value) => {
+  // TODO: value为空时，保留上次选择记录，修复单元测试问题
+  if (value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
+    syncValue()
+  }
+})
 </script>
 
 <script lang="ts">
+const componentName = `${PREFIX}-cascader-item`
+
+const { translate } = useTranslate(componentName)
+
 export default defineComponent({
-  name: `${PREFIX}-cascader-item`,
+  name: componentName,
   options: {
     virtualHost: true,
     addGlobalClass: true,
@@ -278,25 +283,25 @@ export default defineComponent({
   <NutTabs
     v-model="tabsCursor"
     :custom-class="classes"
-    :custom-style="customStyle"
+    :custom-style="props.customStyle"
     :type="props.titleType"
-    :ellipsis="props.titleEllipsis"
-    :title-gutter="props.titleGutter"
     :size="props.titleSize"
+    :title-gutter="props.titleGutter"
+    :ellipsis="props.titleEllipsis"
     title-scroll
     @click="methods.handleTabClick"
   >
     <template v-if="!initLoading && panes.length">
       <NutTabPane v-for="(pane, index) in panes" :key="index" :title="formatTabTitle(pane)">
-        <view role="menu" class="nut-cascader-pane">
-          <scroll-view scroll-y style="height: 100%">
+        <view class="nut-cascader-pane" role="menu">
+          <scroll-view style="height: 100%" :scroll-y="true">
             <template v-for="node in pane.nodes" :key="node.value">
               <view
-                class="nut-cascader-item"
-                :aria-checked="methods.isSelected(pane, node)"
-                :aria-disabled="node.disabled || undefined"
+                class="nut-cascader-item__inner"
                 :class="{ active: methods.isSelected(pane, node), disabled: node.disabled }"
                 role="menuitemradio"
+                :aria-checked="methods.isSelected(pane, node)"
+                :aria-disabled="node.disabled || undefined"
                 @click="methods.handleNode(node, false)"
               >
                 <view class="nut-cascader-item__title">
@@ -305,17 +310,22 @@ export default defineComponent({
 
                 <NutIcon
                   v-if="node.loading"
-                  loading
                   custom-class="nut-cascader-item__icon-loading"
+                  loading
                   name="loading"
                 />
-                <NutIcon v-else custom-class="nut-cascader-item__icon-check" name="checklist" />
+                <NutIcon
+                  v-else
+                  custom-class="nut-cascader-item__icon-check"
+                  name="checklist"
+                />
               </view>
             </template>
           </scroll-view>
         </view>
       </NutTabPane>
     </template>
+
     <template v-else>
       <NutTabPane title="Loading...">
         <view class="nut-cascader-pane" />
@@ -325,5 +335,5 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
