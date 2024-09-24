@@ -84,7 +84,7 @@
     "typescript": "~5.5.4",
     "unocss": "^0.62.4",
     "unplugin-auto-import": "^0.18.3",
-    "vite": "^5.4.6",
+    "vite": "^5.4.7",
     "vue-tsc": "^2.1.6"
   }
 }
