@@ -1,7 +1,7 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { CLOSE_EVENT, CLOSED_EVENT, OPEN_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import type { Position } from '../_constants/types'
-import { commonProps, isBoolean, makeStringProp, truthProp } from '../_utils'
+import { commonProps, makeStringProp, truthProp } from '../_utils'
 import { overlayProps } from '../overlay/overlay'
 import type { NutAnimationName } from '../transition/types'
 
@@ -24,17 +24,21 @@ export const popupProps = {
    */
   popClass: makeStringProp(''),
   /**
+   * @description 是否显示圆角
+   */
+  round: Boolean,
+  /**
    * @description 是否显示关闭按钮
    */
   closeable: Boolean,
   /**
-   * @description 关闭按钮位置（top-left,top-right,bottom-left,bottom-right）
-   */
-  closeIconPosition: makeStringProp<'top-right' | 'bottom-right' | 'bottom-left' | 'top-left'>('top-right'),
-  /**
    * @description 关闭按钮图标
    */
   closeIcon: makeStringProp('close'),
+  /**
+   * @description 关闭按钮位置（top-left,top-right,bottom-left,bottom-right）
+   */
+  closeIconPosition: makeStringProp<'top-right' | 'bottom-right' | 'bottom-left' | 'top-left'>('top-right'),
   /**
    * @description 是否保留弹层关闭后的内容
    */
@@ -43,10 +47,6 @@ export const popupProps = {
    * @description 是否显示遮罩层
    */
   overlay: truthProp,
-  /**
-   * @description 是否显示圆角
-   */
-  round: Boolean,
   /**
    * @description 是否开启 iPhone 系列全面屏底部安全区适配，仅当 `position` 为 `bottom` 时有效
    */
@@ -59,19 +59,21 @@ export const popupProps = {
 
 export type PopupProps = ExtractPropTypes<typeof popupProps>
 
+/* eslint-disable unused-imports/no-unused-vars */
 export const popupEmits = {
-  [UPDATE_VISIBLE_EVENT]: (visible: boolean) => isBoolean(visible),
-  'click-pop': (evt?: any) => evt instanceof Object,
+  [UPDATE_VISIBLE_EVENT]: (value: boolean) => true,
+  'click-pop': (event: any) => true,
   'click-close-icon': () => true,
+  'click-overlay': () => true,
   [OPEN_EVENT]: () => true,
-  [CLOSE_EVENT]: () => true,
   [OPENED_EVENT]: () => true,
+  [CLOSE_EVENT]: () => true,
+  [CLOSED_EVENT]: () => true,
   /**
    * @deprecated
    */
   'opend': () => true,
-  [CLOSED_EVENT]: () => true,
-  'click-overlay': () => true,
 }
+/* eslint-enable unused-imports/no-unused-vars */
 
 export type PopupEmits = typeof popupEmits
