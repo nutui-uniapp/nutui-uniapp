@@ -142,30 +142,28 @@
 
 ## API
 
-> 当前组件内部透传了 [Icon组件](/components/basic/icon) 和 [Overlay组件](/components/basic/overlay)
-
 ### Props
 
-| 参数                     | 说明                                                    | 类型               | 默认值           |
-|------------------------|-------------------------------------------------------|------------------|---------------|
-| v-model:visible        | 控制当前组件显示/隐藏                                           | boolean          | `false`       |
-| z-index                | 遮罩层级                                                  | string \| number | `2000+`       |
-| duration               | 组件显示/隐藏的动画时长，单位秒                                      | string \| number | `0.3`         |
-| lock-scroll  `H5`      | 背景是否锁定                                                | boolean          | `true`        |
-| overlay                | 是否显示遮罩                                                | boolean          | `true`        |
-| close-on-click-overlay | 是否点击遮罩关闭                                              | boolean          | `true`        |
-| position               | 弹出位置（top,bottom,left,right,center）                    | string           | `"center"`    |
-| transition             | 动画名                                                   | string           | -             |
-| custom-style           | 自定义弹框样式                                               | CSSProperties    | -             |
-| pop-class              | 自定义弹框类名                                               | string           | -             |
-| closeable              | 是否显示关闭按钮                                              | boolean          | `false`       |
-| close-icon-position    | 关闭按钮位置（top-left,top-right,bottom-left,bottom-right）   | string           | `"top-right"` |
-| close-icon             | [图标名称](/components/basic/icon) 或图片链接                  | string           | `"close"`     |
-| destroy-on-close       | 弹层关闭后 `slot`内容会不会清空                                   | boolean          | `true`        |
-| round                  | 是否显示圆角                                                | boolean          | `false`       |
-| overlay-class          | 自定义遮罩层类名                                              | string           | ''            |
-| overlay-style          | 自定义遮罩层样式                                              | string           | ''            |
-| safe-area-inset-bottom | 是否开启 iphone 系列全面屏底部安全区适配,仅当 `position` 为 `bottom` 时有效 | boolean          | `false`       |
+| 参数                     | 说明                                                    | 类型              | 默认值       |
+|------------------------|-------------------------------------------------------|-----------------|-----------|
+| v-model:visible        | 控制当前组件显示/隐藏                                           | boolean         | `false`   |
+| position               | 弹出位置（top,bottom,left,right,center）                    | string          | center    |
+| transition             | 动画名                                                   | string          | -         |
+| pop-class              | 自定义弹框类名                                               | string          | -         |
+| round                  | 是否显示圆角                                                | boolean         | `false`   |
+| closeable              | 是否显示关闭按钮                                              | boolean         | `false`   |
+| close-icon             | [图标名称](/components/basic/icon) 或图片链接                  | string          | close     |
+| close-icon-position    | 关闭按钮位置（top-left,top-right,bottom-left,bottom-right）   | string          | top-right |
+| destroy-on-close       | 弹层关闭后 `slot`内容会不会清空                                   | boolean         | `true`    |
+| overlay                | 是否显示遮罩                                                | boolean         | `true`    |
+| safe-area-inset-bottom | 是否开启 iphone 系列全面屏底部安全区适配,仅当 `position` 为 `bottom` 时有效 | boolean         | `false`   |
+| safe-area-inset-top    | 是否开启 iPhone 顶部安全区适配,仅当 `position` 为 `top` 时有效         | boolean         | `true`    |
+| z-index                | 遮罩层级                                                  | number          | `2000+`   |
+| duration               | 组件显示/隐藏的动画时长，单位毫秒                                     | string / number | `300`     |
+| overlay-class          | 自定义遮罩层类名                                              | string          | -         |
+| overlay-style          | 自定义遮罩层样式                                              | `CSSProperties` | -         |
+| lock-scroll  `H5`      | 背景是否锁定                                                | boolean         | `false`   |
+| close-on-click-overlay | 是否点击遮罩关闭                                              | boolean         | `true`    |
 
 ### Events
 

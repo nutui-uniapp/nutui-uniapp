@@ -109,15 +109,16 @@ const overlayStyles = {
 
 ### Props
 
-| 参数                     | 说明              | 类型               | 默认值     |
-|------------------------|-----------------|------------------|---------|
-| v-model:visible        | 控制遮罩的显示/隐藏      | boolean          | `false` |
-| z-index                | 自定义遮罩层级         | string \| number | -       |
-| duration               | 显示/隐藏的动画时长，单位毫秒 | string \| number | `300`   |
-| overlay-class          | 自定义遮罩类名         | string           | -       |
-| overlay-style          | 自定义遮罩样式         | CSSProperties    | -       |
-| lock-scroll `H5`       | 遮罩显示时的背景是否锁定    | boolean          | `true`  |
-| close-on-click-overlay | 点击遮罩时是否关闭       | boolean          | `true`  |
+| 参数                     | 说明                   | 类型              | 默认值     |
+|------------------------|----------------------|-----------------|---------|
+| v-model:visible        | 控制遮罩的显示/隐藏           | boolean         | `false` |
+| z-index                | 自定义遮罩层级              | number          | -       |
+| duration               | 显示/隐藏的动画时长，单位毫秒      | string / number | `300`   |
+| overlay-class          | 自定义遮罩类名              | string          | -       |
+| overlay-style          | 自定义遮罩样式              | `CSSProperties` | -       |
+| lock-scroll `H5`       | 遮罩显示时的背景是否锁定         | boolean         | `false` |
+| close-on-click-overlay | 点击遮罩时是否关闭            | boolean         | `true`  |
+| destroy-on-close       | 弹层关闭后 `slot` 内容会不会清空 | boolean         | `false` |
 
 ### Events
 

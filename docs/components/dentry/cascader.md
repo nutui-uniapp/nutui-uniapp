@@ -344,26 +344,41 @@ export default {
 
 ### Props
 
-| 参数                     | 说明                                 | 类型               | 默认值           |
-|------------------------|------------------------------------|------------------|---------------|
-| v-model                | 选中值，双向绑定                           | Array            | -             |
-| v-model:visible        | 显示选择层                              | boolean          | `false`       |
-| options                | 级联数据                               | Array            | -             |
-| lazy                   | 是否开启动态加载                           | boolean          | -             |
-| lazy-load              | 动态加载回调，开启动态加载时生效                   | Function         | -             |
-| value-key              | 自定义 `options` 结构中 `value` 的字段      | string           | -             |
-| text-key               | 自定义 `options` 结构中 `text` 的字段       | string           | -             |
-| children-key           | 自定义 `options` 结构中 `children` 的字段   | string           | -             |
-| convert-config         | 当 `options` 为可转换为树形结构的扁平结构时，配置转换规则 | object           | -             |
-| title                  | 标题                                 | string           | `''`          |
-| close-icon-position    | 取消按钮位置，继承 `Popup` 组件               | string           | `"top-right"` |
-| closeable              | 是否显示关闭按钮，继承 `Popup` 组件             | boolean          | `false`       |
-| poppable               | 是否需要弹层展示（设置为 `false` 后，`title` 失效） | boolean          | `true`        |
-| title-gutter `1.1.7`   | 标签间隙                               | number \| string | `0`           |
-| title-size `1.1.7`     | 标签栏字体尺寸大小 可选值  large normal small  | string           | `normal`      |
-| title-ellipsis `1.1.7` | 是否省略过长的标题文字                        | boolean          | `true`        |
-| title-type `1.1.7`     | 选中底部展示样式 可选值 line、smile            | string           | `line`        |
-| pop-style `1.8.0`      | 自定义弹窗样式                            | `CSSProperties`  | -             |
+| 参数                     | 说明                                 | 类型              | 默认值      |
+|------------------------|------------------------------------|-----------------|----------|
+| v-model                | 选中值，双向绑定                           | Array           | -        |
+| v-model:visible        | 显示选择层                              | boolean         | `false`  |
+| options                | 级联数据                               | Array           | -        |
+| lazy                   | 是否开启动态加载                           | boolean         | `false`  |
+| lazy-load              | 动态加载回调，开启动态加载时生效                   | Function        | -        |
+| value-key              | 自定义 `options` 结构中 `value` 的字段      | string          | value    |
+| text-key               | 自定义 `options` 结构中 `text` 的字段       | string          | text     |
+| children-key           | 自定义 `options` 结构中 `children` 的字段   | string          | children |
+| convert-config         | 当 `options` 为可转换为树形结构的扁平结构时，配置转换规则 | object          | -        |
+| poppable               | 是否需要弹层展示（设置为 `false` 后，`title` 失效） | boolean         | `true`   |
+| title                  | 标题                                 | string          | -        |
+| title-type `1.1.7`     | 选中底部展示样式 可选值 line、smile            | string          | line     |
+| title-size `1.1.7`     | 标签栏字体尺寸大小 可选值  large normal small  | string          | normal   |
+| title-gutter `1.1.7`   | 标签间隙                               | number / string | `0`      |
+| title-ellipsis `1.1.7` | 是否省略过长的标题文字                        | boolean         | `true`   |
+| pop-style `1.8.0`      | 自定义弹窗样式                            | `CSSProperties` | -        |
+| lock-scroll  `H5`      | 背景是否锁定                             | boolean         | `true`   |
+
+::: details 弹窗状态属性
+当 `poppable` 为 `true` 时，继承了 [Popup](/components/basic/popup) 的以下属性
+
+| 参数                     | 说明                                                  | 类型              | 默认值       |
+|------------------------|-----------------------------------------------------|-----------------|-----------|
+| pop-class              | 自定义弹框类名                                             | string          | -         |
+| closeable              | 是否显示关闭按钮                                            | boolean         | `false`   |
+| close-icon             | [图标名称](/components/basic/icon) 或图片链接                | string          | close     |
+| close-icon-position    | 关闭按钮位置（top-left,top-right,bottom-left,bottom-right） | string          | top-right |
+| overlay                | 是否显示遮罩                                              | boolean         | `true`    |
+| z-index                | 遮罩层级                                                | number          | `2000+`   |
+| overlay-class          | 自定义遮罩层类名                                            | string          | -         |
+| overlay-style          | 自定义遮罩层样式                                            | `CSSProperties` | -         |
+| close-on-click-overlay | 是否点击遮罩关闭                                            | boolean         | `true`    |
+:::
 
 ### Events
 
