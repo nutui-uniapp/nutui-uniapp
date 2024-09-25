@@ -39,10 +39,6 @@ export const calendaritemProps = {
    */
   endDate: makeStringProp(getDay(365)),
   /**
-   * @description 是否展示今天标记
-   */
-  showToday: truthProp,
-  /**
    * @description 范围选择，开始信息文案
    */
   startText: makeStringProp('开始'),
@@ -54,6 +50,10 @@ export const calendaritemProps = {
    * @description 底部确认按钮文案
    */
   confirmText: makeStringProp('确认'),
+  /**
+   * @description 是否展示今天标记
+   */
+  showToday: truthProp,
   /**
    * @description 是否在展示日历标题
    */
