@@ -787,25 +787,42 @@ export default {
 | 参数                    | 说明                                                   | 类型                  | 默认值          |
 |-----------------------|------------------------------------------------------|---------------------|--------------|
 | v-model:visible       | 是否可见                                                 | boolean             | `false`      |
-| type                  | 类型，日期单择`one`，区间选择`range`,日期多选`multiple`,周选择`week`    | string              | '`one`'      |
+| type                  | 类型，日期单择`one`，区间选择`range`,日期多选`multiple`,周选择`week`    | string              | one          |
 | poppable              | 是否弹窗状态展示                                             | boolean             | `true`       |
 | is-auto-back-fill     | 自动回填                                                 | boolean             | `false`      |
-| title                 | 显示标题                                                 | string              | `日期选择`       |
-| default-value         | 默认值，单个日期选择 `string`，其他为 `string[]`                   | string  \| string[] | `null`       |
+| title                 | 显示标题                                                 | string              | 日期选择         |
+| default-value         | 默认值，单个日期选择 `string`，其他为 `string[]`                   | string  \| string[] | -            |
 | start-date            | 开始日期                                                 | string              | `今天`         |
 | end-date              | 结束日期                                                 | string              | `距离今天 365 天` |
+| start-text            | 范围选择，开始信息文案                                          | string              | 开始           |
+| end-text              | 范围选择，结束信息文案                                          | string              | 结束           |
+| confirm-text          | 底部确认按钮文案                                             | string              | 确认           |
 | show-today            | 是否展示今天标记                                             | boolean             | `true`       |
-| start-text            | 范围选择，开始信息文案                                          | string              | `开始`         |
-| end-text              | 范围选择，结束信息文案                                          | string              | `结束`         |
-| confirm-text          | 底部确认按钮文案                                             | string              | `确认`         |
 | show-title            | 是否在展示日历标题                                            | boolean             | `true`       |
 | show-sub-title        | 是否展示日期标题                                             | boolean             | `true`       |
 | to-date-animation     | 是否启动滚动动画                                             | boolean             | `true`       |
 | first-day-of-week     | 设置周起始日                                               | 0-6                 | `0`          |
-| disabled-date `1.4.0` | 一个用来判断该日期是否被禁用的函数，接受一个`年-月-日`作为参数。 应该返回一个 Boolean 值。 | function            | `-`          |
+| disabled-date `1.4.0` | 一个用来判断该日期是否被禁用的函数，接受一个`年-月-日`作为参数。 应该返回一个 Boolean 值。 | function            | -            |
 | footer-slot `1.4.0`   | 是否使用footer插槽，如果使用，此值必须为 true                         | boolean             | `false`      |
 | btn-slot `1.5.7`      | 是否使用btn插槽，如果使用，此值必须为 true                            | boolean             | `false`      |
 | pop-style `1.8.0`     | 自定义弹窗样式                                              | `CSSProperties`     | -            |
+| lock-scroll  `H5`     | 背景是否锁定                                               | boolean             | `true`       |
+
+::: details 弹窗状态属性
+当 `poppable` 为 `true` 时，继承了 [Popup](/components/basic/popup) 的以下属性
+
+| 参数                     | 说明                                                  | 类型              | 默认值       |
+|------------------------|-----------------------------------------------------|-----------------|-----------|
+| pop-class              | 自定义弹框类名                                             | string          | -         |
+| closeable              | 是否显示关闭按钮                                            | boolean         | `false`   |
+| close-icon             | [图标名称](/components/basic/icon) 或图片链接                | string          | close     |
+| close-icon-position    | 关闭按钮位置（top-left,top-right,bottom-left,bottom-right） | string          | top-right |
+| overlay                | 是否显示遮罩                                              | boolean         | `true`    |
+| z-index                | 遮罩层级                                                | number          | `2000+`   |
+| overlay-class          | 自定义遮罩层类名                                            | string          | -         |
+| overlay-style          | 自定义遮罩层样式                                            | `CSSProperties` | -         |
+| close-on-click-overlay | 是否点击遮罩关闭                                            | boolean         | `true`    |
+:::
 
 ### Events
 
