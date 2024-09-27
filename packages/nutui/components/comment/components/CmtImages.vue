@@ -94,7 +94,7 @@ function showImages(type: string, index: string | number) {
     </view>
 
     <!-- images -->
-    <template v-for="(itI, index) in props.images" :key="itI.id">
+    <template v-for="(itI, index) in props.images" :key="index">
       <view
         v-if="(props.type === 'multi' && props.videos.length + index < 9) || props.type !== 'multi'"
         class="nut-comment-images__item nut-comment-images__item--imgbox"
