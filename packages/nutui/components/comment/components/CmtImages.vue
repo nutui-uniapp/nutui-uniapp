@@ -94,7 +94,7 @@ export default defineComponent({
       <view class="nut-comment-images__play" />
     </view>
     <!-- images -->
-    <template v-for="(itI, index) in images" :key="itI.id">
+    <template v-for="(itI, index) in images" :key="index">
       <view
         v-if="(type === 'multi' && videos.length + index < 9) || type !== 'multi'"
         class="nut-comment-images__item nut-comment-images__item--imgbox"
