@@ -64,7 +64,7 @@ function reduce(value: any) {
 }
 
 // stepper 极限值
-function overlimit(e: Event, action: string) {
+function overlimit(event: any, action: string) {
   emit('overLimit', {
     action,
     value: Number.parseInt(`${goodsCount.value}`),

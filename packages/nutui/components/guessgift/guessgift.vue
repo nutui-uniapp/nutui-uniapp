@@ -88,18 +88,25 @@ function changePosition() {
   })
 }
 
-const timer = ref<any>(null)
+let timer: NodeJS.Timeout | null = null
+
 function init() {
   showBean.value = false
-  clearTimeout(timer) // 初始化timeout定时器，防止定时器重叠
-  timer.value = setTimeout(() => {
+  if (timer != null) {
+    clearTimeout(timer)
+    timer = null
+  }
+  timer = setTimeout(() => {
     changePosition() // 循环调用函数自身，以达到循环的效果
     if (num.value < props.turnNumber) {
       init()
       num.value++
     }
     else {
-      clearTimeout(timer)
+      if (timer != null) {
+        clearTimeout(timer)
+        timer = null
+      }
       num.value = 0
       setTimeout(() => {
         lock.value = false
