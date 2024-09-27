@@ -179,7 +179,7 @@
 | error `1.1.5`                     | 当使用开放能力时，发生错误的回调                                           | `(event: ButtonOnErrorEvent) => void`                     |
 | opensetting `1.1.5`               | 在打开授权设置页并关闭后回调                                             | `(event: ButtonOnOpensettingEvent) => void`               |
 | launchapp `1.1.5`                 | 从小程序打开 App 成功的回调                                           | `(event: ButtonOnLaunchappEvent) => void`                 |
-| contact `1.1.5`                   | 	客服消息回调                                                    | `(event: any) => void`                                    |
+| contact `1.1.5`                   | 客服消息回调                                                     | `(event: any) => void`                                    |
 | chooseavatar `1.1.5`              | 获取用户头像回调                                                   | `(event: ButtonOnChooseavatarEvent) => void`              |
 | agreeprivacyauthorization `1.1.5` | 用户同意隐私协议事件回调                                               | `(event: ButtonOnAgreeprivacyauthorizationEvent) => void` |
 | addgroupapp `1.1.5`               | 添加群应用的回调                                                   | `(event: ButtonOnAddgroupappEvent) => void`               |
