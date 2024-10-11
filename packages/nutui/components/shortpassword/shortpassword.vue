@@ -81,8 +81,7 @@ export default defineComponent({
       :custom-style="popupStyles"
       :closeable="true"
       :close-on-click-overlay="props.closeOnClickOverlay"
-      @click-close-icon="close"
-      @click-overlay="close"
+      @close="close"
     >
       <view class="nut-short-password-title">
         {{ props.title || translate('title') }}
