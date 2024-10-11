@@ -46,9 +46,11 @@ export function useDialog(props: DialogProps, emit: SetupContext<DialogEmits>['e
 
   onMounted(() => {
     if (props.closeOnPopstate) {
+      // #ifdef H5
       window.addEventListener('popstate', () => {
         closed('page')
       })
+      // #endif
     }
   })
 
