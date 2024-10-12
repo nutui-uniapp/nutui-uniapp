@@ -1,7 +1,13 @@
 import type { SetupContext } from 'vue'
-import { computed, reactive, toRefs, watch } from 'vue'
-import { CLOSE_EVENT, CLOSED_EVENT, OPEN_EVENT, OPENED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
-import { animationName } from '../_constants/types'
+import { computed, onMounted, reactive, toRefs, watch } from 'vue'
+import {
+  animationName,
+  CLOSE_EVENT,
+  CLOSED_EVENT,
+  OPEN_EVENT,
+  OPENED_EVENT,
+  UPDATE_VISIBLE_EVENT,
+} from '../_constants'
 import { useGlobalZIndex } from '../_hooks'
 import { getMainClass, getMainStyle } from '../_utils'
 import type { NutAnimationName } from '../transition'
@@ -91,14 +97,24 @@ export function usePopup(props: PopupProps, emit: SetupContext<PopupEmits>['emit
     state.showSlot = !props.destroyOnClose
   }
 
-  watch(() => props.visible, (value) => {
-    if (value && !state.innerVisible)
+  const applyVisible = (visible: boolean) => {
+    if (visible && !state.innerVisible) {
       open()
+    }
 
-    if (!value && state.innerVisible) {
+    if (!visible && state.innerVisible) {
       state.innerVisible = false
+
       emit(CLOSE_EVENT)
     }
+  }
+
+  watch(() => props.visible, (value) => {
+    applyVisible(value)
+  })
+
+  onMounted(() => {
+    applyVisible(props.visible)
   })
 
   return {
