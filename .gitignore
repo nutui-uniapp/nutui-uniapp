@@ -7,11 +7,7 @@ yarn.lock
 .env.*.local
 *.local
 
-# 缓存文件
-.stylelintcache
-
 # 日志文件
-logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -19,10 +15,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# 缓存文件
+.temp
+.cache
+.eslintcache
+.stylelintcache
+.output
+.nuxt
+
 # 制品文件
 node_modules
 dist
 dist-ssr
+/coverage
 
 # IDE文件
 .vscode/*
