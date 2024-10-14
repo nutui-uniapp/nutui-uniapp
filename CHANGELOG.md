@@ -1,31 +1,31 @@
-## [1.7.17](https://github.com/xiaohe0601/nutui-uniapp/compare/v1.7.16...v1.7.17) (2024-09-18)
+# [1.8.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.17...v1.8.0) (2024-10-14)
 
+### Bug Fixes
+
+* **dialog:** 修复小程序平台启用 `close-on-popstate` 时 `onMounted` 报错 ([#435](https://github.com/nutui-uniapp/nutui-uniapp/issues/435)) ([93127f5](https://github.com/nutui-uniapp/nutui-uniapp/commit/93127f557ad6cbbf04b88611868f9fb59a786875))
+* **popup:** 修复 `visible` 初始值为 `true` 时丢失 `z-index` 问题 ([#437](https://github.com/nutui-uniapp/nutui-uniapp/issues/437)) ([47adc2a](https://github.com/nutui-uniapp/nutui-uniapp/commit/47adc2a17ac85413d310d7849186782b1414e809))
+* **short-password:** 修复 `close-on-click-overlay` 属性无效 ([#436](https://github.com/nutui-uniapp/nutui-uniapp/issues/436)) ([e62dfb0](https://github.com/nutui-uniapp/nutui-uniapp/commit/e62dfb0ac69fa2b7c4834d640dee0426d43cb5b8))
+
+## [1.7.17](https://github.com/xiaohe0601/nutui-uniapp/compare/v1.7.16...v1.7.17) (2024-09-18)
 
 ### Bug Fixes
 
 * **inputnumber:** 新增step-strictly属性 ([#421](https://github.com/xiaohe0601/nutui-uniapp/issues/421)) ([c0a3c47](https://github.com/xiaohe0601/nutui-uniapp/commit/c0a3c47099f19db14716704d5ba2b52dc31541ec))
 * **inputnumber:** 修复失焦后未正确按照最大/最小值修改输入值 ([#420](https://github.com/xiaohe0601/nutui-uniapp/issues/420)) ([be3059f](https://github.com/xiaohe0601/nutui-uniapp/commit/be3059f5e82e713a7df5f33eb31cc8fc89b7766a))
 
-
 ### Features
 
 * **cell:** 新增title-width属性 ([#418](https://github.com/xiaohe0601/nutui-uniapp/issues/418)) ([3079495](https://github.com/xiaohe0601/nutui-uniapp/commit/3079495a522af1ae75073efa0830dde43835bd00))
 
-
-
 ## [1.7.16](https://github.com/xiaohe0601/nutui-uniapp/compare/v1.7.15...v1.7.16) (2024-09-04)
-
 
 ### Bug Fixes
 
 * **popover,shakedice,tour:** fix scss warning ([#413](https://github.com/xiaohe0601/nutui-uniapp/issues/413)) ([28df492](https://github.com/xiaohe0601/nutui-uniapp/commit/28df492f6daa00da26e72f619e8f2d5073489785))
 
-
 ### Features
 
 * **notify:** 新增useNotify ([873b454](https://github.com/xiaohe0601/nutui-uniapp/commit/873b4545ec277b6227ea90d23d8880d0d531edb8))
-
-
 
 ## [1.7.15](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.14...v1.7.15) (2024-08-17)
 
