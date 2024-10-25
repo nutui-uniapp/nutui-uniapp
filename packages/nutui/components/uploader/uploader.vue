@@ -52,6 +52,8 @@ function executeUpload(fileItem: FileItem, index: number) {
     emit('start', option)
   }
   uploadOption.onProgress = (event: OnProgressUpdateResult, option: UploadOptions) => {
+    if (fileItem.status === 'success' || fileItem.status === 'error')
+      return
     fileItem.status = 'uploading'
     fileItem.message = translate('uploading')
 
