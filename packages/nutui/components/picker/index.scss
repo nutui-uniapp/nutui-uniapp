@@ -2,24 +2,15 @@
 
 .nut-theme-dark {
   .nut-picker {
-    position: relative;
-    width: 100%;
     background: $dark-background;
-    border-radius: 5px;
 
     /* #ifndef H5 */
+
     &__mask {
       background: none !important;
     }
 
     /* #endif */
-
-    &__bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 46px;
-    }
 
     &__title {
       color: $dark-color;
