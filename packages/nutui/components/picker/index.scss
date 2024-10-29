@@ -23,6 +23,12 @@
     &-item {
       color: $dark-color;
     }
+
+    &__column {
+      &::before {
+        border-color: $dark-background4;
+      }
+    }
   }
 }
 
