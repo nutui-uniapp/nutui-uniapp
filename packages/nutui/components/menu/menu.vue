@@ -101,7 +101,7 @@ export default defineComponent({
         >
           <view class="nut-menu__title" :class="getClasses(item.state.showPopup)">
             <view class="nut-menu__title-text">
-              {{ item.renderTitle() }}
+              {{ item.title }}
             </view>
             <view class="nut-menu__title-icon">
               <!-- #ifdef MP-WEIXIN -->

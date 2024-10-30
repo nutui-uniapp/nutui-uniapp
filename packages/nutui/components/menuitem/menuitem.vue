@@ -87,14 +87,14 @@ export default defineComponent({
       emit('change', value)
     }
 
-    const renderTitle = () => {
+    const title = computed(() => {
       if (props.title)
         return props.title
 
       const match: any = props.options?.find((option: any) => option.value === props.modelValue)
 
       return match ? match.text : ''
-    }
+    })
 
     const onClick = (option: MenuItemOption) => {
       state.showPopup = false
@@ -131,7 +131,7 @@ export default defineComponent({
       classes,
       styles,
       placeholderElementStyle,
-      renderTitle,
+      title,
       state,
       parent,
       toggle,
