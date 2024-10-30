@@ -1,3 +1,12 @@
+## [1.8.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.0...v1.8.1) (2024-10-30)
+
+### Bug Fixes
+
+* **menu:** 修复menu组件在app平台报错的问题 ([#443](https://github.com/nutui-uniapp/nutui-uniapp/issues/443)) ([9501324](https://github.com/nutui-uniapp/nutui-uniapp/commit/9501324f5dc9402bf794e5d1ca554bd308a1faf0))
+* **picker:** 修复深色模式下选中项边框颜色突兀 ([7b3bc4b](https://github.com/nutui-uniapp/nutui-uniapp/commit/7b3bc4b637b89ebe3686a107c723df20b1aeee64))
+* **picker:** 修复showToolbar为false时,picker组件宽度为0不显示的问题 ([#442](https://github.com/nutui-uniapp/nutui-uniapp/issues/442)) ([76bd48d](https://github.com/nutui-uniapp/nutui-uniapp/commit/76bd48d6bc8c121084346f3cf80082214468626a))
+* **uploader:** 修复uploader组件在app端，succes事件之后还执行progress事件的问题 ([#441](https://github.com/nutui-uniapp/nutui-uniapp/issues/441)) ([d750496](https://github.com/nutui-uniapp/nutui-uniapp/commit/d7504969eee73b9b0fee6220872fa558c03d4cf6))
+
 # [1.8.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.7.17...v1.8.0) (2024-10-14)
 
 ### Bug Fixes
