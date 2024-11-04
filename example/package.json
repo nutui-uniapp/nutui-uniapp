@@ -64,7 +64,7 @@
     "@dcloudio/uni-quickapp-webview": "3.0.0-4020920240930001",
     "@uni-helper/uni-env": "^0.1.5",
     "nutui-uniapp": "workspace:^",
-    "pinia": "~2.2.6",
+    "pinia": "~2.2.4",
     "vue": "~3.4.38",
     "vue-i18n": "^9.14.1"
   },
