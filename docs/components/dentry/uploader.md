@@ -264,7 +264,6 @@ setup() {
 | name       | 文件名称                                              | -                                 |
 | url        | 文件路径                                              | -                                 |
 | type       | 文件类型,可选`image`,`video`,`audio`                  | -                                 |
-| formData   | 上传所需的data                                        | `{}`                              |
 | percentage | 上传百分比                                            | `0`                               |
 
 ### Events
