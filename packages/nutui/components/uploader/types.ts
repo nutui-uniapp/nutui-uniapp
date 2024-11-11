@@ -14,7 +14,6 @@ export interface FileItem {
   type?: FileType
   path?: string
   percentage?: string | number
-  formData?: any
 }
 
 export interface UploaderInst {

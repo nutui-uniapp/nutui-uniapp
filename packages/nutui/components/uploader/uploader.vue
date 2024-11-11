@@ -52,7 +52,7 @@ function handleFileItemClick(fileItem: FileItem) {
 }
 
 function executeUpload(fileItem: FileItem, index: number) {
-  const { type, url, formData } = fileItem
+  const { type, url } = fileItem
 
   const uploadOption: UploadOptions = {
     url: props.url || '',
@@ -62,7 +62,7 @@ function executeUpload(fileItem: FileItem, index: number) {
     header: props.headers,
     timeout: Number(props.timeout),
     xhrState: Number(props.xhrState),
-    formData,
+    formData: props.data,
     file: fileItem as any,
   }
 
@@ -166,7 +166,6 @@ function readFile(files: ChooseFile[]) {
     fileItem.status = 'ready'
     fileItem.message = translate('waitingUpload')
     fileItem.type = fileType!
-    fileItem.formData = props.data
     if (props.isPreview)
       fileItem.url = fileType === 'video' ? file.url : filepath
 
