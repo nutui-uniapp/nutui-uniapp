@@ -10,11 +10,14 @@ export function useSelectorQuery(instance?: ComponentInternalInstance | null) {
   if (!instance)
     console.warn('useSelectorQuery', 'useSelectorQuery必须在setup函数中使用')
 
-  // #ifndef MP-ALIPAY
+  // #ifndef MP-ALIPAY || APP-PLUS
   query = uni.createSelectorQuery().in(instance)
   // #endif
   // #ifdef MP-ALIPAY
   query = uni.createSelectorQuery().in(null)
+  // #endif
+  // #ifdef APP-PLUS
+  query = uni.createSelectorQuery()
   // #endif
 
   const getSelectorNodeInfo = (selector: string): Promise<UniApp.NodeInfo> => {
