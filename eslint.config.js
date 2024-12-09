@@ -42,7 +42,7 @@ export default antfu({
   rules: {
     'unicorn/consistent-function-scoping': ['off'],
     'perfectionist/sort-imports': ['error', {
-      internalPattern: ['@/**'],
+      internalPattern: ['^@/.*'],
       newlinesBetween: 'never',
       groups: [
         ['builtin-type', 'builtin'],
