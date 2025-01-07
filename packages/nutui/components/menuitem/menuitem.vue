@@ -61,14 +61,18 @@ export default defineComponent({
     })
 
     const placeholderStyles = computed(() => {
-      const value = {
-        top: 'auto',
+      const value: CSSProperties = {
         height: `${parent?.offset.value}px`,
       }
 
       if (parent?.props.direction === 'down') {
         Object.assign(value, {
           top: 0,
+        })
+      }
+      else {
+        Object.assign(value, {
+          bottom: 0,
         })
       }
 
