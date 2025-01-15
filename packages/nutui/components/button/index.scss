@@ -241,6 +241,7 @@
     border-radius: 0;
   }
 
+  // stylelint-disable-next-line no-duplicate-selectors
   &:not(.nut-button--hovercls) {
     .nut-button--default:not([disabled]):active {
       color: $button-default-color;

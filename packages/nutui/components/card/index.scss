@@ -36,9 +36,9 @@
       overflow: hidden;
       font-size: 14px;
       line-height: 1.5;
+      -webkit-line-clamp: 2;
       word-break: break-all;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
     }
 
     .nut-card__right__price {

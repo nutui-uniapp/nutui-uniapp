@@ -15,8 +15,8 @@
 // 多行超长省略号
 @mixin moreline-ellipsis($line: 2, $width: 100%) {
   display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: $line;
   overflow: hidden;
+  -webkit-line-clamp: $line;
   word-break: break-all;
+  -webkit-box-orient: vertical;
 }
