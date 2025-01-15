@@ -37,6 +37,7 @@
         ]
       }
     ],
+    "declaration-property-value-no-unknown": null,
     "no-descending-specificity": null,
     "no-empty-source": null,
     "keyframes-name-pattern": "^[a-z]+([A-Z][a-z]*)*$",

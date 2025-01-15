@@ -27,7 +27,7 @@ export default defineComponent({
         {
           title: '姓名',
           key: 'name',
-          align: 'center',
+          align: 'center' as const,
         },
         {
           title: '性别',
@@ -64,7 +64,7 @@ export default defineComponent({
         {
           title: '姓名',
           key: 'name',
-          align: 'center',
+          align: 'center' as const,
         },
         {
           title: '性别',
@@ -83,7 +83,7 @@ export default defineComponent({
         {
           title: '姓名',
           key: 'name',
-          align: 'center',
+          align: 'center' as const,
           sorter: true,
         },
         {
@@ -169,7 +169,7 @@ export default defineComponent({
           },
         },
       ],
-      data5: [],
+      data5: [] as any[],
       data6: [
         {
           name: 'Tom',
@@ -200,13 +200,13 @@ export default defineComponent({
     })
 
     const handleSorter = (item: any) => {
-    /* eslint-disable no-console */
+      // eslint-disable-next-line no-console
       console.log(JSON.stringify(item))
     }
 
     onMounted(() => {
       state.timer = setTimeout(() => {
-        state.data5 = state.data2.slice() as any
+        state.data5 = state.data2.slice()
       }, 5000)
     })
 
@@ -265,7 +265,7 @@ export default defineComponent({
     <h2 class="title">
       支持排序
     </h2>
-    <nut-table :columns="columns6 as any" :data="data6" @sorter="handleSorter" />
+    <nut-table :columns="columns6" :data="data6" @sorter="handleSorter" />
   </div>
 </template>
 

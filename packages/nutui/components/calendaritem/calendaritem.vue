@@ -388,7 +388,7 @@ function getMonth(curData: string[], type: string) {
   if (state.monthsData.length > 0) {
     cssScrollHeight
       = (state.monthsData[state.monthsData.length - 1] as MonthInfo).cssScrollHeight
-      + (state.monthsData[state.monthsData.length - 1] as MonthInfo).cssHeight
+        + (state.monthsData[state.monthsData.length - 1] as MonthInfo).cssHeight
   }
   monthInfo.cssScrollHeight = cssScrollHeight
   if (type === 'next') {

@@ -12,7 +12,7 @@
   position: fixed;
   right: 0;
   left: 0;
-  z-index: $menu-bar-opened-z-index;
+  z-index: calc($menu-bar-opened-z-index - 1);
   height: 100vh;
   overflow: hidden;
 
@@ -52,6 +52,6 @@
   position: fixed;
   right: 0;
   left: 0;
-  z-index: $menu-bar-opened-z-index;
+  z-index: calc($menu-bar-opened-z-index - 1);
   background-color: transparent;
 }

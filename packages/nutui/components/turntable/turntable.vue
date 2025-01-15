@@ -147,10 +147,10 @@ function rotate(index: number) {
   const turnsTimeNum = turnsTime
   const rotateAngleValue
     = startRotateDegree.value
-    + turnsNumber * 360
-    + 360
-    - (180 / prizeList.length + (360 / prizeList.length) * index)
-    - (startRotateDegree.value % 360)
+      + turnsNumber * 360
+      + 360
+      - (180 / prizeList.length + (360 / prizeList.length) * index)
+      - (startRotateDegree.value % 360)
   startRotateDegree.value = rotateAngleValue
   rotateAngle.value = `rotate(${rotateAngleValue}deg)`
   rotateTransition.value = `transform ${turnsTimeNum}s cubic-bezier(0.250, 0.460, 0.455, 0.995)`

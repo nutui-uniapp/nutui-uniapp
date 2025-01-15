@@ -146,7 +146,7 @@ export const inputProps = {
   /**
    * @description 指定focus时的光标位置
    */
-  cursor: Number,
+  cursor: makeNumberProp(-1),
   /**
    * @description 光标起始位置，自动聚集时有效，需与selection-end搭配使用
    */

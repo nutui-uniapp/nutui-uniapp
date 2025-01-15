@@ -1,3 +1,17 @@
+## [1.8.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.1...v1.8.2) (2025-01-15)
+
+### Bug Fixes
+
+* **hooks:** 修复useSelectorQuery在app平台查询节点数据为空的问题 ([#446](https://github.com/nutui-uniapp/nutui-uniapp/issues/446)) ([4e7ceb6](https://github.com/nutui-uniapp/nutui-uniapp/commit/4e7ceb6a62bd541a574957c288491eefffc74edf))
+* **input :** 修复自动聚焦时默认光标位置在最左侧 ([#451](https://github.com/nutui-uniapp/nutui-uniapp/issues/451)) ([255c067](https://github.com/nutui-uniapp/nutui-uniapp/commit/255c06791e8beeab7276a9434892e93054ef9ade))
+* **menu:** 修复点击菜单无法正常切换的问题 ([#449](https://github.com/nutui-uniapp/nutui-uniapp/issues/449)) ([fa60cbb](https://github.com/nutui-uniapp/nutui-uniapp/commit/fa60cbb8c10d1ff0f8978e268392d22219d54d94))
+* **table:** 修复column的align、sorter类型声明错误 ([d936d5f](https://github.com/nutui-uniapp/nutui-uniapp/commit/d936d5ffde9e7275b46d67f5a661f96dbd127414))
+* **uploader:** 修复data外部修改后提交时依然是旧值问题 ([#445](https://github.com/nutui-uniapp/nutui-uniapp/issues/445)) ([c1e7a58](https://github.com/nutui-uniapp/nutui-uniapp/commit/c1e7a58373b894fdaca5576bd22eb508afed387b))
+
+### Features
+
+* **progress:** 新增ProgressStatus类型导出 ([ea5fb65](https://github.com/nutui-uniapp/nutui-uniapp/commit/ea5fb652fddc03c9660690e6caee2a7c3c2c7c6f))
+
 ## [1.8.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.0...v1.8.1) (2024-10-30)
 
 ### Bug Fixes

@@ -56,7 +56,7 @@ export default defineComponent({
       if (parent?.props.direction === 'down')
         return { ...heightStyle, top: 0 }
 
-      return { ...heightStyle, top: 'auto' }
+      return { ...heightStyle, bottom: 0 }
     })
 
     const open = () => {
