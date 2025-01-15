@@ -31,7 +31,10 @@ const classes = computed(() => {
 })
 
 function relation(child: ComponentInternalInstance) {
-  child && state.children.push(child)
+  if (child) {
+    // why `as any`? maybe a ts bug, or not...
+    state.children.push(child as any)
+  }
 }
 
 function onEmit(index: number) {
