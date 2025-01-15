@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { computed, defineComponent, reactive, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, defineComponent, ref, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
@@ -9,63 +9,73 @@ import { tableEmits, tableProps } from './table'
 import type { TableColumnProps } from './types'
 
 const props = defineProps(tableProps)
+
 const emit = defineEmits(tableEmits)
-const state = reactive({
-  curData: props.data,
-})
+
+const slots = useSlots()
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
 
-function cellClasses(item: TableColumnProps) {
+const mainClasses = computed(() => {
   return {
-    'nut-table__main__head__tr--border': props.bordered,
-    [`nut-table__main__head__tr--align${item.align ? item.align : ''}`]: true,
+    'nut-table__main--striped': props.striped,
   }
-}
+})
 
-function _stylehead(item: TableColumnProps) {
-  return item.stylehead ? item.stylehead : ''
-}
-function _stylecolumn(item: TableColumnProps) {
-  return item.stylecolumn ? item.stylecolumn : ''
-}
-
-function getColumnItem(value: string): TableColumnProps {
-  return props.columns.filter((item: TableColumnProps) => item.key === value)[0]
-}
-function getColumnItemStyle(value: string) {
-  const style = props.columns.filter((item: TableColumnProps) => item.key === value)
-  return style[0].stylecolumn ? style[0].stylecolumn : ''
-}
-function handleSorterClick(item: TableColumnProps) {
-  if (item.sorter) {
-    emit('sorter', item)
-    state.curData
-            = typeof item.sorter === 'function'
-        ? state.curData.sort(item.sorter)
-        : item.sorter === 'default'
-          ? state.curData.sort()
-          : state.curData
+const nodataClasses = computed(() => {
+  return {
+    'nut-table__nodata--border': props.bordered,
   }
-}
+})
 
-function sortDataItem() {
-  return props.columns.map((columns: TableColumnProps) => {
+const innerData = ref(props.data)
+
+const innerRenders = computed(() => {
+  return props.columns.map((columns) => {
     return [columns.key, columns.render]
   })
+})
+
+function getCellItemClasses(item: TableColumnProps) {
+  return {
+    'nut-table__main__head__tr--border': props.bordered,
+    [`nut-table__main__head__tr--align${item.align || ''}`]: true,
+  }
 }
 
-watch(
-  () => props.data,
-  (val) => {
-    state.curData = val.slice()
-  },
-)
+function getColumnItem(key: string) {
+  return props.columns.find(item => item.key === key)!
+}
+
+function getColumnItemStyle(key: string) {
+  return getColumnItem(key).stylecolumn || ''
+}
+
+function handleSorterClick(item: TableColumnProps) {
+  if (!item.sorter) {
+    return
+  }
+
+  emit('sorter', item)
+
+  if (typeof item.sorter === 'function') {
+    innerData.value.sort(item.sorter)
+  }
+  else if (item.sorter === 'default') {
+    innerData.value.sort()
+  }
+}
+
+watch(() => props.data, (value) => {
+  innerData.value = value.slice()
+})
 </script>
 
 <script lang="ts">
 const componentName = `${PREFIX}-table`
+
 const { translate } = useTranslate(componentName)
 
 export default defineComponent({
@@ -79,67 +89,70 @@ export default defineComponent({
 </script>
 
 <template>
-  <view :class="classes" :style="customStyle">
-    <view class="nut-table__main" :class="{ 'nut-table__main--striped': striped }">
+  <view :class="classes" :style="props.customStyle">
+    <view class="nut-table__main" :class="mainClasses">
       <view class="nut-table__main__head">
         <view class="nut-table__main__head__tr">
           <view
-            v-for="item in columns"
+            v-for="item in props.columns"
             :key="item.key"
             class="nut-table__main__head__tr__th"
-            :class="cellClasses(item)"
+            :class="getCellItemClasses(item)"
             :style="item.stylehead"
             @click="handleSorterClick(item)"
           >
             {{ item.title }}
-            <!-- <slot name="icon" > -->
+
             <NutIcon v-if="item.sorter" name="down-arrow" size="12px" />
-            <!-- </slot> -->
           </view>
         </view>
       </view>
+
       <view class="nut-table__main__body">
-        <view v-for="item in state.curData" :key="item" class="nut-table__main__body__tr">
+        <view v-for="item in innerData" :key="item" class="nut-table__main__body__tr">
           <view
-            v-for="[value, render] in sortDataItem()"
-            :key="value as string"
+            v-for="[key, render] in innerRenders"
+            :key="key as string"
             class="nut-table__main__body__tr__td"
-            :class="cellClasses(getColumnItem(value as string))"
-            :style="getColumnItemStyle(value as string)"
+            :class="getCellItemClasses(getColumnItem(key as string))"
+            :style="getColumnItemStyle(key as string)"
           >
             <!-- #ifdef H5 -->
             <RenderColumn
-              v-if="typeof item[value as string] === 'function' || typeof render === 'function'"
-              :slots="[render, item[value as string]]"
+              v-if="typeof item[key as string] === 'function' || typeof render === 'function'"
+              :slots="[render, item[key as string]]"
               :record="item"
             />
+
             <view v-else>
-              {{ item[value as string] }}
+              {{ item[key as string] }}
             </view>
             <!-- #endif -->
+
             <!-- #ifndef H5 -->
             <view>
-              {{ item[value as string] }}
+              {{ item[key as string] }}
             </view>
             <!-- #endif -->
           </view>
         </view>
       </view>
     </view>
-    <view v-if="summary" class="nut-table__summary">
-      <rich-text class="nut-table__summary__text" :nodes="summary().value" />
+
+    <view v-if="props.summary" class="nut-table__summary">
+      <rich-text class="nut-table__summary__text" :nodes="props.summary().value" />
     </view>
-    <view v-if="!state.curData.length" class="nut-table__nodata">
-      <div class="nut-table__nodata" :class="{ 'nut-table__nodata--border': bordered }">
-        <slot name="nodata" />
-        <div v-if="!$slots.nodata" class="nut-table__nodata__text">
-          {{ translate('noData') }}
-        </div>
-      </div>
+
+    <view v-if="innerData.length <= 0" class="nut-table__nodata" :class="nodataClasses">
+      <slot v-if="slots.nodata" name="nodata" />
+
+      <view v-else class="nut-table__nodata__text">
+        {{ translate('noData') }}
+      </view>
     </view>
   </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
