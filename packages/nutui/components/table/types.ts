@@ -12,7 +12,7 @@ export interface TableColumnProps {
   /**
    * @description 列的对齐方式，可选值`left`,`center`
    */
-  align?: 'left' | 'right'
+  align?: 'left' | 'center' | 'right'
   /**
    * @description 表头样式
    */
@@ -22,12 +22,12 @@ export interface TableColumnProps {
    */
   stylecolumn?: string
   /**
-   * @description 排序，可选值有 `true`,`function`, `default`, 其中 `default`表示点击之后可能会依赖接口, `function`可以返回具体的排序函数, `default`表示采用默认的排序算法
+   * @description 排序，可选值有 `true`,`function`, `default`, 其中 `true`表示点击之后可能会依赖接口, `function`可以返回具体的排序函数, `default`表示采用默认的排序算法
    * @param row1
    * @param row2
    * @returns
    */
-  sorter?: (row1: any, row2: any) => number
+  sorter?: boolean | 'default' | ((row1: any, row2: any) => number)
   /**
    * @description 自定义渲染列数据，优先级高,仅支持`H5`
    * @param rowData
