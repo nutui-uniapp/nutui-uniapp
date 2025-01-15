@@ -139,10 +139,10 @@ function rotate(index: number) {
   const turnsTimeNum = props.turnsTime
   const rotateAngleValue
     = startRotateDegree.value
-    + props.turnsNumber * 360
-    + 360
-    - (180 / props.prizeList.length + (360 / props.prizeList.length) * index)
-    - (startRotateDegree.value % 360)
+      + props.turnsNumber * 360
+      + 360
+      - (180 / props.prizeList.length + (360 / props.prizeList.length) * index)
+      - (startRotateDegree.value % 360)
 
   startRotateDegree.value = rotateAngleValue
   rotateAngle.value = `rotate(${rotateAngleValue}deg)`
