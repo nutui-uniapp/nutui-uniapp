@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { RangeValue } from 'nutui-uniapp'
 import { reactive, toRefs } from 'vue'
 
 export default {
@@ -6,7 +7,7 @@ export default {
   setup() {
     const state = reactive({
       value1: 40,
-      value2: [20, 80],
+      value2: [20, 80] as RangeValue,
       value3: 0,
       value4: 20,
       value5: 30,
@@ -15,11 +16,11 @@ export default {
       value8: 40,
       value9: 60,
       value10: 20,
-      value11: [20, 80],
+      value11: [20, 80] as RangeValue,
       value12: 60,
-      value13: [20, 80],
+      value13: [20, 80] as RangeValue,
       value14: 60,
-      value15: [20, 80],
+      value15: [20, 80] as RangeValue,
       marks: {
         0: 0,
         20: 20,
