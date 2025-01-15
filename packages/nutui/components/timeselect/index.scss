@@ -59,8 +59,7 @@
     &__detail {
       width: calc(100% - 140px);
       height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
+      overflow: hidden auto;
     }
   }
 }
