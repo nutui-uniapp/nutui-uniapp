@@ -1,5 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 import { commonProps, makeNumericProp, makeStringProp, truthProp } from '../_utils'
+import type { ProgressStatus } from './types'
 
 export const progressProps = {
   ...commonProps,
@@ -48,6 +49,7 @@ export const progressProps = {
   /**
    * @description 进度条当前状态，可选值`active(展示动画效果)` `icon(展示icon标签)`
    */
-  status: makeStringProp<'text' | 'active' | 'icon'>('text'),
+  status: makeStringProp<ProgressStatus>('text'),
 }
+
 export type ProgressProps = ExtractPropTypes<typeof progressProps>
