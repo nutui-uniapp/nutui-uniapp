@@ -87,20 +87,21 @@ const wrapperStyles = computed(() => {
   return value
 })
 
-let timer: NodeJS.Timeout | null = null
+let timer = 0
 
 function startTimer() {
+  // @ts-expect-error whatever
   timer = setTimeout(() => {
     hide()
   }, notifyOptions.value.duration)
 }
 
 function destroyTimer() {
-  if (timer == null)
+  if (timer === 0)
     return
 
   clearTimeout(timer)
-  timer = null
+  timer = 0
 }
 
 function show(type: NotifyType, msg: string, options?: NotifyOptions) {
