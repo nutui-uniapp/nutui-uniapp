@@ -88,25 +88,29 @@ function changePosition() {
   })
 }
 
-let timer: NodeJS.Timeout | null = null
+let timer = 0
 
 function init() {
   showBean.value = false
-  if (timer != null) {
-    clearTimeout(timer)
-    timer = null
+
+  if (timer !== 0) {
+    destroyTimer()
   }
+
+  // @ts-expect-error whatever
   timer = setTimeout(() => {
-    changePosition() // 循环调用函数自身，以达到循环的效果
+    // 循环调用函数自身，以达到循环的效果
+    changePosition()
+
     if (num.value < props.turnNumber) {
       init()
       num.value++
     }
     else {
-      if (timer != null) {
-        clearTimeout(timer)
-        timer = null
+      if (timer !== 0) {
+        destroyTimer()
       }
+
       num.value = 0
       setTimeout(() => {
         lock.value = false
@@ -114,6 +118,14 @@ function init() {
       }, 500)
     }
   }, props.turnsFrequency)
+}
+
+function destroyTimer() {
+  if (timer === 0)
+    return
+
+  clearTimeout(timer)
+  timer = 0
 }
 
 function start() {
