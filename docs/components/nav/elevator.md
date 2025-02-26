@@ -254,8 +254,6 @@ const clickIndex = (key: string) => {
 
 ### 自定义内容
 
-### 自定义内容
-
 ```vue
 <template>
   <nut-elevator
