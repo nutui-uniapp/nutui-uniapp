@@ -230,6 +230,7 @@ function onInputClick() {
 |-----------------------|---------------------------------------------------------------------------------------------------------------|---------------------------|---------------------|
 | v-model               | 输入值，双向绑定                                                                                                      | string \| number          | -                   |
 | type                  | 输入框类型 [有效值](https://uniapp.dcloud.net.cn/component/input.html#type)                                           | string                    | `text`              |
+| password `1.8.3`      | 是否是密码类型                                                                                                       | boolean                   | `false`             |
 | input-mode `H5` `App` | 输入框模式 是一个枚举属性，它提供了用户在编辑元素或其内容时可能输入的数据类型的提示 [有效值](https://uniapp.dcloud.net.cn/component/input.html#inputmode) | string                    | `text`              |
 | input-style `1.7.3`   | 输入框自定义样式                                                                                                      | `StyleValue`              | -                   |
 | input-class `1.7.3`   | 输入框自定义类名                                                                                                      | `ClassType`               | -                   |

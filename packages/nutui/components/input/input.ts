@@ -159,6 +159,10 @@ export const inputProps = {
    * @description focus时，点击页面的时候不收起键盘
    */
   holdKeyboard: Boolean,
+  /**
+   * @description 是否是密码类型
+   */
+  password: Boolean,
 }
 
 export type InputProps = ExtractPropTypes<typeof inputProps>

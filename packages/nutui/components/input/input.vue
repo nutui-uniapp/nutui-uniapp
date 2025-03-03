@@ -229,6 +229,7 @@ onMounted(() => {
         :selection-start="props.selectionStart"
         :selection-end="props.selectionEnd"
         :hold-keyboard="props.holdKeyboard"
+        :password="props.password"
         @input="(handleInput as any)"
         @focus="handleFocus"
         @blur="handleBlur"
