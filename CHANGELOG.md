@@ -1,3 +1,13 @@
+## [1.8.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.2...v1.8.3) (2025-03-07)
+
+### Bug Fixes
+
+* **toast,notify,guessgift,addresslist:** 修复setTimeout类型错误 ([c2f86f5](https://github.com/nutui-uniapp/nutui-uniapp/commit/c2f86f53607ec1f3cab3fa8dd18e7fabfb6aba20))
+
+### Features
+
+* **input:** 新增 password 属性 ([#456](https://github.com/nutui-uniapp/nutui-uniapp/issues/456)) ([98d40ce](https://github.com/nutui-uniapp/nutui-uniapp/commit/98d40cee93dc6f17e706746f7af88719e7154da1))
+
 ## [1.8.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.1...v1.8.2) (2025-01-15)
 
 ### Bug Fixes
