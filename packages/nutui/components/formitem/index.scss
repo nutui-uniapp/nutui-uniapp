@@ -4,6 +4,10 @@
   .nut-form-item {
     &__body {
       &__slots {
+        display: flex; 
+		    flex-direction: row; 
+		    align-items: center; 
+		    justify-content: space-between;
         :deep(.nut-input) {
           color: $dark-color;
           background: transparent;
@@ -79,6 +83,10 @@
 
     &__slots {
       text-align: $form-item-body-slots-text-align;
+      display: flex; 
+		  flex-direction: row; 
+		  align-items: center; 
+		  justify-content: space-between;
 
       :deep(.nut-input) {
         width: 100%;
