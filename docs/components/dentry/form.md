@@ -290,7 +290,7 @@ export default {
         <nut-uploader url="http://服务地址" accept="image/*" v-model:file-list="formData2.defaultFileList" maximum="3" multiple>
         </nut-uploader>
     </nut-form-item>
-    <nut-form-item label="地址">
+    <nut-form-item label="地址" is-link>
         <nut-input class="nut-input-text" v-model="formData2.address" @click="addressModule.methods.show" readonly
             placeholder="请选择地址" type="text" />
         <!-- nut-address -->
