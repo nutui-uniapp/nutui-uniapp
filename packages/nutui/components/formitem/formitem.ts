@@ -10,6 +10,11 @@ export const formitemProps = {
   required: nullableBooleanProp,
 
   /**
+   * @description 是否展示右侧箭头
+   */
+  isLink: Boolean,
+
+  /**
    * @description 表单域 `v-model` 字段，在使用表单校验功能的情况下，该属性是必填的
    */
   prop: makeStringProp(''),
