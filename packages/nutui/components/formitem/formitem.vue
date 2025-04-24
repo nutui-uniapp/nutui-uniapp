@@ -6,10 +6,10 @@ import { useInject } from '../_hooks'
 import { getMainClass, pxCheck } from '../_utils'
 import NutCell from '../cell/cell.vue'
 import { FORM_KEY } from '../form/form'
+import NutIcon from '../icon/icon.vue'
 import type { FormItemProps } from './formitem'
 import { formitemProps } from './formitem'
 import type { FormItemRule } from './types'
-import NutIcon from '../icon/icon.vue'
 
 const props = defineProps(formitemProps)
 const slots = useSlots()
