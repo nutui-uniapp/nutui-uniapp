@@ -59,6 +59,10 @@ export const formitemProps = {
    * @description 是否在校验不通过时标红输入框
    */
   showErrorLine: truthProp,
+  /**
+   * @description 是否展示右侧箭头
+   */
+  isLink: Boolean,
 }
 
 export type FormItemProps = ExtractPropTypes<typeof formitemProps>

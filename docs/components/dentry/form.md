@@ -448,6 +448,7 @@ interface FormItemValidateResult {
 | show-error-message     | 是否在校验不通过时在输入框下方展示错误提示                           | boolean                    | `true`  |
 | error-message-align    | 错误提示文案对齐方式，可选值为 `center` `right`                | string                     | `left`  |
 | show-error-line        | 是否在校验不通过时标红输入框                                  | boolean                    | `true`  |
+| is-link `1.8.4`        | 是否展示右侧箭头                                        | boolean                    | `false` |
 
 ::: details 类型定义 `2.0.0`
 

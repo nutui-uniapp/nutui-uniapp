@@ -60,10 +60,11 @@
     flex-direction: column;
 
     &__slots {
+      display: flex;
       text-align: $form-item-body-slots-text-align;
 
       :deep(.nut-input) {
-        width: 100%;
+        flex: 1;
         font-size: $form-item-body-font-size;
         color: $black;
         text-align: $form-item-body-input-text-align;

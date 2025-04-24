@@ -7,6 +7,7 @@ import { getMainClass, getMainStyle, isPromise, pxCheck } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutCell from '../cell/cell.vue'
 import { useFormContext } from '../form'
+import NutIcon from '../icon/icon.vue'
 import { FORM_ITEM_CONTEXT_KEY, formitemProps } from './formitem'
 import type {
   FormItemContext,
@@ -303,6 +304,8 @@ defineExpose({
     <view class="nut-form-item__body nut-cell__value">
       <view class="nut-form-item__body__slots" :style="bodyStyles">
         <slot />
+
+        <NutIcon v-if="props.isLink" custom-class="nut-cell__link" name="right" />
       </view>
 
       <view v-if="shouldShowError" class="nut-form-item__body__tips" :style="errorMessageStyles">
