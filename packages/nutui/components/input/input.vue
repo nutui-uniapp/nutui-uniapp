@@ -226,6 +226,7 @@ export default defineComponent({
         :selection-start="props.selectionStart"
         :selection-end="props.selectionEnd"
         :hold-keyboard="props.holdKeyboard"
+        :password="props.password"
         @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
