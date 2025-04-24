@@ -433,7 +433,6 @@ const basicData = reactive({
 | 参数                     | 说明                                              | 类型                 | 默认值     |
 |------------------------|-------------------------------------------------|--------------------|---------|
 | required               | 是否显示必填字段的标签旁边的红色星号                              | boolean            | `false` |
-| is-link `1.8.4`        | 是否展示右侧箭头                                        | boolean            | `false` |
 | prop                   | 表单域 `v-model` 字段， 在使用表单校验功能的情况下，该属性是必填的         | string             | -       |
 | rules                  | 定义校验规则                                          | `FormItemRule[]`   | `[]`    |
 | label-width            | 表单项 `label` 宽度，默认单位为`px`                        | number / string    | `90`    |
@@ -444,6 +443,7 @@ const basicData = reactive({
 | show-error-message     | 是否在校验不通过时在输入框下方展示错误提示                           | boolean            | `true`  |
 | label-position `1.5.7` | 表单项 label 的位置，优先级高于 form 中的 label-position      | top / left / right | -       |
 | star-position `1.5.7`  | 必填表单项 label 的红色星标位置，优先级高于 form 中的 star-position | left / right       | -       |
+| is-link `1.8.4`        | 是否展示右侧箭头                                        | boolean            | `false` |
 
 ### FormItemRule 数据结构
 
