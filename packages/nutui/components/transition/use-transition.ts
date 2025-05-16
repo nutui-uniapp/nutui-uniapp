@@ -132,9 +132,13 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
 
     display.value = true
 
-    animationClass.value = defaultAnimations[name.value]?.enter
-      ? defaultAnimations[name.value]?.enter
-      : `${classNames.value.enter} ${classNames.value.enterActive}`
+    const animation = defaultAnimations[name.value]
+    if (animation != null) {
+      animationClass.value = animation.enter
+    }
+    else {
+      animationClass.value = `${classNames.value.enter} ${classNames.value.enterActive}`
+    }
 
     await nextTick()
 
@@ -154,9 +158,13 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
 
     emit('beforeLeave')
 
-    animationClass.value = defaultAnimations[name.value]?.leave
-      ? defaultAnimations[name.value]?.leave
-      : `${classNames.value.leave} ${classNames.value.leaveActive}`
+    const animation = defaultAnimations[name.value]
+    if (animation != null) {
+      animationClass.value = animation.leave
+    }
+    else {
+      animationClass.value = `${classNames.value.leave} ${classNames.value.leaveActive}`
+    }
 
     await nextTick()
 
@@ -175,10 +183,10 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
 
   watch(() => props.show, (value) => {
     if (value) {
-      enter()
+      void enter()
     }
     else {
-      leave()
+      void leave()
     }
   }, { immediate: true })
 
