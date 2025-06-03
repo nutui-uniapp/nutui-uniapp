@@ -7,7 +7,7 @@ export const components = [
       { text: 'Cell 单元格', link: '/components/basic/cell' },
       { text: 'ConfigProvider 全局配置', link: '/components/basic/configprovider' },
       { text: 'Icon 图标', link: '/components/basic/icon' },
-      { text: 'Overlay 遮照层', link: '/components/basic/overlay' },
+      { text: 'Overlay 遮罩层', link: '/components/basic/overlay' },
       { text: 'Popup 弹出层', link: '/components/basic/popup' },
       { text: 'Transition 过渡', link: '/components/basic/transition' },
     ],
