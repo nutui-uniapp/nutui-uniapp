@@ -42,7 +42,6 @@
     min-width: 0;
     padding: 0;
     margin: 0;
-    overflow: hidden;
     font-size: $textarea-font;
     line-height: 20px;
     color: $textarea-text-color;
@@ -51,7 +50,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-   
+
     .taro-textarea {
       font-size: 14px;
     }
