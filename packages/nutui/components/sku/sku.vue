@@ -125,11 +125,11 @@ defineExpose({
       <slot v-if="slots.skuHeader" name="skuHeader" />
 
       <SkuHeader v-else :goods="props.goods">
-        <template #skuHeaderPrice>
+        <template v-if="slots.skuHeaderPrice" #skuHeaderPrice>
           <slot name="skuHeaderPrice" />
         </template>
 
-        <template #skuHeaderExtra>
+        <template v-if="slots.skuHeaderExtra" #skuHeaderExtra>
           <slot name="skuHeaderExtra" />
         </template>
       </SkuHeader>

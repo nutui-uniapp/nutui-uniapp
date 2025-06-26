@@ -13,6 +13,7 @@
     v-model:visible="base"
     :sku="sku"
     :goods="goods"
+    :btn-options="['cart', 'buy']"
     @selectSku="selectSku"
     @clickBtnOperate="clickBtnOperate"
     @close="close"
