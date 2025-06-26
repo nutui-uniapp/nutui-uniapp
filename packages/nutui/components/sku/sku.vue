@@ -130,11 +130,11 @@ export default defineComponent({
     <view :class="classes" :style="customStyle">
       <slot name="skuHeader">
         <SkuHeader :goods="goods">
-          <template #skuHeaderPrice>
+          <template v-if="getSlots('skuHeaderPrice')" #skuHeaderPrice>
             <slot name="skuHeaderPrice" />
           </template>
 
-          <template #skuHeaderExtra>
+          <template v-if="getSlots('skuHeaderExtra')" #skuHeaderExtra>
             <slot name="skuHeaderExtra" />
           </template>
         </SkuHeader>
