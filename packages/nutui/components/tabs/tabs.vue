@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance, CSSProperties, Ref, VNode } from 'vue'
-import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, useSlots, watch } from 'vue'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import { getMainClass, getRandomId, pxCheck, TypeOfFun } from '../_utils'
@@ -75,8 +75,12 @@ const scrollWithAnimation = ref(false)
 const navRectRef = ref()
 const titleRectRef = ref<UniApp.NodeInfo[]>([])
 const canShowLabel = ref(false)
+const slots = useSlots()
+const getSlots = (name: string) => slots[name]
+const hasTabsTitlesSlot = getSlots('titles') != null
+
 function scrollIntoView() {
-  if (!props.titleScroll)
+  if (!props.titleScroll || hasTabsTitlesSlot)
     return
   raf(() => {
     Promise.all([
