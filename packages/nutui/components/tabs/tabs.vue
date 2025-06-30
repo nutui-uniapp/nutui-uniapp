@@ -98,7 +98,7 @@ const titleRectRef = ref<UniApp.NodeInfo[]>([])
 const canShowLabel = ref(false)
 
 function scrollIntoView() {
-  if (!props.titleScroll)
+  if (!props.titleScroll || slots.titles)
     return
 
   raf(() => {
