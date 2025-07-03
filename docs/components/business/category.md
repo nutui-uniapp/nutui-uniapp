@@ -34,7 +34,7 @@ export default {
     });
 
     const change = (index: any) => {
-      data.categoryChild = [].concat(data.category.category[index].children as any);
+      data.categoryChild = [].concat(data.category[index].children as any);
     };
     const onChange =()=>{
         console.log("当前分类数据");
@@ -79,7 +79,7 @@ export default {
     });
 
     const changeText = (index: any) => {
-      data.categoryChild = [].concat(data.category.category[index].children as any);
+      data.categoryChild = [].concat(data.category[index].children as any);
     };
 
     const onChange =()=>{
