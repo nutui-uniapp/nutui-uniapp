@@ -54,6 +54,22 @@
       font-size: $cascader-item-font-size;
       color: $cascader-item-color;
       cursor: pointer;
+
+      &.active {
+        &:not(.disabled) {
+          color: $cascader-item-active-color;
+        }
+
+        #{$block}__icon-check {
+          color: $cascader-item-active-color;
+          visibility: visible;
+        }
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
     }
 
     &__title {
@@ -69,21 +85,9 @@
       margin-left: 10px;
     }
 
-    &.active {
-      &:not(.disabled) {
-        color: $cascader-item-active-color;
-      }
+    
 
-      #{$block}__icon-check {
-        color: $cascader-item-active-color;
-        visibility: visible;
-      }
-    }
-
-    &.disabled {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
+   
   }
 
   &__bar {
