@@ -30,22 +30,22 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes" :style="customStyle">
-    <div class="nut-category__cateList">
-      <div v-if="type === 'classify' || type === 'text'">
-        <div v-for="(item, index) in category" :key="index" class="nut-category__cateListLeft">
-          <div
+  <view :class="classes" :style="customStyle">
+    <view class="nut-category__cateList">
+      <view v-if="type === 'classify' || type === 'text'" class="category__cateListBox">
+        <view v-for="(item, index) in category" :key="index" class="nut-category__cateListLeft">
+          <view
             :class="[checkIndex === index ? 'nut-category__cateListItemChecked' : 'nut-category__cateListItem']"
             @click="getChildList(index)"
           >
             {{ item.catName }}
-          </div>
-        </div>
-      </div>
+          </view>
+        </view>
+      </view>
 
       <slot />
-    </div>
-  </div>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
