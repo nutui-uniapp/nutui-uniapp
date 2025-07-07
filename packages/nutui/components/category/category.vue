@@ -32,7 +32,7 @@ export default defineComponent({
 <template>
   <view :class="classes" :style="customStyle">
     <view class="nut-category__cateList">
-      <view v-if="type === 'classify' || type === 'text'" class="category__cateListBox">
+      <view v-if="type === 'classify' || type === 'text'" class="nut-category__cateListBox">
         <view v-for="(item, index) in category" :key="index" class="nut-category__cateListLeft">
           <view
             :class="[checkIndex === index ? 'nut-category__cateListItemChecked' : 'nut-category__cateListItem']"
