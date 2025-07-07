@@ -11,24 +11,24 @@ data 数据格式可参考
 
 ```vue
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { categoryInfo, categoryChild } from './data'
+  import { ref, onMounted } from 'vue'
+  import { categoryInfo, categoryChild } from './data'
 
-const category = ref([])
-const categoryChild = ref([])
+  const category = ref([])
+  const categoryChild = ref([])
 
-onMounted(() => {
-  category.value = categoryInfo.category
-  categoryChild.value = categoryChild
-})
+  onMounted(() => {
+    category.value = categoryInfo.category
+    categoryChild.value = categoryChild
+  })
 
-const change = (index: number) => {
-  categoryChild.value = [].concat(category.value[index].children)
-}
+  const change = (index: number) => {
+    categoryChild.value = [].concat(category.value[index].children)
+  }
 
-const onChange = () => {
-  console.log("当前分类数据")
-}
+  const onChange = () => {
+    console.log("当前分类数据")
+  }
 </script>
 
 <template>
@@ -42,20 +42,20 @@ const onChange = () => {
 
 ```vue
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { customCategory } from './data'
+  import { ref, onMounted } from 'vue'
+  import { customCategory } from './data'
 
-const customCategoryData = ref([])
+  const customCategoryData = ref([])
 
-onMounted(() => {
-  setTimeout(() => {
-    customCategoryData.value = customCategory
-  }, 500)
-})
+  onMounted(() => {
+    setTimeout(() => {
+      customCategoryData.value = customCategory
+    }, 500)
+  })
 
-const changeCustom = () => {
-  console.log('点击分类数据')
-}
+  const changeCustom = () => {
+    console.log('点击分类数据')
+  }
 </script>
 
 <template>

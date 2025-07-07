@@ -1,7 +1,7 @@
 {
   "name": "nutui-uniapp",
   "type": "module",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "private": "true",
   "packageManager": "pnpm@9.15.4",
   "description": "",

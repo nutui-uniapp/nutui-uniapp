@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ComponentInternalInstance, CSSProperties, Ref, VNode } from 'vue'
-import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, useSlots, watch } from 'vue'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { useProvide, useRect, useSelectorQuery } from '../_hooks'
 import { getMainClass, getRandomId, pxCheck, TypeOfFun } from '../_utils'
@@ -10,17 +10,26 @@ import { useTabContentTouch } from './hooks'
 import { TAB_KEY, tabsEmits, tabsProps, Title } from './tabs'
 
 const props = defineProps(tabsProps)
+
 const emit = defineEmits(tabsEmits)
+
+const slots = useSlots()
+
 const instance = getCurrentInstance() as ComponentInternalInstance
 const { getSelectorNodeInfo, getSelectorNodeInfos } = useSelectorQuery(instance)
+
 const refRandomId = getRandomId()
+
 const container = ref(null)
+
 const { internalChildren } = useProvide(TAB_KEY, `${PREFIX}-tabs`)({
   activeKey: computed(() => props.modelValue || 0),
   autoHeight: computed(() => props.autoHeight),
   animatedTime: computed(() => props.animatedTime),
 })
+
 const titles: Ref<Title[]> = ref([])
+
 function renderTitles(vnodes: VNode[]) {
   vnodes.forEach((vnode: VNode, index: number) => {
     let type = vnode.type
@@ -51,6 +60,7 @@ function renderTitles(vnodes: VNode[]) {
 }
 
 const currentIndex = ref((props.modelValue as number) || 0)
+
 function findTabsIndex(value: string | number) {
   const index = titles.value.findIndex(item => item.paneKey === String(value))
   // if (titles.value.length === 0)
@@ -62,12 +72,15 @@ function findTabsIndex(value: string | number) {
   // else
   currentIndex.value = index
 }
+
 const getScrollX = computed(() => {
   return props.titleScroll && props.direction === 'horizontal'
 })
+
 const getScrollY = computed(() => {
   return props.titleScroll && props.direction === 'vertical'
 })
+
 const titleRef = ref([]) as Ref<HTMLElement[]>
 const scrollLeft = ref(0)
 const scrollTop = ref(0)
@@ -75,8 +88,9 @@ const scrollWithAnimation = ref(false)
 const navRectRef = ref()
 const titleRectRef = ref<UniApp.NodeInfo[]>([])
 const canShowLabel = ref(false)
+
 function scrollIntoView() {
-  if (!props.titleScroll)
+  if (!props.titleScroll || slots.titles)
     return
   raf(() => {
     Promise.all([

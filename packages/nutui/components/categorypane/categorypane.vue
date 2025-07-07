@@ -1,14 +1,17 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import { categorypaneEmits, categorypaneProps } from './categorypane'
 
 const props = defineProps(categorypaneProps)
+
 const emit = defineEmits(categorypaneEmits)
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
+
 function onChange(sku: string) {
   emit('onChange', sku)
 }
@@ -28,69 +31,73 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes">
-    <div v-if="type === 'classify'" class="nut-category-pane__cateListRight">
+  <view :class="classes">
+    <view v-if="props.type === 'classify'" class="nut-category-pane__cateListRight">
       <slot />
-      <div v-for="(item, index) in categoryChild" :key="index">
-        <div class="nut-category-pane__childTitle">
-          {{ item?.catName }}
-        </div>
 
-        <div v-if="item?.catType === 1" class="nut-category-pane__childItemList">
-          <div
+      <view v-for="(item, index) in props.categoryChild" :key="index" class="nut-category-pane__child">
+        <view class="nut-category-pane__childTitle">
+          {{ item?.catName }}
+        </view>
+
+        <view v-if="item?.catType === 1" class="nut-category-pane__childItemList">
+          <view
             v-for="(sku, key) in item.childCateList"
             :key="key"
             class="nut-category-pane__childItem"
             @click="onChange(sku)"
           >
             <image class="nut-category-pane__childImg" :src="sku.backImg" />
-            <div class="nut-category-pane__skuImg">
+
+            <view class="nut-category-pane__skuImg">
               {{ sku?.catName }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
 
     <!-- text -->
-    <div v-if="type === 'text'" class="nut-category-pane__cateListRight">
+    <view v-if="props.type === 'text'" class="nut-category-pane__cateListRight">
       <slot />
-      <div v-for="(item, index) in categoryChild" :key="index">
-        <div class="nut-category-pane__childTitle">
-          {{ item?.catName }}
-        </div>
 
-        <div v-if="item?.catType === 1" class="nut-category-pane__childItemList">
-          <div
+      <view v-for="(item, index) in props.categoryChild" :key="index" class="nut-category-pane__child">
+        <view class="nut-category-pane__childTitle">
+          {{ item?.catName }}
+        </view>
+
+        <view v-if="item?.catType === 1" class="nut-category-pane__childItemList">
+          <view
             v-for="(sku, key) in item.childCateList"
             :key="key"
             class="nut-category-pane__childItem"
             @click="onChange(sku)"
           >
-            <div class="nut-category-pane__skuName">
+            <view class="nut-category-pane__skuName">
               {{ sku?.catName }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
 
     <!-- 自定义 -->
 
-    <div v-if="type === 'custom'" class="nut-category-pane__selfItemList">
+    <view v-if="props.type === 'custom'" class="nut-category-pane__selfItemList">
       <slot />
-      <div
-        v-for="(sku, key) in customCategory"
+
+      <view
+        v-for="(sku, key) in props.customCategory"
         :key="key"
         class="nut-category-pane__skuName"
         @click="onChange(sku)"
       >
         {{ sku?.catName }}
-      </div>
-    </div>
-  </div>
+      </view>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>

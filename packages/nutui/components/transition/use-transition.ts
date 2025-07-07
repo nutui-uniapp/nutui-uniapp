@@ -5,6 +5,24 @@ import { getMainClass, getMainStyle } from '../_utils'
 import type { TransitionEmits, TransitionProps } from './transition'
 import type { NutAnimations } from './types'
 
+export interface IClassNames {
+  enter: string
+  enterActive: string
+  enterTo: string
+  leave: string
+  leaveActive: string
+  leaveTo: string
+}
+
+export interface IClassNameProps {
+  enterClass?: string
+  enterActiveClass?: string
+  enterToClass?: string
+  leaveClass?: string
+  leaveActiveClass?: string
+  leaveToClass?: string
+}
+
 export const defaultAnimations: NutAnimations = {
   'fade': {
     enter: 'nutFadeIn',
@@ -46,32 +64,12 @@ export const defaultAnimations: NutAnimations = {
     enter: 'nutZoomIn',
     leave: 'nutZoomOut',
   },
-
 }
-const componentName = `${PREFIX}-transition`
 
 export function isKeyOfAnimations(value: string) {
   const keys = Object.keys(defaultAnimations)
 
   return keys.includes(value)
-}
-
-export interface IClassNames {
-  enter: string
-  enterActive: string
-  enterTo: string
-  leave: string
-  leaveActive: string
-  leaveTo: string
-}
-
-export interface IClassNameProps {
-  enterClass?: string
-  enterActiveClass?: string
-  enterToClass?: string
-  leaveClass?: string
-  leaveActiveClass?: string
-  leaveToClass?: string
 }
 
 function getDefaultClassNames(name: string) {
@@ -94,6 +92,7 @@ export function getClassNames(name: string, {
   leaveToClass,
 }: IClassNameProps): IClassNames {
   const defaultClassNames = getDefaultClassNames(name)
+
   return {
     enter: enterClass || defaultClassNames.enter,
     enterActive: enterActiveClass || defaultClassNames.enterActive,
@@ -104,8 +103,11 @@ export function getClassNames(name: string, {
   }
 }
 
+const componentName = `${PREFIX}-transition`
+
 export function useTransition(props: TransitionProps, emit: SetupContext<TransitionEmits>['emit']) {
   const display = ref(false)
+
   const name = computed(() => props.name || 'fade')
   const duration = computed(() => props.duration || 200)
 
@@ -125,15 +127,27 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
   async function enter() {
     if (display.value)
       return
+
     emit('beforeEnter')
+
     display.value = true
-    animationClass.value = defaultAnimations[name.value]?.enter ? defaultAnimations[name.value]?.enter : `${classNames.value.enter} ${classNames.value.enterActive}`
+
+    const animation = defaultAnimations[name.value]
+    if (animation != null) {
+      animationClass.value = animation.enter
+    }
+    else {
+      animationClass.value = `${classNames.value.enter} ${classNames.value.enterActive}`
+    }
+
     await nextTick()
+
     emit('enter')
 
     setTimeout(() => {
       if (!isKeyOfAnimations(props.name))
         animationClass.value = classNames.value.enterTo
+
       emit('afterEnter')
     }, duration.value)
   }
@@ -141,32 +155,40 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
   async function leave() {
     if (!display.value)
       return
+
     emit('beforeLeave')
-    animationClass.value = defaultAnimations[name.value]?.leave ? defaultAnimations[name.value]?.leave : `${classNames.value.leave} ${classNames.value.leaveActive}`
+
+    const animation = defaultAnimations[name.value]
+    if (animation != null) {
+      animationClass.value = animation.leave
+    }
+    else {
+      animationClass.value = `${classNames.value.leave} ${classNames.value.leaveActive}`
+    }
+
     await nextTick()
+
     emit('leave')
 
     setTimeout(() => {
       if (!props.show && display.value)
         display.value = false
+
       if (!isKeyOfAnimations(props.name))
         animationClass.value = classNames.value.leaveTo
+
       emit('afterLeave')
     }, duration.value)
   }
 
-  watch(
-    () => props.show,
-    (val) => {
-      val ? enter() : leave()
-    },
-    { immediate: true },
-  )
-
-  function clickHandler(evt: any) {
-    // evt.stopPropagation()
-    emit(CLICK_EVENT, evt)
-  }
+  watch(() => props.show, (value) => {
+    if (value) {
+      void enter()
+    }
+    else {
+      void leave()
+    }
+  }, { immediate: true })
 
   const classes = computed(() => {
     return getMainClass(props, componentName, {
@@ -174,12 +196,18 @@ export function useTransition(props: TransitionProps, emit: SetupContext<Transit
       'nut-hidden': !display.value,
     })
   })
+
   const styles = computed(() => {
     return getMainStyle(props, {
       'animation-duration': isKeyOfAnimations(props.name) ? `${props.duration}ms` : '',
       'animation-timing-function': isKeyOfAnimations(props.name) ? props.timingFunction : '',
     })
   })
+
+  function clickHandler(event: any) {
+    emit(CLICK_EVENT, event)
+  }
+
   return {
     display,
     classes,

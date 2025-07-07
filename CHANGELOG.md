@@ -1,3 +1,13 @@
+## [1.8.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.3...v1.8.4) (2025-05-16)
+
+### Bug Fixes
+
+* **transition:** 修复部分环境编译报错 ([#462](https://github.com/nutui-uniapp/nutui-uniapp/issues/462)) ([683ad81](https://github.com/nutui-uniapp/nutui-uniapp/commit/683ad81d1d9fc57690b198e6d47eb739d9c15ef9))
+
+### Features
+
+* **form-item:** 新增 `is-link` 属性 ([#458](https://github.com/nutui-uniapp/nutui-uniapp/issues/458)) ([e701697](https://github.com/nutui-uniapp/nutui-uniapp/commit/e70169776b91725a0a7bd0ba7d1f3be91067beb5))
+
 ## [1.8.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.2...v1.8.3) (2025-03-07)
 
 ### Bug Fixes

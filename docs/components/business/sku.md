@@ -8,45 +8,45 @@
 
 ```vue
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
+  import { ref, reactive, onMounted } from 'vue'
 
-const base = ref(false)
-const data = reactive({
-  sku: [],
-  goods: {}
-})
+  const base = ref(false)
+  const data = reactive({
+    sku: [],
+    goods: {}
+  })
 
-onMounted(() => {
-  uni.request({
-    url: 'https://storage.360buyimg.com/nutui/3x/data.js',
-    success: function (res) {
-      const { Sku, Goods } = res.data
-      data.sku = Sku
-      data.goods = Goods
+  onMounted(() => {
+    uni.request({
+      url: 'https://storage.360buyimg.com/nutui/3x/data.js',
+      success: function (res) {
+        const { Sku, Goods } = res.data
+        data.sku = Sku
+        data.goods = Goods
+      }
+    })
+  })
+
+  const selectSku = (ss: any) => {
+    const { sku, skuIndex, parentSku, parentIndex } = ss
+    if (sku.disable) return false
+    data.sku[parentIndex].list.forEach((s: any) => {
+      s.active = s.id == sku.id
+    })
+    data.goods = {
+      skuId: sku.id,
+      price: '4599.00',
+      imagePath: '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg'
     }
-  })
-})
-
-const selectSku = (ss: any) => {
-  const { sku, skuIndex, parentSku, parentIndex } = ss
-  if (sku.disable) return false
-  data.sku[parentIndex].list.forEach((s: any) => {
-    s.active = s.id == sku.id
-  })
-  data.goods = {
-    skuId: sku.id,
-    price: '4599.00',
-    imagePath: '//img14.360buyimg.com/n4/jfs/t1/215845/12/3788/221990/618a5c4dEc71cb4c7/7bd6eb8d17830991.jpg'
   }
-}
 
-const clickBtnOperate = (op: string) => {
-  console.log('点击了操作按钮', op)
-}
+  const clickBtnOperate = (op: string) => {
+    console.log('点击了操作按钮', op)
+  }
 
-const close = () => {
-  // 关闭商品规格弹框
-}
+  const close = () => {
+    // 关闭商品规格弹框
+  }
 </script>
 
 <template>
@@ -55,6 +55,7 @@ const close = () => {
     v-model:visible="base"
     :sku="data.sku"
     :goods="data.goods"
+    :btn-options="['cart', 'buy']"
     @selectSku="selectSku"
     @clickBtnOperate="clickBtnOperate"
     @close="close"
@@ -66,42 +67,42 @@ const close = () => {
 
 ```vue
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
+  import { ref, reactive, onMounted } from 'vue'
 
-const notSell = ref(false)
-const data = reactive({
-  sku: [],
-  goods: {}
-})
-const btnExtraText = ref('抱歉，此商品在所选区域暂无存货')
-
-onMounted(() => {
-  uni.request({
-    url: 'https://storage.360buyimg.com/nutui/3x/data.js',
-    success: function (res) {
-      const { Sku, Goods } = res.data
-      data.sku = Sku
-      data.goods = Goods
-    }
+  const notSell = ref(false)
+  const data = reactive({
+    sku: [],
+    goods: {}
   })
-})
+  const btnExtraText = ref('抱歉，此商品在所选区域暂无存货')
 
-const changeStepper = (count: number) => {
-  console.log('购买数量', count)
-}
-
-const selectSku = (ss: any) => {
-  const { sku, skuIndex, parentSku, parentIndex } = ss
-  if (sku.disable) return false
-  data.sku[parentIndex].list.forEach((s: any) => {
-    s.active = s.id == sku.id
+  onMounted(() => {
+    uni.request({
+      url: 'https://storage.360buyimg.com/nutui/3x/data.js',
+      success: function (res) {
+        const { Sku, Goods } = res.data
+        data.sku = Sku
+        data.goods = Goods
+      }
+    })
   })
-  data.goods = {
-    skuId: sku.id,
-    price: '4599.00',
-    imagePath: '//img14.360buyimg.com/n4/jfs/t1/216079/14/3895/201095/618a5c0cEe0b9e2ba/cf5b98fb6128a09e.jpg'
+
+  const changeStepper = (count: number) => {
+    console.log('购买数量', count)
   }
-}
+
+  const selectSku = (ss: any) => {
+    const { sku, skuIndex, parentSku, parentIndex } = ss
+    if (sku.disable) return false
+    data.sku[parentIndex].list.forEach((s: any) => {
+      s.active = s.id == sku.id
+    })
+    data.goods = {
+      skuId: sku.id,
+      price: '4599.00',
+      imagePath: '//img14.360buyimg.com/n4/jfs/t1/216079/14/3895/201095/618a5c0cEe0b9e2ba/cf5b98fb6128a09e.jpg'
+    }
+  }
 </script>
 
 <template>
@@ -125,18 +126,18 @@ const selectSku = (ss: any) => {
 </template>
 
 <style>
-.sku-operate-box {
-  width: 100%;
-  display: flex;
-  padding: 8px 10px;
-  box-sizing: border-box;
-}
-.sku-operate-box-dis {
-  flex: 1;
-}
-.sku-operate-box-dis:first-child {
-  margin-right: 18px;
-}
+  .sku-operate-box {
+    width: 100%;
+    display: flex;
+    padding: 8px 10px;
+    box-sizing: border-box;
+  }
+  .sku-operate-box-dis {
+    flex: 1;
+  }
+  .sku-operate-box-dis:first-child {
+    margin-right: 18px;
+  }
 </style>
 ```
 
@@ -146,57 +147,57 @@ const selectSku = (ss: any) => {
 
 ```vue
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
+  import { ref, reactive, onMounted } from 'vue'
 
-const customStepper = ref(false)
-const data = reactive({
-  sku: [],
-  goods: {}
-})
+  const customStepper = ref(false)
+  const data = reactive({
+    sku: [],
+    goods: {}
+  })
 
-onMounted(() => {
-  uni.request({
-    url: 'https://storage.360buyimg.com/nutui/3x/data.js',
-    success: function (res) {
-      const { Sku, Goods } = res.data
-      data.sku = Sku
-      data.goods = Goods
+  onMounted(() => {
+    uni.request({
+      url: 'https://storage.360buyimg.com/nutui/3x/data.js',
+      success: function (res) {
+        const { Sku, Goods } = res.data
+        data.sku = Sku
+        data.goods = Goods
+      }
+    })
+  })
+
+  const stepperExtraText = () => {
+    return `<div style="width:100%;text-align:right;color:#F00">2件起售</div>`
+  }
+
+  const changeStepper = (count: number) => {
+    console.log('购买数量', count)
+  }
+
+  const overLimit = (val: any) => {
+    if (val.action == 'reduce') {
+      console.log('至少买2件')
+    } else {
+      console.log('最多买7件')
     }
-  })
-})
-
-const stepperExtraText = () => {
-  return `<div style="width:100%;text-align:right;color:#F00">2件起售</div>`
-}
-
-const changeStepper = (count: number) => {
-  console.log('购买数量', count)
-}
-
-const overLimit = (val: any) => {
-  if (val.action == 'reduce') {
-    console.log('至少买2件')
-  } else {
-    console.log('最多买7件')
   }
-}
 
-const selectSku = (ss: any) => {
-  const { sku, skuIndex, parentSku, parentIndex } = ss
-  if (sku.disable) return false
-  data.sku[parentIndex].list.forEach((s: any) => {
-    s.active = s.id == sku.id
-  })
-  data.goods = {
-    skuId: sku.id,
-    price: '4599.00',
-    imagePath: '//img14.360buyimg.com/n4/jfs/t1/216079/14/3895/201095/618a5c0cEe0b9e2ba/cf5b98fb6128a09e.jpg'
+  const selectSku = (ss: any) => {
+    const { sku, skuIndex, parentSku, parentIndex } = ss
+    if (sku.disable) return false
+    data.sku[parentIndex].list.forEach((s: any) => {
+      s.active = s.id == sku.id
+    })
+    data.goods = {
+      skuId: sku.id,
+      price: '4599.00',
+      imagePath: '//img14.360buyimg.com/n4/jfs/t1/216079/14/3895/201095/618a5c0cEe0b9e2ba/cf5b98fb6128a09e.jpg'
+    }
   }
-}
 
-const clickBtnOperate = (op: string) => {
-  console.log('点击了操作按钮', op)
-}
+  const clickBtnOperate = (op: string) => {
+    console.log('点击了操作按钮', op)
+  }
 </script>
 
 <template>
@@ -236,10 +237,10 @@ sku: [{
     active: false,
     disable: false
   },
-  // ...
+    // ...
   ]
 },
-// ...
+  // ...
 ]
 ```
 
@@ -304,8 +305,8 @@ Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可�
 ```javascript
 goods: {
   skuId: '', // 商品信息展示区，商品编号
-  price: "0", // 商品信息展示区，商品价格
-  imagePath: "", // 商品信息展示区，商品图
+    price: "0", // 商品信息展示区，商品价格
+    imagePath: "", // 商品信息展示区，商品图
 }
 ```
 
