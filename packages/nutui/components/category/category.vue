@@ -1,17 +1,22 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, ref } from 'vue'
 import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import { categoryEmits, categoryProps } from './category'
 
 const props = defineProps(categoryProps)
+
 const emit = defineEmits(categoryEmits)
+
 const checkIndex = ref(0)
+
 const classes = computed(() => {
   return getMainClass(props, componentName)
 })
+
 function getChildList(index: any) {
   checkIndex.value = index
+
   emit(CHANGE_EVENT, index)
 }
 </script>
@@ -30,24 +35,24 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="classes" :style="customStyle">
-    <div class="nut-category__cateList">
-      <div v-if="type === 'classify' || type === 'text'">
-        <div v-for="(item, index) in category" :key="index" class="nut-category__cateListLeft">
-          <div
+  <view :class="classes" :style="props.customStyle">
+    <view class="nut-category__cateList">
+      <view v-if="props.type === 'classify' || props.type === 'text'" class="nut-category__cateListBox">
+        <view v-for="(item, index) in props.category" :key="index" class="nut-category__cateListLeft">
+          <view
             :class="[checkIndex === index ? 'nut-category__cateListItemChecked' : 'nut-category__cateListItem']"
             @click="getChildList(index)"
           >
             {{ item.catName }}
-          </div>
-        </div>
-      </div>
+          </view>
+        </view>
+      </view>
 
       <slot />
-    </div>
-  </div>
+    </view>
+  </view>
 </template>
 
 <style lang="scss">
-@import './index';
+@import "./index";
 </style>
