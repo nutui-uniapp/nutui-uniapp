@@ -32,7 +32,7 @@ function onChange(sku: string) {
     <view v-if="props.type === 'classify'" class="nut-category-pane__cateListRight">
       <slot />
 
-      <view v-for="(item, index) in props.categoryChild" :key="index">
+      <view v-for="(item, index) in props.categoryChild" :key="index" class="nut-category-pane__child">
         <view class="nut-category-pane__childTitle">
           {{ item?.catName }}
         </view>
@@ -58,7 +58,7 @@ function onChange(sku: string) {
     <view v-if="props.type === 'text'" class="nut-category-pane__cateListRight">
       <slot />
 
-      <view v-for="(item, index) in props.categoryChild" :key="index">
+      <view v-for="(item, index) in props.categoryChild" :key="index" class="nut-category-pane__child">
         <view class="nut-category-pane__childTitle">
           {{ item?.catName }}
         </view>

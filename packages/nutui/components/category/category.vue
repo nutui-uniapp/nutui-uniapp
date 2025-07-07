@@ -35,7 +35,7 @@ function getChildList(index: any) {
 <template>
   <view :class="classes" :style="props.customStyle">
     <view class="nut-category__cateList">
-      <view v-if="props.type === 'classify' || props.type === 'text'">
+      <view v-if="props.type === 'classify' || props.type === 'text'" class="nut-category__cateListBox">
         <view v-for="(item, index) in props.category" :key="index" class="nut-category__cateListLeft">
           <view
             :class="[checkIndex === index ? 'nut-category__cateListItemChecked' : 'nut-category__cateListItem']"

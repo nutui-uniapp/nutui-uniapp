@@ -29,6 +29,10 @@
     background: $category-bg-color;
   }
 
+  &__cateListBox {
+    flex-shrink: 0;
+  }
+
   &__cateListLeft {
     background: $category-list-left-bg-color;
   }
