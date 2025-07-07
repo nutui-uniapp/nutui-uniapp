@@ -1,7 +1,8 @@
 import type { BaseEvent, InputOnBlurEvent, InputOnFocusEvent } from '@uni-helper/uni-app-types'
 import type { ExtractPropTypes } from 'vue'
 import { BLUR_EVENT, CHANGE_EVENT, FOCUS_EVENT, UPDATE_MODEL_EVENT } from '../_constants'
-import { commonProps, makeNumericProp, nullableBooleanProp } from '../_utils'
+import { commonProps, makeNumericProp, makeStringProp, nullableBooleanProp } from '../_utils'
+import type { InputType } from '../input'
 
 export const inputnumberProps = {
   ...commonProps,
@@ -45,6 +46,10 @@ export const inputnumberProps = {
    * @description 操作加减按钮的尺寸
    */
   buttonSize: makeNumericProp(''),
+  /**
+   * @description 输入框类型
+   */
+  type: makeStringProp<Extract<InputType, 'number' | 'digit'>>('number'),
 }
 
 export type InputNumberProps = ExtractPropTypes<typeof inputnumberProps>
