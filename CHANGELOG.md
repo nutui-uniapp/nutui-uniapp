@@ -1,3 +1,16 @@
+# [1.9.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.4...v1.9.0) (2025-07-16)
+
+### Bug Fixes
+
+* **cascader:** 修复级联选择器选中和不可选的样式层级错误 ([#473](https://github.com/nutui-uniapp/nutui-uniapp/issues/473)) ([d3c5dfc](https://github.com/nutui-uniapp/nutui-uniapp/commit/d3c5dfc9d44ba1cf3d9ddf8ce2da2fa3f04877d1))
+* **sku:** 修复header内插槽的显示判断 ([#469](https://github.com/nutui-uniapp/nutui-uniapp/issues/469)) ([f614273](https://github.com/nutui-uniapp/nutui-uniapp/commit/f614273d3f53c4c295885ad21e508582d087b7bb))
+* **tabs:** 修复自定义标签栏找不到元素的报错 ([#472](https://github.com/nutui-uniapp/nutui-uniapp/issues/472)) ([f5570f9](https://github.com/nutui-uniapp/nutui-uniapp/commit/f5570f918e6c78520c29c759bfcb50ef7f82fd6e))
+* **textarea:** 修复初始值超过长度限制时内容溢出 ([6f9af65](https://github.com/nutui-uniapp/nutui-uniapp/commit/6f9af651b8819bdb5b7617b407383b7970dcb23e))
+
+### Features
+
+* **input-number:** 支持输入框类型参数 ([#477](https://github.com/nutui-uniapp/nutui-uniapp/issues/477)) ([a48fc7f](https://github.com/nutui-uniapp/nutui-uniapp/commit/a48fc7f78a60bed28a0a17597714621294c76152))
+
 ## [1.8.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.3...v1.8.4) (2025-05-16)
 
 ### Bug Fixes
