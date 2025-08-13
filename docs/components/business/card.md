@@ -200,12 +200,6 @@ const state = reactive({
 | shop-name | 店铺名称 | string | - | `''` |
 | is-need-price | 是否需要价格展示 | boolean | - | `true` |
 
-### Events
-
-| 事件名 | 说明 | 类型 |
-|------|------|------|
-| click | 点击事件 | `(event: MouseEvent) => void` |
-
 ### Slots
 
 | 名称 | 说明 |
