@@ -71,7 +71,9 @@ watch(() => [props.activeColor, props.unactiveColor], ([activeColor, unactiveCol
 })
 
 function changeIndex(index: number, active: number | string) {
-  parentData.modelValue = active
+  if (!props.controlled) {
+    parentData.modelValue = active
+  }
 
   emit(UPDATE_MODEL_EVENT, active)
   emit('tabSwitch', parentData.children[index], active)
