@@ -29,6 +29,10 @@ export const tabbarProps = {
    * @description 固定在底部时，是否在标签位置生成一个等高的占位元素
    */
   placeholder: Boolean,
+  /**
+   * @description 是否启用受控模式，启用后选中项始终受 `modelValue` 控制
+   */
+  controlled: Boolean,
 }
 
 export type TabBarProps = ExtractPropTypes<typeof tabbarProps>

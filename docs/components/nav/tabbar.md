@@ -317,14 +317,15 @@
 
 ### Tabbar Props
 
-| 参数                   | 说明                                               | 类型    | 默认值    |
-| ---------------------- | -------------------------------------------------- | ------- | --------- |
-| v-model                | 选中标签的索引值或者名称                           | number  | `0`       |
-| bottom                 | 是否固定在页面底部                                 | boolean | `false`   |
-| unactive-color         | icon未激活的颜色                                   | string  | `#7d7e80` |
-| active-color           | icon激活的颜色                                     | string  | `#1989fa` |
-| safe-area-inset-bottom | 是否开启iphone系列全面屏底部安全区适配             | boolean | `false`   |
-| placeholder            | 固定在底部时，是否在标签位置生成一个等高的占位元素 | boolean | `false`   |
+| 参数                     | 说明                                 | 类型              | 默认值     |
+|------------------------|------------------------------------|-----------------|---------|
+| v-model                | 选中标签的索引值或者名称                       | number / string | `0`     |
+| bottom                 | 是否固定在页面底部                          | boolean         | `false` |
+| unactive-color         | icon未激活的颜色                         | string          | #7d7e80 |
+| active-color           | icon激活的颜色                          | string          | #1989fa |
+| safe-area-inset-bottom | 是否开启iphone系列全面屏底部安全区适配             | boolean         | `false` |
+| placeholder            | 固定在底部时，是否在标签位置生成一个等高的占位元素          | boolean         | `false` |
+| controlled `1.9.1`     | 是否启用受控模式，启用后选中项始终受 `modelValue` 控制 | boolean         | `false` |
 
 ### TabbarItem Props
 
