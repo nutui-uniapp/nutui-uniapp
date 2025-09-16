@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, useSlots } from 'vue'
 import { PREFIX } from '../_constants'
-import { isH5 } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutPrice from '../price/price.vue'
 
@@ -34,8 +33,7 @@ export default defineComponent ({
 
 <template>
   <view class="nut-sku-header">
-    <image v-if="!isH5" class="nut-sku-header-img" :src="goods.imagePath" />
-    <image v-else class="nut-sku-header-img" :src="goods.imagePath" />
+    <image class="nut-sku-header-img" :src="goods.imagePath" />
     <view class="nut-sku-header-right">
       <template v-if="getSlots('skuHeaderPrice')">
         <slot name="skuHeaderPrice" />
