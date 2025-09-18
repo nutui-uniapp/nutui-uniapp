@@ -1,3 +1,17 @@
+## [1.9.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.0...v1.9.1) (2025-09-18)
+
+### Bug Fixes
+
+* **uploader:** 调整删除按钮 z-index 以避免被覆盖 ([#490](https://github.com/nutui-uniapp/nutui-uniapp/issues/490)) ([4a06ff7](https://github.com/nutui-uniapp/nutui-uniapp/commit/4a06ff78b2e5e70d6faeeffc29753b5fa37d3b2b))
+
+### Features
+
+* **tabbar:** 新增 `controlled` 参数可启用受控模式 ([#486](https://github.com/nutui-uniapp/nutui-uniapp/issues/486)) ([ea7c61a](https://github.com/nutui-uniapp/nutui-uniapp/commit/ea7c61a4ec6b9401d312643fb0f8e6ddb63dc13f))
+
+### Performance Improvements
+
+* **sku-header:** 移除无效的 isH5 判断 ([#491](https://github.com/nutui-uniapp/nutui-uniapp/issues/491)) ([c5a6ec1](https://github.com/nutui-uniapp/nutui-uniapp/commit/c5a6ec1a08d788cfda184710f8e960e4de0a153e))
+
 # [1.9.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.8.4...v1.9.0) (2025-07-16)
 
 ### Bug Fixes
