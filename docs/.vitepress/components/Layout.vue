@@ -2,6 +2,7 @@
 import { useData, useRouter } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { computed, onMounted, watch } from 'vue'
+import FriendlyLinks from './FriendlyLinks.vue'
 
 const { Layout } = DefaultTheme
 const { route, go } = useRouter()
@@ -35,7 +36,6 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     )}px at ${x}px ${y}px)`,
   ]
 
-  // @ts-expect-error no types
   await document.startViewTransition(async () => {
     isDark.value = !isDark.value
     await nextTick()
@@ -90,7 +90,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <Layout id="docs" :class="[{ 'xl:[&>.VPContent]:!pr-100': isComponentPage }]" />
+  <Layout id="docs" :class="[{ 'xl:[&>.VPContent]:!pr-100': isComponentPage }]">
+    <template #home-features-after>
+      <FriendlyLinks />
+    </template>
+  </Layout>
+
   <div
     v-if="isComponentPage"
     class="fixed bottom-0  top-80px flex right-0 flex transition-all scrollbar-width-0 rounded-l-xl xl:w-375px w-0 xl:right-10"
@@ -100,6 +105,8 @@ onMounted(() => {
 </template>
 
 <style>
+/* stylelint-disable selector-class-pattern */
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   mix-blend-mode: normal;
@@ -116,12 +123,10 @@ onMounted(() => {
   z-index: 9999;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .VPSwitchAppearance {
   width: 22px !important;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .VPSwitchAppearance .check {
   transform: none !important;
 }
