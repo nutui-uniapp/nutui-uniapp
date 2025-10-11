@@ -109,44 +109,44 @@ function updateCount() {
 
 ### Props
 
-| 参数                 | 说明           | 类型              | 默认值         |
-|--------------------|--------------|-----------------|-------------|
-| v-model            | 购买电子卡所需价钱    | number \ string | `0`         |
-| list               | 电子卡面值预设列表    | EcardDataItem[] | `[]`        |
-| choose-text        | 选择面值文案       | string          | 请选择电子卡面值    |
-| show-other `1.6.1` | 是否显示其他面值控制   | boolean         | `true`      |
-| other-value-text   | 其他面值文案       | string          | 其他面值        |
-| placeholder        | 其他面值默认提示语    | string          | 请输入1-5000整数 |
-| suffix             | 符号标识         | string          | ¥           |
-| card-amount-min    | 其它面值最小值      | number \ string | `1`         |
-| card-amount-max    | 其他面值最大值      | number \ string | `9999`      |
-| show-step `1.6.1`  | 是否显示是否显示数量步进 | boolean         | `true`      |
-| card-buy-min       | 购买数量最小值      | number          | `1`         |
-| card-buy-max       | 购买数量最大值      | number          | `9999`      |
+| 参数               | 说明                     | 类型            | 可选值 | 默认值           |
+|--------------------|------------------------|-----------------|--------|------------------|
+| v-model            | 购买电子卡所需价钱       | number \ string | -      | `0`              |
+| list               | 电子卡面值预设列表       | EcardDataItem[] | -      | `[]`             |
+| choose-text        | 选择面值文案             | string          | -      | 请选择电子卡面值 |
+| show-other `1.6.1` | 是否显示其他面值控制     | boolean         | -      | `true`           |
+| other-value-text   | 其他面值文案             | string          | -      | 其他面值         |
+| placeholder        | 其他面值默认提示语       | string          | -      | 请输入1-5000整数 |
+| suffix             | 符号标识                 | string          | -      | ¥                |
+| card-amount-min    | 其它面值最小值           | number \ string | -      | `1`              |
+| card-amount-max    | 其他面值最大值           | number \ string | -      | `9999`           |
+| show-step `1.6.1`  | 是否显示是否显示数量步进 | boolean         | -      | `true`           |
+| card-buy-min       | 购买数量最小值           | number          | -      | `1`              |
+| card-buy-max       | 购买数量最大值           | number          | -      | `9999`           |
 
 ### Events
 
-| 事件名            | 说明     | 回调参数          |
-|----------------|--------|---------------|
+| 事件名         | 说明         | 回调参数              |
+|----------------|------------|-----------------------|
 | update `1.7.7` | 合计金额变化 | 合计金额（面值 * 数量） |
-| change         | 切换预设面值 | 点击的数据         |
-| input-change   | 输入其他面值 | 输入的数据         |
-| change-step    | 数量变化   | 当前数量，当前面值     |
-| input-click    | 点击输入框  | -             |
+| change         | 切换预设面值 | 点击的数据            |
+| input-change   | 输入其他面值 | 输入的数据            |
+| change-step    | 数量变化     | 当前数量，当前面值     |
+| input-click    | 点击输入框   | -                     |
 
 ### EcardDataItem 数据结构
 
-| 键名    | 说明      | 类型              |
-|-------|---------|-----------------|
+| 键名  | 说明           | 类型            |
+|-------|--------------|-----------------|
 | price | 每张电子卡价格 | number \ string |
 
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Ecard 实例并调用实例方法
 
-| 方法名            | 说明   | 参数                              | 返回值 |
-|----------------|------|---------------------------------|-----|
-| update `1.7.7` | 更新面值 | (options: `EcardUpdateOptions`) | -   |
+| 方法名         | 说明     | 参数                            | 返回值 |
+|----------------|--------|---------------------------------|--------|
+| update `1.7.7` | 更新面值 | (options: `EcardUpdateOptions`) | -      |
 
 ::: details 类型定义 `1.7.7`
 
@@ -186,6 +186,6 @@ export interface EcardInst {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                   | 默认值     | 描述 |
-|----------------------|---------|----|
-| --nut-ecard-bg-color | #f0f2f5 | -  |
+| 名称                 | 默认值  | 描述 |
+|----------------------|---------|------|
+| --nut-ecard-bg-color | #f0f2f5 | -    |

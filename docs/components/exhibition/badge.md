@@ -188,22 +188,22 @@
 
 ### Props
 
-| 参数              | 说明                                         | 类型    | 默认值    |
-| ----------------- | -------------------------------------------- | ------- | --------- |
-| value             | 显示的内容                                   | string  | `-`       |
-| max               | `value` 为数值时，最大值                     | number  | `10000`   |
-| z-index           | 徽标的 `z-index` 值                          | number  | `10`      |
-| dot               | 是否为小点                                   | boolean | `false`   |
-| bubble(`>v4.0.0`) | 是否为气泡形状                               | Boolean | `false`   |
-| hidden            | 是否隐藏                                     | boolean | `false`   |
-| top               | 上下偏移量，支持单位设置，可设置为：`5px` 等 | number  | `0`       |
-| right             | 左右偏移量，支持单位设置，可设置为：`5px` 等 | number  | `0`       |
-| custom-color      | 徽标背景颜色                                 | string  | `#fa2c19` |
+| 参数              | 说明                                      | 类型    | 可选值 | 默认值    |
+|-------------------|-----------------------------------------|---------|--------|-----------|
+| value             | 显示的内容                                | string  | -      | `-`       |
+| max               | `value` 为数值时，最大值                   | number  | -      | `10000`   |
+| z-index           | 徽标的 `z-index` 值                       | number  | -      | `10`      |
+| dot               | 是否为小点                                | boolean | -      | `false`   |
+| bubble(`>v4.0.0`) | 是否为气泡形状                            | Boolean | -      | `false`   |
+| hidden            | 是否隐藏                                  | boolean | -      | `false`   |
+| top               | 上下偏移量，支持单位设置，可设置为：`5px` 等 | number  | -      | `0`       |
+| right             | 左右偏移量，支持单位设置，可设置为：`5px` 等 | number  | -      | `0`       |
+| custom-color      | 徽标背景颜色                              | string  | -      | `#fa2c19` |
 
 ### Slots
 
 | 名称    | 说明             |
-| ------- | ---------------- |
+|---------|----------------|
 | default | 徽标包裹的子元素 |
 | icon    | 徽标自定义       |
 
@@ -214,7 +214,7 @@
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                          | 默认值                                                                                  |
-| ----------------------------- | --------------------------------------------------------------------------------------- |
+|-------------------------------|-----------------------------------------------------------------------------------------|
 | --nut-badge-background-color  | linear-gradient(135deg, var(--nut-primary-color) 0%, var(--nut-primary-color-end) 100%) |
 | --nut-badge-color             | #fff                                                                                    |
 | --nut-badge-font-size         | var(--nut-font-size-1)                                                                  |

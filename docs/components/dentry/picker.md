@@ -271,43 +271,43 @@ const fieldNames = ref({
 
 ### Props
 
-| 参数                  | 说明               | 类型                                 | 默认值                                                                              |
-|---------------------|------------------|------------------------------------|----------------------------------------------------------------------------------|
-| v-model             | 选中项              | (string \| number)[]               | `[]`                                                                             |
-| columns             | 对象数组，配置每一列显示的数据  | (PickerOption \| PickerOption[])[] | `[]`                                                                             |
-| show-toolbar        | 是否显示顶部导航         | boolean                            | `true`                                                                           |
-| title               | 设置标题             | string                             | -                                                                                |
-| ok-text             | 确定按钮文案           | string                             | 确定                                                                               |
-| cancel-text         | 取消按钮文案           | string                             | 取消                                                                               |
-| three-dimensional   | 是否开启3D效果         | boolean                            | `false`                                                                          |
-| swipe-duration      | 惯性滚动时长           | number \ string                    | `1000`                                                                           |
-| visible-option-num  | 可见的选项个数          | number \ string                    | `7`                                                                              |
-| option-height       | 选项高度             | number \ string                    | `36`                                                                             |
-| field-names `0.3.0` | 自定义 columns 中的字段 | object                             | `{ text: 'text', value: 'value', children: 'children', className: 'className' }` |
+| 参数                | 说明                          | 类型                               | 可选值 | 默认值                                                                           |
+|---------------------|-----------------------------|------------------------------------|--------|----------------------------------------------------------------------------------|
+| v-model             | 选中项                        | (string \| number)[]               | -      | `[]`                                                                             |
+| columns             | 对象数组，配置每一列显示的数据 | (PickerOption \| PickerOption[])[] | -      | `[]`                                                                             |
+| show-toolbar        | 是否显示顶部导航              | boolean                            | -      | `true`                                                                           |
+| title               | 设置标题                      | string                             | -      | -                                                                                |
+| ok-text             | 确定按钮文案                  | string                             | -      | 确定                                                                             |
+| cancel-text         | 取消按钮文案                  | string                             | -      | 取消                                                                             |
+| three-dimensional   | 是否开启3D效果                | boolean                            | -      | `false`                                                                          |
+| swipe-duration      | 惯性滚动时长                  | number \ string                    | -      | `1000`                                                                           |
+| visible-option-num  | 可见的选项个数                | number \ string                    | -      | `7`                                                                              |
+| option-height       | 选项高度                      | number \ string                    | -      | `36`                                                                             |
+| field-names `0.3.0` | 自定义 columns 中的字段       | object                             | -      | `{ text: 'text', value: 'value', children: 'children', className: 'className' }` |
 
 ### Events
 
-| 事件名     | 说明        | 回调参数                                              |
-|---------|-----------|---------------------------------------------------|
+| 事件名  | 说明               | 回调参数                                          |
+|---------|------------------|---------------------------------------------------|
 | change  | 选项发生改变时触发 | `{ columnIndex, selectedValue, selectedOptions }` |
 | confirm | 点击确定按钮时触发 | `{ selectedValue, selectedOptions }`              |
 | cancel  | 点击取消按钮时触发 | `{ selectedValue, selectedOptions }`              |
 
 ### Slots
 
-| 名称      | 说明          |
-|---------|-------------|
+| 名称    | 说明                   |
+|---------|----------------------|
 | default | 自定义滑动数据底部区域 |
 | top     | 自定义滑动数据顶部区域 |
 
 ### PickerOption 数据结构
 
-| 键名        | 说明         | 类型              | 默认值 |
-|-----------|------------|-----------------|-----|
-| text      | 选项的文字内容    | number \ string | -   |
-| value     | 选项对应的值，且唯一 | number \ string | -   |
-| children  | 用于级联选项     | PickerOption[]  | -   |
-| className | 添加额外的类名    | string          | -   |
+| 键名      | 说明                | 类型            | 默认值 |
+|-----------|-------------------|-----------------|--------|
+| text      | 选项的文字内容      | number \ string | -      |
+| value     | 选项对应的值，且唯一 | number \ string | -      |
+| children  | 用于级联选项        | PickerOption[]  | -      |
+| className | 添加额外的类名      | string          | -      |
 
 ## 主题定制
 
@@ -315,7 +315,7 @@ const fieldNames = ref({
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                   | 默认值                      |
+| 名称                                 | 默认值                   |
 |--------------------------------------|--------------------------|
 | --nut-picker-cancel-color            | #808080                  |
 | --nut-picker-ok-color                | var(--nut-primary-color) |

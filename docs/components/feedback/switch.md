@@ -170,28 +170,28 @@ export default {
 
 ### Props
 
-| 参数           | 说明             | 类型                        | 默认值    |
-| -------------- | ---------------- | --------------------------- | --------- |
-| v-model        | 开关状态         | boolean \| string \| number | `false`   |
-| disabled        | 禁用状态         | boolean                     | `false`   |
-| loading        | 加载状态         | boolean                     | `false`   |
-| active-color   | 打开时的背景颜色 | string                      | `#fa2c19` |
-| inactive-color | 关闭时的背景颜色 | string                      | `#ebebeb` |
-| active-text    | 打开时文字描述   | string                      | -         |
-| inactive-text  | 关闭时文字描述   | string                      | -         |
-| active-value   | 打开时组件的值   | boolean ｜ string ｜number  | `true`    |
-| inactive-value | 关闭组件的值     | boolean ｜ string ｜number  | `false`   |
+| 参数           | 说明             | 类型                        | 可选值 | 默认值    |
+|----------------|----------------|-----------------------------|--------|-----------|
+| v-model        | 开关状态         | boolean \| string \| number | -      | `false`   |
+| disabled       | 禁用状态         | boolean                     | -      | `false`   |
+| loading        | 加载状态         | boolean                     | -      | `false`   |
+| active-color   | 打开时的背景颜色 | string                      | -      | `#fa2c19` |
+| inactive-color | 关闭时的背景颜色 | string                      | -      | `#ebebeb` |
+| active-text    | 打开时文字描述   | string                      | -      | -         |
+| inactive-text  | 关闭时文字描述   | string                      | -      | -         |
+| active-value   | 打开时组件的值   | boolean ｜ string ｜number    | -      | `true`    |
+| inactive-value | 关闭组件的值     | boolean ｜ string ｜number    | -      | `false`   |
 
 ### Slots
 
 | 名称 | 描述             |
-| ---- | ---------------- |
+|------|----------------|
 | icon | loading 状态图标 |
 
 ### Events
 
 | 事件名 | 说明           | 回调参数                      |
-| ------ | -------------- | ----------------------------- |
+|--------|--------------|-------------------------------|
 | change | 切换开关时触发 | (value: boolean,event: Event) |
 
 ## 主题定制
@@ -201,7 +201,7 @@ export default {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                | 默认值           |
-| ----------------------------------- | ---------------- |
+|-------------------------------------|------------------|
 | --nut-switch-close-bg-color         | #ebebeb          |
 | --nut-switch-close-cline-bg-color   | #f0f0f0          |
 | --nut-switch-width                  | 36px             |

@@ -226,50 +226,50 @@ setup() {
 
 ### Props
 
-| 参数                      | 说明                                                                                                                   | 类型                                                                 | 默认值                            |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------- |
-| auto-upload               | 是否在选取文件后立即进行上传，`false` 时需要手动执行 ref submit 方法进行上传                                           | Boolean                                                              | `true`                            |
-| name                      | 发到后台的文件参数名                                                                                                   | String                                                               | `file`                            |
-| url                       | 上传服务器的接口地址                                                                                                   | String                                                               | `-`                               |
-| v-model:file-list         | 默认已经上传的文件列表                                                                                                 | FileItem[]                                                           | `[]`                              |
-| is-preview                | 是否上传成功后展示预览图                                                                                               | Boolean                                                              | `true`                            |
-| is-deletable              | 是否展示删除按钮                                                                                                       | Boolean                                                              | `true`                            |
-| method                    | 上传请求的 http method                                                                                                 | String                                                               | `post`                            |
-| list-type                 | 上传列表的内建样式，支持两种基础样式 `picture`、`list`                                                                 | String                                                               | `picture`                         |
-| maximize                  | 可以设定最大上传文件的大小（字节）                                                                                     | Number \| String                                                     | `Number.MAX_VALUE`                |
-| maximum                   | 最多可以选择的文件个数，微信基础库2.25.0前，最多可支持9个文件，2.25.0及以后最多可支持20个文件                          | Number \| String                                                     | `1`                               |
-| source-type               | [选择文件的来源](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)                 | Array                                                                | `['album','camera']`              |
-| camera`仅支持WEAPP`       | 仅在 `source-type` 为 `camera` 时生效，使用前置或后置摄像头                                                            | String                                                               | `back`                            |
-| size-type                 | [是否压缩所选文件](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)               | Array                                                                | `['original','compressed']`       |
-| media-type`仅支持WEAPP`   | [选择文件类型](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)                   | Array                                                                | `['image', 'video', 'mix']`       |
-| max-duration`仅支持WEAPP` | 拍摄视频最长拍摄时间，单位秒。时间范围为 3s 至 60s 之间。不限制相册。                                                  | Number                                                               | 10                                |
-| accept                    | 允许上传的文件类型                                                                                                     | String                                                               | `['image','media','video','all']` |
-| headers                   | 设置上传的请求头部                                                                                                     | object                                                               | `{}`                              |
-| data                      | 附加上传的信息 formData                                                                                                | object                                                               | `{}`                              |
-| xhr-state                 | 接口响应的成功状态（status）值                                                                                         | Number                                                               | `200`                             |
-| disabled                  | 是否禁用文件上传                                                                                                       | Boolean                                                              | `false`                           |
-| multiple                  | 是否支持文件多选                                                                                                       | Boolean                                                              | `true`                            |
-| timeout                   | 超时时间，单位为毫秒                                                                                                   | Number \| String                                                     | `1000 * 30`                       |
-| before-upload             | 执行 `uni.uploadFile` 上传时，自定义方法                                                                               | Function(uni.uploadFile，option)                                     | `null`                            |
-| before-delete             | 除文件时的回调，返回值为 false 时不移除。支持返回一个 `Promise` 对象，`Promise` 对象 resolve(false) 或 reject 时不移除 | Function(file): boolean 丨 Promise                                   | -                                 |
-| mode                      | 预览图片的 mode 属性                                                                                                   | 查阅 uniapp[文档](https://uniapp.dcloud.net.cn/component/image.html) | `aspectFit`                       |
+| 参数                      | 说明                                                                                                                | 类型                                                                 | 可选值 | 默认值                            |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|--------|-----------------------------------|
+| auto-upload               | 是否在选取文件后立即进行上传，`false` 时需要手动执行 ref submit 方法进行上传                                         | Boolean                                                              | -      | `true`                            |
+| name                      | 发到后台的文件参数名                                                                                                | String                                                               | -      | `file`                            |
+| url                       | 上传服务器的接口地址                                                                                                | String                                                               | -      | `-`                               |
+| v-model:file-list         | 默认已经上传的文件列表                                                                                              | FileItem[]                                                           | -      | `[]`                              |
+| is-preview                | 是否上传成功后展示预览图                                                                                            | Boolean                                                              | -      | `true`                            |
+| is-deletable              | 是否展示删除按钮                                                                                                    | Boolean                                                              | -      | `true`                            |
+| method                    | 上传请求的 http method                                                                                              | String                                                               | -      | `post`                            |
+| list-type                 | 上传列表的内建样式，支持两种基础样式 `picture`、`list`                                                                | String                                                               | -      | `picture`                         |
+| maximize                  | 可以设定最大上传文件的大小（字节）                                                                                    | Number \| String                                                     | -      | `Number.MAX_VALUE`                |
+| maximum                   | 最多可以选择的文件个数，微信基础库2.25.0前，最多可支持9个文件，2.25.0及以后最多可支持20个文件                          | Number \| String                                                     | -      | `1`                               |
+| source-type               | [选择文件的来源](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)              | Array                                                                | -      | `['album','camera']`              |
+| camera`仅支持WEAPP`       | 仅在 `source-type` 为 `camera` 时生效，使用前置或后置摄像头                                                          | String                                                               | -      | `back`                            |
+| size-type                 | [是否压缩所选文件](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)            | Array                                                                | -      | `['original','compressed']`       |
+| media-type`仅支持WEAPP`   | [选择文件类型](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)                | Array                                                                | -      | `['image', 'video', 'mix']`       |
+| max-duration`仅支持WEAPP` | 拍摄视频最长拍摄时间，单位秒。时间范围为 3s 至 60s 之间。不限制相册。                                                   | Number                                                               | -      | 10                                |
+| accept                    | 允许上传的文件类型                                                                                                  | String                                                               | -      | `['image','media','video','all']` |
+| headers                   | 设置上传的请求头部                                                                                                  | object                                                               | -      | `{}`                              |
+| data                      | 附加上传的信息 formData                                                                                             | object                                                               | -      | `{}`                              |
+| xhr-state                 | 接口响应的成功状态（status）值                                                                                        | Number                                                               | -      | `200`                             |
+| disabled                  | 是否禁用文件上传                                                                                                    | Boolean                                                              | -      | `false`                           |
+| multiple                  | 是否支持文件多选                                                                                                    | Boolean                                                              | -      | `true`                            |
+| timeout                   | 超时时间，单位为毫秒                                                                                                 | Number \| String                                                     | -      | `1000 * 30`                       |
+| before-upload             | 执行 `uni.uploadFile` 上传时，自定义方法                                                                             | Function(uni.uploadFile，option)                                      | -      | `null`                            |
+| before-delete             | 除文件时的回调，返回值为 false 时不移除。支持返回一个 `Promise` 对象，`Promise` 对象 resolve(false) 或 reject 时不移除 | Function(file): boolean 丨 Promise                                   | -      | -                                 |
+| mode                      | 预览图片的 mode 属性                                                                                                | 查阅 uniapp[文档](https://uniapp.dcloud.net.cn/component/image.html) | -      | `aspectFit`                       |
 
 ### FileItem
 
-| 名称       | 说明                                                  | 默认值                            |
-| ---------- | ----------------------------------------------------- | --------------------------------- |
+| 名称       | 说明                                                 | 默认值                            |
+|------------|----------------------------------------------------|-----------------------------------|
 | status     | 文件状态值，可选`ready`,`uploading`,`success`,`error` | `ready`                           |
-| message    | 提示语, 上传失败时显示                                | -                                 |
-| uid        | 文件的唯一标识                                        | `new Date().getTime().toString()` |
-| name       | 文件名称                                              | -                                 |
-| url        | 文件路径                                              | -                                 |
-| type       | 文件类型,可选`image`,`video`,`audio`                  | -                                 |
-| percentage | 上传百分比                                            | `0`                               |
+| message    | 提示语, 上传失败时显示                               | -                                 |
+| uid        | 文件的唯一标识                                       | `new Date().getTime().toString()` |
+| name       | 文件名称                                             | -                                 |
+| url        | 文件路径                                             | -                                 |
+| type       | 文件类型,可选`image`,`video`,`audio`                 | -                                 |
+| percentage | 上传百分比                                           | `0`                               |
 
 ### Events
 
 | 事件名          | 说明                   | 回调参数                    |
-| --------------- | ---------------------- | --------------------------- |
+|-----------------|----------------------|-----------------------------|
 | start           | 文件上传开始           | `options`                   |
 | progress        | 文件上传的进度         | `{event,option,percentage}` |
 | oversize        | 文件大小超过限制时触发 | `files`                     |
@@ -282,7 +282,7 @@ setup() {
 ### Uploader Slots
 
 | 名称       | 说明                         |
-| ---------- | ---------------------------- |
+|------------|----------------------------|
 | default    | 默认插槽自定义内容           |
 | uploadIcon | 自定义上传按钮中间`icon`区域 |
 | deleteIcon | 自定义右上角删除按钮区域     |
@@ -291,10 +291,10 @@ setup() {
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Uploader 实例并调用实例方法
 
-| 方法名           | 说明                                                       | 参数  | 返回值 |
-| ---------------- | ---------------------------------------------------------- | ----- | ------ |
-| submit           | 手动上传模式，执行上传操作                                 | -     | `-`    |
-| chooseImage      | 调用选择文件的方法，效果等同于点击 nut-uploader 组件       | -     | -      |
+| 方法名           | 说明                                                     | 参数  | 返回值 |
+|------------------|--------------------------------------------------------|-------|--------|
+| submit           | 手动上传模式，执行上传操作                                | -     | `-`    |
+| chooseImage      | 调用选择文件的方法，效果等同于点击 nut-uploader 组件      | -     | -      |
 | clearUploadQueue | 清空已选择的文件队列（该方法一般配合在手动模式上传时使用） | index | `-`    |
 
 ## 主题定制
@@ -304,7 +304,7 @@ setup() {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                          | 默认值  |
-| ----------------------------- | ------- |
+|-------------------------------|---------|
 | --nut-uploader-picture-width  | 100px   |
 | --nut-uploader-picture-height | 100px   |
 | --nut-uploader-background     | #f7f8fa |

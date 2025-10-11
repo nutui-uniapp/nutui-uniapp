@@ -95,7 +95,7 @@ main({
   entry: 'docs/components/*/**/*.md',
   outDir: 'packages/nutui',
   space: 2,
-  separator: '/',
+  separator: '|',
 
   reComponentName,
   reDocUrl,

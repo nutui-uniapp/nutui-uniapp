@@ -196,18 +196,18 @@ function onAddressAddClick() {
 
 ### Props
 
-| 参数               | 说明                            | 类型    | 默认值  |
-| ------------------ | ------------------------------- | ------- | ------- |
-| data               | 地址数组                        | Array   | -       |
-| long-press         | 长按功能                        | boolean | `false` |
-| swipe-edition      | 右滑功能                        | boolean | `false` |
-| show-bottom-button | 是否展示底部按钮                | boolean | `true`  |
-| options            | 自定义 `key` 值时，设置映射关系 | Object  | -       |
+| 参数               | 说明                           | 类型    | 可选值 | 默认值  |
+|--------------------|------------------------------|---------|--------|---------|
+| data               | 地址数组                       | Array   | -      | -       |
+| long-press         | 长按功能                       | boolean | -      | `false` |
+| swipe-edition      | 右滑功能                       | boolean | -      | `false` |
+| show-bottom-button | 是否展示底部按钮               | boolean | -      | `true`  |
+| options            | 自定义 `key` 值时，设置映射关系 | Object  | -      | -       |
 
 ### Events
 
 | 事件名     | 说明                 | 回调参数                | 备注               |
-| ---------- | -------------------- | ----------------------- | ------------------ |
+|------------|--------------------|-------------------------|------------------|
 | del-icon   | 点击删除图标         | event: Event,item,index | 公共               |
 | edit-icon  | 点击编辑图标         | event: Event,item,index | 公共               |
 | click-item | 点击地址列表每一项   | event: Event,item,index | 公共               |
@@ -222,7 +222,7 @@ function onAddressAddClick() {
 `AddressList` 组件默认划分为若干区域，这些区域都定义成了插槽，可以按照需求进行替换
 
 | 名称          | 说明                             | 作用域参数 |
-| ------------- | -------------------------------- | ---------- |
+|---------------|--------------------------------|------------|
 | itemInfos     | 地址列表项姓名/联系方式/默认一行 | `{ item }` |
 | itemIcon      | 地址列表项图标                   | `{ item }` |
 | itemAddr      | 地址列表项详细地址               | `{ item }` |
@@ -260,7 +260,7 @@ const dataOptions = {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                      | 默认值                   |
-| ----------------------------------------- | ------------------------ |
+|-------------------------------------------|--------------------------|
 | --nut-addresslist-bg                      | #fff                     |
 | --nut-addresslist-border                  | #f0f0f0                  |
 | --nut-addresslist-font-color              | #333333                  |

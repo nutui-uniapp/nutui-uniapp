@@ -116,19 +116,19 @@ function handleChange(value: number) {
 
 ### Props
 
-| 参数                     | 说明              | 类型              | 可选值            | 默认值     |
-|------------------------|-----------------|-----------------|----------------|---------|
-| v-model                | 初始值             | string / number | -              | `0`     |
-| min                    | 最小值限制           | string / number | -              | `1`     |
-| max                    | 最大值限制           | string / number | -              | `9999`  |
-| step                   | 步长              | string / number | -              | `1`     |
-| step-strictly `1.7.17` | 是否只能输入 step 的倍数 | boolean         | -              | `false` |
-| decimal-places         | 设置保留的小数位        | string / number | -              | `0`     |
-| disabled               | 禁用所有功能          | boolean         | -              | `false` |
-| readonly               | 只读状态禁用输入框操作行为   | boolean         | -              | `false` |
-| input-width            | 输入框宽度           | string / number | -              | -       |
-| button-size            | 操作符+、-尺寸        | string / number | -              | -       |
-| type `1.8.5`           | 输入框类型           | string          | number / digit | number  |
+| 参数                    | 说明             | 类型             |可选值| 可选值           | 默认值    |
+| -- | -- | -- | -- | -- |
+| v-model               | 初始值            | string / number|-| -             | `0`    |
+| min                   | 最小值限制          | string / number|-| -             | `1`    |
+| max                   | 最大值限制          | string / number|-| -             | `9999` |
+| step                  | 步长             | string / number|-| -             | `1`    |
+| step-strictly `1.7.17`| 是否只能输入 step 的倍数| boolean        |-| -             | `false`|
+| decimal-places        | 设置保留的小数位       | string / number|-| -             | `0`    |
+| disabled              | 禁用所有功能         | boolean        |-| -             | `false`|
+| readonly              | 只读状态禁用输入框操作行为  | boolean        |-| -             | `false`|
+| input-width           | 输入框宽度          | string / number|-| -             | -      |
+| button-size           | 操作符+、-尺寸       | string / number|-| -             | -      |
+| type `1.8.5`          | 输入框类型          | string         |-| number / digit| number |
 
 ### Attrs version
 
@@ -136,20 +136,20 @@ function handleChange(value: number) {
 
 ### Slots
 
-| 名称        | 说明      |
-|-----------|---------|
+| 名称      | 说明           |
+|-----------|--------------|
 | leftIcon  | 自定义减少按钮 |
 | rightIcon | 自定义增加按钮 |
 
 ### Events
 
-| 事件名       | 说明          | 回调参数                                             |
-|-----------|-------------|--------------------------------------------------|
-| change    | 值改变时触发      | (value: number, event: `BaseEvent \| undefined`) |
-| focus     | 输入框获得焦点时触发  | (event: `InputOnFocusEvent`)                     |
-| blur      | 输入框失去焦点时触发  | (event: `InputOnBlurEvent`)                      |
-| reduce    | 点击减少按钮时触发   | (event: `BaseEvent`)                             |
-| add       | 点击增加按钮时触发   | (event: `BaseEvent`)                             |
+| 事件名    | 说明                   | 回调参数                                         |
+|-----------|----------------------|--------------------------------------------------|
+| change    | 值改变时触发           | (value: number, event: `BaseEvent \| undefined`) |
+| focus     | 输入框获得焦点时触发   | (event: `InputOnFocusEvent`)                     |
+| blur      | 输入框失去焦点时触发   | (event: `InputOnBlurEvent`)                      |
+| reduce    | 点击减少按钮时触发     | (event: `BaseEvent`)                             |
+| add       | 点击增加按钮时触发     | (event: `BaseEvent`)                             |
 | overlimit | 点击不可用的按钮时触发 | (event: `BaseEvent`, type: `'reduce' \| 'add'`)  |
 
 ## 主题定制
@@ -158,7 +158,7 @@ function handleChange(value: number) {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                       | 默认值                      |
+| 名称                                     | 默认值                   |
 |------------------------------------------|--------------------------|
 | --nut-inputnumber-icon-color             | var(--nut-title-color)   |
 | --nut-inputnumber-icon-void-color        | var(--nut-disable-color) |

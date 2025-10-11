@@ -233,48 +233,48 @@ notify.showNotify({
 
 ### Props
 
-| 参数                              | 说明                                                         | 类型               | 默认值      |
-|---------------------------------|------------------------------------------------------------|------------------|----------|
-| visible                         | 显示与否                                                       | boolean          | `false`  |
-| selector `1.7.16`               | 配置注入的key                                                   | string           | -        | -       |
-| type                            | 提示的信息类型，可选值为 `base` `primary` `success` `danger` `warning` | string           | `danger` |
-| msg                             | 展示文案，支持通过`\n`换行                                            | string           | `''`     |
-| position                        | 自定义位置，可选值为 `top` `bottom`                                  | string           | `top`    |
-| duration                        | 展示时长(ms)，值为 0 时，notify 不会消失                                | number           | `3000`   |
-| class-name                      | 自定义类名                                                      | string \| number | `1`      |
-| z-index `1.7.16`                | 组件z-index                                                  | number           | -        | `9999`    |
-| custom-color                    | 字体颜色                                                       | string           | -        |
-| background                      | 背景颜色                                                       | string           | -        |
-| safe-area-inset-top             | 是否留出顶部安全距离（默认为状态栏高度）                                       | boolean          | `false`  |
-| safe-area-inset-bottom `1.7.16` | 是否留出底部安全距离（启用后通过 `safeHeight` 指定距离）                        | boolean          | `false`  |
-| safe-height                     | 自定义安全距离                                                    | number           | -        |
-| on-click                        | 点击时的回调函数                                                   | Function         | -        |
-| on-close                        | 关闭时的回调函数                                                   | Function         | -        |
-| on-closed `1.7.16`              | 关闭动画完成时回调函数                                                | Function         | -        |
+| 参数    | 说明     | 类型    | 可选值 | 默认值  |
+|---------|--------|---------|--------|---------|
+| visible | 显示与否 | boolean | -      | `false` |
+| selector `1.7.16`              | 配置注入的key                                                  | string          |-| -       | -      |
+| type                           | 提示的信息类型| string          |base \| primary \| success \| danger \| warning | `danger`|
+| msg                            | 展示文案，支持通过`\n`换行                                           | string          |-| `''`    |
+| position                       | 自定义位置| string          |top \| bottom | `top`   |
+| duration                       | 展示时长(ms)，值为 0 时，notify 不会消失                               | number          |-| `3000`  |
+| class-name                     | 自定义类名                                                     | string \| number|-| `1`     |
+| z-index `1.7.16`               | 组件z-index                                                 | number          |-| -       | `9999`   |
+| custom-color                   | 字体颜色                                                      | string          |-| -       |
+| background                     | 背景颜色                                                      | string          |-| -       |
+| safe-area-inset-top            | 是否留出顶部安全距离（默认为状态栏高度）                                      | boolean         |-| `false` |
+| safe-area-inset-bottom `1.7.16`| 是否留出底部安全距离（启用后通过 `safeHeight` 指定距离）                       | boolean         |-| `false` |
+| safe-height                    | 自定义安全距离                                                   | number          |-| -       |
+| on-click                       | 点击时的回调函数                                                  | Function        |-| -       |
+| on-close                       | 关闭时的回调函数                                                  | Function        |-| -       |
+| on-closed `1.7.16`             | 关闭动画完成时回调函数                                               | Function        |-| -       |
 
 ### Events
 
-| 事件名             | 说明        | 回调参数 |
-|-----------------|-----------|------|
-| click `1.7.16`  | 点击时触发     | `-`  |
-| close `1.7.16`  | 关闭时触发     | `-`  |
-| closed `1.7.16` | 关闭动画完成时触发 | `-`  |
+| 事件名          | 说明               | 回调参数 |
+|-----------------|------------------|----------|
+| click `1.7.16`  | 点击时触发         | `-`      |
+| close `1.7.16`  | 关闭时触发         | `-`      |
+| closed `1.7.16` | 关闭动画完成时触发 | `-`      |
 
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Notify 实例并调用实例方法
 
-| 方法名              | 说明                | 参数                                                           | 返回值 |
-|------------------|-------------------|--------------------------------------------------------------|-----|
-| show `1.7.16`    | 显示通知              | (type: `NotifyType`, msg: string, options?: `NotifyOptions`) | -   |
-| primary `1.7.16` | 主要通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| success `1.7.16` | 成功通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| danger `1.7.16`  | 危险通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| warning `1.7.16` | 警告通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| custom `1.7.16`  | 自定义通知             | (msg: string, options?: `NotifyOptions`)                     | -   |
-| hide `1.7.16`    | 隐藏通知              | -                                                            | -   |
-| showNotify       | （已废弃，下个主版本移除）显示通知 | (options: `NotifyOptions`)                                   | -   |
-| hideNotify       | （已废弃，下个主版本移除）隐藏通知 | -                                                            | -   |
+| 方法名           | 说明                            | 参数                                                         | 返回值 |
+|------------------|-------------------------------|--------------------------------------------------------------|--------|
+| show `1.7.16`    | 显示通知                        | (type: `NotifyType`, msg: string, options?: `NotifyOptions`) | -      |
+| primary `1.7.16` | 主要通知                        | (msg: string, options?: `NotifyOptions`)                     | -      |
+| success `1.7.16` | 成功通知                        | (msg: string, options?: `NotifyOptions`)                     | -      |
+| danger `1.7.16`  | 危险通知                        | (msg: string, options?: `NotifyOptions`)                     | -      |
+| warning `1.7.16` | 警告通知                        | (msg: string, options?: `NotifyOptions`)                     | -      |
+| custom `1.7.16`  | 自定义通知                      | (msg: string, options?: `NotifyOptions`)                     | -      |
+| hide `1.7.16`    | 隐藏通知                        | -                                                            | -      |
+| showNotify       | （已废弃，下个主版本移除）显示通知 | (options: `NotifyOptions`)                                   | -      |
+| hideNotify       | （已废弃，下个主版本移除）隐藏通知 | -                                                            | -      |
 
 ::: details 类型定义 `1.7.16`
 
@@ -398,7 +398,7 @@ export interface NotifyInst {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                    | 默认值                                                                                                                         |
+| 名称                                  | 默认值                                                                                                                      |
 |---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | --nut-notify-text-color               | var(--nut-white)                                                                                                            |
 | --nut-notify-padding                  | 12px 0                                                                                                                      |

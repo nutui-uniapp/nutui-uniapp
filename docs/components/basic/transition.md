@@ -46,19 +46,19 @@
 >
 ### Props
 
-| 参数           | 说明                                                                                                                                   | 类型                         | 默认值  |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------- |
-| name           | 内置动画名称，可选值为 `fade` `fade-up` `fade-down` f`ade-left` `fade-right` `slide-up` `slide-down` `slide-left` `slide-right` `zoom` | `NutAnimationName`           | `fade`  |
-| show           | 是否展示过渡动画级                                                                                                                     | boolean                      | `false` |
-| duration       | 动画时长，单位为毫秒                                                                                                                   | string \| number             | `300`   |
-| timingFunction | 动画函数                                                                                                                               | `NutAnimationtimingFunction` | `ease`  |
-| customClass    | 自定义class                                                                                                                            | `ClassType`                  |         |
-| customStyle    | 自定义style                                                                                                                            | `StyleValue`                 |         |
+| 参数           | 说明                | 类型                         | 可选值                                                                                                                      | 默认值  |
+|----------------|-------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------------------|---------|
+| name           | 内置动画名称        | `NutAnimationName`           | fade \| fade-up \| fade-down \|  f \| ade-left \| fade-right \| slide-up \| slide-down \| slide-left \| slide-right \| zoom | `fade`  |
+| show           | 是否展示过渡动画级  | boolean                      | -                                                                                                                           | `false` |
+| duration       | 动画时长，单位为毫秒 | string \| number             | -                                                                                                                           | `300`   |
+| timingFunction | 动画函数            | `NutAnimationtimingFunction` | -                                                                                                                           | `ease`  |
+| customClass    | 自定义class         | `ClassType`                  | -                                                                                                                           |         |
+| customStyle    | 自定义style         | `StyleValue`                 | -                                                                                                                           |         |
 
 ### Events
 
 | 事件名       | 说明               | 回调参数 |
-| ------------ | ------------------ | -------- |
+|--------------|------------------|----------|
 | before-enter | 进入过渡动画前触发 | -        |
 | enter        | 进入过渡动画时触发 | -        |
 | after-enter  | 进入过渡动画后触发 | -        |
@@ -69,5 +69,5 @@
 ### Slots
 
 | 名称    | 说明           |
-| ------- | -------------- |
+|---------|--------------|
 | default | 自定义内嵌内容 |

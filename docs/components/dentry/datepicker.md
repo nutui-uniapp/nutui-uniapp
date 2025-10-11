@@ -222,48 +222,48 @@ function filter(type: DatePickerColumnType, options: PickerOption[]) {
 
 ### Props
 
-| 参数                 | 说明                                                                                                                     | 类型                                                                      | 默认值     |
-|--------------------|------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|---------|
-| v-model            | 选中值                                                                                                                    | Date                                                                    | -       |
-| type               | 时间类型，可选值 `date`(年月日) `time`(时分秒) `year-month`(年月) `month-day`(月日) `datehour`(年月日时) `hour-minute`(时分) `datetime`(年月日时分) | string                                                                  | `date`  |
-| show-toolbar       | 是否显示顶部导航                                                                                                               | boolean                                                                 | `true`  |
-| title              | 设置标题                                                                                                                   | string                                                                  | -       |
-| ok-text            | 确定按钮文案                                                                                                                 | string                                                                  | 确定      |
-| cancel-text        | 取消按钮文案                                                                                                                 | string                                                                  | 取消      |
-| is-show-chinese    | 每列是否展示中文                                                                                                               | boolean                                                                 | `false` |
-| minute-step        | 分钟步进值                                                                                                                  | number                                                                  | `1`     |
-| min-date           | 开始日期                                                                                                                   | date                                                                    | 十年前     |
-| max-date           | 结束日期                                                                                                                   | date                                                                    | 十年后     |
-| formatter          | 选项格式化函数                                                                                                                | (type: DatePickerColumnType, option: PickerOption) => PickerOption      | -       |
-| filter             | 选项过滤函数                                                                                                                 | (type: DatePickerColumnType, options: PickerOption[]) => PickerOption[] | -       |
-| three-dimensional  | 是否开启3D效果                                                                                                               | boolean                                                                 | `false` |
-| swipe-duration     | 惯性滚动时长                                                                                                                 | number \ string                                                         | `1000`  |
-| visible-option-num | 可见的选项个数                                                                                                                | number \ string                                                         | `7`     |
-| option-height      | 选项高度                                                                                                                   | number \ string                                                         | `36`    |
+| 参数               | 说明             | 类型                                                                    | 可选值                                                                                                                                                                   | 默认值  |
+|--------------------|----------------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| v-model            | 选中值           | Date                                                                    | -                                                                                                                                                                        | -       |
+| type               | 时间类型         | string                                                                  | date \| (年月日)  \| time \| (时分秒)  \| year-month \| (年月)  \| month-day \| (月日)  \| datehour \| (年月日时)  \| hour-minute \| (时分)  \| datetime \| (年月日时分) | `date`  |
+| show-toolbar       | 是否显示顶部导航 | boolean                                                                 | -                                                                                                                                                                        | `true`  |
+| title              | 设置标题         | string                                                                  | -                                                                                                                                                                        | -       |
+| ok-text            | 确定按钮文案     | string                                                                  | -                                                                                                                                                                        | 确定    |
+| cancel-text        | 取消按钮文案     | string                                                                  | -                                                                                                                                                                        | 取消    |
+| is-show-chinese    | 每列是否展示中文 | boolean                                                                 | -                                                                                                                                                                        | `false` |
+| minute-step        | 分钟步进值       | number                                                                  | -                                                                                                                                                                        | `1`     |
+| min-date           | 开始日期         | date                                                                    | -                                                                                                                                                                        | 十年前  |
+| max-date           | 结束日期         | date                                                                    | -                                                                                                                                                                        | 十年后  |
+| formatter          | 选项格式化函数   | (type: DatePickerColumnType, option: PickerOption) => PickerOption      | -                                                                                                                                                                        | -       |
+| filter             | 选项过滤函数     | (type: DatePickerColumnType, options: PickerOption[]) => PickerOption[] | -                                                                                                                                                                        | -       |
+| three-dimensional  | 是否开启3D效果   | boolean                                                                 | -                                                                                                                                                                        | `false` |
+| swipe-duration     | 惯性滚动时长     | number \ string                                                         | -                                                                                                                                                                        | `1000`  |
+| visible-option-num | 可见的选项个数   | number \ string                                                         | -                                                                                                                                                                        | `7`     |
+| option-height      | 选项高度         | number \ string                                                         | -                                                                                                                                                                        | `36`    |
 
 ### Events
 
-| 事件名     | 说明                              | 回调参数                                                    |
-|---------|---------------------------------|---------------------------------------------------------|
-| change  | 选项改变时触发（`1.7.7` 新增 `date` 参数）   | `{ date, columnIndex, selectedValue, selectedOptions }` |
+| 事件名  | 说明                                         | 回调参数                                                |
+|---------|--------------------------------------------|---------------------------------------------------------|
+| change  | 选项改变时触发（`1.7.7` 新增 `date` 参数）     | `{ date, columnIndex, selectedValue, selectedOptions }` |
 | confirm | 点击确定按钮时触发（`1.7.7` 新增 `date` 参数） | `{ date, selectedValue, selectedOptions }`              |
 | cancel  | 点击取消按钮时触发（`1.7.7` 新增 `date` 参数） | `{ date, selectedValue, selectedOptions }`              |
 
 ### Slots
 
-| 名称      | 说明          |
-|---------|-------------|
+| 名称    | 说明                   |
+|---------|----------------------|
 | default | 自定义滑动数据底部区域 |
 | top     | 自定义滑动数据顶部区域 |
 
 ### PickerOption 数据结构
 
-| 键名        | 说明         | 类型              | 默认值 |
-|-----------|------------|-----------------|-----|
-| text      | 选项的文字内容    | number \ string | -   |
-| value     | 选项对应的值，且唯一 | number \ string | -   |
-| children  | 用于级联选项     | PickerOption[]  | -   |
-| className | 添加额外的类名    | string          | -   |
+| 键名      | 说明                | 类型            | 默认值 |
+|-----------|-------------------|-----------------|--------|
+| text      | 选项的文字内容      | number \ string | -      |
+| value     | 选项对应的值，且唯一 | number \ string | -      |
+| children  | 用于级联选项        | PickerOption[]  | -      |
+| className | 添加额外的类名      | string          | -      |
 
 ## 主题定制
 
@@ -271,7 +271,7 @@ function filter(type: DatePickerColumnType, options: PickerOption[]) {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                   | 默认值                      |
+| 名称                                 | 默认值                   |
 |--------------------------------------|--------------------------|
 | --nut-picker-cancel-color            | #808080                  |
 | --nut-picker-ok-color                | var(--nut-primary-color) |

@@ -469,25 +469,25 @@ export default {
 
 ### Props
 
-| 参数               | 说明                                                                        | 类型                | 默认值       |
-| ------------------ | --------------------------------------------------------------------------- | ------------------- | ------------ |
-| v-model:visible    | 是否显示商品规格弹框                                                        | boolean             | `false`      |
-| sku                | 商品 sku 数据                                                               | Array               | `[]`         |
-| goods              | 商品信息                                                                    | object              | -            |
-| stepper-max        | 设置 inputNumber 最大值                                                     | string \| number    | `99999`      |
-| stepper-min        | 设置 inputNumber 最小值                                                     | string \| number    | `1`          |
-| btn-options        | 底部按钮设置。[`confirm`, `buy`, `cart`] 分别对应确定、立即购买、加入购物车 | Array               | `[confirm]`  |
-| btn-extra-text     | 按钮上部添加文案，默认为空，有值时显示                                      | string              | -            |
-| stepper-title      | 数量选择组件左侧文案                                                        | string              | `购买数量`   |
-| stepper-extra-text | InputNumber 与标题之间的文案                                                | Function \| boolean | `false`      |
-| buy-text           | 立即购买按钮文案                                                            | string              | `立即购买`   |
-| add-cart-text      | 加入购物车按钮文案                                                          | string              | `加入购物车` |
-| confirm-text       | 确定按钮文案                                                                | string              | `确定`       |
+| 参数               | 说明                                                                     | 类型                | 可选值 | 默认值       |
+|--------------------|------------------------------------------------------------------------|---------------------|--------|--------------|
+| v-model:visible    | 是否显示商品规格弹框                                                     | boolean             | -      | `false`      |
+| sku                | 商品 sku 数据                                                            | Array               | -      | `[]`         |
+| goods              | 商品信息                                                                 | object              | -      | -            |
+| stepper-max        | 设置 inputNumber 最大值                                                  | string \| number    | -      | `99999`      |
+| stepper-min        | 设置 inputNumber 最小值                                                  | string \| number    | -      | `1`          |
+| btn-options        | 底部按钮设置。[`confirm`, `buy`, `cart`] 分别对应确定、立即购买、加入购物车 | Array               | -      | `[confirm]`  |
+| btn-extra-text     | 按钮上部添加文案，默认为空，有值时显示                                     | string              | -      | -            |
+| stepper-title      | 数量选择组件左侧文案                                                     | string              | -      | `购买数量`   |
+| stepper-extra-text | InputNumber 与标题之间的文案                                             | Function \| boolean | -      | `false`      |
+| buy-text           | 立即购买按钮文案                                                         | string              | -      | `立即购买`   |
+| add-cart-text      | 加入购物车按钮文案                                                       | string              | -      | `加入购物车` |
+| confirm-text       | 确定按钮文案                                                             | string              | -      | `确定`       |
 
 ### Events
 
 | 事件名            | 说明                               | 回调参数                                     |
-| ----------------- | ---------------------------------- | -------------------------------------------- |
+|-------------------|----------------------------------|----------------------------------------------|
 | select-sku        | 切换规格类目时触发                 | `{sku,skuIndex,parentSku,parentIndex}`       |
 | add               | InputNumber 点击增加按钮时触发     | value                                        |
 | reduce            | InputNumber 点击减少按钮时触发     | value                                        |
@@ -502,24 +502,24 @@ export default {
 
 Sku 组件默认划分为若干区域，这些区域都定义成了插槽，可以按照需求进行替换。
 
-| 名称             | 说明                                                   |
-| ---------------- | ------------------------------------------------------ |
-| skuHeader        | 商品信息展示区，包含商品图片、价格、编号               |
+| 名称             | 说明                                                  |
+|------------------|-----------------------------------------------------|
+| skuHeader        | 商品信息展示区，包含商品图片、价格、编号                 |
 | skuHeaderPrice   | 商品信息展示区，价格区域展示                           |
 | skuHeaderExtra   | 商品信息展示区，编号区域展示                           |
 | skuSelectTop     | Sku 展示区上方与商品信息展示区下方区域，无默认展示内容 |
-| skuSelect        | Sku 展示区                                             |
-| skuStepper       | 数量选择区                                             |
-| skuStepperBottom | 数量选择区下方区域                                     |
-| skuOperate       | 底部按钮操作区域                                       |
+| skuSelect        | Sku 展示区                                            |
+| skuStepper       | 数量选择区                                            |
+| skuStepperBottom | 数量选择区下方区域                                    |
+| skuOperate       | 底部按钮操作区域                                      |
 
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Sku 实例并调用实例方法
 
-| 方法名     | 说明       | 参数            | 返回值 |
-| ---------- | ---------- | --------------- | ------ |
-| resetCount | 重置商品数量 | -              |        |
+| 方法名     | 说明         | 参数 | 返回值 |
+|------------|------------|------|--------|
+| resetCount | 重置商品数量 | -    |        |
 
 ### goods 对象结构
 
@@ -614,7 +614,7 @@ sku : [{
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                   | 默认值                                                                                                |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------|
 | --nut-sku-item-border                  | 1px solid var(--nut-primary-color)                                                                    |
 | --nut-sku-item-disable-line            | line-through                                                                                          |
 | --nut-sku-opetate-bg-default           | linear-gradient(90deg, var(--nut-primary-color), var(--nut-primary-color-end) 100%)                   |

@@ -182,23 +182,23 @@ export default {
 
 ### Props
 
-| 参数         | 说明                                          | 类型             | 默认值        |
-| ------------ | --------------------------------------------- | ---------------- | ------------- |
-| v-model      | 当前 `star` 数，可使用 `v-model` 双向绑定数据 | number \| string | -             |
-| count        | `star` 总数                                   | number \| string | `5`           |
-| active-color | 图标选中颜色                                  | string           | `#fa200c`     |
-| void-color   | 图标未选中颜色                                | string           | `#ccc`        |
-| allow-half   | 是否半星                                      | Boolean          | `false`       |
-| readonly     | 是否只读                                      | Boolean          | `false`       |
-| disabled     | 是否禁用                                      | Boolean          | `false`       |
-| spacing      | 间距                                          | number \| string | `20`          |
-| size         | `Icon` 尺寸大小，如 `20px` `2em` `2rem`       | number \| string | -             |
-| custom-icon  | 自定义 `Icon`                                 | string           | `star-fill-n` |
+| 参数         | 说明                                         | 类型             | 可选值 | 默认值        |
+|--------------|--------------------------------------------|------------------|--------|---------------|
+| v-model      | 当前 `star` 数，可使用 `v-model` 双向绑定数据 | number \| string | -      | -             |
+| count        | `star` 总数                                  | number \| string | -      | `5`           |
+| active-color | 图标选中颜色                                 | string           | -      | `#fa200c`     |
+| void-color   | 图标未选中颜色                               | string           | -      | `#ccc`        |
+| allow-half   | 是否半星                                     | Boolean          | -      | `false`       |
+| readonly     | 是否只读                                     | Boolean          | -      | `false`       |
+| disabled     | 是否禁用                                     | Boolean          | -      | `false`       |
+| spacing      | 间距                                         | number \| string | -      | `20`          |
+| size         | `Icon` 尺寸大小，如 `20px` `2em` `2rem`       | number \| string | -      | -             |
+| custom-icon  | 自定义 `Icon`                                | string           | -      | `star-fill-n` |
 
 ### Events
 
 | 事件名 | 说明                       | 回调参数 |
-| ------ | -------------------------- | -------- |
+|--------|--------------------------|-------|
 | change | 当前分值修改时时触发的事件 | 当前值   |
 
 ## 主题定制
@@ -208,6 +208,6 @@ export default {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                       | 默认值                   |
-| -------------------------- | ------------------------ |
+|----------------------------|--------------------------|
 | --nut-rate-icon-color      | var(--nut-primary-color) |
 | --nut-rate-icon-void-color | var(--nut-disable-color) |
