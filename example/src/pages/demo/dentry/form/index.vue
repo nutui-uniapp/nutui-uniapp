@@ -227,7 +227,7 @@ async function asyncValidator(val: string): Promise<string> {
         v-for="(item, index) in dynamicForm.state.time"
         :key="item.key"
         :label="`时间${index}`"
-        :prop="`tels.${index}.value`"
+        :prop="`time.${index}.value`"
         required
         :rules="[{ required: true, message: `请填写时间${index}` }]"
       >
