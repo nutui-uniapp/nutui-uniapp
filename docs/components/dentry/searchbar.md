@@ -110,25 +110,25 @@ function onSearch(value: string) {
 
 ### Props
 
-| 参数    | 说明         | 类型            | 可选值          | 默认值  |
-|---------|------------|-----------------|-----------------|---------|
-| v-model | 当前输入的值 | number \ string | -               | `''`    |
-| shape   | 搜索框形状   | string          | square \| round | `round` |
-| max-length                    | 最大输入长度                                                                                         ||-
-| input-type                    | 输入框类型                                                                                           | string         |-| `text`        |
-| placeholder                   | 输入框默认暗纹                                                                                       | string         |-| `请输入`      |
-| clearable                     | 是否展示清除按钮                                                                                     | boolean        |-| `true`        |
-| clear-icon                    | 自定义清除按钮图标                                                                                   | Object         |-| `circle-close`|
-| background                    | 输入框外部背景                                                                                       | string         |-| `#fff`        |
-| input-background              | 输入框内部背景                                                                                       | string         |-| `#f7f7f7`     |
-| confirm-type                  | 键盘右下角按钮的文字                                                                                 | string         |-| `done`        |
-| autofocus                     | 是否自动聚焦                                                                                         | boolean        |-| `false`       |
-| focus-style                   | 聚焦时搜索框样式                                                                                     | Object         |-| `-`           |
-| disabled                      | 是否禁用输入框                                                                                       | boolean        |-| `false`       |
-| readonly                      | 输入框只读                                                                                           | boolean        |-| `false`       |
-| input-align                   | 对齐方式，可选 `left` `center` `right`                                                               | string         |-| `left`        |
-| safe-area-inset-bottom `1.1.6`| 是否开启 iphone 系列全面屏底部安全区适配                                                             | boolean        |-| `false`       |
-| cursor-spacing `1.2.0`        | 指定光标与键盘的距离，取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离| number         |-| `0`           |
+| 参数    | 说明         | 类型              | 可选值         | 默认值  |
+|---------|------------|-----------------|----------------|---------|
+| v-model | 当前输入的值 | number / string | -              | `''`    |
+| shape   | 搜索框形状   | string          | square / round | `round` |
+| max-length                    | 最大输入长度                                                                                         |                 |-
+| input-type                    | 输入框类型                                                                                           | string          |-| `text`        |
+| placeholder                   | 输入框默认暗纹                                                                                       | string          |-| `请输入`      |
+| clearable                     | 是否展示清除按钮                                                                                     | boolean         |-| `true`        |
+| clear-icon                    | 自定义清除按钮图标                                                                                   | Object          |-| `circle-close`|
+| background                    | 输入框外部背景                                                                                       | string          |-| `#fff`        |
+| input-background              | 输入框内部背景                                                                                       | string          |-| `#f7f7f7`     |
+| confirm-type                  | 键盘右下角按钮的文字                                                                                 | string          |-| `done`        |
+| autofocus                     | 是否自动聚焦                                                                                         | boolean         |-| `false`       |
+| focus-style                   | 聚焦时搜索框样式                                                                                     | Object          |-| `-`           |
+| disabled                      | 是否禁用输入框                                                                                       | boolean         |-| `false`       |
+| readonly                      | 输入框只读                                                                                           | boolean         |-| `false`       |
+| input-align                   | 对齐方式，可选 `left` `center` `right`                                                               | string          |-| `left`        |
+| safe-area-inset-bottom `1.1.6`| 是否开启 iphone 系列全面屏底部安全区适配                                                             | boolean         |-| `false`       |
+| cursor-spacing `1.2.0`        | 指定光标与键盘的距离，取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离| number          |-| `0`           |
 
 ### Events
 

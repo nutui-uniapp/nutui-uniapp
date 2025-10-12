@@ -124,16 +124,16 @@ return {
 
 ### Props
 
-| 参数           | 说明               | 类型    | 可选值        | 默认值                         |
-|----------------|------------------|---------|---------------|--------------------------------|
-| visible        | 是否打开           | boolean | -             | `false`                        |
-| nav-list       | 悬浮列表内容数据   | Array   | -             | `[]`                           |
-| active-color   | 选中按钮文案颜色   | string  | -             | `#fa2c19 默认集成主题色`       |
-| active-text    | 收起列表按钮文案   | string  | -             | `收起导航`                     |
-| un-active-text | 展开列表按钮文案   | string  | -             | `快速导航`                     |
-| type           | 导航方向,          | string  | left \| right | `right`                        |
-| overlay        | 展开时是否显示遮罩 | boolean | -             | `true`                         |
-| position       | fixed 垂直位置     | object  | -             | `{top: 'auto',bottom: 'auto'}` |
+| 参数           | 说明               | 类型    | 可选值       | 默认值                         |
+|----------------|------------------|---------|--------------|--------------------------------|
+| visible        | 是否打开           | boolean | -            | `false`                        |
+| nav-list       | 悬浮列表内容数据   | Array   | -            | `[]`                           |
+| active-color   | 选中按钮文案颜色   | string  | -            | `#fa2c19 默认集成主题色`       |
+| active-text    | 收起列表按钮文案   | string  | -            | `收起导航`                     |
+| un-active-text | 展开列表按钮文案   | string  | -            | `快速导航`                     |
+| type           | 导航方向,          | string  | left / right | `right`                        |
+| overlay        | 展开时是否显示遮罩 | boolean | -            | `true`                         |
+| position       | fixed 垂直位置     | object  | -            | `{top: 'auto',bottom: 'auto'}` |
 
 ### Events
 

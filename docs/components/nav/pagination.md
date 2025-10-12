@@ -150,17 +150,17 @@ export default {
 
 ### Props
 
-| 参数           | 说明                       | 类型             | 可选值 | 默认值              |
-|----------------|--------------------------|------------------|--------|---------------------|
-| v-model        | 当前页码                   | number           | -      | `1`                 |
-| mode           | 显示模式,可选值为 `simple` | 显示模式,        | simple | `multi`             |
-| prev-text      | 上一页按钮文字             | string           | -      | `上一页`            |
-| next-text      | 下一页按钮文字             | string           | -      | `下一页`            |
-| page-count     | 总页数                     | string \| number | -      | `传入/根据页数计算` |
-| total-items    | 总记录数                   | string \| number | -      | `0`                 |
-| items-per-page | 每页记录数                 | string \| number | -      | `10`                |
-| show-page-size | 显示的页码个数             | string \| number | -      | `5`                 |
-| force-ellipses | 是否显示省略号             | boolean          | -      | `false`             |
+| 参数           | 说明                       | 类型              | 可选值 | 默认值              |
+|----------------|--------------------------|-----------------|--------|---------------------|
+| v-model        | 当前页码                   | number          | -      | `1`                 |
+| mode           | 显示模式,可选值为 `simple` | 显示模式,           | simple | `multi`             |
+| prev-text      | 上一页按钮文字             | string          | -      | `上一页`            |
+| next-text      | 下一页按钮文字             | string          | -      | `下一页`            |
+| page-count     | 总页数                     | string / number | -      | `传入/根据页数计算` |
+| total-items    | 总记录数                   | string / number | -      | `0`                 |
+| items-per-page | 每页记录数                 | string / number | -      | `10`                |
+| show-page-size | 显示的页码个数             | string / number | -      | `5`                 |
+| force-ellipses | 是否显示省略号             | boolean         | -      | `false`             |
 
 ### Events
 

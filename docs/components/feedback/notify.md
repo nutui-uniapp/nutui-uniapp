@@ -233,15 +233,15 @@ notify.showNotify({
 
 ### Props
 
-| 参数    | 说明     | 类型    | 可选值 | 默认值  |
-|---------|--------|---------|--------|---------|
-| visible | 显示与否 | boolean | -      | `false` |
+| 参数    | 说明     | 类型              | 可选值 | 默认值  |
+|---------|--------|-----------------|--------|---------|
+| visible | 显示与否 | boolean         | -      | `false` |
 | selector `1.7.16`              | 配置注入的key                                                  | string          |-| -       | -      |
-| type                           | 提示的信息类型| string          |base \| primary \| success \| danger \| warning | `danger`|
+| type                           | 提示的信息类型| string          |base / primary / success / danger / warning| `danger`|
 | msg                            | 展示文案，支持通过`\n`换行                                           | string          |-| `''`    |
-| position                       | 自定义位置| string          |top \| bottom | `top`   |
+| position                       | 自定义位置| string          |top / bottom| `top`   |
 | duration                       | 展示时长(ms)，值为 0 时，notify 不会消失                               | number          |-| `3000`  |
-| class-name                     | 自定义类名                                                     | string \| number|-| `1`     |
+| class-name                     | 自定义类名                                                     | string / number |-| `1`     |
 | z-index `1.7.16`               | 组件z-index                                                 | number          |-| -       | `9999`   |
 | custom-color                   | 字体颜色                                                      | string          |-| -       |
 | background                     | 背景颜色                                                      | string          |-| -       |

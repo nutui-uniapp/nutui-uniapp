@@ -46,14 +46,14 @@
 >
 ### Props
 
-| 参数           | 说明                | 类型                         | 可选值                                                                                                                      | 默认值  |
-|----------------|-------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------------------|---------|
-| name           | 内置动画名称        | `NutAnimationName`           | fade \| fade-up \| fade-down \|  f \| ade-left \| fade-right \| slide-up \| slide-down \| slide-left \| slide-right \| zoom | `fade`  |
-| show           | 是否展示过渡动画级  | boolean                      | -                                                                                                                           | `false` |
-| duration       | 动画时长，单位为毫秒 | string \| number             | -                                                                                                                           | `300`   |
-| timingFunction | 动画函数            | `NutAnimationtimingFunction` | -                                                                                                                           | `ease`  |
-| customClass    | 自定义class         | `ClassType`                  | -                                                                                                                           |         |
-| customStyle    | 自定义style         | `StyleValue`                 | -                                                                                                                           |         |
+| 参数           | 说明                | 类型                         | 可选值                                                                                                         | 默认值  |
+|----------------|-------------------|------------------------------|----------------------------------------------------------------------------------------------------------------|---------|
+| name           | 内置动画名称        | `NutAnimationName`           | fade / fade-up / fade-down /  fade-left / fade-right / slide-up / slide-down / slide-left / slide-right / zoom | `fade`  |
+| show           | 是否展示过渡动画级  | boolean                      | -                                                                                                              | `false` |
+| duration       | 动画时长，单位为毫秒 | string \| number             | -                                                                                                              | `300`   |
+| timingFunction | 动画函数            | `NutAnimationtimingFunction` | -                                                                                                              | `ease`  |
+| customClass    | 自定义class         | `ClassType`                  | -                                                                                                              |         |
+| customStyle    | 自定义style         | `StyleValue`                 | -                                                                                                              |         |
 
 ### Events
 

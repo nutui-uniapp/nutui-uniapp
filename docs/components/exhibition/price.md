@@ -69,16 +69,16 @@
 
 ### Props
 
-| 参数           | 说明                                    | 类型             | 可选值 | 默认值   |
-|----------------|---------------------------------------|------------------|--------|----------|
-| price          | 价格数量                                | number \| string | -      | `0`      |
-| need-symbol    | 是否需要加上 symbol 符号                | boolean          | -      | `true`   |
-| symbol         | 符号类型                                | string           | -      | `&yen;`  |
-| decimal-digits | 小数位位数                              | number           | -      | `2`      |
-| thousands      | 是否按照千分号形式显示                  | boolean          | -      | `false`  |
-| position       | 符号显示在价格前或者后，`before`、`after` | string           | -      | `before` |
-| size           | 价格尺寸，`small`、`normal`、`large`       | string           | -      | `normal` |
-| strike-through | 是否展示划线价                          | Boolean          | -      | false    |
+| 参数           | 说明                                    | 类型              | 可选值 | 默认值   |
+|----------------|---------------------------------------|-----------------|--------|----------|
+| price          | 价格数量                                | number / string | -      | `0`      |
+| need-symbol    | 是否需要加上 symbol 符号                | boolean         | -      | `true`   |
+| symbol         | 符号类型                                | string          | -      | `&yen;`  |
+| decimal-digits | 小数位位数                              | number          | -      | `2`      |
+| thousands      | 是否按照千分号形式显示                  | boolean         | -      | `false`  |
+| position       | 符号显示在价格前或者后，`before`、`after` | string          | -      | `before` |
+| size           | 价格尺寸，`small`、`normal`、`large`       | string          | -      | `normal` |
+| strike-through | 是否展示划线价                          | Boolean         | -      | false    |
 
 ## 主题定制
 

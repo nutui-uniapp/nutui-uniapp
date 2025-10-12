@@ -172,16 +172,16 @@ export default {
 
 ### CollapseItem Props
 
-| 参数     | 说明                                                  | 类型             | 可选值 | 默认值  |
-|----------|-----------------------------------------------------|------------------|--------|---------|
-| name     | 唯一标识符，必填                                       | string \| number | -      | `-1`    |
-| title    | 标题栏左侧内容，支持插槽传入（`props` 传入的优先级更高） | string           | -      | `-`     |
-| value    | 标题栏右侧内容，支持插槽传入（`props` 传入的优先级更高） | string           | -      | `-`     |
-| icon     | 标题栏左侧图标组件，等同于 `nutui-icon` 组件           | -                | -      | `-`     |
-| label    | 标题栏描述信息                                        | number \| string | -      | `-`     |
-| rotate   | 点击折叠和展开的旋转角度,在自定义图标模式下生效       | string \| number | -      | `180`   |
-| disabled | 标题栏是否禁用                                        | boolean          | -      | `false` |
-| border   | 是否显示边框                                          | boolean          | -      | `true`  |
+| 参数     | 说明                                                  | 类型              | 可选值 | 默认值  |
+|----------|-----------------------------------------------------|-----------------|--------|---------|
+| name     | 唯一标识符，必填                                       | string / number | -      | `-1`    |
+| title    | 标题栏左侧内容，支持插槽传入（`props` 传入的优先级更高） | string          | -      | `-`     |
+| value    | 标题栏右侧内容，支持插槽传入（`props` 传入的优先级更高） | string          | -      | `-`     |
+| icon     | 标题栏左侧图标组件，等同于 `nutui-icon` 组件           | -               | -      | `-`     |
+| label    | 标题栏描述信息                                        | number / string | -      | `-`     |
+| rotate   | 点击折叠和展开的旋转角度,在自定义图标模式下生效       | string / number | -      | `180`   |
+| disabled | 标题栏是否禁用                                        | boolean         | -      | `false` |
+| border   | 是否显示边框                                          | boolean         | -      | `true`  |
 
 ### CollapseItem Slots
 

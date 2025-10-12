@@ -290,7 +290,7 @@ page{
 
 ### Props
 
-| 参数                   | 说明                                                                                                | 类型             | 可选值 | 默认值     |
+| 参数                   | 说明                                                                                                | 类型               | 可选值 | 默认值     |
 |------------------------|---------------------------------------------------------------------------------------------------|------------------|--------|------------|
 | v-model                | 是否展示引导弹出层                                                                                  | boolean          | -      | `false`    |
 | type                   | 引导类型                                                                                            | string           | -      | `step`     |
@@ -305,8 +305,8 @@ page{
 | mask                   | 是否显示镂空遮罩                                                                                    | boolean          | -      | `true`     |
 | bg-color               | 自定义背景色                                                                                        | boolean          | -      | ''         |
 | theme                  | 气泡遮罩层主题,同 Popopver 的[theme 属性](/components/exhibition/popover)                           | string           | -      | `'light'`  |
-| mask-width             | 镂空遮罩层宽度                                                                                      | number \|string  | -      | ''         |
-| mask-height            | 镂空遮罩层高度                                                                                      | number \|string  | -      | ''         |
+| mask-width             | 镂空遮罩层宽度                                                                                      | number / string  | -      | ''         |
+| mask-height            | 镂空遮罩层高度                                                                                      | number / string  | -      | ''         |
 | close-on-click-overlay | 是否在点击镂空遮罩层后关闭,同 Popopver 的[closeOnClickOverlay 属性](/components/exhibition/popover) | Boolean          | -      | `true`     |
 | show-prev-step         | 是否展示上一步按钮                                                                                  | boolean          | -      | `true`     |
 | show-title-bar         | 是否展示标题栏                                                                                      | boolean          | -      | `false`    |

@@ -178,13 +178,13 @@
 
 ### Radio Props
 
-| 参数          | 说明                               | 类型                        | 可选值                                                                   | 默认值   |
-|---------------|----------------------------------|-----------------------------|--------------------------------------------------------------------------|----------|
-| disabled      | 是否禁用选择                       | boolean                     | -                                                                        | `false`  |
-| icon-size     | [图标尺寸](/components/basic/icon) | string \| number            | -                                                                        | `18`     |
-| label         | 单选框标识                         | string \| number \| boolean | -                                                                        | -        |
-| shape         | 形状                               | string                      | button、round                                                             | `round`  |
-| size `v1.5.9` | 尺寸                               | string                      | large \| small \| mini \| normal \| ，仅在 shape 为  \| button \|  时生效 | `normal` |
+| 参数          | 说明                             | 类型                        | 可选值                            | 默认值   |
+|---------------|--------------------------------|-----------------------------|--------------------------------|-------|
+| disabled      | 是否禁用选择                         | boolean                     | -                              | `false` |
+| icon-size     | [图标尺寸](/components/basic/icon) | string \| number            | -                              | `18`  |
+| label         | 单选框标识                          | string \| number \| boolean | -                              | -     |
+| shape         | 形状                             | string                      | button / round                 | round |
+| size `v1.5.9` | 尺寸,仅在 shape 为  / button /  时生效 | string                      | large / small / mini / normal  | normal |
 
 ### Radio Slots
 
@@ -195,11 +195,11 @@
 
 ### RadioGroup Props
 
-| 参数          | 说明                                             | 类型                        | 可选值                  | 默认值     |
-|---------------|------------------------------------------------|-----------------------------|-------------------------|------------|
-| v-model       | 当前选中项的标识符，与 `label` 值一致时呈选中状态 | string \| number \| boolean | -                       | -          |
-| text-position | 文本所在的位置                                   | string                      | ： \| left \| , \| right | `right`    |
-| direction     | 使用横纵方向                                     | string                      | horizontal、vertical     | `vertical` |
+| 参数          | 说明                                             | 类型                        | 可选值           | 默认值     |
+|---------------|------------------------------------------------|-----------------------------|---------------|----------|
+| v-model       | 当前选中项的标识符，与 `label` 值一致时呈选中状态 | string \| number \| boolean | -             | -        |
+| text-position | 文本所在的位置                                   | string                      | left / right  | right    |
+| direction     | 使用横纵方向                                     | string                      | horizontal / vertical | `vertical` |
 
 ### RadioGroup Events
 

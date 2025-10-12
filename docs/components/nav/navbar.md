@@ -150,7 +150,7 @@ export default {
 
 ### Props
 
-| 参数                | 说明                                              | 类型            | 可选值 | 默认值    |
+| 参数                | 说明                                              | 类型              | 可选值 | 默认值    |
 |---------------------|-------------------------------------------------|-----------------|--------|-----------|
 | title               | 标题名称                                          | string          | -      | -         |
 | left-text           | 左侧文案                                          | string          | -      | -         |
@@ -161,9 +161,9 @@ export default {
 | fixed               | 是否固定到顶部                                    | boolean         | -      | `false`   |
 | placeholder         | 固定在顶部时，是否在标签位置生成一个等高的占位元素 | boolean         | -      | `false`   |
 | safe-area-inset-top | 是否开启顶部安全区适配                            | boolean         | -      | `false`   |
-| z-index             | 导航栏 `z-index`                                  | number ｜ string | -      | `10`      |
-| size                | 图标与字体大小                                    | number ｜ string | -      | -         |
-| custom-color        | 图标与字体颜色                                    | number ｜ string | -      | `#979797` |
+| z-index             | 导航栏 `z-index`                                  | number / string | -      | `10`      |
+| size                | 图标与字体大小                                    | number / string | -      | -         |
+| custom-color        | 图标与字体颜色                                    | number / string | -      | `#979797` |
 
 ### Events
 

@@ -122,28 +122,28 @@ export default {
 
 ### Props
 
-| 参数                   | 说明                                                        | 类型                     | 可选值                           | 默认值       |
-|------------------------|-----------------------------------------------------------|--------------------------|----------------------------------|--------------|
-| title                  | 标题                                                        | string                   | -                                | -            |
-| content                | 内容，支持 `HTML`                                            | string                   | -                                | -            |
-| close-on-click-overlay | 点击蒙层是否关闭对话框                                      | boolean                  | -                                | `true`       |
-| no-footer              | 是否隐藏底部按钮栏                                          | boolean                  | -                                | `false`      |
-| no-ok-btn              | 是否隐藏确定按钮                                            | boolean                  | -                                | `false`      |
-| no-cancel-btn          | 是否隐藏取消按钮                                            | boolean                  | -                                | `false`      |
-| cancel-text            | 取消按钮文案                                                | string                   | -                                | `”取消“`     |
-| ok-text                | 确定按钮文案                                                | string                   | -                                | `”确 定“`    |
-| cancel-auto-close      | 取消按钮是否默认关闭弹窗                                    | boolean                  | -                                | `true`       |
-| text-align             | 文字对齐方向                                                | string                   | 同  \| css \|  的  \| text-align | `"center"`   |
-| close-on-popstate `H5` | 是否在页面回退时自动关闭                                    | boolean                  | -                                | `false`      |
-| lock-scroll `H5`       | 背景是否锁定                                                | boolean                  | -                                | `true`       |
-| footer-direction       | 使用横纵方向                                                | string                   | horizontal \| 、 \| vertical      | `horizontal` |
-| overlay-class          | 自定义遮罩类名                                              | string                   | -                                | -            |
-| overlay-style          | 自定义遮罩样式                                              | CSSProperties            | -                                | -            |
-| pop-class              | 自定义 `popup` 弹框类名                                     | string                   | -                                | -            |
-| pop-style              | 自定义 `popup` 弹框样式                                     | CSSProperties            | -                                | -            |
-| custom-class           | 自定义 `class`                                              | string                   | -                                | -            |
-| before-close           | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 `Promise` | Function(action: string) | -                                | -            |
-| ok-auto-close `1.3.0`  | 确认按钮是否默认关闭弹窗                                    | boolean                  | -                                | `true`       |
+| 参数                   | 说明                                       | 类型                     | 可选值                   | 默认值       |
+|------------------------|------------------------------------------|--------------------------|-----------------------|--------------|
+| title                  | 标题                                       | string                   | -                     | -            |
+| content                | 内容，支持 `HTML`                             | string                   | -                     | -            |
+| close-on-click-overlay | 点击蒙层是否关闭对话框                              | boolean                  | -                     | `true`       |
+| no-footer              | 是否隐藏底部按钮栏                                | boolean                  | -                     | `false`      |
+| no-ok-btn              | 是否隐藏确定按钮                                 | boolean                  | -                     | `false`      |
+| no-cancel-btn          | 是否隐藏取消按钮                                 | boolean                  | -                     | `false`      |
+| cancel-text            | 取消按钮文案                                   | string                   | -                     | `”取消“`     |
+| ok-text                | 确定按钮文案                                   | string                   | -                     | `”确 定“`    |
+| cancel-auto-close      | 取消按钮是否默认关闭弹窗                             | boolean                  | -                     | `true`       |
+| text-align             | 文字对齐方向, 可选值同css的text-align               | string                   | -                     | `"center"`   |
+| close-on-popstate `H5` | 是否在页面回退时自动关闭                             | boolean                  | -                     | `false`      |
+| lock-scroll `H5`       | 背景是否锁定                                   | boolean                  | -                     | `true`       |
+| footer-direction       | 使用横纵方向                                   | string                   | horizontal / vertical | `horizontal` |
+| overlay-class          | 自定义遮罩类名                                  | string                   | -                     | -            |
+| overlay-style          | 自定义遮罩样式                                  | CSSProperties            | -                     | -            |
+| pop-class              | 自定义 `popup` 弹框类名                         | string                   | -                     | -            |
+| pop-style              | 自定义 `popup` 弹框样式                         | CSSProperties            | -                     | -            |
+| custom-class           | 自定义 `class`                              | string                   | -                     | -            |
+| before-close           | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 `Promise` | Function(action: string) | -                     | -            |
+| ok-auto-close `1.3.0`  | 确认按钮是否默认关闭弹窗                             | boolean                  | -                     | `true`       |
 
 ### Events
 

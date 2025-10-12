@@ -154,18 +154,18 @@
 
 ### Props
 
-| 参数               | 说明                                     | 类型    | 可选值                                     | 默认值  |
-|--------------------|----------------------------------------|---------|--------------------------------------------|---------|
-| percentage         | 百分比                                   | number  | -                                          | `0`     |
-| is-show-percentage | 是否需要展示百分号                       | boolean | -                                          | `true`  |
-| stroke-color       | 进度条背景色                             | string  | -                                          | `#f30`  |
-| stroke-width       | 进度条宽度                               | string  | -                                          | -       |
-| size               | 进度条及文字尺寸                         | string  | small \| base \| large                     | `base`  |
-| show-text          | 是否显示进度条文字内容                   | boolean | -                                          | `true`  |
-| text-inside        | 进度条文字显示位置(false:外显，true:内显) | boolean | -                                          | `false` |
-| text-color         | 进度条文字颜色设置                       | string  | -                                          | `#333`  |
-| text-background    | 进度条文字背景颜色设置                   | string  | -                                          | -       |
-| status             | 进度条当前状态                           | string  | active(展示动画效果) \| icon(展示icon标签) | `text`  |
+| 参数               | 说明                          | 类型    | 可选值                                    | 默认值  |
+|--------------------|-----------------------------|---------|-------------------------------------------|---------|
+| percentage         | 百分比                         | number  | -                                         | `0`     |
+| is-show-percentage | 是否需要展示百分号                   | boolean | -                                         | `true`  |
+| stroke-color       | 进度条背景色                      | string  | -                                         | `#f30`  |
+| stroke-width       | 进度条宽度                       | string  | -                                         | -       |
+| size               | 进度条及文字尺寸                    | string  | small / base / large                      | `base`  |
+| show-text          | 是否显示进度条文字内容                 | boolean | -                                         | `true`  |
+| text-inside        | 进度条文字显示位置(false:外显，true:内显) | boolean | -                                         | `false` |
+| text-color         | 进度条文字颜色设置                   | string  | -                                         | `#333`  |
+| text-background    | 进度条文字背景颜色设置                 | string  | -                                         | -       |
+| status             | 进度条当前状态 active(展示动画效果) / icon(展示icon标签)                   | string  | active / icon | `text`  |
 
 ### Slots
 

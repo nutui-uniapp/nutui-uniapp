@@ -537,22 +537,22 @@
 
 ### Props
 
-| 参数                   | 说明                                                                                                                                   | 类型             | 可选值 | 默认值           |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------|------------------|--------|------------------|
-| v-model:visible        | 是否打开地址选择                                                                                                                       | boolean          | -      | `false`          |
-| v-model:value          | 设置默认选中值                                                                                                                         | Array            | -      | `[]`             |
-| type                   | 地址选择类型 `exist/custom/custom2`                                                                                                    | string           | -      | `custom`         |
-| province               | 省，每个省的对象中，必须有 `name` 字段，如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                              | Array            | -      | `[]`             |
-| city                   | 市，每个市的对象中，必须有 `name` 字段，如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                              | Array            | -      | `[]`             |
-| country                | 县，每个县的对象中，必须有 `name` 字段，如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                              | Array            | -      | `[]`             |
-| town                   | 乡/镇，每个乡/镇的对象中,必须有 `name` 字段,如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                        | Array            | -      | `[]`             |
-| height                 | 弹层中内容容器的高度，仅在 `type="custom2"` 时有效                                                                                      | string \| number | -      | `200px`          |
-| exist-address          | 已存在地址列表，每个地址对象中，必传值 `provinceName`、`cityName`、`countyName`、`townName`、`addressDetail`、`selectedAddress`（字段解释见下） | Array            | -      | `[]`             |
-| is-show-custom-address | 是否可以切换自定义地址选择，`type=‘exist’` 时生效                                                                                       | boolean          | -      | `true`           |
-| custom-address-title   | 自定义地址选择文案，`type='custom'` 时生效                                                                                              | string           | -      | `请选择所在地区` |
-| exist-address-title    | 已有地址文案 ，`type=‘exist’` 时生效                                                                                                    | string           | -      | `配送至`         |
-| custom-and-exist-title | 自定义地址与已有地址切换按钮文案 ，`type=‘exist’` 时生效                                                                                | string           | -      | `选择其他地址`   |
-| columns-placeholder    | 列提示文字                                                                                                                             | string \| Array  | -      | `请选择`         |
+| 参数                   | 说明                                                                                                                                   | 类型              | 可选值 | 默认值           |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------|-----------------|--------|------------------|
+| v-model:visible        | 是否打开地址选择                                                                                                                       | boolean         | -      | `false`          |
+| v-model:value          | 设置默认选中值                                                                                                                         | Array           | -      | `[]`             |
+| type                   | 地址选择类型 `exist/custom/custom2`                                                                                                    | string          | -      | `custom`         |
+| province               | 省，每个省的对象中，必须有 `name` 字段，如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                              | Array           | -      | `[]`             |
+| city                   | 市，每个市的对象中，必须有 `name` 字段，如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                              | Array           | -      | `[]`             |
+| country                | 县，每个县的对象中，必须有 `name` 字段，如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                              | Array           | -      | `[]`             |
+| town                   | 乡/镇，每个乡/镇的对象中,必须有 `name` 字段,如果类型选择 `custom2`，必须指定 `title` 字段为首字母                                        | Array           | -      | `[]`             |
+| height                 | 弹层中内容容器的高度，仅在 `type="custom2"` 时有效                                                                                      | string / number | -      | `200px`          |
+| exist-address          | 已存在地址列表，每个地址对象中，必传值 `provinceName`、`cityName`、`countyName`、`townName`、`addressDetail`、`selectedAddress`（字段解释见下） | Array           | -      | `[]`             |
+| is-show-custom-address | 是否可以切换自定义地址选择，`type=‘exist’` 时生效                                                                                       | boolean         | -      | `true`           |
+| custom-address-title   | 自定义地址选择文案，`type='custom'` 时生效                                                                                              | string          | -      | `请选择所在地区` |
+| exist-address-title    | 已有地址文案 ，`type=‘exist’` 时生效                                                                                                    | string          | -      | `配送至`         |
+| custom-and-exist-title | 自定义地址与已有地址切换按钮文案 ，`type=‘exist’` 时生效                                                                                | string          | -      | `选择其他地址`   |
+| columns-placeholder    | 列提示文字                                                                                                                             | string / Array  | -      | `请选择`         |
 
 * `provinceName` 省的名字
 * `cityName` 市的名字

@@ -212,13 +212,13 @@ Layout 组件提供 24列栅格，通过在 Col 上添加 span 属性设置列�
 
 ### Row Props
 
-| 参数      | 说明                          | 类型             | 可选值                                                                  | 默认值       |
-|-----------|-----------------------------|------------------|-------------------------------------------------------------------------|--------------|
-| type      | 布局方式                      | string           | flex                                                                    | `-`          |
-| gutter    | 列元素之间的间距（单位为 `px`） | string \| number | -                                                                       | `-`          |
-| justify   | `Flex` 主轴对齐方式           | string           | start \| end \| center \| space-around \| space-between \| space-evenly | `start`      |
-| align     | `Flex` 交叉轴对齐方式         | string           | flex-start \| center \| flex-end                                        | `flex-start` |
-| flex-wrap | `Flex` 是否换行               | string           | nowrap \| wrap \| reverse                                               | `nowrap`     |
+| 参数      | 说明                          | 类型              | 可选值                                                             | 默认值       |
+|-----------|-----------------------------|-----------------|--------------------------------------------------------------------|--------------|
+| type      | 布局方式                      | string          | flex                                                               | `-`          |
+| gutter    | 列元素之间的间距（单位为 `px`） | string / number | -                                                                  | `-`          |
+| justify   | `Flex` 主轴对齐方式           | string          | start / end / center / space-around / space-between / space-evenly | `start`      |
+| align     | `Flex` 交叉轴对齐方式         | string          | flex-start / center / flex-end                                     | `flex-start` |
+| flex-wrap | `Flex` 是否换行               | string          | nowrap / wrap / reverse                                            | `nowrap`     |
 
 ### Col Props
 
