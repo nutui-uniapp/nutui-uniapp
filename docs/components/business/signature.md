@@ -7,25 +7,23 @@
 ### 基础用法
 
 ```vue
-<script>
-export default {
-  props: {},
-  setup() {
-    const demoSignUrl = ref('')
-    const confirm = (canvas, data) => {
-      if (data === '') {
-        console.log(canvas)
-        return false
-      }
-      demoSignUrl.value = data
-      console.log('图片地址', canvas, data)
-    }
-    const clear = () => {
-      demoSignUrl.value = ''
-      console.log('清除事件')
-    }
-    return { confirm, clear, demoSignUrl }
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const demoSignUrl = ref('')
+
+const confirm = (canvas: any, data: string) => {
+  if (data === '') {
+    console.log(canvas)
+    return false
   }
+  demoSignUrl.value = data
+  console.log('图片地址', canvas, data)
+}
+
+const clear = () => {
+  demoSignUrl.value = ''
+  console.log('清除事件')
 }
 </script>
 
@@ -41,31 +39,24 @@ export default {
 ### 修改颜色和签字粗细
 
 ```vue
-<script>
-import { reactive } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-export default {
-  props: {},
-  setup() {
-    const state = reactive({
-      lineWidth: 4,
-      strokeStyle: 'green'
-    })
-    const demoSignUrl = ref('')
-    const confirm = (canvas, data) => {
-      if (data === '') {
-        console.log(canvas)
-        return false
-      }
-      demoSignUrl.value = data
-      console.log('图片地址', canvas, data)
-    }
-    const clear = () => {
-      demoSignUrl.value = ''
-      console.log('清除事件')
-    }
-    return { ...state, demoSignUrl, confirm, clear }
+const lineWidth = ref(4)
+const strokeStyle = ref('green')
+const demoSignUrl = ref('')
+const confirm = (canvas: any, data: string) => {
+  if (data === '') {
+    console.log(canvas)
+    return false
   }
+  demoSignUrl.value = data
+  console.log('图片地址', canvas, data)
+}
+
+const clear = () => {
+  demoSignUrl.value = ''
+  console.log('清除事件')
 }
 </script>
 
@@ -94,10 +85,10 @@ export default {
 
 ### Events
 
-| 事件名  | 说明                                 | 回调参数                                                                   |
-|---------|------------------------------------|----------------------------------------------------------------------------|
-| start   | 签名开始回调函数（指某次笔画的开始）   | `-`                                                                        |
-| signing | 正在签名的回调函数（指某次笔画进行中） | `event`                                                                    |
-| end     | 签名结束回调函数（指某次笔画的结束）   | `-`                                                                        |
-| confirm | 点击确认按钮触发事件回调函数         | `canvas和签名图片展示的 data URI，<br>如未绘制，则返回提示信息和空 data URI` |
-| clear   | 点击重签按钮触发事件回调函数         | `-`                                                                        |
+| 事件名 | 说明 | 类型 |
+|------|------|------|
+| start | 签名开始回调函数（指某次笔画的开始） | `() => void` |
+| signing | 正在签名的回调函数（指某次笔画进行中） | `(event: Event) => void` |
+| end | 签名结束回调函数（指某次笔画的结束） | `() => void` |
+| confirm | 点击确认按钮触发事件回调函数 | `(canvas: any, filePath?: string) => void` |
+| clear | 点击重签按钮触发事件回调函数 | `() => void` |
