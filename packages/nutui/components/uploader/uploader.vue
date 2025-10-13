@@ -316,7 +316,7 @@ defineExpose({
             custom-class="nut-uploader__preview-img__file__del"
             name="del"
             custom-color="#808080"
-            @click="onDelete(item, index)"
+            @click.stop="onDelete(item, index)"
           />
         </view>
 
