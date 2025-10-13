@@ -13,6 +13,7 @@ export interface FileItem {
   url?: string
   type?: FileType
   path?: string
+  size: number
   percentage?: string | number
 }
 

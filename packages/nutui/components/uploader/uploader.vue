@@ -147,6 +147,7 @@ function readFile(files: ChooseFile[]) {
 
     fileItem.uid = new Date().getTime().toString() + Math.random().toString(36).substring(2, 9)
     fileItem.path = filepath
+    fileItem.size = file.size
     fileItem.name = file.name || filepath
     fileItem.status = 'ready'
     fileItem.message = translate('waitingUpload')
