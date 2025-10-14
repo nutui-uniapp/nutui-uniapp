@@ -305,6 +305,7 @@ export default defineComponent({
     position="bottom"
     :lock-scroll="lockScroll"
     :round="round"
+    :safe-area-inset-bottom="safeAreaInsetBottom"
     @close="close"
     @click-overlay="clickOverlay"
     @open="closeWay = 'self'"
