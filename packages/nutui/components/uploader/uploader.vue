@@ -281,9 +281,16 @@ export default defineComponent({
         </view>
 
         <image
-          v-if="(item.type === 'image' || item.type === 'video') && item.url"
+          v-if="item.type === 'image' && item.url"
           class="nut-uploader__preview-img__c"
           :mode="props.mode"
+          :src="item.url"
+          @click="handleFileItemClick(item)"
+        />
+
+        <video
+          v-else-if="item.type === 'video' && item.url"
+          class="nut-uploader__preview-img__c"
           :src="item.url"
           @click="handleFileItemClick(item)"
         />
