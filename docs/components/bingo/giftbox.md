@@ -42,8 +42,8 @@ function endTurns() {
 
 | 事件名      | 说明                   | 类型       |
 |-------------|----------------------|------------|
-| start-turns | 礼盒打开时候的回调函数 | () => true |
-| end-turns   | 礼盒打开后的回调函数   | () => true |
+| start-turns | 礼盒打开时候的回调函数 | () => void |
+| end-turns   | 礼盒打开后的回调函数   | () => void |
 
 ### Exposes
 
