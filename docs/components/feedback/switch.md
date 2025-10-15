@@ -170,17 +170,17 @@ export default {
 
 ### Props
 
-| 参数           | 说明             | 类型                        | 可选值 | 默认值    |
-|----------------|----------------|---------------------------|--------|-----------|
-| v-model        | 开关状态         | boolean / string / number | -      | `false`   |
-| disabled       | 禁用状态         | boolean                   | -      | `false`   |
-| loading        | 加载状态         | boolean                   | -      | `false`   |
-| active-color   | 打开时的背景颜色 | string                    | -      | `#fa2c19` |
-| inactive-color | 关闭时的背景颜色 | string                    | -      | `#ebebeb` |
-| active-text    | 打开时文字描述   | string                    | -      | -         |
-| inactive-text  | 关闭时文字描述   | string                    | -      | -         |
-| active-value   | 打开时组件的值   | boolean ｜ string ｜number  | -      | `true`    |
-| inactive-value | 关闭组件的值     | boolean ｜ string ｜number  | -      | `false`   |
+| 参数           | 说明             | 类型                      | 可选值 | 默认值  |
+|----------------|----------------|---------------------------|--------|---------|
+| v-model        | 开关状态         | boolean / string / number | -      | `false` |
+| disabled       | 禁用状态         | boolean                   | -      | `false` |
+| loading        | 加载状态         | boolean                   | -      | `false` |
+| active-color   | 打开时的背景颜色 | string                    | -      | #fa2c19 |
+| inactive-color | 关闭时的背景颜色 | string                    | -      | #ebebeb |
+| active-text    | 打开时文字描述   | string                    | -      | -       |
+| inactive-text  | 关闭时文字描述   | string                    | -      | -       |
+| active-value   | 打开时组件的值   | boolean / string / number | -      | `true`  |
+| inactive-value | 关闭组件的值     | boolean / string / number | -      | `false` |
 
 ### Slots
 

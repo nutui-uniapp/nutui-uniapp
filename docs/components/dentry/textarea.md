@@ -50,14 +50,14 @@ export default {
 
 ### Props
 
-| 参数                      | 说明                                                                                                | 类型                                                   | 可选值                                       | 默认值                 |
+| 参数                      | 说明                                                                                                | 类型                                                 | 可选值                                    | 默认值               |
 |---------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------|----------------------|
 | v-model                   | 输入值，支持双向绑定                                                                                 | string                                               | -                                         | -                    |
 | textarea-style `1.7.3`    | 文本域自定义样式                                                                                    | `StyleValue`                                         | -                                         | -                    |
 | textarea-class `1.7.3`    | 文本域自定义类名                                                                                    | `ClassType`                                          | -                                         | -                    |
-| placeholder               | 设置占位提示文字                                                                                    | string                                               | -                                         | `请输入内容`           |
+| placeholder               | 设置占位提示文字                                                                                    | string                                               | -                                         | 请输入内容           |
 | placeholder-style `1.6.9` | 指定 placeholder 的样式                                                                             | string                                               | -                                         | -                    |
-| placeholder-class `1.6.9` | 指定 placeholder 的样式类                                                                           | string                                               | -                                         | `textarea-placeholder` |
+| placeholder-class `1.6.9` | 指定 placeholder 的样式类                                                                           | string                                               | -                                         | textarea-placeholder |
 | max-length                | 限制最长输入字符                                                                                    | string / number                                      | -                                         | -                    |
 | rows                      | textarea的高度，优先级高于autosize属性 `仅支持 H5`                                                   | string / number                                      | -                                         | `2`                  |
 | limit-show                | textarea是否展示输入字符。须配合`max-length`使用                                                     | boolean                                              | -                                         | `false`              |
@@ -76,7 +76,7 @@ export default {
 | disable-default-padding   | 是否去掉 iOS 下的默认内边距                                                                         | boolean                                              | -                                         | `false`              |
 | confirm-type              | 设置键盘右下角按钮的文字                                                                            | string                                               | send / search / next / go / done / return | return               |
 | confirm-hold              | 点击键盘右下角按钮时是否保持键盘不收起                                                              | boolean                                              | -                                         | `false`              |
-| adjust-keyboard-to        | 键盘对齐位置                                                                                        | string                                               | cursor / bottom                           | `cursor`             |
+| adjust-keyboard-to        | 键盘对齐位置                                                                                        | string                                               | cursor / bottom                           | cursor               |
 
 ### Events
 

@@ -280,9 +280,9 @@ const fieldNames = ref({
 | ok-text             | 确定按钮文案                  | string                             | -      | 确定                                                                             |
 | cancel-text         | 取消按钮文案                  | string                             | -      | 取消                                                                             |
 | three-dimensional   | 是否开启3D效果                | boolean                            | -      | `false`                                                                          |
-| swipe-duration      | 惯性滚动时长                  | number \ string                    | -      | `1000`                                                                           |
-| visible-option-num  | 可见的选项个数                | number \ string                    | -      | `7`                                                                              |
-| option-height       | 选项高度                      | number \ string                    | -      | `36`                                                                             |
+| swipe-duration      | 惯性滚动时长                  | number / string                    | -      | `1000`                                                                           |
+| visible-option-num  | 可见的选项个数                | number / string                    | -      | `7`                                                                              |
+| option-height       | 选项高度                      | number / string                    | -      | `36`                                                                             |
 | field-names `0.3.0` | 自定义 columns 中的字段       | object                             | -      | `{ text: 'text', value: 'value', children: 'children', className: 'className' }` |
 
 ### Events

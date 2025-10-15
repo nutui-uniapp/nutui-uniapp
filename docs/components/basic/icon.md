@@ -132,13 +132,13 @@ import './assets/font/iconfont.css'
 
 ### Props
 
-| 参数            | 说明                                    | 类型            | 可选值 | 默认值           |
-|-----------------|---------------------------------------|-----------------|--------|------------------|
-| name            | 图标名称或图片链接                      | String          | -      | -                |
-| custom-color    | 图标颜色                                | String          | -      | -                |
-| size            | 图标大小，如 `20px` `2em` `2rem`         | String / Number | -      | -                |
-| font-class-name | 自定义 icon 字体基础类名                | String          | -      | `nutui-iconfont` |
-| class-prefix    | 自定义 icon 类名前缀，用于使用自定义图标 | String          | -      | `nut-icon`       |
+| 参数            | 说明                                    | 类型            | 可选值 | 默认值         |
+|-----------------|---------------------------------------|-----------------|--------|----------------|
+| name            | 图标名称或图片链接                      | string          | -      | -              |
+| custom-color    | 图标颜色                                | string          | -      | -              |
+| size            | 图标大小，如 `20px` `2em` `2rem`         | string / number | -      | -              |
+| font-class-name | 自定义 icon 字体基础类名                | string          | -      | nutui-iconfont |
+| class-prefix    | 自定义 icon 类名前缀，用于使用自定义图标 | string          | -      | nut-icon       |
 
 ### Events
 

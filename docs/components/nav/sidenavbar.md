@@ -116,24 +116,24 @@
 
 ### SideNavbar Props
 
-| 参数   | 说明         | 类型              | 可选值 | 默认值 |
+| 参数   | 说明         | 类型            | 可选值 | 默认值 |
 |--------|------------|-----------------|--------|--------|
 | offset | 导航缩进宽度 | number / string | -      | `15`   |
 
 ### SubSideNavbar Props
 
-| 参数  | 说明             | 类型              | 可选值 | 默认值 |
+| 参数  | 说明             | 类型            | 可选值 | 默认值 |
 |-------|----------------|-----------------|--------|--------|
-| title | 导航标题         | string          | -      | ``     |
-| ikey  | 导航唯一标识     | number / string | -      | ``     |
+| title | 导航标题         | string          | -      | -      |
+| ikey  | 导航唯一标识     | number / string | -      | -      |
 | open  | 导航是否默认展开 | boolean         | -      | `true` |
 
 ### SideNavbarItem Props
 
-| 参数  | 说明         | 类型              | 可选值 | 默认值 |
+| 参数  | 说明         | 类型            | 可选值 | 默认值 |
 |-------|------------|-----------------|--------|--------|
 | title | 导航标题     | string          | -      | `15`   |
-| ikey  | 导航唯一标识 | number / string | -      | ``     |
+| ikey  | 导航唯一标识 | number / string | -      | -      |
 
 ### SubSideNavbar Events
 

@@ -120,25 +120,25 @@ Icon 和字符型可以自定义颜色及背景色
 
 ### Avatar Props
 
-| 参数         | 说明       | 类型             | 可选值                                             | 默认值   |
-|--------------|----------|------------------|----------------------------------------------------|----------|
-| size         | 头像的大小 | string \| number | ： / large / 、 / normal / 、 / small / ，支持输入数字 | `normal` |
-| shape        | 头像的形状 | string           | ： / square / 、 / round                             | `round`  |
-| custom-color | 字体颜色   | string           | -                                                  | `#666`   |
-| bg-color     | 背景色     | string           | -                                                  | `#eee`   |
+| 参数         | 说明                    | 类型            | 可选值                 | 默认值 |
+|--------------|-----------------------|-----------------|------------------------|--------|
+| size         | 头像的大小,支持输入数字 | string / number | large / normal / small | normal |
+| shape        | 头像的形状              | string          | square / round         | round  |
+| custom-color | 字体颜色                | string          | -                      | #666   |
+| bg-color     | 背景色                  | string          | -                      | #eee   |
 
 ### AvatarGroup Props
 
-| 参数         | 说明                                                                 | 类型             | 可选值                                              | 默认值   |
-|--------------|--------------------------------------------------------------------|------------------|-----------------------------------------------------|--------|
-| max-count    | 显示的最大头像个数                                                   | string \| number | -                                                   | -      |
-| max-content  | 头像数量超出时，会出现一个头像折叠元素，该元素内容可为`...`、`more`、`N` | string           | -                                                   | `N`    |
-| size         | 头像的大小                                                           | string \| number |   large  / normal / small | `normal` |
-| shape        | 头像的形状                                                           | string           | square / round                               | `round` |
-| max-color    | 头像折叠元素的字体颜色                                               | string           | -                                                   | `#666` |
-| max-bg-color | 头像折叠元素的背景色                                                 | string           | -                                                   | `#eee` |
-| span         | 头像之间的间距                                                       | string           | -                                                   | `-8`   |
-| z-index      | 组合头像之间的层级方向                                               | string           |  left / right                                 | left   |
+| 参数         | 说明                                                                 | 类型             | 可选值                  | 默认值 |
+|--------------|--------------------------------------------------------------------|------------------|-------------------------|--------|
+| max-count    | 显示的最大头像个数                                                   | string \| number | -                       | -      |
+| max-content  | 头像数量超出时，会出现一个头像折叠元素，该元素内容可为`...`、`more`、`N` | string           | -                       | N      |
+| size         | 头像的大小                                                           | string \| number | large  / normal / small | normal |
+| shape        | 头像的形状                                                           | string           | square / round          | round  |
+| max-color    | 头像折叠元素的字体颜色                                               | string           | -                       | #666   |
+| max-bg-color | 头像折叠元素的背景色                                                 | string           | -                       | #eee   |
+| span         | 头像之间的间距                                                       | string           | -                       | `-8`   |
+| z-index      | 组合头像之间的层级方向                                               | string           | left / right            | left   |
 
 ### Avatar Slots
 

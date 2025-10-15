@@ -275,12 +275,12 @@
 
 ### Props
 
-| 参数        | 说明                                                    | 类型              | 可选值 | 默认值       |
+| 参数        | 说明                                                    | 类型            | 可选值 | 默认值       |
 |-------------|-------------------------------------------------------|-----------------|--------|--------------|
 | v-model     | 当前时间，自定义展示内容时生效                           | object          | -      | `{}`         |
 | start-time  | 开始时间                                                | string / number | -      | `Date.now()` |
 | end-time    | 结束时间                                                | string / number | -      | `Date.now()` |
-| format      | 时间格式                                                | string          | -      | `HH:mm:ss`   |
+| format      | 时间格式                                                | string          | -      | HH:mm:ss     |
 | millisecond | 是否开启毫秒级渲染                                      | boolean         | -      | `false`      |
 | auto-start  | 是否自动开始倒计时                                      | boolean         | -      | `true`       |
 | time        | 倒计时显示时间，单位是毫秒。`autoStart` 为 `false` 时生效 | string / number | -      | `0`          |

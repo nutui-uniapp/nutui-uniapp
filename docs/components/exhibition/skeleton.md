@@ -130,18 +130,18 @@ export default {
 
 ### Props
 
-| 参数         | 说明                      | 类型    | 可选值 | 默认值    |
-|--------------|-------------------------|---------|--------|-----------|
-| loading      | 是否显示骨架屏            | boolean | -      | `true`    |
-| width        | 每行宽度                  | string  | -      | `default` |
-| height       | 每行高度                  | string  | -      | `15px`    |
-| animated     | 是否开启骨架屏动画        | boolean | -      | `false`   |
-| avatar       | 是否显示头像              | boolean | -      | `false`   |
-| avatar-shape | 头像形状：正方形/圆形      | string  | -      | `round`   |
-| avatar-size  | 头像大小                  | string  | -      | `50px`    |
-| round        | 标题/段落是否采用圆角风格 | boolean | -      | `false`   |
-| row          | 设置段落行数              | string  | -      | `1`       |
-| title        | 是否显示段落标题          | boolean | -      | `true`    |
+| 参数         | 说明                      | 类型    | 可选值 | 默认值  |
+|--------------|-------------------------|---------|--------|---------|
+| loading      | 是否显示骨架屏            | boolean | -      | `true`  |
+| width        | 每行宽度                  | string  | -      | default |
+| height       | 每行高度                  | string  | -      | 15px    |
+| animated     | 是否开启骨架屏动画        | boolean | -      | `false` |
+| avatar       | 是否显示头像              | boolean | -      | `false` |
+| avatar-shape | 头像形状：正方形/圆形      | string  | -      | round   |
+| avatar-size  | 头像大小                  | string  | -      | 50px    |
+| round        | 标题/段落是否采用圆角风格 | boolean | -      | `false` |
+| row          | 设置段落行数              | string  | -      | `1`     |
+| title        | 是否显示段落标题          | boolean | -      | `true`  |
 
 ### Slots
 

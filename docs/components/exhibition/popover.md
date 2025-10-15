@@ -400,30 +400,30 @@ page,#app{
 
 ### Props
 
-| 参数                   | 说明                         | 类型              | 可选值 | 默认值    |
+| 参数                   | 说明                         | 类型            | 可选值 | 默认值    |
 |------------------------|----------------------------|-----------------|--------|-----------|
 | list                   | 选项列表                     | List[]          | -      | `[]`      |
 | visible                | 是否展示气泡弹出层           | boolean         | -      | `false`   |
-| theme                  | 主题风格                     | string          | dark   | `light`   |
-| location               | 弹出位置                     | string          | -      | `bottom`  |
+| theme                  | 主题风格                     | string          | dark   | light     |
+| location               | 弹出位置                     | string          | -      | bottom    |
 | offset                 | 出现位置的偏移量             | [number,number] | -      | `[0, 12]` |
 | show-arrow             | 是否显示小箭头               | boolean         | -      | `true`    |
 | custom-class           | 自定义 class 值              | string          | -      | `''`      |
 | duration               | 动画时长，单位毫秒            | number / string | -      | `300`     |
 | overlay                | 是否显示遮罩层               | boolean         | -      | `false`   |
-| overlay-class          | 自定义遮罩层类名             | string          | -      | `''`      |
-| overlay-style          | 自定义遮罩层样式             | string          | -      | `''`      |
+| overlay-class          | 自定义遮罩层类名             | string          | -      | -         |
+| overlay-style          | 自定义遮罩层样式             | string          | -      | -         |
 | close-on-click-overlay | 是否在点击遮罩层后关闭菜单   | boolean         | -      | `true`    |
 | close-on-click-action  | 是否在点击选项后关闭         | boolean         | -      | `true`    |
 | close-on-click-outside | 是否在点击外部元素后关闭菜单 | boolean         | -      | `true`    |
-| bg-color               | 自定义背景色                 | string          | -      | `-`       |
+| bg-color               | 自定义背景色                 | string          | -      | -         |
 | arrow-offset           | 小箭头的偏移量               | number          | -      | `0`       |
 
 ### List 数据结构
 
 List 属性是一个由对象构成的数组，数组中的每个对象配置一列，对象可以包含以下值：
 
-| 键名      | 说明                     | 类型                      | 默认值  |
+| 键名      | 说明                     | 类型                    | 默认值  |
 |-----------|------------------------|-------------------------|---------|
 | name      | 选项文字                 | string                  | `-`     |
 | icon      | 图标                     | string                  |         |

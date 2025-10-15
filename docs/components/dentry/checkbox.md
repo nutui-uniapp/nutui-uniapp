@@ -225,16 +225,16 @@ function onGroupChange(values: any[]) {
 
 ### Checkbox Props
 
-| 参数                     | 说明                                                       | 类型                        | 可选值            | 默认值  |
-|--------------------------|----------------------------------------------------------|---------------------------|----------------|-------|
+| 参数                     | 说明                                                       | 类型                      | 可选值         | 默认值  |
+|--------------------------|----------------------------------------------------------|---------------------------|----------------|---------|
 | v-model                  | 是否处于选中状态（`1.7.14` 开始支持 `number`、`string` 类型） | boolean / number / string | -              | `false` |
 | disabled                 | 是否禁用选择                                               | boolean                   | -              | `false` |
-| text-position            | 文本所在的位置                                             | string                    | left / right   | right |
-| icon-size                | [图标尺寸](/components/basic/icon)                         | string / number           | -              | `18`  |
-| label                    | 复选框标识（与 `nut-checkbox-group` 配合使用）               | boolean / number / string | -              | -     |
+| text-position            | 文本所在的位置                                             | string                    | left / right   | right   |
+| icon-size                | [图标尺寸](/components/basic/icon)                         | string / number           | -              | `18`    |
+| label                    | 复选框标识（与 `nut-checkbox-group` 配合使用）               | boolean / number / string | -              | -       |
 | indeterminate            | 当前是否支持半选状态，一般用在全选操作中                    | boolean                   | -              | `false` |
-| shape                    | 形状                                                       | string                    | button / round | round |
-| checked-value `1.7.14`   | 选中状态的值                                               | boolean / number / string | -              | `true` |
+| shape                    | 形状                                                       | string                    | button / round | round   |
+| checked-value `1.7.14`   | 选中状态的值                                               | boolean / number / string | -              | `true`  |
 | unchecked-value `1.7.14` | 未选中状态的值                                             | boolean / number / string | -              | `false` |
 
 ### Checkbox Events

@@ -130,15 +130,15 @@ function updateCount() {
 
 | 参数               | 说明                     | 类型            | 可选值 | 默认值           |
 |--------------------|------------------------|-----------------|--------|------------------|
-| v-model            | 购买电子卡所需价钱       | number \ string | -      | `0`              |
+| v-model            | 购买电子卡所需价钱       | number / string | -      | `0`              |
 | list               | 电子卡面值预设列表       | EcardDataItem[] | -      | `[]`             |
 | choose-text        | 选择面值文案             | string          | -      | 请选择电子卡面值 |
 | show-other `1.6.1` | 是否显示其他面值控制     | boolean         | -      | `true`           |
 | other-value-text   | 其他面值文案             | string          | -      | 其他面值         |
 | placeholder        | 其他面值默认提示语       | string          | -      | 请输入1-5000整数 |
 | suffix             | 符号标识                 | string          | -      | ¥                |
-| card-amount-min    | 其它面值最小值           | number \ string | -      | `1`              |
-| card-amount-max    | 其他面值最大值           | number \ string | -      | `9999`           |
+| card-amount-min    | 其它面值最小值           | number / string | -      | `1`              |
+| card-amount-max    | 其他面值最大值           | number / string | -      | `9999`           |
 | show-step `1.6.1`  | 是否显示是否显示数量步进 | boolean         | -      | `true`           |
 | card-buy-min       | 购买数量最小值           | number          | -      | `1`              |
 | card-buy-max       | 购买数量最大值           | number          | -      | `9999`           |

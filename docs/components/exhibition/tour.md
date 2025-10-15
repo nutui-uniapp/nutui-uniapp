@@ -290,7 +290,7 @@ page{
 
 ### Props
 
-| 参数                   | 说明                                                                                                | 类型               | 可选值 | 默认值     |
+| 参数                   | 说明                                                                                                | 类型             | 可选值 | 默认值     |
 |------------------------|---------------------------------------------------------------------------------------------------|------------------|--------|------------|
 | v-model                | 是否展示引导弹出层                                                                                  | boolean          | -      | `false`    |
 | type                   | 引导类型                                                                                            | string           | -      | `step`     |
@@ -313,13 +313,13 @@ page{
 
 ### StepOptions
 
-| 键名           | 说明                                                                            | 类型             | 默认值     |
-|----------------|-------------------------------------------------------------------------------|------------------|------------|
-| target         | 目标对象                                                                        | Element          | -          |
-| content        | 气泡层内容                                                                      | string           | ''         |
-| location       | 弹出层位置,同 Popopver 的[location 属性](/components/exhibition/popover)        | string           | `'bottom'` |
-| popover-offset | 气泡层偏移量，同 Popopver 的[offset 属性](/components/exhibition/popover)        | [number, number] | `[0, 12]`  |
-| arrow-offset   | 小箭头的偏移量，同 Popopver 的[arrowOffset 属性](/components/exhibition/popover) | number           | `0`        |
+| 键名           | 说明                                                                            | 类型             | 默认值    |
+|----------------|-------------------------------------------------------------------------------|------------------|-----------|
+| target         | 目标对象                                                                        | Element          | -         |
+| content        | 气泡层内容                                                                      | string           | ''        |
+| location       | 弹出层位置,同 Popopver 的[location 属性](/components/exhibition/popover)        | string           | bottom    |
+| popover-offset | 气泡层偏移量，同 Popopver 的[offset 属性](/components/exhibition/popover)        | [number, number] | `[0, 12]` |
+| arrow-offset   | 小箭头的偏移量，同 Popopver 的[arrowOffset 属性](/components/exhibition/popover) | number           | `0`       |
 
 ### Slots
 

@@ -278,26 +278,26 @@ export default {
 
 ### Props
 
-| 参数                            | 说明                                                     | 类型          | 可选值 | 默认值      |
-|---------------------------------|--------------------------------------------------------|---------------|--------|-------------|
-| v-model:visible                 | 是否展示动作面板                                         | boolean       | -      | `false`     |
-| menu-items                      | 列表项                                                   | MenuItems[]   | -      | `[]`        |
-| option-tag                      | 设置列表项标题展示使用参数                               | string        | -      | `'name'`    |
-| option-sub-tag                  | 设置列表项二级标题展示使用参数                           | string        | -      | `'subname'` |
-| choose-tag-value                | 设置选中项的值，和 `'option-tag'` 的值对应                | string        | -      | ''          |
-| custom-color                    | 选中项颜色，当 `choose-tag-value == option-tag` 的值 生效 | string        | -      | `'#ee0a24'` |
-| title                           | 设置列表项标题                                           | string        | -      | `''`        |
-| description                     | 设置列表项副标题/描述                                    | string        | -      | `''`        |
-| cancel-txt                      | 取消文案                                                 | string        | -      | `'取消'`    |
-| close-abled                     | 遮罩层是否可关闭                                         | boolean       | -      | `true`      |
-| round `1.7.11`                  | 是否显示圆角                                             | boolean       | -      | `true`      |
-| overlay `1.7.11`                | 是否显示遮罩                                             | boolean       | -      | `true`      |
-| pop-class                       | 自定义弹框类名                                           | string        | -      | -           |
-| pop-style `1.7.11`              | 自定义弹框样式                                           | CSSProperties | -      | -           |
-| overlay-class                   | 自定义遮罩层类名                                         | string        | -      | ''          |
-| overlay-style                   | 自定义遮罩层样式                                         | string        | -      | ''          |
-| lock-scroll `H5` `1.7.11`       | 遮罩显示时的背景是否锁定                                 | boolean       | -      | `true`      |
-| safe-area-inset-bottom `1.7.11` | 是否开启 iphone 系列全面屏底部安全区适配                 | boolean       | -      | `true`      |
+| 参数                            | 说明                                                     | 类型          | 可选值 | 默认值  |
+|---------------------------------|--------------------------------------------------------|---------------|--------|---------|
+| v-model:visible                 | 是否展示动作面板                                         | boolean       | -      | `false` |
+| menu-items                      | 列表项                                                   | MenuItems[]   | -      | `[]`    |
+| option-tag                      | 设置列表项标题展示使用参数                               | string        | -      | name    |
+| option-sub-tag                  | 设置列表项二级标题展示使用参数                           | string        | -      | subname |
+| choose-tag-value                | 设置选中项的值，和 `'option-tag'` 的值对应                | string        | -      | -       |
+| custom-color                    | 选中项颜色，当 `choose-tag-value == option-tag` 的值 生效 | string        | -      | #ee0a24 |
+| title                           | 设置列表项标题                                           | string        | -      | -       |
+| description                     | 设置列表项副标题/描述                                    | string        | -      | -       |
+| cancel-txt                      | 取消文案                                                 | string        | -      | 取消    |
+| close-abled                     | 遮罩层是否可关闭                                         | boolean       | -      | `true`  |
+| round `1.7.11`                  | 是否显示圆角                                             | boolean       | -      | `true`  |
+| overlay `1.7.11`                | 是否显示遮罩                                             | boolean       | -      | `true`  |
+| pop-class                       | 自定义弹框类名                                           | string        | -      | -       |
+| pop-style `1.7.11`              | 自定义弹框样式                                           | CSSProperties | -      | -       |
+| overlay-class                   | 自定义遮罩层类名                                         | string        | -      | -       |
+| overlay-style                   | 自定义遮罩层样式                                         | string        | -      | -       |
+| lock-scroll `H5` `1.7.11`       | 遮罩显示时的背景是否锁定                                 | boolean       | -      | `true`  |
+| safe-area-inset-bottom `1.7.11` | 是否开启 iphone 系列全面屏底部安全区适配                 | boolean       | -      | `true`  |
 
 ### MenuItems 数据结构
 

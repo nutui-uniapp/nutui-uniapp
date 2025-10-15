@@ -55,15 +55,15 @@
 
 ### Props
 
-| 参数          | 说明           | 类型             | 可选值                  | 默认值 |
-|---------------|--------------|------------------|----------------------|------|
-| content       | 文本内容       | string           | -                    | -    |
-| direction     | 省略位置       | string           | start / end / middle | end  |
-| rows          | 展示几行       | number           | -                    | `1`  |
-| expand-text   | 展开操作的文案 | string           | -                    | `''` |
-| collapse-text | 收起操作的文案 | string           | -                    | `''` |
-| symbol        | 省略的符号     | string           | -                    | `...` |
-| line-height   | 容器的行高     | string \| number | -                    | `20` |
+| 参数          | 说明           | 类型            | 可选值               | 默认值 |
+|---------------|--------------|-----------------|----------------------|--------|
+| content       | 文本内容       | string          | -                    | -      |
+| direction     | 省略位置       | string          | start / end / middle | end    |
+| rows          | 展示几行       | number          | -                    | `1`    |
+| expand-text   | 展开操作的文案 | string          | -                    | -      |
+| collapse-text | 收起操作的文案 | string          | -                    | -      |
+| symbol        | 省略的符号     | string          | -                    | ...    |
+| line-height   | 容器的行高     | string / number | -                    | `20`   |
 
 ### Events
 

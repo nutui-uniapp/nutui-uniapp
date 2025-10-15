@@ -109,17 +109,17 @@
 
 ### Props
 
-| 参数            | 说明                                 | 类型    | 可选值 | 默认值    |
-|-----------------|------------------------------------|---------|--------|-----------|
-| rate            | 数值，大于0时箭头向上，小于0时箭头向下 | number  | -      | -         |
-| digits          | 小数位精度                           | number  | -      | `2`       |
-| show-sign       | 是否显示加减号                       | boolean | -      | `false`   |
-| show-zero       | 是否显示 0                           | boolean | -      | `false`   |
-| arrow-left      | 是否在数字左侧显示箭头               | boolean | -      | `false`   |
-| sync-text-color | 文字颜色是否与箭头同步               | boolean | -      | `true`    |
-| text-color      | 文字颜色                             | string  | -      | `#333333` |
-| rise-color      | 向上箭头颜色                         | string  | -      | `#fa2c19` |
-| drop-color      | 向下箭头颜色                         | string  | -      | `#64b578` |
+| 参数            | 说明                                 | 类型    | 可选值 | 默认值  |
+|-----------------|------------------------------------|---------|--------|---------|
+| rate            | 数值，大于0时箭头向上，小于0时箭头向下 | number  | -      | -       |
+| digits          | 小数位精度                           | number  | -      | `2`     |
+| show-sign       | 是否显示加减号                       | boolean | -      | `false` |
+| show-zero       | 是否显示 0                           | boolean | -      | `false` |
+| arrow-left      | 是否在数字左侧显示箭头               | boolean | -      | `false` |
+| sync-text-color | 文字颜色是否与箭头同步               | boolean | -      | `true`  |
+| text-color      | 文字颜色                             | string  | -      | #333333 |
+| rise-color      | 向上箭头颜色                         | string  | -      | #fa2c19 |
+| drop-color      | 向下箭头颜色                         | string  | -      | #64b578 |
 
 ### Slots
 

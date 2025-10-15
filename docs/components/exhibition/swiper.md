@@ -443,21 +443,21 @@
 
 ### Props
 
-| 参数                                 | 说明                           | 类型              | 可选值                    | 默认值        |
-|--------------------------------------|------------------------------|-----------------|---------------------------|------------|
-| width                                | 轮播卡片的宽度                 | number / string | -                         | -          |
-| height                               | 轮播卡片的高度                 | number / string | -                         | -          |
+| 参数                                 | 说明                           | 类型            | 可选值                | 默认值     |
+|--------------------------------------|------------------------------|-----------------|-----------------------|------------|
+| width                                | 轮播卡片的宽度                 | number / string | -                     | -          |
+| height                               | 轮播卡片的高度                 | number / string | -                     | -          |
 | direction                            | 轮播方向,                      | string          | horizontal / vertical | horizontal |
-| pagination-visible                   | 分页指示器是否展示             | boolean         | -                         | `false`    |
-| pagination-color                     | 分页指示器选中的颜色           | string          | -                         | `'#fff'`   |
-| pagination-unselected-color `v1.6.0` | 分页指示器没有选中的颜色       | string          | -                         | `'#ddd'`   |
-| loop                                 | 是否循环轮播                   | boolean         | -                         | `true`     |
-| duration                             | 动画时长（单位是ms）             | number / string | -                         | `500`      |
-| auto-play                            | 自动轮播时长，0表示不会自动轮播 | number / string | -                         | `0`        |
-| init-page                            | 初始化索引值                   | number / string | -                         | `0`        |
-| touchable                            | 是否可触摸滑动                 | boolean         | -                         | `true`     |
-| is-prevent-default                   | 滑动过程中是否禁用默认事件     | boolean         | -                         | `true`     |
-| is-stop-propagation                  | 滑动过程中是否禁止冒泡         | boolean         | -                         | `true`     |
+| pagination-visible                   | 分页指示器是否展示             | boolean         | -                     | `false`    |
+| pagination-color                     | 分页指示器选中的颜色           | string          | -                     | #fff       |
+| pagination-unselected-color `v1.6.0` | 分页指示器没有选中的颜色       | string          | -                     | #ddd       |
+| loop                                 | 是否循环轮播                   | boolean         | -                     | `true`     |
+| duration                             | 动画时长（单位是ms）             | number / string | -                     | `500`      |
+| auto-play                            | 自动轮播时长，0表示不会自动轮播 | number / string | -                     | `0`        |
+| init-page                            | 初始化索引值                   | number / string | -                     | `0`        |
+| touchable                            | 是否可触摸滑动                 | boolean         | -                     | `true`     |
+| is-prevent-default                   | 滑动过程中是否禁用默认事件     | boolean         | -                     | `true`     |
+| is-stop-propagation                  | 滑动过程中是否禁止冒泡         | boolean         | -                     | `true`     |
 
 ### Events
 

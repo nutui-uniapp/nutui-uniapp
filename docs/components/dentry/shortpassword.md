@@ -194,16 +194,16 @@ export default{
 
 ### Props
 
-| 参数                   | 说明               | 类型              | 可选值 | 默认值                        |
-|------------------------|------------------|-----------------|--------|-------------------------------|
-| v-model                | 密码初始值         | string          | -      |                               |
-| v-model:visible        | 是否展示短密码框   | boolean         | -      | `false`                       |
-| title                  | 标题               | string          | -      | `请输入密码`                  |
-| desc                   | 密码框描述         | string          | -      | `您使用了虚拟资产，请进行验证` |
-| tips                   | 提示语             | string          | -      | `忘记密码`                    |
-| close-on-click-overlay | 是否点击遮罩关闭   | boolean         | -      | `true`                        |
-| length                 | 密码长度，取值为4~6 | string / number | -      | `6`                           |
-| error-msg              | 错误信息提示       | string          | -      | `''`                          |
+| 参数                   | 说明               | 类型            | 可选值 | 默认值                      |
+|------------------------|------------------|-----------------|--------|-----------------------------|
+| v-model                | 密码初始值         | string          | -      |                             |
+| v-model:visible        | 是否展示短密码框   | boolean         | -      | `false`                     |
+| title                  | 标题               | string          | -      | 请输入密码                  |
+| desc                   | 密码框描述         | string          | -      | 您使用了虚拟资产，请进行验证 |
+| tips                   | 提示语             | string          | -      | 忘记密码                    |
+| close-on-click-overlay | 是否点击遮罩关闭   | boolean         | -      | `true`                      |
+| length                 | 密码长度，取值为4~6 | string / number | -      | `6`                         |
+| error-msg              | 错误信息提示       | string          | -      | -                           |
 
 ### Events
 

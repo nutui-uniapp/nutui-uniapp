@@ -173,7 +173,7 @@
 | desc-text-align      | 右侧描述文本对齐方式 [text-align](https://www.w3school.com.cn/cssref/pr_text_text-align.asp) | string          | -      | `right` |
 | is-link              | 是否展示右侧箭头并开启点击反馈                                                               | boolean         | -      | `false` |
 | to `1.7.8`           | 跳转地址（uni.navigateTo的url参数）                                                            | string          | -      | -       |
-| round-radius         | 圆角半径                                                                                     | number \ string | -      | `6px`   |
+| round-radius         | 圆角半径                                                                                     | number \ string | -      | 6px     |
 | center               | 是否使内容垂直居中                                                                           | boolean         | -      | `false` |
 | size                 | 单元格大小                                                                                   | string          | large  | -       |
 | clickable `1.7.14`   | 是否启用点击效果（存在 `is-link` 或者 `to` 属性时会自动启用，也可以手动启用）                   | boolean         | -      | `false` |

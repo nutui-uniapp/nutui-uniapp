@@ -116,19 +116,19 @@ function handleChange(value: number) {
 
 ### Props
 
-| 参数                    | 说明             | 类型             |可选值        | 默认值    |
+| 参数                    | 说明             | 类型              |可选值        | 默认值    |
 |------------------------|-----------------|-----------------|-----|----------------|
-| v-model               | 初始值            | string / number|-| -             | `0`    |
-| min                   | 最小值限制          | string / number|-| -             | `1`    |
-| max                   | 最大值限制          | string / number|-| -             | `9999` |
-| step                  | 步长             | string / number|-| -             | `1`    |
-| step-strictly `1.7.17`| 是否只能输入 step 的倍数| boolean        |-| -             | `false`|
-| decimal-places        | 设置保留的小数位       | string / number|-| -             | `0`    |
-| disabled              | 禁用所有功能         | boolean        |-| -             | `false`|
-| readonly              | 只读状态禁用输入框操作行为  | boolean        |-| -             | `false`|
-| input-width           | 输入框宽度          | string / number|-| -             | -      |
-| button-size           | 操作符+、-尺寸       | string / number|-| -             | -      |
-| type `1.8.5`          | 输入框类型          | string         |-| number / digit| number |
+| v-model               | 初始值            | string / number |-| -             | `0`    |
+| min                   | 最小值限制          | string / number |-| -             | `1`    |
+| max                   | 最大值限制          | string / number |-| -             | `9999` |
+| step                  | 步长             | string / number |-| -             | `1`    |
+| step-strictly `1.7.17`| 是否只能输入 step 的倍数| boolean         |-| -             | `false`|
+| decimal-places        | 设置保留的小数位       | string / number |-| -             | `0`    |
+| disabled              | 禁用所有功能         | boolean         |-| -             | `false`|
+| readonly              | 只读状态禁用输入框操作行为  | boolean         |-| -             | `false`|
+| input-width           | 输入框宽度          | string / number |-| -             | -      |
+| button-size           | 操作符+、-尺寸       | string / number |-| -             | -      |
+| type `1.8.5`          | 输入框类型          | string          |-| number / digit| number |
 
 ### Attrs version
 

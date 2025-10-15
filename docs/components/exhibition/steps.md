@@ -137,11 +137,11 @@
 
 ### Steps Props
 
-| 参数         | 说明                             | 类型              | 可选值 | 默认值       |
-|--------------|--------------------------------|-----------------|--------|--------------|
-| direction    | 显示方向，`horizontal`,`vertical` | string          | -      | `horizontal` |
-| current      | 当前所在的步骤                   | number / string | -      | `0`          |
-| progress-dot | 点状步骤条                       | boolean         | -      | `false`      |
+| 参数         | 说明                             | 类型            | 可选值 | 默认值     |
+|--------------|--------------------------------|-----------------|--------|------------|
+| direction    | 显示方向，`horizontal`,`vertical` | string          | -      | horizontal |
+| current      | 当前所在的步骤                   | number / string | -      | `0`        |
+| progress-dot | 点状步骤条                       | boolean         | -      | `false`    |
 
 ### Steps Events
 

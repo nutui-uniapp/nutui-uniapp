@@ -192,18 +192,18 @@ export default {
 
 ### Props
 
-| 字段         | 说明                                           | 类型              | 可选值 | 默认值   |
-|--------------|----------------------------------------------|-----------------|--------|----------|
-| direction    | 滚动的方向，可选 `across`、`vertical`            | string          | -      | `across` |
-| text         | 提示的信息                                     | string          | -      | -        |
-| close-mode   | 是否启用关闭模式                               | boolean         | -      | `false`  |
-| left-icon    | 是否展示左侧图标, 滚动方向为 `across` 生效     | boolean         | -      | `true`   |
-| custom-color | 导航栏的文字颜色                               | string          | -      | -        |
-| background   | 导航栏的背景颜色                               | string          | -      | -        |
-| delay        | 延时多少秒                                     | string / number | -      | `1`      |
-| scrollable   | 是否可以滚动                                   | boolean         | -      | `true`   |
-| speed        | 滚动速率 (px/s)                                | number          | -      | `50`     |
-| wrapable     | 是否开启文本换行,`scrollable` 会设置为 `false` | boolean         | -      | `false`  |
+| 字段         | 说明                                           | 类型            | 可选值 | 默认值  |
+|--------------|----------------------------------------------|-----------------|--------|---------|
+| direction    | 滚动的方向，可选 `across`、`vertical`            | string          | -      | across  |
+| text         | 提示的信息                                     | string          | -      | -       |
+| close-mode   | 是否启用关闭模式                               | boolean         | -      | false   |
+| left-icon    | 是否展示左侧图标, 滚动方向为 `across` 生效     | boolean         | -      | `true`  |
+| custom-color | 导航栏的文字颜色                               | string          | -      | -       |
+| background   | 导航栏的背景颜色                               | string          | -      | -       |
+| delay        | 延时多少秒                                     | string / number | -      | `1`     |
+| scrollable   | 是否可以滚动                                   | boolean         | -      | `true`  |
+| speed        | 滚动速率 (px/s)                                | number          | -      | `50`    |
+| wrapable     | 是否开启文本换行,`scrollable` 会设置为 `false` | boolean         | -      | `false` |
 
 ### Props（direction=vertical）
 

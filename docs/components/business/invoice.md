@@ -99,10 +99,10 @@ const submit = (valid: boolean, errors: []) => {
 
 ### Events
 
-| 事件名 | 说明 | 类型 |
-|------|------|------|
-| on-submit | 提交表单的方法 | `(valid: boolean | object, errors: (boolean | ErrorMessage)[]) => void` |
-| scroll-bottom | 滚动到底部时触发 | `() => void` |
+| 事件名        | 说明             | 类型                                                                    |
+|---------------|----------------|-------------------------------------------------------------------------|
+| on-submit     | 提交表单的方法   | `(valid: boolean | object, errors: (boolean | ErrorMessage)[]) => void` |
+| scroll-bottom | 滚动到底部时触发 | `() => void`                                                            |
 
 ## 主题定制
 
@@ -110,6 +110,6 @@ const submit = (valid: boolean, errors: []) => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称 | 默认值 |
-|------|------|
+| 名称                  | 默认值         |
+|-----------------------|----------------|
 | --nut-invoice-padding | 10px 10px 20px |

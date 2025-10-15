@@ -122,21 +122,21 @@
 
 ### Grid Props
 
-| 参数       | 说明                            | 类型            | 可选值                   | 默认值     |
-| ---------- | ------------------------------- | --------------- | ------------------------ | ---------- |
-| column-num | 列数                            | number / string | -                        | `4`        |
-| border     | 是否显示边框                    | boolean         | -                        | `true`     |
-| gutter     | 格子之间的间距，默认单位为 `px` | number / string | -                        | `0`        |
-| center     | 是否将格子内容居中显示          | boolean         | -                        | `true`     |
-| square     | 是否将格子固定为正方形          | boolean         | -                        | `false`    |
-| reverse    | 内容翻转                        | boolean         | -                        | `false`    |
-| direction  | 格子内容排列的方向              | string          | `horizontal`/ `vertical` | `vertical` |
-| clickable  | 是否开启格子点击反馈            | boolean         | -                        | `false`    |
+| 参数       | 说明                           | 类型            | 可选值                | 默认值   |
+|------------|------------------------------|-----------------|-----------------------|----------|
+| column-num | 列数                           | number / string | -                     | `4`      |
+| border     | 是否显示边框                   | boolean         | -                     | `true`   |
+| gutter     | 格子之间的间距，默认单位为 `px` | number / string | -                     | `0`      |
+| center     | 是否将格子内容居中显示         | boolean         | -                     | `true`   |
+| square     | 是否将格子固定为正方形         | boolean         | -                     | `false`  |
+| reverse    | 内容翻转                       | boolean         | -                     | `false`  |
+| direction  | 格子内容排列的方向             | string          | horizontal / vertical | vertical |
+| clickable  | 是否开启格子点击反馈           | boolean         | -                     | `false`  |
 
 ### GridItem Props
 
 | 参数 | 说明 | 类型   | 可选值 | 默认值 |
-| ---- | ---- | ------ | ------ | ------ |
+|------|----|--------|--------|--------|
 | text | 文字 | string | -      | -      |
 
 ### GridItem Slots
@@ -149,7 +149,7 @@
 ### GridItem Events
 
 | 事件名 | 说明           | 回调参数                 |
-| ------ | -------------- | ------------------------ |
+|--------|--------------|--------------------------|
 | click  | 点击格子时触发 | `(event: Event) => void` |
 
 ## 主题定制

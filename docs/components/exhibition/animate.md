@@ -110,13 +110,13 @@ function onClick2() {
 
 ### Props
 
-| 参数     | 说明                                                                  | 类型             | 可选值 | 默认值  |
-|----------|---------------------------------------------------------------------|------------------|--------|---------|
-| show     | 控制动画，当值从 false 变为 true 时会触发一次动画                      | boolean          | -      | `false` |
-| type     | 动画类型，见下方 `type` 值说明                                         | string           | -      | `-`     |
-| loop     | 是否循环执行。`true`-循环执行; `false`-执行一次                        | boolean          | -      | `false` |
-| duration | 动画时长，单位 ms                                                      | number \| string | -      | -       |
-| action   | （不能与 show 同时使用）触发方式，`initial`-初始化执行; `click`-点击执行 | string           | -      | -       |
+| 参数     | 说明                                                                  | 类型            | 可选值 | 默认值  |
+|----------|---------------------------------------------------------------------|-----------------|--------|---------|
+| show     | 控制动画，当值从 false 变为 true 时会触发一次动画                      | boolean         | -      | `false` |
+| type     | 动画类型，见下方 `type` 值说明                                         | string          | -      | -       |
+| loop     | 是否循环执行。`true`-循环执行; `false`-执行一次                        | boolean         | -      | `false` |
+| duration | 动画时长，单位 ms                                                      | number / string | -      | -       |
+| action   | （不能与 show 同时使用）触发方式，`initial`-初始化执行; `click`-点击执行 | string          | -      | -       |
 
 ### Events
 

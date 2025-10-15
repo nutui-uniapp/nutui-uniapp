@@ -233,9 +233,9 @@ notify.showNotify({
 
 ### Props
 
-| 参数    | 说明     | 类型              | 可选值 | 默认值  |
-|---------|--------|-----------------|--------|---------|
-| visible | 显示与否 | boolean         | -      | `false` |
+| 参数    | 说明     | 类型    | 可选值 | 默认值  |
+|---------|--------|---------|--------|---------|
+| visible | 显示与否 | boolean | -      | `false` |
 | selector `1.7.16`              | 配置注入的key                                                  | string          |-| -       | -      |
 | type                           | 提示的信息类型| string          |base / primary / success / danger / warning| `danger`|
 | msg                            | 展示文案，支持通过`\n`换行                                           | string          |-| `''`    |

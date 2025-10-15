@@ -113,15 +113,15 @@ export default {
 
 ### Props
 
-| 参数           | 说明                                       | 类型              | 可选值        | 默认值      |
-|----------------|------------------------------------------|-----------------|---------------|-------------|
-| progress       | 百分比                                     | number / string | -             | `0`         |
-| stroke-width   | 圆弧的宽度                                 | number / string | -             | `5`         |
-| radius         | 半径                                       | number / string | -             | `50`        |
-| custom-color   | 圆环进度条颜色                             | object / string | -             | `'#fa2c19'` |
-| path-color     | 圆环轨道颜色                               | string          | -             | '#d9d9d9'   |
-| stroke-linecap | 圆环进度条端点形状可选值为 `square` `butt` | 圆环进度条端点形状       | square / butt | `round`     |
-| clockwise      | 是否顺时针展示                             | boolean         | -             | `true`      |
+| 参数           | 说明                                       | 类型               | 可选值        | 默认值  |
+|----------------|------------------------------------------|--------------------|---------------|---------|
+| progress       | 百分比                                     | number / string    | -             | `0`     |
+| stroke-width   | 圆弧的宽度                                 | number / string    | -             | `5`     |
+| radius         | 半径                                       | number / string    | -             | `50`    |
+| custom-color   | 圆环进度条颜色                             | object / string    | -             | #fa2c19 |
+| path-color     | 圆环轨道颜色                               | string             | -             | #d9d9d9 |
+| stroke-linecap | 圆环进度条端点形状可选值为 `square` `butt` | 圆环进度条端点形状 | square / butt | round   |
+| clockwise      | 是否顺时针展示                             | boolean            | -             | `true`  |
 
 ### Slots
 

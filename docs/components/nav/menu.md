@@ -385,18 +385,18 @@ export default {
 
 ### Menu Props
 
-| 参数                   | 说明                                                                 | 类型                        | 可选值    | 默认值      |
-|------------------------|--------------------------------------------------------------------|-----------------------------|-----------|-------------|
-| active-color           | 选项的选中态图标颜色                                                 | string                      | -         | `#F2270C`   |
-| close-on-click-overlay | 是否在点击遮罩层后关闭菜单                                           | boolean                     | -         | `true`      |
-| scroll-fixed           | 滚动后是否固定，可设置固定位置（参考 [滚动固定](#滚动固定) 部分的说明） | boolean \| string \| number | -         | `false`     |
-| scroll-top `1.7.13`    | 页面的滚动距离，通过 `onPageScroll` 获取                              | number                      | -         | `0`         |
-| title-class            | 自定义标题样式类                                                     | string                      | -         | -           |
-| lock-scroll `H5`       | 背景是否锁定                                                         | boolean                     | -         | `true`      |
-| title-icon             | 自定义标题图标                                                       | string                      | -         | -           |
-| direction              | 展开方向                                                             | string                      | up / down | -           |
-| up-icon                | 收起的图标                                                           | string                      | -         | `rect-up`   |
-| down-icon              | 展开的图标                                                           | string                      | -         | `rect-down` |
+| 参数                   | 说明                                                                 | 类型                      | 可选值    | 默认值    |
+|------------------------|--------------------------------------------------------------------|---------------------------|-----------|-----------|
+| active-color           | 选项的选中态图标颜色                                                 | string                    | -         | #F2270C   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭菜单                                           | boolean                   | -         | `true`    |
+| scroll-fixed           | 滚动后是否固定，可设置固定位置（参考 [滚动固定](#滚动固定) 部分的说明） | boolean / string / number | -         | `false`   |
+| scroll-top `1.7.13`    | 页面的滚动距离，通过 `onPageScroll` 获取                              | number                    | -         | `0`       |
+| title-class            | 自定义标题样式类                                                     | string                    | -         | -         |
+| lock-scroll `H5`       | 背景是否锁定                                                         | boolean                   | -         | `true`    |
+| title-icon             | 自定义标题图标                                                       | string                    | -         | -         |
+| direction              | 展开方向                                                             | string                    | up / down | -         |
+| up-icon                | 收起的图标                                                           | string                    | -         | rect-up   |
+| down-icon              | 展开的图标                                                           | string                    | -         | rect-down |
 
 ### Menu Slots
 
@@ -406,15 +406,15 @@ export default {
 
 ### MenuItem Props
 
-| 参数                 | 说明                             | 类型    | 可选值 | 默认值           |
-|----------------------|--------------------------------|---------|--------|------------------|
-| title                | 菜单项标题                       | string  | -      | `当前选中项文字` |
-| options              | 选项数组                         | Array   | -      | -                |
-| disabled             | 是否禁用菜单                     | boolean | -      | `false`          |
-| cols                 | 可以设置一行展示多少列 `options` | number  | -      | `1`              |
-| direction            | 菜单展开方向                     | string  | up     | `down`           |
-| active-title-class   | 选项选中时自定义标题样式类       | string  | -      | -                |
-| inactive-title-class | 选项非选中时自定义标题样式类     | string  | -      | -                |
+| 参数                 | 说明                             | 类型    | 可选值 | 默认值         |
+|----------------------|--------------------------------|---------|--------|----------------|
+| title                | 菜单项标题                       | string  | -      | 当前选中项文字 |
+| options              | 选项数组                         | Array   | -      | -              |
+| disabled             | 是否禁用菜单                     | boolean | -      | `false`        |
+| cols                 | 可以设置一行展示多少列 `options` | number  | -      | `1`            |
+| direction            | 菜单展开方向                     | string  | up     | down           |
+| active-title-class   | 选项选中时自定义标题样式类       | string  | -      | -              |
+| inactive-title-class | 选项非选中时自定义标题样式类     | string  | -      | -              |
 
 ### MenuItem Slots
 

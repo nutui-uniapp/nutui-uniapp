@@ -73,21 +73,21 @@ export default {
 
 ### Props
 
-| 参数             | 说明                        | 类型              | 可选值 | 默认值    |
+| 参数             | 说明                        | 类型            | 可选值 | 默认值  |
 |------------------|---------------------------|-----------------|--------|---------|
 | v-model          | 输入值，双向绑定             | string          | -      | -       |
-| adjustPosition   | 键盘弹起时，是否自动上推页面 | Boolean         | -      | `false` |
-| maxlength        | 输入字符个数                | String / Number | -      | `4`     |
+| adjustPosition   | 键盘弹起时，是否自动上推页面 | boolean         | -      | `false` |
+| maxlength        | 输入字符个数                | string / number | -      | `4`     |
 | dot              | 是否用圆点填充              | boolean         | -      | `false` |
 | mode             | 选择样式为边框或者横线      | box / line      | -      | box     |
-| hairline         | 是否细边框                  | Boolean         | -      | `false` |
-| space            | 字符间的距离                | String / Number | -      | `10`    |
-| focus            | 是否自动获取焦点            | Boolean         | -      | `false` |
-| custom-color     | 字体颜色                    | String          | -      | `#606266` |
-| font-size        | 字体大小，单位rpx            | String / Number | -      | `18`    |
-| size             | 输入框的大小，宽等于高       | String / Number | -      | `35`    |
-| disabledKeyboard | 禁止点击输入框唤起系统键盘  | Boolean         | -      | `false` |
-| border-color     | 边框和线条颜色              | String          | -      | `#c9cacc` |
+| hairline         | 是否细边框                  | boolean         | -      | `false` |
+| space            | 字符间的距离                | string / number | -      | `10`    |
+| focus            | 是否自动获取焦点            | boolean         | -      | `false` |
+| custom-color     | 字体颜色                    | string          | -      | #606266 |
+| font-size        | 字体大小，单位rpx            | string / number | -      | `18`    |
+| size             | 输入框的大小，宽等于高       | string / number | -      | `35`    |
+| disabledKeyboard | 禁止点击输入框唤起系统键盘  | boolean         | -      | `false` |
+| border-color     | 边框和线条颜色              | string          | -      | #c9cacc |
 | disabledDot      | 是否禁止输入"."符号         | boolean         | -      | `true`  |
 
 ### Events

@@ -104,12 +104,12 @@ function endTurns() {
 
 | 参数        | 说明                                                                               | 类型    | 可选值 | 默认值                                      |
 |-------------|----------------------------------------------------------------------------------|---------|--------|---------------------------------------------|
-| prize-list  | 奖品列表                                                                           | Array   | -      | []                                          |
-| prize-index | 中奖奖品在列表的索引位置                                                           | Number  | -      | -1                                          |
-| speed       | 转动速度                                                                           | Number  | -      | 150                                         |
-| circle      | 转动圈数                                                                           | Number  | -      | 30                                          |
-| disabled    | 是否禁用开始抽奖点击数                                                             | Boolean | -      | false                                       |
-| style-opt   | 跑马灯中的样式：bgStyle-整个容器样式，itemStyle-每个奖品样式，startStyle-中间按钮样式 | Object  | -      | `{bgStyle: {},itemStyle: {},startStyle:{}}` |
+| prize-list  | 奖品列表                                                                           | Array   | -      | `[]`                                        |
+| prize-index | 中奖奖品在列表的索引位置                                                           | number  | -      | `-1`                                        |
+| speed       | 转动速度                                                                           | number  | -      | `150`                                       |
+| circle      | 转动圈数                                                                           | number  | -      | `30`                                        |
+| disabled    | 是否禁用开始抽奖点击数                                                             | boolean | -      | `false`                                     |
+| style-opt   | 跑马灯中的样式：bgStyle-整个容器样式，itemStyle-每个奖品样式，startStyle-中间按钮样式 | object  | -      | `{bgStyle: {},itemStyle: {},startStyle:{}}` |
 
 ### Events
 
@@ -117,19 +117,19 @@ function endTurns() {
 |-------------|------------------------------------------------------------|----------|
 | start-turns | 开始跑动的回调函数，此时将接口中的中奖索引，赋值到 prize-index | -        |
 | end-turns   | 停止跑动后的回调函数                                         | -        |
-| 参数        | 说明                                                                                  | 类型    | 默认值                                      |
-| ----------- | ------------------------------------------------------------------------------------- | ------- | ------------------------------------------- |
-| prize-list  | 奖品列表                                                                              | any[]   | []                                          |
-| prize-index | 中奖奖品在列表的索引位置                                                              | number  | -1                                          |
-| speed       | 转动速度                                                                              | number  | 150                                         |
-| circle      | 转动圈数                                                                              | number  | 30                                          |
-| disabled    | 是否禁用开始抽奖点击数                                                                | boolean | false                                       |
-| style-opt   | 跑马灯中的样式：bgStyle-整个容器样式，itemStyle-每个奖品样式，startStyle-中间按钮样式 | Record<string, CSSProperties>  | `{bgStyle: {},itemStyle: {},startStyle:{}}` |
+| 参数        | 说明                                                                               | 类型                          | 默认值                                      |
+|-------------|----------------------------------------------------------------------------------|-------------------------------|---------------------------------------------|
+| prize-list  | 奖品列表                                                                           | any[]                         | []                                          |
+| prize-index | 中奖奖品在列表的索引位置                                                           | number                        | -1                                          |
+| speed       | 转动速度                                                                           | number                        | 150                                         |
+| circle      | 转动圈数                                                                           | number                        | 30                                          |
+| disabled    | 是否禁用开始抽奖点击数                                                             | boolean                       | false                                       |
+| style-opt   | 跑马灯中的样式：bgStyle-整个容器样式，itemStyle-每个奖品样式，startStyle-中间按钮样式 | Record<string, CSSProperties> | `{bgStyle: {},itemStyle: {},startStyle:{}}` |
 
 ### Events
 
-| 事件名      | 说明                                                           | 类型 |
-| ----------- | -------------------------------------------------------------- | -------- |
-| start-turns | 开始跑动的回调函数，此时将接口中的中奖索引，赋值到 prize-index | () => true        |
-| end-turns   | 停止跑动后的回调函数                                           | () => true        |
-| click   | 点击回调函数                                           | () => true        |
+| 事件名      | 说明                                                         | 类型       |
+|-------------|------------------------------------------------------------|------------|
+| start-turns | 开始跑动的回调函数，此时将接口中的中奖索引，赋值到 prize-index | () => true |
+| end-turns   | 停止跑动后的回调函数                                         | () => true |
+| click       | 点击回调函数                                                 | () => true |
