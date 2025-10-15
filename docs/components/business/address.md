@@ -355,7 +355,6 @@
     console.log(nowExistAdd);
         };
 </script>
-</script>
 <style>
   .nut-address-custom-buttom {
     width: 100%;
@@ -496,8 +495,6 @@
     console.log('关闭弹层', val);
   };
 </script>
-    }
-  </script>
 ```
 
 ## API
