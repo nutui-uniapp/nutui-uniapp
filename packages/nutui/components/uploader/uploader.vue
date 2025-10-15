@@ -147,6 +147,7 @@ function readFile(files: ChooseFile[]) {
 
     fileItem.uid = new Date().getTime().toString() + Math.random().toString(36).substring(2, 9)
     fileItem.path = filepath
+    fileItem.size = file.size
     fileItem.name = file.name || filepath
     fileItem.status = 'ready'
     fileItem.message = translate('waitingUpload')
@@ -313,7 +314,7 @@ export default defineComponent({
             custom-class="nut-uploader__preview-img__file__del"
             name="del"
             custom-color="#808080"
-            @click="onDelete(item, index)"
+            @click.stop="onDelete(item, index)"
           />
         </view>
 
