@@ -308,6 +308,7 @@ watch(
     position="bottom"
     :lock-scroll="props.lockScroll"
     :round="props.round"
+    :safe-area-inset-bottom="props.safeAreaInsetBottom"
     @close="close"
     @click-overlay="clickOverlay"
     @open="closeWay = 'self'"
