@@ -153,7 +153,7 @@ export default {
 | 参数           | 说明                       | 类型            | 可选值         | 默认值              |
 |----------------|--------------------------|-----------------|----------------|---------------------|
 | v-model        | 当前页码                   | number          | -              | `1`                 |
-| mode           | 显示模式,可选值为 `simple` | 显示模式,       | simple / multi | multi               |
+| mode           | 显示模式                    | string          | simple / multi | multi               |
 | prev-text      | 上一页按钮文字             | string          | -              | 上一页              |
 | next-text      | 下一页按钮文字             | string          | -              | 下一页              |
 | page-count     | 总页数                     | string / number | -              | `传入/根据页数计算` |
