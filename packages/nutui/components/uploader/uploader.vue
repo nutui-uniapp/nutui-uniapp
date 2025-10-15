@@ -26,8 +26,6 @@ const classes = computed(() => {
 
 const fileList = ref<FileItem[]>(props.fileList)
 
-
-
 const uploadQueue = ref<Promise<any>[]>([])
 
 watch(() => props.fileList, () => {
