@@ -32,7 +32,6 @@ const uploadQueue = ref<Promise<any>[]>([])
 
 watch(() => props.fileList, () => {
   fileList.value = props.fileList
-  console.log('组件内部增加fileList',props.fileList)
 })
 
 function handleFileItemClick(fileItem: FileItem) {
@@ -323,7 +322,7 @@ export default defineComponent({
             custom-class="nut-uploader__preview-img__file__del"
             name="del"
             custom-color="#808080"
-            @click="onDelete(item, index)"
+            @click.stop="onDelete(item, index)"
           />
         </view>
 
