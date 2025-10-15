@@ -26,10 +26,13 @@ const classes = computed(() => {
 
 const fileList = ref<FileItem[]>(props.fileList)
 
+
+
 const uploadQueue = ref<Promise<any>[]>([])
 
 watch(() => props.fileList, () => {
   fileList.value = props.fileList
+  console.log('组件内部增加fileList',props.fileList)
 })
 
 function handleFileItemClick(fileItem: FileItem) {
@@ -147,7 +150,6 @@ function readFile(files: ChooseFile[]) {
 
     fileItem.uid = new Date().getTime().toString() + Math.random().toString(36).substring(2, 9)
     fileItem.path = filepath
-    fileItem.size = file.size
     fileItem.name = file.name || filepath
     fileItem.status = 'ready'
     fileItem.message = translate('waitingUpload')
@@ -281,12 +283,19 @@ export default defineComponent({
         </view>
 
         <image
-          v-if="(item.type === 'image' || item.type === 'video') && item.url"
+          v-if="item.type === 'image' && item.url"
           class="nut-uploader__preview-img__c"
           :mode="props.mode"
           :src="item.url"
           @click="handleFileItemClick(item)"
         />
+        <video 
+          v-else-if="item.type === 'video' && item.url"
+          class="nut-uploader__preview-img__c"
+          :mode="props.mode"
+          :src="item.url"
+          @click="handleFileItemClick(item)"
+         />
 
         <view v-else class="nut-uploader__preview-img__file">
           <view class="nut-uploader__preview-img__file__name" @click="handleFileItemClick(item)">
@@ -314,7 +323,7 @@ export default defineComponent({
             custom-class="nut-uploader__preview-img__file__del"
             name="del"
             custom-color="#808080"
-            @click.stop="onDelete(item, index)"
+            @click="onDelete(item, index)"
           />
         </view>
 
