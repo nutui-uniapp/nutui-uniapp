@@ -59,18 +59,18 @@
 <template>
   <nut-button type="info" loading></nut-button>
   <nut-button type="warning" loading>加载中...</nut-button>
-  <nut-button type="success" :loading="isLoading" @click="changeLoading">Click me!</nut-button>
+  <nut-button type="success" :loading="loading" @click="onClick()">点击我！</nut-button>
 </template>
 ```
 
 ```ts
-const isLoading = ref(false);
+const loading = ref(false);
 
-const changeLoading = () => {
-  isLoading.value = true;
+function onClick() {
+  loading.value = true;
 
   setTimeout(() => {
-    isLoading.value = false;
+    loading.value = false;
   }, 3000);
 };
 ```
