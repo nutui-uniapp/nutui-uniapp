@@ -9,15 +9,10 @@
 ```html
 <template>
   <nut-cell title="我是标题" desc="描述文字"></nut-cell>
-
-  <nut-cell title="我是标题"
-            sub-title="副标题描述"
-            desc="描述文字"></nut-cell>
+  <nut-cell title="我是标题" sub-title="副标题描述" desc="描述文字"></nut-cell>
 
   <!-- 自 1.7.14 开始支持 clickable 属性，可以启用点击效果 -->
-  <nut-cell title="点击测试"
-            clickable
-            @click="testClick"></nut-cell>
+  <nut-cell title="点击测试" clickable @click="onClick"></nut-cell>
 
   <nut-cell title="圆角设置 0" round-radius="0"></nut-cell>
 </template>
@@ -27,14 +22,14 @@
 
 ```html
 <template>
-  <nut-cell size="large"
-            title="我是标题"
-            desc="描述文字"></nut-cell>
+  <nut-cell title="我是标题" desc="描述文字" size="large"></nut-cell>
 
-  <nut-cell size="large"
-            title="我是标题"
-            sub-title="副标题描述"
-            desc="描述文字"></nut-cell>
+  <nut-cell
+    title="我是标题"
+    sub-title="副标题描述"
+    desc="描述文字"
+    size="large"
+  ></nut-cell>
 </template>
 ```
 
@@ -109,7 +104,7 @@
 </template>
 ```
 
-> 自 `1.7.14` 开始支持用过 `icon` 属性自定义左侧图标，之前的版本通过 `icon` 插槽修改
+自 `1.7.14` 开始支持用过 `icon` 属性自定义左侧图标，之前的版本通过 `icon` 插槽修改。
 
 ```html
 <template>
@@ -125,7 +120,7 @@
 
 ### 只展示描述
 
-可通过 `desc-text-align` 调整内容位置
+通过 `desc-text-align` 调整内容位置。
 
 ```html
 <template>
@@ -135,14 +130,16 @@
 
 ### 垂直居中
 
-通过 `center` 属性可以让 Cell 的左右内容都垂直居中
+通过 `center` 属性可以让 Cell 的左右内容都垂直居中。
 
 ```html
 <template>
-  <nut-cell title="我是标题"
-            sub-title="副标题描述"
-            desc="描述文字"
-            center></nut-cell>
+  <nut-cell
+    title="我是标题"
+    sub-title="副标题描述"
+    desc="描述文字"
+    center
+  ></nut-cell>
 </template>
 ```
 
@@ -150,10 +147,10 @@
 
 ### CellGroup Props
 
-| 参数    | 说明   | 类型     | 默认值 |
-|-------|------|--------|-----|
-| title | 分组标题 | string | -   |
-| desc  | 分组描述 | string | -   |
+| 参数    | 说明   | 类型     | 可选值 | 默认值 |
+|-------|------|--------|-----|-----|
+| title | 分组标题 | string | -   | -   |
+| desc  | 分组描述 | string | -   | -   |
 
 ### CellGroup Slots
 
@@ -165,26 +162,26 @@
 
 ### Cell Props
 
-| 参数                   | 说明                                                                                 | 类型               | 默认值     |
-|----------------------|------------------------------------------------------------------------------------|------------------|---------|
-| title                | 标题名称                                                                               | string           | -       |
-| sub-title            | 左侧副标题                                                                              | string           | -       |
-| desc                 | 右侧描述                                                                               | string           | -       |
-| desc-text-align      | 右侧描述文本对齐方式 [text-align](https://www.w3school.com.cn/cssref/pr_text_text-align.asp) | string           | `right` |
-| is-link              | 是否展示右侧箭头并开启点击反馈                                                                    | boolean          | `false` |
-| to `1.7.8`           | 跳转地址（uni.navigateTo的url参数）                                                         | string           | -       |
-| round-radius         | 圆角半径                                                                               | number \| string | `6px`   |
-| center               | 是否使内容垂直居中                                                                          | boolean          | `false` |
-| size                 | 单元格大小，可选值为 `large`                                                                 | string           | -       |
-| clickable `1.7.14`   | 是否启用点击效果（存在 `is-link` 或者 `to` 属性时会自动启用，也可以手动启用）                                    | boolean          | `false` |
-| icon `1.7.14`        | 左侧图标（对应 `nut-icon` 的 `name` 属性）                                                    | string           | -       |
-| title-width `1.7.17` | 标题宽度                                                                               | number \| string | -       |
+| 参数                   | 说明                                              | 类型              | 可选值   | 默认值     |
+|----------------------|-------------------------------------------------|-----------------|-------|---------|
+| title                | 标题名称                                            | string          | -     | -       |
+| sub-title            | 左侧副标题                                           | string          | -     | -       |
+| desc                 | 右侧描述                                            | string          | -     | -       |
+| desc-text-align      | 右侧描述文本对齐方式（同 CSS 的 `text-align`）                | string          | -     | right   |
+| is-link              | 是否展示右侧箭头并开启点击反馈                                 | boolean         | -     | `false` |
+| to `1.7.8`           | 跳转地址（`uni.navigateTo` 的 `url` 参数）               | string          | -     | -       |
+| round-radius         | 圆角半径                                            | number / string | -     | 6px     |
+| center               | 是否使内容垂直居中                                       | boolean         | -     | `false` |
+| size                 | 单元格大小                                           | string          | large | -       |
+| clickable `1.7.14`   | 是否启用点击效果（存在 `is-link` 或者 `to` 属性时会自动启用，也可以手动启用） | boolean         | -     | `false` |
+| icon `1.7.14`        | 左侧图标（对应 `nut-icon` 的 `name` 属性）                 | string          | -     | -       |
+| title-width `1.7.17` | 标题宽度                                            | number / string | -     | -       |
 
 ### Cell Events
 
-| 事件名   | 说明   | 回调参数           |
-|-------|------|----------------|
-| click | 点击事件 | `event: Event` |
+| 事件名   | 说明   | 类型                       |
+|-------|------|--------------------------|
+| click | 点击事件 | `(event: Event) => void` |
 
 ### Cell Slots
 

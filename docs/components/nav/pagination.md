@@ -150,28 +150,28 @@ export default {
 
 ### Props
 
-| 参数           | 说明                       | 类型             | 默认值              |
-| -------------- | -------------------------- | ---------------- | ------------------- |
-| v-model        | 当前页码                   | number           | `1`                 |
-| mode           | 显示模式,可选值为 `simple` | string           | `multi`             |
-| prev-text      | 上一页按钮文字             | string           | `上一页`            |
-| next-text      | 下一页按钮文字             | string           | `下一页`            |
-| page-count     | 总页数                     | string \| number | `传入/根据页数计算` |
-| total-items    | 总记录数                   | string \| number | `0`                 |
-| items-per-page | 每页记录数                 | string \| number | `10`                |
-| show-page-size | 显示的页码个数             | string \| number | `5`                 |
-| force-ellipses | 是否显示省略号             | boolean          | `false`             |
+| 参数           | 说明                       | 类型            | 可选值         | 默认值              |
+|----------------|--------------------------|-----------------|----------------|---------------------|
+| v-model        | 当前页码                   | number          | -              | `1`                 |
+| mode           | 显示模式                    | string          | simple / multi | multi               |
+| prev-text      | 上一页按钮文字             | string          | -              | 上一页              |
+| next-text      | 下一页按钮文字             | string          | -              | 下一页              |
+| page-count     | 总页数                     | string / number | -              | `传入/根据页数计算` |
+| total-items    | 总记录数                   | string / number | -              | `0`                 |
+| items-per-page | 每页记录数                 | string / number | -              | `10`                |
+| show-page-size | 显示的页码个数             | string / number | -              | `5`                 |
+| force-ellipses | 是否显示省略号             | boolean         | -              | `false`             |
 
 ### Events
 
 | 事件名 | 说明           | 回调参数 |
-| ------ | -------------- | -------- |
+|--------|--------------|----------|
 | change | 页码改变时触发 | value    |
 
 ### Slots
 
 | 名称     | 描述                 | 参数 |
-| -------- | -------------------- | ---- |
+|----------|--------------------|------|
 | prevText | 自定义上一页按钮内容 | -    |
 | nextText | 自定义下一页按钮内容 | -    |
 | page     | 自定义页码           | -    |
@@ -183,7 +183,7 @@ export default {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                      | 默认值                                                                                |
-| ----------------------------------------- | ------------------------------------------------------------------------------------- |
+|-------------------------------------------|---------------------------------------------------------------------------------------|
 | --nut-pagination-color                    | var(--nut-primary-color)                                                              |
 | --nut-pagination-font-size                | var(--nut-font-size-2)                                                                |
 | --nut-pagination-item-border-color        | #e4e7eb                                                                               |

@@ -317,34 +317,34 @@
 
 ### Tabbar Props
 
-| 参数                     | 说明                                 | 类型              | 默认值     |
-|------------------------|------------------------------------|-----------------|---------|
-| v-model                | 选中标签的索引值或者名称                       | number / string | `0`     |
-| bottom                 | 是否固定在页面底部                          | boolean         | `false` |
-| unactive-color         | icon未激活的颜色                         | string          | #7d7e80 |
-| active-color           | icon激活的颜色                          | string          | #1989fa |
-| safe-area-inset-bottom | 是否开启iphone系列全面屏底部安全区适配             | boolean         | `false` |
-| placeholder            | 固定在底部时，是否在标签位置生成一个等高的占位元素          | boolean         | `false` |
-| controlled `1.9.1`     | 是否启用受控模式，启用后选中项始终受 `modelValue` 控制 | boolean         | `false` |
+| 参数                   | 说明                                                  | 类型            | 可选值 | 默认值  |
+|------------------------|-----------------------------------------------------|-----------------|--------|---------|
+| v-model                | 选中标签的索引值或者名称                              | number / string | -      | `0`     |
+| bottom                 | 是否固定在页面底部                                    | boolean         | -      | `false` |
+| unactive-color         | icon未激活的颜色                                      | string          | -      | #7d7e80 |
+| active-color           | icon激活的颜色                                        | string          | -      | #1989fa |
+| safe-area-inset-bottom | 是否开启iphone系列全面屏底部安全区适配                | boolean         | -      | `false` |
+| placeholder            | 固定在底部时，是否在标签位置生成一个等高的占位元素     | boolean         | -      | `false` |
+| controlled `1.9.1`     | 是否启用受控模式，启用后选中项始终受 `modelValue` 控制 | boolean         | -      | `false` |
 
 ### TabbarItem Props
 
-| 参数      | 说明                                           | 类型   | 默认值             |
-| --------- | ---------------------------------------------- | ------ | ------------------ |
-| tab-title | 标签页的标题                                   | string | --                 |
-| name      | 标签名称，作为匹配的标识符                     | string | `当前标签的索引值` |
-| icon      | 标签页显示的[图标名称](/components/basic/icon) | string | --                 |
+| 参数      | 说明                                           | 类型   | 可选值 | 默认值             |
+|-----------|----------------------------------------------|--------|--------|--------------------|
+| tab-title | 标签页的标题                                   | string | -      | --                 |
+| name      | 标签名称，作为匹配的标识符                      | string | -      | `当前标签的索引值` |
+| icon      | 标签页显示的[图标名称](/components/basic/icon) | string | -      | --                 |
 
 ### TabbarItem Slots
 
 | 事件名 | 说明       | 参数            |
-| ------ | ---------- | --------------- |
+|--------|----------|-----------------|
 | icon   | 自定义图标 | active: boolean |
 
 ### Tabbar Events
 
 | 事件名     | 说明               | 回调参数           |
-| ---------- | ------------------ | ------------------ |
+|------------|------------------|----------------|
 | tab-switch | 切换页签时触发事件 | 点击的数据和索引值 |
 
 ## 主题定制
@@ -354,7 +354,7 @@
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                               | 默认值                   |
-| ---------------------------------- | ------------------------ |
+|------------------------------------|--------------------------|
 | --nut-tabbar-active-color          | var(--nut-primary-color) |
 | --nut-tabbar-unactive-color        | var(--nut-primary-color) |
 | --nut-tabbar-border-top            | 1px solid #eee           |

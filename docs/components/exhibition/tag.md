@@ -69,30 +69,30 @@ function close() {
 
 ### Props
 
-| 参数                      | 说明                                               | 类型              | 默认值     |
-|-------------------------|--------------------------------------------------|-----------------|---------|
-| type                    | 标签类型，可选值为 `primary`、`success`、`danger`、`warning` | string          | default |
-| custom-color            | 标签颜色                                             | string          | -       |
-| text-color              | 文本颜色                                             | string          | -       |
-| plain                   | 是否为空心样式                                          | boolean         | `false` |
-| round                   | 是否为圆角样式                                          | boolean         | `false` |
-| mark                    | 是否为标记样式                                          | boolean         | `false` |
-| closeable               | 是否为可关闭标签                                         | boolean         | `false` |
-| close-icon-size `1.7.7` | 关闭图标大小                                           | number / string | 11px    |
-| disabled `1.7.7`        | 是否禁用                                             | boolean         | `false` |
+| 参数                    | 说明             | 类型            | 可选值                               | 默认值  |
+|-------------------------|----------------|-----------------|--------------------------------------|---------|
+| type                    | 标签类型         | string          | primary / success / danger / warning | default |
+| custom-color            | 标签颜色         | string          | -                                    | -       |
+| text-color              | 文本颜色         | string          | -                                    | -       |
+| plain                   | 是否为空心样式   | boolean         | -                                    | `false` |
+| round                   | 是否为圆角样式   | boolean         | -                                    | `false` |
+| mark                    | 是否为标记样式   | boolean         | -                                    | `false` |
+| closeable               | 是否为可关闭标签 | boolean         | -                                    | `false` |
+| close-icon-size `1.7.7` | 关闭图标大小     | number / string | -                                    | 11px    |
+| disabled `1.7.7`        | 是否禁用         | boolean         | -                                    | `false` |
 
 ### Slots
 
-| 名称      | 说明     |
-|---------|--------|
+| 名称    | 说明         |
+|---------|------------|
 | default | 标签显示内容 |
 
 ### Events
 
-| 事件名   | 说明   | 回调参数    |
-|-------|------|---------|
-| click | 点击事件 | `event` |
-| close | 关闭事件 | `event` |
+| 事件名 | 说明     | 回调参数 |
+|--------|--------|----------|
+| click  | 点击事件 | `event`  |
+| close  | 关闭事件 | `event`  |
 
 ## 主题定制
 
@@ -100,7 +100,7 @@ function close() {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                          | 默认值           |
+| 名称                                        | 默认值        |
 |---------------------------------------------|---------------|
 | --nut-tag-height                            | auto          |
 | --nut-tag-padding `1.7.8`                   | 0 4px         |

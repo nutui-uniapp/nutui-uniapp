@@ -1,5 +1,4 @@
 import type { ExtractPropTypes } from 'vue'
-import { CLICK_EVENT } from '../_constants'
 import { commonProps, makeArrayProp, makeNumberProp } from '../_utils'
 
 export const dollmachineProps = {
@@ -37,7 +36,6 @@ export const dollmachineProps = {
 export type DollMachineProps = ExtractPropTypes<typeof dollmachineProps>
 
 export const dollmachineEmits = {
-  [CLICK_EVENT]: () => true,
   startTurns: () => true,
   endTurns: () => true,
 }

@@ -230,50 +230,50 @@ function showSuccessBottom() {
 
 ### Props
 
-| 参数                     | 说明                                        | 类型            | 可选值                                | 默认值     |
-|------------------------|-------------------------------------------|---------------|------------------------------------|---------|
-| visible                | 是否显示                                      | boolean       | -                                  | `false` |
-| selector `1.7.5`       | 配置注入的key                                  | string        | -                                  | -       |
-| type                   | 弹框类型                                      | string        | text,success,error,warning,loading | text    |
-| title                  | 标题                                        | string        | -                                  | -       |
-| msg                    | 消息文本内容，支持传入HTML                           | string        | -                                  | -       |
-| duration               | 展示时长（单位：ms）（组合式函数用法/Ref用法中，loading类型默认为0） | number        | -                                  | `2000`  |
-| size                   | 文案尺寸                                      | string        | small,base,large                   | base    |
-| z-index `1.7.5`        | 组件z-index                                 | number        | -                                  | `50`    |
-| icon                   | 自定义图标                                     | string        | -                                  | -       |
-| icon-size              | 图标大小                                      | number/string | -                                  | 20px    |
-| bg-color               | 背景颜色                                      | string        | -                                  | -       |
-| cover                  | 是否显示遮罩层（组合式函数用法/Ref用法中，loading类型默认为true）  | boolean       | -                                  | -       |
-| cover-color            | 遮罩层颜色，默认透明                                | string        | -                                  | -       |
-| center                 | 是否展示在页面中部（为false时展示在底部）                   | boolean       | -                                  | `true`  |
-| bottom                 | 距页面底部的距离（center为false时生效）                 | number/string | -                                  | 30px    |
-| text-align-center      | 文案是否居中                                    | boolean       | -                                  | `true`  |
-| loading-rotate         | loading图标是否旋转（仅对loading类型生效）              | boolean       | -                                  | `true`  |
-| close-on-click-overlay | 是否在点击遮罩层后关闭提示                             | boolean       | -                                  | `false` |
-| on-close               | 关闭时触发的事件                                  | Function      | -                                  | -       |
-| on-closed `1.7.5`      | 关闭动画完成时触发的事件                              | Function      | -                                  | -       |
+| 参数                     | 说明                                        | 类型              | 可选值 | 默认值                                        |
+|------------------------|-------------------------------------------|-----------------|-----|--------------------------------------------|
+| visible                | 是否显示                                      | boolean         | -   | -                                          | `false`|
+| selector `1.7.5`       | 配置注入的key                                  | string          | -   | -                                          | -      |
+| type                   | 弹框类型                                      | string          | -   | text / success / error / warning / loading | text   |
+| title                  | 标题                                        | string          | -   | -                                          | -      |
+| msg                    | 消息文本内容，支持传入HTML                           | string          | -   | -                                          | -      |
+| duration               | 展示时长（单位：ms）（组合式函数用法/Ref用法中，loading类型默认为0） | number          | -   | -                                          | `2000` |
+| size                   | 文案尺寸                                      | string          | -   | small / base / large                       | base   |
+| z-index `1.7.5`        | 组件z-index                                 | number          | -   | -                                          | `50`   |
+| icon                   | 自定义图标                                     | string          | -   | -                                          | -      |
+| icon-size              | 图标大小                                      | number / string | -   | -                                          | 20px   |
+| bg-color               | 背景颜色                                      | string          | -   | -                                          | -      |
+| cover                  | 是否显示遮罩层（组合式函数用法/Ref用法中，loading类型默认为true）  | boolean         | -   | -                                          | -      |
+| cover-color            | 遮罩层颜色，默认透明                                | string          | -   | -                                          | -      |
+| center                 | 是否展示在页面中部（为false时展示在底部）                   | boolean         | -   | -                                          | `true` |
+| bottom                 | 距页面底部的距离（center为false时生效）                 | number / string | -   | -                                          | 30px   |
+| text-align-center      | 文案是否居中                                    | boolean         | -   | -                                          | `true` |
+| loading-rotate         | loading图标是否旋转（仅对loading类型生效）              | boolean         | -   | -                                          | `true` |
+| close-on-click-overlay | 是否在点击遮罩层后关闭提示                             | boolean         | -   | -                                          | `false`|
+| on-close               | 关闭时触发的事件                                  | Function        | -   | -                                          | -      |
+| on-closed `1.7.5`      | 关闭动画完成时触发的事件                              | Function        | -   | -                                          | -      |
 
 ### Events
 
-| 事件名            | 说明        |
-|----------------|-----------|
-| close          | 关闭时触发     |
+| 事件名         | 说明               |
+|----------------|------------------|
+| close          | 关闭时触发         |
 | closed `1.7.5` | 关闭动画完成时触发 |
 
 ### Methods
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Toast 实例并调用实例方法
 
-| 方法名             | 说明                | 参数                                      | 返回值 |
-|-----------------|-------------------|-----------------------------------------|-----|
-| text `1.7.5`    | 文字提示              | (msg: string, options?: `ToastOptions`) | -   |
-| success `1.7.5` | 成功提示              | (msg: string, options?: `ToastOptions`) | -   |
-| error `1.7.5`   | 错误提示              | (msg: string, options?: `ToastOptions`) | -   |
-| warning `1.7.5` | 警告提示              | (msg: string, options?: `ToastOptions`) | -   |
-| loading `1.7.5` | 加载提示              | (msg: string, options?: `ToastOptions`) | -   |
-| hide `1.7.5`    | 隐藏提示              | -                                       | -   |
-| showToast       | （已废弃，下个主版本移除）显示提示 | -                                       | -   |
-| hideToast       | （已废弃，下个主版本移除）隐藏提示 | -                                       | -   |
+| 方法名          | 说明                            | 参数                                    | 返回值 |
+|-----------------|-------------------------------|-----------------------------------------|--------|
+| text `1.7.5`    | 文字提示                        | (msg: string, options?: `ToastOptions`) | -      |
+| success `1.7.5` | 成功提示                        | (msg: string, options?: `ToastOptions`) | -      |
+| error `1.7.5`   | 错误提示                        | (msg: string, options?: `ToastOptions`) | -      |
+| warning `1.7.5` | 警告提示                        | (msg: string, options?: `ToastOptions`) | -      |
+| loading `1.7.5` | 加载提示                        | (msg: string, options?: `ToastOptions`) | -      |
+| hide `1.7.5`    | 隐藏提示                        | -                                       | -      |
+| showToast       | （已废弃，下个主版本移除）显示提示 | -                                       | -      |
+| hideToast       | （已废弃，下个主版本移除）隐藏提示 | -                                       | -      |
 
 ::: details 类型定义 `1.7.5`
 
@@ -420,7 +420,7 @@ export interface ToastInst {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                              | 默认值                |
+| 名称                            | 默认值             |
 |---------------------------------|--------------------|
 | --nut-toast-font-color          | var(--nut-white)   |
 | --nut-toast-inner-padding       | 24px 30px          |

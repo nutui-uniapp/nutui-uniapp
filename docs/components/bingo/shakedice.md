@@ -6,28 +6,20 @@
 
 ### 基础用法
 
-```html
+```vue
 <template>
   <nut-shakedice ref="dice" :id="id"></nut-shakedice>
   <div @click="jump" class="demoBtn">摇动</div>
 </template>
-<script>
-  import { ref } from "vue";
-  export default {
-    setup() {
-      const dice = ref();
-      const id = ref();
-      const jump = () => {
-        id.value = 5;
-        dice.value.shake();
-      };
-      return {
-        jump,
-        dice,
-        id,
-      };
-    },
-  };
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const dice = ref()
+const id = ref()
+function jump() {
+  id.value = 2
+  dice.value.shake()
+}
 </script>
 
 <style lang="scss">
@@ -62,15 +54,20 @@
 
 ### Props
 
-| 参数  | 说明                           | 类型   | 默认值 |
-| ----- | ------------------------------ | ------ | ------ |
-| time  | 旋转时间                       | string | 1      |
-| speed | 旋转速度,ms                    | number | 3000   |
-| id    | 中奖的 id(1 为 1 点，依次类推) | number | 1      |
+| 参数  | 说明                          | 类型   | 可选值 | 默认值 |
+|-------|-----------------------------|--------|--------|--------|
+| time  | 旋转时间                      | string | -      | 1      |
+| speed | 旋转速度,ms                   | number | -      | `3000` |
+| id    | 中奖的 id(1 为 1 点，依次类推) | number | -      | `1`    |
 
 ### Events
 
-| 事件名 | 说明         | 回调参数 |
-| ------ | ------------ | -------- |
-| shake  | 骰子开始摇动 | -        |
-| end    | 骰子摇动结束 | -        |
+| 事件名 | 说明         | 类型         |
+|--------|------------|--------------|
+| end    | 骰子摇动结束 | ()-> boolean |
+
+### Exposes
+
+| 方法名 | 说明         | 类型      |
+|--------|------------|-----------|
+| shake  | 骰子开始摇动 | ()=> true |
