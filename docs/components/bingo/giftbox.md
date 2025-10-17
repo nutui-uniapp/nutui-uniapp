@@ -9,44 +9,42 @@
 ```vue
 <template>
   <nut-giftbox
-    ref="refChild"
-    @start-turns="startTurns"
-    @end-turns="endTurns"
-  >
-  </nut-giftbox>
-  <div @click="initBox">再来一次</div>
-</template>
-<script setup lang="ts">
-import { ref } from 'vue'
+    ref="giftboxEl"
+    @start-turns="onTurnsStart()"
+    @end-turns="onTurnsEnd()"
+  ></nut-giftbox>
 
-const refChild = ref()
-function initBox() {
-  refChild.value.init()
+  <nut-button @click="init()">再来一次</nut-button>
+</template>
+```
+
+```ts
+import type { GiftBoxInst } from "nutui-uniapp";
+
+const giftboxEl = ref<GiftBoxInst>();
+
+function init() {
+  giftboxEl.value.init();
 }
-function startTurns() {
-  uni.showToast({
-    title: '开始抽奖',
-    icon: 'none',
-  })
+
+function onTurnsStart() {
+  console.log("抽奖开始");
 }
-function endTurns() {
-  uni.showToast({
-    title: '恭喜你中奖了',
-    icon: 'success',
-  })
+
+function onTurnsEnd() {
+  console.log("抽奖结束");
 }
-</script>
 ```
 
 ### Events
 
-| 事件名      | 说明                   | 类型       |
-|-------------|----------------------|------------|
-| start-turns | 礼盒打开时候的回调函数 | () => void |
-| end-turns   | 礼盒打开后的回调函数   | () => void |
+| 事件名         | 说明     | 类型           |
+|-------------|--------|--------------|
+| start-turns | 开始打开礼盒 | `() => void` |
+| end-turns   | 礼盒打开后  | `() => void` |
 
 ### Exposes
 
-| 方法名 | 说明       | 类型      |
-|--------|----------|-----------|
-| init   | 礼盒初始化 | ()=> void |
+| 名称   | 说明    | 类型           |
+|------|-------|--------------|
+| init | 初始化礼盒 | `() => void` |
