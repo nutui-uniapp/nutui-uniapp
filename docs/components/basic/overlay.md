@@ -127,7 +127,7 @@ const overlayStyles = {
 | overlay-style          | 自定义遮罩样式               | `CSSProperties` | -   | -       |
 | lock-scroll `H5`       | 遮罩显示时的背景是否锁定          | boolean         | -   | `false` |
 | close-on-click-overlay | 点击遮罩时是否关闭             | boolean         | -   | `true`  |
-| destroy-on-close       | 弹出层关闭后 `slot` 内容是否销毁  | boolean         | -   | `false` |
+| destroy-on-close       | 遮罩关闭后 `slot` 内容是否销毁   | boolean         | -   | `false` |
 
 ### Events
 
