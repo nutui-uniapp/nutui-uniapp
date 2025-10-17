@@ -87,9 +87,9 @@ Icon 的 `size` 属性用来设置图标的尺寸大小，默认单位为 `px`�
     /assets/font/iconfont.woff2
     ```
 
-2. 项目入口文件 `main.js` 引用 `iconfont.css`
+2. 项目入口文件 `main.ts` 引用 `iconfont.css`
 
-    ```js
+    ```ts
     import "./assets/font/iconfont.css";
     ```
 
