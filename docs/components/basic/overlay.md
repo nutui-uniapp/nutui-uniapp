@@ -10,7 +10,7 @@
 
 ```html
 <template>
-  <nut-overlay v-model:visible="visible" :z-index="2000"></nut-overlay>
+  <nut-overlay v-model:visible="visible"></nut-overlay>
 </template>
 ```
 
