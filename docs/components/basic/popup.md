@@ -103,12 +103,12 @@ const visible = ref(false);
 | 事件名              | 说明          | 类型                       |
 |------------------|-------------|--------------------------|
 | click-pop        | 点击弹出层时触发    | `(event: Event) => void` |
-| click-close-icon | 点击关闭图标时触发   | -                        |
-| click-overlay    | 点击遮罩触发      | -                        |
-| open             | 打开弹框时触发     | -                        |
-| opened           | 遮罩打开动画结束时触发 | -                        |
-| close            | 关闭弹框时触发     | -                        |
-| closed           | 遮罩关闭动画结束时触发 | -                        |
+| click-close-icon | 点击关闭图标时触发   | `() => void`             |
+| click-overlay    | 点击遮罩触发      | `() => void`             |
+| open             | 打开弹框时触发     | `() => void`             |
+| opened           | 遮罩打开动画结束时触发 | `() => void`             |
+| close            | 关闭弹框时触发     | `() => void`             |
+| closed           | 遮罩关闭动画结束时触发 | `() => void`             |
 
 ### Slots
 

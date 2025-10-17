@@ -51,14 +51,14 @@ const show = ref(false);
 
 ### Events
 
-| 事件名          | 说明        | 类型 |
-|--------------|-----------|----|
-| before-enter | 进入过渡动画前触发 | -  |
-| enter        | 进入过渡动画时触发 | -  |
-| after-enter  | 进入过渡动画后触发 | -  |
-| before-leave | 离开过渡动画前触发 | -  |
-| leave        | 离开过渡动画时触发 | -  |
-| after-leave  | 离开过渡动画后触发 | -  |
+| 事件名          | 说明        | 类型           |
+|--------------|-----------|--------------|
+| before-enter | 进入过渡动画前触发 | `() => void` |
+| enter        | 进入过渡动画时触发 | `() => void` |
+| after-enter  | 进入过渡动画后触发 | `() => void` |
+| before-leave | 离开过渡动画前触发 | `() => void` |
+| leave        | 离开过渡动画时触发 | `() => void` |
+| after-leave  | 离开过渡动画后触发 | `() => void` |
 
 ### Slots
 
