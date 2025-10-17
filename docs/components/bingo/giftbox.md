@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-```vue
+```html
 <template>
   <nut-giftbox
     ref="giftboxEl"
