@@ -150,25 +150,25 @@ export default {
 
 ### Props
 
-| 参数                | 说明                                               | 类型             | 默认值    |
-| ------------------- | -------------------------------------------------- | ---------------- | --------- |
-| title               | 标题名称                                           | string           | -         |
-| left-text           | 左侧文案                                           | string           | -         |
-| desc                | 右侧描述                                           | string           | -         |
-| left-show           | 是否展示左侧箭头                                   | boolean          | `false`   |
-| title-icon          | 标题中是否展示 `icon`                              | boolean          | `false`   |
-| border              | 是否显示下边框                                     | boolean          | `false`   |
-| fixed               | 是否固定到顶部                                     | boolean          | `false`   |
-| placeholder         | 固定在顶部时，是否在标签位置生成一个等高的占位元素 | boolean          | `false`   |
-| safe-area-inset-top | 是否开启顶部安全区适配                             | boolean          | `false`   |
-| z-index             | 导航栏 `z-index`                                   | number ｜ string | `10`      |
-| size                | 图标与字体大小                                     | number ｜ string | -         |
-| custom-color        | 图标与字体颜色                                     | number ｜ string | `#979797` |
+| 参数                | 说明                                              | 类型            | 可选值 | 默认值  |
+|---------------------|-------------------------------------------------|-----------------|--------|---------|
+| title               | 标题名称                                          | string          | -      | -       |
+| left-text           | 左侧文案                                          | string          | -      | -       |
+| desc                | 右侧描述                                          | string          | -      | -       |
+| left-show           | 是否展示左侧箭头                                  | boolean         | -      | `false` |
+| title-icon          | 标题中是否展示 `icon`                             | boolean         | -      | `false` |
+| border              | 是否显示下边框                                    | boolean         | -      | `false` |
+| fixed               | 是否固定到顶部                                    | boolean         | -      | `false` |
+| placeholder         | 固定在顶部时，是否在标签位置生成一个等高的占位元素 | boolean         | -      | `false` |
+| safe-area-inset-top | 是否开启顶部安全区适配                            | boolean         | -      | `false` |
+| z-index             | 导航栏 `z-index`                                  | number / string | -      | `10`    |
+| size                | 图标与字体大小                                    | number / string | -      | -       |
+| custom-color        | 图标与字体颜色                                    | number / string | -      | #979797 |
 
 ### Events
 
 | 事件名         | 说明                 | 回调参数    |
-| -------------- | -------------------- | ----------- |
+|----------------|--------------------|-------------|
 | on-click-title | 点击页面标题事件     | event:Event |
 | on-click-icon  | 点击页面标题icon事件 | event:Event |
 | on-click-right | 点击右侧按钮事件     | event:Event |
@@ -177,7 +177,7 @@ export default {
 ### Slots
 
 | 名称      | 说明                 |
-| --------- | -------------------- |
+|-----------|--------------------|
 | left      | 自定义左侧内容       |
 | right     | 自定义右侧内容       |
 | content   | 自定义导航栏中间内容 |
@@ -191,7 +191,7 @@ export default {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                           | 默认值                                 |
-| ------------------------------ | -------------------------------------- |
+|--------------------------------|----------------------------------------|
 | --nut-navbar-height            | 44px                                   |
 | --nut-navbar-margin-bottom     | 20px                                   |
 | --nut-navbar-padding           | 0 16px                                 |

@@ -189,27 +189,27 @@ const state = reactive({
 
 ### Props
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-|------|------|------|------|------|
-| img-url | 左侧图片 `Url` | string | - | `''` |
-| title | 标题 | string | - | `''` |
-| price | 商品价格 | string | - | `''` |
-| vip-price | 会员价格 | string | - | `''` |
-| shop-desc | 店铺介绍 | string | - | `''` |
-| delivery | 配送方式 | string | - | `''` |
-| shop-name | 店铺名称 | string | - | `''` |
-| is-need-price | 是否需要价格展示 | boolean | - | `true` |
+| 参数          | 说明             | 类型    | 可选值 | 默认值 |
+|---------------|----------------|---------|--------|--------|
+| img-url       | 左侧图片 `Url`   | string  | -      | -      |
+| title         | 标题             | string  | -      | -      |
+| price         | 商品价格         | string  | -      | -      |
+| vip-price     | 会员价格         | string  | -      | -      |
+| shop-desc     | 店铺介绍         | string  | -      | -      |
+| delivery      | 配送方式         | string  | -      | -      |
+| shop-name     | 店铺名称         | string  | -      | -      |
+| is-need-price | 是否需要价格展示 | boolean | -      | `true` |
 
 ### Slots
 
-| 名称 | 说明 |
-|------|------|
-| prolist | 自定义商品介绍 |
-| price | 价格自定义内容 |
-| origin | 价格后方自定义内容 |
-| shopTag | 店铺介绍自定义 |
-| shopName `1.6.4` | 店铺名称自定义 |
-| footer | 右下角内容自定义 |
+| 名称              | 说明               |
+|-------------------|------------------|
+| prolist           | 自定义商品介绍     |
+| price             | 价格自定义内容     |
+| origin            | 价格后方自定义内容 |
+| shopTag           | 店铺介绍自定义     |
+| shopName `v1.6.4` | 店铺名称自定义     |
+| footer            | 右下角内容自定义   |
 
 ## 主题定制
 
@@ -217,11 +217,11 @@ const state = reactive({
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称 | 默认值 |
-|------|------|
-| --nut-card-font-size-0 | var(--nut-font-size-0) |
-| --nut-card-font-size-1 | var(--nut-font-size-1) |
-| --nut-card-font-size-2 | var(--nut-font-size-2) |
-| --nut-card-font-size-3 | var(--nut-font-size-3) |
-| --nut-card-left-border-radius | 0 |
-| --nut-card-left-background-color | inherit |
+| 名称                             | 默认值                 |
+|----------------------------------|------------------------|
+| --nut-card-font-size-0           | var(--nut-font-size-0) |
+| --nut-card-font-size-1           | var(--nut-font-size-1) |
+| --nut-card-font-size-2           | var(--nut-font-size-2) |
+| --nut-card-font-size-3           | var(--nut-font-size-3) |
+| --nut-card-left-border-radius    | 0                      |
+| --nut-card-left-background-color | inherit                |

@@ -1,3 +1,13 @@
+## [1.9.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.1...v1.9.2) (2025-10-13)
+
+### Bug Fixes
+
+* **uploader:** 修复 list 样式点击删除时触发 item 点击事件 ([b7f23c8](https://github.com/nutui-uniapp/nutui-uniapp/commit/b7f23c885ef511308efda9f722412c312713be47))
+
+### Features
+
+* **uploader:** 自定义上传回调新增文件大小 ([#492](https://github.com/nutui-uniapp/nutui-uniapp/issues/492)) ([cae0d50](https://github.com/nutui-uniapp/nutui-uniapp/commit/cae0d50222c65b308aad967cb6db97003ecd0fd8))
+
 ## [1.9.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.0...v1.9.1) (2025-09-18)
 
 ### Bug Fixes

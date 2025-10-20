@@ -307,19 +307,19 @@ const clickIndex = (key: string) => {
 
 ### Props
 
-| 参数                 | 说明               | 类型            | 可选值           | 默认值  |
-| -------------------- | ------------------ | --------------- | ---------------- | ------- |
-| height        | 电梯区域的高度     | number / string | -                | `200px` |
-| accept-key    | 索引 `key` 值        | string          | -                | `title` |
-| index-list    | 索引列表           | Array           | -                | `[]`    |
-| is-sticky     | 索引是否吸顶       | boolean         | `true` / `false` | `false` |
-| space-height  | 右侧锚点的上下间距 | number          | -                | `23`    |
-| title-height  | 左侧索引的高度     | number          | -                | `35`    |
+| 参数         | 说明               | 类型            | 可选值           | 默认值  |
+|--------------|------------------|-----------------|------------------|---------|
+| height       | 电梯区域的高度     | number / string | -                | `200px` |
+| accept-key   | 索引 `key` 值      | string          | -                | title   |
+| index-list   | 索引列表           | Array           | -                | `[]`    |
+| is-sticky    | 索引是否吸顶       | boolean         | `true` / `false` | `false` |
+| space-height | 右侧锚点的上下间距 | number          | -                | `23`    |
+| title-height | 左侧索引的高度     | number          | -                | `35`    |
 
 ### Events
 
 | 事件名      | 说明           | 类型                                                        |
-| ----------- | -------------- | ----------------------------------------------------------- |
+|-------------|--------------|-------------------------------------------------------------|
 | click-item  | 点击内容时触发 | `(key: string, item: { id: number, name: string }) => void` |
 | click-index | 点击索引时触发 | `(key: string) => void`                                     |
 | change      | 索引改变时触发 | `(index: number) => void`                                   |
@@ -327,13 +327,13 @@ const clickIndex = (key: string) => {
 ### Slots
 
 | 名称    | 说明                           | 类型                                     | 子标签 |
-| ------- | ------------------------------ | ---------------------------------------- | ------ |
+|---------|------------------------------|------------------------------------------|--------|
 | default | 自定义左侧索引下每条数据的内容 | `{ item: { id: number, name: string } }` | -      |
 
 ### Methods
 
 | 名称     | 说明                 | 类型                      |
-| -------- | -------------------- | ------------------------- |
+|----------|--------------------|---------------------------|
 | scrollTo | 滚动到对应索引的位置 | `(index: number) => void` |
 
 ## 主题定制
@@ -343,7 +343,7 @@ const clickIndex = (key: string) => {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                                                  | 默认值                               |
-| ----------------------------------------------------- | ------------------------------------ |
+|-------------------------------------------------------|--------------------------------------|
 | --nut-elevator-list-item-highcolor                    | var(--nut-primary-color)             |
 | --nut-elevator-list-item-font-size                    | 12px                                 |
 | --nut-elevator-list-item-font-color                   | #333333                              |

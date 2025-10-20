@@ -41,9 +41,9 @@ function generateRandomTextArray(count: number) {
 
 ### Props
 
-| 参数     | 说明         | 类型   | 可选值          | 默认值 |
-| -------- | ------------ | ------ | --------------- | ------ |
-| position | 安全区的位置 | string | `left`/`bottom` | `-`    |
+| 参数     | 说明         | 类型   | 可选值        | 默认值 |
+|----------|------------|--------|---------------|--------|
+| position | 安全区的位置 | string | left / bottom | -      |
 
 ## 主题定制
 
@@ -52,5 +52,5 @@ function generateRandomTextArray(count: number) {
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考  [ConfigProvider 组件](/components/basic/configprovider)。
 
 | 名称                       | 说明       | 默认值 |
-| -------------------------- | ---------- | ------ |
+|----------------------------|----------|--------|
 | --nutui-safe-area-multiple | 显示的倍数 | `1`    |

@@ -95,53 +95,51 @@ onMounted(() => {
 
 ### Props
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-|------|------|------|------|------|
-| visible | 是否显示弹层 | boolean | - | `false` |
-| height | 弹层的高度 | string | - | `20%` |
-| title | 弹层标题 | string | - | 取件时间 |
-| current-key | 唯一标识 | string / number | - | `0` |
-| current-time | 当前选择的时间 | Array | - | `[]` |
-| lock-scroll | 背景是否锁定 | boolean | - | `true` |
-| muti | 是否可以选择多个时间 | boolean | - | `false` |
+| 参数               | 说明                                                    | 类型            | 可选值 | 默认值   |
+|--------------------|-------------------------------------------------------|-----------------|--------|----------|
+| visible            | 是否显示弹层                                            | boolean         | -      | `false`  |
+| height             | 弹层的高度                                              | string          | -      | 20%      |
+| title              | 弹层标题                                                | string          | -      | 取件时间 |
+| current-key        | 唯一标识                                                | string / number | -      | `0`      |
+| current-time       | 当前选择的时间，数组元素包含:key: string; list: string[] | Array           | -      | `[]`     |
+| lock-scroll   `H5` | 背景是否锁定                                            | boolean         | -      | `true`   |
 
 ### Slots
 
-| 名称 | 说明 |
-|------|------|
-| title | 更改标题 |
+| 名称   | 说明     |
+|--------|--------|
+| title  | 更改标题 |
 | pannel | 左侧列表 |
-| detail | 右侧详细内容 |
 
 ### TimePannel Props
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-|------|------|------|------|------|
-| name | 显示的名称 | string | - | - |
-| pannel-key | 唯一标识 | string / number | - | `0` |
+| 参数       | 说明       | 类型            | 可选值 | 默认值 |
+|------------|----------|-----------------|--------|--------|
+| name       | 显示的名称 | string          | -      | -      |
+| pannel-key | 唯一标识   | string / number | -      | `0`    |
 
 ### TimeDetail Props
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-|------|------|------|------|------|
-| times | 可选择的时间 | Array | - | `[]` |
+| 参数  | 说明         | 类型  | 可选值 | 默认值 |
+|-------|------------|-------|--------|--------|
+| times | 可选择的时间 | Array | -      | `[]`   |
 
 ### TimeSelect Events
 
-| 事件名 | 说明 | 类型 |
-|------|------|------|
+| 事件名 | 说明               | 类型                                       |
+|--------|------------------|--------------------------------------------|
 | select | 关闭遮罩之后的回调 | `(key: string / number, list: []) => void` |
 
 ### TimePannel Events
 
-| 事件名 | 说明 | 类型 |
-|------|------|------|
+| 事件名 | 说明           | 类型                                   |
+|--------|--------------|----------------------------------------|
 | change | 点击内容的回调 | `(pannelKey: string / number) => void` |
 
 ### TimeDetail Events
 
-| 事件名 | 说明 | 类型 |
-|------|------|------|
+| 事件名 | 说明           | 类型                     |
+|--------|--------------|--------------------------|
 | select | 点击时间的回调 | `(time: string) => void` |
 
 ## 主题定制
@@ -150,29 +148,29 @@ onMounted(() => {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称 | 默认值 |
-|------|------|
-| --nut-timeselect-title-font-size | var(--nut-font-size-2) |
-| --nut-timeselect-title-color | var(--nut-title-color) |
-| --nut-timeselect-title-width | 100% |
-| --nut-timeselect-title-height | 50px |
-| --nut-timeselect-title-line-height | 50px |
-| --nut-timeselect-pannel-bg-color | #f6f7f9 |
-| --nut-timeselect-timepannel-text-color | var(--nut-title-color2) |
-| --nut-timeselect-timepannel-font-size | var(--nut-font-size-2) |
-| --nut-timeselect-timepannel-cur-bg-color | var(--nut-white) |
-| --nut-timeselect-timepannel-cur-text-color | #333333 |
-| --nut-timeselect-timepannel-width | 140px |
-| --nut-timeselect-timepannel-height | 40px |
-| --nut-timeselect-timepannel-padding | 15px |
-| --nut-timeselect-timedetail-padding | 0 5px 50px 13px |
-| --nut-timeselect-timedetail-item-width | 100px |
-| --nut-timeselect-timedetail-item-height | 50px |
-| --nut-timeselect-timedetail-item-line-height | 50px |
-| --nut-timeselect-timedetail-item-bg-color | #f6f7f9 |
-| --nut-timeselect-timedetail-item-border-radius | 5px |
-| --nut-timeselect-timedetail-item-text-color | #333333 |
-| --nut-timeselect-timedetail-item-text-font-size | var(--nut-font-size-2) |
-| --nut-timeselect-timedetail-item-cur-bg-color | var(--nut-primary-color) |
-| --nut-timeselect-timedetail-item-cur-border | var(--nut-primary-color) |
+| 名称                                            | 默认值                   |
+|-------------------------------------------------|--------------------------|
+| --nut-timeselect-title-font-size                | var(--nut-font-size-2)   |
+| --nut-timeselect-title-color                    | var(--nut-title-color)   |
+| --nut-timeselect-title-width                    | 100%                     |
+| --nut-timeselect-title-height                   | 50px                     |
+| --nut-timeselect-title-line-height              | 50px                     |
+| --nut-timeselect-pannel-bg-color                | #f6f7f9                  |
+| --nut-timeselect-timepannel-text-color          | var(--nut-title-color2)  |
+| --nut-timeselect-timepannel-font-size           | var(--nut-font-size-2)   |
+| --nut-timeselect-timepannel-cur-bg-color        | var(--nut-white)         |
+| --nut-timeselect-timepannel-cur-text-color      | #333333                  |
+| --nut-timeselect-timepannel-width               | 140px                    |
+| --nut-timeselect-timepannel-height              | 40px                     |
+| --nut-timeselect-timepannel-padding             | 15px                     |
+| --nut-timeselect-timedetail-padding             | 0 5px 50px 13px          |
+| --nut-timeselect-timedetail-item-width          | 100px                    |
+| --nut-timeselect-timedetail-item-height         | 50px                     |
+| --nut-timeselect-timedetail-item-line-height    | 50px                     |
+| --nut-timeselect-timedetail-item-bg-color       | #f6f7f9                  |
+| --nut-timeselect-timedetail-item-border-radius  | 5px                      |
+| --nut-timeselect-timedetail-item-text-color     | #333333                  |
+| --nut-timeselect-timedetail-item-text-font-size | var(--nut-font-size-2)   |
+| --nut-timeselect-timedetail-item-cur-bg-color   | var(--nut-primary-color) |
+| --nut-timeselect-timedetail-item-cur-border     | var(--nut-primary-color) |
 | --nut-timeselect-timedetail-item-cur-text-color | var(--nut-primary-color) |

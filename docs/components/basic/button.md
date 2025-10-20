@@ -10,11 +10,11 @@
 
 ```html
 <template>
+  <nut-button type="default">默认按钮</nut-button>
   <nut-button type="primary">主要按钮</nut-button>
   <nut-button type="info">信息按钮</nut-button>
-  <nut-button type="default">默认按钮</nut-button>
-  <nut-button type="danger">危险按钮</nut-button>
   <nut-button type="warning">警告按钮</nut-button>
+  <nut-button type="danger">危险按钮</nut-button>
   <nut-button type="success">成功按钮</nut-button>
 </template>
 ```
@@ -25,8 +25,8 @@
 
 ```html
 <template>
-  <nut-button plain type="primary">朴素按钮</nut-button>
-  <nut-button plain type="info">朴素按钮</nut-button>
+  <nut-button type="primary" plain>朴素按钮</nut-button>
+  <nut-button type="info" plain>朴素按钮</nut-button>
 </template>
 ```
 
@@ -36,9 +36,9 @@
 
 ```html
 <template>
-  <nut-button disabled type="primary">禁用状态</nut-button>
-  <nut-button plain disabled type="info">禁用状态</nut-button>
-  <nut-button plain disabled type="primary">禁用状态</nut-button>
+  <nut-button type="primary" disabled>禁用状态</nut-button>
+  <nut-button type="info" plain disabled>禁用状态</nut-button>
+  <nut-button type="primary" plain disabled>禁用状态</nut-button>
 </template>
 ```
 
@@ -48,7 +48,7 @@
 
 ```html
 <template>
-  <nut-button shape="square" type="primary">方形按钮</nut-button>
+  <nut-button type="primary" shape="square">方形按钮</nut-button>
   <nut-button type="info">圆形按钮</nut-button>
 </template>
 ```
@@ -57,43 +57,37 @@
 
 ```html
 <template>
-  <nut-button loading type="info"></nut-button>
-  <nut-button loading type="warning">加载中...</nut-button>
-  <nut-button :loading="isLoading" type="success" @click="changeLoading">Click me!</nut-button>
+  <nut-button type="info" loading></nut-button>
+  <nut-button type="warning" loading>加载中...</nut-button>
+  <nut-button type="success" :loading="loading" @click="onClick()">点击我！</nut-button>
 </template>
+```
 
-<script>
-  import { ref } from 'vue';
-  export default {
-    setup(props) {
-      let isLoading = ref(false);
-      const changeLoading = () => {
-        isLoading.value = true;
-        setTimeout(() => {
-          isLoading.value = false;
-        }, 3000);
-      };
-      return {
-        isLoading,
-        changeLoading
-      };
-    }
-  };
-</script>
+```ts
+const loading = ref(false);
+
+function onClick() {
+  loading.value = true;
+
+  setTimeout(() => {
+    loading.value = false;
+  }, 3000);
+};
 ```
 
 ### 图标按钮
 
 ```html
 <template>
-  <nut-button shape="square" plain type="primary">
+  <nut-button type="primary" shape="square" plain>
     <template #icon>
-      <nut-icon name="star-fill" />
+      <nut-icon name="star-fill"></nut-icon>
     </template>
   </nut-button>
-  <nut-button shape="square" type="primary">
+
+  <nut-button type="primary" shape="square">
     <template #icon>
-      <nut-icon name="star" />
+      <nut-icon name="star"></nut-icon>
     </template>
     收藏
   </nut-button>
@@ -106,10 +100,10 @@
 
 ```html
 <template>
-  <nut-button size="large" type="primary">大号按钮</nut-button>
+  <nut-button type="primary" size="large">大号按钮</nut-button>
   <nut-button type="primary">普通按钮</nut-button>
-  <nut-button size="small" type="primary">小型按钮</nut-button>
-  <nut-button size="mini" type="primary">迷你按钮</nut-button>
+  <nut-button type="primary" size="small">小型按钮</nut-button>
+  <nut-button type="primary" size="mini">迷你按钮</nut-button>
 </template>
 ```
 
@@ -119,19 +113,19 @@
 
 ```html
 <template>
-  <nut-button block type="primary">块级元素</nut-button>
+  <nut-button type="primary" block>块级元素</nut-button>
 </template>
 ```
 
 ### 自定义颜色
 
-通过 customColor 属性可以自定义按钮的颜色。
+通过 `custom-color` 属性可以自定义按钮的颜色。
 
 ```html
 <template>
   <nut-button custom-color="#7232dd">单色按钮</nut-button>
   <nut-button custom-color="#7232dd" plain>单色按钮</nut-button>
-  <nut-button custom-color="linear-gradient(to right, #ff6034, #ee0a24)"> 渐变色按钮 </nut-button>
+  <nut-button custom-color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</nut-button>
 </template>
 ```
 
