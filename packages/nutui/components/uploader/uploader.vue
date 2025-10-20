@@ -32,6 +32,17 @@ watch(() => props.fileList, () => {
   fileList.value = props.fileList
 })
 
+const videoObjectFit = computed(() => {
+  if (props.mode === 'scaleToFill') {
+    return 'fill'
+  }
+  if (props.mode === 'aspectFill') {
+    return 'cover'
+  }
+
+  return 'contain'
+})
+
 function handleFileItemClick(fileItem: FileItem) {
   emit('fileItemClick', { fileItem })
 }
@@ -281,10 +292,21 @@ export default defineComponent({
         </view>
 
         <image
-          v-if="(item.type === 'image' || item.type === 'video') && item.url"
+          v-if="item.type === 'image' && item.url"
           class="nut-uploader__preview-img__c"
-          :mode="props.mode"
           :src="item.url"
+          :mode="props.mode"
+          @click="handleFileItemClick(item)"
+        />
+
+        <video
+          v-else-if="item.type === 'video' && item.url"
+          class="nut-uploader__preview-img__c"
+          :src="item.url"
+          :object-fit="videoObjectFit"
+          :controls="false"
+          :show-center-play-btn="false"
+          referrer-policy="origin"
           @click="handleFileItemClick(item)"
         />
 
