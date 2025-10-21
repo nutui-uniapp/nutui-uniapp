@@ -72,7 +72,7 @@ function onClick() {
   setTimeout(() => {
     loading.value = false;
   }, 3000);
-};
+}
 ```
 
 ### 图标按钮

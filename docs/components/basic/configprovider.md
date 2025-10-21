@@ -30,7 +30,7 @@ const darkMode = ref(false);
 
 function onChange(value: boolean) {
   theme.value = value ? "dark" : "";
-};
+}
 ```
 
 ### 主题定制
