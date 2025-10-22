@@ -102,7 +102,7 @@ onMounted(() => {
 | follow      | 追评内容       | object                    | -                 | `{}`                         |
 | operation   | 配置底部按钮     | Array                     | -                 | `["replay", "like", "more"]` |
 
-#### images 数组
+#### images 数据结构
 
 ```javascript
 const images = [{
@@ -115,7 +115,7 @@ const images = [{
 }];
 ```
 
-#### videos 数组
+#### videos 数据结构
 
 ```javascript
 const videos = [{
@@ -126,7 +126,7 @@ const videos = [{
 }];
 ```
 
-#### info 对象
+#### info 数据结构
 
 用于存放评论相关的信息。
 
@@ -151,7 +151,7 @@ const info = {
 };
 ```
 
-#### follow 对象
+#### follow 数据结构
 
 用于存放追评相关的信息。
 
