@@ -124,6 +124,8 @@ function onTurnsEnd() {
 
 ### Exposes
 
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Turntable 实例并调用实例方法。
+
 | 名称         | 说明   | 类型           |
 |------------|------|--------------|
 | rotateTurn | 开始转动 | `() => void` |

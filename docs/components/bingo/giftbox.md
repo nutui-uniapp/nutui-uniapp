@@ -45,6 +45,8 @@ function onTurnsEnd() {
 
 ### Exposes
 
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 GiftBox 实例并调用实例方法。
+
 | 名称   | 说明    | 类型           |
 |------|-------|--------------|
 | init | 初始化礼盒 | `() => void` |
