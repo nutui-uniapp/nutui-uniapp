@@ -251,10 +251,10 @@ function onInputClick() {
 | disabled              | 是否禁用                                                                            | boolean                     | -                                | `false`           |
 | readonly              | 是否只读                                                                            | boolean                     | -                                | `false`           |
 | autofocus             | 是否自动获得焦点，iOS 系统不支持该属性                                                           | boolean                     | -                                | `false`           |
-| max-length            | 限制最长输入字符                                                                        | string ｜ number             | -                                | `140`             |
+| max-length            | 限制最长输入字符                                                                        | string / number             | -                                | `140`             |
 | clearable             | 展示清除图标                                                                          | boolean                     | -                                | `false`           |
 | show-clear-icon       | 是否在失去焦点后，继续展示清除按钮（仅 `clearable` 为 `true` 时有效）                                   | boolean                     | -                                | `false`           |
-| clear-size            | 清除图标的 `font-size` 大小                                                            | number / string             | -                                | `14`              |
+| clear-size            | 清除图标的大小                                                                         | number / string             | -                                | `14`              |
 | show-word-limit       | 是否显示限制最长输入字符，需要设置 `max-length` 属性                                               | boolean                     | -                                | `false`           |
 | error                 | 是否标红                                                                            | boolean                     | -                                | `false`           |
 | formatter             | 输入内容格式化函数                                                                       | `(value: string) => string` | -                                | -                 |
