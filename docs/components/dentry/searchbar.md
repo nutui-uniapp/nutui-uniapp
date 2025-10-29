@@ -12,7 +12,7 @@
 </template>
 ```
 
-```typescript
+```ts
 const searchValue = ref<string>('')
 ```
 
@@ -32,7 +32,7 @@ const searchValue = ref<string>('')
 </template>
 ```
 
-```typescript
+```ts
 const searchValue = ref<string>('')
 
 function onSearch(value: string) {

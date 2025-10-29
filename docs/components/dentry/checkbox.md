@@ -118,7 +118,7 @@ const value = ref(["2", "3"]);
 
 自 `1.7.14` 开始更名为 `CheckboxGroupInst`，之前的版本为 `CheckBoxInst`（2.x 版本将会废弃）。
 
-```typescript
+```ts
 import type { CheckboxGroupInst } from "nutui-uniapp";
 
 const groupEl = ref<CheckboxGroupInst>();
@@ -184,7 +184,7 @@ function toggleReverse() {
 </template>
 ```
 
-```typescript
+```ts
 import type { CheckboxGroupInst } from "nutui-uniapp";
 
 const groupEl = ref<CheckboxGroupInst>();
