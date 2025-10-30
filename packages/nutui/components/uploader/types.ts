@@ -31,5 +31,5 @@ export interface UploaderInst {
    * @param index
    * @returns
    */
-  clearUploadQueue: (index: number) => void
+  clearUploadQueue: (index?: number) => void
 }
