@@ -75,13 +75,13 @@ const value = ref("");
 
 ### Events
 
-| 事件名     | 说明        | 类型                                                   |
-|---------|-----------|------------------------------------------------------|
-| change  | 输入框值改变时触发 | `(value: string, event: Event) => void`              |
-| focus   | 聚焦时触发     | `(event: TextareaOnFocusEvent) => void`              |
-| blur    | 失焦时触发     | `(event: TextareaOnBlurEvent) => void`               |
-| confirm | 点击完成按钮时触发 | `(event: TextareaOnConfirmEvent) => void`            |
-| input   | 键盘输入时触发   | `(value: string, evt: TextareaOnInputEvent) => void` |
+| 事件名     | 说明        | 类型                                                     |
+|---------|-----------|--------------------------------------------------------|
+| change  | 输入框值改变时触发 | `(value: string, event: Event) => void`                |
+| focus   | 聚焦时触发     | `(event: TextareaOnFocusEvent) => void`                |
+| blur    | 失焦时触发     | `(event: TextareaOnBlurEvent) => void`                 |
+| confirm | 点击完成按钮时触发 | `(event: TextareaOnConfirmEvent) => void`              |
+| input   | 键盘输入时触发   | `(value: string, event: TextareaOnInputEvent) => void` |
 
 ## 主题定制
 
