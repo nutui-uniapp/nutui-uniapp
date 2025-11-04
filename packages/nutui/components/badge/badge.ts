@@ -19,7 +19,6 @@ export const badgeProps = {
 
   /**
    * @description 是否为气泡形状
-   * @since >v4.0.0
    */
   bubble: Boolean,
 
