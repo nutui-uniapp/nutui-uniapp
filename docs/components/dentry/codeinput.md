@@ -2,7 +2,7 @@
 
 ### 介绍
 
-一般用于验证用户短信验证码的场景，该组件参考了 uview-ui 的 [验证码输入框](https://www.uviewui.com/components/codeInput.html)。
+一般用于验证用户短信验证码的场景，该组件参考了 uview-ui 的 [验证码输入框](https://uviewui.com/components/codeInput.html)。
 
 ### 基础用法
 
