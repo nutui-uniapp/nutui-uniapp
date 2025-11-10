@@ -59,6 +59,10 @@ export const imagepreviewProps = {
    * @description 是否循环播放
    */
   isLoop: truthProp,
+  /**
+   * @description 是否开启长按图片显示识别小程序码菜单
+   */
+  showMenuByLongpress: Boolean,
 }
 
 export type ImagePreviewProps = ExtractPropTypes<typeof imagepreviewProps>
