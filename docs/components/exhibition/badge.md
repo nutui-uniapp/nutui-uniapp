@@ -96,7 +96,7 @@
 | hidden       | 是否隐藏             | boolean         | -   | `false` |
 | top          | 上下偏移量            | string          | -   | 0       |
 | right        | 左右偏移量            | string          | -   | 0       |
-| z-index      | 徽标的 `z-index` 值  | number          | -   | `10`    |
+| z-index      | 徽标的 z-index      | number          | -   | `10`    |
 | custom-color | 徽标背景颜色           | string          | -   | #fa2c19 |
 
 ### Slots

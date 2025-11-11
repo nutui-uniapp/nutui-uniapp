@@ -55,7 +55,7 @@
 | image        | 水印图片（优先级高于 `content`） | string          | -   | -                  |
 | image-width  | 图片宽度                  | number          | -   | `120`              |
 | image-height | 图片高度                  | number          | -   | `64`               |
-| z-index      | 水印元素的 `z-index`       | number          | -   | `2000`             |
+| z-index      | 水印元素的 z-index         | number          | -   | `2000`             |
 | font-color   | 水印文字颜色                | string          | -   | rgba(0, 0, 0, .15) |
 | font-size    | 文字大小                  | string / number | -   | `14`               |
 | font-weight  | 文字字重                  | string          | -   | normal             |
