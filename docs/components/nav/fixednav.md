@@ -49,19 +49,19 @@ export default {
 
 ### 左侧效果
 
-``` html
+```html
 <nut-fixed-nav type="left" :position="{top:'140px' }" v-model:visible="visible" :nav-list="navList" />
 ```
 
 ### 取消背景遮罩
 
-``` html
+```html
 <nut-fixed-nav :overlay="false"  :position="{top:'210px' }" v-model:visible="visible" :nav-list="navList" />
 ```
 
 ### 配合 Drag 支持拖拽 , 小程序暂不支持
 
-``` html
+```html
 <nut-drag direction="y" custom-style:="{right:'0px',bottom:'240px'}">
   <nut-fixed-nav un-active-text="支持拖拽" v-model:visible="visible" :nav-list="navList" />
 </nut-drag>

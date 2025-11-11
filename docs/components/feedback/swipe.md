@@ -71,7 +71,7 @@
 </template>
 ```
 
-```typescript
+```ts
 import type { SwipeInst, SwipeToggleEvent } from 'nutui-uniapp'
 
 const swipe = ref<SwipeInst | null>(null)
@@ -119,7 +119,7 @@ function onClose(info: SwipeToggleEvent) {
 </template>
 ```
 
-```typescript
+```ts
 const number = ref<number>(0)
 ```
 

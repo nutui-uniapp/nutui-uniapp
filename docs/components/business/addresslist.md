@@ -246,7 +246,7 @@ const item = {
 
 组件内优先获取基础数据结构中定义的字段，若想自定义 `key` 值，可以通过 `options` 设置映射关系：
 
-```javascript
+```js
 const options = {
   id: "testid",
   addressDetail: "testaddressDetail",

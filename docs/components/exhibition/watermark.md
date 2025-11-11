@@ -93,7 +93,7 @@
 
 content属性传入string数组，展示的则是多行水印
 
-```vue
+```html
 <template>
   <nut-cell class="wrap">
     <nut-watermark

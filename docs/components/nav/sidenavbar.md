@@ -8,7 +8,7 @@
 
 可以通过设置 `position` 来控制左右展示
 
-``` html
+```html
 <template>
   <nut-cell @click="handleClick1">
     <span><label>右侧</label></span>
@@ -55,7 +55,7 @@
 
 该组件在小程序环境下不支持异步加载数据，建议在获取到完整数据后再进行组件的渲染。
 
-``` html
+```html
 <template>
   <nut-cell @click="handleClick3">
     <span><label>显示</label></span>

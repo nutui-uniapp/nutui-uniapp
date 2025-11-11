@@ -104,7 +104,7 @@ onMounted(() => {
 
 #### images 数据结构
 
-```javascript
+```js
 const images = [{
   // 小图，列表展示时使用
   smallImgUrl: "",
@@ -117,7 +117,7 @@ const images = [{
 
 #### videos 数据结构
 
-```javascript
+```js
 const videos = [{
   // 视频遮罩图片
   mainUrl: "",
@@ -130,7 +130,7 @@ const videos = [{
 
 用于存放评论相关的信息。
 
-```javascript
+```js
 const info = {
   // 评论详情
   content: "",
@@ -155,7 +155,7 @@ const info = {
 
 用于存放追评相关的信息。
 
-```javascript
+```js
 const follow = {
   // 购买多少天后进行追评
   days: 0,

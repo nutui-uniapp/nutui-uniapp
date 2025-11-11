@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-```vue
+```html
 <template>
   <div class="demo full">
     <h2 class="title">

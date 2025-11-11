@@ -8,7 +8,7 @@
 
 默认渲染一条水平分割线。
 
-``` html
+```html
 <template>
   <nut-divider />
 </template>
@@ -18,7 +18,7 @@
 
 通过插槽可以在分割线中间插入内容。
 
-``` html
+```html
 <template>
   <nut-divider>文本</nut-divider>
 </template>
@@ -28,7 +28,7 @@
 
 通过 content-position 指定内容所在位置。
 
-``` html
+```html
 <template>
   <nut-divider content-position="left">文本</nut-divider>
   <nut-divider content-position="right">文本</nut-divider>
@@ -39,7 +39,7 @@
 
 添加 dashed 属性使分割线渲染为虚线。
 
-``` html
+```html
 <template>
   <nut-divider dashed>文本</nut-divider>
 </template>
@@ -49,7 +49,7 @@
 
 可以直接通过 style 属性设置分割线的样式。
 
-``` html
+```html
 <template>
   <nut-divider :custom-style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">文本</nut-divider>
 </template>
@@ -57,7 +57,7 @@
 
 ### 垂直分割线
 
-``` html
+```html
 <template>
   <div :style="{ fontSize: '14px', marginLeft: '27px', color: '#909ca4' }">
     文本

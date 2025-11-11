@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-``` html
+```html
 <template>
   <nut-cell
       :show-icon="true"
@@ -63,7 +63,7 @@ export default {
 
 ### 展示取消按钮
 
-``` html
+```html
 <template>
   <nut-cell
       :show-icon="true"
@@ -120,7 +120,7 @@ export default {
 
 ### 展示描述信息
 
-``` html
+```html
 <template>
   <nut-cell
       :show-icon="true"
@@ -179,7 +179,7 @@ export default {
 
 ### 选项状态
 
-``` html
+```html
 <template>
   <nut-cell
       :show-icon="true"
@@ -235,7 +235,7 @@ export default {
 
 ### 自定义内容
 
-``` html
+```html
 <template>
   <nut-cell
       :show-icon="true"

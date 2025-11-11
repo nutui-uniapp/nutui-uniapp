@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-```vue
+```html
 <template>
   <nut-elevator
     :index-list="dataList"
@@ -78,7 +78,7 @@ const clickIndex = (key: string) => {
 
 ### 自定义索引
 
-```vue
+```html
 <template>
   <nut-elevator
     :index-list="dataList"
@@ -207,7 +207,7 @@ const clickIndex = (key: string) => {
 
 ### 索引吸顶
 
-```vue
+```html
 <template>
   <nut-elevator
     :index-list="dataList"
@@ -254,7 +254,7 @@ const clickIndex = (key: string) => {
 
 ### 自定义内容
 
-```vue
+```html
 <template>
   <nut-elevator
     :index-list="dataList"

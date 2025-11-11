@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-```vue
+```html
 <template>
   <nut-navbar title="Title" />
 </template>
@@ -14,7 +14,7 @@
 
 ### 自定义左侧插槽
 
-```vue
+```html
 <template>
   <nut-navbar title="Title">
     <template #left>
@@ -31,7 +31,7 @@
 
 ### 自定义右侧插槽
 
-```vue
+```html
 <template>
   <nut-navbar title="Title">
     <template #right>
@@ -48,7 +48,7 @@
 
 ### 自定义导航栏中间内容
 
-```vue
+```html
 <script lang="ts">
 import { ref } from 'vue'
 export default {
@@ -107,7 +107,7 @@ export default {
 
 ### 多 tab 切换导航
 
-```vue
+```html
 <script lang="ts">
 import { ref } from 'vue'
 export default {

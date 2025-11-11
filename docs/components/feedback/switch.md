@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" />
 </template>
@@ -23,7 +23,7 @@
 
 ### 禁用状态
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" disabled />
 </template>
@@ -40,7 +40,7 @@
 
 ### 加载状态
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" loading />
 </template>
@@ -57,7 +57,7 @@
 
 ### change事件
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" @change="change" />
 </template>
@@ -82,7 +82,7 @@
 
 需要异步控制开关时，可以使用 `modelValue` 属性和 `update:model-value` 事件代替 `v-model`，并在事件回调函数中手动处理开关状态。
 
-``` vue
+```html
 <script lang="ts">
 import { ref } from 'vue'
 
@@ -115,7 +115,7 @@ export default {
 
 ### 自定义颜色
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" active-color="blue" />
 </template>
@@ -132,7 +132,7 @@ export default {
 
 ### 支持文字
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" active-text="开" inactive-text="关" />
 </template>
@@ -149,7 +149,7 @@ export default {
 
 ### 自定义加载图标
 
-``` html
+```html
 <template>
   <nut-switch v-model="checked" loading>
     <template #icon><nut-icon  name="loading" /></template>

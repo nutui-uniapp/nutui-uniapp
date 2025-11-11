@@ -26,7 +26,7 @@
 <nut-dialog ref="dialogRef" :transition="transition" />
 ```
 
-``` javascript
+```ts
 import { ref } from 'vue';
 import type { DialogInst } from 'nutui-uniapp'
 export default {
@@ -172,7 +172,7 @@ export default {
 | onOk       | 确认       | -               | -      |
 | onCancel   | 取消       | -               |        |
 
-``` ts
+```ts
 interface DialogOptions {
   title?: string
   content?: string

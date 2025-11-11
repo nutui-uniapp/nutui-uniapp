@@ -78,7 +78,7 @@ export default {
 </template>
 ```
 
-```typescript
+```ts
 const scrollTop = ref(0)
 
 onPageScroll((res) => {
