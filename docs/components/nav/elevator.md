@@ -330,7 +330,9 @@ const clickIndex = (key: string) => {
 |---------|------------------------------|------------------------------------------|--------|
 | default | 自定义左侧索引下每条数据的内容 | `{ item: { id: number, name: string } }` | -      |
 
-### Methods
+### Exposes
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Elevator 实例并调用实例方法。
 
 | 名称     | 说明                 | 类型                      |
 |----------|--------------------|---------------------------|

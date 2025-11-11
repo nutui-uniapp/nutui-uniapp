@@ -260,11 +260,11 @@ notify.showNotify({
 | close `1.7.16`  | 关闭时触发         | `-`      |
 | closed `1.7.16` | 关闭动画完成时触发 | `-`      |
 
-### Methods
+### Exposes
 
-通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Notify 实例并调用实例方法
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Notify 实例并调用实例方法。
 
-| 方法名           | 说明                            | 参数                                                         | 返回值 |
+| 名称           | 说明                            | 参数                                                         | 返回值 |
 |------------------|-------------------------------|--------------------------------------------------------------|--------|
 | show `1.7.16`    | 显示通知                        | (type: `NotifyType`, msg: string, options?: `NotifyOptions`) | -      |
 | primary `1.7.16` | 主要通知                        | (msg: string, options?: `NotifyOptions`)                     | -      |

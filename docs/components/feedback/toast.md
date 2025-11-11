@@ -236,7 +236,7 @@ function showSuccessBottom() {
 | selector `1.7.5`       | 配置注入的key                                  | string          | -   | -                                          | -      |
 | type                   | 弹框类型                                      | string          | -   | text / success / error / warning / loading | text   |
 | title                  | 标题                                        | string          | -   | -                                          | -      |
-| msg                    | 消息文本内容，支持传入HTML                           | string          | -   | -                                          | -      |
+| msg                    | 消息文本内容，支持富文本                              | string          | -   | -                    <br/>                      | -      |
 | duration               | 展示时长（单位：ms）（组合式函数用法/Ref用法中，loading类型默认为0） | number          | -   | -                                          | `2000` |
 | size                   | 文案尺寸                                      | string          | -   | small / base / large                       | base   |
 | z-index `1.7.5`        | 组件z-index                                 | number          | -   | -                                          | `50`   |
@@ -260,11 +260,11 @@ function showSuccessBottom() {
 | close          | 关闭时触发         |
 | closed `1.7.5` | 关闭动画完成时触发 |
 
-### Methods
+### Exposes
 
-通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Toast 实例并调用实例方法
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Toast 实例并调用实例方法。
 
-| 方法名          | 说明                            | 参数                                    | 返回值 |
+| 名称          | 说明                            | 参数                                    | 返回值 |
 |-----------------|-------------------------------|-----------------------------------------|--------|
 | text `1.7.5`    | 文字提示                        | (msg: string, options?: `ToastOptions`) | -      |
 | success `1.7.5` | 成功提示                        | (msg: string, options?: `ToastOptions`) | -      |
@@ -292,7 +292,7 @@ export interface ToastOptions {
    */
   title?: string
   /**
-   * @description 消息文本内容，支持传入HTML
+   * @description 消息文本内容，支持富文本
    */
   msg?: string
   /**

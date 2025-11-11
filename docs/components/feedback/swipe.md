@@ -184,11 +184,11 @@ const number = ref<number>(0)
 | default | 自定义内容   |
 | right   | 右侧滑动内容 |
 
-### Methods
+### Exposes
 
-通过 [ref](https://vuejs.org/guide/essentials/template-refs.html) 可以获取到 Swipe 实例并调用实例方法。
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Swipe 实例并调用实例方法。
 
-| 方法名 | 说明                                          | 参数      |
+| 名称 | 说明                                          | 参数      |
 |--------|---------------------------------------------|-----------|
 | open   | 打开单元格侧边栏，left 指向左滑，right 指向右滑 | direction |
 | close  | 收起单元格侧边栏                              | -         |
