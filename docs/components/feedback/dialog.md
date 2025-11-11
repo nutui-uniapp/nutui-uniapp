@@ -92,7 +92,7 @@ function open() {
 | no-ok-btn              | 是否隐藏确定按钮                                  | boolean       | -                     | `false`    |
 | no-cancel-btn          | 是否隐藏取消按钮                                  | boolean       | -                     | `false`    |
 | cancel-text            | 取消按钮文案                                    | string        | -                     | 取消         |
-| ok-text                | 确定按钮文案                                    | string        | -                     | 确 定        |
+| ok-text                | 确定按钮文案                                    | string        | -                     | 确定         |
 | cancel-auto-close      | 取消按钮是否默认关闭弹窗                              | boolean       | -                     | `true`     |
 | text-align             | 文字对齐方向, 可选值同 CSS 的 `text-align`           | string        | -                     | center     |
 | close-on-popstate `H5` | 是否在页面回退时自动关闭                              | boolean       | -                     | `false`    |

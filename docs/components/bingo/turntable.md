@@ -111,8 +111,8 @@ function onTurnsEnd() {
 | turns-number      | 转动的圈数                                                 | number | -   | `5`                                    |
 | turns-time        | 从开始转动到结束所用时间（单位：s）                                    | number | -   | `5`                                    |
 | lock-time `1.0.6` | 下次抽奖的间隔时间（单位：s）                                       | number | -   | `0`                                    |
-| style-opt         | 转盘中的样式，包括每个扇区的背景颜色（在每条数据中页可单独设置 `prizeColor`），扇区的边框颜色 | Object | -   | `{prizeBgColors: [], borderColor: ''}` |
-| pointer-style     | 转盘中指针的样式，包括背景图片、大小等                                   | Object | -   | `{width: '80px', height: '80px'}`      |
+| style-opt         | 转盘中的样式，包括每个扇区的背景颜色（在每条数据中页可单独设置 `prizeColor`），扇区的边框颜色 | object | -   | `{prizeBgColors: [], borderColor: ''}` |
+| pointer-style     | 转盘中指针的样式，包括背景图片、大小等                                   | object | -   | `{width: '80px', height: '80px'}`      |
 
 ### Events
 
