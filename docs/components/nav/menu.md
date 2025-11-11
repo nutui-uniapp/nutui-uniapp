@@ -2,72 +2,65 @@
 
 ### 介绍
 
-向下弹出的菜单列表
+向下弹出的菜单列表。
 
 ### 基础用法
 
 ```html
 <template>
   <nut-menu>
-    <nut-menu-item v-model="state.value1" :options="state.options1" />
-    <nut-menu-item v-model="state.value2" @change="handleChange" :options="state.options2" />
+    <nut-menu-item v-model="state.value1" :options="options1"></nut-menu-item>
+    <nut-menu-item v-model="state.value2" :options="options2" @change="onChange"></nut-menu-item>
   </nut-menu>
 </template>
+```
 
-<script>
-import { reactive, ref } from 'vue';
+```ts
+const state = reactive({
+  value1: 0,
+  value2: "a"
+});
 
-export default {
-  setup() {
-    const state = reactive({
-      options1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 }
-      ],
-      options2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
-      ],
-      value1: 0,
-      value2: 'a'
-    });
+const options1 = ref([
+  { text: "全部商品", value: 0 },
+  { text: "新款商品", value: 1 },
+  { text: "活动商品", value: 2 }
+]);
 
-    const handleChange = val => {
-      console.log('val', val);
-    }
+const options2 = ref([
+  { text: "默认排序", value: "a" },
+  { text: "好评排序", value: "b" },
+  { text: "销量排序", value: "c" }
+]);
 
-    return {
-      state,
-      handleChange
-    };
-  }
+function onChange(value: number | string) {
+  console.log("change", value);
 }
-</script>
 ```
 
 ### 滚动固定
 
-启用 `scroll-fixed` 属性可以滚动一定距离后变更为 `fixed` 定位
+启用 `scroll-fixed` 属性可以滚动一定距离后变更为 `fixed` 定位。
 
-> 自 `1.7.13` 开始，必须配合 `scroll-top` 属性使用，需要将
-> [onPageScroll](https://uniapp.dcloud.net.cn/tutorial/page.html#onpagescroll) 的 scrollTop 传给组件
-> 对于 `1.7.12` 及以下的版本，由于uniapp中组件单独声明 `onPageScroll` 无效，需要手动在页面中声明一次 `onPageScroll` 后组件内部
-> 才能正确获取 scrollTop 的值（参考 [question-136635](https://ask.dcloud.net.cn/question/136635)）
+自 `1.7.13` 开始，必须配合 `scroll-top` 属性使用，需要将 [onPageScroll](https://uniapp.dcloud.net.cn/tutorial/page.html#onpagescroll)
+的 scrollTop 传给组件。
+
+对于 `1.7.12` 及以下的版本，由于 uni-app 中组件单独声明 `onPageScroll` 无效，需要手动在页面中声明一次 `onPageScroll` 后组件内部
+才能正确获取 scrollTop 的值，参考 [question-136635](https://ask.dcloud.net.cn/question/136635)。
 
 ```html
 <template>
-  <nut-menu :scroll-fixed="true" :scroll-top="scrollTop">
-    <nut-menu-item v-model="state.value1" :options="state.options1"></nut-menu-item>
-
-    <nut-menu-item v-model="state.value2" :options="state.options2"></nut-menu-item>
+  <nut-menu scroll-fixed :scroll-top="scrollTop">
+    <nut-menu-item v-model="state.value1" :options="options1"></nut-menu-item>
+    <nut-menu-item v-model="state.value2" :options="options2"></nut-menu-item>
   </nut-menu>
 
-  <!-- 可以通过CSS变量修改 fixed 状态的 top -->
-  <nut-menu custom-style="--nut-menu-scroll-fixed-top: 44px"
-            :scroll-fixed="true"
-            :scroll-top="scrollTop">
+  <!-- 可以通过 CSS 变量修改 fixed 状态的 top -->
+  <nut-menu
+    custom-style="--nut-menu-scroll-fixed-top: 44px"
+    scroll-fixed
+    :scroll-top="scrollTop"
+  >
     <!--  ...  -->
   </nut-menu>
 
@@ -79,104 +72,63 @@ export default {
 ```
 
 ```ts
-const scrollTop = ref(0)
+const scrollTop = ref(0);
 
 onPageScroll((res) => {
-  scrollTop.value = res.scrollTop
-})
+  scrollTop.value = res.scrollTop;
+});
 ```
 
 ### 自定义菜单内容
 
-使用实例上的 toggle 方法可以手动关闭弹框。
+使用实例上的 `toggle()` 方法可以手动关闭弹框。
 
 ```html
 <template>
   <nut-menu>
-    <nut-menu-item v-model="state.value1" :options="state.options1" />
-    <nut-menu-item title="筛选" ref="item">
-      <div :style="{display: 'flex', flex: 1, 'justify-content': 'space-between', 'align-items': 'center'}">
-        <div :style="{ marginRight: '10px'}">自定义内容</div>
-        <nut-button @click="onConfirm">确认</nut-button>
-      </div>
+    <nut-menu-item v-model="state.value1" :options="options1" />
+    <nut-menu-item ref="menuItemEl" title="筛选">
+      <view class="flex flex-col items-center">
+        <text>自定义内容</text>
+        <nut-button @click="confirm()">确认</nut-button>
+      </view>
     </nut-menu-item>
   </nut-menu>
 </template>
+```
 
-<script>
-import { reactive, ref } from 'vue';
+```ts
+import type { MenuItemInst } from "nutui-uniapp";
 
-export default {
-  setup() {
-    const state = reactive({
-      options1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 }
-      ],
-      value1: 0
-    });
+const menuItemEl = ref<MenuItemInst>();
 
-    const item = ref('');
+const state = reactive({
+  value1: 0
+});
 
-    const onConfirm = () => {
-      item.value.toggle();
-    }
+const options1 = ref([
+  { text: "全部商品", value: 0 },
+  { text: "新款商品", value: 1 },
+  { text: "活动商品", value: 2 }
+]);
 
-    return {
-      state,
-      item,
-      onConfirm
-    };
-  }
+function confirm() {
+  menuItemEl.value.toggle();
 }
-</script>
 ```
 
 ### 一行两列
 
-```html
+```html {6}
 <template>
   <nut-menu>
-    <nut-menu-item v-model="state.value3" :cols="2" :options="state.options3" />
+    <nut-menu-item
+      v-model="value"
+      :options="options"
+      :cols="2"
+    ></nut-menu-item>
   </nut-menu>
 </template>
-
-<script>
-import { reactive, ref } from 'vue';
-
-export default {
-  setup() {
-    const state = reactive({
-      options3: [
-        { text: '全部商品', value: 0 },
-        { text: '家庭清洁/纸品', value: 1 },
-        { text: '个人护理', value: 2 },
-        { text: '美妆护肤', value: 3 },
-        { text: '食品饮料', value: 4 },
-        { text: '家用电器', value: 5 },
-        { text: '母婴', value: 6 },
-        { text: '数码', value: 7 },
-        { text: '电脑、办公', value: 8 },
-        { text: '运动户外', value: 9 },
-        { text: '厨具', value: 10 },
-        { text: '医疗保健', value: 11 },
-        { text: '酒类', value: 12 },
-        { text: '生鲜', value: 13 },
-        { text: '家具', value: 14 },
-        { text: '传统滋补', value: 15 },
-        { text: '汽车用品', value: 16 },
-        { text: '家居日用', value: 17 },
-      ],
-      value3: 0
-    });
-
-    return {
-      state
-    };
-  }
-}
-</script>
 ```
 
 ### 自定义选中态颜色
@@ -184,42 +136,10 @@ export default {
 ```html
 <template>
   <nut-menu active-color="green">
-    <nut-menu-item v-model="state.value1" :options="state.options1" />
-    <nut-menu-item v-model="state.value2" @change="handleChange" :options="state.options2" />
+    <nut-menu-item v-model="state.value1" :options="options1"></nut-menu-item>
+    <nut-menu-item v-model="state.value2" :options="options2"></nut-menu-item>
   </nut-menu>
 </template>
-
-<script>
-import { reactive, ref } from 'vue';
-
-export default {
-  setup() {
-    const state = reactive({
-      options1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 }
-      ],
-      options2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
-      ],
-      value1: 0,
-      value2: 'a'
-    });
-
-    const handleChange = val => {
-      console.log('val', val);
-    }
-
-    return {
-      state,
-      handleChange
-    };
-  }
-}
-</script>
 ```
 
 ### 自定义图标
@@ -228,98 +148,28 @@ export default {
 <template>
   <nut-menu>
     <template #icon>
-        <nut-icon name="triangle-down" />
+      <nut-icon name="triangle-down"></nut-icon>
     </template>
-    <nut-menu-item v-model="state.value1" :options="state.options1" />
-    <nut-menu-item v-model="state.value2" @change="handleChange" :options="state.options2">
+
+    <nut-menu-item v-model="state.value1" :options="options1"></nut-menu-item>
+    <nut-menu-item v-model="state.value2" :options="options2">
       <template #icon>
-        <nut-icon name="checked" />
+        <nut-icon name="checked"></nut-icon>
       </template>
     </nut-menu-item>
   </nut-menu>
 </template>
-
-<script>
-import { reactive, ref } from 'vue';
-
-export default {
-  setup() {
-    const state = reactive({
-      options1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 }
-      ],
-      options2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
-      ],
-      value1: 0,
-      value2: 'a'
-    });
-
-    const handleChange = val => {
-      console.log('val', val);
-    }
-
-    return {
-      state,
-      handleChange
-    };
-  }
-}
-</script>
 ```
 
 ### 向上展开
 
 ```html
 <template>
-  <div class="blank"></div>
   <nut-menu direction="up">
-    <nut-menu-item v-model="state.value1" :options="state.options1" />
-    <nut-menu-item v-model="state.value2" @change="handleChange" :options="state.options2" />
+    <nut-menu-item v-model="state.value1" :options="options1"></nut-menu-item>
+    <nut-menu-item v-model="state.value2" :options="options2"></nut-menu-item>
   </nut-menu>
 </template>
-
-<script>
-import { reactive, ref } from 'vue';
-
-export default {
-  setup() {
-    const state = reactive({
-      options1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 }
-      ],
-      options2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
-      ],
-      value1: 0,
-      value2: 'a'
-    });
-
-    const handleChange = val => {
-      console.log('val', val);
-    }
-
-    return {
-      state,
-      handleChange
-    };
-  }
-}
-</script>
-<style>
-.blank {
-  width: 200px;
-  height: 200px;
-}
-</style>
 ```
 
 ### 禁用菜单
@@ -327,118 +177,71 @@ export default {
 ```html
 <template>
   <nut-menu>
-    <nut-menu-item disabled v-model="state.value1" :options="state.options1" />
-    <nut-menu-item disabled v-model="state.value2" :options="state.options2" />
+    <nut-menu-item v-model="state.value1" :options="options1" disabled></nut-menu-item>
+    <nut-menu-item v-model="state.value2" :options="options2" disabled></nut-menu-item>
   </nut-menu>
 </template>
-
-<script>
-import { reactive } from 'vue';
-
-export default {
-  setup() {
-    const state = reactive({
-      options1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 }
-      ],
-      options2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
-      ],
-      options3: [
-        { text: '全部商品', value: 0 },
-        { text: '家庭清洁/纸品', value: 1 },
-        { text: '个人护理', value: 2 },
-        { text: '美妆护肤', value: 3 },
-        { text: '食品饮料', value: 4 },
-        { text: '家用电器', value: 5 },
-        { text: '母婴', value: 6 },
-        { text: '数码', value: 7 },
-        { text: '电脑、办公', value: 8 },
-        { text: '运动户外', value: 9 },
-        { text: '厨具', value: 10 },
-        { text: '医疗保健', value: 11 },
-        { text: '酒类', value: 12 },
-        { text: '生鲜', value: 13 },
-        { text: '家具', value: 14 },
-        { text: '传统滋补', value: 15 },
-        { text: '汽车用品', value: 16 },
-        { text: '家居日用', value: 17 },
-      ],
-      value1: 0,
-      value2: 'a',
-      value3: 0
-    });
-
-    return {
-      state
-    };
-  }
-}
-</script>
 ```
 
 ## API
 
-### Menu Props
+### Props
 
-| 参数                   | 说明                                                                 | 类型                      | 可选值    | 默认值    |
-|------------------------|--------------------------------------------------------------------|---------------------------|-----------|-----------|
-| active-color           | 选项的选中态图标颜色                                                 | string                    | -         | #F2270C   |
-| close-on-click-overlay | 是否在点击遮罩层后关闭菜单                                           | boolean                   | -         | `true`    |
-| scroll-fixed           | 滚动后是否固定，可设置固定位置（参考 [滚动固定](#滚动固定) 部分的说明） | boolean / string / number | -         | `false`   |
-| scroll-top `1.7.13`    | 页面的滚动距离，通过 `onPageScroll` 获取                              | number                    | -         | `0`       |
-| title-class            | 自定义标题样式类                                                     | string                    | -         | -         |
-| lock-scroll `H5`       | 背景是否锁定                                                         | boolean                   | -         | `true`    |
-| title-icon             | 自定义标题图标                                                       | string                    | -         | -         |
-| direction              | 展开方向                                                             | string                    | up / down | -         |
-| up-icon                | 收起的图标                                                           | string                    | -         | rect-up   |
-| down-icon              | 展开的图标                                                           | string                    | -         | rect-down |
+| 参数                     | 说明            | 类型                        | 可选值       | 默认值       |
+|------------------------|---------------|---------------------------|-----------|-----------|
+| active-color           | 选项的选中态图标颜色    | string                    | -         | #F2270C   |
+| close-on-click-overlay | 是否在点击遮罩层后关闭菜单 | boolean                   | -         | `true`    |
+| scroll-fixed           | 滚动后是否固定       | boolean / string / number | -         | `false`   |
+| scroll-top `1.7.13`    | 页面的滚动距离       | number                    | -         | `0`       |
+| title-class            | 自定义标题样式类      | string                    | -         | -         |
+| lock-scroll `H5`       | 背景是否锁定        | boolean                   | -         | `true`    |
+| title-icon             | 自定义标题图标       | string                    | -         | -         |
+| direction              | 展开方向          | string                    | up / down | down      |
+| up-icon                | 收起的图标         | string                    | -         | rect-up   |
+| down-icon              | 展开的图标         | string                    | -         | rect-down |
 
-### Menu Slots
+### Slots
 
-| 名称 | 说明                                                            |
-|------|---------------------------------------------------------------|
-| icon | 自定义标题图标 (不支持小程序，小程序建议使用 props 传递图标名称) |
+| 名称   | 说明              |
+|------|-----------------|
+| icon | 自定义标题图标（不支持小程序） |
 
 ### MenuItem Props
 
-| 参数                 | 说明                             | 类型    | 可选值 | 默认值         |
-|----------------------|--------------------------------|---------|--------|----------------|
-| title                | 菜单项标题                       | string  | -      | 当前选中项文字 |
-| options              | 选项数组                         | Array   | -      | -              |
-| disabled             | 是否禁用菜单                     | boolean | -      | `false`        |
-| cols                 | 可以设置一行展示多少列 `options` | number  | -      | `1`            |
-| direction            | 菜单展开方向                     | string  | up     | down           |
-| active-title-class   | 选项选中时自定义标题样式类       | string  | -      | -              |
-| inactive-title-class | 选项非选中时自定义标题样式类     | string  | -      | -              |
-
-### MenuItem Slots
-
-| 名称 | 说明                          |
-|------|-----------------------------|
-| icon | 自定义选项图标 (不支持小程序) |
+| 参数                   | 说明             | 类型              | 可选值 | 默认值     |
+|----------------------|----------------|-----------------|-----|---------|
+| v-model              | 选中值            | string / number | -   | -       |
+| title                | 菜单项标题          | string          | -   | -       |
+| options              | 选项数组           | Array           | -   | `[]`    |
+| disabled             | 是否禁用菜单         | boolean         | -   | `false` |
+| cols                 | 一行展示多少列        | number          | -   | `1`     |
+| active-title-class   | 选项选中时自定义标题样式类  | string          | -   | -       |
+| inactive-title-class | 选项非选中时自定义标题样式类 | string          | -   | -       |
+| option-icon          | 选项选中时选中图标      | string          | -   | -       |
 
 ### MenuItem Events
 
-| 事件名              | 说明             | 回调参数                  |
-|---------------------|----------------|---------------------------|
-| change              | 选择选项时触发   | value: `number \| string` |
-| open                | 打开菜单栏时触发 | -                         |
-| close               | 关闭菜单栏时触发 | -                         |
-| item-click `1.7.11` | 点击选项时触发   | item: `MenuItemOption`    |
+| 事件名                 | 说明       | 类型                                  |
+|---------------------|----------|-------------------------------------|
+| change              | 选择选项时触发  | `(value: number \| string) => void` |
+| open                | 打开菜单栏时触发 | `() => void`                        |
+| close               | 关闭菜单栏时触发 | `() => void`                        |
+| item-click `1.7.11` | 点击选项时触发  | `(item: MenuItemOption) => void`    |
 
-### MenuItem Methods
+### MenuItem Slots
 
-通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 MenuItem 实例并调用实例方法
+| 名称   | 说明              |
+|------|-----------------|
+| icon | 自定义选项图标（不支持小程序） |
 
-| 名称          | 说明                                                          | 参数                      | 返回值 |
-|-----------------|-------------------------------------------------------------|---------------------------|--------|
-| toggle          | 切换菜单展示状态，传 `true` 为显示，`false` 为隐藏，不传参为取反 | show?: `boolean`          | -      |
-| change `1.7.11` | 变更选择项                                                    | value: `number \| string` | -      |
+### MenuItem Exposes
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 MenuItem 实例并调用实例方法。
+
+| 名称              | 说明                                        | 类型                                   |
+|-----------------|-------------------------------------------|--------------------------------------|
+| toggle          | 切换菜单展示状态（传 `true` 为显示，`false` 为隐藏，不传参为取反） | `(show?: boolean) => boolean`        |
+| change `1.7.11` | 变更选择项                                     | `(value?: number \| string) => void` |
 
 ## 主题定制
 
@@ -446,7 +249,7 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                  | 默认值                            |
+| 名称                                    | 默认值                               |
 |---------------------------------------|-----------------------------------|
 | --nut-menu-bar-line-height            | 48px                              |
 | --nut-menu-item-font-size             | var(--nut-font-size-2)            |
