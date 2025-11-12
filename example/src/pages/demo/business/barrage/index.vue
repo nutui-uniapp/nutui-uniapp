@@ -1,11 +1,22 @@
-<script setup lang="ts">
+<script lang="ts">
 import { ref } from 'vue'
 
-const danmu = ref<any>(null)
-const list = ref(['画美不看', '不明觉厉', '喜大普奔', '男默女泪', '累觉不爱', '爷青结'])
-function addDanmu() {
-  const n = Math.random()
-  danmu.value.add(`随机——${String(n).substr(2, 10)}`)
+export default {
+  setup() {
+    const inputVal = ref<any>('')
+    const danmu = ref<any>(null)
+    const list = ref(['画美不看', '不明觉厉', '喜大普奔', '男默女泪', '累觉不爱', '爷青结'])
+    function addDanmu() {
+      const n = Math.random()
+      danmu.value.add(`随机——${String(n).substr(2, 10)}`)
+    }
+    return {
+      inputVal,
+      danmu,
+      list,
+      addDanmu,
+    }
+  },
 }
 </script>
 

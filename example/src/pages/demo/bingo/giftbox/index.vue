@@ -1,21 +1,32 @@
-<script setup lang="ts">
+<script lang="ts">
 import { ref } from 'vue'
 
-const refChild = ref()
-function initBox() {
-  refChild.value.init()
-}
-function startTurns() {
-  uni.showToast({
-    title: '开始抽奖',
-    icon: 'none',
-  })
-}
-function endTurns() {
-  uni.showToast({
-    title: '恭喜你中奖了',
-    icon: 'success',
-  })
+export default {
+  props: {},
+  setup() {
+    const refChild = ref()
+    const initBox = () => {
+      refChild.value.init()
+    }
+    const startTurns = () => {
+      uni.showToast({
+        title: '开始抽奖',
+        icon: 'none',
+      })
+    }
+    const endTurns = () => {
+      uni.showToast({
+        title: '恭喜你中奖了',
+        icon: 'success',
+      })
+    }
+    return {
+      refChild,
+      initBox,
+      startTurns,
+      endTurns,
+    }
+  },
 }
 </script>
 
