@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
 import { CLOSE_EVENT, PREFIX } from '../_constants'

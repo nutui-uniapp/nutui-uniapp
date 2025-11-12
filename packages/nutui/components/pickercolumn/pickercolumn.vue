@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { useTouch } from '../_hooks'

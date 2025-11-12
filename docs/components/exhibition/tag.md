@@ -7,79 +7,98 @@
 ### 基础用法
 
 ```html
-<nut-tag type="primary">标签</nut-tag>
-<nut-tag type="success">标签</nut-tag>
-<nut-tag type="danger">标签</nut-tag>
-<nut-tag type="warning">标签</nut-tag>
+<template>
+  <nut-tag type="primary">标签</nut-tag>
+  <nut-tag type="success">标签</nut-tag>
+  <nut-tag type="danger">标签</nut-tag>
+  <nut-tag type="warning">标签</nut-tag>
+</template>
 ```
 
 ### 样式风格
 
 ```html
-<!-- 空心样式 -->
-<nut-tag plain>标签</nut-tag>
+<template>
+  <!-- 空心样式 -->
+  <nut-tag plain>标签</nut-tag>
 
-<!-- 圆角样式 -->
-<nut-tag type="primary" round>标签</nut-tag>
+  <!-- 圆角样式 -->
+  <nut-tag type="primary" round>标签</nut-tag>
 
-<!-- 标记样式 -->
-<nut-tag type="primary" mark>标签</nut-tag>
+  <!-- 标记样式 -->
+  <nut-tag type="primary" mark>标签</nut-tag>
 
-<!-- 可关闭标签 -->
-<nut-tag v-if="show" type="primary" closeable @close="close">标签</nut-tag>
+  <!-- 可关闭标签 -->
+  <nut-tag
+    v-if="visible"
+    type="primary"
+    closeable
+    @close="onClose"
+  >标签</nut-tag>
 
-<!-- 关闭图标大小 -->
-<nut-tag type="primary" closeable close-icon-size="8">标签</nut-tag>
+  <!-- 关闭图标大小 -->
+  <nut-tag type="primary" closeable close-icon-size="8">标签</nut-tag>
+</template>
 ```
 
-```typescript
-const show = ref<boolean>(true)
+```ts
+const visible = ref(true);
 
-function close() {
-  show.value = false
+function onClose() {
+  visible.value = false;
 }
 ```
 
 ### 颜色自定义
 
 ```html
-<!-- 背景颜色 -->
-<nut-tag custom-color="#fa685d">标签</nut-tag>
+<template>
+  <!-- 背景颜色 -->
+  <nut-tag custom-color="#fa685d">标签</nut-tag>
 
-<!-- 文字颜色 -->
-<nut-tag custom-color="#e9e9e9" text-color="#999999">标签</nut-tag>
+  <!-- 文字颜色 -->
+  <nut-tag custom-color="#e9e9e9" text-color="#999999">标签</nut-tag>
 
-<!-- 空心颜色 -->
-<nut-tag custom-color="#fa2400" plain>标签</nut-tag>
+  <!-- 空心颜色 -->
+  <nut-tag custom-color="#fa2400" plain>标签</nut-tag>
+</template>
 ```
 
 ### 禁用状态
 
-> 自 `1.7.7` 开始支持禁用标签，禁用后不会触发 `click` 和 `close` 事件
+自 `1.7.7` 开始支持使用 `disabled` 禁用标签，禁用后不会触发 `click` 和 `close` 事件。
 
 ```html
-<!-- 普通标签 -->
-<nut-tag type="primary" disabled @click="onClick">标签</nut-tag>
+<template>
+  <!-- 普通标签 -->
+  <nut-tag type="primary" disabled @click="onClick">标签</nut-tag>
 
-<!-- 可关闭标签 -->
-<nut-tag v-if="show" type="primary" closeable disabled @close="close">标签</nut-tag>
+  <!-- 可关闭标签 -->
+  <nut-tag
+    v-if="visible"
+    type="primary"
+    closeable
+    disabled
+    @close="onClose"
+  >标签</nut-tag>
+</template>
 ```
 
 ## API
 
 ### Props
 
-| 参数                      | 说明                                               | 类型              | 默认值     |
-|-------------------------|--------------------------------------------------|-----------------|---------|
-| type                    | 标签类型，可选值为 `primary`、`success`、`danger`、`warning` | string          | default |
-| custom-color            | 标签颜色                                             | string          | -       |
-| text-color              | 文本颜色                                             | string          | -       |
-| plain                   | 是否为空心样式                                          | boolean         | `false` |
-| round                   | 是否为圆角样式                                          | boolean         | `false` |
-| mark                    | 是否为标记样式                                          | boolean         | `false` |
-| closeable               | 是否为可关闭标签                                         | boolean         | `false` |
-| close-icon-size `1.7.7` | 关闭图标大小                                           | number / string | 11px    |
-| disabled `1.7.7`        | 是否禁用                                             | boolean         | `false` |
+| 参数                      | 说明       | 类型              | 可选值                                            | 默认值     |
+|-------------------------|----------|-----------------|------------------------------------------------|---------|
+| type                    | 标签类型     | string          | primary / success / danger / warning / default | default |
+| custom-color            | 标签颜色     | string          | -                                              | -       |
+| text-color              | 文本颜色     | string          | -                                              | -       |
+| plain                   | 是否为空心样式  | boolean         | -                                              | `false` |
+| round                   | 是否为圆角样式  | boolean         | -                                              | `false` |
+| mark                    | 是否为标记样式  | boolean         | -                                              | `false` |
+| closeable               | 是否为可关闭标签 | boolean         | -                                              | `false` |
+| close-icon-size `1.7.7` | 关闭图标大小   | number / string | -                                              | `11`    |
+| disabled `1.7.7`        | 是否禁用     | boolean         | -                                              | `false` |
 
 ### Slots
 
@@ -89,10 +108,10 @@ function close() {
 
 ### Events
 
-| 事件名   | 说明   | 回调参数    |
-|-------|------|---------|
-| click | 点击事件 | `event` |
-| close | 关闭事件 | `event` |
+| 事件名   | 说明   | 类型                       |
+|-------|------|--------------------------|
+| click | 点击事件 | `(event: Event) => void` |
+| close | 关闭事件 | `(event: Event) => void` |
 
 ## 主题定制
 

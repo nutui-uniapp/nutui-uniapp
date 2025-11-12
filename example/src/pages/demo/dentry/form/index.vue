@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { FormInst, FormItemRule, FormItemRuleWithoutValidator } from 'nutui-uniapp'
 import { reactive, ref } from 'vue'
 

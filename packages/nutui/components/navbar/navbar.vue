@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance, ComputedRef, CSSProperties } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onMounted, ref, toRefs, watch } from 'vue'
 import { PREFIX } from '../_constants'

@@ -2,11 +2,20 @@
 
 ### 介绍
 
-在页面顶部展示消息提示
+在页面顶部展示消息提示。
 
 ### 最简单的用法
 
-> 自 `1.7.16` 开始支持组合式函数用法，`useNotify` 的自动按需导入请参考 [快速上手-API导入](/guide/quick-start#api导入) 部分
+自 `1.7.16` 开始支持组合式函数用法，`useNotify` 的自动按需导入请参考 [快速上手-API导入](/guide/quick-start#api导入) 部分。
+
+```html
+<template>
+  <nut-cell title="主要通知" is-link @click="showPrimary()"></nut-cell>
+
+  <!-- 注意，需要手动在页面中插入一个 Notify 组件 -->
+  <nut-notify></nut-notify>
+</template>
+```
 
 ```ts
 const notify = useNotify();
@@ -16,22 +25,14 @@ function showPrimary() {
 }
 ```
 
-```html
-<template>
-  <!-- 注意，需要手动在页面中插入一个notify节点 -->
-  <nut-notify></nut-notify>
-
-  <nut-cell title="主要通知" is-link @click="showPrimary"></nut-cell>
-</template>
-```
-
 ::: details 进一步简化使用
-配合 [@uni-helper/vite-plugin-uni-layouts](https://github.com/uni-helper/vite-plugin-uni-layouts) 插件，
-将 `nut-notify` 节点置于 `layout` 中，可以更进一步简化使用
 
-> layouts/default.vue
+配合 [@uni-helper/vite-plugin-uni-layouts](https://github.com/uni-helper/vite-plugin-uni-layouts) 插件，
+将 `nut-notify` 节点置于 `layout` 中，可以更进一步简化使用。
 
 ```html
+<!-- layouts/default.vue -->
+
 <template>
   <slot></slot>
 
@@ -44,8 +45,20 @@ function showPrimary() {
 ### 组合式函数用法
 
 ::: warning 注意
-目前 `useNotify` 只能在 `setup` 作用域下使用
+目前 `useNotify` 只能在 `setup` 作用域下使用。
 :::
+
+```html
+<template>
+  <nut-cell title="主要通知" is-link @click="showPrimary()"></nut-cell>
+  <nut-cell title="成功通知" is-link @click="showSuccess()"></nut-cell>
+  <nut-cell title="危险通知" is-link @click="showDanger()"></nut-cell>
+  <nut-cell title="警告通知" is-link @click="showWarning()"></nut-cell>
+  <nut-cell title="手动关闭通知" is-link @click="hide()"></nut-cell>
+
+  <nut-notify></nut-notify>
+</template>
+```
 
 ```ts
 import { useNotify } from "nutui-uniapp/composables";
@@ -73,24 +86,7 @@ function hide() {
 }
 ```
 
-```html
-<template>
-  <nut-notify></nut-notify>
-
-  <nut-cell title="主要通知" is-link @click="showPrimary"></nut-cell>
-  <nut-cell title="成功通知" is-link @click="showSuccess"></nut-cell>
-  <nut-cell title="危险通知" is-link @click="showDanger"></nut-cell>
-  <nut-cell title="警告通知" is-link @click="showWarning"></nut-cell>
-  <nut-cell title="手动关闭通知" is-link @click="hide"></nut-cell>
-</template>
-```
-
-若页面中存在多个`notify`实例，可以使用`selector`改变配置注入的key，以防止同时控制多个实例（注意，`selector`不支持动态修改）
-
-```ts
-const notify = useNotify();
-const notify2 = useNotify("notify2");
-```
+若页面中存在多个 Notify 实例，可以使用 `selector` 改变配置注入的 key，以防止同时控制多个实例。（注意，`selector` 不支持动态修改）
 
 ```html
 <template>
@@ -99,48 +95,68 @@ const notify2 = useNotify("notify2");
 </template>
 ```
 
-### Ref用法
+```ts
+const notify = useNotify();
+const notify2 = useNotify("notify2");
+```
+
+### Ref 用法
+
+```html
+<template>
+  <nut-notify ref="notifyEl"></nut-notify>
+
+  <nut-cell title="主要通知" is-link @click="showPrimary()"></nut-cell>
+  <nut-cell title="成功通知" is-link @click="showSuccess()"></nut-cell>
+  <nut-cell title="危险通知" is-link @click="showDanger()"></nut-cell>
+  <nut-cell title="警告通知" is-link @click="showWarning()"></nut-cell>
+</template>
+```
 
 ```ts
 import type { NotifyInst } from "nutui-uniapp";
 
-const notify = ref<NotifyInst | null>(null);
+const notifyEl = ref<NotifyInst>();
 
 function showPrimary() {
-  notify.value?.primary("主要通知");
+  notifyEl.value.primary("主要通知");
 }
 
 function showSuccess() {
-  notify.value?.success("成功通知");
+  notifyEl.value.success("成功通知");
 }
 
 function showDanger() {
-  notify.value?.danger("危险通知");
+  notifyEl.value.danger("危险通知");
 }
 
 function showWarning() {
-  notify.value?.warning("警告通知");
+  notifyEl.value.warning("警告通知");
 }
 
 // 1.7.15 及之前的版本，使用 `showNotify` 方法
-notify.value?.showNotify({
+notifyEl.value.showNotify({
   type: "primary",
   msg: "主要通知"
 });
 ```
 
+### Props 用法
+
 ```html
 <template>
-  <nut-notify ref="notify"></nut-notify>
+  <nut-notify
+    v-model:visible="notifyState.visible"
+    :type="notifyState.type"
+    :msg="notifyState.msg"
+  ></nut-notify>
 
-  <nut-cell title="主要通知" is-link @click="showPrimary"></nut-cell>
-  <nut-cell title="成功通知" is-link @click="showSuccess"></nut-cell>
-  <nut-cell title="危险通知" is-link @click="showDanger"></nut-cell>
-  <nut-cell title="警告通知" is-link @click="showWarning"></nut-cell>
+  <nut-cell title="主要通知" is-link @click="showPrimary()"></nut-cell>
+  <nut-cell title="成功通知" is-link @click="showSuccess()"></nut-cell>
+  <nut-cell title="危险通知" is-link @click="showDanger()"></nut-cell>
+  <nut-cell title="警告通知" is-link @click="showWarning()"></nut-cell>
 </template>
 ```
-
-### Props用法
 
 ```ts
 import type { NotifyProps } from "nutui-uniapp";
@@ -184,19 +200,6 @@ function showWarning() {
 }
 ```
 
-```html
-<template>
-  <nut-notify v-model:visible="notifyState.visible"
-              :type="notifyState.type"
-              :msg="notifyState.msg"></nut-notify>
-
-  <nut-cell title="主要通知" is-link @click="showPrimary"></nut-cell>
-  <nut-cell title="成功通知" is-link @click="showSuccess"></nut-cell>
-  <nut-cell title="危险通知" is-link @click="showDanger"></nut-cell>
-  <nut-cell title="警告通知" is-link @click="showWarning"></nut-cell>
-</template>
-```
-
 ### 自定义样式
 
 ```ts
@@ -231,55 +234,57 @@ notify.showNotify({
 });
 ```
 
+## API
+
 ### Props
 
-| 参数                              | 说明                                                         | 类型               | 默认值      |
-|---------------------------------|------------------------------------------------------------|------------------|----------|
-| visible                         | 显示与否                                                       | boolean          | `false`  |
-| selector `1.7.16`               | 配置注入的key                                                   | string           | -        | -       |
-| type                            | 提示的信息类型，可选值为 `base` `primary` `success` `danger` `warning` | string           | `danger` |
-| msg                             | 展示文案，支持通过`\n`换行                                            | string           | `''`     |
-| position                        | 自定义位置，可选值为 `top` `bottom`                                  | string           | `top`    |
-| duration                        | 展示时长(ms)，值为 0 时，notify 不会消失                                | number           | `3000`   |
-| class-name                      | 自定义类名                                                      | string \| number | `1`      |
-| z-index `1.7.16`                | 组件z-index                                                  | number           | -        | `9999`    |
-| custom-color                    | 字体颜色                                                       | string           | -        |
-| background                      | 背景颜色                                                       | string           | -        |
-| safe-area-inset-top             | 是否留出顶部安全距离（默认为状态栏高度）                                       | boolean          | `false`  |
-| safe-area-inset-bottom `1.7.16` | 是否留出底部安全距离（启用后通过 `safeHeight` 指定距离）                        | boolean          | `false`  |
-| safe-height                     | 自定义安全距离                                                    | number           | -        |
-| on-click                        | 点击时的回调函数                                                   | Function         | -        |
-| on-close                        | 关闭时的回调函数                                                   | Function         | -        |
-| on-closed `1.7.16`              | 关闭动画完成时回调函数                                                | Function         | -        |
+| 参数                              | 说明                                   | 类型              | 可选值                                                  | 默认值     |
+|---------------------------------|--------------------------------------|-----------------|------------------------------------------------------|---------|
+| visible                         | 显示与否                                 | boolean         | -                                                    | `false` |
+| selector `1.7.16`               | 配置注入的 key                            | string          | -                                                    | -       |
+| type                            | 提示的信息类型                              | string          | base / primary / success / danger / warning / custom | danger  |
+| msg                             | 展示文案，支持通过 `\n` 换行                    | string          | -                                                    | -       |
+| position                        | 自定义位置                                | string          | top / bottom                                         | top     |
+| duration                        | 展示时长（单位：ms，值为 0 时，不会自动消失）            | number          | -                                                    | `3000`  |
+| class-name                      | 自定义类名                                | string          | -                                                    | -       |
+| z-index `1.7.16`                | 组件的 z-index                          | number          | -                                                    | `9999`  |
+| custom-color                    | 字体颜色                                 | string          | -                                                    | -       |
+| background                      | 背景颜色                                 | string          | -                                                    | -       |
+| safe-area-inset-top             | 是否留出顶部安全距离（默认为状态栏高度）                 | boolean         | -                                                    | `false` |
+| safe-area-inset-bottom `1.7.16` | 是否留出底部安全距离（启用后通过 `safe-height` 指定距离） | boolean         | -                                                    | `false` |
+| safe-height                     | 自定义安全距离                              | number / string | -                                                    | -       |
+| on-click                        | 点击时的回调函数                             | Function        | -                                                    | -       |
+| on-close                        | 关闭时的回调函数                             | Function        | -                                                    | -       |
+| on-closed `1.7.16`              | 关闭动画完成时回调函数                          | Function        | -                                                    | -       |
 
 ### Events
 
-| 事件名             | 说明        | 回调参数 |
-|-----------------|-----------|------|
-| click `1.7.16`  | 点击时触发     | `-`  |
-| close `1.7.16`  | 关闭时触发     | `-`  |
-| closed `1.7.16` | 关闭动画完成时触发 | `-`  |
+| 事件名             | 说明        | 类型           |
+|-----------------|-----------|--------------|
+| click `1.7.16`  | 点击时触发     | `() => void` |
+| close `1.7.16`  | 关闭时触发     | `() => void` |
+| closed `1.7.16` | 关闭动画完成时触发 | `() => void` |
 
-### Methods
+### Exposes
 
-通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Notify 实例并调用实例方法
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Notify 实例并调用实例方法。
 
-| 方法名              | 说明                | 参数                                                           | 返回值 |
-|------------------|-------------------|--------------------------------------------------------------|-----|
-| show `1.7.16`    | 显示通知              | (type: `NotifyType`, msg: string, options?: `NotifyOptions`) | -   |
-| primary `1.7.16` | 主要通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| success `1.7.16` | 成功通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| danger `1.7.16`  | 危险通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| warning `1.7.16` | 警告通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| custom `1.7.16`  | 自定义通知             | (msg: string, options?: `NotifyOptions`)                     | -   |
-| hide `1.7.16`    | 隐藏通知              | -                                                            | -   |
-| showNotify       | （已废弃，下个主版本移除）显示通知 | (options: `NotifyOptions`)                                   | -   |
-| hideNotify       | （已废弃，下个主版本移除）隐藏通知 | -                                                            | -   |
+| 名称               | 说明                | 类型                                                                 |
+|------------------|-------------------|--------------------------------------------------------------------|
+| show `1.7.16`    | 显示通知              | `(type: NotifyType, msg: string, options?: NotifyOptions) => void` |
+| primary `1.7.16` | 主要通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| success `1.7.16` | 成功通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| danger `1.7.16`  | 危险通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| warning `1.7.16` | 警告通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| custom `1.7.16`  | 自定义通知             | `(msg: string, options?: NotifyOptions) => void`                   |
+| hide `1.7.16`    | 隐藏通知              | `() => void`                                                       |
+| showNotify       | （已废弃，下个主版本移除）显示通知 | `(options: NotifyOptions) => void`                                 |
+| hideNotify       | （已废弃，下个主版本移除）隐藏通知 | `() => void`                                                       |
 
 ::: details 类型定义 `1.7.16`
 
 ```ts
-export interface NotifyOptions {
+interface NotifyOptions {
   /**
    * @description 显示与否
    */
@@ -331,23 +336,20 @@ export interface NotifyOptions {
   /**
    * @description 点击时的回调函数
    */
-  // eslint-disable-next-line ts/no-unsafe-function-type
   onClick?: Function
   /**
    * @description 关闭时的回调函数
    */
-  // eslint-disable-next-line ts/no-unsafe-function-type
   onClose?: Function
   /**
    * @description 关闭动画完成时回调函数
    */
-  // eslint-disable-next-line ts/no-unsafe-function-type
   onClosed?: Function
 }
 ```
 
 ```ts
-export interface NotifyInst {
+interface NotifyInst {
   /**
    * @deprecated 使用`show`、`primary`、`success`、`danger`、`warning`代替
    * @description 显示通知

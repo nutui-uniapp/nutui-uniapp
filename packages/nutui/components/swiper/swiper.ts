@@ -37,10 +37,6 @@ export const swiperProps = {
    */
   autoPlay: makeNumericProp(0),
   /**
-   * @description 是否自动播放
-   */
-  isAutoPlay: truthProp,
-  /**
    * @description 初始化索引值
    */
   initPage: makeNumericProp(0),
@@ -56,13 +52,6 @@ export const swiperProps = {
    * @description 滑动过程中是否禁止冒泡
    */
   isStopPropagation: truthProp,
-  /**
-   * @description 轮播列表数据
-   */
-  list: {
-    type: Array,
-    default: () => [],
-  },
   /**
    * @description 分页指示器没有选中的颜色
    */

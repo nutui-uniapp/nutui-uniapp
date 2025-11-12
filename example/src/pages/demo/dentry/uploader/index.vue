@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ProgressStatus } from 'nutui-uniapp'
 import { ref } from 'vue'
 

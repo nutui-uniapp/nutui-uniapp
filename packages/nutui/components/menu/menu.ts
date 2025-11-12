@@ -50,7 +50,7 @@ export const menuProps = {
   /**
    * @description 标题样式类名
    */
-  titleClass: [String],
+  titleClass: String,
   /**
    * @description 收起的图标
    */

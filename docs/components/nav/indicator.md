@@ -8,45 +8,42 @@
 
 ```html
 <template>
-  <nut-cell>
-    <nut-indicator :size="3" :current="3">step1</nut-indicator>
-  </nut-cell>
-  <nut-cell>
-    <nut-row>
-      <nut-col :span="12">
-        <nut-button size="small" type="primary">主要按钮</nut-button>
-      </nut-col>
-      <nut-col :span="12">
-        <nut-indicator :block="true" align="right" :size="6" :current="5">step1</nut-indicator>
-      </nut-col>
-    </nut-row>
-  </nut-cell>
+  <nut-indicator :current="1" :size="3"></nut-indicator>
 </template>
 ```
 
-### block用法
+### block 用法
 
 ```html
 <template>
-  <nut-cell>
-    <nut-indicator :block="true" algin="center" :size="6" :current="5">step1</nut-indicator>
-  </nut-cell>
-  <nut-cell>
-    <nut-indicator :block="true" align="left" :size="6" :current="1">step1</nut-indicator>
-  </nut-cell>
-  <nut-cell>
-    <nut-indicator :block="true" align="right" :size="6" :current="5">step1</nut-indicator>
-  </nut-cell>
+  <nut-indicator
+    :current="5"
+    :size="6"
+    block
+    align="center"
+  ></nut-indicator>
+
+  <nut-indicator
+    :current="1"
+    :size="6"
+    block
+    align="left"
+  ></nut-indicator>
+
+  <nut-indicator
+    :current="5"
+    :size="6"
+    block
+    align="right"
+  ></nut-indicator>
 </template>
 ```
 
-### 不补0
+### 不补 0
 
 ```html
 <template>
-  <nut-cell>
-    <nut-indicator :fill-zero="false" :size="6" :current="5">step1</nut-indicator>
-  </nut-cell>
+  <nut-indicator :current="5" :size="6" :fill-zero="false"></nut-indicator>
 </template>
 ```
 
@@ -54,13 +51,13 @@
 
 ### Props
 
-| 参数      | 说明                                                                      | 类型    | 默认值  |
-| --------- | ------------------------------------------------------------------------- | ------- | ------- |
-| current   | 当前步骤                                                                  | number  | `1`     |
-| size      | 步骤长度                                                                  | number  | `3`     |
-| block     | 是否启用块级布局                                                          | boolean | `false` |
-| align     | 对齐方式，仅在 `block` 为 `true` 时生效, 可选值 `left`, `right`, `center` | string  | `left`  |
-| fill-zero | 单数前面是否补 0                                                          | boolean | `true`  |
+| 参数        | 说明                          | 类型      | 可选值                   | 默认值     |
+|-----------|-----------------------------|---------|-----------------------|---------|
+| current   | 当前步骤                        | number  | -                     | `1`     |
+| size      | 步骤长度                        | number  | -                     | `3`     |
+| block     | 是否启用块级布局                    | boolean | -                     | `false` |
+| align     | 对齐方式，仅 `block` 为 `true` 时有效 | string  | left / center / right | left    |
+| fill-zero | 单数前面是否补 0                   | boolean | -                     | `true`  |
 
 ## 主题定制
 
@@ -68,8 +65,8 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                             | 默认值                               |
-| -------------------------------- | ------------------------------------ |
+| 名称                               | 默认值                                  |
+|----------------------------------|--------------------------------------|
 | --nut-indicator-bg-color         | var(--nut-primary-color)             |
 | --nut-indicator-dot-color        | var(--nut-disable-color)             |
 | --nut-indicator-color            | var(--nut-white)                     |

@@ -1,24 +1,19 @@
-<script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+<script lang="ts" setup>
+const list = ref<number[]>([])
 
-export default defineComponent({
-  setup() {
-    const state = reactive<{ count: any[] }>({
-      count: Array.from({ length: 100 }).fill(0),
-    })
+function getList(start: number) {
+  return Array
+    .from({ length: 100 })
+    .fill(0)
+    .map((_, index) => start + index + 1)
+}
 
-    const handleScroll = () => {
-      const arr = Array.from({ length: 100 }).fill(0)
-      const len = state.count.length
-      state.count = state.count.concat(arr.map((item, index: number) => len + index + 1))
-    }
+function onScrollBottom() {
+  list.value = list.value.concat(getList(list.value.length))
+}
 
-    onMounted(() => {
-      state.count = state.count.map((item: number, index: number) => index + 1)
-    })
-
-    return { ...toRefs(state), handleScroll }
-  },
+onLoad(() => {
+  list.value = getList(0)
 })
 </script>
 
@@ -28,10 +23,11 @@ export default defineComponent({
       基础用法
     </h2>
     <nut-cell>
-      <nut-list :height="50" :list-data="count" @scroll-bottom="handleScroll">
-        <template #default="{ item }">
-          <view class="ilist-item">
-            {{ item }}
+      <nut-list :list-data="list" :height="50" @scroll-bottom="onScrollBottom">
+        <template #default="{ item, index }">
+          <view class="item">
+            <text>item：{{ item }}</text>
+            <text>index：{{ index }}</text>
           </view>
         </template>
       </nut-list>
@@ -39,18 +35,16 @@ export default defineComponent({
   </div>
 </template>
 
-<style lang="scss">
-.list-demo {
-  .ilist-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 10px;
-    background-color: #f4a8b6;
-    border-radius: 10px;
-  }
+<style lang="scss" scoped>
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #ffffff;
+  background-color: #fa2c19;
+  border-radius: 6px;
 }
 </style>
 

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ScrollViewOnScrollEvent } from '@uni-helper/uni-app-types'
 import { computed, defineComponent, reactive, ref, watch } from 'vue'
 import { CHANGE_EVENT, CLOSE_EVENT, PREFIX, SELECTED_EVENT, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'

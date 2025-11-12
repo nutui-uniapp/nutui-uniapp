@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const state = reactive({
   val1: '',
   val2: '',

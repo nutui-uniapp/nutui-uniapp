@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, onMounted, reactive, ref, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { floatData, getMainClass } from '../_utils'

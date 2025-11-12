@@ -9,42 +9,44 @@
 ```html
 <template>
   <nut-giftbox
-    ref="refChild"
-    @start-turns="startTurns"
-    @end-turns="endTurns"
-  >
-  </nut-giftbox>
-  <div @click="initBox">再来一次</div>
+    ref="giftboxEl"
+    @start-turns="onTurnsStart()"
+    @end-turns="onTurnsEnd()"
+  ></nut-giftbox>
+
+  <nut-button @click="init()">再来一次</nut-button>
 </template>
-<script lang="ts">
-  import { ref } from "vue";
-  export default {
-    setup() {
-      const refChild = ref();
-      const initBox = () => {
-        refChild.value.init();
-      };
-      const startTurns = () => {
-        console.log("开始");
-      };
-      const endTurns = () => {
-        console.log("结束");
-      };
-      return {
-        refChild,
-        initBox,
-        startTurns,
-        endTurns,
-      };
-    },
-  };
-</script>
+```
+
+```ts
+import type { GiftBoxInst } from "nutui-uniapp";
+
+const giftboxEl = ref<GiftBoxInst>();
+
+function init() {
+  giftboxEl.value.init();
+}
+
+function onTurnsStart() {
+  console.log("抽奖开始");
+}
+
+function onTurnsEnd() {
+  console.log("抽奖结束");
+}
 ```
 
 ### Events
 
-| 事件名      | 说明                   | 回调参数 |
-| ----------- | ---------------------- | -------- |
-| init        | 礼盒初始化             | -        |
-| start-turns | 礼盒打开时候的回调函数 | -        |
-| end-turns   | 礼盒打开后的回调函数   | -        |
+| 事件名         | 说明     | 类型           |
+|-------------|--------|--------------|
+| start-turns | 开始打开礼盒 | `() => void` |
+| end-turns   | 礼盒打开后  | `() => void` |
+
+### Exposes
+
+通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 GiftBox 实例并调用实例方法。
+
+| 名称   | 说明    | 类型           |
+|------|-------|--------------|
+| init | 初始化礼盒 | `() => void` |

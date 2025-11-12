@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance } from 'vue'
 import { computed, defineComponent, provide, reactive } from 'vue'
 import { PREFIX } from '../_constants'

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent, watchEffect } from 'vue'
 import { PREFIX } from '../_constants'
 import { setGlobalZIndex } from '../_hooks'

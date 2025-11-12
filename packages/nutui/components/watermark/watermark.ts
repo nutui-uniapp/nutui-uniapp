@@ -5,10 +5,6 @@ import { commonProps, makeNumberProp, makeNumericProp, makeStringProp, truthProp
 export const watermarkProps = {
   ...commonProps,
   /**
-   * @description 水印的名称
-   */
-  name: String,
-  /**
    * @description 水印之间的垂直间距
    */
   gapY: makeNumberProp(48),
