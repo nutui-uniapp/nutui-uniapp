@@ -1,3 +1,9 @@
+## [1.9.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.3...v1.9.4) (2025-11-12)
+
+### Features
+
+* **imagepreview:** 新增 show-menu-by-longpress 属性 ([#502](https://github.com/nutui-uniapp/nutui-uniapp/issues/502)) ([6817ec6](https://github.com/nutui-uniapp/nutui-uniapp/commit/6817ec6ed5b0f47881415afac9f0d6d20b5df664))
+
 ## [1.9.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.2...v1.9.3) (2025-10-16)
 
 ### Bug Fixes
