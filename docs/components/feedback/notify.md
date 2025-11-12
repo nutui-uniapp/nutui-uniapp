@@ -234,6 +234,8 @@ notify.showNotify({
 });
 ```
 
+## API
+
 ### Props
 
 | 参数                              | 说明                                   | 类型              | 可选值                                                  | 默认值     |
@@ -267,17 +269,17 @@ notify.showNotify({
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Notify 实例并调用实例方法。
 
-| 名称               | 说明                | 参数                                                           | 返回值 |
-|------------------|-------------------|--------------------------------------------------------------|-----|
-| show `1.7.16`    | 显示通知              | (type: `NotifyType`, msg: string, options?: `NotifyOptions`) | -   |
-| primary `1.7.16` | 主要通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| success `1.7.16` | 成功通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| danger `1.7.16`  | 危险通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| warning `1.7.16` | 警告通知              | (msg: string, options?: `NotifyOptions`)                     | -   |
-| custom `1.7.16`  | 自定义通知             | (msg: string, options?: `NotifyOptions`)                     | -   |
-| hide `1.7.16`    | 隐藏通知              | -                                                            | -   |
-| showNotify       | （已废弃，下个主版本移除）显示通知 | (options: `NotifyOptions`)                                   | -   |
-| hideNotify       | （已废弃，下个主版本移除）隐藏通知 | -                                                            | -   |
+| 名称               | 说明                | 类型                                                                 |
+|------------------|-------------------|--------------------------------------------------------------------|
+| show `1.7.16`    | 显示通知              | `(type: NotifyType, msg: string, options?: NotifyOptions) => void` |
+| primary `1.7.16` | 主要通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| success `1.7.16` | 成功通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| danger `1.7.16`  | 危险通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| warning `1.7.16` | 警告通知              | `(msg: string, options?: NotifyOptions) => void`                   |
+| custom `1.7.16`  | 自定义通知             | `(msg: string, options?: NotifyOptions) => void`                   |
+| hide `1.7.16`    | 隐藏通知              | `() => void`                                                       |
+| showNotify       | （已废弃，下个主版本移除）显示通知 | `(options: NotifyOptions) => void`                                 |
+| hideNotify       | （已废弃，下个主版本移除）隐藏通知 | `() => void`                                                       |
 
 ::: details 类型定义 `1.7.16`
 

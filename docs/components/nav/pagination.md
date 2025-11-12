@@ -104,7 +104,7 @@ function onChange(value: number) {
 
 ### Slots
 
-| 名称       | 描述         |
+| 名称       | 说明         |
 |----------|------------|
 | prevText | 自定义上一页按钮内容 |
 | nextText | 自定义下一页按钮内容 |

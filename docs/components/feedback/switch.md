@@ -131,7 +131,7 @@ function onUpdate(value: boolean) {
 
 ### Slots
 
-| 名称   | 描述     |
+| 名称   | 说明     |
 |------|--------|
 | icon | 加载状态图标 |
 

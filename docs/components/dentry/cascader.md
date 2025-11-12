@@ -302,7 +302,7 @@ const convertConfig = {
 
 ### Events
 
-| 事件名            | 说明          | 回调参数                                                      |
+| 事件名            | 说明          | 类型                                                        |
 |----------------|-------------|-----------------------------------------------------------|
 | change         | 选中值改变时触发    | `(value: CascaderValue, nodes: CascaderOption[]) => void` |
 | path-change    | 选中项改变时触发    | `(nodes: CascaderOption[]) => void`                       |
