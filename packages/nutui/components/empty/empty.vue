@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass, pxCheck } from '../_utils'

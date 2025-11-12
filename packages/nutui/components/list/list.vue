@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass, getMainStyle, pxCheck } from '../_utils'

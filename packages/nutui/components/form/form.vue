@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { VNode } from 'vue'
 import { computed, defineComponent, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'

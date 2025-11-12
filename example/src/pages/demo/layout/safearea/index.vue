@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 function generateRandomTextArray(count: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz'
   const textArray = []

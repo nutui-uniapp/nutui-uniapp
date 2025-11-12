@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { TextareaConfirmType, TextareaOnBlurEvent, TextareaOnConfirmEvent, TextareaOnFocusEvent, TextareaOnInputEvent } from '@uni-helper/uni-app-types'
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, nextTick, toRef } from 'vue'

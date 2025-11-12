@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance, CSSProperties, Ref, VNode } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onActivated, onMounted, ref, useSlots, watch } from 'vue'
 import { CHANGE_EVENT, CLICK_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'

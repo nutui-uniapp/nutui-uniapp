@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { InputOnInputEvent } from '@uni-helper/uni-app-types'
 import { computed, defineComponent, nextTick, ref } from 'vue'
 import { PREFIX, UPDATE_MODEL_EVENT } from '../_constants'

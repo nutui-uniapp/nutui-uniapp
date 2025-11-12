@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { PREFIX } from '../../_constants'
 import NutRate from '../../rate/rate.vue'
