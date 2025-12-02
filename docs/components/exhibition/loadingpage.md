@@ -2,13 +2,13 @@
 
 ### 介绍
 
-加载时展示，该组件参考了uview的 loadingpage 组件
+加载页，该组件参考了 uview-ui 的 [加载页](https://uviewui.com/components/loadingPage.html)。
 
 ### 基础用法
 
 ```html
 <template>
-  <nut-loading-page :loading="true"  />
+  <nut-loading-page loading></nut-loading-page>
 </template>
 ```
 
@@ -16,17 +16,20 @@
 
 ```html
 <template>
-  <nut-loading-page :loading="true" image="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"  />
-
+  <nut-loading-page loading image="https://xxx.xx"></nut-loading-page>
 </template>
 ```
 
-### 自定义加载动画模式
+### 自定义加载动画
 
 ```html
 <template>
-  <nut-loading-page custom-color="skyblue" loading-color="skyblue" bg-color="#e8e8e8" :loading="true"  />
-
+  <nut-loading-page
+    loading
+    custom-color="skyblue"
+    loading-color="skyblue"
+    bg-color="#e8e8e8"
+  ></nut-loading-page>
 </template>
 ```
 
@@ -34,16 +37,17 @@
 
 ### Props
 
-| 参数         | 说明                              | 类型               | 默认值     |
-| ------------ | --------------------------------- | ------------------ | ---------- |
-| loading      | 是否加载中                        | boolean            | `false`    |
-| loadingText  | 提示内容                          | string             | `正在加载` |
-| image        | 文字上方用于替换loading动画的图片 | `String`           | `          |
-| bgColor      | 背景颜色                          | string             | `#fff`     |
-| custom-color | 字体颜色                          | String             | `#606266`  |
-| font-size    | 字体大小，单位rpx                 | `String \| Number` | `18`       |
-| iconSize     | 加载中图标的颜色                  | `String`           | `35`       |
-| loadingColor | 边框和线条颜色                    | String             | `#C8C8C8`  |
+| 参数            | 说明         | 类型              | 可选值 | 默认值     |
+|---------------|------------|-----------------|-----|---------|
+| loading       | 是否加载中      | boolean         | -   | `false` |
+| loading-text  | 提示内容       | string          | -   | 正在加载    |
+| image         | 加载中图片      | string          | -   | -       |
+| bg-color      | 背景颜色       | string          | -   | #ffffff |
+| custom-color  | 字体颜色       | string          | -   | #C8C8C8 |
+| font-size     | 字体大小，单位rpx | string / number | -   | `19`    |
+| icon-size     | 加载中图标的颜色   | string          | -   | `28`    |
+| loading-color | 边框和线条颜色    | string          | -   | #C8C8C8 |
+| z-index       | 层级         | number          | -   | `9999`  |
 
 ## 主题定制
 
@@ -51,6 +55,6 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                 | 默认值                                    |
-| ------------------------------------ | ----------------------------------------- |
+| 名称                                   | 默认值                                       |
+|--------------------------------------|-------------------------------------------|
 | --nut-loadingpage-icon-margin-bottom | var(--nut-loadingpage-icon-margin-bottom) |

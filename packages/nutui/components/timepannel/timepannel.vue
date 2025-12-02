@@ -1,5 +1,5 @@
 <!-- eslint-disable padded-blocks -->
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, inject, reactive } from 'vue'
 import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'

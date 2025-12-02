@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, ref } from 'vue'
 import { PREFIX, SELECTED_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { getMainClass, getMainStyle } from '../_utils'

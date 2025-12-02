@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { useTranslate } from '../../locale'
 import NutButton from '../button/button.vue'

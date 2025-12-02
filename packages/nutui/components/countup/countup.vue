@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, nextTick, onMounted, onUnmounted, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { useExtend } from '../_hooks'

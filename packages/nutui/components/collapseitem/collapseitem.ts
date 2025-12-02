@@ -4,10 +4,6 @@ import { commonProps, makeNumericProp, makeRequiredProp, makeStringProp, truthPr
 export const collapseitemProps = {
   ...commonProps,
   /**
-   * @description 折叠面板的引用对象
-   */
-  collapseRef: Object,
-  /**
    * @description 标题栏左侧内容，支持插槽传入（`props` 传入的优先级更高）
    */
   title: makeStringProp(''),

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { CLICK_EVENT } from '../_constants'
 import { commonProps, makeNumberProp } from '../_utils'
+import type { TPrizeItem } from './type'
 
 export const turntableProps = {
   ...commonProps,
@@ -22,7 +22,7 @@ export const turntableProps = {
    * 奖品列表
    */
   prizeList: {
-    type: Array<any>,
+    type: Array<TPrizeItem>,
     required: true,
     default: () => [],
   },
@@ -31,7 +31,7 @@ export const turntableProps = {
    */
   prizeIndex: makeNumberProp(-1),
   /**
-   * @description 从开始转动到结束所用时间,单位秒
+   * @description 转动的圈数
    */
   turnsNumber: makeNumberProp(5),
   /**
@@ -82,7 +82,6 @@ export const turntableProps = {
 export type TurnTableProps = ExtractPropTypes<typeof turntableProps>
 
 export const turntableEmits = {
-  [CLICK_EVENT]: () => true,
   startTurns: () => true,
   endTurns: () => true,
   lockTurns: () => true,

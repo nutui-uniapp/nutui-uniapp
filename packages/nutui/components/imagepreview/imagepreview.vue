@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
 import { CLOSE_EVENT, PREFIX } from '../_constants'
@@ -245,12 +245,12 @@ export default defineComponent({
               direction="all"
             >
               <image
-                mode="aspectFit"
-                :src="item.src"
                 class="nut-image-preview-img"
-                @long-press="longPress(item)"
-                @long-tap="longPress(item)"
+                :src="item.src"
+                mode="aspectFit"
+                :show-menu-by-longpress="props.showMenuByLongpress"
                 @click.stop="closeOnImg"
+                @longpress="longPress(item)"
               />
             </movable-view>
           </movable-area>

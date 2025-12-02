@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, onBeforeMount, reactive, watch } from 'vue'
 import { INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT } from '../_constants'
 import { getMainClass, getTimeStamp, isH5, padZero } from '../_utils'

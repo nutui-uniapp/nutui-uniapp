@@ -1,5 +1,5 @@
 <!-- eslint-disable padded-blocks -->
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { Ref } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { CLOSE_EVENT, INPUT_EVENT, PREFIX, UPDATE_MODEL_EVENT, UPDATE_VISIBLE_EVENT } from '../_constants'

@@ -1,8 +1,8 @@
-# 生成文件
+# Generated
 auto-imports.d.ts
 
-# 缓存文件
+# Cache
 .vitepress/cache
 
-# 制品文件
+# Bundle
 dev-dist

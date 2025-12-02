@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ComponentInternalInstance, VNode } from 'vue'
 import { computed, defineComponent, getCurrentInstance, nextTick, onBeforeUnmount, onDeactivated, reactive, watch } from 'vue'
 import { PREFIX } from '../_constants'

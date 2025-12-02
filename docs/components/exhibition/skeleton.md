@@ -8,25 +8,37 @@
 
 ```html
 <template>
-  <nut-skeleton width="250px" height="15px" animated> </nut-skeleton>
+  <nut-skeleton width="250px" height="15px" animated></nut-skeleton>
 </template>
-
 ```
 
 ### 传入多行
 
 ```html
 <template>
-  <nut-skeleton width="250px" height="15px" title animated row="3"> </nut-skeleton>
+  <nut-skeleton
+    width="250px"
+    height="15px"
+    title
+    animated
+    row="3"
+  ></nut-skeleton>
 </template>
-
 ```
 
 ### 显示头像
 
 ```html
 <template>
-  <nut-skeleton width="250px" height="15px" title animated avatar avatarSize="60px" row="3"> </nut-skeleton>
+  <nut-skeleton
+    width="250px"
+    height="15px"
+    title
+    animated
+    avatar
+    avatar-size="60px"
+    row="3"
+  ></nut-skeleton>
 </template>
 ```
 
@@ -34,119 +46,86 @@
 
 ```html
 <template>
-  <nut-skeleton width="250px" height="15px" animated round></nut-skeleton>
+  <nut-skeleton
+    width="250px"
+    height="15px"
+    animated
+    round
+  ></nut-skeleton>
 </template>
 ```
 
-### 图片组合
+### 组合
 
 ```html
 <template>
-  <div class="pic-compose">
-    <nut-skeleton width="250px" height="15px" title animated row="3" class="item"> </nut-skeleton>
-    <nut-skeleton width="250px" height="15px" title animated row="3" class="item"> </nut-skeleton>
-  </div>
-</template>
-```
+  <view>
+    <nut-skeleton
+      width="250px"
+      height="15px"
+      title
+      animated
+      row="3"
+    ></nut-skeleton>
 
-```css
-<style>
-.pic-compose {
-  display: flex;
-  justify-content: space-between;
-  .item {
-    width: 47%;
-  }
-}
-</style>
+    <nut-skeleton
+      width="250px"
+      height="15px"
+      title
+      animated
+      row="3"
+    ></nut-skeleton>
+  </view>
+</template>
 ```
 
 ### 显示子组件
 
 ```html
 <template>
-  <div class="content">
-    <nut-switch v-model="checked" />
-    <nut-skeleton width="250px" height="15px" title animated avatar row="3" :loading="!checked">
-      <div class="container">
-        <nut-avatar size="50">
-          <img
-            src="https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png"
-          />
-        </nut-avatar>
-      <div class="right-content">
-        <div class="title">NutUI</div>
-        <div class="desc"
-            >一套京东风格的轻量级移动端Vue组库，提供丰富的基础组件和业务组件，帮助开发者快速搭建移动应用。</div
-        >
-        </div>
-      </div>
-    </nut-skeleton>
-  </div>
+  <nut-switch v-model="loading"></nut-switch>
+
+  <nut-skeleton
+    width="250px"
+    height="15px"
+    title
+    animated
+    avatar
+    row="3"
+    :loading="loading"
+  >
+    <view class="flex flex-col">
+      <nut-avatar size="50">
+        <image src="https://xxx.xx"></image>
+      </nut-avatar>
+      <text>NutUI</text>
+      <text>一套京东风格的轻量级移动端Vue组库，提供丰富的基础组件和业务组件，帮助开发者快速搭建移动应用。</text>
+    </view>
+  </nut-skeleton>
 </template>
-
-<script lang="ts">
-import { ref } from 'vue';
-export default {
-  setup() {
-    const checked = ref(false);
-    return {
-      checked
-    };
-  }
-};
-</script>
-
-<style lang="scss">
-.content {
-  .nut-switch {
-    display: flex;
-    margin: 0 16px 8px 0;
-  }
-  .container {
-    display: flex;
-    .right-content {
-      margin-left: 19px;
-      font-family: PingFangSC;
-      display: flex;
-      flex-direction: column;
-      .title {
-        font-size: 14px;
-        color: rgba(51, 51, 51, 1);
-      }
-      .desc {
-        margin-top: 10px;
-        font-size: 13px;
-        color: rgba(154, 155, 157, 1);
-      }
-    }
-  }
-}
-</style>
-
 ```
 
 ## API
 
 ### Props
 
-| 参数         | 说明                      | 类型    | 默认值    |
-| ------------ | ------------------------- | ------- | --------- |
-| loading      | 是否显示骨架屏            | boolean | `true`    |
-| width        | 每行宽度                  | string  | `default` |
-| height       | 每行高度                  | string  | `15px`    |
-| animated     | 是否开启骨架屏动画        | boolean | `false`   |
-| avatar       | 是否显示头像              | boolean | `false`   |
-| avatar-shape | 头像形状：正方形/圆形     | string  | `round`   |
-| avatar-size  | 头像大小                  | string  | `50px`    |
-| round        | 标题/段落是否采用圆角风格 | boolean | `false`   |
-| row          | 设置段落行数              | string  | `1`       |
-| title        | 是否显示段落标题          | boolean | `true`    |
+| 参数           | 说明              | 类型      | 可选值            | 默认值     |
+|--------------|-----------------|---------|----------------|---------|
+| loading      | 是否显示骨架屏         | boolean | -              | `true`  |
+| width        | 每行宽度            | string  | -              | 100px   |
+| height       | 每行高度            | string  | -              | 15px    |
+| animated     | 是否开启骨架屏动画       | boolean | -              | `false` |
+| avatar       | 是否显示头像          | boolean | -              | `false` |
+| avatar-shape | 头像形状            | string  | round / square | round   |
+| avatar-size  | 头像大小            | string  | -              | 50px    |
+| round        | 标题 / 段落是否采用圆角风格 | boolean | -              | `false` |
+| row          | 设置段落行数          | string  | -              | 1       |
+| title        | 是否显示段落标题        | boolean | -              | `true`  |
 
 ### Slots
 
-| 名称    | 说明           |
-| ------- | -------------- |
+| 名称      | 说明      |
+|---------|---------|
 | default | 骨架屏显示内容 |
 
 ## 主题定制
@@ -155,8 +134,8 @@ export default {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                           | 默认值                                                                                           |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 名称                                             | 默认值                                                                                              |
+|------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | --nut-skeleton-content-avatar-background-color | #efefef                                                                                          |
 | --nut-skeleton-content-line-background-color   | #efefef                                                                                          |
 | --nut-skeleton-animation-background-color      | linear-gradient(90deg,hsla(0, 0%, 100%, 0),hsla(0, 0%, 100%, 0.5) 50%, hsla(0, 0%, 100%, 0) 80%) |

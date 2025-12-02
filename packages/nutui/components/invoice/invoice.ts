@@ -26,7 +26,6 @@ export type InvoiceProps = ExtractPropTypes<typeof invoiceProps>
 
 export const invoiceEmits = {
   onSubmit: (valid: boolean | object, errors: (boolean | ErrorMessage)[]) => (isBoolean(valid) || valid instanceof Object) && (isBoolean(errors) || errors instanceof Object),
-  scrollBottom: () => true,
 }
 
 export type InvoiceEmits = typeof invoiceEmits

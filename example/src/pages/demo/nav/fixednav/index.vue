@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
 
 const visible = ref(false)

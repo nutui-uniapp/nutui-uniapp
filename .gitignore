@@ -1,13 +1,13 @@
-# 其他包管理器LOCK文件
+# Lock (Only PNPM)
 package-lock.json
 yarn.lock
 
-# 本地文件
+# Local
 .env.local
 .env.*.local
 *.local
 
-# 日志文件
+# Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -15,7 +15,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# 缓存文件
+# Cache
 .temp
 .cache
 .eslintcache
@@ -23,13 +23,13 @@ lerna-debug.log*
 .output
 .nuxt
 
-# 制品文件
+# Bundle
 node_modules
 dist
 dist-ssr
-/coverage
+/coverage/
 
-# IDE文件
+# Editor and System
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json

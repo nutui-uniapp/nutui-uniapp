@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, toRef } from 'vue'
 import { PREFIX } from '../_constants'
 import { useInject } from '../_hooks'

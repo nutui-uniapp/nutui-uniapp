@@ -1,7 +1,7 @@
 {
   "name": "@nutui-uniapp/example",
   "type": "module",
-  "version": "1.9.2",
+  "version": "1.9.4",
   "private": "true",
   "scripts": {
     "dev:app": "uni -p app",

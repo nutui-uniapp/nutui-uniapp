@@ -1,3 +1,16 @@
+## [1.9.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.3...v1.9.4) (2025-11-12)
+
+### Features
+
+* **imagepreview:** 新增 show-menu-by-longpress 属性 ([#502](https://github.com/nutui-uniapp/nutui-uniapp/issues/502)) ([6817ec6](https://github.com/nutui-uniapp/nutui-uniapp/commit/6817ec6ed5b0f47881415afac9f0d6d20b5df664))
+
+## [1.9.3](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.2...v1.9.3) (2025-10-16)
+
+### Bug Fixes
+
+* **address:** 修复 safe-area-inset-bottom 无效 ([#494](https://github.com/nutui-uniapp/nutui-uniapp/issues/494)) ([a496ab1](https://github.com/nutui-uniapp/nutui-uniapp/commit/a496ab12d9cb3952c0f9bd9948e8d5bc0d246ece))
+* **uploader:** 修复 video 类型文件未使用 video 标签 ([#498](https://github.com/nutui-uniapp/nutui-uniapp/issues/498)) ([8c862ac](https://github.com/nutui-uniapp/nutui-uniapp/commit/8c862ac28ca705aa6b9c79fe3cfa8e62e959a10a))
+
 ## [1.9.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.1...v1.9.2) (2025-10-13)
 
 ### Bug Fixes

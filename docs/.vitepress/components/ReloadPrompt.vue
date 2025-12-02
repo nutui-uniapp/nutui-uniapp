@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onBeforeMount, ref } from 'vue'
 
 const offlineReady = ref(false)

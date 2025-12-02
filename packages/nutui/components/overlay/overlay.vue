@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent, watchEffect } from 'vue'
 import { CLICK_EVENT, PREFIX, UPDATE_VISIBLE_EVENT } from '../_constants'
 import { useLockScroll } from '../_hooks'
