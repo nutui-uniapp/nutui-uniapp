@@ -212,6 +212,7 @@ export default defineComponent({
         <NutPickerColumn
           :ref="columnRef"
           :column="column"
+          :index="defaultIndexes[columnIndex]"
           :value="defaultValues[columnIndex]"
           :field-names="columnFieldNames"
           :three-dimensional="props.threeDimensional"
