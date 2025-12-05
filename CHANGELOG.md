@@ -1,3 +1,9 @@
+# [1.10.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.4...v1.10.0) (2025-12-05)
+
+### Bug Fixes
+
+* **picker:** 修复 H5 端动画未结束时点击确认无法正确选中 ([#506](https://github.com/nutui-uniapp/nutui-uniapp/issues/506)) ([d61f5bf](https://github.com/nutui-uniapp/nutui-uniapp/commit/d61f5bf31acd22a1bb8a7eec9c9fe3dd17e8c0ae))
+
 ## [1.9.4](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.3...v1.9.4) (2025-11-12)
 
 ### Features
