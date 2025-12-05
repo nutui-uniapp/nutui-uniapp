@@ -1,14 +1,28 @@
-/**
- * PickerColumn 滚动状态机
- *
- * 状态转换图:
- * ```
- * idle ──► touching ──► scrolling ──► momentum ──► settling ──► idle
- *              │             │                          ▲
- *              │             └──────────────────────────┘
- *              └──► idle (未移动)
- * ```
- */
+export interface PickerOption {
+  text?: string | number
+  value?: string | number
+  disabled?: string
+  children?: PickerOption[]
+  className?: string | number
+  [key: PropertyKey]: any
+}
+
+export interface PickerTouchParams {
+  startY: number
+  endY: number
+  startTime: number
+  endTime: number
+  lastY: number
+  lastTime: number
+}
+
+export interface PickerFieldNames {
+  text?: string
+  value?: string
+  children?: string
+  className?: string
+}
+
 export type ScrollState =
   | { type: 'idle' }
   | { type: 'touching', startIndex: number }
@@ -16,20 +30,7 @@ export type ScrollState =
   | { type: 'momentum', targetIndex: number, duration: number }
   | { type: 'settling', targetIndex: number }
 
-export interface ScrollStateActions {
-  /** 进入 idle 状态 */
-  toIdle: () => void
-  /** 进入 touching 状态 */
-  toTouching: (startIndex: number) => void
-  /** 进入 scrolling 状态 */
-  toScrolling: () => void
-  /** 进入 momentum 状态 */
-  toMomentum: (targetIndex: number, duration: number) => void
-  /** 进入 settling 状态 */
-  toSettling: (targetIndex: number) => void
-}
-
-export interface PickerColumnExpose {
+export interface PickerColumnInst {
   /** 停止惯性滚动并提交当前值 */
   stopMomentum: () => void
   /** 当前滚动状态 */

@@ -1,8 +1,6 @@
 import { computed, ref } from 'vue'
 import type { ScrollState } from './types'
 
-export type { ScrollState }
-
 /**
  * PickerColumn 滚动状态机
  *
@@ -10,6 +8,14 @@ export type { ScrollState }
  * 1. 只有 idle 状态才接受外部 props 更新
  * 2. 滚动过程中保持内部自治
  * 3. 只在进入 idle 时才通知外部变化
+ *
+ * 状态转换图:
+ * ```
+ * idle ──► touching ──► scrolling ──► momentum ──► settling ──► idle
+ *              │             │                          ▲
+ *              │             └──────────────────────────┘
+ *              └──► idle (未移动)
+ * ```
  */
 export function useScrollState() {
   const state = ref<ScrollState>({ type: 'idle' })
@@ -25,11 +31,23 @@ export function useScrollState() {
   const isInteracting = computed(() => state.value.type !== 'idle')
 
   // 是否正在动画中（momentum 或 settling）
-  const isAnimating = computed(() =>
-    state.value.type === 'momentum' || state.value.type === 'settling',
-  )
+  const isAnimating = computed(() => {
+    return state.value.type === 'momentum' || state.value.type === 'settling'
+  })
 
-  // 状态转换方法
+  // 获取目标索引（如果有）
+  const targetIndex = computed(() => {
+    if (state.value.type === 'momentum' || state.value.type === 'settling') {
+      return state.value.targetIndex
+    }
+
+    if (state.value.type === 'touching') {
+      return state.value.startIndex
+    }
+
+    return null
+  })
+
   function toIdle() {
     state.value = { type: 'idle' }
   }
@@ -52,17 +70,6 @@ export function useScrollState() {
     state.value = { type: 'settling', targetIndex }
   }
 
-  // 获取目标索引（如果有）
-  const targetIndex = computed(() => {
-    if (state.value.type === 'momentum' || state.value.type === 'settling') {
-      return state.value.targetIndex
-    }
-    if (state.value.type === 'touching') {
-      return state.value.startIndex
-    }
-    return null
-  })
-
   return {
     state,
     isIdle,
@@ -80,5 +87,3 @@ export function useScrollState() {
     toSettling,
   }
 }
-
-export type UseScrollStateReturn = ReturnType<typeof useScrollState>
