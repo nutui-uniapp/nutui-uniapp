@@ -71,7 +71,7 @@ function runStep() {
     getNode(index)
   })
 }
-const styleList: any[] = reactive([])
+const styleList = reactive<Record<string, string>[]>([])
 function styleInfo(index: number, nodeTop: string, width: number) {
   const timeIndex = index - rows.value > 0 ? index - rows.value : 0
   const list = styleList
@@ -118,7 +118,7 @@ export default defineComponent({
           :key="`danmu${index}`"
           class="nut-barrage__item move"
           :class="[`nut-barrage__item${index}`]"
-          :style="styleList[index]"
+          :style="styleList[index as number]"
         >
           {{ item.length > 8 ? `${item.substr(0, 8)}...` : item }}
         </view>
