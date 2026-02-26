@@ -18,30 +18,30 @@
     "pnpm": ">=9"
   },
   "scripts": {
-    "build": "pnpm run --dir packages/nutui build",
-    "dev:mp-weixin": "npm -C example run dev:mp-weixin",
-    "build:mp-weixin": "npm -C example run build:mp-weixin",
-    "dev:mp-alipay": "npm -C example run dev:mp-alipay",
-    "build:mp-alipay": "npm -C example run build:mp-alipay",
-    "dev:h5": "npm -C example run dev:h5",
-    "build:h5": "npm -C example run build:h5",
-    "dev:app": "npm -C example run dev:app",
-    "build:app": "npm -C example run build:app",
-    "docs:dev": "npm -C docs run dev",
-    "docs:build": "npm -C docs run build",
-    "docs:preview": "npm -C docs run serve",
+    "build": "nr -C packages/nutui build",
+    "dev:mp-weixin": "nr -C example dev:mp-weixin",
+    "build:mp-weixin": "nr -C example build:mp-weixin",
+    "dev:mp-alipay": "nr -C example dev:mp-alipay",
+    "build:mp-alipay": "nr -C example build:mp-alipay",
+    "dev:h5": "nr -C example dev:h5",
+    "build:h5": "nr -C example build:h5",
+    "dev:app": "nr -C example dev:app",
+    "build:app": "nr -C example build:app",
+    "docs:dev": "nr -C docs dev",
+    "docs:build": "nr -C docs build",
+    "docs:preview": "nr -C docs serve",
     "commit": "git pull && git add -A && git-cz",
     "publish:ci": "esno scripts/publish.ts",
     "lint": "eslint . --fix",
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "lint:markdownlint": "markdownlint . --fix --ignore-path=.gitignore",
-    "lint-staged": "npm -C packages/nutui run type-check && npx lint-staged",
+    "lint-staged": "nr -C packages/nutui type-check && npx lint-staged",
     "clean": "npx rimraf ./node_modules ./**/**/node_modules",
     "release": "bumpp package.json scripts/uni/package.json packages/nutui/package.json example/package.json docs/package.json",
-    "postinstall": "pnpm build && npx simple-git-hooks",
+    "postinstall": "nr build && npx simple-git-hooks",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -m \"docs: update changelog\" && git push",
     "build:web-types": "esno scripts/web-types.ts",
-    "build:all": "pnpm build && pnpm build:web-types && pnpm build:h5 && pnpm docs:build && esno scripts/build.ts",
+    "build:all": "nr build && nr build:web-types && nr build:h5 && nr docs:build && esno scripts/build.ts",
     "build:uni": "esno scripts/uni/build.ts"
   },
   "dependencies": {
@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.14.0",
+    "@antfu/ni": "^28.2.0",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@dcloudio/types": "^3.4.14",
@@ -93,7 +94,7 @@
     }
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
+    "pre-commit": "npx lint-staged",
     "commit-msg": "npx commitlint --edit ${1}"
   },
   "lint-staged": {
