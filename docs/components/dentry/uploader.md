@@ -234,6 +234,7 @@ function clear() {
 | before-upload            | 执行 `uni.uploadFile` 上传时，自定义方法                                                                    | Function        | -                           | -                            |
 | before-delete            | 移除文件时的回调，返回值为 false 时不移除。支持返回一个 `Promise` 对象，`Promise` 对象 `resolve(false)` 或 `reject` 时不移除       | Function        | -                           | -                            |
 | mode                     | 预览图片的 mode 属性                                                                                    | string          | -                           | aspectFit                    |
+| sortable `1.11.0`        | 是否启用拖拽排序                                                                                         | boolean         | -                           | `false`                      |
 
 #### FileItem
 
