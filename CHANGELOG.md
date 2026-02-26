@@ -1,3 +1,13 @@
+# [1.11.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.10.0...v1.11.0) (2026-02-26)
+
+### Bug Fixes
+
+* **barrage:** 修复类型错误 ([#510](https://github.com/nutui-uniapp/nutui-uniapp/issues/510)) ([2064ad6](https://github.com/nutui-uniapp/nutui-uniapp/commit/2064ad6eb05fe4240dba25532f397e6022bb4b77))
+
+### Features
+
+* **uploader:** 新增拖拽排序功能 ([#512](https://github.com/nutui-uniapp/nutui-uniapp/issues/512)) ([342bfd9](https://github.com/nutui-uniapp/nutui-uniapp/commit/342bfd97940ff9645200e6096e530028d6e2d11c))
+
 # [1.10.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.9.4...v1.10.0) (2025-12-05)
 
 ### Bug Fixes
