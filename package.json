@@ -31,7 +31,6 @@
     "docs:build": "nr -C docs build",
     "docs:preview": "nr -C docs serve",
     "commit": "git pull && git add -A && git-cz",
-    "publish:ci": "esno scripts/publish.ts",
     "lint": "eslint . --fix",
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\" --fix",
     "lint:markdownlint": "markdownlint . --fix --ignore-path=.gitignore",
