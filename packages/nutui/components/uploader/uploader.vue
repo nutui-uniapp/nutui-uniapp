@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, defineComponent, reactive, ref, toRef, useSlots, watch } from 'vue'
+import { computed, defineComponent, getCurrentInstance, reactive, ref, toRef, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
 import { getMainClass } from '../_utils'
 import { useTranslate } from '../../locale'
@@ -7,7 +7,7 @@ import NutButton from '../button/button.vue'
 import { useFormDisabled } from '../form/form'
 import NutIcon from '../icon/icon.vue'
 import NutProgress from '../progress/progress.vue'
-import type { FileItem } from './types'
+import type { DragState, FileItem } from './types'
 import { uploaderEmits, uploaderProps } from './uploader'
 import type { ChooseFile, OnProgressUpdateResult, UploadFileSuccessCallbackResult, UploadOptions } from './use-uploader'
 import { chooseFile, createUploader } from './use-uploader'
@@ -234,6 +234,96 @@ function chooseImage(event: any) {
   })
 }
 
+// ---- 拖拽排序 ----
+const instance = getCurrentInstance()
+
+const dragState = reactive<DragState>({
+  dragging: false,
+  dragIndex: -1,
+  startX: 0,
+  startY: 0,
+  offsetX: 0,
+  offsetY: 0,
+  rects: [],
+})
+
+// 查询所有预览 item 的位置
+function queryRects(): Promise<void> {
+  return new Promise((resolve) => {
+    const query = uni.createSelectorQuery().in(instance)
+    query.selectAll('.nut-uploader__preview').boundingClientRect((res) => {
+      if (Array.isArray(res)) {
+        dragState.rects = res as any[]
+      }
+      resolve()
+    }).exec()
+  })
+}
+
+async function onDragStart(e: any, index: number) {
+  if (disabled.value || !props.sortable)
+    return
+  const touch = e.touches[0]
+  await queryRects()
+  dragState.dragging = true
+  dragState.dragIndex = index
+  dragState.startX = touch.clientX
+  dragState.startY = touch.clientY
+  dragState.offsetX = 0
+  dragState.offsetY = 0
+}
+
+function onDragMove(e: any, index: number) {
+  if (!dragState.dragging || dragState.dragIndex !== index)
+    return
+  e.preventDefault && e.preventDefault()
+  const touch = e.touches[0]
+  dragState.offsetX = touch.clientX - dragState.startX
+  dragState.offsetY = touch.clientY - dragState.startY
+}
+
+function onDragEnd(e: any, index: number) {
+  if (!dragState.dragging || dragState.dragIndex !== index)
+    return
+
+  const touch = e.changedTouches[0]
+  const targetIndex = findTargetIndex(touch.clientX, touch.clientY)
+
+  if (targetIndex !== -1 && targetIndex !== index) {
+    const list = fileList.value
+    const dragged = list.splice(index, 1)[0]
+    list.splice(targetIndex, 0, dragged)
+    emit('update:fileList', list)
+  }
+
+  dragState.dragging = false
+  dragState.dragIndex = -1
+  dragState.offsetX = 0
+  dragState.offsetY = 0
+}
+
+function findTargetIndex(x: number, y: number): number {
+  for (let i = 0; i < dragState.rects.length; i++) {
+    const r = dragState.rects[i]
+    if (r && x >= r.left && x <= r.left + r.width && y >= r.top && y <= r.top + r.height) {
+      return i
+    }
+  }
+  return -1
+}
+
+function getDragStyle(index: number) {
+  if (dragState.dragging && dragState.dragIndex === index) {
+    return {
+      transform: `translate(${dragState.offsetX}px, ${dragState.offsetY}px)`,
+      zIndex: 999,
+      opacity: 0.85,
+      transition: 'none',
+    }
+  }
+  return {}
+}
+
 defineExpose({
   submit,
   chooseImage,
@@ -270,8 +360,13 @@ export default defineComponent({
       v-for="(item, index) in fileList"
       :key="item.uid"
       class="nut-uploader__preview"
-      :class="[props.listType]"
+      :class="[props.listType, { 'is-dragging': dragState.dragging && dragState.dragIndex === index, 'is-sortable': props.sortable }]"
+      :style="getDragStyle(index)"
+      @touchstart="onDragStart($event, index)"
+      @touchmove.stop.prevent="onDragMove($event, index)"
+      @touchend="onDragEnd($event, index)"
     >
+
       <view v-if="props.listType === 'picture' && !slots.default" class="nut-uploader__preview-img">
         <view v-if="item.status !== 'success'" class="nut-uploader__preview__progress">
           <template v-if="item.status !== 'ready'">
@@ -349,7 +444,6 @@ export default defineComponent({
         />
       </view>
     </view>
-
     <view
       v-if="props.listType === 'picture' && !slots.default && fileList.length < Number(props.maximum)"
       class="nut-uploader__upload"

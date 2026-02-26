@@ -33,3 +33,13 @@ export interface UploaderInst {
    */
   clearUploadQueue: (index?: number) => void
 }
+export interface DragState {
+  dragging: boolean
+  dragIndex: number
+  startX: number
+  startY: number
+  offsetX: number
+  offsetY: number
+  // 各 item 的位置缓存
+  rects: Array<{ left: number, top: number, width: number, height: number }>
+}
