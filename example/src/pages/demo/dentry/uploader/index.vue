@@ -226,6 +226,14 @@ function beforeXhrUpload(UploadFile: any, options: any) {
       文件类型 - 全部
     </h2>
     <nut-uploader :url="uploadUrl" accept="all" />
+    <h2 class="title">
+      拖拽排序
+    </h2>
+    <nut-uploader
+      v-model:file-list="defaultFileList"
+      :url="uploadUrl"
+      sortable
+    />
   </div>
 </template>
 

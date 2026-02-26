@@ -133,6 +133,10 @@ export const uploaderProps = {
    * @description 预览图片的 mode 属性
    */
   mode: makeStringProp<'aspectFit' | 'scaleToFill' | 'aspectFill' | 'widthFix' | 'heightFix' | 'top' | 'bottom' | 'center' | 'left' | 'right' | 'top left' | 'top right' | 'bottom left' | 'bottom right'>('aspectFit'),
+  /**
+   * @description 是否开启排序
+   */
+  sortable: Boolean,
 }
 
 export type UploaderProps = ExtractPropTypes<typeof uploaderProps>
