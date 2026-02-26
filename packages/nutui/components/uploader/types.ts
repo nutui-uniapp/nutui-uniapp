@@ -33,6 +33,14 @@ export interface UploaderInst {
    */
   clearUploadQueue: (index?: number) => void
 }
+
+export interface FileItemRect {
+  top: number
+  left: number
+  width: number
+  height: number
+}
+
 export interface DragState {
   dragging: boolean
   dragIndex: number
@@ -40,6 +48,5 @@ export interface DragState {
   startY: number
   offsetX: number
   offsetY: number
-  // 各 item 的位置缓存
-  rects: Array<{ left: number, top: number, width: number, height: number }>
+  rects: FileItemRect[]
 }

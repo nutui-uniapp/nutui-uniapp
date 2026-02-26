@@ -136,10 +136,7 @@ export const uploaderProps = {
   /**
    * @description 是否开启排序
    */
-  sortable: {
-    type: Boolean,
-    default: false,
-  },
+  sortable: Boolean,
 }
 
 export type UploaderProps = ExtractPropTypes<typeof uploaderProps>
