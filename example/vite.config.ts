@@ -9,6 +9,7 @@ import { NutResolver } from 'nutui-uniapp'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
+import ViteRestart from 'vite-plugin-restart'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -49,6 +50,11 @@ export default defineConfig({
     UniLayouts(),
     // @ts-expect-error whatever
     UniApp.default(),
+    ViteRestart({
+      restart: [
+        '../packages/nutui/components/**',
+      ],
+    }),
   ],
   css: {
     preprocessorOptions: {

@@ -4,7 +4,8 @@ import { CHANGE_EVENT, PREFIX } from '../_constants'
 import { useTouch } from '../_hooks'
 import { clamp, preventDefault, pxCheck } from '../_utils'
 import { pickercolumnEmits, pickercolumnProps } from './pickercolumn'
-import type { PickerTouchParams } from './type'
+import type { PickerTouchParams } from './types'
+import { useScrollState } from './use-scroll-state'
 
 const props = defineProps(pickercolumnProps)
 
@@ -30,6 +31,8 @@ const innerOptionHeight = computed(() => {
   return Number(props.optionHeight)
 })
 
+const scrollState = useScrollState()
+
 interface State {
   touchParams: PickerTouchParams
   currIndex: number
@@ -47,15 +50,16 @@ const state: State = reactive({
     lastY: 0,
     lastTime: 0,
   },
-  currIndex: 1,
+  currIndex: 0,
   transformY: 0,
   scrollDistance: 0,
   rotation: 20,
 })
 
+const startIndex = ref(0)
+
 const roller = ref<any | null>(null)
 
-const moving = ref<boolean>(false)
 const touchDeg = ref<string>('0')
 const touchTime = ref<number>(0)
 
@@ -91,7 +95,11 @@ const touch = useTouch()
 function onTouchStart(event: any) {
   touch.start(event)
 
-  if (moving.value && !props.uni) {
+  // 记录滚动开始前的索引
+  startIndex.value = state.currIndex
+
+  // 如果正在动画中，立即停止并获取当前位置
+  if (scrollState.isAnimating.value && !props.uni) {
     const { transform } = window.getComputedStyle(roller.value?.$el)
 
     if (props.threeDimensional) {
@@ -109,6 +117,9 @@ function onTouchStart(event: any) {
 
   preventDefault(event, true)
 
+  // 进入 touching 状态
+  scrollState.toTouching(state.currIndex)
+
   state.touchParams.startY = touch.deltaY.value
   state.touchParams.startTime = Date.now()
   state.transformY = state.scrollDistance
@@ -118,7 +129,10 @@ function onTouchMove(event: any) {
   touch.move(event)
 
   if (touch.isVertical()) {
-    moving.value = true
+    // 首次移动，进入 scrolling 状态
+    if (!scrollState.isScrolling.value && !scrollState.isMomentum.value) {
+      scrollState.toScrolling()
+    }
     preventDefault(event, true)
   }
 
@@ -134,20 +148,40 @@ function onTouchEnd() {
   const move = state.touchParams.lastY - state.touchParams.startY
   const moveTime = state.touchParams.lastTime - state.touchParams.startTime
 
+  // 如果还在 touching 状态（没有移动），直接回到 idle
+  if (scrollState.isTouching.value) {
+    touch.reset()
+    scrollState.toIdle()
+    return
+  }
+
   if (moveTime <= INERTIA_TIME && Math.abs(move) > INERTIA_DISTANCE) {
     // 惯性滚动
     const distance = momentum(move, moveTime)
     setMove(distance, 'end', innerSwipeDuration.value)
+    // 进入 momentum 状态，但立即触发 change
+    scrollState.toMomentum(state.currIndex, innerSwipeDuration.value)
+    emitChangeIfNeeded()
     return
   }
 
+  // 普通滚动结束
   setMove(move, 'end')
+  // 立即触发 change，不等动画
+  emitChangeIfNeeded()
+  scrollState.toSettling(state.currIndex)
+}
 
-  setTimeout(() => {
-    touch.reset()
+/**
+ * 立即触发 change（如果索引有变化）
+ */
+function emitChangeIfNeeded() {
+  const finalIndex = state.currIndex
 
-    moving.value = false
-  }, 0)
+  if (finalIndex !== startIndex.value && props.column[finalIndex]) {
+    emit(CHANGE_EVENT, props.column[finalIndex])
+    startIndex.value = finalIndex
+  }
 }
 
 /**
@@ -162,7 +196,7 @@ function momentum(distance: number, duration: number) {
 }
 
 function isHidden(index: number) {
-  return index >= state.currIndex + 8 || index <= state.currIndex - 8
+  return index > state.currIndex + 8 || index < state.currIndex - 8
 }
 
 function setTransform(translateY = 0, type: string | null, time = DEFAULT_DURATION, deg: string) {
@@ -194,7 +228,7 @@ function setMove(move: number, type?: string, time?: number) {
 
     setTransform(endMove, type, time, deg)
 
-    state.currIndex = Math.abs(Math.round(endMove / innerOptionHeight.value)) + 1
+    state.currIndex = Math.abs(Math.round(endMove / innerOptionHeight.value))
   }
   else {
     const currentDeg = (-updateMove / innerOptionHeight.value + 1) * state.rotation
@@ -208,40 +242,78 @@ function setMove(move: number, type?: string, time?: number) {
     if (minDeg < deg && deg < maxDeg) {
       setTransform(updateMove, null, undefined, `${deg}deg`)
 
-      state.currIndex = Math.abs(Math.round(updateMove / innerOptionHeight.value)) + 1
+      state.currIndex = Math.abs(Math.round(updateMove / innerOptionHeight.value))
     }
   }
 }
 
-function setChooseValue() {
-  emit(CHANGE_EVENT, props.column[state.currIndex - 1])
-}
+/**
+ * 根据索引滚动到指定位置
+ */
+function scrollToIndex(index: number, emitChange = false) {
+  const targetIndex = Math.max(0, Math.min(index, props.column.length - 1))
+  state.currIndex = targetIndex
+  state.transformY = 0
 
-function modifyStatus(type: boolean) {
-  const index = props.column.findIndex(columnItem => columnItem[props.fieldNames.value] === props.value)
-
-  state.currIndex = index === -1 ? 1 : index + 1
-
-  const move = index === -1 ? 0 : index * innerOptionHeight.value
-  type && setChooseValue()
+  const move = targetIndex * innerOptionHeight.value
   setMove(-move)
+
+  if (emitChange) {
+    emit(CHANGE_EVENT, props.column[targetIndex])
+  }
 }
 
-// 惯性滚动结束
-function stopMomentum() {
-  moving.value = false
-  touchTime.value = 0
+/**
+ * 根据值查找索引并滚动
+ */
+function scrollToValue(value: string | number | undefined) {
+  const index = props.column.findIndex((item) => {
+    return item[props.fieldNames.value] === value
+  })
 
-  setChooseValue()
+  scrollToIndex(Math.max(0, index))
+}
+
+/**
+ * 获取当前索引（从外部传入的 index 或 value 计算）
+ */
+function getExternalIndex() {
+  // 优先使用 index prop
+  if (props.index >= 0) {
+    return props.index
+  }
+
+  // 否则从 value 查找
+  const index = props.column.findIndex((item) => {
+    return item[props.fieldNames.value] === props.value
+  })
+
+  return Math.max(0, index)
+}
+
+// 惯性滚动结束（transitionend 触发）或手动停止
+function stopMomentum() {
+  if (scrollState.isIdle.value) {
+    return
+  }
+
+  touchTime.value = 0
+  scrollState.toIdle()
+  touch.reset()
 }
 
 watch(
   () => props.column,
   () => {
     if (props.column && props.column.length > 0) {
-      state.transformY = 0
+      if (!scrollState.isIdle.value) {
+        return
+      }
 
-      modifyStatus(false)
+      // 关键：只有 idle 状态才响应外部变化
+      // 非 idle 状态：忽略，等滚动结束后会自动同步
+      state.transformY = 0
+      scrollToIndex(getExternalIndex())
     }
   },
   {
@@ -252,21 +324,37 @@ watch(
 watch(
   () => props.value,
   () => {
-    state.transformY = 0
+    if (!scrollState.isIdle.value) {
+      return
+    }
 
-    modifyStatus(false)
+    state.transformY = 0
+    scrollToValue(props.value)
   },
   {
     deep: true,
   },
 )
 
+watch(
+  () => props.index,
+  (newIndex) => {
+    if (newIndex >= 0 && scrollState.isIdle.value) {
+      state.transformY = 0
+      scrollToIndex(newIndex)
+    }
+  },
+)
+
 onMounted(() => {
-  modifyStatus(true)
+  scrollToIndex(getExternalIndex(), true)
 })
 
 defineExpose({
   stopMomentum,
+  scrollState: scrollState.state,
+  isIdle: scrollState.isIdle,
+  currentIndex: computed(() => state.currIndex),
 })
 </script>
 

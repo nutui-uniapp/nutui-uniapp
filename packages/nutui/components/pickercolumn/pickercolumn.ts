@@ -1,13 +1,17 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { CHANGE_EVENT } from '../_constants'
-import { makeArrayProp, makeNumericProp } from '../_utils'
-import type { PickerFieldNames, PickerOption } from './type'
+import { makeArrayProp, makeNumberProp, makeNumericProp } from '../_utils'
+import type { PickerFieldNames, PickerOption } from './types'
 
 export const pickercolumnProps = {
   /**
    * @description 当前选中项
    */
   value: [String, Number],
+  /**
+   * @description 当前选中索引（优先级高于 value）
+   */
+  index: makeNumberProp(-1),
   /**
    * @description 显示的数据
    */

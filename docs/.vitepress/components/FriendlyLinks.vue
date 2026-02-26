@@ -8,7 +8,7 @@ const _list = [
     icon: 'https://oss.xiaohe.ink/images/uni-helper.png',
     title: 'Uni Helper',
     details: '旨在增强 uni-app 系列产品的开发体验',
-    link: 'https://uni-helper.js.org',
+    link: 'https://uni-helper.cn',
   },
   {
     id: 'uni-echarts',
@@ -16,13 +16,6 @@ const _list = [
     title: 'Uni ECharts',
     details: '适用于 uni-app 的 Apache ECharts 组件',
     link: 'https://uni-echarts.xiaohe.ink',
-  },
-  {
-    id: 'uni-ku',
-    icon: 'https://oss.xiaohe.ink/images/uni-ku.png',
-    title: 'Uni Ku',
-    details: '有很多 Uniapp(Uni) 的酷(Ku) 😎',
-    link: 'https://uni-ku.js.org',
   },
 ]
 
