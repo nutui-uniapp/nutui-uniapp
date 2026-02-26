@@ -254,7 +254,7 @@ const dragState = reactive<DragState>({
 function queryRects() {
   return new Promise<void>((resolve) => {
     uni.createSelectorQuery()
-      .in(instance)
+      .in(instance.proxy)
       .selectAll('.nut-uploader__preview')
       .boundingClientRect((res) => {
         if (Array.isArray(res)) {
@@ -314,6 +314,7 @@ function onDragEnd(event: TouchEvent, index: number) {
   if (targetIndex !== -1 && targetIndex !== index) {
     const list = [...fileList.value]
     list.splice(targetIndex, 0, ...list.splice(index, 1))
+    fileList.value = list
 
     emit('update:fileList', list)
     emit('change', { fileList: list })
