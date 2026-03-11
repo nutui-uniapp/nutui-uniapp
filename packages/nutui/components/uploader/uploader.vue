@@ -3,7 +3,7 @@ import type { TouchEvent } from '@uni-helper/uni-app-types'
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, getCurrentInstance, reactive, ref, toRef, useSlots, watch } from 'vue'
 import { PREFIX } from '../_constants'
-import { getMainClass } from '../_utils'
+import { getMainClass, isEqualValue } from '../_utils'
 import { useTranslate } from '../../locale'
 import NutButton from '../button/button.vue'
 import { useFormDisabled } from '../form/form'
@@ -32,8 +32,10 @@ const fileList = ref<FileItem[]>(props.fileList)
 
 const uploadQueue = ref<Promise<any>[]>([])
 
-watch(() => props.fileList, () => {
-  fileList.value = props.fileList
+watch(() => props.fileList, (value) => {
+  if (!isEqualValue(fileList.value, value)) {
+    fileList.value = value
+  }
 })
 
 const videoObjectFit = computed(() => {
@@ -400,7 +402,7 @@ export default defineComponent({
 
     <view
       v-for="(item, index) in fileList"
-      :key="item.uid"
+      :key="index"
       class="nut-uploader__preview"
       :class="getItemClasses(index)"
       :style="getItemStyles(index)"
