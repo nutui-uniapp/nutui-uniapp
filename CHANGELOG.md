@@ -1,3 +1,9 @@
+## [1.11.2](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.11.1...v1.11.2) (2026-03-11)
+
+### Bug Fixes
+
+* **uploader:** 修复小程序端拖拽样式异常 ([3ec4679](https://github.com/nutui-uniapp/nutui-uniapp/commit/3ec467940b35545458b32935e225912255ce18a4))
+
 ## [1.11.1](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.11.0...v1.11.1) (2026-02-26)
 
 # [1.11.0](https://github.com/nutui-uniapp/nutui-uniapp/compare/v1.10.0...v1.11.0) (2026-02-26)
