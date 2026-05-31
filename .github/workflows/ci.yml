@@ -1,35 +1,32 @@
-name: ci
+name: CI
 
 on:
   push:
     branches:
-      - main
       - dev
-      - 2.x
   pull_request:
     branches:
-      - main
       - dev
-      - 2.x
 
 jobs:
-  ci:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set node
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: pnpm
-
-      - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm build:all
-      - uses: codecov/codecov-action@v3
+          node-version: lts/*
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup
+        run: npm i -g @antfu/ni
+      - name: Install
+        run: nci
+      - name: Build
+        run: nr build:all
+      - name: Lint
+        run: |
+          nr lint
+          nr lint:style
