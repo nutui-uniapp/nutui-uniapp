@@ -78,18 +78,19 @@ async function init() {
 
 const methods = {
   async handleNode(node: CascaderOption, silent?: boolean) {
-    // 即便快速点击导致层级不一致，只要严格按 node.level 去更新数据，就不会出错。
     const { disabled, loading } = node
-    if ((!silent && disabled) || !panes.value[node.level as number])
+
+    if ((!silent && disabled) || !panes.value[node.level!])
       return
 
     if (tree.value.isLeaf(node, isLazy.value)) {
       node.leaf = true
-      panes.value[node.level as number].selectedNode = node
-      panes.value = panes.value.slice(0, (node.level as number) + 1)
+      panes.value[node.level!].selectedNode = node
+      panes.value = panes.value.slice(0, node.level! + 1)
 
       if (!silent) {
         const pathNodes = panes.value.map(pane => pane.selectedNode)
+
         emitChange(pathNodes as CascaderOption[])
         emit('pathChange', pathNodes as CascaderOption[])
       }
@@ -97,8 +98,9 @@ const methods = {
     }
 
     if (tree.value.hasChildren(node, isLazy.value)) {
-      const level = (node.level as number) + 1
-      panes.value[node.level as number].selectedNode = node
+      const level = node.level! + 1
+
+      panes.value[node.level!].selectedNode = node
       panes.value = panes.value.slice(0, level)
       panes.value.push({
         nodes: node.children || [],
@@ -122,7 +124,7 @@ const methods = {
     await invokeLazyLoad(node)
 
     if (currentProcessNode === node) {
-      panes.value[node.level as number].selectedNode = node
+      panes.value[node.level!].selectedNode = node
       methods.handleNode(node, silent)
     }
   },

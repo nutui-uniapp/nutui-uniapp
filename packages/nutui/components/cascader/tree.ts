@@ -44,7 +44,7 @@ class Tree {
     let currentNodes: CascaderOption[] | void = this.nodes
 
     while (currentNodes && currentNodes.length) {
-      const foundNode: CascaderOption | void = currentNodes.find(node => node.value === value[node.level as number])
+      const foundNode: CascaderOption | void = currentNodes.find(node => node.value === value[node.level!])
 
       if (!foundNode)
         break
